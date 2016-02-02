@@ -32,11 +32,10 @@ exclude:
   - lib
   - Gemfile
   - Gemfile.lock
-  - CNAME
-  - package.json
   - node_modules
   - bower.json
   - gulpfile.babel.js
+  - package.json
 permalinks: "pretty"
 lsi: false # if set to true generate related posts
 

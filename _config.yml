@@ -1,0 +1,57 @@
+# Plugins
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Site settings
+title: "Appkr.memo(new Life)"
+
+description: >
+  appkr's blog to record day-to-day life & thoughts.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://blog.appkr.kr" # the base hostname & protocol for your site
+
+# Contacts
+author: "appkr"
+email: "juwonkim@me.com"
+github: "https://github.com/appkr"
+facebook: "https://www.facebook.com/juwonkimatmedotcom"
+twitter:
+googleplus:
+youtube:
+stackoverflow:
+flickr:
+dribbble:
+instagram:
+linkedin:
+pinterest:
+
+# Build settings
+exclude:
+  - lib
+  - Gemfile
+  - Gemfile.lock
+  - CNAME
+  - package.json
+  - node_modules
+  - bower.json
+  - gulpfile.babel.js
+permalinks: "pretty"
+lsi: false # if set to true generate related posts
+
+# Conversion
+markdown: "redcarpet"
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+highlighter: "pygments"
+
+# Outputting
+paginate: 5
+paginate_path: "/page:num/"
+destination: "public"
+
+# Services
+disqus_short_name: "appkr"
+google_tracking_id: "UA-72812647-1"
+

@@ -1,0 +1,43 @@
+---
+layout: page
+permalink: "tags/index.html"
+---
+
+<article class="box tags">
+  <div class="box-header">
+    <h2>Tags</h2>
+  </div>
+
+  <div class="box-body tags-cloud">
+    <ul>
+      {% for tag in site.tags %}
+      <li><a href="/tags#{{ tag | first | slugize }}"> {{ tag | first }} </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</article>
+
+{% for tag in site.tags %}
+  {% capture tag_name %}{{ tag | first }}{% endcapture %}
+  <article class="box tags" id="#{{ tag_name | slugize }}">
+    <div class="box-header">
+      <h3>{{ tag_name }}</h3>
+    </div>
+
+    <div class="box-body">
+      <ul>
+        {% for post in site.tags[tag_name] %}
+          <li>
+            <h4>
+              <small class="box-meta">
+                <span><i class="material-icons">today</i> {{ post.date | date: "%Y-%m-%d" }}</span>
+                <span><i class="material-icons">forum</i><a href="{{ post.url | prepend: site.baseurl }}#disqus_thread">0</a></span>
+              </small>
+              <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h4>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </article>
+{% endfor %}

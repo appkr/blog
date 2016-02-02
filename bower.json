@@ -1,0 +1,24 @@
+{
+  "name": "appkr/blog",
+  "description": "blog",
+  "main": "_assets/scripts/main.js",
+  "authors": [
+    "appkr <juwonkim@me.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "http://blog.appkr.kr",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "_assets/vendor",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "fastclick": "~1.0.6",
+    "bootstrap-material-design": "~0.5.7",
+    "simple-jekyll-search": "~1.1.1"
+  }
+}

@@ -55,7 +55,7 @@ layout: default
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
-            Older
+            Newer
           </a>
         </li>
         {% else %}
@@ -64,7 +64,7 @@ layout: default
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
-            Older
+            Newer
           </a>
         </li>
         {% endif %}
@@ -72,7 +72,7 @@ layout: default
         {% if paginator.next_page %}
         <li class="next">
           <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">
-            Newer
+            Older
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>
@@ -81,7 +81,7 @@ layout: default
         {% else %}
         <li class="next disabled">
           <a href="#">
-            Newer
+            Older
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>

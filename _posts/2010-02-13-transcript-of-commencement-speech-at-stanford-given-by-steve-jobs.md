@@ -11,13 +11,14 @@ tags:
 
 내 인생에 큰 감동을 준 연설이다. 핸드폰에 넣고 다니면서, 힘들 때 마다 꺼내어 힘을 얻는다. 특히, 이 한 문장 때문이다.
 
-> "Stay hungry, stay foolish" <footer><cite>Steve Jobs</cite></footer>
+> Stay hungry, stay foolish
+> <footer>Steve Jobs</footer>
 
 연설에서 잡스는 자신의 인생에서 겪은 3가지 이야기를 한다.
 
 첫 번째는 자신의 출생과 IT 업계의 입문과 초기 성공에 관한 이야기. 대학원생이었던 미혼모 엄마에게서 태어나, 가난한 양부모에게 입양되었고, 양부모가 평생 저축한 재산을 자신의 1학기 대학등록금으로 전부 쓴 것을 알고, Reed College 대학을 6개월 만에 중퇴한다. 그리고, 콜라 캔을 모아 팔아서 생활하면서, 도강을 하면서 2년 가까운 시간을 보낸다. 그 때 접한 것이 폰트였고, 그 경험 때문에 맥킨토시에서 화려한 폰트를 만들 수 있었고, 전자출판이라는 새로운 산업이 시작되었다. 잡스는 그 때 학교를 그만 둔 것은 정말 잘한 선택이라고 말한다.
 
-두 번째는 잡스의 암울했던 NeXT 와 Pixar 의 시기를 이야기 한다. 그의 나이 30에, 20 살 부터 아버지의 차고에서 시작해서 일구어 놓은 Apple 에서 쫓겨 났다. 하지만, 그는 자신이 원하는 일, 해야 할 일이 무엇인지, 목표가 무엇인지를 명확히 했고, 오히려, 이 때 쫓겨 나지 않았다면 현재 Mac OS X 의 모체인 NeXT OS 와 iPod/iTunes 로 영광의 귀환을 할 수 있었던 Pixar 의 시기를 놓쳤을 것이라고 너스레를 떤다. 지금 졸업하는 학생들에게 자신이 하고 싶은 일을 계속 찾고, 절대 안주하지 말라고 당부하며. Keep looking, don’t settle.
+두 번째는 잡스의 암울했던 NeXT 와 Pixar 의 시기를 이야기 한다. 그의 나이 30에, 20 살 부터 아버지의 차고에서 시작해서 일구어 놓은 Apple 에서 쫓겨 났다. 하지만, 그는 자신이 원하는 일, 해야 할 일이 무엇인지, 목표가 무엇인지를 명확히 했고, 오히려, 이 때 쫓겨 나지 않았다면 현재 Mac OS X 의 모체인 NeXT OS 와 iPod/iTunes 로 영광의 귀환을 할 수 있었던 Pixar 의 시기를 놓쳤을 것이라고 너스레를 떤다. 지금 졸업하는 학생들에게 자신이 하고 싶은 일을 계속 찾고, 절대 안주하지 말라고 당부하며. Keep looking, don't settle.
 
 세 번째는 잡스가 췌장암으로 죽음의 문턱까지 갔단 왔던 이야기를 한다. 오늘을 생의 마지막인 것처럼 자신이 하는 일, 하고 싶은 일에 열정을 가지고 살라고 얘기한다. 남의 인생을 살지 말라고...
 
@@ -65,7 +66,4 @@ When I was young, there was an amazing publication called The Whole Earth Catalo
 
 Thank you all, very much.
 
-
-**`Transcript 출처`**
-
-[Swordmaker](http://www.freerepublic.com/%7Eswordmaker/)
+**`Transcript 출처`** [Swordmaker](http://www.freerepublic.com/%7Eswordmaker/)

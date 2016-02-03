@@ -53,7 +53,7 @@ IIS/WSS Service 종료 후, Content Database 이름 확인
 
 ```bash
 \> cd C:\Program Files\Microsoft SQL Server\90\Tools\binn
-\> sqlcmd -S \.pipemssql$microsoft##sseesqlquery –E
+\> sqlcmd -S \.pipemssql$microsoft##sseesqlquery -E
 ```
 
 ```sql
@@ -128,10 +128,10 @@ IIS/WSS 서비스 재 구동 후, SQL Management Studio에서 Database 파일들
 
 ```bash
 \> cd C:Program Files\Common Files\microsoft shared\Web Server Extensions12\BIN
-\> Stsadm –o addsolution –filename ApplicationTemplateCore.wsp
-\> Stsadm –o deploysolution –name ApplicationTemplateCore.wsp –allowgacdeployment –immediate
-\> Stsadm –o copyappbincontent
-\> Stsadm –o execadmsvcjobs
+\> Stsadm -o addsolution -filename ApplicationTemplateCore.wsp
+\> Stsadm -o deploysolution -name ApplicationTemplateCore.wsp -allowgacdeployment -immediate
+\> Stsadm -o copyappbincontent
+\> Stsadm -o execadmsvcjobs
 ```
 
 ### Pdf icon 표시하기

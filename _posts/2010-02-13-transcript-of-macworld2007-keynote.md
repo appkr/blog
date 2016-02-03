@@ -221,6 +221,4 @@ So, today, we've added to the Mac and the iPod. We've added Apple TV and now iPh
 
 [Thank you to worker, families, and John Mayer performance.]
 
-**`Transcript 출처`**
-
-Engadget
+**`Transcript 출처`** Engadget

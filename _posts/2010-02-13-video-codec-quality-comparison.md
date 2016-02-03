@@ -9,7 +9,6 @@ tags:
 ---
 
 Doom9 이라는 해외 포럼에서 IPTV 전송에 최적화된 Parameter Setting (Test Options) 으로 각 코덱별로 테스트한 영상화질을 나타낸다. 본 자료에 의하면, H.264, VP7, VP6, VC-1, DivX5 순으로 평가되었다. 본 자료에서 제시한 테스트 결과는 필자와는 무관하다.
-
  
 ## Test Vector #1 (resolution unknown)
 

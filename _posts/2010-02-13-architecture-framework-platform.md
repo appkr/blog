@@ -8,7 +8,7 @@ tags:
 - architecture
 - framework
 - platform
---- 
+---
 
 이들 용어의 의미를 소프트웨어 분야에서 사용되는 경우에 한정해서 정리하면 다음과 같다.
 

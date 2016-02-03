@@ -7,6 +7,7 @@ _drafts
 _sass
 _scripts
 node_modules
+npm*
 images
 public
 styles

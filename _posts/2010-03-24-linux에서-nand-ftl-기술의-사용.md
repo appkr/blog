@@ -23,10 +23,15 @@ Nand Flash Memory 를 저장장치로 하는 휴대단말과 PC 를 서로 연�
 - 일반 공중에게 공개되어 있는 Linux Kernel (GPL) 의 Nand Driver 에는 이미 FTL 이 구현되어 있다. (kernalx.x.x/drivers/mtd)
 - Kernel 이 포함되어 공개된 FTL 소스코드는 사용에 다음의 제약이 있다. (quote from kernalx.x.x/drivers/mtd/ftl.c)
 
-  > LEGAL NOTE: The FTL format is patented by M-Systems. They have granted a license for its use with PCMCIA devices: "M-Systems grants a royalty-free, non-exclusive license under any presently existing M-Systems intellectual property rights necessary for the design and development of FTL-compatible drivers, file systems and utilities using the data formats with PCMCIA PC Cards as described in the PCMCIA Flash Translation Layer (FTL) Specification."<br/>
-  > Use of the FTL format for non-PCMCIA applications may be an infringement of these patents. For additional information, contact M-Systems (http://www.m-sys.com) directly.
+```
+LEGAL NOTE: The FTL format is patented by M-Systems. 
 
-  M-systems 가 Linux Kernel 에 Contribution 한 FTL 코드는 PCMCIA 디바이스 구현에만 자유롭게 사용할 수 있으며, 다른 디바이스로 사용하고자 할 경우에는 M-Systems 의 허락을 받아야 한다는 내용이다. 그런데, 요즘 PCMCIA 디바이스를 누가 쓴다더냐?
+They have granted a license for its use with PCMCIA devices: "M-Systems grants a royalty-free, non-exclusive license under any presently existing M-Systems intellectual property rights necessary for the design and development of FTL-compatible drivers, file systems and utilities using the data formats with PCMCIA PC Cards as described in the PCMCIA Flash Translation Layer (FTL) Specification."
+
+Use of the FTL format for non-PCMCIA applications may be an infringement of these patents. For additional information, contact M-Systems (http://www.m-sys.com) directly.
+```
+
+M-systems 가 Linux Kernel 에 Contribution 한 FTL 코드는 PCMCIA 디바이스 구현에만 자유롭게 사용할 수 있으며, 다른 디바이스로 사용하고자 할 경우에는 M-Systems 의 허락을 받아야 한다는 내용이다. 그런데, 요즘 PCMCIA 디바이스를 누가 쓴다더냐?
 
 - 오픈소스 검출 툴 검사 결과, 실제로 상용화 프로젝트에 Linux Kernel 에 포함된 FTL 관련 코드가 사용된 경우는 없었다.
 - Google 검색 결과에 따르면, 다음의 기업들이 FTL 과 관련된 원천적이고 포괄적인 특허를 보유한 것으로 추정된다.
@@ -50,6 +55,7 @@ Nand Flash Memory 를 저장장치로 하는 휴대단말과 PC 를 서로 연�
 - 다른 OS 에서 Linux 의 FTL 코드를 참조하여 함수/변수명을 전부 변경하여 개발한 후, OS 의 특성상 소스가 아닌 바이너리 형태로 배포한다고 해도, Reverse Engineering 에 의해서 위 원천 특허들의 침해 사실이 밝혀질 가능성이 충분하며, 특허권 소유자로 부터 소송을 당할 잠재적 위험이 있다.
 
 **`주)`** Linux Kernel 에 포함된 FTL 코드들은 GPL 로 선언되어 있다.
+
 **`주)`** 특허료 많이 받아봐야, 단말 1 대당 500 원을 넘기 힘들 것이다. 1 만대 파는 회사에 500 만원을 받아 내자고, 변호사 비용과 비싼 시간을 들여 소송을 걸지는 않을 것이다.
 
 ## 덧글 2010-04-02

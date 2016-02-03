@@ -19,7 +19,7 @@ tags:
 
 Google 은 Android 를
 
-> "운영체제와 미들웨어 및 폰북 등 주요 Java Application 을 포함한, '모바일폰'을 위한 Full Software Stack"
+> 운영체제와 미들웨어 및 폰북 등 주요 Java Application 을 포함한, '모바일폰'을 위한 Full Software Stack
 
 으로 정의 한다. '모바일 폰' 용으로만 Android를 포지셔닝 한다는 의미이다. Google 은 아래 표와 같이 3 가지의 라이센스 정책을 가지고 있다.
 

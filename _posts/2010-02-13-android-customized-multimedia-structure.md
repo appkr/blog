@@ -7,7 +7,7 @@ categories:
 tags:
 - android
 - opencore
---- 
+---
 
 이게 가능할까? openCORE 를 들어 내고, Proprietary MM Framework 로 갈아 치우는 것이 가능할까? Helix Community 에서도 유사한 시도를 하고 있다. [HelixDNA Client 를 Andorid 에 포팅 하는 프로젝트](https://porting.helixcommunity.org/2008/android)를 ...
 

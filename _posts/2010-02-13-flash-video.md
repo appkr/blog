@@ -25,10 +25,6 @@ tags:
 
 Flash 와 Flash Player 는 다르다. Flash 는 Engine/Framework 이며, Flash Player 는 Engine 위에서 동작하는, Adobe 에서 PC 용으로 무료로 제공하는 Flash Application 이다. PC 용 Flash Player 는 Engine (Runetime이라 해야 맞을 지도) 도 같이 포함하고 있다.
 
-## 참고 문헌
-
-- Wikipedia
-
 ## 덧글 2010-04-15
 
 잘 정리된 내용이 있어서 추가한다.

@@ -9,14 +9,17 @@ tags:
 - opensource
 ---
 
-기억력이 점점 나빠진다. 이해했다고 생각했는데, 나중에 필요하면 다시 꺼내서 다시 공부해야 한다. 그 대표적인 것이 Open Source Software 의 개념이다. 이 포스트는 필자의 이해를 바탕으로 작성된 것으로, 어떤 법적인 조언도 담고 있지 않고, 이 포스트의 내용을 참고하는 것은 독자의 선택이며, 필자는 어떤 법적인 책임도 지지 않는다.
+이 포스트는 어떤 법적인 조언도 담고 있지 않습니다. 이 포스트의 내용을 참고하는 것은 독자의 선택이며, 필자는 어떤 법적인 책임도 지지 않습니다.
+
+<div class="spacer">• • •</div>
+
+기억력이 점점 나빠진다. 이해했다고 생각했는데, 나중에 필요하면 다시 꺼내서 다시 공부해야 한다. 그 대표적인 것이 Open Source Software 의 개념이다. 
 
 ## 소프트웨어 라이센스 정책
 
 ### Open Source
 
 통념적으로 소스코드가 공개되어 누구나 수정하고 재배포할 수 있는 소프트웨어를 말한다. 원작자가 지정한 라이센스 조건만을 지키면, 기업에서도 상용으로 사용할 수 있다. GPL, LGPL, BSD, MPL, Apache 등이 유명한 오픈소스 라이센스 정책이다.
-
  
 ### Closed Source (Proprietary Source)
 
@@ -26,7 +29,7 @@ tags:
 
 "Free lunch", "Freedom" 에서 사용된 "Free" 의 의미는 서로 다르다. 오픈소스는 소스코드를 공개한다는 의미가 강하고, 프리소프트웨어는 "사용의 자유" 의 의미가 강하다. 혹자는
 
-> "Open source is a development methodology; free software is a social movement."
+> Open source is a development methodology; free software is a social movement.
 
 라고 말한다.
 
@@ -36,26 +39,27 @@ tags:
 
 ## 오픈소스 소프트웨어의 장점
 
-- 방대한 개발자 커뮤니티
+-   방대한 개발자 커뮤니티
 
-  전세계 개발자들이 오픈된 토론을 통하여 해당 오픈소스 소프트웨어의 구조, 버그 패치, 기능을 계속 발전시킨다. 전세계의 많은 개발자들이 프로젝트에 참여하기 때문에, 한 개 또는 몇개의 기업이 참여한 클로즈드소스 프로젝트에 비해 훨씬 많은 개발자 리소스를 확보할 수 있게 된다.
+    전세계 개발자들이 오픈된 토론을 통하여 해당 오픈소스 소프트웨어의 구조, 버그 패치, 기능을 계속 발전시킨다. 전세계의 많은 개발자들이 프로젝트에 참여하기 때문에, 한 개 또는 몇개의 기업이 참여한 클로즈드소스 프로젝트에 비해 훨씬 많은 개발자 리소스를 확보할 수 있게 된다.
 
-- 빠른 개발 및 품질 검증
+-   빠른 개발 및 품질 검증
 
-  전세계 개발자들이 참여하므로 개발의 속도나 버그 패치의 속도면에서 클로즈드소스 프로젝트에 비해 훨씬 빠르다.
+    전세계 개발자들이 참여하므로 개발의 속도나 버그 패치의 속도면에서 클로즈드소스 프로젝트에 비해 훨씬 빠르다.
 
-- 더 큰 에코시스템
+-   더 큰 에코시스템
 
-  클로즈드소스 프로젝트가 갖는 폐쇄형 개발 생태계에 비해서?전통적인 갑을관계에서 솔루션/용역 업체들을 줄세워 봐야 손으로 꼽을 수 있을 정도이다?, 오픈된 소스를 이용하여 상용화 서비스를 제공하는 많은 기업들이 존재한다.
+    클로즈드소스 프로젝트가 갖는 폐쇄형 개발 생태계에 비해서?전통적인 갑을관계에서 솔루션/용역 업체들을 줄세워 봐야 손으로 꼽을 수 있을 정도이다?, 오픈된 소스를 이용하여 상용화 서비스를 제공하는 많은 기업들이 존재한다.
 
-- 표준 기반 소프트웨어
+-   표준 기반 소프트웨어
 
-  POSIX, SVR4, BSD Socket 과 같은 산업 표준을 사용하므로 산업/시장간의 경계를 허물어 뜨리고, 기존 개발 결과물들의 재활용성을 높여 준다.
+    POSIX, SVR4, BSD Socket 과 같은 산업 표준을 사용하므로 산업/시장간의 경계를 허물어 뜨리고, 기존 개발 결과물들의 재활용성을 높여 준다.
 
-- 소스코드 제공
-- 비용 절감
+-   소스코드 제공
 
-## GPL(General Public License)
+-   비용 절감
+
+## GPL (General Public License)
 
 [그림 유실] 
 
@@ -98,7 +102,7 @@ Middleware or Library|Function|License
 glibc|Standard C library|LGPL
 libg++|Standard C++ library|LGPL
 Qt|Graphics framework|LGPL/Proprietary
-libjpeg|Jpeg library|IJG’s free license
+libjpeg|Jpeg library|IJG's free license
 ffmpeg|Multimedia Framework (Codecs)|LGPL
 Gstreamer|Multimedia Framework|LGPL
 
@@ -127,7 +131,7 @@ Linux 에서 Device Driver 를 작성하는 방법은 두가지가 있다.
 
 반면, 후자는 부트 이후에 Device 가 사용될 때 로드되는 Module 방식이다.
 
-> "Modules were originally conceived as inserted extentions to a running Linux kernel".
+> Modules were originally conceived as inserted extentions to a running Linux kernel.
 
 많은 기업들이 Module driver 를 바이너리 형태로 배포하고 소스를 공개하고 있지는 않으며, 현재로서는 유일하게 Driver 소스를 공개하지 않는 방법으로 간주되고 있으나, Linux community 에서는 이 방법을 놓고 계속 논쟁 중이다. 아래 그림은 내 Ubuntu 넷북에서 Module 로 로드된 Driver 들이다.
 
@@ -152,14 +156,14 @@ Module Driver 에서도 주의할 점이 있다. GPL 선언된 Linux Driver 를 
 GPL 선언된 Linux Driver 를 참조하여 RTOS Device Driver 를 개발하는 것은 절대 지양해야 한다. Linux Driver 를 참조해서 RTOS Device Driver 를 만들고 마치 직접 개발한 IP (설계자산) 인양 바이너리로 제공해서도 절대 안된다. 여기에는 두 가지 위험이 존재하는데,
 
 - 첫째는 원작자에 대한 저작권법 위반이며,
-- 둘째는 Proprietary RTOS 자체, Runtime, Proprietary Application까지도 모두 GPL로 간주되어 회사 내의 모든 Proprietary IP에 대한 소스를 공개해야 해야 하는 위험
+- 둘째는 Proprietary RTOS 자체, Runtime, Proprietary Application 까지도 모두 GPL 로 간주되어 회사 내의 모든 Proprietary IP 에 대한 소스를 공개해야 해야 하는 위험
 
 이 있다.
 
 ## 결론, 요약 정리
 
 오픈소소 활용|라이센스|설명
----|-:-|---
+---|---|---
 GPL 복사/수정|GPL|수정물의 소스코드 공개
 GPL Library 에 링크|GPL|Library 의 수정코드 뿐만 아니라, 이와 링크되는 Application 의 소스코드도 공개 (다행히도 99%의 Linux Runtime Library 는 non-GPL 로 선언되어 있음)
 LGPL Library 에 링크|선택|의무사항 없음
@@ -171,3 +175,7 @@ Dynamically loadable driver module (standard kernel symbols/interfaces 를 활�
 
 - William Weinberg and Jason Wacha, Jan. 2004, MontaVista Software, Building Embedded Applications with GPL/LGPL Software
 - Wikipedia
+
+## 덧 2016-02-06
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/kWKlyD9PKEsrE6" frameborder="0" width="100%" height="485px" marginwidth="0" marginheight="0" scrolling="no" style="margin: 0 auto; max-width: 100%;" allowfullscreen></iframe>

@@ -6,19 +6,21 @@ categories:
 - around-me
 tags:
 - arm
---- 
+---
 
 ARM 社는 일반인에게는 잘 알려져 있지 않지만, Embedded System 산업의 가장 근간이 되는 IP (설계자산) 회사이다. PC 에서 사용하는 CPU 가 Intel 社의 x86 Architecture 를 사용하는 것과 마찬가지로, 이동통신단말/PMP/NAS/PND/eBook/... 등에는 모두 ARM 社의 ARMv5/v6/v7 Architecture 가 탑재되어 있다. Intel 社는 종합반도체 (IDM) 회사로 자신이 x86 설계자산을 가지고 반도체를 설계하고 생산도 하지만, ARM 社는 직접 반도체를 제조하지는 않고 개발된 IP 를 반도체 제조사에 라이센스하는 비즈니스를 한다. ARM Architecture 를 라이센스 받아 반도체를 개발하는 회사는 우리가 잘 알고 있는 Qualcomm 을 비롯하여, nVidia, TI, Marvell, ST Microelectronics, NXP… 국내의 CoreLogic, Telechips, Mtekvision 등의 Fabless 기업들이 해당한다.
 
-> Fabless, 반도체 산업에서는 특이하게 공장이라 부르지 않고 Fabrication (Fab, 팹) 이라 부른다. 대만의 TSMC, UMC 와 같이 Fab 만 운영하는 회사를 Foundry 라고 분류한다. 생산시설은 없지만, 반도체를 설계만 하고 생산을 Foundry 에 위탁하는 기업을 Fabless (팹리스) 라 부른다. Intel, Samsung, ST 와 같은 회사는 설계와 생산을 모두 하기 때문에, IDM (종합 반도체) 이라 부른다.
+> Fabless, 반도체 산업에서는 특이하게 공장이라 부르지 않고 Fabrication (Fab, 팹) 이라 부른다.
+> 
+> 대만의 TSMC, UMC 와 같이 Fab 만 운영하는 회사를 Foundry 라고 분류한다. 생산시설은 없지만, 반도체를 설계만 하고 생산을 Foundry 에 위탁하는 기업을 Fabless (팹리스) 라 부른다. Intel, Samsung, ST 와 같은 회사는 설계와 생산을 모두 하기 때문에, IDM (종합 반도체) 이라 부른다.
 
 <div class="spacer">• • •</div>
 
 ARM 社는 전세계 IP 회사 중 최대규모의 회사이다. Rambus 가 2위. ARM 의 IP 는 전세계적으로 매년 30억개 이상 Shipping 된다고 추정된다. 휴대단말 뿐만 아니라, 우리들 PC 에도 Network Processor 는 주로 ARM 이 사용된다. ARM Connected Community 는 ARM 社의 Ecosystem Program 의 이름이다.
 
 올해는 신제품도 새로운 로드맵도 없었던 기존 제품 소개 정도로 그쳤다. 매년 똑 같지만, 오전에는 1 트랙으로 3 개의 세션이 있었고, 오후에는 3 트랙으로 각 트랙별 4 개의 세션과 통합 세션 1 개가 있었다. 주목할만한 내용만 간단히 정리해 놓기로 한다.
- 
-**`알림`** 제시된 정보나 수치는 연사들의 주장으로, 필자의 견해와 무관함을 분명히 해 둔다.
+
+**`주)`** 제시된 정보나 수치는 연사들의 주장으로, 필자의 견해와 무관함을 분명히 해 둔다.
 
 <div class="spacer">• • •</div>
 
@@ -58,11 +60,11 @@ ARM 社는 전세계 IP 회사 중 최대규모의 회사이다. Rambus 가 2위
   - A battle of architecture -> A battle of business model. 1992년에 10개가 넘던 CPU Architecture 들이 현재는 x86, ARM, MIPS, SPARC 로 재편되었다. 그 이유는 Ecosystem!!! 즉, Business model!!!
   - Intel 과 ARM 과의 전쟁이 아니라, Intel 과 Semiconductor Industry 와의 전쟁.
 
-ARM 社의 Vision.
+### ARM 社의 Vision.
 
 > "A world where your electronic products and services are based upon energy efficient technology, making life batter for everyone."
 
-**`주)`##
+**`주)`**
 
 `JIT <sup>Just in Time compilation</sup>` [http://en.wikipedia.org/wiki/Just-in-time_compilation](http://en.wikipedia.org/wiki/Just-in-time_compilation)
 
@@ -114,7 +116,7 @@ ARM 社의 Vision.
 - Cortex M Lineup: M3 for MCU, M1 for FPGA, M0 for MCU
 - CortexA9 이 현재 시중에 나와 있는 Netbook (Intel Atom) 대비 1/5 전류 소모
 
-## Track III: Samsung’s Perspective: The Future of Mobile Computing
+## Track III: Samsung's Perspective: The Future of Mobile Computing
 
 *by 조현덕수석, Samsung*
 
@@ -130,7 +132,7 @@ ARM 社의 Vision.
 - The future of netbook
   - Fast growing market and 2 major segments: Premium (+300$, x86, Windows), Value (~200$, ARM, Linux)
   - ARM based netbook 이 증가 하는 이유, Performance/Power/Footprint/Megatrend (Open OS)
-- Samsung’s solution
+- Samsung's solution
   - World 1st 1GHz CortexA8 CPU in 45nm LP
   - Windows Mobile/CE, Linux, Android, Ubuntu, Chrome OS, Firefox, ThinkFree Office, Flash 10, OpenGL/MAX
 
@@ -170,16 +172,13 @@ ARM 社의 Vision.
   - 그러나, 쉽지 않다. 시스템 전체의 성능 및 전류 소모를 고려해서 디자인해야 한다.
 - Challenges
   - Per core resource usage, Graphics와 Video에 필요한 Bandwidth의 합이 시스템 제약사항을 넘을 수 있음.
-
-    > Worst bandwidth for 1080p encoding @30fps including B-frames 504MBps<br/>
-    > Worst bandwidth for 1080p decoding @30fps including B-frames 498MBps
- 
+    - Worst bandwidth for 1080p encoding @30fps including B-frames 504MBps<br/>
+    - Worst bandwidth for 1080p decoding @30fps including B-frames 498MBps
   - Data movement/hardware interaction, SoC 한 블럭의 Output이 다른 블럭의 Input이 되므로, Buffer sharing과 Data compatibility는 항상 문제가 됨.
-
-    > (X)<br/>
-    > Video engine -> Converter(yuv to rgb conversion) -> GPU<br/>
-    > (O)<br/>
-    > Video engine -> GPU (Video engine -> YUV video output -> Video buffer in shared memory -> GPU reads as YUV texture -> GPU -> Output rendered frame -> Final RGB frame buffer)
+    - (X)<br/>
+    - Video engine -> Converter(yuv to rgb conversion) -> GPU<br/>
+    - (O)<br/>
+    - Video engine -> GPU (Video engine -> YUV video output -> Video buffer in shared memory -> GPU reads as YUV texture -> GPU -> Output rendered frame -> Final RGB frame buffer)
 
 ## 통합 Track: Storming into the Next Era of Computing
 

@@ -7,11 +7,10 @@ categories:
 tags:
 - bluetooth
 - connectivity
-- 기획
---- 
+- 기획자
+---
 
 많은 단말회사들이 이런 고민을 하고 있겠지?
-
 
 ## BT Stack
 
@@ -21,7 +20,6 @@ tags:
 `c`|L2CAP
 `b`|LC/LM
 `a`|Bluetooth Baseband
-
 
 ## Solution Comparison
 

@@ -13,23 +13,23 @@ PND (Portable Navigation Device) 시장은 2011 년 5 천만대를 정점으로 
 
 ### 모바일 LBS 가 부상하는 이유
 
-- 이통단말 기술의 발전
+-   이통단말 기술의 발전
 
-  터치 스크린, 대화면, 3G/WiFi 등 고속 네트워크, 탑재 메모리의 가격 하락에 따른 용량 증가, ARM Performance 증가로 소프트웨어 구동 성능 향상
+    터치 스크린, 대화면, 3G/WiFi 등 고속 네트워크, 탑재 메모리의 가격 하락에 따른 용량 증가, ARM Performance 증가로 소프트웨어 구동 성능 향상
 
-- LBS 자체의 진화 및 배포 시스템의 발전
+-   LBS 자체의 진화 및 배포 시스템의 발전
 
-  Mobile AppStore 등
+    Mobile AppStore 등
 
-- PND 업체들, 소프트웨어 및 서비스에 대한 혁신 의지 낮음
+-   PND 업체들, 소프트웨어 및 서비스에 대한 혁신 의지 낮음
 
-- 고객의 가격 민감도
+-   고객의 가격 민감도
 
-  Mobilephone을 통해 서비스되는 무료 Navigation 선택
+    Mobilephone을 통해 서비스되는 무료 Navigation 선택
 
-- (미국) 정부의 정책
+-   (미국) 정부의 정책
 
-  Enhanced 112 요구사항
+    Enhanced 112 요구사항
 
 <div class="spacer">• • •</div>
 

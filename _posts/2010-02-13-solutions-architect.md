@@ -6,7 +6,7 @@ categories:
 - learn-n-think
 tags:
 - 기획자
---- 
+---
 
 과거에는 내 명함 뒷면에 Technical Planner 라고 썼다. 지금은 Solution Architect 라고 쓴다. 내 명함의 앞면에는 기획팀이라고 써져 있다.
 

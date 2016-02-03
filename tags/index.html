@@ -11,7 +11,7 @@ permalink: "tags/index.html"
   <div class="box-body tags-cloud">
     <ul>
       {% for tag in site.tags %}
-      <li><a href="/tags#{{ tag | first | slugize }}"> {{ tag | first }} </a></li>
+      <li><a href="#{{ tag | first | slugize }}"> {{ tag | first }} </a></li>
       {% endfor %}
     </ul>
   </div>
@@ -21,7 +21,10 @@ permalink: "tags/index.html"
   {% capture tag_name %}{{ tag | first }}{% endcapture %}
   <article class="box tags" id="#{{ tag_name | slugize }}">
     <div class="box-header">
-      <h3>{{ tag_name }}</h3>
+      <h3>
+        <a id="{{ tag_name }}" href="#{{ tag_name }}" aria-hidden="true"></a>
+        {{ tag_name }}
+      </h3>
     </div>
 
     <div class="box-body">

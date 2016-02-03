@@ -58,6 +58,7 @@ layout: default
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
+            <span class="pager-title-sm">Older</span>
             <span class="pager-title">
               {{ page.previous.title | truncate: 20, '...'}}
             </span>
@@ -69,7 +70,7 @@ layout: default
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
-            <span class="pager-title">Older</span>
+            <span>Older</span>
           </a>
         </li>
         {% endif %}
@@ -80,6 +81,7 @@ layout: default
             <span class="pager-title">
               {{ page.next.title | truncate: 20, '...'}}
             </span>
+            <span class="pager-title-sm">Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>
@@ -88,7 +90,7 @@ layout: default
         {% else %}
         <li class="next disabled">
           <a href="#">
-            <span class="pager-title">Newer</span>
+            <span>Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>

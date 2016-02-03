@@ -204,7 +204,7 @@ tags:
 ### ARM 社의 비전
 
 > A World where all electronic products and services are based upon energy technology from ARM, making life better for everyone.
- 
+
 ## Key Note II: Challenges of Making a High-performance Mobile SoC-An IP Perspective
 
 *김진현상무, Samsung*
@@ -222,7 +222,7 @@ tags:
   3D Graphics|4M Tri/s|10M Tri/s|20M Tri/s|50M Tri/s|200M Tri/s
   CPU|ARM11 677MHz|Cortex-A8 600MHz|Cortex-A8 1GHz|Cortex-A9 Dual 1GHz|Eagle Dual Core
   Multimedia|SD 480p|HD 720p|HD1080p|1080p 3D Vision|UHD
-  Applications|Web Browsing/Social Networking|&nbsp;|3D Gaming/3D UI|&nbsp;|Augmented Reality/3D Display/Imaging
+  Applications|Web Browsing/Social Networking|&nbsp;|3D Gaming / 3D UI|&nbsp;|Augmented Reality / 3D Display / Imaging
 
 - Process Technology Trend
   – Gate density doubles at each node

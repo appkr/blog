@@ -1,11 +1,6 @@
 .idea
-.sass-cache
 .tmp
-.jekyll-metadata
 _assets/vendor
-_drafts
-_sass
-_scripts
 node_modules
 npm*
 /images

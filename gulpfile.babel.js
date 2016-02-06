@@ -141,10 +141,10 @@ gulp.task('default', [], cb => runSequence(
  */
 gulp.task('deploy', [], () => {
   // Uncomment paths to published from .gitignore
-  cp.spawn('sed', ['-i', '""', 's/images/#images/', '.gitignore'], { stdio: 'inherit' });
-  cp.spawn('sed', ['-i', '""', 's/public/#public/', '.gitignore'], { stdio: 'inherit' });
-  cp.spawn('sed', ['-i', '""', 's/styles/#styles/', '.gitignore'], { stdio: 'inherit' });
-  cp.spawn('sed', ['-i', '""', 's/scripts/#scripts/', '.gitignore'], { stdio: 'inherit' });
+  //cp.spawn('sed', ['-i', "''", '$s/\\/images/#\\/images/', '.gitignore'], { stdio: 'inherit' });
+  //cp.spawn('sed', ['-i', "''", '$s/\\/public/#\\/public/', '.gitignore'], { stdio: 'inherit' });
+  //cp.spawn('sed', ['-i', "''", '$s/\\/styles/#\\/styles/', '.gitignore'], { stdio: 'inherit' });
+  //cp.spawn('sed', ['-i', "''", '$s/\\/scripts/#\\/scripts/', '.gitignore'], { stdio: 'inherit' });
 
   gulp.src('public').pipe($.subtree());
 

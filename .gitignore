@@ -8,7 +8,7 @@ _sass
 _scripts
 node_modules
 npm*
-images
-public
-styles
-scripts
+/images
+/public
+/styles
+/scripts

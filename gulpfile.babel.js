@@ -63,7 +63,7 @@ gulp.task('styles', () => {
     // @see http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html
     // autumn, borland, bw, colorful, default, emacs, friendly, fruity, github,
     // manni, monokai, murphy, native, pastie, perldoc, tango, trac, vim, vs, zenburn
-    '_assets/vendor/jekyll-pygments-themes/github.css',
+    //'_assets/vendor/jekyll-pygments-themes/github.css',
     '_assets/styles/main.scss'
   ])
   .pipe($.newer('.tmp/styles'))
@@ -141,10 +141,10 @@ gulp.task('default', [], cb => runSequence(
  */
 gulp.task('deploy', [], () => {
   // Uncomment paths to published from .gitignore
-  //cp.spawn('sed', ['-i', '"s/images/#images/"', '.gitignore'], { stdio: 'inherit' });
-  //cp.spawn('sed', ['-i', '"s/public/#public/"', '.gitignore'], { stdio: 'inherit' });
-  //cp.spawn('sed', ['-i', '"s/styles/#styles/"', '.gitignore'], { stdio: 'inherit' });
-  //cp.spawn('sed', ['-i', '"s/scripts/#scripts/"', '.gitignore'], { stdio: 'inherit' });
+  cp.spawn('sed', ['-i', '""', 's/images/#images/', '.gitignore'], { stdio: 'inherit' });
+  cp.spawn('sed', ['-i', '""', 's/public/#public/', '.gitignore'], { stdio: 'inherit' });
+  cp.spawn('sed', ['-i', '""', 's/styles/#styles/', '.gitignore'], { stdio: 'inherit' });
+  cp.spawn('sed', ['-i', '""', 's/scripts/#scripts/', '.gitignore'], { stdio: 'inherit' });
 
   gulp.src('public').pipe($.subtree());
 

@@ -114,7 +114,7 @@ gulp.task('serve', ['images', 'styles', 'scripts', 'jekyll'], () => {
   browserSync({
     notify: false,
     logPrefix: 'Jekyll',
-    server: ['.tmp', 'public'],
+    server: ['public'],
     port: 3000
   });
 
@@ -141,10 +141,7 @@ gulp.task('default', [], cb => runSequence(
  */
 gulp.task('deploy', [], () => {
   // Uncomment paths to published from .gitignore
-  //cp.spawn('sed', ['-i', "''", '$s/\\/images/#\\/images/', '.gitignore'], { stdio: 'inherit' });
-  //cp.spawn('sed', ['-i', "''", '$s/\\/public/#\\/public/', '.gitignore'], { stdio: 'inherit' });
-  //cp.spawn('sed', ['-i', "''", '$s/\\/styles/#\\/styles/', '.gitignore'], { stdio: 'inherit' });
-  //cp.spawn('sed', ['-i', "''", '$s/\\/scripts/#\\/scripts/', '.gitignore'], { stdio: 'inherit' });
+  //cp.spawn('sed', ['-i', "''", 's/public/#public/', '.gitignore'], { stdio: 'inherit' });
 
   gulp.src('public').pipe($.subtree());
 

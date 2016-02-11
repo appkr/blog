@@ -431,8 +431,12 @@ body {
         color: $text-color;
       }
 
-      a:hover, a:focus, li .active {
+      a:hover, a:focus, li.active {
         color: $brand-color;
+      }
+
+      #q-results li.active {
+        background-color: $grey-very-light;
       }
 
       li>a {

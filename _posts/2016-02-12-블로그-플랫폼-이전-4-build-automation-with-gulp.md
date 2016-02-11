@@ -33,7 +33,7 @@ $ jekyll serve
 #   Server running... press ctrl-c to stop.
 ```
 
-[![](/images/2016-02-12-img-01.png)](/images/2016-02-12-img-01.png)
+[![Jekyll built-in web server](/images/2016-02-12-img-01.png)](/images/2016-02-12-img-01.png)
 
 그런데...
 

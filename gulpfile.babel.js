@@ -84,6 +84,7 @@ gulp.task('scripts', () =>
     '_assets/vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
     '_assets/vendor/bootstrap-material-design/scripts/material.js',
     '_assets/vendor/bootstrap-material-design/scripts/ripples.js',
+    '_assets/vendor/ekko-lightbox/dist/ekko-lightbox.js',
     '_assets/scripts/main.js'
   ])
   .pipe($.sourcemaps.init())

@@ -25,7 +25,7 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 
 호스팅 버전 워드프레스에서 서비스되던 포스트를 Jekyll 로 옮겨야 한다. 우선, 워드프레스 호스팅에서 '글 내보내기' 를 한 후, 로컬에 설치형 워드프레스를 구동시키고 '글 가져오기' 를 하였다. 이 과정을 통해 MySql 데이터베이스에 접근하여 기존 포스트 데이터를 마음대로 조작할 수 있게 되었다.
 
-[![](/images/2016-02-10-img-01.png)](/images/2016-02-10-img-01.png)
+[![Import wordpress.com data](/images/2016-02-10-img-01.png)](/images/2016-02-10-img-01.png)
 
 So, Good bye Wordpress~
 
@@ -300,4 +300,6 @@ $ $ ruby -r './lib/wordpress' -e 'WordPress::import("wordpress", "homestead", "s
 
 워드프레스에서 Jekyll 포스트 형태로 모두 변경되었다. 완벽한 변환이란 없다. 수 작업은 필수~
 
-**삽질** 워드프레스 데이터베이스에 입력된 이상한 대시 문자 때문에 이런 고생을 하기도 했다. [https://github.com/vmg/redcarpet/issues/543](https://github.com/vmg/redcarpet/issues/543). 개발자로 다시 성장해 가는 과정이라 생각하자.
+<div class="spacer">• • •</div>
+
+**`삽질`** 워드프레스 데이터베이스에 입력된 이상한 대시 문자 때문에 이런 고생을 하기도 했다. [https://github.com/vmg/redcarpet/issues/543](https://github.com/vmg/redcarpet/issues/543). 개발자로 다시 성장해 가는 과정이라 생각하자.

@@ -19,7 +19,7 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 
 연초에 블로그 이전을 생각하며 여기 저기 눈팅하던 중 디자인 ([themeforest-Globals](http://themeforest.net/item/globals-material-universal-psd-template/11932290)) 하나가 눈에 들어왔다. 내용과 품질에 비해서 너무 저렴한 가격 $12. 지르지 않을 이유가 없었다.
 
-![](http://s6.postimg.org/ejkibz8o1/01_header.png)
+[![themeforest-Globals](http://s6.postimg.org/ejkibz8o1/01_header.png)](http://s6.postimg.org/ejkibz8o1/01_header.png)
 
 <div class="spacer"></div>
 
@@ -60,18 +60,20 @@ Sass 보다는 중괄호(`{}`)를 사용하는 SCSS 문법을 선호한다.
 @import "../vendor/bootstrap-material-design/sass/bootstrap-material-design";
 @import "../vendor/bootstrap-material-design/sass/ripples";
 
-$text-color:       #9699a6;
+$text-color: #9699a6;
 // ...
 
 body {
-  color:       $text-color;
+  color: $text-color;
   // ...
 }
 
 // ...
 ```
 
-**삽질** 삽질이 없으면 개발자가 아니다. 왜냐하면 개발자가 아니라면, 안되면 그냥 '안되는구나~' 라고 불평하며 더 이상 안 쓰기 때문이다. twbs 클래스들이 오버라이드될 줄 알았는데, 잘못된 가정이었다. 이번에 알게된 사실은 CSS 스타일 정의에서 가중치 또는 우선순위이다. HTML Element 에 부여된 id 는 100 점, class 는 10 점, tag 는 1 점 이라는 것이다. 가령 `blockquote  {...}` 는 1점인 반면, `#app blockquote {...}` 는 101 점. `blockquote {... !important}` 를 쓰는 것은 안티패턴이다. 해서 twbs 클래스를 오버라이드하는 가장 좋은 방법은 아래 처럼 id 를 이용하는 방법..
+<div class="spacer">• • •</div>
+
+**`삽질`** 삽질이 없으면 개발자가 아니다. 왜냐하면 개발자가 아니라면, 안되면 그냥 '안되는구나~' 라고 불평하며 더 이상 안 쓰기 때문이다. twbs 클래스들이 오버라이드될 줄 알았는데, 잘못된 가정이었다. 이번에 알게된 사실은 CSS 스타일 정의에서 가중치 또는 우선순위이다. HTML Element 에 부여된 id 는 100 점, class 는 10 점, tag 는 1 점 이라는 것이다. 가령 `blockquote  {...}` 는 1점인 반면, `#app blockquote {...}` 는 101 점. `blockquote {... !important}` 를 쓰는 것은 안티패턴이다. 해서 twbs 클래스를 오버라이드하는 가장 좋은 방법은 아래 처럼 id 를 이용하는 방법..
 
 ```html
 <!-- https://github.com/appkr/blog/blob/master/_layouts/default.html -->

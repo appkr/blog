@@ -50,7 +50,7 @@ module WordPress
         ORDER BY    tr.term_order
     EOS
 
-    # wp_terms.slug and wp_posts.post_name written in Koran are terrible.
+    # wp_terms.slug and wp_posts.post_name written in Korean are terrible.
     # The following is the pattern to generate correctly formatted slugs on the fly.
     pattern_special_chars = /(?<chars>`|~|!|@|#|\$|%|\^|&|\*|\(|\)|\[|\]|\.|\\|\/|:|;|"|'|,|\.|<|>|\?)/
     pattern_white_spaces  = /(?<spaces>\s+)/

@@ -23,7 +23,16 @@ permalink: "categories/index.html"
   <div class="box-header">
     <h3>
       <a id="{{ category_name }}" href="#{{ category_name }}" aria-hidden="true"></a>
-      {{ category_name }}
+      {% case category_name %}
+        {% when 'around-me' %}
+          Work & Play
+        {% when 'learn-n-think' %}
+          Learn & Think
+        {% when 'work-n-play'%}
+          Work & Play
+        {% else %}
+          Uncategorized
+      {% endcase %}
     </h3>
   </div>
 

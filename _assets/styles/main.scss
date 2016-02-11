@@ -26,6 +26,7 @@ $btn-primary-bg:   $brand-color;
 $grey-color:       #E1E1E1;
 $grey-color-light: #CDCfD7;
 $grey-color-dark:  #A7A9A9;
+$grey-very-light:  #F5F5F5;
 
 $content-width:    800px;
 $on-palm:          600px;
@@ -132,6 +133,10 @@ body {
     }
   }
 
+  .material-icons {
+    vertical-align: middle;
+  }
+
   /* =nav */
   .navbar {
     background-color: $navbar-default-bg;
@@ -149,6 +154,7 @@ body {
 
       &>.active>a, a:hover, a:focus {
         border-bottom: 2px solid $brand-color;
+        transition: all .15s ease-in-out;
       }
     }
   }
@@ -156,12 +162,19 @@ body {
   /* =button */
   .btn {
     height: 38px;
+    padding-right: 20px;
     border-radius: 19px;
     color: #FFF;
     text-transform: none;
     font-size: 1em;
     font-style: normal;
     font-weight: 300;
+
+    &:hover, &:focus {
+      opacity: 0.9;
+      color: #FFF;
+      transition: all .2s ease-in-out;
+    }
   }
 
   .btn-default {
@@ -181,6 +194,9 @@ body {
     background-color: #FFF;
 
     .highlight {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
       pre {
         border: none;
         border-radius: 0;
@@ -302,7 +318,6 @@ body {
         font-size: $small-font-size;
         line-height: $small-font-size;
         margin-right: 5px;
-        vertical-align: middle;
       }
 
       span {
@@ -318,6 +333,11 @@ body {
       h1, h2, h3, h4, h5, h6 {
         margin-top: 1.2em;
         margin-bottom: 1em;
+
+        &:hover .header-link {
+          opacity: 1;
+          cursor: pointer;
+        }
       }
 
       h1 {font-size: (36 * 0.95) + px;}
@@ -329,10 +349,38 @@ body {
         margin: 0 0 1.2em;
       }
 
+      .header-link {
+        position: relative;
+        left: 0.5em;
+        opacity: 0;
+        font-size: 0.8em;
+        transition: opacity 0.2s ease-in-out 0.1s;
+      }
+
       /* =spacer */
       .spacer {
         text-align: center;
         margin: 3rem auto;
+      }
+    }
+
+    .box-tags {
+      height: 60px;
+      line-height: 60px;
+      margin: 30px -30px -30px;
+      padding: 0 30px;
+      background-color: $grey-very-light;
+
+      span {
+        color: $grey-color-light;
+      }
+
+      a {
+        color: $grey-color-dark;
+
+        &:hover, &:focus {
+          color: $brand-color;
+        }
       }
     }
   }
@@ -348,7 +396,7 @@ body {
     .box-header {
       position: relative;
       padding: 24px;
-      background-color: #F5F5F5;
+      background-color: $grey-very-light;
 
       &:before {
         content: url(../images/arrow.png);
@@ -372,7 +420,7 @@ body {
       }
 
       li {
-        border-bottom: 1px solid #F5F5F5;
+        border-bottom: 1px solid $grey-very-light;
       }
 
       li:last-child {
@@ -508,7 +556,7 @@ body {
       }
 
       &:hover {
-        background-color: #F5F5F5;
+        background-color: $grey-very-light;
         color: $grey-color-dark;
       }
     }
@@ -522,7 +570,7 @@ body {
       }
 
       a {
-        background: #F5F5F5;
+        background: $grey-very-light;
         padding: 5px 7px;
         color: $text-color;
         margin-right: 5px;

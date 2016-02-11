@@ -11,6 +11,8 @@ description: "appkr's blog to record day-to-day life & thoughts."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.appkr.kr" # the base hostname & protocol for your site
 
+excerpt_separator: <!--more-->
+
 # Contacts
 author: "appkr"
 email: "juwonkim@me.com"
@@ -38,7 +40,6 @@ exclude:
 permalink: /:categories/:slug/
 lsi: false # if set to true generate related posts
 
-# Conversion
 # Conversion
 markdown: redcarpet
 redcarpet:

@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <div class="container">
   <div id="main" class="col-md-9">
     {% for post in paginator.posts %}
@@ -20,10 +19,19 @@ layout: default
             Posted by appkr
           </span>
           <span>
-            <i class="material-icons">label</i>
-            {% for tag in post.tags %}
-              <a href="/tags/#{{ tag | slugize }}">
-                {{ tag }}
+            <i class="material-icons">turned_in</i>
+            {% for category in post.categories %}
+              <a href="/categories#{{ category | slugize }}">
+                {% case category %}
+                  {% when 'around-me' %}
+                    Work & Play
+                  {% when 'learn-n-think' %}
+                    Learn & Think
+                  {% when 'work-n-play'%}
+                    Work & Play
+                  {% else %}
+                    Uncategorized
+                {% endcase %}
               </a>
               {% unless forloop.last %}, {% endunless %}
             {% endfor %}
@@ -41,7 +49,9 @@ layout: default
 
       <footer class="box-footer">
         {% if post.content contains '<!--more-->' %}
-        <button class="btn btn-default">Read More <i class="material-icons">trending_flat</i></button>
+        <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}">
+          Read More <i class="material-icons">navigate_next</i>
+        </a>
         {% endif %}
       </footer>
     </article>

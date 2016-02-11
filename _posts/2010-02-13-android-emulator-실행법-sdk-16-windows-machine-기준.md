@@ -21,6 +21,8 @@ tags:
 
 [그림 유실] 
 
+<!--more-->
+
 ### 3. SDK 다운로드
 
 [SDK](http://developer.android.com/sdk/download.html?v=android-sdk_r3-windows.zip) 를 다운로드하고, 적절한 위치에 압축을 해제 한다.

@@ -33,7 +33,7 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 
 기존에 HTML, CSS Markup 은 많이 해 보았지만, 디자인을 그대로 옮긴 경험은 없었다. 이 바닥에서 먹고 살려면 어차피 익숙해져야 하는 일이니 이번에 해 보자며 작업을 시작한 결과물이 이 블로그이다.
 
-Bower 설치 디렉토리 변경.
+Bower 가 끌고오는 Assets 들의 설치 디렉토리 변경해 주었다. 프로젝트 루트에 설치되는 `bower_components` 는 Gulp Build 자동화할 때 불편하기 때문에.. 
 
 ```javascript
 // https://github.com/appkr/blog/blob/master/.bowerrc

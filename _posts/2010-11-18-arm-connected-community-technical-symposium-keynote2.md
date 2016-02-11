@@ -48,6 +48,8 @@ Smartphone|173|280|405|540|678|&nbsp;
 Smartphone Penetration|13%|20%|28%|35%|42%|&nbsp;
 Tablet|0|17|53|78|108|85%
 
+<!--more-->
+
 <div class="spacer">• • •</div>
 
 ### B. Mobile SoC Market Landscape

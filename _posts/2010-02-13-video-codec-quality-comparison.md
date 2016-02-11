@@ -28,6 +28,8 @@ RV10|447 kbps|39.4594|62.83|
 - [`PSNR, Peak Signal-to-Noise Ratio`](http://en.wikipedia.org/wiki/PSNR) 원본 대비 압축된 영상의 화질을 측정하는 단위, 높을 수록 좋음.
 - `SSIM` 동 자료를 발표한 연구기관에서 정한 주관적 화질 측정 단위, 높을 수록 좋음
 
+<!--more-->
+
 ## Test Vector # 2 (resolution unknown)
 
 Codec|ES Bitrate|PSNR|SSIM|Test Options

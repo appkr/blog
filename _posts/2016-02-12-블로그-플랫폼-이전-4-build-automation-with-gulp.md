@@ -33,9 +33,9 @@ $ jekyll serve
 #   Server running... press ctrl-c to stop.
 ```
 
-[![Jekyll built-in web server](/images/2016-02-12-img-01.png)](/images/2016-02-12-img-01.png)
+[![Preview with Jekyll built-in web server](/images/2016-02-12-img-01.png)](/images/2016-02-12-img-01.png)
 
-그런데...
+그런데 문제가 있었다.
 
 <!--more-->
 
@@ -169,4 +169,6 @@ gulp.task('deploy', [], () => {
   return cp.spawn('git', ['checkout', '.gitignore'], { stdio: 'inherit' });
 });
 ```
+
+### 작성 중 ...
 

@@ -31,9 +31,9 @@ tags:
 
 <div class="spacer">• • •</div>
 
-그런데, 이미 Logitech에서 유사한 걸 만들었더군... 하지만 내가 생각하던 것에 아주 못 미친다. 가격 들으면 까무러 친다. 거의 40 만원.
+그런데, 이미 Logitech 에서 유사한 걸 만들었더군... 하지만 내가 생각하던 것에 아주 못 미친다. 가격 들으면 까무러 친다. 거의 40 만원.
 
-[![](http://img.youtube.com/vi/-TRPP4RK8J4/0.jpg)](http://www.youtube.com/watch?v=-TRPP4RK8J4)
+[![Universal Remote](http://img.youtube.com/vi/-TRPP4RK8J4/0.jpg)](http://www.youtube.com/watch?v=-TRPP4RK8J4)
 
 시간이 지나면 해결되겠지만, 가전 셋트메이커들이 양방향 데이터 통신이 가능한 장치를 자신들의 셋트에 심고, 셋트들과 같이 작동하는, 내가 생각하던 통합 리모컨이 나왔으면 좋겠다. 매년 여름이 되면, 에어컨 리모컨 찾아 삼만리... 윽 정말 귀찮다.
 

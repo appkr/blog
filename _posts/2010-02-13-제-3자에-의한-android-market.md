@@ -30,6 +30,8 @@ GMS-Google Mobile Service|사업자나 제조사가 Google Apps. 삭제 가능 -
 Google Apps. 의 Binary가 제공됨<br/> HTC Hero, Moto DROID|What MNO & Dev. Mfg. wants<br/> 사업자나 제조사는 자체 커뮤니티를 발전시키려고 함<br/> JIL Widget Platform, SKAF|UI를 포함한 전체 구조를 뜯어 고치고, 필요시 사업자/제조사 Proprietary Layer 탑재
 Open Source|Google Apps. 사용 불가<br/> ZiiLabs ZiiEgg, OESF|Google에서 신경쓰지 않는 시장<br/> 용산 PC조립시장과 유사하게 진화할 것 (Software의 표준화가 Hardware의 표준화를 Push->좀 심하게 말하면, 보드사서 기구만 끼우고 Android 깔면 작동)|자유도 가장 높음
 
+<!--more-->
+
 ## Google 의 대응
 
 - Google은 시장의 분산 (Fragmentation) 으로 인해, Android 의 집중력이 분산되는 것을 원하지 않음.

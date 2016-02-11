@@ -23,7 +23,7 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 
 ### Good bye Wordpress
 
-호스팅 버전 워드프레스에서 서비스되던 포스트를 Jekyll 로 옮겨야 한다. 우선, 워드프레스 호스팅에서 '글 내보내기' 를 한 후, 로컬에 설치형 워드프레스를 구동시키고 '글 가져오기' 를 하였다. 이 과정을 통해 MySql 데이터베이스에 접근하여 기존 포스트 데이터를 마음대로 조작할 수 있게 되었다.
+호스팅 버전 워드프레스에서 서비스되던 포스트를 Jekyll 로 옮겨야 한다. 우선, 워드프레스 호스팅에서 '글 내보내기' 를 하여 파일로 떨군 후, 로컬에 설치형 워드프레스를 구동시키고 '글 가져오기' 를 하였다. 이 과정을 통해 MySql 데이터베이스에 접근하여 기존 포스트 데이터를 마음대로 조작할 수 있게 되었다.
 
 [![Import wordpress.com data](/images/2016-02-10-img-01.png)](/images/2016-02-10-img-01.png)
 
@@ -31,12 +31,16 @@ So, Good bye Wordpress~
 
 ### Hello Jekyll
 
+#### Install
+
 Jekyll 설치와 프로젝트 생성 방법은 간단한다.
 
 ```bash
 $ gem install jekyll
 $ jekyll new blog
 ```
+
+#### How to Write a Post
 
 Jekyll 에서 포스트는 이렇게 작성한다.
 
@@ -52,6 +56,8 @@ title:  Welcome to Jekyll!
 ---
 *Lorem ipsum* dolor sit amet, consectetur adipisicing elit.
 ```
+
+#### Liquid Templating Engine
 
 Jekyll 은 [Liquid Template Engine](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) 을 이용한다.
 
@@ -75,12 +81,29 @@ layout: default
 ```
 {% endraw %}
 
-### 어떤 기능을 제공할 것인가?
+### 블로그에서 어떤 기능을 제공할 것인가?
 
 - Profile 페이지
 - Category 기능
 - Tag 기능
 - 포스트 검색
+- 페이지네이션
+- RSS 피드
+- SEO/사이트맵
+
+기능 기획을 했으니, 어떤 프레임웍을 도입할 지 결정해야 한다.
+
+- SCSS & jQuery
+- Material Design & Twitter Bootstrap
+- Assets Management with Bower
+- Gulp Build
+- Ruby Gems
+  - simple-jekyll-search
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+
+이제 기능을 담을 프로젝트의 구조를 짜야 한다.
 
 ### Structure &amp; Config
 
@@ -129,7 +152,7 @@ layout: default
 - `_posts`, `categories`, `profile`, `tags`, `index.html` 의 파일들은 Liquid Template Engine 에 의해 `_layouts`, `_includes` 에서 정의한 레이아웃을 입힌 후 컴파일되고 `public` 디렉토리 아래에 출판된다.
 - `feed.xml`, `search.json` 등의 파일들은 Liquid Template Engine 에 의해 컴파일되어 `public` 디렉토리 아래에 출판된다.
 
-아래는 Jekyll 글로벌 설정이다.
+아래는 이 프로젝트의 Jekyll 글로벌 설정이다.
 
 ```yaml
 // https://github.com/appkr/blog/blob/master/_config.yml

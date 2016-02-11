@@ -22,6 +22,6 @@ LG Xnote Mini X120... 5초 만에 부팅. 이게 어떻게 가능하지?
 - [http://www.lineo.co.jp/eng/products-services/products/warp2.html](http://www.lineo.co.jp/eng/products-services/products/warp2.html)
 - [http://www.theregister.co.uk/2009/07/14/montavista_boasts_1sec_linux_boot/](http://www.theregister.co.uk/2009/07/14/montavista_boasts_1sec_linux_boot/)
 
-  [![](http://img.youtube.com/vi/-l_DSZe8_F8/0.jpg)](http://www.youtube.com/watch?v=-l_DSZe8_F8)
+  [![Linux Fast Boot](http://img.youtube.com/vi/-l_DSZe8_F8/0.jpg)](http://www.youtube.com/watch?v=-l_DSZe8_F8)
 
 - [http://www.embeddedarm.com/software/arm-linux-fastboot-ts7400.php](http://www.embeddedarm.com/software/arm-linux-fastboot-ts7400.php)

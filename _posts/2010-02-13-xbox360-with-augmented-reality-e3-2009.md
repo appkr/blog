@@ -8,7 +8,7 @@ tags:
 - ar
 ---
 
-[![](http://img.youtube.com/vi/CPIbGnBQcJY/0.jpg)](http://www.youtube.com/watch?v=CPIbGnBQcJY)
+[![Project Natal](http://img.youtube.com/vi/CPIbGnBQcJY/0.jpg)](http://www.youtube.com/watch?v=CPIbGnBQcJY)
 
 작년 Gartner 증강 현실 보고서에서는 증강 현실의 대중화에 10 년이 걸린다고 내다보았다. 그런데, 올해 동일 보고서를 보면 5 년 내에 대중화될 것이라고 예측을 수정하였다. 이런 센싱 기술이 증강현실을 앞당기는 것 같다.
 

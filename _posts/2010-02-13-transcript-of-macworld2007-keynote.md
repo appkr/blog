@@ -19,6 +19,8 @@ You know, it was just a year ago that I was up here and announced that we were g
 
 Now, as many as you know, our retail stores have for a while been selling over half their Macs to people who have never owned a Mac before: switchers. Well, I'm pleased to report that now, in the U.S., Macs selling through all channels, over half of them are selling to people who have never owned a Mac before. It's not just limited to our retail stores anymore. Half the Macs we're selling in the U.S. We are picking up lots and lots of new members of the Mac family, and we couldn't be happier. As a matter of fact, here's one that might be coming on soon. Jim Allchin at Microsoft was quoted recently as saying if he didn't work for Microsoft, he would buy a Mac, and he's retiring soon, so I've alerted our Seattle stores to keep an eye out for him and give him really good service. You know, Vista's coming out, and you know our ads with the Mac guy and the PC guy, we made a little ad for Vista, and I'd love to show it to you now, if you'd like to see it.
 
+<!--more-->
+
 [Apple ad]
 
 So, 2007 is going to be a great year for the Mac. But this is all we're going to talk about the Mac today. We're going to move on to some other things and over the course of the next several months we're going to roll out some awesome stuff for the Mac. But for today, we're going to move on.

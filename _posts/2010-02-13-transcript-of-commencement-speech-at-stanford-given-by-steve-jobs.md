@@ -24,9 +24,11 @@ tags:
 
 그리고, 1970년에 중반 쯤에 폐간된 잡지의 표지에 실린 아침녘 시골길 사진 아래에 써진 글귀 "Stay hungry, stay foolish" 라는 문구를 강조한다.
 
+<!--more-->
+
 <div class="spacer">• • •</div>
 
-[![](http://img.youtube.com/vi/UF8uR6Z6KLc/0.jpg)](http://www.youtube.com/watch?v=UF8uR6Z6KLc)
+[![2005 Commencement Speech at Stanford](http://img.youtube.com/vi/UF8uR6Z6KLc/0.jpg)](http://www.youtube.com/watch?v=UF8uR6Z6KLc)
 
 <div class="spacer">• • •</div>
 

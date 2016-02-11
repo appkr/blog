@@ -9,7 +9,7 @@ tags:
 - lbs
 ---
 
-[![](http://img.youtube.com/vi/tGXK4jKN_jY/0.jpg)](http://www.youtube.com/watch?v=tGXK4jKN_jY)
+[![Googld Maps Navigation](http://img.youtube.com/vi/tGXK4jKN_jY/0.jpg)](http://www.youtube.com/watch?v=tGXK4jKN_jY)
 
 일전에 전용 PND (Personal/Portable Navigation Device) 기기를 제조하는 TomTom 社와 Garmin 社의 주가가 급락한 적이 있었다. 바로 Google Maps Navigation 발표 때문이었다. 전용 단말 대비 우수한 기능들을 제공한다.
 

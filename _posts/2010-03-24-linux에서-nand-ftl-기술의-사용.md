@@ -18,6 +18,8 @@ Nand Flash Memory 를 저장장치로 하는 휴대단말과 PC 를 서로 연�
 
 이런 문제점을 피하기 위해 휴대단말의 Nand 에 SD카드 인터페이스를 도입하여 PC 의 파일시스템을 그대로 사용할 수 있는 Movi-Nand 등이 있으나, Nand 와의 가격/특성 차이로 휴대 단말 제조사들의 상품 기획은 다양할 수 있다.
 
+<!--more-->
+
 ## Linux Kernel 에 포함된 FTL 의 상용 목적 사용은 "불가"
 
 - 일반 공중에게 공개되어 있는 Linux Kernel (GPL) 의 Nand Driver 에는 이미 FTL 이 구현되어 있다. (kernalx.x.x/drivers/mtd)

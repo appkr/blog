@@ -60,6 +60,8 @@ ARM 社는 전세계 IP 회사 중 최대규모의 회사이다. Rambus 가 2위
   - A battle of architecture -> A battle of business model. 1992년에 10개가 넘던 CPU Architecture 들이 현재는 x86, ARM, MIPS, SPARC 로 재편되었다. 그 이유는 Ecosystem!!! 즉, Business model!!!
   - Intel 과 ARM 과의 전쟁이 아니라, Intel 과 Semiconductor Industry 와의 전쟁.
 
+<!--more-->
+
 ### ARM 社의 Vision.
 
 > "A world where your electronic products and services are based upon energy efficient technology, making life batter for everyone."

@@ -35,6 +35,8 @@ host name 은 `sbd` 라 하자.
 
 약관동의 -> 고급설치 -> 서버유형:독립실행형 -> 데이터위치: `d:\wss_data` -> "지금 Sharepoint 제품 및 기술 구성 마법사 실행"
 
+<!--more-->
+
 ### Configure-SMTP 서버
 
 ```

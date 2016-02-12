@@ -15,23 +15,25 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 3. [Publishing](/work-n-play/블로그-플랫폼-이전-3-publishing)
 4. [Build Automation with Gulp](/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp)
 
+지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.
+
 <div class="spacer">• • •</div>
 
-[Jekyll[dƷékəl,dƷí:k-,줴클] 은 Ruby 언어로 쓰여진 정적 (Static) 페이지를 생성해 주는 도구](http://jekyllrb.com/docs/home/#so-what-is-jekyll-exactly) 이다. Jekyll 은 로컬 컴퓨터에서 HTML 또는 Markdown 으로 작성한 글을 미리 정적 페이지로 컴파일 하는 일을 한다. 컴파일 된 결과물을 웹 서버의 Document Root 로 복사하는 것만으로 서비스가 가능하다. 더구나, 정적 페이지는 동적 페이지 대비 응답 속도가 더 빠르다. 즉, Jekyll 은 서버에 백엔드 플랫폼/프레임웍 없이도 고급스러운 웹 페이지를 만들 수 있는 도구이다.
+[Jekyll[dƷékəl,dƷí:k-,줴클]](http://jekyllrb.com/docs/home/#so-what-is-jekyll-exactly) 은 Ruby 언어로 개발된 정적 (Static) 페이지를 생성 도구 이다. Jekyll 은 로컬 컴퓨터에서 HTML 또는 Markdown 으로 작성한 글을 미리 정적 페이지로 컴파일 하는 일을 한다. 컴파일 된 결과물을 웹 서버의 Document Root 로 복사하는 것만으로 서비스가 가능하다. 더구나, 정적 페이지는 동적 페이지 대비 응답 속도가 더 빠르다는 장점이 있다. 즉, Jekyll 은 서버에 백엔드 플랫폼/프레임웍 없이도 고급스러운 웹 서비스를 만들 수 있는 도구이다.
 
 <!--more-->
 
-### Good bye Wordpress
+## Goodbye Wordpress
 
 호스팅 버전 워드프레스에서 서비스되던 포스트를 Jekyll 로 옮겨야 한다. 우선, 워드프레스 호스팅에서 '글 내보내기' 를 하여 파일로 떨군 후, 로컬에 설치형 워드프레스를 구동시키고 '글 가져오기' 를 하였다. 이 과정을 통해 MySql 데이터베이스에 접근하여 기존 포스트 데이터를 마음대로 조작할 수 있게 되었다.
 
-[![Import wordpress.com data](/images/2016-02-10-img-01.png)](/images/2016-02-10-img-01.png)
+[![Import wordpress.com data to Local database](/images/2016-02-10-img-01.png)](/images/2016-02-10-img-01.png)
 
-So, Good bye Wordpress~
+So, Goodbye Wordpress~
 
-### Hello Jekyll
+## Hello Jekyll
 
-#### Install
+### Install Jekyll
 
 Jekyll 설치와 프로젝트 생성 방법은 간단한다.
 
@@ -40,7 +42,7 @@ $ gem install jekyll
 $ jekyll new blog
 ```
 
-#### How to Write a Post
+### How to Write a Post
 
 Jekyll 에서 포스트는 이렇게 작성한다.
 
@@ -49,6 +51,7 @@ Jekyll 에서 포스트는 이렇게 작성한다.
   - Front Formatter 는 포스트의 메타데이터이다. Front Formatter 는 상단에 3개의 연속된 대시 (`-`) 블럭에 YAML 형식으로 쓴다.
   - 본문은 HTML 또는 Markdown 형식으로 편하게 쓴다.
 
+{% raw %}
 ```markdown
 ---
 layout: post
@@ -56,10 +59,11 @@ title:  Welcome to Jekyll!
 ---
 *Lorem ipsum* dolor sit amet, consectetur adipisicing elit.
 ```
+{% endraw %}
 
-#### Liquid Templating Engine
+### Liquid Template Engine
 
-Jekyll 은 [Liquid Template Engine](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) 을 이용한다.
+Jekyll 은 [Liquid Template Engine](https://github.com/Shopify/liquid/wiki) 을 이용한다. 사용법은 다른 Template Engine 과 거의 유사하다. Liquid 는 제어/반복/할당 등은 {% raw %}`{% %}`{% endraw %} 를 이용하고, 변수 Interpolation 은 {% raw %}`{{ }}`{% endraw %} 를 이용한다.
 
 {% raw %}
 ```html
@@ -81,7 +85,7 @@ layout: default
 ```
 {% endraw %}
 
-### 블로그에서 어떤 기능을 제공할 것인가?
+## 블로그에서 어떤 기능을 제공할 것인가?
 
 - Profile 페이지
 - Category 기능
@@ -89,7 +93,7 @@ layout: default
 - 포스트 검색
 - 페이지네이션
 - RSS 피드
-- SEO/사이트맵
+- SEO(==검색엔진최적화)/사이트맵
 
 기능 기획을 했으니, 어떤 프레임웍을 도입할 지 결정해야 한다.
 
@@ -98,16 +102,15 @@ layout: default
 - Assets Management with Bower
 - Gulp Build
 - Ruby Gems
-  - simple-jekyll-search
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-feed
 
-이제 기능을 담을 프로젝트의 구조를 짜야 한다.
+이제 이 기능을 담을 프로젝트 구조를 짜야 한다.
 
-### Structure &amp; Config
+## Structure &amp; Config
 
-아래 처럼 디렉토리 구조를 잡았다.
+아래 처럼 디렉토리 구조를 잡았다. 일반적인 Jekyll 프로젝트 구조 대비 달라진 점은, `_assets` 디렉토리에 뷰 제어 관련 리소스를 전부 몰어 넣어 놓은 점과, Jekyll Build 결과물을 `_sites` 가 아닌 `public` 디렉토리에 담는다는 점 정도 이다.
 
 ```bash
 .
@@ -146,16 +149,10 @@ layout: default
 └── search.json                       # Posts 검색을 위한 인덱스 (For simple-jekyll-search)
 ```
 
-[Build Automation with Gulp](/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp) 에서 소개할 빌드 자동화 스크립트를 이용하면,
-
-- `_assets/images`, `_assets/scripts`, `_assets/styles` 디렉토리는 컴파일 되어 `public` 디렉토리 아래에 출판된다.
-- `_posts`, `categories`, `profile`, `tags`, `index.html` 의 파일들은 Liquid Template Engine 에 의해 `_layouts`, `_includes` 에서 정의한 레이아웃을 입힌 후 컴파일되고 `public` 디렉토리 아래에 출판된다.
-- `feed.xml`, `search.json` 등의 파일들은 Liquid Template Engine 에 의해 컴파일되어 `public` 디렉토리 아래에 출판된다.
-
-아래는 이 프로젝트의 Jekyll 글로벌 설정이다.
+아래는 이 Jekyll 프로젝트의 글로벌 설정이다.
 
 ```yaml
-// https://github.com/appkr/blog/blob/master/_config.yml
+# https://github.com/appkr/blog/blob/master/_config.yml
 
 # Plugins
 gems:
@@ -216,11 +213,11 @@ disqus_short_name: appkr
 google_tracking_id: UA-72812647-1
 ```
 
-### Migrate Posts
+프로젝트 구조와 기본 설정이 준비 되었으니, 로컬 데이터베이스로 가져온 워드프레스 포스트들을 Jekyll 형식으로 변경해야 한다.
 
-데이터베이스로 가져온 워드프레스 포스트를 Jekyll 형식으로 변경해야 한다.
+## Migrate Posts
 
-이를 위해 아래 Ruby 스크립트를 이용하였다. 이 스크립트에서 주목할 점은 워드프레스 `wp_posts.post_content` 컬럼에 기록된 HTML 형식의 포스트 본문을 [`DownmarkIt`](https://github.com/cousine/downmark_it) 라이브러리를 이용하여 다시 Markdown 형식으로 변경하는 부분이다.
+데이터 마이그레이션을 위해 아래 Ruby 스크립트를 작성하였다. 이 스크립트에서 주목할만한 부분은 워드프레스 `wp_posts.post_content` 컬럼에 기록된 HTML 형식의 포스트 본문을 [`DownmarkIt`](https://github.com/cousine/downmark_it) 라이브러리를 이용하여 다시 Markdown 형식으로 변경하는 부분이다.
 
 ```bash
 $ wget https://raw.githubusercontent.com/cousine/downmark_it/master/downmark_it.rb -O lib/downmark_it.rb
@@ -228,7 +225,7 @@ $ wget https://raw.githubusercontent.com/cousine/downmark_it/master/downmark_it.
 $ gem install hpricot
 ```
 
-아래는 변환 스크립트 전체 소스이다. 로컬 데이터베이스 테이블에서 워드프레스에서 생성된 데이터를 가져온 후, Jekyll 형식에 맞는 내용으로 변경한 후 Y-m-d-title.md 파일에 저장하는 역할을 한다.
+아래는 변환 스크립트 전체 소스이다. 이 스크립트의 역할은 로컬 데이터베이스 테이블에서 워드프레스에서 생성된 데이터를 가져온 후, Jekyll 형식에 맞는 내용으로 변경한 후 `Y-m-d-title.md` 파일에 저장하는 것이다.
 
 ```ruby
 # https://github.com/appkr/blog/blob/master/lib/wordpress.rb
@@ -321,8 +318,10 @@ $ $ ruby -r './lib/wordpress' -e 'WordPress::import("wordpress", "homestead", "s
 #  3306 is the mysql server's tcp port (default 3306)
 ```
 
-워드프레스에서 Jekyll 포스트 형태로 모두 변경되었다. 완벽한 변환이란 없다. 수 작업은 필수~
+한번에 됐을까? 절대 그런 일은 일어나지 않는다. 어쨌든, 워드프레스에서 Jekyll 포스트 형태로 모두 변경되었다. 완벽한 변환이란 없다, 수 작업은 필수~
 
 <div class="spacer">• • •</div>
 
-**`삽질`** 워드프레스 데이터베이스에 입력된 이상한 대시 문자 때문에 이런 고생을 하기도 했다. [https://github.com/vmg/redcarpet/issues/543](https://github.com/vmg/redcarpet/issues/543). 개발자로 다시 성장해 가는 과정이라 생각하자.
+### 삽질
+
+워드프레스 데이터베이스에 입력된 이상한 대시 문자 때문에 이런 고생을 하기도 했다. [https://github.com/vmg/redcarpet/issues/543](https://github.com/vmg/redcarpet/issues/543). 개발자로 다시 성장해 가는 과정이라 생각하자.

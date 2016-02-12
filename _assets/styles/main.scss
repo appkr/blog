@@ -194,8 +194,8 @@ body {
     background-color: #FFF;
 
     .highlight {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      margin-top: 1em;
+      margin-bottom: 2em;
 
       pre {
         border: none;
@@ -707,6 +707,15 @@ body {
       h4 {font-size: (18 * 0.8) + px;}
     }
 
+    #main {
+      .box-meta {
+        span:last-child,
+        span:nth-child(2) {
+          display: none;
+        }
+      }
+    }
+
     #sidebar .box-body {
       ul li {
         margin-bottom: 0;
@@ -719,10 +728,6 @@ body {
       .box-meta {
         margin-bottom: 10px;
       }
-    }
-
-    .box-meta span:last-child {
-      display: none;
     }
 
     #pagination {

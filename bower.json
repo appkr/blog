@@ -19,7 +19,7 @@
   "devDependencies": {
     "fastclick": "~1.0.6",
     "bootstrap-material-design": "~0.5.7",
-    "simple-jekyll-search": "~1.1.1",
-    "ekko-lightbox": "~4.0.1"
+    "simple-jekyll-search": "^1.1.1",
+    "ekko-lightbox": "^4.0.1"
   }
 }

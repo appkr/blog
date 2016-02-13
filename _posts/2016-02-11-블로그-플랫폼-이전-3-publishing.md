@@ -59,9 +59,6 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
   {% include site-footer.html %}
 
   <script src="/scripts/main.min.js"></script>
-  <script>
-    // Javascript for Google tracker and Disqus Comments
-  </script>
 </body>
 </html>
 ```

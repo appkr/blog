@@ -8,7 +8,7 @@
 $base-font-family: Roboto, "Nanum Gothic", Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $base-font-weight: 300;
-$small-font-size:  $base-font-size * 0.875;
+$small-font-size:  $base-font-size * 0.8;
 $base-line-height: 1.8em;
 
 $spacing-unit:     30px;
@@ -421,18 +421,22 @@ body {
 
       li {
         border-bottom: 1px solid $grey-very-light;
-      }
 
-      li:last-child {
-        border-bottom: none;
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &.active {
+          color: $brand-color;
+        }
       }
 
       a {
         color: $text-color;
-      }
 
-      a:hover, a:focus, li.active {
-        color: $brand-color;
+        &:hover, &:focus {
+          color: $brand-color;
+        }
       }
 
       #q-results li.active {
@@ -442,11 +446,11 @@ body {
       li>a {
         display: block;
 
-        &:first-child:after {
+        &:after {
           font-family: "Material Icons";
           content: "\E409";
           position: absolute;
-          right: 40px;
+          right: 24px;
         }
       }
 
@@ -461,17 +465,13 @@ body {
         small {
           margin-bottom: $base-font-size;
         }
-
-        //a {
-        //  padding-left: 20px;
-        //}
       }
 
       .tags {
         word-bread: break-word;
       }
 
-      img.dsq-widget-avatar {
+      .dsq-widget-avatar {
         display: inline-block;
         margin-right: 10px;
         padding: 2px;
@@ -485,19 +485,44 @@ body {
       }
 
       .dsq-widget-list li>a {
-          line-height: 32px;
+        line-height: 32px;
+
+        &:after {
+          content: "";
+        }
       }
 
-      a.dsq-widget-user {
+      .dsq-widget-user {
         margin-bottom: 10px;
       }
 
-      p.dsq-widget-meta {
+      .dsq-widget-meta {
         display: inline-block;
+        font-size: $small-font-size;
+
+        a:first-child {
+          display: none;
+        }
+
+        a:last-child {
+          &:after {
+            font-family: "Material Icons";
+            content: "\E409";
+            position: absolute;
+            right: 24px;
+          }
+        }
       }
 
-      .dsq-widget-meta a:first-child {
-        display: none;
+      .facebook-meta {
+        font-size: $small-font-size;
+
+        a:after {
+          font-family: "Material Icons";
+          content: "\E409";
+          position: absolute;
+          right: 24px;
+        }
       }
     }
   }

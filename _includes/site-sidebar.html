@@ -1,4 +1,4 @@
-<div class="box">
+<section class="box" id="search">
   <div class="box-body">
     <form action="#">
       <div class="form-group">
@@ -7,9 +7,9 @@
       </div>
     </form>
   </div>
-</div>
+</section>
 
-<div class="box">
+<section class="box" id="categories">
   <div class="box-header">
     <h3>Categories</h3>
   </div>
@@ -21,28 +21,28 @@
       <li><a href="/categories#work-n-play">Work & Play</a></li>
     </ul>
   </div>
-</div>
+</section>
 
-<div class="box">
+<section class="box" id="tags">
   <div class="box-header">
     <h3>Tags</h3>
   </div>
 
-  <div class="box-body">
+  <div class="box-body tags">
     <div class="tags">
     {% assign tags = site.tags | sort %}
     {% for tag in tags %}
-      <span style="font-size: {{ tag | last | size  |  times: 4 | plus: 90  }}%">
-        <a href="/tags#{{ tag | first | slugize }}">
-          {{ tag | first }}
-        </a>
-      </span>
+    <span style="font-size: {{ tag | last | size  |  times: 4 | plus: 90  }}%">
+      <a href="/tags#{{ tag | first | slugize }}">
+        {{ tag | first }}
+      </a>
+    </span>
     {% endfor %}
     </div>
   </div>
-</div>
+</section>
 
-<div class="box">
+<section class="box" id="recent-posts">
   <div class="box-header">
     <h3>Recent Posts</h3>
   </div>
@@ -59,9 +59,9 @@
       {% endfor %}
     </ul>
   </div>
-</div>
+</section>
 
-<div class="box">
+<section class="box" id="recent-comments">
   <div class="box-header">
     <h3>Recent Comments</h3>
   </div>
@@ -69,21 +69,28 @@
   <div class="box-body dsq-widget">
     <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
   </div>
-</div>
+</section>
 
-<div class="box">
+<section class="box" id="recent-feeds">
   <div class="box-header">
     <h3>Facebook Posts</h3>
   </div>
 
   <div class="box-body">
-    <ul>
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i>post_date_at_facebook</small>
-          <a href="facebook_post_url">Coming soon...</a>
-        </h4>
-      </li>
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
     </ul>
   </div>
-</div>
+</section>

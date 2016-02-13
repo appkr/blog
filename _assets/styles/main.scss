@@ -79,9 +79,9 @@ body {
   /* =blockquote */
   blockquote, blockquote p {
     position: relative;
-    font-size: $base-font-size * 1.5;
+    font-size: $base-font-size * 1.4;
     font-style: italic;
-    padding: 2rem 2rem 2rem 50px;
+    padding: 20px 20px 20px 50px;
     line-height: 1.5em;
     color: #FFF;
     background-color: #6739b6;
@@ -360,7 +360,7 @@ body {
       /* =spacer */
       .spacer {
         text-align: center;
-        margin: 3rem auto;
+        margin: ($base-font-size * 3) auto;
       }
     }
 
@@ -442,7 +442,7 @@ body {
       li>a {
         display: block;
 
-        &:after {
+        &:first-child:after {
           font-family: "Material Icons";
           content: "\E409";
           position: absolute;
@@ -462,13 +462,42 @@ body {
           margin-bottom: $base-font-size;
         }
 
-        a {
-          padding-left: 20px;
-        }
+        //a {
+        //  padding-left: 20px;
+        //}
       }
 
       .tags {
         word-bread: break-word;
+      }
+
+      img.dsq-widget-avatar {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 2px;
+        border: 1px solid $grey-color-light;
+        border-radius: 4px;
+        transition: all .2s ease-in-out;
+
+        a {
+          border: none;
+        }
+      }
+
+      .dsq-widget-list li>a {
+          line-height: 32px;
+      }
+
+      a.dsq-widget-user {
+        margin-bottom: 10px;
+      }
+
+      p.dsq-widget-meta {
+        display: inline-block;
+      }
+
+      .dsq-widget-meta a:first-child {
+        display: none;
       }
     }
   }
@@ -660,7 +689,7 @@ body {
     blockquote p {
       font-size: $base-font-size * 1.2;
       font-style: italic;
-      padding: 1rem 1rem 1rem 1rem;
+      padding: $base-font-size;
       line-height: 1.4em;
     }
 

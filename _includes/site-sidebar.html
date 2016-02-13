@@ -30,7 +30,8 @@
 
   <div class="box-body">
     <div class="tags">
-    {% for tag in site.tags %}
+    {% assign tags = site.tags | sort %}
+    {% for tag in tags %}
       <span style="font-size: {{ tag | last | size  |  times: 4 | plus: 90  }}%">
         <a href="/tags#{{ tag | first | slugize }}">
           {{ tag | first }}
@@ -57,6 +58,16 @@
       </li>
       {% endfor %}
     </ul>
+  </div>
+</div>
+
+<div class="box">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
   </div>
 </div>
 

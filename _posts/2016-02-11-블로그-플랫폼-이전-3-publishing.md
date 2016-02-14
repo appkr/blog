@@ -8,12 +8,13 @@ tags:
 - 개발자
 - jekyll
 ---
-Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 4 편의 포스트로 정리해 본다.
+Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 
 1. [개발자로서의 새로운 삶](/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶)
 2. [Goodbye Wordpress, Hello Jekyll](/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll)
 3. _Publishing_
 4. [Build Automation with Gulp](/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp)
+5. [Disqus & Facebook](/work-n-play/블로그-플랫폼-이전-5-disqus-facebook)
 
 지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.
 
@@ -211,7 +212,7 @@ $ bower install simple-jekyll-search ekko-lightbox --save-dev
 Javascript 로 Symple-Jekyll-Search 를 구동하면 끝~
 
 ```javascript
-// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L105
+// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L141
 
 SimpleJekyllSearch({
   searchInput: document.getElementById('q'),
@@ -232,7 +233,7 @@ SimpleJekyllSearch({
 이미지를 클릭/터치했을 때 [Modal](http://getbootstrap.com/javascript/#modals) 로 보여 주는 기능이다. [스타일](https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L590)은 약간만 수정해 주면 나머지는 Bootstrap 제공 스타일이 거의 그대로 사용된다. 기능 활성화를 위해 아래 Javascript 를 작성하였다.
 
 ```javascript
-// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L62
+// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L67
 
 var imgObjects = bodyContainer.find('img');
 

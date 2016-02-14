@@ -86,6 +86,7 @@ gulp.task('scripts', () =>
     '_assets/vendor/bootstrap-material-design/scripts/ripples.js',
     '_assets/vendor/ekko-lightbox/dist/ekko-lightbox.js',
     '_assets/vendor/moment/moment.js',
+    '_assets/scripts/facebook-access-token.js',
     '_assets/scripts/main.js'
   ])
   .pipe($.sourcemaps.init())

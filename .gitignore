@@ -1,5 +1,6 @@
 .idea
 .tmp
+_assets/scripts/facebook-access-token.js
 _assets/vendor
 node_modules
 npm*

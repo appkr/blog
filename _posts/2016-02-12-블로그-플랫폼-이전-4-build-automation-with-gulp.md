@@ -8,12 +8,13 @@ tags:
 - 개발자
 - jekyll
 ---
-Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 4 편의 포스트로 정리해 본다.
+Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 
 1. [개발자로서의 새로운 삶](/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶)
 2. [Goodbye Wordpress, Hello Jekyll](/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll)
 3. [Publishing](/work-n-play/블로그-플랫폼-이전-3-publishing)
 4. _Build Automation with Gulp_
+5. [Disqus & Facebook](/work-n-play/블로그-플랫폼-이전-5-disqus-facebook)
 
 지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.
 
@@ -47,7 +48,7 @@ $ jekyll serve
 
 프로젝트 시작부터 [Gulp](http://gulpjs.com/) 를 사용한 것은 아니었다. Jekyll 이 Sass/SCSS/Coffee 컴파일을 지원한다는 사실이 좋았다. 그런데, JS 는 어떻하지? 이미지 최적화나 파일/디렉토리 복사, 배포는 또 어떻게 해야 하지? 구글링을 했지만, 마음에 드는 레시피를 찾지는 못한 상태였는데... "Gulp 를 못 쓸 이유는 없을 것 같은데?" 라고 자문하고, 바로 작업에 들어갔다.
 
-Gulp 스크립트 구동에 필요한 의존성 패키지들은 `package.json` 에 정의되어 있는데, 좀 많긴 많다.
+Gulp 스크립트 구동에 필요한 의존성 패키지들은 `package.json` 에 정의되어 있는데... 좀 많긴하다.
 
 ```bash
 $ echo "{}" > package.json

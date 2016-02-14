@@ -8,12 +8,13 @@ tags:
 - 개발자
 - jekyll
 ---
-Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 4 편의 포스트로 정리해 본다.
+Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 
 1. [개발자로서의 새로운 삶](/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶)
 2. _Goodbye Wordpress, Hello Jekyll_
 3. [Publishing](/work-n-play/블로그-플랫폼-이전-3-publishing)
 4. [Build Automation with Gulp](/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp)
+5. [Disqus & Facebook](/work-n-play/블로그-플랫폼-이전-5-disqus-facebook)
 
 지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.
 
@@ -207,10 +208,6 @@ redcarpet:
 paginate: 5
 paginate_path: /page:num/
 destination: public
-
-# Services
-disqus_short_name: appkr
-google_tracking_id: UA-72812647-1
 ```
 
 프로젝트 구조와 기본 설정이 준비 되었으니, 로컬 데이터베이스로 가져온 워드프레스 포스트들을 Jekyll 형식으로 변경해야 한다.

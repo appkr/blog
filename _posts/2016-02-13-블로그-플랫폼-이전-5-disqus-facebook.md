@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  블로그 플랫폼 이전 (덤) - Disqus & Facebook
+title:  블로그 플랫폼 이전 5 - Disqus & Facebook
 date: 2016-02-13 00:00:00 +0900
 categories:
 - work-n-play
@@ -8,12 +8,22 @@ tags:
 - 개발자
 - jekyll
 ---
+Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
+
+1. [개발자로서의 새로운 삶](/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶)
+2. [Goodbye Wordpress, Hello Jekyll](/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll)
+3. [Publishing](/work-n-play/블로그-플랫폼-이전-3-publishing)
+4. [Build Automation with Gulp](/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp)
+5. _Disqus & Facebook_
+
+지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.
+
+<div class="spacer">• • •</div>
+
 기존 Wordpress to Jekyll 마이그레이션 시리즈에 하나의 포스트를 더 추가한다. 오늘 구현한 따끈한 기능 2가지 이다.
 
 - Disqus[^1] 최신 댓글 뽑아 오기
 - Facebook 최신 포스트 뽑아 오기
-
-<div class="spacer">• • •</div>
 
 ## Disqus 최근 댓글 뽑아 오기
 
@@ -60,7 +70,7 @@ Name|Default|Description
       <p>{message}</p>
     </span>
     <p class="dsq-widget-meta">
-      <a href="">{post_title}</a>
+      <a href="{post_url}">{post_title}</a>
       <a href="{post_url}/#comment-{comment_id}">{n} {minutes/hours/days/...} ago</a>
     </p>
   </li>
@@ -158,7 +168,7 @@ Javascript 에서는 코드 내에 포함된 `access_token` 이 공개되므로 
 문서를 보고 `me/posts` 엔드포인트를 이용하면 된다는 것을 알았다. `me/posts` API 호출 결과에서 `response.data` 속성이 포스트들을 담고 있는 Collection 이다. `markup` 변수는 `compile()` Helper 에 의해 컴파일된 `li` 엘리먼트가 포함된 HTML 이며, 이 HTML 을 `ul#facebook-feed` 에 붙여 DOM 을 업데이트하였다. (화면이 로드되고 한참 있다 뜬다~ jQuery 를 쓰면 안되는 이유;;)
 
 ```javascript
-// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L271
+// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L291
 
 window.fbAsyncInit = function() {
   var facebookAccessToken =  '{access_token}';
@@ -179,10 +189,10 @@ window.fbAsyncInit = function() {
 };
 ```
 
-아래는 `compile()`, `truncate()` Helper 이다. 배열을 순회하면서 Regex 로 `{}` 를 찾은 후, 배열 아이템의 값을 바인딩시키는 식으로 Template 을 HTML 로 컴파일한다. 
+아래는 `compile()`, `truncate()` Helper 이다. 넘겨 받은 `facebookUserFeedCollection` 배열을 순회하면서 Regex 로 `{}` 를 찾은 후, 배열 아이템의 값을 바인딩시키는 식으로 Template 을 HTML 로 컴파일하였다. 
 
 ```javascript
-// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L256
+// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L263
 
 var compile = function(layoutTemplate, facebookUserFeedCollection) {
   var markup = '';
@@ -218,7 +228,7 @@ $ bower install moment --save-dev
 
 <div class="spacer">• • •</div>
 
-[^1]: [Disqus](https://disqus.com/) 는 댓글 서비스 이다. Jekyll 에서 가장 아쉬운 부분 중에 하나가 댓글이다. 댓글의 특성상 사용자와 계속 인터랙션해야 하는데, Jekyll 이 생성한 정적 페이지 형태로는 불가하기 때문이다. 이 때 선택할 수 있는 옵션이 Disqus 와 같은 외부 댓글 서비스이다. 유사 서비스로는 [Livere-국산](https://www.livere.com/), [Chak-국산](http://chak.it/) 등이 있다.
+[^1]: [Disqus](https://disqus.com/) 는 댓글 서비스 이다. Jekyll 은 모든 면에서 내가 원하는 것들을 충족해 주었지만, 가장 아쉬운 점 중에 하나가 블로그 포스트에 대한 댓글이었다. 댓글의 특성상 블로그 방문자와 계속 인터랙션해야 하기 때문에 댓글을 저장할 백엔드가 반드시 필요한데... 이 때 선택할 수 있는 옵션이 Disqus 와 같은 외부 댓글 서비스이다. 유사 서비스로는 [Livere-국산](https://www.livere.com/), [Chak-국산](http://chak.it/) 등이 있다.
 
 [^2]: Javascript Template Engine 으로는 [Handlebars](http://handlebarsjs.com/)가 전통적 강자이다. [EJS](http://ejs.co/) 도 꽤 쓰이는 것 같다. 관련해서 [SitePoint 에서 훌륭한 아티클](http://www.sitepoint.com/overview-javascript-templating-engines/)을 썼다. 
 

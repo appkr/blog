@@ -199,8 +199,8 @@ var compile = function(layoutTemplate, facebookUserFeedCollection) {
 
   $.each(facebookUserFeedCollection, function(index, item) {
     markup += layoutTemplate
-      .replace(/{\s?id\s?}/ig, item.id)
-      .replace(/{\s?message\s?}/ig, truncate(item.message))
+      .replace(/{\s?id\s?}/ig, item.id.split('_')[1])
+      .replace(/{\s?message\s?}/ig, truncate(item.message || item.story))
       .replace(/{\s?created_time\s?}/ig, moment(item.created_time, moment.ISO_8601).fromNow());
   });
 

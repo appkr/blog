@@ -277,8 +277,8 @@ var compile = function(layoutTemplate, facebookUserFeedCollection) {
 
   $.each(facebookUserFeedCollection, function(index, item) {
     markup += layoutTemplate
-      .replace(/{\s?id\s?}/ig, item.id)
-      .replace(/{\s?message\s?}/ig, truncate(item.message))
+      .replace(/{\s?id\s?}/ig, item.id.split('_')[1])
+      .replace(/{\s?message\s?}/ig, truncate(item.message || item.story))
       .replace(/{\s?created_time\s?}/ig, moment(item.created_time, moment.ISO_8601).fromNow());
   });
 
@@ -295,8 +295,8 @@ window.fbAsyncInit = function() {
 
   FB.init({appId: facebookAppId, status: true, xfbml: false, cookie: true, version: 'v2.5'});
 
-  FB.api('me/posts', 'GET', {limit: 3, access_token: a65bbdd5e332c9def690b9165b64abfc}, function(response) {
-    if (! response || response.error) {
+  FB.api('10201312246964363/posts', 'GET', {limit: 3, access_token: a65bbdd5e332c9def690b9165b64abfc}, function(response) {
+    if (! response || response.error || ! response.data.length) {
       facebookFeedContainer.html('<li>Some error :(</li>');
     }
 

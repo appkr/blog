@@ -9,8 +9,14 @@ permalink: "tags/index.html"
 
   <div class="box-body tags-cloud">
     <ul>
-      {% for tag in site.tags %}
-      <li><a href="#{{ tag | first | slugize }}"> {{ tag | first }} </a></li>
+      {% assign tags = site.tags | sort %}
+      {% for tag in tags %}
+      <li>
+        <a href="#{{ tag | first | slugize }}">
+          {{ tag | first }}
+          <span class="badge">{{ site.tags[tag.first].size }}</span>
+        </a>
+      </li>
       {% endfor %}
     </ul>
   </div>

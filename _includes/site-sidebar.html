@@ -16,9 +16,30 @@
 
   <div class="box-body">
     <ul>
-      <li><a href="/categories#around-me">Around Me</a></li>
-      <li><a href="/categories#learn-n-think">Learn & Think</a></li>
-      <li><a href="/categories#work-n-play">Work & Play</a></li>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">{{ site.categories['around-me'].size }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">{{ site.categories['learn-n-think'].size }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">{{ site.categories['work-n-play'].size }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">{{ site.categories['uncategorized'].size }}</span>
+        </a>
+      </li>
     </ul>
   </div>
 </section>

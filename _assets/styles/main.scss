@@ -116,6 +116,11 @@ body {
     }
   }
 
+  .badge {
+    background-color: $grey-color;
+    font-weight: normal;
+  }
+
   /* =image */
   #main img {
     width: 100%;
@@ -632,6 +637,10 @@ body {
         padding: 5px 7px;
         color: $text-color;
         margin-right: 5px;
+
+        .badge {
+          margin-right: 7px;
+        }
       }
 
       a:hover, a:focus, li .active {

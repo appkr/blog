@@ -10,7 +10,25 @@ permalink: "categories/index.html"
   <div class="box-body tags-cloud">
     <ul>
       {% for category in site.categories %}
-      <li><a href="#{{ category | first | slugize }}"> {{ category | first }} </a></li>
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      <li>
+        <a href="#{{ category | first | slugize }}">
+          {% case category_name %}
+            {% when 'around-me' %}
+              Around Me
+              <span class="badge">{{ site.categories['around-me'].size }}</span>
+            {% when 'learn-n-think' %}
+              Learn & Think
+              <span class="badge">{{ site.categories['learn-n-think'].size }}</span>
+            {% when 'work-n-play'%}
+              Work & Play
+              <span class="badge">{{ site.categories['work-n-play'].size }}</span>
+            {% else %}
+              Uncategorized
+              <span class="badge">{{ site.categories['uncategorized'].size }}</span>
+          {% endcase %}
+        </a>
+      </li>
       {% endfor %}
     </ul>
   </div>
@@ -24,7 +42,7 @@ permalink: "categories/index.html"
       <a id="{{ category_name }}" href="#{{ category_name }}" aria-hidden="true"></a>
       {% case category_name %}
         {% when 'around-me' %}
-          Work & Play
+          Around Me
         {% when 'learn-n-think' %}
           Learn & Think
         {% when 'work-n-play'%}

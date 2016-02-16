@@ -40,7 +40,7 @@ Guzzle 을 다시 봐야 하는 이유는 2005 년 초에 PSR-7 이 발표되었
 
 ## Guzzle Starter
 
-자주 쓰지 않는 것들은 할 때마다 문서를 다시 봐야하는데.. 조금만 부지런해져서 [Guzzle Starter](https://github.com/appkr/guzzle-starter) 를 하나 만들어 놓기로 했다. Facebook 과 Github 사이에 약 5 초간 고민하다가, 개발자는 Github~ Github API 에서 Guzzle HTTP Client 로 접근해서 데이터를 가져오는 간단한 샘플을 만들기로 했다.  
+자주 쓰지 않는 것들은 할 때마다 문서를 다시 봐야하는데.. 조금만 부지런해져서 [Guzzle Starter](https://github.com/appkr/guzzle-starter) BoilerPlate 를 하나 만들어 놓기로 했다. Facebook 과 Github 사이에 약 5 초간 고민하다가, 개발자는 Github~ Github API 에서 Guzzle HTTP Client 로 접근해서 데이터를 가져오는 간단한 샘플을 만들기로 했다.  
 
 ### Scaffolding
 

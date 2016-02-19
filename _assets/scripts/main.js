@@ -31,9 +31,25 @@
       FastClick.attach(document.body);
 
       /* Add active class when profile page is selected */
-      if (location.pathname.split('/')[1] == 'profile') {
-        navItem.first().removeClass('active').siblings(1).addClass('active');
+      var currentUrl = location.pathname.split('/')[1];
+      var activeItem = navItem.find('active');
+
+      switch (currentUrl) {
+        case 'guest-book':
+          navItem.eq(1).addClass('active');
+          break;
+        case 'profile':
+          navItem.eq(2).addClass('active');
+          break;
+        default:
+          navItem.eq(0).addClass('active');
       }
+
+      activeItem.removeClass('active');
+
+      //if (location.pathname.split('/')[1] == 'profile') {
+      //  navItem.first().removeClass('active').siblings(1).addClass('active');
+      //}
 
       /* Wrap table element to be responsive */
       bodyContainer.find('table')

@@ -23,6 +23,9 @@ permalink: "categories/index.html"
             {% when 'work-n-play'%}
               Work & Play
               <span class="badge">{{ site.categories['work-n-play'].size }}</span>
+            {% when 'work-n-play'%}
+              Imported
+              <span class="badge">{{ site.categories['imported'].size }}</span>
             {% else %}
               Uncategorized
               <span class="badge">{{ site.categories['uncategorized'].size }}</span>
@@ -47,6 +50,8 @@ permalink: "categories/index.html"
           Learn & Think
         {% when 'work-n-play'%}
           Work & Play
+        {% when 'imported'%}
+          Imported
         {% else %}
           Uncategorized
       {% endcase %}

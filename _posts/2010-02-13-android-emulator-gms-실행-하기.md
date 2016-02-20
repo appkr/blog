@@ -23,6 +23,8 @@ Emulator 에서 GMS 에 접속하는 꼼수를 기록한다.
 
 [그림 유실]
 
+<div class="spacer">• • •</div>
+
 ## 덧글 #1
 
 Platform 2.0, API Level 5 로 만든 AVD에서는 3G icon이 뜨지 않고, 네트워크 접속이 안된다.

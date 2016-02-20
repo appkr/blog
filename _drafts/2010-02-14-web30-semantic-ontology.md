@@ -3,7 +3,7 @@ layout: post
 title: Web3.0, Semantic & Ontology
 date: '2010-02-14 16:04:55 +0900'
 categories:
-- undisclosed-posts
+- uncategorized
 tags:
 - ontology
 - semantic

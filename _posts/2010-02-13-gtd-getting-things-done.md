@@ -43,10 +43,8 @@ tags:
 - [Wikipedia](https://en.wikipedia.org/wiki/Getting_Things_Done)
 - [oojoo](http://oojoo.tistory.com/)님의 MS Technet 세미나
 
-<div class="spacer">• • •</div>
+[^1]: Stuff = 만남 약속, 읽어야 되는 메모, e-mail, 음성 메시지, 이런저런 청구서...
 
-[^1] Stuff = 만남 약속, 읽어야 되는 메모, e-mail, 음성 메시지, 이런저런 청구서...
+[^2]: Project = 목표 + 목표를 달성하는데 필요한 2가지 이상의 행동들
 
-[^2] Project = 목표 + 목표를 달성하는데 필요한 2가지 이상의 행동들
-
-[^3] Project Next Action = 2Minute Rule = 2분 안에 끝낼 수 있는 Next Action 은 당장 해버린다.
+[^3]: Project Next Action = 2Minute Rule = 2분 안에 끝낼 수 있는 Next Action 은 당장 해버린다.

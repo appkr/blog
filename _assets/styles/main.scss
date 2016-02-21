@@ -5,7 +5,7 @@
 @import "../vendor/bootstrap-material-design/sass/ripples";
 
 /* =variables */
-$base-font-family: Roboto, "Nanum Gothic", Helvetica, Arial, sans-serif;
+$base-font-family: "Nanum Gothic", Roboto, Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $base-font-weight: 300;
 $small-font-size:  $base-font-size * 0.8;
@@ -77,29 +77,10 @@ body {
   }
 
   /* =blockquote */
-  blockquote, blockquote p {
-    position: relative;
-    font-size: $base-font-size * 1.4;
-    font-style: italic;
-    padding: 20px 20px 20px 50px;
-    line-height: 1.5em;
-    color: #FFF;
-    background-color: #6739b6;
-  }
-
-  blockquote p:first-child {
-    &:before {
-      content: url(../images/icon-quote.png) no-close-quote;
-      position: absolute;
-      top: 20px;
-      left: 0;
-    }
-  }
-
   blockquote {
     border: none;
     border-radius: 0;
-    margin: 0 -30px 10px;
+    margin: 0 -30px 20px;
     padding: 30px;
 
     small, footer, cite {
@@ -109,11 +90,35 @@ body {
 
     footer {
       padding-left: 50px;
+      margin-bottom: 10px;
     }
 
     cite {
       text-decoration: underline;
     }
+  }
+
+  blockquote, blockquote p {
+    position: relative;
+    font-size: $base-font-size * 1.4;
+    font-style: italic;
+    padding: $base-font-size $base-font-size $base-font-size 50px;
+    line-height: 1.5em;
+    color: #FFF;
+    background-color: #6739b6;
+  }
+
+  blockquote p:first-child {
+    &:before {
+      content: url(../images/icon-quote.png) no-close-quote;
+      position: absolute;
+      top: $base-font-size;
+      left: 0;
+    }
+  }
+
+  blockquote p:nth-of-type(2) {
+    display: none;
   }
 
   .badge {
@@ -720,7 +725,11 @@ body {
       h4 {font-size: (18 * 0.85) + px;}
     }
 
-    blockquote p {
+    //blockquote, blockquote p {
+    //  padding: $base-font-size $base-font-size $base-font-size 50px;
+    //}
+
+    blockquote, blockquote p {
       font-size: $base-font-size * 1.2;
       font-style: italic;
       padding: $base-font-size;

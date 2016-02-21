@@ -53,7 +53,8 @@ redcarpet:
     - underline
     - highlight
     - quote
-    - footnote_ref
+    - footnotes
+#    - footnote_ref
   highlighter: pygments
 
 # Outputting

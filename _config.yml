@@ -16,17 +16,6 @@ excerpt_separator: <!--more-->
 # Contacts
 author: "appkr"
 email: "juwonkim@me.com"
-github: "https://github.com/appkr"
-facebook: "https://www.facebook.com/juwonkimatmedotcom"
-twitter:
-googleplus:
-youtube:
-stackoverflow:
-flickr:
-dribbble:
-instagram:
-linkedin:
-pinterest:
 
 # Build settings
 exclude:
@@ -39,23 +28,6 @@ exclude:
   - package.json
 permalink: /:categories/:slug/
 lsi: false # if set to true generate related posts
-
-# Conversion
-markdown: redcarpet
-redcarpet:
-  extensions:
-    - smart
-    - fenced_code_blocks
-    - autolink
-    - tables
-    - strikethrough
-    - superscript
-    - underline
-    - highlight
-    - quote
-    - footnotes
-#    - footnote_ref
-  highlighter: pygments
 
 # Outputting
 paginate: 5

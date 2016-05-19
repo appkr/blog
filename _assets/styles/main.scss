@@ -816,6 +816,10 @@ body {
           display: inline-block;
         }
       }
+
+      li, a, span, i {
+        margin-bottom: 0;
+      }
     }
 
     #site-footer {

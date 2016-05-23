@@ -53,23 +53,17 @@ gulp.task('styles', () => {
   ];
 
   return gulp.src([
-    /* Available Pygments Themes */
-    // @see http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html
-    // autumn, borland, bw, colorful, default, emacs, friendly, fruity, github,
-    // manni, monokai, murphy, native, pastie, perldoc, tango, trac, vim, vs, zenburn
-    //'_assets/vendor/jekyll-pygments-themes/github.css',
-    /* Predefined pygment theme was not applied, instead used seti theme and defined at main.scss. */
     '_assets/styles/main.scss'
   ])
   .pipe($.newer('.tmp/styles'))
-  .pipe($.sourcemaps.init())
+  //.pipe($.sourcemaps.init())
   .pipe($.sass({precision: 10}).on('error', $.sass.logError))
   .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
   .pipe(gulp.dest('.tmp/styles'))
   .pipe($.concat('main.min.css'))
   .pipe($.if('*.css', $.minifyCss()))
   .pipe($.size({title: 'styles'}))
-  .pipe($.sourcemaps.write('./'))
+  //.pipe($.sourcemaps.write('./'))
   .pipe(gulp.dest('styles'));
 });
 

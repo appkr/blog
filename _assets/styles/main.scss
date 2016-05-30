@@ -367,6 +367,13 @@ body {
         transition: opacity 0.2s ease-in-out 0.1s;
       }
 
+      #gravatar {
+        @extend .img-circle;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+      }
+
       /* =spacer */
       .spacer {
         text-align: center;

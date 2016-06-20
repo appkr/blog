@@ -12,10 +12,10 @@ tags:
 
 이 문서는 Atlassian社에서 쓴 'Getting Git Right' 튜토리얼 중 ['Comparing Workflows'](https://www.atlassian.com/git/tutorials/comparing-workflows)라는 글을 한글로 번역한 것이다. 이 글에서는 총 네 개의 워크플로우를 소개한다.
 
-1.  Centralized Workflow
-2.  Feature Branch Workflow
-3.  Gitflow Workflow
-4.  Forking Workflow
+1.  [Centralized Workflow](#1-centralized-workflow)
+2.  [Feature Branch Workflow](#2-feature-branch-workflow)
+3.  [Gitflow Workflow](#3-gitflow-workflow)
+4.  [Forking Workflow](#4-forking-workflow)
 
 ---
 
@@ -30,9 +30,9 @@ tags:
 
 ![Git Workflows: SVN-style Workflow](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/01.svg)
 
-Git으로의 전환하는 것은 굉장히 어려워 보이지만, 지금 소개하는 Centralized Workflow는 사실 기존의 Subversion(SVN)으로 협업할 때와 크게 다를 바 없다.
+Git으로 협업 환경을 전환하는 것은 굉장히 어려워 보이지만, 지금 소개하는 Centralized Workflow는 사실 기존의 Subversion(SVN)으로 협업할 때와 크게 다를 바 없다.
 
-SVN 대비 Git으로 전환했을 때 장점이 있다. 첫째, 모든 팀 구성원이 로컬 저장소를 이용해서 개발한다는 점이다. 로컬 저장소는 중앙 저장소로 부터 완벽히 격리된 상태이므로, 다른 팀 구성원 및 중앙 저장소의 변경 내용을 신경 쓰지 않고 자신의 작업에만 집중할 수 있다.
+SVN에 비하면 Git은 다음 장점이 있다. 첫째, 모든 팀 구성원이 로컬 저장소를 이용해서 개발한다는 점이다. 로컬 저장소는 중앙 저장소로 부터 완벽히 격리된 상태이므로, 다른 팀 구성원 및 중앙 저장소의 변경 내용을 신경 쓰지 않고 자신의 작업에만 집중할 수 있다.
 
 둘째, Git의 브랜치와 병합 기능의 이점을 들 수 있다. Git 브랜치를 이용하면 안전하게 코드를 변경하고 다른 브랜치에 통합할 수 있다.
 

@@ -238,7 +238,7 @@ Feature Branch Workflow의 핵심 컨셉은 기능별 브랜치를 만들어서 
 
 풀 리퀘스트는 [Bitbucket Cloud](http://bitbucket.org)이나 [Bitbucket Server](http://www.atlassian.com/stash)을 이용하면 편리하다.
 
-역주) Atlassian이 작성한 글이라 빗버킷을 제안하는데, 깃허브도 똑같은 기능을 제공한다.
+<small>역주) Atlassian이 작성한 글이라 빗버킷을 제안하는데, 깃허브도 똑같은 기능을 제공한다.</small>
 
 ### 2.2. 적용 사례
 
@@ -278,7 +278,7 @@ $ git push -u origin miae-feature
 
 ![Git Workflows: Pull Request](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/04.svg)
 
-오후에 맡은 기능 개발을 모두 완료했다. (역주: 이 팀은 개발자가 직접 `master`에 병합하지 않고, 풀 리퀘스트를 이용하는 규칙을 가지고 있다.) `master` 브랜치에 병합하기 전에 풀 리퀘스트를 던져서 팀 구성원들에게 작업 완료 사실을 알려야 한다. 물론 그 전에 중앙 저장소에 작업 내용을 올려야 한다.
+오후에 맡은 기능 개발을 모두 완료했다. <small>(역주: 이 팀은 개발자가 직접 `master`에 병합하지 않고, 풀 리퀘스트를 이용하는 규칙을 가지고 있다.)</small> `master` 브랜치에 병합하기 전에 풀 리퀘스트를 던져서 팀 구성원들에게 작업 완료 사실을 알려야 한다. 물론 그 전에 중앙 저장소에 작업 내용을 올려야 한다.
 
 ```sh
 $ git push
@@ -495,7 +495,9 @@ $ git branch -d issue-#001
 
 세 가지 워크플로우를 통해 이제 여러분은 로컬 저장소의 개념을 충분히 이해했을 것이다. Git의 푸시와 풀 패턴을 이해하고, 브랜칭과 병합의 이점도 이해했으리라.
 
-여기에 소개한 내용만 가지고 현업에 바로 적용하기에는 무리가 있다(역주: 완벽한 가이드는 아니며 시행착오를 겪어야 한다는 뜻). 어떤 부분을 취하고 어떤 부분을 버릴 지는 여러분의 선택이다.
+여기에 소개한 내용만 가지고 현업에 바로 적용하기에는 무리가 있다<small>(역주: 완벽한 가이드는 아니며 시행착오를 겪어야 한다는 뜻)</small>. 어떤 부분을 취하고 어떤 부분을 버릴 지는 여러분의 선택이다.
+
+<small>역주) Git 플러그인을 설치하면 Gitflow Workflow를 쉽게 사용할 수 있다. [포스트 참고](/work-n-play/git-flow/)</small> 
 
 ## 4. Forking Workflow
 
@@ -542,7 +544,7 @@ $ git init --bare /path/to/repo.git
 
 Bitbucket은 위 명령을 편리하게 도와주는 GUI 도구를 제공한다. 다른 워크플로우와 똑같은 명령 똑같은 절차다. 프로젝트 관리자는 필요하다면 지금까지 작성한 코드를 푸시할 수도 있을 것이다.
 
-역주) Atlassian이 작성한 글이라 빗버킷 GUI 도구를 말하는데, 깃허브도 대칭되는 도구가 있다.
+<small>역주) Atlassian이 작성한 글이라 빗버킷 GUI 도구를 말하는데, 깃허브도 대칭되는 도구가 있다.</small>
 
 #### 4.4.2. 프로젝트 공식 저장소 포크
 

@@ -11,7 +11,7 @@ tags:
 
 같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 '도커'라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 AWS에서 도커를 지원한다는 소식을 접했고, 도커 자체적으로도 Swarm이란 컨테이너 배포 툴 프로젝트를 공개함으로써, 운영 환경에 바로 쓸 수 있는 도구로 재인식됐다. IoT, 마이크로 프레임워크, 마이크로 서비스 등 시대적 흐름과도 잘 부합하는 도구라 생각한다.
 
-이 포스트는 *'맛보기'*다. 아래 목록은 구글링으로 쉽게 찾을 수 있어 이 포스트에서는 다루지 않는다. 도커를 경험해보지 않은 독자가 무작정 포스트를 따라해 보고 스스로 도커의 유용성을 경험하도록하는 것이 이 포스트의 목적이다. 
+이 포스트는 *'맛보기'*다. 아래 목록은 구글링으로 쉽게 찾을 수 있어 이 포스트에서는 다루지 않는다. 도커를 경험해보지 않은 독자가 복붙(copy & paste) 만으로 포스트를 따라해 보고 스스로 도커의 유용성을 경험하도록하는 것이 이 포스트의 목적이다. 
 
 도커를 몰라도 된다. 라라벨을 몰라도 된다. 무작정 따라해 보면 된다. 중간에 중간에 각 명령에 대해 간략히만 설명을 추가했다.
 
@@ -26,7 +26,10 @@ tags:
  
 ## 1. 도커 툴체인 설치
 
+[홈브루-The missing package manager for OS X](http://brew.sh/)는 Mac OS 필수 바이너리다. 없다면 링크를 눌러 설치한다.
+
 ```sh
+# Cask는 Mac Os용 애플리케이션을 설치하기 위한 홈브루 탭(사설 저장소)이다.
 $ brew tap caskroom/cask
 $ brew cask install dockertoolbox --appdir=/Applications
 $ docker --version
@@ -35,9 +38,12 @@ $ docker --version
 
 ## 2. Host VM 만들기
 
-도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트[^1]로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다.
+도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트[^1]로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다(VMWare등을 사용해도 된다, `docker-machine create --driver vmwarefusion default`).
 
 ```sh
+# 홈브루에 Cask 탭을 추가한적이 없다면
+$ brew tap caskroom/cask
+
 # 버추얼박스 설치
 $ brew cask install virtualbox --appdir=/Applications
 
@@ -45,7 +51,7 @@ $ brew cask install virtualbox --appdir=/Applications
 $ docker-machine create --driver virtualbox default
 ```
 
-우리가 만든 VM의 이름은 `default`다. 다른 이름을 쓴다면, `docker-machine` 명령을 이용할 때마다 VM 이름을 명시해야 한다(e.g. `docker-machine ip foo`).
+우리가 만든 VM의 이름은 `default`다. 다른 이름을 쓴다면, `docker-machine` 명령을 이용할 때마다 VM 이름을 명시해야 한다(e.g. `$ docker-machine ip foo`).
 
 새로 만든 VM을 구동하고, IP를 확인한다. 
 
@@ -55,7 +61,7 @@ $ docker-machine ip
 # 192.168.99.100
 ```
 
-Mac OS의 hosts 파일을 수정해서, 개발 중에 사용할 도메인 `quickstart.app`을 등록한다.
+[선택 사항] Mac OS의 hosts 파일을 수정해서, 개발 중에 사용할 도메인 `quickstart.app`을 등록한다. 이 과정을 건너뛰면, Mac OS에서 도커 호스트/컨테이너에 접속할 때 192.168.99.100 IP를 쓰면 된다. 
 
 ```sh
 # /etc/hosts
@@ -65,7 +71,7 @@ Mac OS의 hosts 파일을 수정해서, 개발 중에 사용할 도메인 `quick
 
 ## 3. 프로젝트 복제
 
-맛보기를 위해 필자가 만들어 놓은 라라벨 프로젝트를 `~/quickstart` 디렉터리로 복제한다. 이 프로젝트는 [라라벨의 Quickstart 프로젝트](https://github.com/laravel/quickstart-intermediate)를 포크한 후, 도커 컨테이너 프로젝트를 깃 서브 모듈로 추가하고, 환경 변수를 약간 수정한 것이다. 오리지널 프로젝트 대비 변경 내역은 [커밋 로그](https://github.com/appkr/quickstart-intermediate/commits/master)를 참조하라.
+맛보기를 위해 필자가 만들어 놓은 라라벨 프로젝트를 `~/quickstart` 디렉터리로 복제한다. 이 프로젝트는 [라라벨의 Quickstart 프로젝트(이하 '라라벨 프로젝트'로 칭함)](https://github.com/laravel/quickstart-intermediate)를 포크한 후, 도커 컨테이너 프로젝트를 깃 서브 모듈로 추가하고, 환경 변수를 약간 수정한 것이다. 오리지널 프로젝트 대비 변경 내역은 [커밋 로그](https://github.com/appkr/quickstart-intermediate/commits/master)를 참조하라.
 
 ```sh
 $ git clone git@github.com:appkr/quickstart-intermediate.git quickstart
@@ -74,16 +80,18 @@ $ git clone git@github.com:appkr/quickstart-intermediate.git quickstart
 컴포저로 라라벨 프로젝트의 의존성을 설치한다.
 
 ```sh
-# 컴포저가 없다면
+# 컴포저가 없다면... 컴포저는 PHP의 표준 의존성 관리자다(like maven, bundler, pip, ...).
 $ brew tap homebrew/php
 $ brew install composer
+$ composer --version
+# Composer version 1.1.3 2016-06-26 15:42:08
 
 # 의존성 설치
 $ cd quickstart
 ~/quickstart $ composer install
 ```
 
-도커 컨테이너 프로젝트도 설치한다. 컨테이너 프로젝트는 [Laradock](https://github.com/LaraDock/laradock)을 포크해서 필자가 수정한 것이다. 스케일 아웃을 위해, HAProxy 로드 밸런서 컨테이너(`lb`)를 추가하고, Nginx+PHP-FPM+Supervisor를 묶은 웹 및 애플리케이션 서버 컨테이너(`web`)을 추가한 것이다. 오리지널 프로젝트 대비 상세 변경 내역은 [`develop` 브랜치의 커밋 로그](https://github.com/appkr/laradock/commits/develop)를 참고하라.
+도커 컨테이너 프로젝트도 설치한다. 컨테이너 프로젝트는 [Laradock(이하 '컨테이너 프로젝트'로 칭함)](https://github.com/LaraDock/laradock)을 포크해서 필자가 수정한 것이다. 스케일 아웃을 위해, HAProxy 로드 밸런서 컨테이너(`lb`)를 추가하고, Nginx+PHP-FPM+Supervisor를 묶은 웹 및 애플리케이션 서버 컨테이너(`web`)을 추가한 것이다. 오리지널 프로젝트 대비 상세 변경 내역은 [`develop` 브랜치의 커밋 로그](https://github.com/appkr/laradock/commits/develop)를 참고하라.
 
 ```sh
 ~/quickstart $ git submodule init && git submodule update 
@@ -127,7 +135,7 @@ $ cd quickstart
 
 ## 4. 도커 컨테이너 구동
 
-로드 밸런서, 웹 및 애플리케이션 서버, MySQL, 레디스를 구동할 것이다. 구동하기 전에 라라벨 프로젝트의 환경 설정을 변경한다.
+로드 밸런서, 웹 및 애플리케이션 서버, MySQL, 레디스를 구동할 것이다. 구동하기 전에 라라벨 프로젝트의 환경 설정을 변경한다(코드 에디터에서 라라벨 프로젝트의 `.env` 파일을 열어 수정하고 저장하라는 의미).
 
 ```sh
 # .env
@@ -152,9 +160,9 @@ REDIS_HOST=192.168.99.100
 ~/quickstart/laradock $ docker-compose up -d lb web mysql redis 
 ```
 
-`docker-compose` 명령은 `docker-compose.yml` 파일이 있는 위치에서 실행해야 한다. 이 파일은 도커를 이용한 분산 서비스 환경 구성을 위해 핵심적인 설정을 담고 있다. 가령, 컨테이너간의 의존성, 마운트할 볼륨 등의 설정 말이다. 
+`docker-compose` 명령은 `docker-compose.yml` 파일이 있는 위치에서 실행해야 한다. 이 파일은 도커를 이용한 분산 서비스 환경 구성을 위해 핵심적인 설정들을 담고 있다. 가령, 컨테이너간의 의존성, 마운트할 볼륨 등의 설정 말이다. 
 
-컨테이너 실행은 `up` 서브 명령으로 할 수 있으며, 인자로 구동할 컨테이너 이름을 제시해야 한다. `-d` 옵션을 이용하면 격리 모드(데몬 모드라 생각하면 됨)로 실행할 수 있다.
+컨테이너 실행은 `up` 서브 명령으로 할 수 있으며, 구동할 컨테이너 이름을 명령의 인자로 제시해야 한다. `-d` 옵션을 이용하면 격리 모드(데몬 모드라 생각하면 됨)로 실행할 수 있다.
 
 `ps` 서브 명령으로 구동 상태를 확인할 수 있다(Command 열은 삭제했다). 
 
@@ -175,7 +183,7 @@ REDIS_HOST=192.168.99.100
 
 `application`과 `data`는 단순 볼륨이기 때문에 `Exit 0`으로 출력된다. 포트 열을 보면 `lb` 컨테이너는 80과 443 포트가 열려 있고, 이를 다시 80, 443 내부 포트로 연결하는 것을 볼 수 있다. `web` 역시 80과 443 포트를 열고, `lb`에서 넘겨주는 작업을 받을 준비를 하고 있다. MySQL과 레디스는 외부에서도 접근할 수 있도록 각자의 포트를 열고 있다. 
 
-이제 웹 및 애플리케이션 서버를 스케일 아웃할 것이다. `scale` 서버 명령을 이용하고, 인자로 컨테이너 이름과 복제할 인스턴스 개수를 지정한다. `scale` 명령은 `up` 명령을 실행하기 전에 해도 된다.
+이제 웹 및 애플리케이션 서버를 스케일 아웃할 것이다. `scale` 서브 명령을 이용하고, 인자로 컨테이너 이름과 복제할 인스턴스 개수를 지정한다. `scale` 명령은 `up` 명령을 실행하기 전에 해도 된다.
 
 ```sh
 ~/quickstart/laradock $ docker-compose scale web=3
@@ -185,16 +193,16 @@ REDIS_HOST=192.168.99.100
 
 ## 5. 실험
 
-`workspace` 컨테이너로 로그인해서 데이터베이스 스키마를  마이그레이션 한다. `artisan` REPL로 데이터베이스와 캐시가 정상 작동하는지도 확인해 본다.
+`workspace` 컨테이너로 로그인해서 데이터베이스 스키마를  마이그레이션 한다. `artisan tinker` REPL로 데이터베이스와 캐시가 정상 작동하는지도 확인해 본다.
 
 ```sh
 # 컨테이너에 로그인
 ~/quickstart/laradock $ docker-compose run web bash
 
-# 데이터베이스 마이그레이션
+# 데이터베이스 마이그레이션 (like $ bundle exec rake db:migrate)
 root@dca220f5e753:/var/www/laravel# php artisan migrate
 
-# 데이터베이스 동작 확인
+# 데이터베이스 동작 확인 (like $ rails console)
 root@dca220f5e753:/var/www/laravel# php artisan tinker
 >>> factory('App\User')->create();
 >>> App\User::first();
@@ -217,9 +225,9 @@ root@dca220f5e753:/var/www/laravel# php artisan tinker
 root@dca220f5e753:/var/www/laravel# exit
 ```
 
-브라우저에서 실험할 준비가 끝났다. http://quickstart.app을 열고 [사용자 등록](http://quickstart.app/register) 페이지에서 실험에 사용할 사용자를 등록하고, 할일 목록 UI에서 할일을 추가해 본다. 
+브라우저에서 실험할 준비가 끝났다. http://quickstart.app(Mac OS의 `/etc/hosts`에 레코드를 추가하지 않았다면 http://192.168.99.100)을 열고 [사용자 등록](http://quickstart.app/register) 페이지에서 실험에 사용할 사용자를 등록하고, 할일 목록 UI에서 할일을 추가해 본다. 
 
-로드 밸런서의 동작을 확인하기 위해 뷰에 다음 코드를 미리 추가해 두었다.
+로드 밸런서의 동작을 확인하기 위해, 라라벨 프로젝트의 마스터 레이아웃에 다음 코드를 미리 추가해 두었다.
 
 ```html
 <!-- // resources/views/layouts/app.blade.php -->
@@ -229,7 +237,9 @@ root@dca220f5e753:/var/www/laravel# exit
 </span>
 ```
 
-이제 여러 개의 브라우저 창을 열어 로드 밸런서가 잘 동작하는 지 확인하자. 아래 그림처럼 네이게이션 바의 컴퓨터 이름을 잘 보기 바란다. 이 값은 `web` 컨테이너의 컴퓨터 이름이다. 여러 개의 `web` 컨테이너가 `mysql`과 `redis` 컨테이너를 잘 공유하고 있다는 점도 알 수 있다.
+이제 여러 개의 브라우저 창을 열어 로드 밸런서가 잘 동작하는 지 확인하자. 아래 그림처럼 네이게이션 바의 컴퓨터 이름을 잘 보기 바란다. 이 값은 `web` 컨테이너의 컴퓨터 이름이다. 여러 개의 창이 아니더라도, 페이지를 리프레시할 때마다 요청을 처리하는 `web` 컨테이너는 달라진다(지금 HAProxy 로드 밸런싱 알고리즘 설정은 Round Robin이다). 
+
+서로 다른 `web` 컨테이너에서 같은 사용자로 로그인하고 할일 목록을 로드했을 때 자신의 할일 목록이 잘 출력된다는 것은, `web` 컨테이너가 `mysql`과 `redis` 컨테이너를 잘 공유하고 있다는 것으로 해석할 수 있다.
 
 [![Docker in Action](/images/2016-07-11-img-01.png)](/images/2016-07-11-img-01.png)
 
@@ -237,7 +247,7 @@ root@dca220f5e753:/var/www/laravel# exit
 
 ### 6.1. 끄기
 
-실행 중인 도커 컨테이너를 끄는 방법은 다음과 같다. `stop` 대신 `down` 명령을 이용하면 컨테이너를 삭제한다. `down`하고 다시 `up`할 때는 이미지를 다시 받아 빌드하지는 않지만, 지난 번 구동할 때 사용자가 변경한 내용은 모두 유실된다. `stop` 상태에서 사용자 변경 내용을 삭제하려면 `rm` 명령을 이용한다(e.g. `docker-compose rm redis`).
+실행 중인 도커 컨테이너를 끄는 방법은 다음과 같다. `stop` 대신 `down` 명령을 이용하면 컨테이너를 삭제한다. `down`하고 다시 `up`할 때는 이미지를 다시 받아 빌드하지는 않지만, 지난 번 구동할 때 사용자가 변경한 내용은 모두 유실된다. `stop` 상태에서 사용자 변경 내용을 삭제하려면 `rm` 명령을 이용한다(e.g. `$ docker-compose rm redis`).
 
 ```sh
 ~/quickstart/laradock $ docker-compose stop
@@ -278,6 +288,30 @@ root@dca220f5e753:/var/www/laravel# exit
 예제로 구동한 내용과 운영체제 및 컨테이너간의 관계를 그림으로 표현하면 다음과 같다. 
 
 [![Big Picture](/images/2016-07-11-img-04.png)](/images/2016-07-11-img-04.png)
+
+### 6.4. 원상 복구
+
+무작정 따라하기가 끝난 후, 이 포스트를 시전하면서 추가한 것들을 더 이상 사용할 일이 없다면, 이전 상태로 돌리는 방법을 설명한다.
+
+컨테이너는 전부 VM에 올라간다. VM을 삭제하면 모든 컨테이너도 삭제된다.
+
+```sh
+$ docker-machine rm default
+```
+
+라라벨 및 컨테이너 프로젝트를 삭제한다.
+
+```sh
+$ rm -rf $HOME/quickstart
+```
+
+도구를 삭제한다.
+
+```sh
+$ brew uninstall composer
+$ brew cask uninstall virtualbox dockertoolbox
+$ brew untap homebrew/php caskroom/cask
+```
 
 ## 7. 결론
 

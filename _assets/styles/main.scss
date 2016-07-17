@@ -6,6 +6,7 @@
 
 /* =variables */
 $base-font-family: "Nanum Gothic", Roboto, Helvetica, Arial, sans-serif;
+$base-font-family: "Apple SD Gothic Neo", "Nanum Gothic", "나눔고딕", "Malgun Gothic";
 $base-font-size:   16px;
 $base-font-weight: 300;
 $small-font-size:  $base-font-size * 0.8;
@@ -13,7 +14,7 @@ $base-line-height: 2em;
 
 $spacing-unit:     30px;
 
-$text-color:       #9699a6;
+$text-color:       #555555;
 $background-color: #FAFAFA;
 $brand-color:      #00BFF3;
 $selection-color:  $brand-color;
@@ -437,7 +438,7 @@ body {
       &:before {
         content: url(../images/arrow.png);
         position: absolute;
-        bottom: -9px;
+        bottom: -10px;
         left: 24px;
       }
     }

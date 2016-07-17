@@ -32,7 +32,7 @@ tags:
 
 이 포스트에서는 라라벨, Redis, Socket.io 등 여러 시스템을 사용하는데 비슷한 용어가 계속 등장하기 때문에, 이 포스트를 이해하는데 필요한 용어를 먼저 정리해 본다.
 
-라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임[^2]의 구현체다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.
+라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임[^2]을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.
 
 채널은 발신자와 수신자간의 데이터 파이프다. 발신자는 무차별적으로 여러 개의 파이프에 데이터를 흘려보내고, 수신자는 여러 개의 파이프 중 원하는 몇 개의 파이프만 연결하여 데이터를 받는다. 이벤트 시스템 컨텍스트에서는 이벤트 채널(이 포스트 4절의 이벤트 클래스)과 이벤트 데이터라 부르고, PubSub 관점에서는 채널과 메시지라고 부른다. 모두 같은 개념이다.
 
@@ -99,7 +99,7 @@ you:~/workspace $ php artisan key:generate
 
 ## 2. SocketChat
 
-소스 코드의 `public/socketchat`에서 [Socket.io에서 제공하는 채팅 예제 프로젝트](http://socket.io/get-started/chat/)를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.
+소스 코드의 `public/socketchat`에서 Socket.io에서 제공하는 채팅 예제 프로젝트[^3]를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.
 
 ### 2.1. 코드 수정
 
@@ -137,7 +137,7 @@ you:~/workspace/public/socketchat $ npm start
 
 ### 2.4. 작동 원리
 
-Socket.io는 리얼 타임 웹을 위한 자바스크립트 라이브러이다. 웹소켓을 기본으로 사용하고, 웹소켓을 사용할 수 없을 때는 XHR 폴링 등으로 폴백해서, Socket.io 라이브러리를 사용하는 클라이언트와 서버간에 통신할 수 있도록 한다. 
+Socket.io는 리얼 타임 웹을 위한 자바스크립트 라이브러리다. 웹소켓을 기본으로 사용하고, 웹소켓을 사용할 수 없을 때는 XHR 폴링 등으로 폴백해서, Socket.io 라이브러리를 사용하는 클라이언트와 서버간에 통신할 수 있도록 한다. 
 
 웹소켓은 말그대로 소켓이다. 서버와 클라이언트가 연결을 계속 유지하면서, 풀듀플렉스로 데이터를 스트리밍한다. 연결 협상을 할 때는 HTTP 프로토콜을 사용하지만, 웹소켓을 사용할 수 있으면 프로토콜을 업그레이드한다. 피어-투-피어는 아니다.
 
@@ -247,7 +247,7 @@ you:~/workspace (c124f70) $ npm start
 
 ### 3.4. 작동 원리
 
-2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(`public/socketchat/index.js`). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들에게 메시지를 릴레이하는 역할만 수행했다.
+2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(`public/socketchat/index.js`). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들 간에 메시지를 릴레이하는 역할만 수행했다.
 
 그런데, 이번 절에서는 시나리오가 좀 다르다. 라라벨 애플리케이션이 Socket.io 라이브러리를 이용해서 클라이언트들과 통신하도록 해야 한다. 라라벨과 Socket.io를 서비스하는 Node.js는 서로 다른 애플리케이션이고, 둘 간에 메시지를 전달할 방법으로 Redis를 선택했다. 
 
@@ -329,7 +329,7 @@ Socket.io 클라이언트는 서버로부터 받은 메시지를 소비한다. `
 ```javascript
 // resources/views/welcome.blade.php
 
-var socket = io('{{ env('APP_URL') }}' + ':8082');
+var socket = io('{% raw %}{{ env('APP_URL') }}{% endraw %}' + ':8082');
 
 new Vue({
   ready: function () {
@@ -373,7 +373,7 @@ you:~/workspace (5736550) $ npm start
 
 ### 4.3. 작동 원리
 
-라라벨은 프레임워크 어디서든 도메인 이벤트를 발행할 수 있다. 라라벨에서 이벤트를 던지는 방법은 여러 가지인데, 여기서는 이벤트 클래스(이벤트 채널, Data Transfer Object)를 이용했다.
+라라벨은 프레임워크 어디서든 도메인 이벤트를 발행할 수 있다. 라라벨에서 이벤트를 던지는 방법은 여러 가지인데, 여기서는 이벤트 클래스(==이벤트 채널, ==Data Transfer Object)를 이용했다.
 
 #### 4.3.1. 이벤트 클래스
 
@@ -444,6 +444,8 @@ Route::get('pub', function () {
 
 ---
 
-[^1]: [Vue.js](http://vuejs.org/)_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, [깃허브 트렌딩에 계속 노미네이트](https://github.com/trending?since=monthly)되는 등 꼭 배워야할 라이브러리다.
+[^1]: [Vue.js](http://vuejs.org/)_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, [깃허브 트렌딩에 계속 노미네이트](https://github.com/trending?since=monthly)되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다.
 
 [^2]: PubSub_ [https://en.wikipedia.org/wiki/Publish-subscribe_pattern](https://en.wikipedia.org/wiki/Publish-subscribe_pattern)
+
+[^3]: Socket.io에서 제공하는 채팅 예제 프로젝트_ [http://socket.io/get-started/chat/](http://socket.io/get-started/chat/)

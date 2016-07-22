@@ -332,11 +332,19 @@ body {
       }
     }
 
-    .action a, .box-meta a {
+    .box-meta a {
       color: $grey-color-light;
 
       &:hover, &:focus {
         color: $grey-color-dark;
+      }
+    }
+
+    .action a {
+      color: $text-color;
+
+      &:hover, &:focus {
+        color: $text-color;
       }
     }
 

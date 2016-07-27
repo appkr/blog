@@ -13,9 +13,7 @@ title: Profile
 -   [juwonkim@me.com](mailto:juwonkim@me.com), [페이스북](https://www.facebook.com/juwonkimatmedotcom), [Github](https://github.com/appkr)
 -   경주고등학교, 경희대학교 국제경영학 석사
 -   (前) [에어플러그](http://www.airplug.com/) 애플리케이션 개발팀장, [코아로직](http://www.corelogic.co.kr/kor2/index.php) 솔루션 아키텍트
--   (現) Appkr Studio 팀장
-
-    <small>\* Appkr Studio는 소프트웨어 장인들로 구성된 프리랜서 집단입니다. 각자의 분야를 리드하는 실력파 인맥들이며 프로젝트가 있을 때마다 팀을 재조립합니다.</small>
+-   (現) [(주)메쉬코리아](http://meshkorea.net) 연구소
 
 <br/>
 

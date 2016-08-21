@@ -1,6 +1,6 @@
 ---
 layout: post-minimal
-title: 'RESTFul URL 설계 (@RoRLab)' 
+title: 'RESTFul URL 설계 (@RoRLab)'
 date: 2016-06-27 00:00:00 +0900
 categories:
 - work-n-play
@@ -16,8 +16,8 @@ tags:
 <div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
   <div class="panel-body text-center">
     <a href="/files/again2011_workshop_keynote_2.pdf">
-      <i class="material-icons">open_in_browser</i> 
-      브라우저에서 열기
+      <i class="material-icons">open_in_browser</i>
+      브라우저에서 슬라이드 열기
     </a>
   </div>
 </div>

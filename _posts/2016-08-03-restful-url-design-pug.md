@@ -1,6 +1,6 @@
 ---
 layout: post-minimal
-title: 'RESTFul URL 설계 (@ModernPUG)' 
+title: 'RESTFul URL 설계 (@ModernPUG)'
 date: 2016-08-03 00:00:00 +0900
 categories:
 - work-n-play
@@ -18,8 +18,8 @@ tags:
 <div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
   <div class="panel-body text-center">
     <a href="/files/restful-url-design.pdf">
-      <i class="material-icons">open_in_browser</i> 
-      브라우저에서 열기
+      <i class="material-icons">open_in_browser</i>
+      브라우저에서 슬라이드 열기
     </a>
   </div>
 </div>
@@ -29,15 +29,15 @@ tags:
 
 ## 2. 광고
 
-발표 자료 말미에 나오는 광고의 상세 내용입니다. 
+발표 자료 말미에 나오는 광고의 상세 내용입니다.
 
 ![메쉬코리아에서 개발자를 찾습니다](/images/2016-08-03-img-02.png)
 
 <div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
   <div class="panel-body text-center">
     <a href="https://drive.google.com/file/d/0Bx8_tW_C70eNVFRrRDJxMy15dDA/view?usp=sharing" target="_blank">
-      <i class="material-icons">open_in_browser</i> 
-      브라우저에서 열기
+      <i class="material-icons">open_in_browser</i>
+      브라우저에서 슬라이드 열기
     </a>
   </div>
 </div>
@@ -53,6 +53,6 @@ tags:
 - 젊습니다.
 - 주니어: 저를 포함해서(^^) 이끌어 주실 어벤저스 사수들이 많습니다.
 - 중견 경력자: 안정적인 업무 환경, 도전적인 프로젝트의 기회가 가득합니다.
-- 서버사이드에서 라라벨(PHP), 스프링(Java), 스칼라를 씁니다. 
+- 서버사이드에서 라라벨(PHP), 스프링(Java), 스칼라를 씁니다.
 - iOS, Android, ReactJS, WPF 클라이언트를 개발합니다.
-- 삼성동 봉은사역 소재, 총 직원 130명, 연구소 35명 
+- 삼성동 봉은사역 소재, 총 직원 130명, 연구소 35명

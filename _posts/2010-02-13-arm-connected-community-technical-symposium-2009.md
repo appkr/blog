@@ -14,6 +14,7 @@ ARM 社는 일반인에게는 잘 알려져 있지 않지만, Embedded System �
 > 
 > 대만의 TSMC, UMC 와 같이 Fab 만 운영하는 회사를 Foundry 라고 분류한다. 생산시설은 없지만, 반도체를 설계만 하고 생산을 Foundry 에 위탁하는 기업을 Fabless (팹리스) 라 부른다. Intel, Samsung, ST 와 같은 회사는 설계와 생산을 모두 하기 때문에, IDM (종합 반도체) 이라 부른다.
 
+<!--more-->
 <div class="spacer">• • •</div>
 
 ARM 社는 전세계 IP 회사 중 최대규모의 회사이다. Rambus 가 2위. ARM 의 IP 는 전세계적으로 매년 30억개 이상 Shipping 된다고 추정된다. 휴대단말 뿐만 아니라, 우리들 PC 에도 Network Processor 는 주로 ARM 이 사용된다. ARM Connected Community 는 ARM 社의 Ecosystem Program 의 이름이다.

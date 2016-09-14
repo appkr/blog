@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  블로그 플랫폼 이전 3 - Publishing
+slug: jekyll-blogging-part3
 date: 2016-02-11 00:00:00 +0900
 categories:
 - work-n-play

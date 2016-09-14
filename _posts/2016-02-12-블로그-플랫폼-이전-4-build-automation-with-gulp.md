@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  블로그 플랫폼 이전 4 - Build Automation with Gulp
+slug: jekyll-blogging-part4
 date: 2016-02-12 00:00:00 +0900
 categories:
 - work-n-play

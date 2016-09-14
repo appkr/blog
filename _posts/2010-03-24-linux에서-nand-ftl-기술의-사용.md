@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Linux에서 Nand-FTL 기술의 사용
+slug: linux-nand-ftl
 date: '2010-03-24 13:00:28 +0900'
 categories:
 - work-n-play

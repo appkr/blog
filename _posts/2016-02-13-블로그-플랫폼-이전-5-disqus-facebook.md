@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  블로그 플랫폼 이전 5 - Disqus & Facebook
+slug: jekyll-blogging-part5
 date: 2016-02-13 00:00:00 +0900
 categories:
 - work-n-play

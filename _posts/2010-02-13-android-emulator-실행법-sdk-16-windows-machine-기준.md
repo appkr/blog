@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Android Emulator 실행법-SDK 1.6, Windows Machine 기준
+slug: how-to-run-android-emulator-on-windows
 date: '2010-02-13 06:49:45 +0900'
 categories:
 - work-n-play
@@ -15,6 +16,9 @@ tags:
 
 또는, [JRE <sup>Java Runtime Environment</sup>](http://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jre-6u16-windows-i586.exe?BundledLineItemUUID=moFIBe.oaqEAAAEkk.UxdJ2G&OrderID=R1dIBe.onL8AAAEkiOUxdJ2G&ProductID=VP1IBe.nzvkAAAEiap9pOuDb&FileName=/jre-6u16-windows-i586.exe) 만 설치할 수도 있다. JDK Version 이 맞지 않으면, Emulator 가 정상적으로 실행되지 않는다.
  
+<!--more-->
+<div class="spacer">• • •</div>
+
 ### 2. Java Runtime 의 Path 를 Windows 환경 변수에 넣어 준다.
 
 내 컴퓨터 > 속성 > 고급 > 환경변수 > 시스템 변수> Path 로 이동하여, Java Runtime (java.exe) 가 위치한 경로를 넣어 주어야 한다. 내 경우에는 C:Program Files\Javajdk1.6.0_16\bin 에 java.exe 가 있었다.

@@ -15,6 +15,7 @@ tags:
 이는 David Allen 이 저술한 책의 제목으로서 그 책에서 제시된 일정관리/정리법의 명칭이다. Franklin Covey 와 같이 일정관리법이지만 다른 점이 많다. 한글로도 GTD 는 번역 출판되어 있는데 제목은 ["끝도 없는 일 깔끔하게 해치우기"](http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=12757098) 이다. 
 
 <!--more-->
+<div class="spacer">• • •</div>
 
 ## 간단한 GTD 요점정리 
 

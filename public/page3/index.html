@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="appkr's blog to record day-to-day life & thoughts."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Appkr.memo(new Life)"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Appkr.memo(new Life)">
+  <meta itemprop="description" content="appkr's blog to record day-to-day life & thoughts.">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Appkr.memo(new Life)" />
+  <meta name="twitter:description" content="appkr's blog to record day-to-day life & thoughts." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/page3/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/importance-of-service-url/">서비스 URL의 중요성 및 변경의 비용</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-05-18
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/importance-of-service-url/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>웹 서비스를 하다 보면 마이그레이션을 해야 할 때가 반드시 찾아 온다. 트래픽 양이 변해서 더 큰 또는 작은 서버로 이전한다거나, 다른 프로그래밍 언어 또는 다른 프레임워크로 갈아타야 한다거나..</p>
+
+<p>나에게도 찾아 왔다. 라라벨 온라인 강좌의 라이브 데모 사이트를 AWS(Amazon Web Service)에서 서비스하고 있었는데, 요금이 꽤 나와서 Github Page로 옮겼다. 회원 가입등 서버가 필요한 동적 기능은 버리고, HTML로 강좌만 서비스하는 정적 웹 페이지로 바꾸었다. 이 과정에서 어쩔 수 없이 URL을 변경했다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>변경 전</th>
+      <th>변경 후</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/lessons/01-welcome.md</code></td>
+      <td><code class="highlighter-rouge">/lessons/01-welcome.html</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="http://jigsaw.tighten.co/">Jigsaw</a>라고 하는 정적 사이트 빌더를 이용했는데, 로컬 컴퓨터에서 마크다운으로 작성한 강좌를 정적 HTML 파일로 전부 트랜스파일한 다음, Github Page에 올리는 방식이다. <a href="http://jekyllrb.com/">Jekyll</a>을 이용한 이 블로그와 빌드 도구만 다를 뿐 똑같은 방식이다.</p>
+
+<p>AWS 라이브 데모를 닫은 지 2주일 정도됐다. 사용자가 구글 검색 엔진을 통해 들어온다면, 기존의 URL은 당연히 열리지 않는 황당한 경험을 하게 된다. 구글로부터 최근에 404 응답이 많아졌다는 메일을 받았지만, 아무 생각없이 그냥 무시했었다. 커뮤니티에서 같이 활동을 하는 <a href="https://www.facebook.com/profile.php?id=100001411952158">김종운</a>님과 어제 대화를 나누기 전까지는 말이다.</p>
+
+<blockquote>
+  <p>URL이 바꼈던데, 그간에 쌓아 놓은 구글 검색 순위가 아깝지 않으세요?</p>
+
+  <footer>김종운님</footer>
+</blockquote>
+
+<p><a href="https://www.google.com/webmasters/tools">Google Search Console</a>로 확인해 보니 다행히 그간에 검색 엔진을 통해 들어온 사용자는 그리 많지 않았고, 순위도 그리 높지 않았을 것이라 생각한다. 그러나, 2 주간 불편을 겪었을, 또 앞으로 불편을 겪을 수도 있는 사용자를 생각하면 고치지 않을 수 없었다.</p>
+
+<p>이 포스트는 다음 내용을 다룬다. SEO(Search Engine Optimization, 검색 엔진 최적화)라는 관점에서 공통점이 있다.</p>
+
+<ol>
+  <li>Github Page에서 URL Redirect를 구현한 로그</li>
+  <li>SEO 관점에서 URL의 중요성 및 일반적인 URL Rewrite 방법</li>
+</ol>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/importance-of-service-url/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/git-flow/">Git Flow</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-05-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/git-flow/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Git Flow 는 <a href="http://nvie.com/posts/a-successful-git-branching-model/">Vincent Driessen이 제안한 깃 브랜칭 전략</a>을 실행할 수 있도록 돕는 Git 확장 프로그램이다. 이 전략은 <code class="highlighter-rouge">master</code>와 <code class="highlighter-rouge">develop</code>을 각각 배포 및 개발 브랜치로 사용하면서, <code class="highlighter-rouge">feature</code>, <code class="highlighter-rouge">release</code>, <code class="highlighter-rouge">hotfix</code> 등을 위한 임시 브랜치를 사용한다.</p>
+
+<p>아래 그림은 Git을 소개하는 웹 문서나 서적에서 한번은 본 그림일 것이다. 많은 개발자들이 이 전략을 모범 사례로 인식하고, 따르고 있다는 방증이다.</p>
+
+<p><a href="http://nvie.com/img/git-model@2x.png"><img src="http://nvie.com/img/git-model@2x.png" alt="" /></a></p>
+
+<p>이 포스트는 Git Flow의 기본적인 사용법을 담고 있다. 사실 여기 수록한 내용이 전부인 듯 하다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/git-flow/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/learn-n-think/software-development-costs/">소프트웨어 개발 비용</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-04-27
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/software-development-costs/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>소프트웨어 개발 비용은 ‘돈’ 보다는 ‘시간’의 의미가 더 크다. 개발 비용은 크게 보면 다음 세 가지로 구분할 수 있다.</p>
+
+<ol>
+  <li>도입 비용</li>
+  <li>수정 비용</li>
+  <li>소유 비용</li>
+</ol>
+
+<p>각 비용을 적절히 배분해야 전체 비용이 줄어든다. 가령, 성공을 확신할 수 없는 새 제품이나 서비스를 개발하는데, 오버 엔지니어링해서 많은 도입 비용을 쓰는 사례를 들 수 있다. 또는 도입 비용을 너무 싸게 예측해서 급히 개발했는데, 시장 반응이 좋은 상황이다. 분명 개발의 훌륭함보다는 아이템의 승리다. 수정해야하는데, 팀의 빨리빨리 문화에 회의를 느낀 초기 개발자는 회사를 떠났고, 스파게티 코드만 남아 누구도 손댈 수 없는 사례도 생각해 볼 수 있다. 내 일천한 경험에 비추어 보면 이런 코드로 램프 업한 사업은 곧 망하더라(대규모 투자를 받아 팀을 리빌드한 경우는 제외).</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/software-development-costs/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/git-rebase/">GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-04-25
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/git-rebase/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>깃(git)을 꽤 오랫동안 썼지만 잘 모르는 기능 중에 하나가 리베이스(rebase)다. 사실 리베이스를 할 줄 알고 모름에 따라, 초급과 중급으로 구분된다고 해도 과언이 아니다. 리베이스를 꽤 오랫동안 썼지만, 주로 하는 것은 커밋 합치기(fixup, or squash)와 커밋 메시지 바꾸기(reword) 정도였다.</p>
+
+<p>이번에 예전에 커밋한 내용을 수정할 일이 있어서 수정(edit) 기능을 처음 써봤다. 최종 목표는 이렇다.</p>
+
+<ol>
+  <li>이전에 커밋한 내용을 수정하고, 그 뒤에 연속되는 커밋에 변경 내용을 모두 반영한다.</li>
+  <li>리베이스하기 전의 전체 커밋 로그를 리베이스 후에도 그대로 유지한다.</li>
+</ol>
+
+<p>말로는 쉬워보이지만, 2번이 정말 어려웠다.</p>
+
+<p>예를 들어, <code class="highlighter-rouge">foo</code> -&gt; <code class="highlighter-rouge">bar</code> -&gt; <code class="highlighter-rouge">baz</code> 커밋 로그가 있다고 하자. 리베이스로 <code class="highlighter-rouge">foo</code> 커밋의 내용을 수정했는데 <code class="highlighter-rouge">bar</code>에서 충돌이 발생했다. <code class="highlighter-rouge">bar</code> 커밋에서 발생한 충돌을 해결하고 나면, <code class="highlighter-rouge">bar</code> 커밋은 <code class="highlighter-rouge">foo</code> 커밋으로 합쳐지고, <code class="highlighter-rouge">bar</code> 커밋 로그는 남지 않는다.</p>
+
+<p>‘최종 커밋만 있으면 되지~’, ‘중간 커밋을 살리는 것이 무슨 의미가…?’라는 의문이 생길 수 있다. 맞다. 최종 커밋만 있으면 된다. 그런데, 나는 이번에 나올 책에서 챕터별로 예제 코드를 커밋했고, 커밋 로그 하나가 사라지면 챕터에 해당하는 소스코드의 이력이 사라지기 때문에 이 문제를 꼭 해결해야만 했다.</p>
+
+<p>이 고생을 한 이유는 책을 쓰는 도중 라라벨 프레임워크의 수버전이(유의적 버전은 주.부.수로 쓴다) 변경되었고, 이번 버전 업에서는 라우트 사용법이 변경되었기 때문이다. 라우트는 웹 서버와 라라벨의 경계에 해당하는 부분이라 아주 아주 아주 중요할뿐더러, 책의 가장 첫 부분이기도 하다. 독자들은 새 버전의 프레임워크로 프로젝트를 시작할테고, 바뀐 사용법을 적용하지 않으면 책의 시작부터 작동하지 않는 소스코드를 만나게 되는 셈이다.</p>
+
+<p>어쨌든… 이 포스트는 이 문제점을 해결한 이력이다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/git-rebase/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/super-fast-debug-deploy/">엄청나게 빠른 버그 감지, 디버그, 코드 배포</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-03-03
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/super-fast-debug-deploy/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>어제 있었던 일이다. 저녁에 있을 모임에 나가기 위해 하던 일을 슬슬 정리하려던 차였다. 그런데, 슬랙으로 날아온 버그 메시지. 버그를 감지하고 바로 고친후 프로덕션에 배포했는데, 이 모든 과정이 딱 10분 걸렸다. 어떻게 가능했을까?</p>
+
+<p>이 포스트는</p>
+
+<ul>
+  <li>라라벨<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 프레임워크의 우수성을 알린다.</li>
+  <li>가난한 개발자가 자신의 서비스를 지키는 방법과 몇가지 개발 도구를 소개한다.</li>
+</ul>
+
+<p>라는 목적을 가진다. (이 블로그의 포스트들의 방문자가 갑자기 많아졌다. 그래서 웃고 운다.)</p>
+
+<p>이 포스트의 대상이 되는 프로젝트는 내가 쓴 <a href="https://github.com/appkr/l5essential">라라벨 5 온라인 강좌</a>임을 미리 밝힌다. 해당 강좌를 통해 개발한 최종 결과물은 현재 아마존웹서비스(AWS)에서 올려 <a href="http://l5.appkr.kr/">라이브데모</a>라며 서비스하는데, 이 포스트는 라이브데모의 방문자 중 한분이 겪은 문제에 대한 해결 이력이다. 그런데 불편함을 겪었던 그 분은 ‘그냥 안되네~’라며 페이지를 떠나신 것 같다. 내 메일 주소를 찾아 가면서 문제점을 기술(description)하면서 고쳐달라고 말하는 친절을 베풀지는 않았지만, 버그를 만들어 주셨으니 나한테는 고마운 분이다.</p>
+
+<p>이 포스트의 내용과는 조금은 다른 관점인데.. 서비스에 문제가 생겼을 때 사용자가 별 노력 없이도 문제점을 개발자에게 알릴 수 있는 사용자인터페이스(UI)나 장치를 만드는 것도, 서비스의 품질을 높일 수 있는 좋은 방법이다. 이런 옵트인(opt-in) 방식의 리포팅은 팝업 형태로 표시되어 사용자의 동의를 받아 전송하는 것이 일반적이다.</p>
+
+<p>가능한 모든 경우의 수를 따져서 개발자는 프로그래밍하고 테스트를 하려고 하지만, 세상에 ‘완벽’이란 단어는 없다. 구현이 조금 부족하고 테스트가 덜 됐을 수 있지만, 버그를 리포팅하는 장치를 프로그램에 심어서 배포하고, 리포트된 버그를 분석하고 코드를 고쳐서 빠르게 안정화하며, 초기 사용자의 반응을 관찰하는 것이 더 낫다는 것이 나의 생각이다. 완벽주의 개발자들로 포진된 스타트업들이 오버 엔지니어링을 하다가 실기(失期)하는 사례를 여러번 봤다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/super-fast-debug-deploy/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/page4/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            Older
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/page2/">
+            Newer
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

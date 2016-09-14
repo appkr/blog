@@ -16,6 +16,7 @@ OSP <sup>Open Screen Project</sup> 는 Adobe가 주축이된 산업체 주도의
 
 를 비전으로 활동하고 있다. 기존의 유료로 라이센스 되던 Adobe Flash Lite (Mobile Version 을 Lite 라 부름) 는 없어진다.
 
+<!--more-->
 <div class="spacer">• • •</div>
 
 ### OSP 에서 바뀌는 내용

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: bluetooth 솔루션 선택
+slug: technical-decision-on-bluetooth
 date: '2010-02-13 11:45:53 +0900'
 categories:
 - work-n-play
@@ -20,6 +21,9 @@ tags:
 `c`|L2CAP
 `b`|LC/LM
 `a`|Bluetooth Baseband
+
+<!--more-->
+<div class="spacer">• • •</div>
 
 ## Solution Comparison
 

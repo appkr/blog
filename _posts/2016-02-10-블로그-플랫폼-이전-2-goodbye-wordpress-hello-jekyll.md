@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll
+slug: jekyll-blogging-part2
 date: 2016-02-10 00:00:00 +0900
 categories:
 - work-n-play

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 생각과 실행의 차이, Universal Remote
+slug: think-of-practice
 date: '2010-02-12 17:01:41 +0900'
 categories:
 - learn-n-think
@@ -11,6 +12,7 @@ tags:
 
 내가 생각하던 것은 이미 있더라.
 
+<!--more-->
 <div class="spacer">• • •</div>
 
 우리는 너무 많은 리모컨을 가지고 있다. 그래서, 풀터치가 되는 Universal Remote Controller 를 생각하고 있었다.

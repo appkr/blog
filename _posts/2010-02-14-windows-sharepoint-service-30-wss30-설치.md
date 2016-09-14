@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Windows Sharepoint Service 3.0 (WSS3.0) 설치
+slug: installing-windows-sharepoint-services-3
 date: '2010-02-14 13:41:29 +0900'
 categories:
 - work-n-play
@@ -10,6 +11,8 @@ tags:
 ---
 
 WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋은 무료 협업 도구이다.
+
+<!--more-->
 
 host name 은 `sbd` 라 하자.
 
@@ -34,8 +37,6 @@ host name 은 `sbd` 라 하자.
 ```
 
 약관동의 -> 고급설치 -> 서버유형:독립실행형 -> 데이터위치: `d:\wss_data` -> "지금 Sharepoint 제품 및 기술 구성 마법사 실행"
-
-<!--more-->
 
 ### Configure-SMTP 서버
 

@@ -1,12 +1,14 @@
 ---
 layout: post
 title: Google NexusOne 이 진짜라면...
+slug: impact-of-google-nexusone-speculation
 date: '2010-02-14 06:25:08 +0900'
 categories:
 - around-me
 tags:
 - android
 ---
+
 Android 는 다음과 같이 정의 할 수 있다. 
 
 > Google 에서 개발한 운영체제부터 미들웨어, 그리고 Java 언어로 개발된 중요 어플리케이션까지를 모두 포괄하고 있는, 하드웨어만 제외한 모바일 폰을 위한 풀 소프트웨어 스택

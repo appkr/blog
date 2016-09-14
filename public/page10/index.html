@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="appkr's blog to record day-to-day life & thoughts."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Appkr.memo(new Life)"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Appkr.memo(new Life)">
+  <meta itemprop="description" content="appkr's blog to record day-to-day life & thoughts.">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Appkr.memo(new Life)" />
+  <meta name="twitter:description" content="appkr's blog to record day-to-day life & thoughts." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/page10/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/java-performance-boosting-technology/">Java 가속 기술</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-03-08
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/java-performance-boosting-technology/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <h2 id="jit-compiler">JIT Compiler</h2>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Just-in-time_compilation">Just-In-Time Compilation Technology</a></li>
+  <li>Java 의 바이트코드를 프로세서에게 직접 전달될 수 있는 명령어로 바꾸어주는 프로그램
+- Java 소스는 Java 컴파일러에 의해 바이트코드 변환되며, 가상머신 (VM) 은 한번에 하나의 바이트코드 명령어만을 처리 가능</li>
+  <li>특정 시스템 플랫폼에 있는 JIT 컴파일러 (second compiler) 를 사용하여 바이트코드를 특정 시스템의 코드. 마치 그 프로그램이 처음부터 그 플랫폼에서 컴파일된 것처럼 컴파일하여 속도 향상을 가져옴</li>
+  <li>JIT 컴파일러는 VM 과 함께 제공되며 사용 여부는 사용자 선택</li>
+  <li>.Net Framework 도 JIT Compilation 기술을 사용함.</li>
+</ul>
+
+<h2 id="aot-or-aotc">AOT or AOTC</h2>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/AOT_compiler">Ahead of Time Compile</a></li>
+  <li>Java 의 바이트코드를 C 로 변환하고 이를 다시 C Compiler 를 이용해서 해당 아키텍쳐에 맞는 Native Code 로 만들어 실행하는 기술</li>
+</ul>
+
+<h2 id="java---">Java 가속 기술 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>기술</th>
+      <th>속도 향상</th>
+      <th>특징</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>JIT</td>
+      <td>10~15x</td>
+      <td>Application 크기 커짐</td>
+    </tr>
+    <tr>
+      <td>AOT(C)</td>
+      <td>6~10x</td>
+      <td>프로파일링 및 컴파일 시간이 있어서 초기 실행시간이 느려짐</td>
+    </tr>
+    <tr>
+      <td>Jazelle</td>
+      <td>6~10x</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong><code class="highlighter-rouge">주)</code></strong> Mobile 에서는 JIT 와 Jazelle 사용이 일반적임.</p>
+
+<p><strong><code class="highlighter-rouge">주)</code></strong> Application 크기가 커지는 것을 제외하면, AOT 방식이 최대 성능을 보일 수 있음.</p>
+
+      </div>
+
+      <footer class="box-footer">
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/around-me/epilog-on-microsoft-cloud-conference/">마이크로소프트 @cloud conference</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-25
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#around-me">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/around-me/epilog-on-microsoft-cloud-conference/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>우리가 사용하는 클라우드 서비스들의 백엔드에서 움직이는 시스템의 구성과 그 시스템들이 움직이는 원리를 이해할 수 있는 좋은 기회였다.</p>
+
+<p>마이크로소프트 클라우드 제품군은 개념적으로</p>
+
+<ul>
+  <li>Infra@cloud</li>
+  <li>Data@could</li>
+  <li>Application@cloud</li>
+</ul>
+
+<p>로 구분한다. 기조연설이 끝나고 나서, 각 제품군별로 3개의 트랙으로 나누어 세션들이 진행되었으며, 난 Infra@cloud 에 참석했다. 대부분의 청중들은 각 기업의 IT 관리자였다.</p>
+
+<h2 id="section">지식노동자들은 어떻게 일하는가?</h2>
+
+<p>지식노동자들의 일의 본질은 무엇인가를 선택하는 것이다. 올바른 선택을 위해 데이터가 필요하고, 데이터는 데이터소스로 부터 받을 수 있다. 방대한 데이터에서 유용한 데이터를 선택하고 해석하고 사용하는 일일 것이다.</p>
+
+<h2 id="section-1">‘클라우드’ 란 무엇인가?</h2>
+
+<p>마이크로소프트는 클라우드를</p>
+
+<blockquote>
+  <p>필요에 의해 유연하게 확장될 수도 축소될 수도 있는 컴퓨팅 리소스들—하드웨어, 소프트웨어, 데이터베이스, 네크워크—의 풀</p>
+</blockquote>
+
+<p>로 정의한다.</p>
+
+<p>과거에는 기업들이 데이터센터를 보유했었다 (비용↑, 통제가능성↑). 그 이후엔 소유는 하되, 외부 전문 관리 업체에 맡겼었다 (비용↓, 통제가능성↓). 반면 클라우드는 컴퓨팅 자원 및 데이터센터를 소유하지 않고, 빌려 쓰는 개념이다 (비용↓, 통제가능성↑).</p>
+
+<p>클라우드란 갑자기 생긴 기술이 아니다. SaaS, IT Governance, … 등 많은 기술이나 개념들이 존재해 왔었고, 그 기술들을 융복합해서 클라우드라고 부르기로 한 것이다. 따라서, 클라우드라는 용어는 일시적인 유행일 수 있으나, 클라우드를 위한 인프라와 그 위에서 동작하는 서비스가 갑자기 사라지지는 않을 것이다.</p>
+
+<p>분명, 마이크로소프트, IT 관리자가 생각하는 클라우드, 일반 사용자가 생각하는 클라우드의 정의는 분명이 다르다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/around-me/epilog-on-microsoft-cloud-conference/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/making-identity-using-google-apps/">구글앱스를 이용하여 내 웹 아이덴티티 만들기</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-24
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/making-identity-using-google-apps/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>개인적으로 소유한 도메인이 있다면, 구글앱스는 월드와이드웹 세상에서 자신의 정체성을 표시하기 위한 좋은 방법 중 하나라고 생각된다. 왜냐하면, <code class="highlighter-rouge">아이디@내도메인</code> 식의 메일 주소를 사용할 수 있기 때문이다. (구글앱스 표준형은 무료이다.)</p>
+
+<p>가령, 내가 가진 도메인 내에서 <code class="highlighter-rouge">me@도메인</code> 과 같은 메일 주소를 사용할 수 있고, 내 도메인으로 표시된 구글앱스 메일/캘린더/독스/사이트를 사용할 수 있다. (구글앱스 메일은 지메일과 동일한 기능을 제공하지만, 아직 버즈 통합은 안되어 있다)</p>
+
+<p>어떻게 설정해야 하나?</p>
+
+<h2 id="section">1. 구글앱스 설정</h2>
+
+<ol>
+  <li>
+    <p><a href="http://www.google.com/apps/intl/ko/group/index.html">구글앱스-표준형 시작하기 페이지</a>로 들어간다. ‘시작하기’를 누르면, 도메인 이름을 넣는 입력창이 표시된다. 시작 버튼을 누른다.</p>
+
+    <p>[그림 유실]. 구글앱스-표준형 시작하기</p>
+  </li>
+  <li>
+    <p>‘도메인이름의 소유권 확인’ 을 눌러 CNAME 을 이용한 확인을 선택한다. 표시되는 페이지에서 googlexxxxxxxxxx 와 같은 코드를 제공한다. 복사해 놓는다.</p>
+  </li>
+  <li>
+    <p>‘이메일’ 사용하기를 클릭하고, ‘URL 변경하기’, ‘모든 도메인 서비스의 URL 변경하기’ 를 선택한다. 구글에서 기본 제공한 서비스별 도메인 이름은 안 예쁘고 기억하기 어려운 이름이기 때문에, <code class="highlighter-rouge">http://mail.도메인</code> 같이 쉬운 이름으로 바꾸는 과정이다.</p>
+  </li>
+</ol>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/making-identity-using-google-apps/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/learn-n-think/importance-of-philosophy-to-individual-and-corporate/">개인과 기업에게 철학이 필요한 이유</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-22
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/importance-of-philosophy-to-individual-and-corporate/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><a href="http://image.yes24.com/goods/3041342/L"><img src="http://image.yes24.com/goods/3041342/L" alt="신의 나라 인간 나라" /></a></p>
+
+<p>‘이원복 교수 글그림, 신의 나라 인간 나라-철학의 세계편’, 학교 후배 <a href="http://blog.naver.com/exanglos">장미일</a> 로 부터 선물 받은 만화책 ㅋ. 지하철에서 보고 다닐 때, (만화책이라) 사람들의 시선을 꽤 많이 느꼈던 책이기도 하다.</p>
+
+<p>이 책의 내용은 중고등학교 국민윤리나 고등학교 철학 시간에 이미 배운 내용들이다. ‘중고등학교 시절 정말 공부를 안 했구나’ 라는 생각이 들다가도, 다시 생각해 보면, 입시위주의 대한민국 교육이 얼마나 잘못 되었는가를 새삼 깨닫게 되는 책이다. 삶에서 정말 중요한 것은 국어, 영어, 수학이 아니라, 세상을 바라보고 이해하는 자신만의 방식, 즉 철학이었다. 국영수를 왜 하는지도 모른 채, 그리고 나만의 목표의식도 없이, 그냥 채찍질 당해야 했었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>지금 대학생들이 당면하고 있는 취업 현실도 별반 다르지 않다고 본다. 대학 1 학년부터 4 년 동안 가치관을 바로 세우고 자신이 진정으로 하고 싶은 일을 찾는 의미 있는 시간을 보내는 것이 아니라, 대기업을 위한 취업 스펙 공부만 하고 있으니 말이다 (물론, 나도 그 중 한 사람이었다;;;). 사실 대학생들을 그렇게 몰고 간 것은 우리 기업들이다.</p>
+
+<p><a href="http://news.nate.com/view/20100222n04871">안철수 교수의 인터뷰</a> 를 보면…</p>
+
+<p>그는 실력보다 출신이나 학력을 더 중요하게 생각하는 기업들, 대기업들이 외주업체들을 줄 세우는 비즈니스 관행과, 기업들이 기득권 유지를 위해 기자들에게 장학금을 주고 거짓 기사를 쓰게해서 대중들을 오도하는 행위를 실랄하게 비판하고 있다. (실리콘 밸리와 같은 환경은 정부가 해 줘야 할 Nudge 이지만, 그 전에 개인의 실력과 노력, 철학이 뒷받침 되어야 할 것이다).</p>
+
+<p>그런데, 내 이상주의는 현실에선 안 통하더라. 똑똑한 친구들은 법대가고 대기업을 가더라. 대기업에 밑보여 처절하게 말라 죽는 중소기업 여러 개 봤다. 개인에게도, 기업에도 철학이 필요하다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/importance-of-philosophy-to-individual-and-corporate/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/imported/understanding-philosophy/">철학의 이해</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-22
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#imported">
+                
+                    Uncategorized
+                
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/imported/understanding-philosophy/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <h2 id="section">서양철학과 동양철학</h2>
+
+<p>서양 철학은 애초에 신(神)과 인간의 갈등에서 비롯되었고, 현대에 이르기까지도 신과 인간의 관계를 해명하는 것이 가장 큰 과제가 되어 왔지만, 동양철학은 서구적인 신의 개념이 존재하지 않는 상황에서 인간과 사회, 그리고 인간과 자연의 관계에 초점을 맞추어 왔다.</p>
+
+<h2 id="section-1">철학의 정의</h2>
+
+<p>필로소피아는 ‘지혜를 사랑한다’는 의미이다 (Philo: 사랑하다, sophia: 지혜, 哲學 이란 용어는 일본에서 만들어진 것). 여기서 말하는 ‘지혜’란 인간의 지혜로서 모든 것을 다 알고 모든 것을 창조하며 조정하는 전지전능한 신의 지혜가 아닌, 인간이 스스로 노력하여 얻은 지식, 깨달은 지혜를 가리킨다. 즉, 철학은 오직 인간만이 지닌 지식과 지혜를 사랑하는 것으로 신에 대한 사랑이기보다 인간 자신에 대한 사랑, 인간이 존재하는 이유와 그 가치를 있게 해 주는 ‘사고’의 밑거름인 지혜를 사랑하는 것이다.</p>
+
+<p>철학은 대상이 분명하게 결정되어 있는 학문이 아니다. 가령 역사학, 경제학, 사회학 등은 그 연구 분야가 분명하게 결정되어 있지만 철학은 그렇지 않다. 그러니까 철학은 어떤 분야를 연구해도 되는 학문으로, 다만 그 분야의 근본적인 문제와 맞서는 마음가짐이 바로 철학이다. 따라서, 철학이란 모든 학문 위의 학문이고, 연구하는 학문의 방향을 결정짓는 방향타라고도 할 수 있다. 세상을 살면서 어던 분야에 종사하든 가장 중요한 것은 인생관과 세계관인 만큼, 좁은 의미에서 철학은 인생관과 세계관을 탐구하는 학문이라고 할 수 있다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/imported/understanding-philosophy/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/page11/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            Older
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/page9/">
+            Newer
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

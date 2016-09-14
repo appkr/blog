@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Evangelism, 그리고 경력개발을 위한 키워드
+slug: evangelism-and-thought-on-career-development
 date: '2010-02-13 12:47:37 +0900'
 categories:
 - learn-n-think
@@ -10,6 +11,9 @@ tags:
 ---
 
 Evangelist 는 전도사, 설교자 정도로 해석된다. 작년 이맘 때 쯤이었던 것 같다. [Microsoft TechTalk Series-"신뢰 받는 기술 조언가가 된다는 것"](http://blogs.technet.com/koalra/archive/2008/11/01/1-it.aspx) 이란 행사를 진행했던 Technology Evangelist [백승주](http://blogs.technet.com/koalra/) 님의 발표 자료에서 마지막 페이지의 내용을 1 년이 지난 시점에서 다시 한번 나름대로 해석해 보고, 전도 하고자 한다.
+
+<!--more-->
+<div class="spacer">• • •</div>
 
 ## Look at the media closely
 

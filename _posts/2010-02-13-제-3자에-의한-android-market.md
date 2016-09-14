@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 제 3 자에 의한 Android Market
+slug: 3rd-party-android-market
 date: '2010-02-13 15:33:29 +0900'
 categories:
 - around-me

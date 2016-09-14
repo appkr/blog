@@ -10,7 +10,10 @@ tags:
 ---
 
 Kindle 은 아마존에서 제공하는 eBook 을 읽기 위한 단말기이다.현재 시중에 유통되는 단말기는 Kindle 2 와 Kindle DX 의 2 종이다.
- 
+
+<!--more-->
+<div class="spacer">• • •</div>
+
 ## Kindle 2
 
 - Processor - Freescale ARM11 532MHz

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: TEDx Kwangwoon 을 다녀와서
+slug: epilog-on-tedx-kwangwoon
 date: '2010-03-27 17:08:07 +0900'
 categories:
 - learn-n-think

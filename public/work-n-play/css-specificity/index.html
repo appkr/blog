@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="speci.., specifif…, speficyfyf…, specificificfy… what?CSS Specificity            [*      spesɪ      fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. 블로그 플랫폼 이전 3 - Publishing..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="CSS Specificity"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="CSS Specificity">
+  <meta itemprop="description" content="speci.., specifif…, speficyfyf…, specificificfy… what?CSS Specificity            [*      spesɪ      fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. 블로그 플랫폼 이전 3 - Publishing...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="CSS Specificity" />
+  <meta name="twitter:description" content="speci.., specifif…, speficyfyf…, specificificfy… what?CSS Specificity            [*      spesɪ      fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. 블로그 플랫폼 이전 3 - Publishing..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/css-specificity/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>CSS Specificity | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">CSS Specificity</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/css-specificity/&title=CSS Specificity" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/css-specificity/&title=CSS Specificity&text=CSS Specificity" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/css-specificity/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-16
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/css-specificity/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>speci.., specifif…, speficyfyf…, specificificfy… what?</p>
+
+<h2 id="css-specificity">CSS Specificity</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[*</td>
+      <td>spesɪ</td>
+      <td>fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. <a href="http://blog.appkr.kr/work-n-play/블로그-플랫폼-이전-3-publishing/#삽질">블로그 플랫폼 이전 3 - Publishing</a> 포스트에서 twbs 클래스들을 오버라이드하는 과정에서 잘못 이해한 것을, 실험을 통해 배우고 고쳐서 정리해 놓는다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="test">Test</h2>
+
+<p>이번 주는 <a href="http://onoffmix.com/event/61685">생활코딩 작심5일</a> 수업에 자원봉사자로 참여하고 있다. 오늘 수업에서 CSS 얘기를 듣다가 문득 궁금증이 생겼다.</p>
+
+<p>내가 기존에 알고 있던 지식은</p>
+
+<ul>
+  <li>Tag Selector 1 점 (<em>e.g. <code class="highlighter-rouge">a {...}</code></em>)</li>
+  <li>Class Selector 10 점 (<em>e.g. <code class="highlighter-rouge">.darth {...}</code></em>)</li>
+  <li>Id Selector 100 점 (<em>e.g. <code class="highlighter-rouge">#sith {...}</code></em>)</li>
+</ul>
+
+<p>였다. 궁금증은 <em>‘Tag 를 11 개 중첩해서 쓰면 Class 하나를 오버라이드할 수 있을까?’</em> 라는 것.</p>
+
+<!--more-->
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir css-test <span class="o">&amp;&amp;</span> <span class="nb">cd </span>css-test
+<span class="gp">$ </span>touch index.html
+</code></pre>
+</div>
+
+<p>오늘 전까지는, 아래 <code class="highlighter-rouge">&lt;style&gt;</code> 내부에 주석으로 표시된 계산법으로 알고 있었다. (삐이이~~ 잘못 알고 있던 것이다.)</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- index.html --&gt;</span>
+
+<span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">a</span> <span class="p">{</span> <span class="c">/* ... */</span> <span class="p">}</span>
+    <span class="nc">.darth</span> <span class="p">{</span> <span class="c">/* .darth x 1 = 10 점 */</span>
+      <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">a</span> <span class="p">{</span> <span class="c">/* div x 11 + a X 1 = 12 점 */</span>
+      <span class="nl">background-color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+          <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;div&gt;</span>
+              <span class="nt">&lt;div&gt;</span>
+                <span class="nt">&lt;div&gt;</span>
+                  <span class="nt">&lt;div&gt;</span>
+                    <span class="nt">&lt;div&gt;</span>
+                      <span class="nt">&lt;div&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"darth"</span><span class="nt">&gt;</span>Hello CSS !<span class="nt">&lt;/a&gt;</span>
+                      <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                  <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>녹색의 배경색을 기대하며 실험 코드 실행 ! 두둥~~</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 다른 로컬 서버도 많은데.. PHP 개발자니까 굳이 PHP 내장 서버~~~</span>
+<span class="c"># 주제에 살짝 비켜나지만, 나 말고 이 글을 보시는 독자분들에게도 혹시라도 도움이 될수도 있으니...</span>
+<span class="c"># 같은 subnet 에 있는 다른 디바이스에서, 이 PHP 내장 서버에 접속 가능하게 하려면</span>
+<span class="c">#    localhost:8000 대신 0.0.0.0:8000 으로 PHP 내장 서버를 구동해야 한다.</span>
+<span class="c"># PHP 내장 서버는 개발 서버이므로, 혹시라도 외부에 노출되는 것을 방지하기 위해 80 포트는 쓸 수 없다~~</span>
+<span class="gp">$ </span>php -S localhost:8000
+
+<span class="c"># 'Cmd + d' for new vertical split OR 'Cmd + n' for new tab</span>
+<span class="gp">$ </span>open http://localhost:8000
+</code></pre>
+</div>
+
+<p><a href="/images/2016-02-16-img-01.png"><img src="/images/2016-02-16-img-01.png" alt="CSS Specificity" /></a></p>
+
+<p>헐~ㅋ 결과는 녹색 (<code class="highlighter-rouge">green</code>) 이 아니라 청색 (<code class="highlighter-rouge">blue</code>) 이다.</p>
+
+<p>실험의 결론을 정리하면, ‘Tag selector 는 Class Selector 를 이길 수 없고, Class Selector 는 Id Selector 를 이길 수 없다’ 는 것. 즉, 기존의 내 계산법은 잘못된 것이었다.</p>
+
+<h3 id="whats-wrong-whats-correct">What’s wrong? What’s correct?</h3>
+
+<p>CSS 적용 우선순위는 개발팀들이 거의 <em>de facto</em> 로 생각하고 프로젝트들에 적용하고 있는 <a href="http://semver.org/lang/ko/">Semantic Versioning</a> 에 비유할 수 있다. <code class="highlighter-rouge">0.1.0</code> 과 <code class="highlighter-rouge">0.0.12</code> 의 차이 같은 것이다. <code class="highlighter-rouge">0.1.0</code> 이 더 최신 버전이라 채택되고, 특별한 이유가 없다면 <code class="highlighter-rouge">0.0.12</code> 는 무시되는 것 처럼..</p>
+
+<p>오늘 작심5일 강의에서 알게된 아티클 –<a href="https://stuffandnonsense.co.uk/archives/css_specificity_wars.html">CSS: Specificity Wars</a>– 과 Sync 를 위해, CSS 에서는 Dot(<code class="highlighter-rouge">.</code>) 대신, Comma(<code class="highlighter-rouge">,</code>) 구분자를 이용해서 다시 계산해 본다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- index.html --&gt;</span>
+
+<span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">a</span> <span class="p">{</span> <span class="c">/* ... */</span> <span class="p">}</span>
+    <span class="nc">.darth</span> <span class="p">{</span> <span class="c">/* 0, 10, 0 */</span>
+      <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">a</span> <span class="p">{</span> <span class="c">/* 0, 0, 12 */</span>
+      <span class="nl">background-color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="c">&lt;!-- ... --&gt;</span>
+</code></pre>
+</div>
+
+<p><a href="https://stuffandnonsense.co.uk/archives/images/specificitywars-05v2.jpg"><img src="https://stuffandnonsense.co.uk/archives/images/specificitywars-05v2.jpg" alt="CSS Specificity" /></a></p>
+
+<p>어떤 CSS 룰이 적용될지를 비교할 대상 간에 1의 자리끼리, 10의 자리끼리, 100의 자리끼리 비교해야 한다는 것이 핵심 포인트 !!!</p>
+
+<h3 id="then">Then?</h3>
+
+<p>그럼 <code class="highlighter-rouge">div .darth</code> 는 <code class="highlighter-rouge">.darth</code> 를 이길 수 있을까?</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.darth</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">div</span><span class="o">&gt;</span><span class="nt">a</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">div</span> <span class="nc">.darth</span> <span class="p">{</span> <span class="c">/* 0, 10, 1 */</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#css">
+            css
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/jekyll-blogging-part5/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              블로그 플랫폼 이전 5 - Di...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/learn-n-think/dont-be-looser/">
+            <span class="pager-title">
+              어중간하게 싸워서 지지마라
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

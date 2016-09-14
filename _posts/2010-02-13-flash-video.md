@@ -21,6 +21,7 @@ tags:
 - 864x480 SorensonSpark Stereo AAC (2008년 3월 부터)
 - 720p H.264 Stereo AAC (2008년 11월 부터)
 
+<!--more-->
 <div class="spacer">• • •</div>
 
 Flash 와 Flash Player 는 다르다. Flash 는 Engine/Framework 이며, Flash Player 는 Engine 위에서 동작하는, Adobe 에서 PC 용으로 무료로 제공하는 Flash Application 이다. PC 용 Flash Player 는 Engine (Runetime이라 해야 맞을 지도) 도 같이 포함하고 있다.

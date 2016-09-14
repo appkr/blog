@@ -1,6 +1,7 @@
 ---
 layout: post
 title: OpenPlatform 전쟁, AppStore 전쟁
+slug: openplatform-war-and-application-market-war
 date: '2010-02-13 15:13:36 +0900'
 categories:
 - around-me

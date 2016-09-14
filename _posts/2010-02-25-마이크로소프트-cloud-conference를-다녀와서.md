@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 마이크로소프트 @cloud conference
+slug: epilog-on-microsoft-cloud-conference
 date: '2010-02-25 02:47:04 +0900'
 categories:
 - around-me

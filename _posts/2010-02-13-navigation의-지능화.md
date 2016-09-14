@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Navigation 의 지능화
+slug: smart-and-smarter-navigation
 date: '2010-02-13 13:48:25 +0900'
 categories:
 - learn-n-think

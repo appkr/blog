@@ -11,6 +11,7 @@ tags:
 
 이게 가능할까? openCORE 를 들어 내고, Proprietary MM Framework 로 갈아 치우는 것이 가능할까? Helix Community 에서도 유사한 시도를 하고 있다. [HelixDNA Client 를 Andorid 에 포팅 하는 프로젝트](https://porting.helixcommunity.org/2008/android)를 ...
 
+<!--more-->
 <div class="spacer">• • •</div>
 
 아래 그림과 같은 구조를 가진 단말이 Android Market 을 포함한 전체 Android 세상에 들어 갔을 때, 어떤 잠재적인 문제가 있을까?

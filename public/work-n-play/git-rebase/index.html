@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="깃(git)을 꽤 오랫동안 썼지만 잘 모르는 기능 중에 하나가 리베이스(rebase)다. 사실 리베이스를 할 줄 알고 모름에 따라, 초급과 중급으로 구분된다고 해도 과언이 아니다. 리베이스를 꽤 오랫동안 썼지만, 주로 하는 것은 커밋 합치기(fixup, or squash)와 커밋 ..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기">
+  <meta itemprop="description" content="깃(git)을 꽤 오랫동안 썼지만 잘 모르는 기능 중에 하나가 리베이스(rebase)다. 사실 리베이스를 할 줄 알고 모름에 따라, 초급과 중급으로 구분된다고 해도 과언이 아니다. 리베이스를 꽤 오랫동안 썼지만, 주로 하는 것은 커밋 합치기(fixup, or squash)와 커밋 ...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기" />
+  <meta name="twitter:description" content="깃(git)을 꽤 오랫동안 썼지만 잘 모르는 기능 중에 하나가 리베이스(rebase)다. 사실 리베이스를 할 줄 알고 모름에 따라, 초급과 중급으로 구분된다고 해도 과언이 아니다. 리베이스를 꽤 오랫동안 썼지만, 주로 하는 것은 커밋 합치기(fixup, or squash)와 커밋 ..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/git-rebase/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/git-rebase/&title=GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/git-rebase/&title=GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기&text=GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/git-rebase/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-04-25
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/git-rebase/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>깃(git)을 꽤 오랫동안 썼지만 잘 모르는 기능 중에 하나가 리베이스(rebase)다. 사실 리베이스를 할 줄 알고 모름에 따라, 초급과 중급으로 구분된다고 해도 과언이 아니다. 리베이스를 꽤 오랫동안 썼지만, 주로 하는 것은 커밋 합치기(fixup, or squash)와 커밋 메시지 바꾸기(reword) 정도였다.</p>
+
+<p>이번에 예전에 커밋한 내용을 수정할 일이 있어서 수정(edit) 기능을 처음 써봤다. 최종 목표는 이렇다.</p>
+
+<ol>
+  <li>이전에 커밋한 내용을 수정하고, 그 뒤에 연속되는 커밋에 변경 내용을 모두 반영한다.</li>
+  <li>리베이스하기 전의 전체 커밋 로그를 리베이스 후에도 그대로 유지한다.</li>
+</ol>
+
+<p>말로는 쉬워보이지만, 2번이 정말 어려웠다.</p>
+
+<p>예를 들어, <code class="highlighter-rouge">foo</code> -&gt; <code class="highlighter-rouge">bar</code> -&gt; <code class="highlighter-rouge">baz</code> 커밋 로그가 있다고 하자. 리베이스로 <code class="highlighter-rouge">foo</code> 커밋의 내용을 수정했는데 <code class="highlighter-rouge">bar</code>에서 충돌이 발생했다. <code class="highlighter-rouge">bar</code> 커밋에서 발생한 충돌을 해결하고 나면, <code class="highlighter-rouge">bar</code> 커밋은 <code class="highlighter-rouge">foo</code> 커밋으로 합쳐지고, <code class="highlighter-rouge">bar</code> 커밋 로그는 남지 않는다.</p>
+
+<p>‘최종 커밋만 있으면 되지~’, ‘중간 커밋을 살리는 것이 무슨 의미가…?’라는 의문이 생길 수 있다. 맞다. 최종 커밋만 있으면 된다. 그런데, 나는 이번에 나올 책에서 챕터별로 예제 코드를 커밋했고, 커밋 로그 하나가 사라지면 챕터에 해당하는 소스코드의 이력이 사라지기 때문에 이 문제를 꼭 해결해야만 했다.</p>
+
+<p>이 고생을 한 이유는 책을 쓰는 도중 라라벨 프레임워크의 수버전이(유의적 버전은 주.부.수로 쓴다) 변경되었고, 이번 버전 업에서는 라우트 사용법이 변경되었기 때문이다. 라우트는 웹 서버와 라라벨의 경계에 해당하는 부분이라 아주 아주 아주 중요할뿐더러, 책의 가장 첫 부분이기도 하다. 독자들은 새 버전의 프레임워크로 프로젝트를 시작할테고, 바뀐 사용법을 적용하지 않으면 책의 시작부터 작동하지 않는 소스코드를 만나게 되는 셈이다.</p>
+
+<p>어쨌든… 이 포스트는 이 문제점을 해결한 이력이다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<p><strong>문제 해결의 핵심은 리베이스를 두 번 하는 것이다.</strong></p>
+
+<ul>
+  <li>첫번째는 수정을 위한 리베이스</li>
+  <li>두번째는 커밋 이름을 바꾸거나 불필요한 커밋을 합치기 위한 리베이스</li>
+</ul>
+
+<p>이 포스트에 기록한 가상 시나리오는 커밋 4개, 파일 1개라 굉장히 간단하다. 실제로는 커밋 36개, 수정할 파일이 대략 20개 정도였다. 여튼 이 포스트의 내용을 체득하기 위해 리베이스만 수십 번, 충돌 머지는 수백 번했다. 꼬박 이틀을 소비했다. 나처럼 무식하게 하지 않고, 더 쉽게 할 수 있는 방법이 분명히 있을 것이다.</p>
+
+<h2 id="section">1. 데모용 프로젝트 생성</h2>
+
+<p>재연을 위해 새로운 프로젝트를 하나 만들었다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git init rebase-demo <span class="o">&amp;&amp;</span> <span class="nb">cd </span>rebase-demo
+<span class="gp">$ </span>touch foo.txt
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">foo.txt</code>의 내용은 다음과 같다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>First message
+Second message
+Third message
+Fourth message
+</code></pre>
+</div>
+
+<p>커밋 로그는 다음과 같다(시간 역순 정렬).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="k">*</span> a36e27a <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> fourth commit
+<span class="k">*</span> 48b56d0 third commit
+<span class="k">*</span> 1f97602 second commit
+<span class="k">*</span> bb44c4b first commit
+<span class="o">(</span>END<span class="o">)</span>
+</code></pre>
+</div>
+
+<p>리베이스의 대상이 되는 프로젝트가 준비되었다. 이제 리베이스를 한다.</p>
+
+<h2 id="section-1">2. 첫번째 리베이스 - 수정</h2>
+
+<p><code class="highlighter-rouge">bb44c4b first commit</code>에서 커밋한 내용에 오류가 있어서 수정해야한다고 가정하자.</p>
+
+<h3 id="git-rebase---interactive---root">2.1. git rebase –interactive –root</h3>
+
+<p><code class="highlighter-rouge">--root</code> 옵션을 붙여야 최초 커밋부터 리베이스할 수 있다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>branch:master<span class="o">)</span> <span class="nv">$ </span>git rebase --interactive --root
+</code></pre>
+</div>
+
+<p>새로운 에디터 창이 뜬다. 리베이스에서는 (로그와 달리) 커밋을 시간 순으로 열거한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>e bb44c4b first commit
+pick 1f97602 second commit
+pick 48b56d0 third commit
+pick a36e27a fourth commit
+
+<span class="c"># Rebase a36e27a onto c15a027 (4 command(s))</span>
+<span class="c">#</span>
+<span class="c"># Commands:</span>
+<span class="c"># p, pick = use commit</span>
+<span class="c"># r, reword = use commit, but edit the commit message</span>
+<span class="c"># e, edit = use commit, but stop for amending</span>
+<span class="c"># s, squash = use commit, but meld into previous commit</span>
+<span class="c"># f, fixup = like "squash", but discard this commit's log message</span>
+<span class="c"># x, exec = run command (the rest of the line) using shell</span>
+<span class="c"># d, drop = remove commit</span>
+<span class="c">#</span>
+<span class="c"># These lines can be re-ordered; they are executed from top to bottom.</span>
+<span class="c"># If you remove a line here THAT COMMIT WILL BE LOST.</span>
+<span class="c"># However, if you remove everything, the rebase will be aborted.</span>
+<span class="c"># Note that empty commits are commented out</span>
+</code></pre>
+</div>
+
+<p>첫번째 커밋인 <code class="highlighter-rouge">pick bb44c4b first commit</code>을 <code class="highlighter-rouge">e bb44c4b first commit</code>으로 바꾸고 저장하면 리베이스가 시작된다.</p>
+
+<h3 id="section-2">2.2. 코드 수정</h3>
+
+<p><code class="highlighter-rouge">bb44c4b first commit</code> 당시의 <code class="highlighter-rouge">foo.txt</code>의 내용은 이렇다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>First message
+</code></pre>
+</div>
+
+<p>코드 수정을 했다. 이 수정으로 인해 다음 커밋에서 무조건 충돌이 발생할 것이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>First message <span class="o">(</span>modified<span class="o">)</span>
+Interim message <span class="o">(</span>new line<span class="o">)</span>
+</code></pre>
+</div>
+
+<h3 id="git-commit--ac-head1">2.3. git commit -aC HEAD@{1}</h3>
+
+<p>리베이스를 시작하는 순간 커밋의 SHA 해시는 바뀐다. 코드 수정이 끝났으니 커밋을 해야 하는데, 콘솔에 안내된 메시지대로 <code class="highlighter-rouge">$ git commit --amend</code>를 하면, 충돌 해결 후 커밋 로그가 사라진다. 커밋 로그를 유지하기 위해 <code class="highlighter-rouge">--amend</code> 옵션을 쓰지 않고 커밋하고, 대신 <code class="highlighter-rouge">-C</code> 옵션을 사용했다. <code class="highlighter-rouge">-C</code> 옵션은 기존의 커밋 메시지를 참조한다는 의미이고, <code class="highlighter-rouge">HEAD@{1}</code>은 현재 리베이스 중인 커밋의 메시지를 말한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>branch:81c42b4<span class="o">)</span> <span class="nv">$ </span>git commit -aC HEAD@<span class="o">{</span>1<span class="o">}</span>
+<span class="c"># [detached HEAD 24959b0] first commit</span>
+<span class="c">#  Date: Mon Apr 25 16:56:13 2016 +0900</span>
+<span class="c">#  1 file changed, 2 insertions(+), 1 deletion(-)</span>
+</code></pre>
+</div>
+
+<h3 id="git-rebase---continue">2.4. git rebase –continue</h3>
+
+<p>커밋했으니, 다음 커밋으로 넘어간다. 충돌이 없으면 끝까지 한번에 진행할테고, 충돌이 있으면 멈출 것이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>branch:24959b0<span class="o">)</span> <span class="nv">$ </span>git rebase --continue
+<span class="c"># error: could not apply 1f97602... second commit</span>
+<span class="c"># </span>
+<span class="c"># When you have resolved this problem, run "git rebase --continue".</span>
+<span class="c"># If you prefer to skip this patch, run "git rebase --skip" instead.</span>
+<span class="c"># To check out the original branch and stop rebasing, run "git rebase --abort".</span>
+<span class="c"># Could not apply 1f97602261123673cba6dbcfd75e37eed5ec1f4b... second commit</span>
+</code></pre>
+</div>
+
+<p>2.2에서 수정한 내용 때문에, 당연히 충돌이 발생한다. <code class="highlighter-rouge">$ git status</code> 명령으로 어떤 파일에서 충돌이 발생하는 지 확인한다. 여기서는 파일이 하나 밖에 없어서 굳이 확인할 필요도 없지만…</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>branch:24959b0<span class="k">*</span><span class="o">)</span> <span class="nv">$ </span>git status
+<span class="c"># interactive rebase in progress; onto c15a027</span>
+<span class="c"># Last commands done (2 commands done):</span>
+<span class="c">#    e bb44c4b first commit</span>
+<span class="c">#    pick 1f97602 second commit</span>
+<span class="c"># Next commands to do (2 remaining commands):</span>
+<span class="c">#    pick 48b56d0 third commit</span>
+<span class="c">#    pick a36e27a fourth commit</span>
+<span class="c">#   (use "git rebase --edit-todo" to view and edit)</span>
+<span class="c"># You are currently rebasing branch 'master' on 'c15a027'.</span>
+<span class="c">#   (fix conflicts and then run "git rebase --continue")</span>
+<span class="c">#   (use "git rebase --skip" to skip this patch)</span>
+<span class="c">#   (use "git rebase --abort" to check out the original branch)</span>
+<span class="c"># </span>
+<span class="c"># Unmerged paths:</span>
+<span class="c">#   (use "git reset HEAD &lt;file&gt;..." to unstage)</span>
+<span class="c">#   (use "git add &lt;file&gt;..." to mark resolution)</span>
+<span class="c"># </span>
+<span class="c"># 	both modified:   foo.txt</span>
+<span class="c"># </span>
+<span class="c"># no changes added to commit (use "git add" and/or "git commit -a")</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">2.5. 충돌 해결</h3>
+
+<p><code class="highlighter-rouge">foo.txt</code>의 현재 상태는 이렇다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt; HEAD
+First message <span class="o">(</span>modified<span class="o">)</span>
+Interim message <span class="o">(</span>new line<span class="o">)</span>
+<span class="o">=======</span>
+First message
+Second message
+<span class="gp">&gt;&gt;&gt;&gt;&gt;&gt;&gt; </span>1f97602... second commit
+</code></pre>
+</div>
+
+<p>이렇게 수정했다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>First message <span class="o">(</span>modified<span class="o">)</span>
+Interim message <span class="o">(</span>new line<span class="o">)</span>
+Second message
+</code></pre>
+</div>
+
+<p>2.3에서 했던 것 처럼 커밋한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>branch:24959b0<span class="k">*</span><span class="o">)</span> <span class="nv">$ </span>git commit -aC HEAD@<span class="o">{</span>1<span class="o">}</span>
+<span class="c"># [detached HEAD d05fc39] first commit</span>
+<span class="c">#  Date: Mon Apr 25 16:56:13 2016 +0900</span>
+<span class="c">#  1 file changed, 1 insertion(+)</span>
+</code></pre>
+</div>
+
+<p>다음 커밋으로 리베이스를 진행한다. 더 이상 충돌이 없기 때문에 리베이스가 끝났다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">(</span>branch:d05fc39<span class="o">)</span> <span class="nv">$ </span>git rebase --continue
+<span class="c"># Successfully rebased and updated refs/heads/master.</span>
+</code></pre>
+</div>
+
+<h3 id="section-4">2.6. 첫번째 리베이스 성공</h3>
+
+<p>원래 4개였던 커밋 로그가 5개로 늘었다. 그리고 커밋 메시지도 정확하지 않다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="k">*</span> 60e2196 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> fourth commit
+<span class="k">*</span> f29002e third commit
+<span class="k">*</span> d05fc39 first commit
+<span class="k">*</span> 24959b0 first commit
+<span class="k">*</span> 81c42b4 first commit
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">81c42b4</code>은 수정하기 전의 최초 커밋이다. <code class="highlighter-rouge">24959b0</code>은 최초 내용을 수정한 커밋이다., <code class="highlighter-rouge">d05fc39</code>는 원래 <code class="highlighter-rouge">second commit</code>인데 충돌을 해결하면서 생긴 커밋이다. 이제 두번째 리베이스를 할 준비가 됐다.</p>
+
+<h2 id="section-5">3. 두번째 리베이스 - 커밋 로그 다듬기</h2>
+
+<p>각 커밋의 정체를 알면, 이제는 일반적인 리베이스 과정이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git rebase --interactive --root
+</code></pre>
+</div>
+
+<h3 id="section-6">3.1. 리베이스 작업 설정</h3>
+
+<p>에디터 창이 뜬다. <code class="highlighter-rouge">24959b0</code> 커밋은 <code class="highlighter-rouge">81c42b4</code>과 합친다(f, fixup). <code class="highlighter-rouge">d05fc39</code> 커밋은 메시지를 바꾼다(r, reword).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>pick 81c42b4 first commit
+f 24959b0 first commit
+r d05fc39 first commit
+pick f29002e third commit
+pick 60e2196 fourth commit
+</code></pre>
+</div>
+
+<h3 id="section-7">3.2. 리베이스 작업</h3>
+
+<p>에디터를 닫는 순간 커밋 메시지 수정 에디터가 뜬다. fixup 작업은 충돌이 없기 때문에 자동으로 처리됐다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>first commit
+
+<span class="c"># Please enter the commit message for your changes. Lines starting</span>
+<span class="c"># with '#' will be ignored, and an empty message aborts the commit.</span>
+<span class="c">#</span>
+<span class="c"># Date:      Mon Apr 25 16:56:13 2016 +0900</span>
+<span class="c">#</span>
+<span class="c"># interactive rebase in progress; onto 545b8d4</span>
+<span class="c"># Last commands done (3 commands done):</span>
+<span class="c">#    f 24959b0 first commit</span>
+<span class="c">#    r d05fc39 first commit</span>
+<span class="c"># Next commands to do (2 remaining commands):</span>
+<span class="c">#    pick f29002e third commit</span>
+<span class="c">#    pick 60e2196 fourth commit</span>
+<span class="c"># You are currently editing a commit while rebasing branch 'master' on '54$</span>
+<span class="c">#</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#       modified:   foo.txt</span>
+<span class="c">#</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">first commit</code> 를 <code class="highlighter-rouge">second commit</code>으로 바꾸고 저장하면 끝.</p>
+
+<h2 id="section-8">4. 리베이스 결과</h2>
+
+<p>최종 커밋로그다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="k">*</span> 89d6a2f <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> fourth commit
+<span class="k">*</span> 4d8cbc2 third commit
+<span class="k">*</span> fd4fbb8 second commit
+<span class="k">*</span> ace17e1 first commit
+<span class="o">(</span>END<span class="o">)</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">foo.txt</code> 파일의 내용이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>First message <span class="o">(</span>modified<span class="o">)</span>
+Interim message <span class="o">(</span>new line<span class="o">)</span>
+Second message
+Third message
+Fourth message
+</code></pre>
+</div>
+
+<h2 id="section-9">5. 결론</h2>
+
+<p>계속되는 리베이스 실패에 지쳐서 ‘아~ 그냥 라우트 사용법이 바뀌었으니, 소스코드는 작동하지 않을 수 있다고 말로 떼울까?’란 유혹에 여러 번 넘어갈 뻔 했다. 그 때마다 난 ‘집요함’이란 단어를 떠 올렸다. 개발자의 가장 큰 특징을 꼽으라면 난 이 단어를 꼽겠다. 단, 앞에 ‘현명한’이란 수식어를 붙여서 말이다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#git">
+            git
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/super-fast-debug-deploy/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              엄청나게 빠른 버그 감지, 디버...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/learn-n-think/software-development-costs/">
+            <span class="pager-title">
+              소프트웨어 개발 비용
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

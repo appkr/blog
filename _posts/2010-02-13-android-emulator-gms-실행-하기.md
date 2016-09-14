@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Android Emulator GMS 실행 하기
+slug: how-to-run-android-emulator
 date: '2010-02-13 06:58:51 +0900'
 categories:
 - work-n-play
@@ -11,9 +12,10 @@ tags:
 
 Google Mobile Service 들은 Closed Source 이다. 즉, SDK Release 에서 포함되지 않는다. Emulator 에서 Google Map, YouTube, Android Market 을 접속할 수 없다는 의미이다.
 
-<div class="spacer">• • •</div>
-
 Emulator 에서 GMS 에 접속하는 꼼수를 기록한다.
+
+<!--more-->
+<div class="spacer">• • •</div>
 
 - [HTC 홈페이지](http://developer.htc.com/google-io-device.html#s3)를 방문하여 system image 파일을 다운로드 받는다
 - 적절한 위치에 압축을 푼다.

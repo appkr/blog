@@ -17,7 +17,9 @@ const reload = browserSync.reload;
 /**
  * Task 'clean' : Clean output directory
  */
-gulp.task('clean', cb => del(['.tmp', 'images', 'scripts', 'styles', 'public'], {dot: true}));
+gulp.task('clean', cb => {
+  del(['.tmp', 'images', 'scripts', 'styles', 'public'], {dot: true});
+});
 
 /**
  * Task 'jekyll' : Build jekyll sites
@@ -31,9 +33,9 @@ gulp.task('jekyll', (done) => {
  */
 gulp.task('images', () =>
   gulp.src('_assets/images/**/*.*')
-  .pipe($.imagemin({progressive: true, interlaced: true}))
-  .pipe(gulp.dest('images'))
-  .pipe($.size({title: 'images'}))
+    .pipe($.imagemin({progressive: true, interlaced: true}))
+    .pipe(gulp.dest('images'))
+    .pipe($.size({title: 'images'}))
 );
 
 /**
@@ -55,16 +57,16 @@ gulp.task('styles', () => {
   return gulp.src([
     '_assets/styles/main.scss'
   ])
-  .pipe($.newer('.tmp/styles'))
-  //.pipe($.sourcemaps.init())
-  .pipe($.sass({precision: 10}).on('error', $.sass.logError))
-  .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-  .pipe(gulp.dest('.tmp/styles'))
-  .pipe($.concat('main.min.css'))
-  .pipe($.if('*.css', $.minifyCss()))
-  .pipe($.size({title: 'styles'}))
-  //.pipe($.sourcemaps.write('./'))
-  .pipe(gulp.dest('styles'));
+    .pipe($.newer('.tmp/styles'))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({precision: 10}).on('error', $.sass.logError))
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe(gulp.dest('.tmp/styles'))
+    .pipe($.concat('main.min.css'))
+    .pipe($.if('*.css', $.minifyCss()))
+    .pipe($.size({title: 'styles'}))
+    .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest('styles'));
 });
 
 /**
@@ -83,15 +85,15 @@ gulp.task('scripts', () =>
     '_assets/scripts/facebook-access-token.js',
     '_assets/scripts/main.js'
   ])
-  .pipe($.sourcemaps.init())
-  .pipe($.babel())
-  .pipe($.sourcemaps.write())
-  .pipe(gulp.dest('.tmp/scripts'))
-  .pipe($.concat('main.min.js'))
-  .pipe($.uglify({preserveComments: 'some'}))
-  .pipe($.size({title: 'scripts'}))
-  .pipe($.sourcemaps.write('.'))
-  .pipe(gulp.dest('scripts'))
+    .pipe($.sourcemaps.init())
+    .pipe($.babel())
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe($.concat('main.min.js'))
+    .pipe($.uglify({preserveComments: 'some'}))
+    .pipe($.size({title: 'scripts'}))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('scripts'))
 );
 
 /**
@@ -114,17 +116,19 @@ gulp.task('serve', ['images', 'styles', 'scripts', 'jekyll'], () => {
 /**
  * Task 'default' : Build production files, the default task
  */
-gulp.task('default', [], cb => runSequence('styles', 'scripts', 'images', 'jekyll', cb));
+gulp.task('default', [], cb => {
+  runSequence('styles', 'scripts', 'images', 'jekyll', cb);
+});
 
 /**
  * Task 'deploy' : This will run the build task, then push it to the gh-pages branch
  */
 gulp.task('deploy', [], () => {
   // Uncomment paths to published from .gitignore
-  //cp.spawn('sed', ['-i', "''", 's/public/#public/', '.gitignore'], { stdio: 'inherit' });
+  cp.spawn('sed', ['-i', "''", 's/public/#public/', '.gitignore'], { stdio: 'inherit' });
 
   gulp.src('public').pipe($.subtree());
 
   // Re-comment paths to be ignored
-  //return cp.spawn('git', ['checkout', '.gitignore'], { stdio: 'inherit' });
+  return cp.spawn('git', ['checkout', '.gitignore'], { stdio: 'inherit' });
 });

@@ -1,0 +1,2475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Appkr.memo(new Life)</title>
+    <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
+    <link>http://blog.appkr.kr/</link>
+    <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 14 Sep 2016 14:27:45 +0900</pubDate>
+    <lastBuildDate>Wed, 14 Sep 2016 14:27:45 +0900</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>RoRLab 워크숍 후기</title>
+        <description>&lt;p&gt;이 슬라이드는 RoRLab에서 주최하는 &lt;a href=&quot;http://rorlab.org/schedules/1&quot;&gt;“AGIAN2011 Workshop”&lt;/a&gt;의 후기 발표 자료 입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016-08-21-img-01.png&quot; alt=&quot;RoRLab 워크숍 후기&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;https://drive.google.com/file/d/0Bx8_tW_C70eNV21ZMHdocDNETUE/view?usp=sharing&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 21 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/around-me/rorlap-workshop-epilog/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/around-me/rorlap-workshop-epilog/</guid>
+        
+        <category>개발자</category>
+        
+        
+        <category>around-me</category>
+        
+      </item>
+    
+      <item>
+        <title>자바스크립트와 프로미스</title>
+        <description>&lt;p&gt;자바스크립트를 처음 접했을 때 프로미스(Promise)가 어려웠다. 일반적으로 컴퓨터 프로그램은 여러 개의 로직(작업)을 순차적으로 수행한다. 시간이 오래 걸리는 로직이 끼어 있으면 다음 로직은 앞의 로직이 끝나기를 기다려야 한다.&lt;/p&gt;
+
+&lt;p&gt;자바스크립트도 앞서 언급한 것 처럼 순차적으로 실행되지만, 시간이 오래 걸리는 작업은(e.g. 파일 IO, 네트워크 IO), 작업이 끝나면 실행할 콜백을 심어 놓고, 그냥 다음 로직으로 진행한다. 콜백에 콜백을 등록하고, 또 그 콜백에 콜백을 등록하는 “콜백 지옥”을 경험하게 된다. 콜백 지옥을 완화하기 위해 자바스크립트가 제시한 방안이 프로미스다.&lt;/p&gt;
+
+&lt;p&gt;난 프로미스를 임시로 고용한 작업자라고 이해했다. ‘난 바빠서 다음 일 처리하러 가야 하는데요. 철수님, “Foo” 작업을 대신 좀 봐 주세요. 대략 5초 정도 걸릴거에요. “Foo” 작업이 끝나면 “성공콜백”을 실행해주세요.’&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-08-07-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-08-07-img-01.png&quot; alt=&quot;Promise&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이하 코드들은 크롬 콘솔(&lt;kbd&gt;Cmd&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt;)에 붙여 넣으면 동작을 확인해 볼 수 있다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;promise&quot;&gt;1. Promise&lt;/h2&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실패콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'철수 작업자가 할당되었습니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'5초가 필요한 &quot;Foo&quot; 작업을 시뮬레이션합니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;작업이름&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;작업이름&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot; 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;철수&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Promise&lt;/code&gt; 클래스의 인스턴스다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Promise&lt;/code&gt; 클래스는 &lt;code class=&quot;highlighter-rouge&quot;&gt;then()&lt;/code&gt; API를 가지고 있고, 함수를 인자로 받는다. 인자로 받은 함수는 다시 성공 또는 실패했을 때 실행할 콜백을 인자로 받는다.&lt;/p&gt;
+
+&lt;p&gt;자바스크립트는 개발자가 제어할 수 없는 클라이언트에서 작동하고, 클라이언트 측의 인코딩때문에 어떤 문제가 발생할 지 전혀 예측할 수 없다. 실무에서 한글 코딩은 비추한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;es6&quot;&gt;2. ES6&lt;/h2&gt;
+
+&lt;p&gt;똑같은 코드를 ES6로 쓰면,&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실패콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'철수 작업자가 할당되었습니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'5초가 필요한 &quot;Foo&quot; 작업을 시뮬레이션합니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;작업이름&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;${작업이름}&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;작업이&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;성공하면&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수에게&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실행해&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;달라고&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;부탁한&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;로직입니다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;이&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;메시지가&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;표시된다면&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수가&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;로직을&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실행한&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;것입니다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;오늘도 Coffee 스크립트를 많이 사용하는 프레임워크 모임에 다녀왔는데, 이제 Coffee를 쓸 이유가 없다. ES6가 Coffee의 문법을 거의 대부분 채택하고 있기 때문이다. 그림에서 보다시피 최신 브라우저에서는 ES6 -&amp;gt; ES5 컴파일하지 않고도 최신 문법이 작동한다&lt;small&gt;(내 최신 브라우저에서 작동한다고, 다른 이의 브라우저에서 작동한다고 보장할 수 없으므로 아직은 컴파일해야 한다)&lt;/small&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;Prototype&lt;/code&gt;등 익숙치 않은 개념은 이제 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;constructor&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; 등 다른 언어에서 항상 쓰던 문법으로 교체되었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;3. 결론&lt;/h2&gt;
+
+&lt;p&gt;자고 일어나면 새로운 기술이 나오는 시대에서 풀 스택 웹 개발자로 살아가기란 힘들다. 나처럼 서버 사이드에서 시작한 사람이 자바스크립트를 익힐 때 가장 먼저 만난 벽은 이벤트 프로그래밍이었고(&lt;a href=&quot;http://laravel.io/bin/zjvNv&quot;&gt;블로킹 vs 논-블로킹 IO, Sync vs Async&lt;/a&gt;), 그 중에서도 프로미스였다. 이 포스트는 나만의 프로미스 이해 방식을 정리한 것이다.&lt;/p&gt;
+
+&lt;p&gt;풀스택 개발자를 지향하는 후배들이 조언을 요청하면 요즘은 항상 이렇게 답해준다. 2016년에 배워야 할 프런트 엔드 기술은 1) &lt;a href=&quot;http://es6-features.org&quot;&gt;ES6&lt;/a&gt; 2) 본문에 언급은 없었지만, 제이쿼리에서 &lt;a href=&quot;http://vuejs.org/&quot;&gt;Vue.js&lt;/a&gt;등 양방향 데이터 바인딩을 지원하는 라이브러리로 마이그레이션하는 것, 두 가지라고. 여유가 된다면 3) 빌드 시스템과 4) 태스크 러너도 배우면 좋다.&lt;/p&gt;
+
+&lt;p&gt;다행히 내가 주력으로 하는 라라벨 웹 프레임워크는 &lt;a href=&quot;https://webpack.github.io/&quot;&gt;Webpack&lt;/a&gt; 빌드 시스템과, &lt;a href=&quot;http://gulpjs.com/&quot;&gt;Gulp&lt;/a&gt; 태스크 러너를 기본으로 사용하고 있어 두 개의 짐은 덜었다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 07 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/learn-n-think/javascript-promise-101/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/javascript-promise-101/</guid>
+        
+        <category>개발자</category>
+        
+        <category>javascript</category>
+        
+        
+        <category>learn-n-think</category>
+        
+      </item>
+    
+      <item>
+        <title>RESTFul URL 설계 (@ModernPUG)</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;1. 발표 자료&lt;/h2&gt;
+
+&lt;p&gt;이 슬라이드는 Modern PHP User Group 8월 정기 모임 발표 자료입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016-08-03-img-01.png&quot; alt=&quot;RESTful URL 설계&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;/files/restful-url-design.pdf&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;2. 광고&lt;/h2&gt;
+
+&lt;p&gt;발표 자료 말미에 나오는 광고의 상세 내용입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016-08-03-img-02.png&quot; alt=&quot;메쉬코리아에서 개발자를 찾습니다&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;https://drive.google.com/file/d/0Bx8_tW_C70eNVFRrRDJxMy15dDA/view?usp=sharing&quot; target=&quot;_blank&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;2.1. 뭐하는 회사냐구요?&lt;/h3&gt;
+
+&lt;p&gt;제가 이번 달부터 정착한 ‘물류 IT’ 기업입니다. 뭐하는 지 한방에 설명할 때는 동영상이 쉽죠~&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=lOqqLXRQvAo&quot;&gt;&lt;img src=&quot;https://i.ytimg.com/vi/lOqqLXRQvAo/hqdefault.jpg&quot; alt=&quot;부탁해 혜리 20초&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;2.2. 괜찮아요!&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;젊습니다.&lt;/li&gt;
+  &lt;li&gt;주니어: 저를 포함해서(^^) 이끌어 주실 어벤저스 사수들이 많습니다.&lt;/li&gt;
+  &lt;li&gt;중견 경력자: 안정적인 업무 환경, 도전적인 프로젝트의 기회가 가득합니다.&lt;/li&gt;
+  &lt;li&gt;서버사이드에서 라라벨(PHP), 스프링(Java), 스칼라를 씁니다.&lt;/li&gt;
+  &lt;li&gt;iOS, Android, ReactJS, WPF 클라이언트를 개발합니다.&lt;/li&gt;
+  &lt;li&gt;삼성동 봉은사역 소재, 총 직원 130명, 연구소 35명&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 03 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/restful-url-design-pug/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/restful-url-design-pug/</guid>
+        
+        <category>개발자</category>
+        
+        <category>rest</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>페이스북으로 데스크탑 라이브 스트리밍 하기</title>
+        <description>&lt;p&gt;최근 페이스북에 추가된 훌륭한 기능 중에 하나가 ‘라이브’다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하면 좋을 듯 하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-06.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-06.png&quot; alt=&quot;방송하기&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;1. 툴 체인 준비&lt;/h2&gt;
+
+&lt;p&gt;데스크탑을 스트리밍하려면 두 가지가 필요하다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;데스크탑 화면을 캡처하는 도구&lt;/li&gt;
+  &lt;li&gt;캡처된 화면을 스트리밍할 서비스(페이스북)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;open-broadcaster-softwareobs&quot;&gt;1.1. Open Broadcaster Software(OBS)&lt;/h3&gt;
+
+&lt;p&gt;OBS는 무료로 쓸 수 있는 오픈소스 화면 캡처 도구다. OS X는 홈브루로 설치할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask &lt;span class=&quot;c&quot;&gt;# 기존에 Cask tap을 추가하지 않았다면.&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install obs --appdir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Applications
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;홈브루를 쓰지 못한다면, 직접 &lt;a href=&quot;https://obsproject.com/&quot;&gt;다운로드&lt;/a&gt; 받아 설치하면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;1.2. 페이스북 라이브 스트리밍 스타터 개발&lt;/h3&gt;
+
+&lt;p&gt;서두에 말했다시피 데스크탑에서 페이스북 라이브를 시작하는 UI가 없다. UI만 없을 뿐 API는 열려 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;1.2.1. 개발자가 아니라면&lt;/h4&gt;
+
+&lt;p&gt;1.2.2. 절은 그냥 무시하라. 이 블로그에 만들어 놓은 &lt;a href=&quot;http://blog.appkr.kr/live/&quot;&gt;Facebook Live Streaming Starter&lt;/a&gt;에서 &lt;kbd&gt;Create Live Stream To Facebook&lt;/kbd&gt; 버튼을 이용하면 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;1.2.2. 개발자라면&lt;/h4&gt;
+
+&lt;h5 id=&quot;section-4&quot;&gt;1단계 페이스북에 앱 등록&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developers.facebook.com/quickstarts/?platform=web&quot;&gt;https://developers.facebook.com/quickstarts/?platform=web&lt;/a&gt; 주소를 방문하여 앱 등록 절차를 거친다.&lt;/p&gt;
+
+&lt;p&gt;앱 등록을 마치면 &lt;code class=&quot;highlighter-rouge&quot;&gt;앱 ID&lt;/code&gt;가 발급된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-01.png&quot; alt=&quot;페이스북 앱 대시보드&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;section-5&quot;&gt;2단계 스타터 페이지 개발&lt;/h5&gt;
+
+&lt;p&gt;이제 로컬에서 코드 에디터를 열고 HTML 페이지를 만든다. 자바스트립트에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;YOUR_APP_ID&lt;/code&gt;라 자리표시해 놓은 부분을 1단계에서 얻은 본인의 &lt;code class=&quot;highlighter-rouge&quot;&gt;앱 ID&lt;/code&gt;로 교체한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!--// whatever/index.html --&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Facebook Live Streaming Starter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;liveButton&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    Create Live Stream To Facebook
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 페이스북 SDK 임포트 및 초기화&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// https://developers.facebook.com/docs/javascript/quickstart &lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 에서 최신 스크립트를 확인하고 사용하시길 권장한다.&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fbAsyncInit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;FB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;appId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;YOUR_APP_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;xfbml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'v2.5'&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fjs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementsByTagName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;//connect.facebook.net/en_US/sdk.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;fjs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parentNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertBefore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fjs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'script'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'facebook-jssdk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 페이스북 라이브 스트리밍 스타터&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// https://developers.facebook.com/docs/videos/live-video-api#golivedialog&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 에서 최신 스크립트를 확인하고 사용하시길 권장한다.&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'liveButton'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;FB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ui&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'popup'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'live_broadcast'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;phase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'create'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dialog canceled'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'stream url:'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;secure_stream_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;FB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ui&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'popup'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'live_broadcast'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;phase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'publish'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;broadcast_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;video status: \n&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이렇게 만든 페이지는 페이스북과 통신할 수 있는 상태여야 하므로, 인터넷에 올려야 한다(e.g. 깃허브 페이지 등).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-02.png&quot; alt=&quot;페이스북 라이브 스트리밍 스타터 페이지&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;2. 방송하기&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;2.1. 스타터 페이지&lt;/h3&gt;
+
+&lt;p&gt;앞 절에서 만든 스타터 페이지에서 &lt;kbd&gt;Create Live Stream To Facebook&lt;/kbd&gt; 버튼을 누른다. 두 개의 팝업 창이 순차적으로 뜬다.&lt;/p&gt;
+
+&lt;p&gt;첫번째 팝업에서는 그냥 &lt;kbd&gt;다음&lt;/kbd&gt; 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-03.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-03.png&quot; alt=&quot;페이스북 라이브 스트리밍 팝업 #1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;두번째 팝업에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;스트림 키&lt;/code&gt;를 복사한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-04.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-04.png&quot; alt=&quot;페이스북 라이브 스트리밍 팝업 #1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;obs-&quot;&gt;2.2. OBS 설정&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-8&quot;&gt;1단계&lt;/h4&gt;
+
+&lt;p&gt;OBS를 열고 캡처할 소스를 정한다. 화면 전체를 캡처하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Display Capture&lt;/code&gt;, 특정 창만 캡처하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Window Capture&lt;/code&gt;, 웹캠을 캡처하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Video Capture Device&lt;/code&gt;를 선택한다. 영상 믹싱도 가능하고, 별도 마이크를 이용할 수도 있다. UI가 직관적이어서 눈으로 보면 금방 이해할 수 있을 것이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-9&quot;&gt;2단계&lt;/h4&gt;
+
+&lt;p&gt;OBS UI에서 &lt;kbd&gt;Settings&lt;/kbd&gt; 버튼을 눌러, &lt;code class=&quot;highlighter-rouge&quot;&gt;Stream&lt;/code&gt; 메뉴를 선택하고 다음과 같이 셋팅한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Service: Facebook Live&lt;/li&gt;
+  &lt;li&gt;Stream Key: 앞절에서 복사해 둔 &lt;code class=&quot;highlighter-rouge&quot;&gt;스트림 키&lt;/code&gt; 붙여넣기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-05.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-05.png&quot; alt=&quot;OBS 설정&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Video&lt;/code&gt; 메뉴를 선택하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;Output (Scaled) Resolution&lt;/code&gt;을 1280x720 이하로 맞춘다(1280x720을 넘는 영상은 잘린다). 설정을 저장한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-10&quot;&gt;3단계&lt;/h4&gt;
+
+&lt;p&gt;OBS UI에서 &lt;kbd&gt;Start Streaming&lt;/kbd&gt; 버튼을 누르면, 앞 절의 두번째 페이스북 팝업에 화면이 표시되기 시작한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-06.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-06.png&quot; alt=&quot;방송하기&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이 창에서 &lt;kbd&gt;방송하기&lt;/kbd&gt; 버튼을 누르고 라이브 스트리밍을 시작한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;보너스. 하드웨어 인코더 사용하기&lt;/h3&gt;
+
+&lt;p&gt;고화질 영상을 x264 소프트웨어 인코더로 인코딩하다보면 CPU가 100%를 치면서 컴퓨터가 터지려할 것이다. 머신에 비디오 인코딩 전용 하드웨어가 장착되어 있다면 CPU의 부하를 덜 수 있다.&lt;/p&gt;
+
+&lt;p&gt;OBS 설정에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Output&lt;/code&gt; 메뉴를 선택하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;Output Mode&lt;/code&gt;를 &lt;code class=&quot;highlighter-rouge&quot;&gt;Advanced&lt;/code&gt;로 바꾸면 인코더를 선택할 수 있는 UI가 활성화된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-21-img-07.png&quot;&gt;&lt;img src=&quot;/images/2016-07-21-img-07.png&quot; alt=&quot;하드웨어 인코더 활성화&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;3. 결론&lt;/h2&gt;
+
+&lt;p&gt;방송을 끝내고 싶을 때는 OBS UI에서 &lt;kbd&gt;Stop Streaming&lt;/kbd&gt;버튼을 누른다. 아직 정확히 확인하지 못했지만, 방송 중에는 사용자의 영상을 받아 on-the-fly로 HLS(HTTP Live Streaming)으로 바꾸어 시청자의 네트워크 상태에 따라 Bitrate를 조정하며 스트리밍하는 것으로 보인다. 방송이 끝나고 나면 고화질 영상으로 인코딩해서 다시 볼 수 있도록 담벼락에 남겨 준다.&lt;/p&gt;
+
+&lt;p&gt;어제, 그제 생활코딩 춘천편에 자원봉사를 다녀왔는데, egoing님이 기존 수업과 달리 보너스로 &lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus 댓글&lt;/a&gt;, &lt;a href=&quot;https://analytics.google.com&quot;&gt;Google Analytics&lt;/a&gt;,  &lt;a href=&quot;https://uploadcare.com/&quot;&gt;Uploadcare 파일 업로드&lt;/a&gt; 기능을 정적 페이지에 추가하는 데모를 학생들에게 보여 주며, “이게 얼마나 편한건지, 이 기능을 구현하려고 고민/고생해 보지 않은 분은 잘 모를겁니다”라고 말했다.&lt;/p&gt;
+
+&lt;p&gt;마찬가지다. 라이브 스트리밍을 한다는 것은 상상할 수도 없이 어려운 일이다. 설령 직접 구현했다 치더라도, 서버의 트래픽 비용을 감당하기가 만만치 않다. 이걸 페이스북이 전부 거저 해 주는 거다. 게다라 페이스북의 구전 시스템을 통해 컨텐츠를 널리 퍼뜨릴 수 있으니 손 안대고 코 푸는 격이다.&lt;/p&gt;
+
+&lt;p&gt;보통 업계 1위를 하면 관료주의와 매너리즘에 빠지기 일쑤다. 현재에 안주하지 않고 계속 기능을 추가해 나가는 페이스북에 박수를 보낸다.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/facebook-live-streaming/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/facebook-live-streaming/</guid>
+        
+        <category>facebook</category>
+        
+        <category>streaming</category>
+        
+        <category>개발자</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>&quot;휙~&quot; 리얼 타임 라라벨 데모 프로젝트</title>
+        <description>&lt;p&gt;&lt;strong&gt;‘&lt;a href=&quot;https://github.com/appkr/whik&quot;&gt;휙~&lt;/a&gt;‘&lt;/strong&gt; 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;pusher&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;log&lt;/code&gt; 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 &lt;strong&gt;‘휙~’&lt;/strong&gt;하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 &lt;strong&gt;‘휙~’&lt;/strong&gt;하고 메시지를 전파한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;언제 어떻게 쓸 수 있나?&lt;/strong&gt; 새로운 댓글이 작성되면 같은 댓글 목록을 보고 있는 사용자에게 새 댓글을 알리거나, 지금 서비스에 접속된 모든 사용자에게 푸시 알림을 보내는 등 서버에서 발생한 변경 내용을 클라이언트에 전파할 때 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이 포스트는 데모 프로젝트를 복붙으로 따라해보기 위한 명령 및 코드 목록을 담고 있다. &lt;strong&gt;&lt;em&gt;각 절의 작동 원리는 읽지 말고, 전체 동작을 한번 확인할 것을 권장한다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;em&gt;데모 환경 준비_&lt;/em&gt; 오늘 AWS에 인수된 클라우드9을 이용한다.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;SocketChat_&lt;/em&gt; Socket.io에서 제공하는 채팅 예제 프로젝트를 구동해 본다.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Redis_&lt;/em&gt; 라라벨과 Socket.io간의 메시지 중계자로 Redis를 이용한다.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Broadcast_&lt;/em&gt; 라라벨의 브로드캐스트 기능을 이용해 본다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;small&gt;* 웹 페이지의 DOM 조작을 위해 Vue.js&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; 라이브러리를 이용할 것이다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;이 프로젝트는 라라캐스트의 &lt;a href=&quot;https://laracasts.com/series/real-time-laravel-with-socket-io&quot;&gt;Real-time Laravel with Socket.io&lt;/a&gt; 시리즈를 보고, 필자 나름대로 해석하고 적용한 결과물이다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;0. 용어 이해&lt;/h2&gt;
+
+&lt;p&gt;이 포스트에서는 라라벨, Redis, Socket.io 등 여러 시스템을 사용하는데 비슷한 용어가 계속 등장하기 때문에, 이 포스트를 이해하는데 필요한 용어를 먼저 정리해 본다.&lt;/p&gt;
+
+&lt;p&gt;라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.&lt;/p&gt;
+
+&lt;p&gt;채널은 발신자와 수신자간의 데이터 파이프다. 발신자는 무차별적으로 여러 개의 파이프에 데이터를 흘려보내고, 수신자는 여러 개의 파이프 중 원하는 몇 개의 파이프만 연결하여 데이터를 받는다. 이벤트 시스템 컨텍스트에서는 이벤트 채널(이 포스트 4절의 이벤트 클래스)과 이벤트 데이터라 부르고, PubSub 관점에서는 채널과 메시지라고 부른다. 모두 같은 개념이다.&lt;/p&gt;
+
+&lt;p&gt;PubSub 패턴은 두 시스템(발신자와 수신자)간의 결합도를 낮추어 애플리케이션의 확장성을 제공한다. 이 포스트 3절에서 라라벨과 자바스크립트간의 메신저로 Redis를 사용했는데, Redis의 PubSub 기능이 없었다면 PHP와 자바스크립트가 쉽게 통신할 수 없었을 것이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;1. 데모 환경 준비&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://c9.io&quot;&gt;클라우드9&lt;/a&gt;를 이용할텐데, 계정이 없다면 만든다. 대시보드에서 &lt;kbd&gt;Create a new workspace&lt;/kbd&gt;를 눌러 새 PHP 워크스페이스(프로젝트)를 만든다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-15-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-07-15-img-01.png&quot; alt=&quot;Cloud 9, Create a new workspace&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;워크스페이스 이름은 아무렇게나 정해도 된다. 워크스페이스가 생성되면 클라우드9 콘솔에서 다음 명령을 수행한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 기본 생성된 파일들을 삭제한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rm README.md php.ini hello-world.php
+
+&lt;span class=&quot;c&quot;&gt;# 프로젝트를 복제한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/appkr/whik.git
+
+&lt;span class=&quot;c&quot;&gt;# .으로 시작하는 파일을 사용할 수 있도록 셸 옵션을 활성화한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;shopt&lt;/span&gt; -s dotglob
+
+&lt;span class=&quot;c&quot;&gt;# 복제한 프로젝트를 워크스페이스 루트로 옮긴다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mv whik/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; ./ 
+
+&lt;span class=&quot;c&quot;&gt;# 복제한 프로젝트 디렉터리는 이제 필요없으므로 삭제한다. &lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rm -rf whik 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; 디렉터리를 웹 서버의 Document Root로 변경하기 위해 웹 서버 설정을 변경한다(&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo nano /etc/apache2/sites-enabled/001-cloud9.conf&lt;/code&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /etc/apache2/sites-enabled/001-cloud9.conf&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 이렇게 생긴 문장을&lt;/span&gt;
+DocumentRoot /home/ubuntu/workspace
+
+&lt;span class=&quot;c&quot;&gt;# 이렇게 바꾸고 저장한다. nano로 열었다면 ctrl+x를 누른 후 y, 엔터를 누른다.&lt;/span&gt;
+DocumentRoot /home/ubuntu/workspace/public
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;설정을 바꾸었으니 아파치 웹 서버를 재실행한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo service apache2 restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 라라벨 프로젝트가 의존하는 라이브러리를 설치하고, 애플리케이션을 초기화한다. 라라벨 프로젝트를 복제했을 때 으례히 실행하는 명령셋이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 라라벨 프로젝트의 필요 라이브러리를 설치한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer install
+ 
+&lt;span class=&quot;c&quot;&gt;# 웹 서버 사용자(라라벨 프레임워크)에게 파일 시스템에 쓰기 권한을 부여한다. &lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;chmod -R 775 storage bootstrap/cache
+
+&lt;span class=&quot;c&quot;&gt;# 라라벨이 사용할 전역 환경 변수 설정 파일을 생성한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cp .env.example .env 
+
+&lt;span class=&quot;c&quot;&gt;# 암호화 시드 키를 생성한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan key:generate 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;socketchat&quot;&gt;2. SocketChat&lt;/h2&gt;
+
+&lt;p&gt;소스 코드의 &lt;code class=&quot;highlighter-rouge&quot;&gt;public/socketchat&lt;/code&gt;에서 Socket.io에서 제공하는 채팅 예제 프로젝트&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;2.1. 코드 수정&lt;/h3&gt;
+
+&lt;p&gt;소스 코드에서 각자의 클라우드9 접속 주소를 반영한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// public/socketchat/index.html&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 이렇게 생긴 라인을&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://whik-appkr.c9users.io:8082'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 각자의 접속 주소에 맞게 변경한다. 8082는 그대로 둔다.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://your-c9-url:8082'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;2.2. 실험 준비&lt;/h3&gt;
+
+&lt;p&gt;클라우드9 콘솔에서 다음 명령을 실행한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;you:~/workspace &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;public/socketchat
+
+&lt;span class=&quot;c&quot;&gt;# 필요한 Node 라이브러리를 설치한다.&lt;/span&gt;
+you:~/workspace/public/socketchat &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install --only&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;prod
+
+&lt;span class=&quot;c&quot;&gt;# Socket.io 서버를 실행한다.&lt;/span&gt;
+you:~/workspace/public/socketchat &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm start  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;2.3. 실험&lt;/h3&gt;
+
+&lt;p&gt;클라우드9 IDE 화면에서 &lt;kbd&gt;Run Project&lt;/kbd&gt; 버튼을 누른다. &lt;code class=&quot;highlighter-rouge&quot;&gt;http://your-c9-url/socketchat&lt;/code&gt;을 여러 개의 브라우저로 열어 채팅이 동작하는지 확인한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-15-img-02.gif&quot;&gt;&lt;img src=&quot;/images/2016-07-15-img-02.gif&quot; alt=&quot;Socketchat in action&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;2.4. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;Socket.io는 리얼 타임 웹을 위한 자바스크립트 라이브러리다. 웹소켓을 기본으로 사용하고, 웹소켓을 사용할 수 없을 때는 XHR 폴링 등으로 폴백해서, Socket.io 라이브러리를 사용하는 클라이언트와 서버간에 통신할 수 있도록 한다.&lt;/p&gt;
+
+&lt;p&gt;웹소켓은 말그대로 소켓이다. 서버와 클라이언트가 연결을 계속 유지하면서, 풀듀플렉스로 데이터를 스트리밍한다. 연결 협상을 할 때는 HTTP 프로토콜을 사용하지만, 웹소켓을 사용할 수 있으면 프로토콜을 업그레이드한다. 피어-투-피어는 아니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;2.4.1. 클라이언트의 메시지 전송&lt;/h4&gt;
+
+&lt;p&gt;클라이언트에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;socket.emit()&lt;/code&gt; API로 서버에 메시지를 보낸다. 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;chat.message&lt;/code&gt;란 채널 이름을 기억해두자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// public/socketchat/index.html&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://whik-appkr.c9users.io:8082'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 중략...&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'chat.message'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-7&quot;&gt;2.4.2. 서버의 메시지 브로드캐스트&lt;/h4&gt;
+
+&lt;p&gt;클라이언트가 &lt;code class=&quot;highlighter-rouge&quot;&gt;chat.message&lt;/code&gt; 채널로 보낸 메시지를 서버가 수신하면, 현재 접속된 모든 클라이언트에게 브로드캐스트한다. 이번에도 &lt;code class=&quot;highlighter-rouge&quot;&gt;emit()&lt;/code&gt; API를 이용하고, 채널 이름을 인자로 넘겼다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// public/socketchat/index.js&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'socket.io'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'connection'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'chat.message'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'chat.message'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-8&quot;&gt;2.4.3. 클라이언트의 메시지 수신 및 소비&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;socket.on(channel, callback)&lt;/code&gt;은 제이쿼리에서 많이 봤던 &lt;code class=&quot;highlighter-rouge&quot;&gt;selector.on(event, callback)&lt;/code&gt;과 같은 이벤트 리스너다. 서버의 브로드캐스트 메시지 중 &lt;code class=&quot;highlighter-rouge&quot;&gt;chat.message&lt;/code&gt; 채널로 발행한 메시지가 있으면 콜백이 동작한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// public/socketchat/index.html&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'chat.message'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 콜백 안에서 인자로 받은 message 소비&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;종합하면, 어떤 클라이언트가 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://your-c9-url/socketchat&lt;/code&gt; 페이지에서 채팅 메시지를 작성하면, 같은 페이지에 접속한 다른 모든 클라이언트는 메시지를 받아 DOM을 업데이트한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-15-img-05.jpg&quot;&gt;&lt;img src=&quot;/images/2016-07-15-img-05.jpg&quot; alt=&quot;Socketchat Block Diagram&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Socket.io 공식 예제 대비 약간의 기능을 추가했다. 변경 내용은 &lt;a href=&quot;https://github.com/appkr/whik/commit/6ea7551111c752bd3ee3ce5d56c2bd771be90400&quot;&gt;커밋 로그&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;redis&quot;&gt;3. Redis&lt;/h2&gt;
+
+&lt;p&gt;Redis는 라라벨과 Socket.io간의 메시지 중계자 역할을 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;3.1. 코드 수정&lt;/h3&gt;
+
+&lt;p&gt;소스 코드에서 각자의 클라우드9 접속 주소를 반영한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# .env&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 이렇게 생긴 라인을 &lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;APP_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://whik-appkr.c9users.io
+
+&lt;span class=&quot;c&quot;&gt;# 각자의 접속 주소로 변경한다.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;APP_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;https://your-c9-url
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;3.2. 실험 준비&lt;/h3&gt;
+
+&lt;p&gt;필요한 라이브러리를 설치하고, 클라우드9 콘솔에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;feature/redis&lt;/code&gt; 태그로 체크아웃한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 필요한 Node 라이브러리를 설치한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install --only&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;prod
+
+&lt;span class=&quot;c&quot;&gt;# 체크아웃한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout feature/redis
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;클라우드9에 Redis는 이미 설치되어 있다. Redis 서버를 구동하고, Socket.io 서버를 실행한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Redis 시동&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;c124f70&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo service redis-server restart
+
+&lt;span class=&quot;c&quot;&gt;# Socket.io 서버 실행&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;c124f70&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;3.3. 실험&lt;/h3&gt;
+
+&lt;p&gt;클라우드9 화면에서 &lt;kbd&gt;Run Project&lt;/kbd&gt; 버튼을 누르고, &lt;code class=&quot;highlighter-rouge&quot;&gt;http://your-c9-url/pub&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://your-c9-url/sub&lt;/code&gt;을 각각 브라우저로 연다. &lt;code class=&quot;highlighter-rouge&quot;&gt;pub&lt;/code&gt; 페이지를 새로고침할 때마다, &lt;code class=&quot;highlighter-rouge&quot;&gt;sub&lt;/code&gt; 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-15-img-03.gif&quot;&gt;&lt;img src=&quot;/images/2016-07-15-img-03.gif&quot; alt=&quot;Socketchat in action&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;3.4. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(&lt;code class=&quot;highlighter-rouge&quot;&gt;public/socketchat/index.js&lt;/code&gt;). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들 간에 메시지를 릴레이하는 역할만 수행했다.&lt;/p&gt;
+
+&lt;p&gt;그런데, 이번 절에서는 시나리오가 좀 다르다. 라라벨 애플리케이션이 Socket.io 라이브러리를 이용해서 클라이언트들과 통신하도록 해야 한다. 라라벨과 Socket.io를 서비스하는 Node.js는 서로 다른 애플리케이션이고, 둘 간에 메시지를 전달할 방법으로 Redis를 선택했다.&lt;/p&gt;
+
+&lt;p&gt;Node.js 서비스는 Redis 서버에 미리 약속한 채널(&lt;code class=&quot;highlighter-rouge&quot;&gt;whik&lt;/code&gt;)을 계속 바라보고 있다가, 라라벨이 Redis에 약속한 채널(&lt;code class=&quot;highlighter-rouge&quot;&gt;whik&lt;/code&gt;)에 메시지를 발행하면, 발행된 값을 읽어서 Socket.io 클라이언트에게 브로드캐스트하는 식으로 동작한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;redis--&quot;&gt;3.4.1. 라라벨의 Redis 레코드 발행&lt;/h4&gt;
+
+&lt;p&gt;라라벨의 &lt;code class=&quot;highlighter-rouge&quot;&gt;pub&lt;/code&gt;라우팅을 방문하면, Redis 서버의 &lt;code class=&quot;highlighter-rouge&quot;&gt;whik&lt;/code&gt; 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// app/Http/routes.php
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'pub'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'event'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'App\\Events\\NewUserCreated'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'data'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App\User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;Redis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'whik'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;json_encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON_PRETTY_PRINT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;nodejs-redis-&quot;&gt;3.4.2. Node.js의 Redis 구독&lt;/h4&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// socket.js&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Redis&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ioredis'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;redis&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'whik'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;socketio--&quot;&gt;3.4.3. Socket.io 메시지 브로드캐스트&lt;/h4&gt;
+
+&lt;p&gt;Redis를 통해 Node.js측에서 받은 데이터는 다음과 같은 JSON 구조를 가진다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;event&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;App\\Events\\NewUserCreated&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;foo@bar.com&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Redis에 새 레코드가 발행되면, Socket.io 서버는 &lt;code class=&quot;highlighter-rouge&quot;&gt;whik:App\\Events\\NewUserCreated&lt;/code&gt; 채널로 접속된 모든 Socket.io 클라이언트에게 메시지를 브로드캐스트한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// socket.js&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'message'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;channel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;socketio---&quot;&gt;3.4.4. Socket.io 클라이언트의 메시지 소비&lt;/h4&gt;
+
+&lt;p&gt;라라벨의 &lt;code class=&quot;highlighter-rouge&quot;&gt;pub&lt;/code&gt; 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// app/Http/routes.php
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'sub'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'welcome'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Socket.io 클라이언트는 서버로부터 받은 메시지를 소비한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt;에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;foo@bar.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;이 담겨 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// resources/views/welcome.blade.php&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'{{ env('&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APP_URL&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;') }}'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':8082'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'whik:App\\Events\\NewUserCreated'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 콜백 안에서 인자로 받은 data 소비&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-15-img-06.jpg&quot;&gt;&lt;img src=&quot;/images/2016-07-15-img-06.jpg&quot; alt=&quot;Laravel-Redis-Socket.io Block Diagram&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;상세 변경 내용은 &lt;a href=&quot;https://github.com/appkr/whik/commit/c124f70862e23c92207e87265287cb83171493e8&quot;&gt;커밋 로그&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;broadcast&quot;&gt;4. Broadcast&lt;/h2&gt;
+
+&lt;p&gt;라라벨은 도메인 이벤트를 바로 클라이언트에게 브로드캐스팅할 수 있다. 아주 편리하게~&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;4.1. 실험 준비&lt;/h3&gt;
+
+&lt;p&gt;수정할 코드는 없다. &lt;code class=&quot;highlighter-rouge&quot;&gt;feature/broadcast&lt;/code&gt; 태그로 체크아웃만 하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 체크아웃한다.&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout feature/broadcast
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.2절과 같이 Redis 서버를 구동하고, Socket.io 서버를 실행한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Redis 시동&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5736550&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo service redis-server restart
+
+&lt;span class=&quot;c&quot;&gt;# Socket.io 서버 실행&lt;/span&gt;
+you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5736550&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-14&quot;&gt;4.2. 실험&lt;/h3&gt;
+
+&lt;p&gt;3.3절과 똑같다. 클라우드9 화면에서 &lt;kbd&gt;Run Project&lt;/kbd&gt; 버튼을 누르고, &lt;code class=&quot;highlighter-rouge&quot;&gt;http://your-c9-url/pub&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://your-c9-url/sub&lt;/code&gt;을 각각 연다. &lt;code class=&quot;highlighter-rouge&quot;&gt;pub&lt;/code&gt; 페이지를 새로고침할 때마다, &lt;code class=&quot;highlighter-rouge&quot;&gt;sub&lt;/code&gt; 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-15&quot;&gt;4.3. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;라라벨은 프레임워크 어디서든 도메인 이벤트를 발행할 수 있다. 라라벨에서 이벤트를 던지는 방법은 여러 가지인데, 여기서는 이벤트 클래스(==이벤트 채널, ==Data Transfer Object)를 이용했다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-16&quot;&gt;4.3.1. 이벤트 클래스&lt;/h4&gt;
+
+&lt;p&gt;이벤트 클래스는 아티즌 콘솔로 만든다(&lt;code class=&quot;highlighter-rouge&quot;&gt;$ php artisan make:event NewUserCreated&lt;/code&gt;). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;ShouldBroadcast&lt;/code&gt; 인터페이스를 구현하면 된다. 인터페이스의 메서드는 &lt;code class=&quot;highlighter-rouge&quot;&gt;broadcastOn()&lt;/code&gt; 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// app/Events/NewUserCreated.php
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Queue\SerializesModels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Contracts\Broadcasting\ShouldBroadcast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NewUserCreated&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Event&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ShouldBroadcast&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SerializesModels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;broadcastOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'whik'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-17&quot;&gt;4.3.2. 이벤트 발행&lt;/h4&gt;
+
+&lt;p&gt;이제 &lt;code class=&quot;highlighter-rouge&quot;&gt;NewUserCreated&lt;/code&gt; 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt;으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;config/broadcasting.php&lt;/code&gt;에 정의한 드라이버로 브로드캐스팅한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// app/Http/routes.php
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'pub'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App\User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Events\NewUserCreated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;나머지는 3절과 같다.&lt;/p&gt;
+
+&lt;p&gt;변경 내용은 &lt;a href=&quot;https://github.com/appkr/whik/commit/57365503be757253a0830590d74fe9e8ea855b0b&quot;&gt;커밋로그&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-18&quot;&gt;5. 결론&lt;/h2&gt;
+
+&lt;p&gt;리얼 타임 웹은 프런트와 백엔드를 아우르는 풀스택스러운 고오급 기술이고, 라라벨과 Redis를 이용하면 비교적 쉽게 구현할 수 있다. Redis 대신 Pusher 드라이버를 이용하면 더 간단하다(Pusher는 가입형 서비스다).&lt;/p&gt;
+
+&lt;p&gt;한 때, URL이 바뀌어도 전체 페이지를 다시 로드하지 않는 SPA(Single Page Application)가 유행했다. 그런데, SPA는…&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;처음 로드할 때 어마어마한 양의 자바스크립트를 받고 프로세싱해서 랜딩 페이지를 렌더링하는데까지 엄청난 시간이 걸리고,&lt;/li&gt;
+  &lt;li&gt;프런트엔드에서 뷰를 렌더링하기 때문에 검색 엔진들은 크롤링해도 아무것도 없는 빈 페이지 밖에 없어 어쩔 줄 몰라했었고,&lt;/li&gt;
+  &lt;li&gt;다른 서비스에서 리디렉션하여 돌아 왔을 때의 네비게이션 문제점 등 여러 가지 문제점을 안고 있었다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;모바일 앱에는 적합하지만, 웹에는 적합하지 않다는 것이 중론이다.&lt;/p&gt;
+
+&lt;p&gt;이제 URL마다 페이지를 다시 로드 하는 전통적인 웹에, Socket.io를 결합하여 서버측의 변경 내용을 뷰에 반영하는 방식으로 바뀌어 가고 있다(사실 꽤 됐다).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://vuejs.org/&quot;&gt;Vue.js&lt;/a&gt;_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, &lt;a href=&quot;https://github.com/trending?since=monthly&quot;&gt;깃허브 트렌딩에 계속 노미네이트&lt;/a&gt;되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;PubSub_ &lt;a href=&quot;https://en.wikipedia.org/wiki/Publish-subscribe_pattern&quot;&gt;https://en.wikipedia.org/wiki/Publish-subscribe_pattern&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;Socket.io에서 제공하는 채팅 예제 프로젝트_ &lt;a href=&quot;http://socket.io/get-started/chat/&quot;&gt;http://socket.io/get-started/chat/&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Fri, 15 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/realtime-web-with-laravel/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/realtime-web-with-laravel/</guid>
+        
+        <category>개발자</category>
+        
+        <category>laravel</category>
+        
+        <category>websocket</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>도커를 이용한 분산 서비스 아키텍처 맛보기</title>
+        <description>&lt;p&gt;같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 ‘도커’라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 AWS에서 도커를 지원한다는 소식을 접했고, 도커 자체적으로도 Swarm이란 컨테이너 배포 툴 프로젝트를 공개함으로써, 운영 환경에 바로 쓸 수 있는 도구로 재인식됐다. IoT, 마이크로 프레임워크, 마이크로 서비스 등 시대적 흐름과도 잘 부합하는 도구라 생각한다.&lt;/p&gt;
+
+&lt;p&gt;이 포스트는 &lt;em&gt;‘맛보기’&lt;/em&gt;다. 아래 목록은 구글링으로 쉽게 찾을 수 있어 이 포스트에서는 다루지 않는다. 도커를 경험해보지 않은 독자가 복붙(copy &amp;amp; paste) 만으로 포스트를 따라해 보고 스스로 도커의 유용성을 경험하도록하는 것이 이 포스트의 목적이다.&lt;/p&gt;
+
+&lt;p&gt;도커를 몰라도 된다. 라라벨을 몰라도 된다. 무작정 따라해 보면 된다. 중간에 중간에 각 명령에 대해 간략히만 설명을 추가했다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;del&gt;도커란 무엇인가? 왜 써야 하는가?&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;del&gt;Dockerfile 작성법&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;del&gt;docker-compose.yml 작성법&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;p&gt;이하 명령들은 모두 Mac OS 기준이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;1. 도커 툴체인 설치&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://brew.sh/&quot;&gt;홈브루-The missing package manager for OS X&lt;/a&gt;는 Mac OS 필수 바이너리다. 없다면 링크를 눌러 설치한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Cask는 Mac Os용 애플리케이션을 설치하기 위한 홈브루 탭(사설 저장소)이다.&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install dockertoolbox --appdir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Applications
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker --version
+&lt;span class=&quot;c&quot;&gt;# Docker version 1.11.1, build 5604cbe&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;host-vm-&quot;&gt;2. Host VM 만들기&lt;/h2&gt;
+
+&lt;p&gt;도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다(VMWare등을 사용해도 된다, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine create --driver vmwarefusion default&lt;/code&gt;).&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 홈브루에 Cask 탭을 추가한적이 없다면&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask
+
+&lt;span class=&quot;c&quot;&gt;# 버추얼박스 설치&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install virtualbox --appdir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Applications
+
+&lt;span class=&quot;c&quot;&gt;# 호스트로 사용할 VM 만들기&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine create --driver virtualbox default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;우리가 만든 VM의 이름은 &lt;code class=&quot;highlighter-rouge&quot;&gt;default&lt;/code&gt;다. 다른 이름을 쓴다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine&lt;/code&gt; 명령을 이용할 때마다 VM 이름을 명시해야 한다(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;$ docker-machine ip foo&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;새로 만든 VM을 구동하고, IP를 확인한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine start
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine ip
+&lt;span class=&quot;c&quot;&gt;# 192.168.99.100&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;[선택 사항] Mac OS의 hosts 파일을 수정해서, 개발 중에 사용할 도메인 &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart.app&lt;/code&gt;을 등록한다. 이 과정을 건너뛰면, Mac OS에서 도커 호스트/컨테이너에 접속할 때 192.168.99.100 IP를 쓰면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /etc/hosts&lt;/span&gt;
+
+192.168.99.100  quickstart.app
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;3. 프로젝트 복제&lt;/h2&gt;
+
+&lt;p&gt;맛보기를 위해 필자가 만들어 놓은 라라벨 프로젝트를 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/quickstart&lt;/code&gt; 디렉터리로 복제한다. 이 프로젝트는 &lt;a href=&quot;https://github.com/laravel/quickstart-intermediate&quot;&gt;라라벨의 Quickstart 프로젝트(이하 ‘라라벨 프로젝트’로 칭함)&lt;/a&gt;를 포크한 후, 도커 컨테이너 프로젝트를 깃 서브 모듈로 추가하고, 환경 변수를 약간 수정한 것이다. 오리지널 프로젝트 대비 변경 내역은 &lt;a href=&quot;https://github.com/appkr/quickstart-intermediate/commits/master&quot;&gt;커밋 로그&lt;/a&gt;를 참조하라.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone git@github.com:appkr/quickstart-intermediate.git quickstart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;컴포저로 라라벨 프로젝트가 의존성하는 컴포넌트들을 설치한다(&lt;strong&gt;처음 한번은 꽤 시간이 걸린다&lt;/strong&gt;).&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 컴포저가 없다면... 컴포저는 PHP의 표준 의존성 관리자다(like maven, bundler, pip, ...).&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap homebrew/php
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew install composer
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;composer --version
+&lt;span class=&quot;c&quot;&gt;# Composer version 1.1.3 2016-06-26 15:42:08&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 의존성 설치&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;quickstart
+~/quickstart &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;도커 컨테이너 프로젝트도 설치한다. 컨테이너 프로젝트는 &lt;a href=&quot;https://github.com/LaraDock/laradock&quot;&gt;Laradock(이하 ‘컨테이너 프로젝트’로 칭함)&lt;/a&gt;을 포크해서 필자가 수정한 것이다. 스케일 아웃을 위해, HAProxy 로드 밸런서 컨테이너(&lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt;)를 추가하고, Nginx+PHP-FPM+Supervisor를 묶은 웹 및 애플리케이션 서버 컨테이너(&lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt;)을 추가한 것이다. 오리지널 프로젝트 대비 상세 변경 내역은 &lt;a href=&quot;https://github.com/appkr/laradock/commits/develop&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치의 커밋 로그&lt;/a&gt;를 참고하라.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git submodule init &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git submodule update 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;도커 컨테이너 프로젝트의 디렉터리 구조를 간단히 살펴보자. 라라벨 프로젝트(&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;) 안에 도커 컨테이너 프로젝트(&lt;code class=&quot;highlighter-rouge&quot;&gt;./laradock&lt;/code&gt;)가 포함된 구조다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── app
+├── &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+├── laradock
+│   ├── application         &lt;span class=&quot;c&quot;&gt;# 라라벨 프로젝트를 담고 있는 컨테이너&lt;/span&gt;
+│   ├── beanstalkd          &lt;span class=&quot;c&quot;&gt;# Beanstalk 큐 워커 컨테이너&lt;/span&gt;
+│   ├── beanstalkd-console  
+│   ├── data                &lt;span class=&quot;c&quot;&gt;# 데이터베이스의 데이터 파일을 담고 있는 컨테이너&lt;/span&gt;
+│   │                       &lt;span class=&quot;c&quot;&gt;# 컨테이너가 사라져도 데이터는 영속성을 유지해야 하므로&lt;/span&gt;
+│   │                       &lt;span class=&quot;c&quot;&gt;# 운영 환경 적용시에는 호스트 OS의 파일시스템을 마운트해서 사용해야 한다.&lt;/span&gt;
+│   ├── docker-compose.yml  &lt;span class=&quot;c&quot;&gt;# 도커 컨테이너간의 오케이스트레이션 설정 파일&lt;/span&gt;
+│   │                       &lt;span class=&quot;c&quot;&gt;# 분산 환경을 편리하게 구성하기 위해 핵심적인 파일이다.&lt;/span&gt;
+│   ├── lb                  &lt;span class=&quot;c&quot;&gt;# HAProxy 로드 밸런서 컨테이너&lt;/span&gt;
+│   ├── logs                &lt;span class=&quot;c&quot;&gt;# 도커를 실행한 후 생성되고 Mac OS와 공유되는 디렉터리&lt;/span&gt;
+│   │   ├── nginx
+│   │   │   └── error.log       &lt;span class=&quot;c&quot;&gt;# Nginx 오류 로그&lt;/span&gt;
+│   │   └── supervisor
+│   │       └── supervisord.log &lt;span class=&quot;c&quot;&gt;# Supervisor 실행 로그&lt;/span&gt;
+│   ├── mariadb             &lt;span class=&quot;c&quot;&gt;# MariaDB 데이터베이스 컨테이너&lt;/span&gt;
+│   ├── memcached           &lt;span class=&quot;c&quot;&gt;# Memcache 데이터베이스 컨테이너&lt;/span&gt;
+│   ├── mysql               &lt;span class=&quot;c&quot;&gt;# MySQL 데이터베이스 컨테이너&lt;/span&gt;
+│   ├── neo4j               &lt;span class=&quot;c&quot;&gt;# Neo4J 데이터베이스 컨테이너&lt;/span&gt;
+│   ├── nginx               &lt;span class=&quot;c&quot;&gt;# Nginx 웹 서버 컨테이너. 우리 예제에서 사용하지 않음.&lt;/span&gt;
+│   ├── php-fpm             &lt;span class=&quot;c&quot;&gt;# PHP-FPM FastCGI 컨테이너. 우리 예제에서 사용하지 않음.&lt;/span&gt;
+│   ├── postgres            &lt;span class=&quot;c&quot;&gt;# Postgres 데이터베이스 컨테이너&lt;/span&gt;
+│   ├── redis               &lt;span class=&quot;c&quot;&gt;# Redis 데이터베이스 컨테이너&lt;/span&gt;
+│   ├── web                 &lt;span class=&quot;c&quot;&gt;# 웹 및 애플리케이션 서버 컨테이너(Nginx+PHP-FPM+Supervisord)&lt;/span&gt;
+│   └── workspace           &lt;span class=&quot;c&quot;&gt;# 도커 컨테이너로 구동되는 라라벨 프로젝트에 셸로 접근하기 위한 컨테이너&lt;/span&gt;
+│                           &lt;span class=&quot;c&quot;&gt;# Bash, Git, Composer, NPM 등의 도구 사용 가능  &lt;/span&gt;
+├── &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+└── tests
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;4. 도커 컨테이너 구동&lt;/h2&gt;
+
+&lt;p&gt;로드 밸런서, 웹 및 애플리케이션 서버, MySQL, 레디스를 구동할 것이다.&lt;/p&gt;
+
+&lt;p&gt;구동하기 전에 라라벨 프로젝트의 환경 설정을 변경한다(코드 에디터에서 라라벨 프로젝트의 &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; 파일을 열어 수정하고 저장하라는 의미).&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# .env&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;DB_HOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.99.100
+&lt;span class=&quot;nv&quot;&gt;CACHE_DRIVER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;redis
+&lt;span class=&quot;nv&quot;&gt;SESSION_DRIVER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;redis
+&lt;span class=&quot;nv&quot;&gt;REDIS_HOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.99.100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;위 설정은 다음을 의미한다. 라라벨 프로젝트는 192.168.99.100에 위치한 MySQL 서버에 데이터를 저장한다. 라라벨의 캐시와 세션은 192.168.99.100에 있는 레디스 서버에 저장한다.&lt;/p&gt;
+
+&lt;p&gt;구동해 보자. &lt;strong&gt;처음 한번은 필요한 이미지를 다운로드 받아 프로비저닝하기 때문에 10분 이상이 걸린다.&lt;/strong&gt; 다음 번 구동할 때는 5초도 걸리지 않을 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;laradock
+
+&lt;span class=&quot;c&quot;&gt;# VM의 IP를 포함한 환경변수를 현재 셸에 적용한다.&lt;/span&gt;
+~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker-machine env&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# lb, web, mysql, redis 컨테이너를 구동한다.&lt;/span&gt;
+~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose up -d lb web mysql redis 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; 명령은 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 파일이 있는 위치에서 실행해야 한다. 이 파일은 도커를 이용한 분산 서비스 환경 구성을 위해 핵심적인 설정들을 담고 있다. 가령, 컨테이너간의 의존성, 마운트할 볼륨 등의 설정 말이다.&lt;/p&gt;
+
+&lt;p&gt;컨테이너 실행은 &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; 서브 명령으로 할 수 있으며, 구동할 컨테이너 이름을 명령의 인자로 제시해야 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt; 옵션을 이용하면 격리 모드(데몬 모드라 생각하면 됨)로 실행할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ps&lt;/code&gt; 서브 명령으로 구동 상태를 확인할 수 있다(Command 열은 삭제했다).&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose ps
+&lt;span class=&quot;c&quot;&gt;#          Name            State           Ports&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# -------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_application_1   Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_data_1          Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_lb_1            Up       1936/tcp, &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#                                   0.0.0.0:443-&amp;gt;443/tcp, &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#                                   0.0.0.0:80-&amp;gt;80/tcp&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_mysql_1         Up       0.0.0.0:3306-&amp;gt;3306/tcp&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_redis_1         Up       0.0.0.0:6379-&amp;gt;6379/tcp&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_web_1           Up       443/tcp, 80/tcp, 9000/tcp&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_workspace_1     Up&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; 컨테이너는 단순 볼륨이기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Exit 0&lt;/code&gt;으로 출력된다. 포트 열을 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt; 컨테이너는 80과 443 포트가 열려 있고, 이를 다시 80, 443 내부 포트로 연결하는 것을 볼 수 있다. &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 역시 80과 443 포트를 열고, &lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt;에서 넘겨주는 작업을 받을 준비를 하고 있다. MySQL과 레디스는 외부에서도 접근할 수 있도록 각자의 포트를 열고 있다.&lt;/p&gt;
+
+&lt;p&gt;이대로 실험해도 되지만… 이제 웹 및 애플리케이션 서버를 스케일 아웃할 것이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; 서브 명령을 이용하고, 컨테이너 이름과 복제할 인스턴스 개수를 명령 인자로 넘긴다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; 명령은 &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; 명령을 실행하기 전에 해도 된다. 처음부터 n개의 인스턴스를 만들 것이냐, 하나만 시작했다가 중간에 인스턴스를 늘릴 것이냐의 차이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose scale &lt;span class=&quot;nv&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3
+&lt;span class=&quot;c&quot;&gt;# Creating and starting laradock_web_2 ... done&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Creating and starting laradock_web_3 ... done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;5. 실험&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;workspace&lt;/code&gt; 컨테이너로 로그인해서 데이터베이스 스키마를  마이그레이션 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;artisan tinker&lt;/code&gt; REPL로 데이터베이스와 캐시가 정상 작동하는지도 확인해 본다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 컨테이너에 로그인&lt;/span&gt;
+~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose run web bash
+
+&lt;span class=&quot;c&quot;&gt;# 데이터베이스 마이그레이션 (like $ bundle exec rake db:migrate)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;root@dca220f5e753:/var/www/laravel# &lt;/span&gt;php artisan migrate
+
+&lt;span class=&quot;c&quot;&gt;# 데이터베이스 동작 확인 (like $ rails console)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;root@dca220f5e753:/var/www/laravel# &lt;/span&gt;php artisan tinker
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;factory&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'App\User'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-&amp;gt;create&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;App&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser::first&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+&lt;span class=&quot;c&quot;&gt;# =&amp;gt; App\User {#686&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#      id: 1,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#      name: &quot;Lottie Huels&quot;,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#      email: &quot;rylan21@example.net&quot;,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#      created_at: &quot;2016-07-11 06:13:03&quot;,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#      updated_at: &quot;2016-07-11 06:14:08&quot;,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#    }&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 캐시 동작 확인&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;Cache::put&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'bar'&lt;/span&gt;, 10&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;span class=&quot;c&quot;&gt;# =&amp;gt; null&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;Cache::get&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;span class=&quot;c&quot;&gt;# =&amp;gt; &quot;bar&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 컨테이너에서 로그아웃&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;root@dca220f5e753:/var/www/laravel# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;브라우저에서 실험할 준비가 끝났다. http://quickstart.app(Mac OS의 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;에 레코드를 추가하지 않았다면 http://192.168.99.100)을 열고 &lt;a href=&quot;http://quickstart.app/register&quot;&gt;사용자 등록&lt;/a&gt; 페이지에서 실험에 사용할 사용자를 등록하고, 할일 목록 UI에서 할일을 추가해 본다.&lt;/p&gt;
+
+&lt;p&gt;로드 밸런서의 동작을 확인하기 위해, 라라벨 프로젝트의 마스터 레이아웃에 다음 코드를 미리 추가해 두었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- // resources/views/layouts/app.blade.php --&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text-danger&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  @&lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;{{ gethostname() }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 여러 개의 브라우저 창을 열어 로드 밸런서가 잘 동작하는 지 확인하자. 아래 그림처럼 네이게이션 바의 컴퓨터 이름을 잘 보기 바란다. 이 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너의 컴퓨터 이름이다. 여러 개의 창이 아니더라도, 페이지를 리프레시할 때마다 요청을 처리하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너는 달라진다(지금 HAProxy 로드 밸런싱 알고리즘 설정은 Round Robin이다).&lt;/p&gt;
+
+&lt;p&gt;서로 다른 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너에서 같은 사용자로 로그인하고 할일 목록을 로드했을 때 자신의 할일 목록이 잘 출력된다는 것은, &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너가 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt; 컨테이너를 잘 공유하고 있다는 것으로 해석할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-01.png&quot; alt=&quot;Docker in Action&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;6. 요약&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;6.1. 끄기&lt;/h3&gt;
+
+&lt;p&gt;실행 중인 도커 컨테이너를 끄는 방법은 다음과 같다. &lt;code class=&quot;highlighter-rouge&quot;&gt;stop&lt;/code&gt; 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;down&lt;/code&gt; 명령을 이용하면 컨테이너를 삭제한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;down&lt;/code&gt;하고 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt;할 때는 이미지를 다시 받아 빌드하지는 않지만, 지난 번 구동할 때 사용자가 변경한 내용은 모두 유실된다. &lt;code class=&quot;highlighter-rouge&quot;&gt;stop&lt;/code&gt; 상태에서 사용자 변경 내용을 삭제하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;rm&lt;/code&gt; 명령을 이용한다(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;$ docker-compose rm redis&lt;/code&gt;).&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose stop
+~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose ps
+&lt;span class=&quot;c&quot;&gt;#          Name                       Command               State&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# -----------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_application_1   true                             Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_data_1          true                             Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_lb_1            /sbin/tini -- dockercloud- ...   Exit 1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_mysql_1         docker-entrypoint.sh mysqld      Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_redis_1         docker-entrypoint.sh redis ...   Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_web_1           /usr/bin/supervisord -c /e ...   Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_web_2           /usr/bin/supervisord -c /e ...   Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_web_3           /usr/bin/supervisord -c /e ...   Exit 0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# laradock_workspace_1     /sbin/my_init                    Exit 0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;6.2. 개발 환경 구성&lt;/h3&gt;
+
+&lt;p&gt;맥에서 &lt;a href=&quot;http://www.sequelpro.com/&quot;&gt;Sequel Pro&lt;/a&gt;(MySQL GUI)로 도커에서 구동하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql&lt;/code&gt; 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Host: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart.app&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.99.100&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Username: &lt;code class=&quot;highlighter-rouge&quot;&gt;homestead&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Password: &lt;code class=&quot;highlighter-rouge&quot;&gt;secret&lt;/code&gt; (루트 비밀번호는 &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;Port: &lt;code class=&quot;highlighter-rouge&quot;&gt;3306&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-02.png&quot; alt=&quot;Sequel Pro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;맥에서 &lt;a href=&quot;http://www.redisdesktop.com/&quot;&gt;Redis Desktop Manager&lt;/a&gt;로 도커에서 구동하는 ‘redis’ 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-03.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-03.png&quot; alt=&quot;Redis Desktop Manager&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Host: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart.app&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.99.100&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Port: &lt;code class=&quot;highlighter-rouge&quot;&gt;6379&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;6.3. 큰 그림&lt;/h3&gt;
+
+&lt;p&gt;예제로 구동한 내용과 운영체제 및 컨테이너간의 관계를 그림으로 표현하면 다음과 같다. &lt;strong&gt;이 그림을 이해하면, 이 포스트 전체를 이해한 것이다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-04.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-04.png&quot; alt=&quot;Big Picture&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;6.4. 원상 복구&lt;/h3&gt;
+
+&lt;p&gt;무작정 따라하기가 끝난 후, 이 포스트를 시전하면서 추가한 것들을 더 이상 사용할 일이 없다면, 이전 상태로 돌려 놓는다.&lt;/p&gt;
+
+&lt;p&gt;컨테이너는 전부 VM에 올라간다. VM을 삭제하면 모든 컨테이너도 삭제된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine rm default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;라라벨 및 컨테이너 프로젝트를 삭제한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rm -rf &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/quickstart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;도구를 삭제한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew uninstall composer
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask uninstall virtualbox dockertoolbox
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew untap homebrew/php caskroom/cask
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;7. 결론&lt;/h2&gt;
+
+&lt;p&gt;이 포스트에서는 한 대의 리눅스 호스트에 총 9개의 컨테이너를 띄웠다. 쉽게 9대의 서로 다른 리눅스 머신이라 생각하면 된다. 맥 컴퓨터에 9대의 리눅스 VM을 동시에 띄우는 것은 불가능하다. 도커라면 가능하다.&lt;/p&gt;
+
+&lt;p&gt;한편 개발 환경에서 사용하던 컨테이너를 자유롭게 조합해서 운영 환경에 사용할 수 있다. 가령, &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; 컨테이너를 한 대의 물리 서버에 놓고, 백엔드에 해당하는 인프라 및 파일 업로드 디렉터리등은 별도의 물리 서버로 분리할 수도 있을 것이다. 어떻게 구성하든 코드 배포할 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; 컨테이너만 신경쓰면 된다. 하나의 구성 예일 뿐이며 각자의 환경에 맞게 응용하시면 될 것이다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;호스트_ VM을 실행하는 맥을 호스트, VM을 게스트라 한다. 여기서는 맥락상 게스트 컨테이너들의 플랫폼이 되는 VM을 별도의 독립된 리눅스 머신이라 생각하고 도커 호스트라 부르자. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 11 Jul 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/dockerize/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/dockerize/</guid>
+        
+        <category>개발자</category>
+        
+        <category>docker</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>RESTFul URL 설계 (@RoRLab)</title>
+        <description>&lt;p&gt;이 슬라이드는 RoRLab에서 주최하는 &lt;a href=&quot;http://rorlab.org/schedules/1&quot;&gt;“AGIAN2011 Workshop”&lt;/a&gt;의 2회차 워크숍 키노트 발표 자료입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016-06-27-img-01.png&quot; alt=&quot;RESTful URL 설계&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;/files/again2011_workshop_keynote_2.pdf&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 27 Jun 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/restful-url-design/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/restful-url-design/</guid>
+        
+        <category>개발자</category>
+        
+        <category>rest</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>&quot;하루만에 배우는 라라벨 프레임워크&quot; 참가 안내</title>
+        <description>&lt;p&gt;이 포스트는 &lt;a href=&quot;https://www.facebook.com/groups/codingeverybody/permalink/1232487436791790&quot;&gt;“하루만에 배우는 라라벨 프레임워크”&lt;/a&gt; 강좌에 참석하시는 분들을 위한 안내문입니다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;p&gt;다음 내용을 꼭 숙독해 주세요.&lt;/p&gt;
+
+&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;시작 시간을 지켜 주세요.&lt;/strong&gt; 제 연락처는 메일이나 문자로 드립니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;시간을 절약하기 위해 미리 &lt;strong&gt;개발 환경을 준비&lt;/strong&gt;해 오셔야 합니다.&lt;/p&gt;
+
+    &lt;p&gt;가이드&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;를 참고해서 각자 운영체제에 맞는 개발 환경을 준비해 주세요. 팀으로 개발하는 것이 아니므로 로컬 개발 환경을 사용합니다. 이미 로컬 컴퓨터에 개발 환경을 가지고 있지만 본인이 완벽하게 제어할 수 없다면&lt;small&gt;(예: PHP 설정 경로를 모르거나, MySQL root 사용자 비밀번호를 모르는 경우)&lt;/small&gt; 가이드를 참고해서 새로 환경을 꾸며 오시기 바랍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;PHP 프로그래밍 언어와 객체 지향 프로그래밍에 익숙하지 않은 참가자는 &lt;strong&gt;첨부 문서&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;를 공부&lt;/strong&gt;하고 오세요.&lt;/p&gt;
+
+    &lt;p&gt;PHP의 함수형 프로그래밍은 C와 비슷하며, 객체 지향 프로그래밍은 Java와 비슷합니다. PHP는 모르지만 C 또는 Java에 익숙하신 분은 읽지 않으셔도 좋습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;공식 교재는 없고, 당일 같이 배울 &lt;strong&gt;코드 스니펫이 담긴 pdf 교재&lt;/strong&gt;를 드립니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;강좌 사전, 사후 Q&amp;amp;A를 위해 &lt;strong&gt;질문지&lt;/strong&gt;를 이용합니다.&lt;/p&gt;
+
+    &lt;p&gt;질문은 양식&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;에 쓰면 되고, 답변은 목록&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;을 열어서 확인하시면 됩니다. 이 강좌의 범위를 벗어난 PHP 프로그래밍 및 라라벨에 관한 일반적인 질문은 &lt;a href=&quot;https://laravel.kr/forum&quot;&gt;Laravel Korea Community 포럼&lt;/a&gt;에 남겨 주세요. 질문지 양식에 코드를 쓸 때는 &lt;a href=&quot;http://laravel.io/bin&quot;&gt;http://laravel.io/bin&lt;/a&gt;에 코드를 붙여 넣고 코드의 주소(URL)를 인용해 주세요.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;Happy Laraveling!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;/files/l5book_appendixA_env.pdf&quot;&gt;부록 A 운영 체제별 개발 환경 준비&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;/files/l5book_appendixBC_syntax.pdf&quot;&gt;부록 B 속성 PHP 프로그래밍 입문, 부록 C 속성 PHP 객체지향 프로그래밍 입문&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://docs.google.com/forms/d/1K20PmriOaAI67KNFAWQaGkJAjLyYOzII3gloWQreLy0/viewform&quot;&gt;질문지 양식&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/1yeDZaIKyo2zZB4MFgkZ2fp7-rIhFzqn8rj_Spg5nhos/edit?usp=sharing&quot;&gt;답변 목록&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 21 Jun 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/laravel-study-announcement/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/laravel-study-announcement/</guid>
+        
+        <category>개발자</category>
+        
+        <category>laravel</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>Git을 이용한 협업 워크플로우 배우기</title>
+        <description>&lt;p&gt;이 문서는 Atlassian社에서 쓴 ‘Getting Git Right’ 튜토리얼 중 &lt;a href=&quot;https://www.atlassian.com/git/tutorials/comparing-workflows&quot;&gt;‘Comparing Workflows’&lt;/a&gt;라는 글을 한글로 번역한 것이다. 이 글에서는 총 네 개의 워크플로우를 소개한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#1-centralized-workflow&quot;&gt;Centralized Workflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2-feature-branch-workflow&quot;&gt;Feature Branch Workflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3-gitflow-workflow&quot;&gt;Gitflow Workflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4-forking-workflow&quot;&gt;Forking Workflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016-06-20-img-01.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 글에서는 여러 엔터프라이즈 개발팀을 조사하여 정리한 대표적인 Git 협업 워크플로우를 소개한다. 여기서 제시하는 워크플로우들은 엄격한 규칙이라기 보다, 여러 분들의 상황에 적합한 워크플로우를 선택하기 위한  일종의 가이드로 이해해 주면 좋겠다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;centralized-workflow&quot;&gt;1. Centralized Workflow&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/01.svg&quot; alt=&quot;Git Workflows: SVN-style Workflow&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Git으로 협업 환경을 전환하는 것은 굉장히 어려워 보이지만, 지금 소개하는 Centralized Workflow는 사실 기존의 Subversion(SVN)으로 협업할 때와 크게 다를 바 없다.&lt;/p&gt;
+
+&lt;p&gt;SVN에 비하면 Git은 다음 장점이 있다. 첫째, 모든 팀 구성원이 로컬 저장소를 이용해서 개발한다는 점이다. 로컬 저장소는 중앙 저장소로 부터 완벽히 격리된 상태이므로, 다른 팀 구성원 및 중앙 저장소의 변경 내용을 신경 쓰지 않고 자신의 작업에만 집중할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;둘째, Git의 브랜치와 병합 기능의 이점을 들 수 있다. Git 브랜치를 이용하면 안전하게 코드를 변경하고 다른 브랜치에 통합할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;1.1. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;Centralized Workflow는 프로젝트의 변경 내용을 추적하기 위해 단일 중앙 저장소를 이용한다. Subversion의 &lt;code class=&quot;highlighter-rouge&quot;&gt;trunk&lt;/code&gt; 대신, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;란 브랜치를 사용하고, 모든 변경 내용은 이 브랜치에 커밋(commit)한다. 이 워크플로우에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치 하나만 사용한다.&lt;/p&gt;
+
+&lt;p&gt;팀 구성원은 중앙 저장소를 복제하여 로컬 저장소를 만든 후, 로컬 저장소에서 파일을 수정하고 변경 내용을 커밋한다(SVN과 달리 변경 내용은 로컬 저장소에 기록된다). 로컬 저장소는 원하는 때 언제든 중앙 저장소와 동기화할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;로컬 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치의 변경 내용을 프로젝트의 중앙 저장소에 올리고자할 때는 ‘push’ 명령을 이용한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;svn commit&lt;/code&gt;과 비슷하지만, 로컬 저장소의 커밋 이력을 중앙 저장소에 그대로 보관한다는 점은 다르다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/02.svg&quot; alt=&quot;Central and local repositories&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;1.1.1. 충돌 처리&lt;/h4&gt;
+
+&lt;p&gt;항상 중앙 저장소의 커밋이 기준이다. 만약에 로컬 저장소의 변경 내용을 중앙 저장소에 푸시(push)할 때, 푸시하려는 커밋 이력과 중앙 저장소의 커밋 이력이 서로 충돌한다면 Git은 중앙 저장소의 커밋을 보호하기 위해 푸시를 받지 않고 거부한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/03.svg&quot; alt=&quot;Managing Conflicts&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 때는 중앙 저장소의 변경 내용을 먼저 로컬 저장소로 가져 와서(fetch), 자신의 변경 내용을 재배열(rebase)해야 한다. 다른 팀원이 이미 변경한 내용에 자신의 변경 내용을 덧 붙이는 것이다.&lt;/p&gt;
+
+&lt;p&gt;리베이스 도중에 중앙 저장소의 변경 내용과 자신의 변경 내용이 충돌한다면, Git은 리베이스를 멈추고, 수작업으로 충돌을 해결하라고 한다. 충돌을 잡고 난 후, 평상시 처럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt;나 &lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt; 명령으로 충돌 해결 과정을 마치고 리베이스를 계속할 수 있다. 만약 리베이스 중에 문제가 발생하면 언제든 리베이스를 취소하고 처음부터 다시 할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;1.2. 적용 사례&lt;/h3&gt;
+
+&lt;p&gt;철이와 미애, 두 명의 개발자로 구성된 작은 팀이 Centralized Workflow를 이용하여 어떻게 협업하는 지 살펴보자.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;1.2.1. 중앙 저장소 생성&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/04.svg&quot; alt=&quot;Git Workflows: Initialize Central Bare Repository&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;철이나 미애 둘 중 누군가는 중앙 저장소를 생성해야 한다. Git 또는 SVN으로 관리하는 기존 프로젝트라면 가져오면 되고, 새로운 프로젝트라면 빈 저장소를 만들면 된다.&lt;/p&gt;
+
+&lt;p&gt;중앙 저장소는 다음 명령처럼 항상 bare(작업 디렉터리가 없는) 상태로 만들어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ssh user@host git init --bare /path/to/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt;는 SSH 사용자 이름이고, &lt;code class=&quot;highlighter-rouge&quot;&gt;host&lt;/code&gt;는 중앙 저장소 역할을 할 서버의 도메인 이름 또는 IP 주소, &lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/repo.git&lt;/code&gt;은 Git 저장소의 위치다. bare 저장소에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.git&lt;/code&gt; 확장자를 붙이는 것이 일반적이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;1.2.2. 중앙 저장소 복제&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/05.svg&quot; alt=&quot;Git Workflows: Clone Central Repo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;모든 팀 구성원이 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt; 명령으로 중앙 저장소를 복제해서 로컬 저장소를 만든다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone ssh://user@host/path/to/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;저장소를 복제하면 Git은 로컬 저장소와 연결된 중앙 저장소(원격 저장소)를 기억하기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;이라는 별칭이 자동으로 만들어진다. 앞으로 이 별칭을 이용해서 중앙 저장소와 여러 가지 상호작용을 하게 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;1.2.3. 철이의 작업&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/06.svg&quot; alt=&quot;Git Workflows: Edit Stage Commit Feature Process&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;철이는 로컬 저장소를 이용해서 자신의 맡은 기능을 개발하고, Git 명령들을 이용해서 변경 내용을 기록한다. 스테이지(stage)라는 개념을 처음 접하게 되는데, 작업 디렉터리 전체가 아니라 딱 변경분만 커밋하기 위해 변경분을 임시로 담아 두는 개념적인 공간이라 이해하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git status            &lt;span class=&quot;c&quot;&gt;# 로컬 저장소의 상태 확인&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add &amp;lt;some-file&amp;gt;   &lt;span class=&quot;c&quot;&gt;# 스테이징 영역에 some-file 추가&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit            &lt;span class=&quot;c&quot;&gt;# some-file의 변경 내역을 커밋&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;로컬 저장소에 커밋하는 것이므로, 중앙 저장소의 변경 내용을 신경쓸 필요없이 몇 번이고 변경하고, 스테이징하고, 커밋하는 과정을 반복할 수 있다. 큰 기능을 개발할 때도 변경 내용을 아주 작은 단위로 쪼개서 커밋하면 상세한 프로젝트 이력을 유지할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;1.2.4. 미애의 작업&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/07.svg&quot; alt=&quot;Git Workflows: Edit Stage Commit Feature&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;미애도 철이처럼 로컬 저장소를 만들고, 자신이 맡은 기능을 개발하고, 스테이징하고 커밋한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-7&quot;&gt;1.2.5. 철이의 작업 내용 발행&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/08.svg&quot; alt=&quot;Git Workflows: Publish Feature&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;철이는 &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; 명령으로 자신의 로컬 커밋 이력을 중앙 저장소에 올려 다른 팀 구성원과 공유하려한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;은 철이가 중앙 저장소를 복제할 때 자동 생성된 별칭이고, 로컬 저장소와 중앙 저장소를 연결한다고 말한 바 있다. 명령에 사용한 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;라는 인자(argument)는 로컬 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;의 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 동기화하겠다는 뜻이다. 철이와 미애가 중앙 저장소를 복제한 후 아무도 중앙 저장소를 변경하지 않았기 때문에, 철이의 푸시는 충돌없이 순조롭게 진행될 것이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-8&quot;&gt;1.2.6. 미애의 작업 내용 발행&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/09.svg&quot; alt=&quot;Git Workflows: Push Command Error&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;철이가 푸시한 후 미애가 로컬 커밋을 푸시하려하면 어떤 일이 벌어질지 들여다 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;미애의 커밋 이력은 중앙 저장소의 최신 커밋 이력을 포함하고 있지 않아(diverge), 미애의 푸시를 받아 주지 않는다. 이는 중앙 저장소의 커밋 이력을 보호하기 위한 장치다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# error: failed to push some refs to '/path/to/repo.git'&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# hint: Updates were rejected because the tip of your current branch is behind&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# hint: before pushing again.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# hint: See the 'Note about fast-forwards' in 'git push --help' for details.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;미애는 철이의 커밋 이력을 로컬로 받아온 후, 자신의 로컬 커밋 이력과 통합한 후, 다시 푸시해야 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-9&quot;&gt;1.2.7. 미애의 리베이스&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/10.svg&quot; alt=&quot;Git Workflows: Git Pull Rebase&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;미애는 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt; 명령으로 중앙 저장소의 변경 이력을 로컬 저장소로 내려 받는다. 이 명령은 중앙 저장소의 최신 이력을 내려 받는 동작과 이를 로컬 이력과 합치는 동작을 한 번에 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git pull --rebase origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--rebase&lt;/code&gt; 옵션을 주면 중앙 저장소의 커밋 이력을 미애의 커밋 이력 앞에 끼워 넣는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/11.svg&quot; alt=&quot;Rebasing to Master&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--rebase&lt;/code&gt; 옵션 없이 쓸 수도 있지만, 불필요한 병합 커밋을 한 번 더해야 하는 번거로움이 있으므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;--rebase&lt;/code&gt; 옵션을 쓰는 것이 좋다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-10&quot;&gt;1.2.8. 미애의 충돌 해결&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/12.svg&quot; alt=&quot;Git Workflows: Rebasing on Commits&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;리베이스는 미애의 로컬 커밋을 새로 내려 받은 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 하나 하나 대입하고 대조해 가면서 커밋 이력을 재배열한다. 이런 동작 특성때문에 커밋 이력도 깔끔하게 유지할 수 있을 뿐만아니라, 경우에 따라 버그를 발견하기도 한다.&lt;/p&gt;
+
+&lt;p&gt;철이와 미애가 서로 다른 기능을 개발했다면, 리베이스 과정에 충돌이 발생할 가능성은 거의 없다. 어쨌든 리베이스 과정에 충돌이 발생하면, Git은 현재 커밋에서 리베이스를 멈추고 다음과 같은 메시지를 뿜어 낸다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# CONFLICT (content): Merge conflict in &amp;lt;some-file&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/13.svg&quot; alt=&quot;Conflict Resolution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 사례에서 미애는 &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt; 명령으로, &lt;em&gt;Unmerged paths:&lt;/em&gt; 부분에서 충돌이 발생한 파일을 찾을 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git status
+&lt;span class=&quot;c&quot;&gt;# Unmerged paths:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# (use &quot;git reset HEAD &amp;lt;some-file&amp;gt;...&quot; to unstage)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# (use &quot;git add/rm &amp;lt;some-file&amp;gt;...&quot; as appropriate to mark resolution)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# both modified: &amp;lt;some-file&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 &lt;code class=&quot;highlighter-rouge&quot;&gt;some-file&lt;/code&gt;을 열어 충돌을 해결하고, 스테이징 영역에 변경된 파일을 추가한 후, 리베이스를 계속 하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add &amp;lt;some-file&amp;gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git rebase --continue
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;리베이스는 다음 커밋으로 넘어가고, 더 이상 충돌이 없다면 리베이스는 성공적으로 끝난다.&lt;/p&gt;
+
+&lt;p&gt;리베이스 중에 뭔가 잘못되었다면, 다음 명령으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull --rebase&lt;/code&gt; 명령을 내리기 이전 상태로 되돌릴 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git rebase --abort
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-11&quot;&gt;1.2.9. 미애의 작업 내용 재발행&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/14.svg&quot; alt=&quot;Git Workflows: Synchronize Central Repo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;중앙 저장소의 커밋 이력과 로컬 커밋 이력을 모두 합쳤으므로, 이제 중앙 저장소에 올리기만 하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;1.3. 다음 단계&lt;/h3&gt;
+
+&lt;p&gt;지금까지 봤듯이 몇 개의 Git 명령어만으로도 Subversion의 작업 흐름을 그대로 재현할 수 있다. Centralized Workflow는 Git의 특장점인 분산 버전 관리의 이점은 누리지 못한다. 그럼에도 불구하고 SVN 개발 환경을 Git으로 전환할 수 있는 좋은 시작점이 될 수 있다.&lt;/p&gt;
+
+&lt;p&gt;Centralized Workflow를 이용하면서 협업을 좀 더 유연하게 하려면 바로 다음에 소개할 Feature Branch Workflow를 검토해 보기 바란다. 개발할 기능을 개별 브랜치로 분리함으로써, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 새로 개발한 기능을 병합하기 전에 충분한 토론을 할 수 있다는 장점이 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;feature-branch-workflow&quot;&gt;2. Feature Branch Workflow&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/01.svg&quot; alt=&quot;Feature Branch Workflow&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;현재 팀이 Centralized Workflow에 머물러 있다면, 팀 구성원간에 소통을 활성화하여 협업 성과를 이끌어 내기 위해 Feature Branch Workflow를 도입해보라.&lt;/p&gt;
+
+&lt;p&gt;Feature Branch Workflow의 핵심 컨셉은 기능별 브랜치를 만들어서 작업한다는 사실이다. 기능 개발 브랜치는 격리된 작업 환경을 제공하기 때문에 다수의 팀 구성원이 메인 코드 베이스(&lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;)를 중심으로 해서 안전하게 새로운 기능을 개발할 수 있다. 따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치는 항상 버그 프리 상태로 유지할 수 있어, 지속적 통합(Continuout Integration)을 적용하기도 수월하다. 또, 풀 리퀘스트를 적용하기도 쉽다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;2.1. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;이 워크플로우도 프로젝트의 공식적인 변경 이력을 기록하기 위해서 중앙 저장소와 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 사용한다. 그런데, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 직접 커밋하지는 않고, 새로운 기능을 개발할 때마다 브랜치를 만들어서 작업한다. 보통 &lt;code class=&quot;highlighter-rouge&quot;&gt;animated-menu-items&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;issue-#1061&lt;/code&gt;처럼 의미를 담고 있는 브랜치 이름을 사용한다.&lt;/p&gt;
+
+&lt;p&gt;사실 Git은 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치와 다른 브랜치를 기술적으로 구분하지는 않는다. 따라서 Centrailized Workflow에서 배운 스테이징, 커밋등의 명령을 기능 개발 브랜치에 그대로 적용하면 된다.&lt;/p&gt;
+
+&lt;p&gt;새로 만든 기능 개발용 브랜치도 중앙 저장소에 올려서 팀 구성원들과 개발 내용에 대한 의견(코드 리뷰 등)을 나눌 수 있다. &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 손대지 않기 때문에 다른 기능 개발 브랜치를 얼마든지 올려도 된다. 이는 일종의 로컬 저장소 백업 역할을 하기도 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-14&quot;&gt;2.1.1. 풀 리퀘스트&lt;/h4&gt;
+
+&lt;p&gt;브랜치를 이용하면 격리된 영역에서 안전하게 새 기능을 개발할 수 있을 뿐만아니라, 풀 리퀘스트를 이용해서 브랜치에 대한 팀 구성원들의 토론 참여를 이끌어 낼 수도 있다. 기능 개발을 끝내고 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;에 바로 병합하는 것이 아니라, 브랜치를 중앙 저장소에 올리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;에 병합해달라고 요청하는 것이 풀 리퀘스트다.&lt;/p&gt;
+
+&lt;p&gt;풀 리퀘스트는 특정 브랜치에 대한 코드 리뷰의 시작점이라 볼 수 있다. 따라서 기능 개발 초기 단계에 미리 풀 리퀘스트를 보낸다고 문제될 것은 없다. 예를 들어, 기능 개발 중에 막히는 부분은 미리 풀 리퀘스트를 던져서 다른 팀 구성원들의 도움을 받을 수도 있을 것이다. 풀 리퀘스트에 포함된 각 커밋에 팀 구성원들이 의견을 제시할 수 있고, 새로운 의견이 등록되면 토론 참여자들에게 알림을 보낼 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;팀 구성원이 풀 리퀘스트를 수용(또는 합의)하면, 그 이후의 작업 절차는 Centralized Workflow와 거의 같다. 먼저 로컬 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;가 최신 상태인지 확인한 후, 기능 개발 브랜치를 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합하고, 중앙 저장소의 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치로 푸시하면 된다.&lt;/p&gt;
+
+&lt;p&gt;풀 리퀘스트는 &lt;a href=&quot;http://bitbucket.org&quot;&gt;Bitbucket Cloud&lt;/a&gt;이나 &lt;a href=&quot;http://www.atlassian.com/stash&quot;&gt;Bitbucket Server&lt;/a&gt;을 이용하면 편리하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;역주) Atlassian이 작성한 글이라 빗버킷을 제안하는데, 깃허브도 똑같은 기능을 제공한다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-15&quot;&gt;2.2. 적용 사례&lt;/h3&gt;
+
+&lt;p&gt;이 사례에서는 풀 리퀘스트를 코드 리뷰를 위해 이용하지만, 풀 리퀘스트의 쓰임새는 이 뿐만만이 아니라는 점을 놓치지 말자.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-16&quot;&gt;2.2.1. 미애의 작업&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/02.svg&quot; alt=&quot;New Feature Branch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;새로운 기능을 개발하기에 앞서 격리된 작업 브랜치를 만들어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout -b miae-feature master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;miae-feature&lt;/code&gt;브랜치로 체크아웃하는 명령이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-b&lt;/code&gt; 옵션을 주면 체크아웃하려는 브랜치가 없으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 기준으로 해서 만들 수 있다. 이 브랜치에서 미애는 평상시 하던대로 새로운 기능을 개발하고 변경 내용을 커밋하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git status
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add &amp;lt;some-file&amp;gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-17&quot;&gt;2.2.2. 미애의 점심 시간&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/03.svg&quot; alt=&quot;Git Workflows: Feature Commits&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;미애는 오전 동안 새로 만든 브랜치에 꽤 여러 번의 커밋을 남겼다. 점심을 먹으러 나가기 전에 그간의 작업 내용을 중앙 저장소에 푸시해 놓기로 했다. 이는 로컬 저장소의 백업 역할을 할 뿐만 아니라, 다른 팀 구성원들이 미애의 작업 내용과 진도를 확인할 수도 있어 좋은 습관이라 할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push -u origin miae-feature
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;miae-feature&lt;/code&gt; 브랜치를 중앙 저장소(origin)에 푸시하는 명령이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-u | --set-upstream&lt;/code&gt; 옵션이 중요하다. 이는 로컬 기능 개발 브랜치와 중앙 저장소의 같은 이름의 브랜치를 연결하는 역할을 한다. 한번 연결한 후에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; 명령만으로 푸시할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-18&quot;&gt;2.2.3. 미애의 기능 개발 완료&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/04.svg&quot; alt=&quot;Git Workflows: Pull Request&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;오후에 맡은 기능 개발을 모두 완료했다. &lt;small&gt;(역주: 이 팀은 개발자가 직접 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;에 병합하지 않고, 풀 리퀘스트를 이용하는 규칙을 가지고 있다.)&lt;/small&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합하기 전에 풀 리퀘스트를 던져서 팀 구성원들에게 작업 완료 사실을 알려야 한다. 물론 그 전에 중앙 저장소에 작업 내용을 올려야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;미애는 GUI 도구를 이용해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;miae-feature&lt;/code&gt; 브랜치를 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합해 달라고 요청하는 풀 리퀘스트를 던지면, 팀 구성원들은 알림을 받게된다. 이제 팀 구성원 누구나 풀 리퀘스트의 각 커밋에 질문을 남기거나 의견을 달 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-19&quot;&gt;2.2.4. 혁 팀장의 풀 리퀘스트 검토&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/05.svg&quot; alt=&quot;Git Workflows: Feature Pull Requests&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;풀 리퀘스트를 확인한 혁 팀장이 &lt;code class=&quot;highlighter-rouge&quot;&gt;miae-feature&lt;/code&gt; 브랜치를 검토하다가, 공식 저장소에 병합하기 전에 몇 가지 수정이 필요하다고 판단하고, 미애에게 수정 의견을 제시했다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-20&quot;&gt;2.2.5. 미애의 수정 반영&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/06.svg&quot; alt=&quot;Git Workflows: Central Repository Push&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;혁 팀장의 수정 요청 항목을 반영하기 위해서 미애는 기능 개발할 때와 똑같은 작업 절차를 거친다. 수정 요청을 검토하고 코드에 반영해서 로컬 기능 개발 브랜치에 커밋하고 중앙 저장소에 푸시하는 일련의 과정 말이다. 미애가 수정한 내용은 기존 풀 리퀘스트에 전부 표시되고 혁 팀장도 수정 내용에 대해 언제든 새로운 의견을 제시할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-21&quot;&gt;2.2.6. 미애가 개발한 기능 병합 완료&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/07.svg&quot; alt=&quot;Merging a Feature Branch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;혁 팀장이 마침내 미애의 풀 리퀘스트를 수용하기로 결정했다. 누군가 병합 작업을 해야 한다(병합은 혁 팀장이든 미애든 누구나 할 수 있다).&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout master
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git pull
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git pull origin miae-feature
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;먼저 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치로 체크아웃하고 최신 상태인지를 확인해야 한다. 그 다음 &lt;code class=&quot;highlighter-rouge&quot;&gt;miae-feature&lt;/code&gt; 브랜치를 로컬로 가져와야 하는데 로컬에 이미 해당 브랜치가 있다면 최신 상태로 병합한다. 그냥 &lt;code class=&quot;highlighter-rouge&quot;&gt;git merge miae-feature&lt;/code&gt; 명령을 이용할 수 있지만, 항상 중앙 저장소의 최신 변경 내용을 로컬에 반영하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull origin miae-feature&lt;/code&gt; 명령을 이용하는 것이 좋다. 마지막으로 병합된 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 중앙 저장소로 다시 올린다.&lt;/p&gt;
+
+&lt;p&gt;이 과정을 거치면 병합 커밋이 생기는데, 어떤 팀은 코드 베이스에 기능 추가된 이력을 시각적으로 인지할 수 있어서 좋아하는 병합 커밋을 남기는 것을 좋아한다. 만약 기능 추가 이력을 일직선으로 유지하는 것을 선호한다면, 병합 전에 리베이스를 할 수도 있다(fast-forward 병합이 적용됨).&lt;/p&gt;
+
+&lt;p&gt;GUI 도구를 이용하면 이 복잡한 풀 리퀘스트 처리 과정을 ‘수락’ 버튼 하나로 할 수도 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-22&quot;&gt;2.2.7. 철이의 작업&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;miae-feature&lt;/code&gt; 브랜치를 놓고 혁 팀장과 미애가 일할 동안, 철이도 기능 브랜치를 따서 자신이 맡은 기능을 개발하고 있었다. 거듭 말하지만, 이 워크플로우는 격리된 브랜치로 안전하게 작업하다가도 또 필요할 때는 팀 구성원들과 중간 작업을 공유하기도 쉽다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-23&quot;&gt;2.3. 다음 단계&lt;/h3&gt;
+
+&lt;p&gt;Bitbucket의 기능 브랜치를 요리 조리 시험해 보고 있다면, &lt;a href=&quot;https://confluence.atlassian.com/display/BITBUCKET/Using+Git+branches?_ga=1.101607041.186402936.1466129646&quot;&gt;Using Git Branches documentation&lt;/a&gt; 글을 읽어 볼 것을 권장한다. 지금까지 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치와 기능 개발을 위한 브랜치를 이용해서 Centralized Workflow를 확장하는 방법을 살펴 봤다. Feature Branch Workflow와 풀 리퀘스트를 결합하면 팀 구성원간에 변경 내용에 대한 소통을 촉진해서 코드 품질을 높이는 부수 효과도 얻을 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이 워크플로우의 유연성은 큰 장점이지만, 현장에서 적용할 때 유연성은 독이 될 수도 있다. 특히 팀이 크고, 프로젝트 규모가 크면 브랜치마다 좀 더 특별한 의미를 부여하는 것이 더 낫다. 다음에 살펴볼 Gitflow Workflow는 기능 개발과, 릴리스, 유지보수를 위해 좀 더 엄격한 워크플로우를 제시한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;gitflow-workflow&quot;&gt;3. Gitflow Workflow&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/01.svg&quot; alt=&quot;Gitflow Workflow&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이번 절에 소개하는 Gitflow Workflow는 &lt;a href=&quot;http://nvie.com/&quot;&gt;nvie.com&lt;/a&gt;의 빈센트 드리센(Vincent Driessen)이 제안한 것이다.&lt;/p&gt;
+
+&lt;p&gt;Gitflow Workflow는 코드 릴리스를 중심으로 좀 더 엄격한 브랜칭 모델을 제시한다. Feature Branch Workflow보다 복잡하긴하지만, 대형 프로젝트에도 적용할 수 있는 강건한 작업 절차다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-24&quot;&gt;3.1. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;Gitflow Workflow도 팀 구성원간의 협업을 위한 창구로 중앙 저장소를 사용한다. 또 다른 워크플로우와 마찬가지로 로컬 브랜치에서 작업하고 중앙 저장소에 푸시한다. 단지 브랜치의 구조만 다를 뿐이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-25&quot;&gt;3.2. 이력을 기록하는 브랜치&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치 뿐만아니라, 이 워크플로우에서는 두 개의 다른 브랜치도 변경 이력을 유지하기 위해 사용한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치는 릴리스 이력을 관리하기 위해 사용하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치는 기능 개발을 위한 브랜치들을 병합하기 위해 사용한다. 그래서, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치는 릴리스 태그를 매기기에 아주 적합하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/02.svg&quot; alt=&quot;Historical Branches&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 워크플로우의 모든 작업 절차들은 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 두 개의 브랜치를 대상으로 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-26&quot;&gt;3.3. 기능 브랜치&lt;/h3&gt;
+
+&lt;p&gt;새로운 기능은 각각의 브랜치에서 개발하고 백업 및 협업을 위해서 중앙 저장소에 푸시한다. 그런데, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 기능 개발을 위한 브랜치를 따는 것이 아니라, &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에서 딴다. 그리고, 기능 개발이 끝나면 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 작업 내용을 병합한다. 바꾸어 말하면, 기능 개발을 위한 브랜치는 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치와는 어떤 상호 작용도 하지 않는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/03.svg&quot; alt=&quot;Feature Branches&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Feature Branch Workflow라면 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 개발한 기능을 병합하는 것으로 모든 과정이 끝날테지만, Gitflow Workflow는 아직 할 일이 더 남아 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-27&quot;&gt;3.4. 릴리스 브랜치&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/04.svg&quot; alt=&quot;Release Branches&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 릴리스를 할 수 있는 수준만큼 기능이 모이면(또는 정해진 릴리스 일정이 되면), &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치를 기준으로 릴리스를 위한 브랜치를 딴다. 이 브랜치를 만드는 순간부터 릴리스 사이클이 시작되고, 버그 수정, 문서 추가 등 릴리스와 직접적으로 관련된 작업들을 제외하고는 이 브랜치에 새로운 기능을 추가 병합하지 않는다. 릴리스 준비가 완료되면 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합하고 버전 태그를 부여한다. 그리고, 릴리스를 준비하는 동안 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치가 변경되었을 수 있으므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에도 병합한다.&lt;/p&gt;
+
+&lt;p&gt;릴리스를 위한 전용 브랜치를 사용함으로써 한 팀이 릴리스를 준비하는 동안 다른 팀은 다음 릴리스를 위한 기능 개발을 계속할 수 있다. 즉, 딱딱 끊어지는 개발 단계를 정의하기에 아주 좋다. 예를 들어, 이번 주에 버전 4.0 릴리스를 목표로한다라고 팀 구성원들과 쉽게 소통하고 합의할 수 있다는 말이다.&lt;/p&gt;
+
+&lt;p&gt;릴리스 브랜치는 &lt;code class=&quot;highlighter-rouge&quot;&gt;release-*&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;release/*&lt;/code&gt;처럼 이름 짓는 것이 일반적인 관례다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-28&quot;&gt;3.5. 유지 보수를 위한 브랜치&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/05.svg&quot; alt=&quot;Maintenance Branches&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;운영 환경에 릴리스한 후 발견된 긴급 패치는 ‘hotfix’ 브랜치를 이용한다. ‘hotfix’ 브랜치만 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;에서 바로 딸 수 있다. 패치가 준비되면 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치 양쪽에 병합하고, 새로운 버전 이름으로 태그를 매겨야 한다.&lt;/p&gt;
+
+&lt;p&gt;버그 수정만을 위한 브랜치를 따로 만들었기때문에, 다음 릴리스를 위해 개발하던 작업 내용에 전혀 영향을 주지 않는다. ‘hotfix’ 브랜치는 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 부모로 하는 임시 브랜치라고 생각하면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-29&quot;&gt;3.6. 적용 사례&lt;/h3&gt;
+
+&lt;p&gt;다음 사례는 한 번의 릴리스 사이클만을 예로 들고 있다. 이미 중앙 저장소는 만들었다고 가정한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;develop--&quot;&gt;3.6.1. develop 브랜치 만들기&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/06.svg&quot; alt=&quot;Create a Develop Branch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;먼저 할 일은 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 기준으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치를 만드는 것이다. 팀 구성원 중 한 명이 자신의 로컬 저장소에 빈 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치를 만들고 중앙 저장소로 푸시하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git branch develop
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push -u origin develop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치는 축약된 프로젝트 이력만 담고 있는 반면, 이 개발 브랜치는 모든 개발 이력을 다 담을 것이다. 이제 팀 구성원들은 중앙 저장소를 복제하고, 중앙 저장소와 연결된 개발 브랜치를 만들어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone ssh://user@host/path/to/repo.git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout -b develop origin/develop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 팀 구성원 모두가 이 워크플로우를 적용하기 위한 준비가 되었다고 가정하자.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-30&quot;&gt;3.6.2. 철이와 미애의 작업&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/07.svg&quot; alt=&quot;New Feature Branches&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 사례에서는 철이와 미애가 각자 맡은 기능을 개발할 기능 개발 브랜치를 만들고 서로 다른 기능을 개발한다고 가정한다. 다시 한 번 언급하지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;를 베이스로 하지 않고, &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치를 기준으로 기능 개발 브랜치를 따야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout -b some-feature develop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;항상 하던대로 개발하고 변경 내용을 커밋한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git status
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add &amp;lt;some-file&amp;gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-31&quot;&gt;3.6.3. 미애의 작업 완료 처리&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/08.svg&quot; alt=&quot;Merging a Feature Branch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;몇 번의 커밋 끝에, 미애는 맡은 기능 개발을 완료했다. 만약에 팀이 풀 리퀘스트를 하기로 약속했다면, 미애는 자신의 기능 브랜치를 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 병합해 달라고 풀 리퀘스트를 보낼 수 있다. 풀 리퀘스트를 이용하지 않기로 했다면 다음과 같이 직접 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 병합하고 중앙 저장소에 푸시하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git pull origin develop
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout develop
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git merge some-feature
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git branch -d some-feature
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;기능 브랜치를 병합하기 전에 반드시 로컬 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 중앙 저장소의 변경 내용을 반영해서 최신 상태로 만들어야 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;에 직접 병합하지 않도록 주의해야 한다. 병합할 때 충돌이 발생하면 Centralized Workflow에서 본 바와 같이 해결한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-32&quot;&gt;3.6.4. 미애의 릴리스 준비&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/09.svg&quot; alt=&quot;Preparing a Release&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;철이가 여전히 기능 개발에 몰두하고 있는 와중에, 미애는 첫 공식 릴리스를 준비하고 있다. 기능 개발과 마찬가지로 릴리스 과정을 캡슐화할 새로운 브랜치를 만들어야 한다. 이 과정에서 버전 번호를 부여한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout -b release-0.1 develop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이 브랜치는 최종 테스트를 하거나, 문서를 수정하는 등 릴리스와 관련된 여러 가지 작업들을 처리하기 위한 격리 공간이다. 미애가 이 브랜치를 만든 이후에 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 병합된 기능은 릴리스 대상에서 제외된다. 이번에 포함되지 않은 기능들은 다음 릴리스에 포함된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-33&quot;&gt;3.6.5. 미애의 릴리스 완료&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/10.svg&quot; alt=&quot;Merging Release into Master&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;릴리스 준비가 끝나면, 릴리스 브랜치를 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에 병합하고, 릴리스 브랜치는 삭제한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에도 병합하는 이유는 릴리스를 준비하면서 개발 중인 다른 기능에 영향을 줄 수 있는 작업을 했을 수도 있기 때문이다. 미애의 팀이 코드 리뷰를 하는 규칙을 가지고 있다면, 병합을 요청하는 풀 리퀘스트를 보낼 수도 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout master
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git merge release-0.1
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout develop
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git merge release-0.1
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git branch -d release-0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;릴리스 브랜치는 기능 개발(&lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt;)과 프로젝트의 공식 릴리스 사이의 가교 역할을 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합할 때는 태그를 부여하는 것이 나중을 위해서 여러 모로 편리하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git tag -a 0.1 -m &lt;span class=&quot;s2&quot;&gt;&quot;Initial public release&quot;&lt;/span&gt; master
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push --tags
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Git은 저장소에 어떤 이벤트가 발생할 때 미리 짜 놓은 스크립트를 자동으로 실행할 수 있는 훅(hook) 기능을 가지고 있다. 중앙 저장소의 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 푸시하거나 태그를 푸시할 때, 자동으로 공개 릴리스를 빌드하는 훅을 거는 등의 자동화도 가능하다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-34&quot;&gt;3.6.6. 버그 신고&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/11.svg&quot; alt=&quot;Maintenance Branch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;릴리스를 배포한 후에, 미애는 철이와 함께 다음 릴리스를 준비하기 위해 일상으로 돌아갔다. 그런데 사용자가 현재 릴리스에 버그가 있다고 보고해왔다. 버그를 해결 하기 위해 미애(또는 철이)는 작업하던 기능 개발을 잠시 미뤄두고, &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 기준으로 유지 보수 브랜치를 만들고, 버그를 수정하고 커밋한다. 버그 수정이 끝나면 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 바로 병합한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout -b issue-#001 master
+&lt;span class=&quot;c&quot;&gt;# Fix the bug&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout master
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git merge issue-#001
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;릴리스 브랜치와 마찬가지로, 유지 보수 브랜치에서의 변경 사항은 개발 중인 기능에도 반영되어야 하므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치에도 병합해야 한다. 병합이 끝나면 유지 보수 브랜치는 삭제해도 좋다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout develop
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git merge issue-#001
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git branch -d issue-#001
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-35&quot;&gt;3.7. 다음 단계&lt;/h3&gt;
+
+&lt;p&gt;세 가지 워크플로우를 통해 이제 여러분은 로컬 저장소의 개념을 충분히 이해했을 것이다. Git의 푸시와 풀 패턴을 이해하고, 브랜칭과 병합의 이점도 이해했으리라.&lt;/p&gt;
+
+&lt;p&gt;여기에 소개한 내용만 가지고 현업에 바로 적용하기에는 무리가 있다&lt;small&gt;(역주: 완벽한 가이드는 아니며 시행착오를 겪어야 한다는 뜻)&lt;/small&gt;. 어떤 부분을 취하고 어떤 부분을 버릴 지는 여러분의 선택이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;역주) Git 플러그인을 설치하면 Gitflow Workflow를 쉽게 사용할 수 있다. &lt;a href=&quot;/work-n-play/git-flow/&quot;&gt;포스트 참고&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;forking-workflow&quot;&gt;4. Forking Workflow&lt;/h2&gt;
+
+&lt;p&gt;Forking Worflow는 다른 워크플로우와 근본적으로 다르다. 하나의 중앙 저장소를 이용하는 것이 아니라, 개개인마다 서로 다른 원격 저장소를 운영하는 방식이다. 모든 프로젝트 참여자가 개인적인 로컬 저장소와 공개된 원격 저장소, 즉 두 개씩의 Git 저장소를 가지는 방식이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/01.svg&quot; alt=&quot;Git Workflows: Forking&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;모든 코드 기여자가 하나의 중앙 저장소에 푸시하는 것이 아니라, 각자 자신의 원격 저장소에 푸시하고, 프로젝트 관리자만 다른 개발자들의 기여분을 공식 저장소에 병합할 수 있다는 점이 가장 큰 특장점이다. 즉, 프로젝트 관리자는 다른 개발자들에게 공식 저장소에 쓸 수 있는 권한을 주지 않고도 다른 개발자의 커밋을 수용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;프로젝트와 직접 관련이 없는 제 3자뿐만아니라, 아주 큰 규모의 분산된 팀에서도 안전하게 협업하기에 좋은 방법이다. 특히, 오픈 소스 프로젝트에서 많이 사용하는 방식이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-36&quot;&gt;4.1. 작동 원리&lt;/h3&gt;
+
+&lt;p&gt;서버에 만든 공식 저장소로 시작한다는 점은 다른 워크플로우와 같다. 그런데, 다른 개발자가 이 프로젝트에 참여할 때는 이 공식 저장소를 직접 복제하는 것이 아니다.&lt;/p&gt;
+
+&lt;p&gt;대신 공식 저장소를 포크(fork)해서 자신만의 원격 저장소를 만든다. 이제 이 복제본 저장소는 개인의 공개 저장소 역할을 하고, 다른 개발자는 이 원격 저장소에 푸시할 수 없다(내려 받는 것은 가능하다). 프로젝트 참여자는 서버측 복제본(포크)을 만든 다음, &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt; 명령으로 로컬 저장소를 만든다. 다른 워크플로우처럼 이 로컬 저장소에서 작업을 수행한다.&lt;/p&gt;
+
+&lt;p&gt;로컬 저장소의 커밋 이력을 원격 저장소에 푸시할 때는 프로젝트의 공식 저장소가 아니라, 자신의 원격 복제본에 푸시한다. 그 다음 프로젝트 관리자에게 자신의 기여분을 반영해 달라는 풀 리퀘스트를 던진다. 앞서 봤듯이 풀 리퀘스트는 기여한 코드에 대한 의견을 주고 받는 좋은 채널이 된다.&lt;/p&gt;
+
+&lt;p&gt;공식 저장소에 기여받은 코드를 병합할 때는, 프로젝트 관리자는 기여자의 변경분을 자신의 로컬 저장소로 내려 받고, 기존 코드 베이스에 부작용을 일으키지 않는 지 확인한 후, 로컬 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합하고, 프로젝트 공식 저장소의 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 반영한다. 이제 기여분이 반영된 공식 코드 베이스를 다른 기여자들도 내려 받아 작업을 계속할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-37&quot;&gt;4.2. 프로젝트 공식 저장소&lt;/h3&gt;
+
+&lt;p&gt;Git은 기술적으로 공식과 기여자의 복제본을 구분하지 않기 때문에, 이 워크플로우에서 ‘공식’이란 상징적인 의미일 뿐이다. 프로젝트 관리자의 공개 저장소이기 때문에 공식이란 단어가 붙은 것 뿐이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;forking-workflow-&quot;&gt;4.3. Forking Workflow에서 브랜치&lt;/h3&gt;
+
+&lt;p&gt;각 기여자의 원격 저장소는 다른 기여자와 변경 내용을 공유하기 위한 편의 장치일 뿐이다. 따라서, Feature Branch Workflow나 Gitflow Workflow처럼 새로운 기능 개발을 위해 격리된 브랜치를 만드는 것은 각자의 자유다. 대신 브랜치를 다른 참여자와 공유하는 방법은 다르다. 다른 워크플로우에서는 공식 저장소에 브랜치를 푸시해서 팀 구성원들이 공유했다면, Forking Workflow에서는 나의 브랜치를 다른 참여자들이 자신의 로컬 저장소로 내려 받아 참고하기도 하고 병합하기도 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-38&quot;&gt;4.4. 적용 사례&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-39&quot;&gt;4.4.1. 프로젝트 공식 저장소 생성&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/02.svg&quot; alt=&quot;Forking Workflow: Shared Repository&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Git을 이용한 팀 협업의 시작점은 서버에 공식 저장소를 만드는 것으로부터다. 보통 이 저장소가 프로젝트 관리자의 공개 저장소다.&lt;/p&gt;
+
+&lt;p&gt;공개 저장소는 다음과 같이 항상 bare 상태로 생성한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ssh user@host
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git init --bare /path/to/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bitbucket은 위 명령을 편리하게 도와주는 GUI 도구를 제공한다. 다른 워크플로우와 똑같은 명령 똑같은 절차다. 프로젝트 관리자는 필요하다면 지금까지 작성한 코드를 푸시할 수도 있을 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;역주) Atlassian이 작성한 글이라 빗버킷 GUI 도구를 말하는데, 깃허브도 대칭되는 도구가 있다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-40&quot;&gt;4.4.2. 프로젝트 공식 저장소 포크&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/03.svg&quot; alt=&quot;Forking Workflow: Forking the official repository.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이제 모든 프로젝트 참여자가 공식 저장소를 포크해야 한다. 포크는 서버 측 복제이므로, 서버에 SSH로 로그인한 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt; 명령을 이용하면 된다. Bitbucket UI에서 클릭 한 번으로 포크할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이 과정을 마치면, 이제 모든 프로젝트 참여자들이 자신들의 서버측 원격 저장소를 하나씩 가지게 된다. 프로젝트 공식 저장소와 마찬가지로 이 저장소들도 bare 저장소다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-41&quot;&gt;4.4.3. 포크한 원격 저장소 복제&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/04.svg&quot; alt=&quot;Forking Workflow: Cloning the forked repositories&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이제 프로젝트 참여자들은 친숙한 &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt; 명령으로 자신의 원격 저장소를 복제하여 로컬 저장소를 만들 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이 사례에서는 원격 저장소로 Bitbucket을 사용한다고 가정한다. 그리고, 프로젝트 참여자는 Bitbucket 계정을 가지고 있다고 간주한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://user@bitbucket.org/user/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;다른 워크플로우에서는 중앙 저장소와 연결된 단 하나의 &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;만 썼다면, Forking Workflow에서는 두 개의 원격 저장소가 필요하다. 하나는 포크한 원격 저장소이고, 다른 하나는 프로젝트 공식 저장소이다. 이름은 아무렇게나 붙여도 되지만, 일반적으로 포크한 원격 저장소는 &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;(&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt;할 때 자동으로 만들어진다), 프로젝트 공식 저장소는 &lt;code class=&quot;highlighter-rouge&quot;&gt;upsteram&lt;/code&gt;으로 붙이는 것이 일반적이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git remote add upstream https://bitbucket.org/maintainer/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;upstream&lt;/code&gt; 별칭은 자동으로 생성되지 않으므로, 위 명령을 참고해서 직접 지정해줘야 한다. 이렇게 연결해 줘야만 로컬 저장소를 프로젝트 공식 저장소와 같은 상태로 유지할 수 있다. 만약, 오픈 소스 프로젝트가 아니라서 사용자 식별을 위한 인증 정보를 제공해야 한다면 다음과 같이 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git remote add upstream https://user@bitbucket.org/maintainer/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이렇게 사용자 이름을 제공하더라도, 프로젝트 원격 저장소의 변경 내용을 내려 받을 때는 비밀번호를 제시해야 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-42&quot;&gt;4.4.4. 기능 개발&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/05.svg&quot; alt=&quot;Forking Workflow: Developers work on features&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;복제한 로컬 저장소에서 다른 워크플로우처럼 코드를 수정하고, 브랜치를 따고, 변경 내용을 커밋한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout -b some-feature
+&lt;span class=&quot;c&quot;&gt;# Edit some code&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit -a -m &lt;span class=&quot;s2&quot;&gt;&quot;Add first draft of some feature&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;자신의 원격 저장소에 변경 내용을 올리기 전까지는 변경 내용은 누구에게도 공개되지 않는다. 프로젝트 공식 저장소의 코드 베이스에 새로운 커밋이 있다면 다음과 같이 가져올 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git pull upstream master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;보통 개발자들이 격리된 브랜치에서 기능 개발을 하기때문에, 나중에 &lt;a href=&quot;https://www.atlassian.com/git/tutorials/using-branches/git-merge&quot;&gt;fast-forward 병합&lt;/a&gt;을 하게 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-43&quot;&gt;4.4.5. 개발 내용 제출&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/06.svg&quot; alt=&quot;Forking Workflow: Developers publish features&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;개발한 기능을 공개하려면 다음 두 가지 절차를 거쳐야 한다. 첫째, 자신의 원격 저장소에 변경 내역을 올려서 다른 개발자가 볼 수 있도록 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;을 이미 등록해두었으므로 다음 명령만 하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin feature-branch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;메인 코드 베이스가 아니라, 개발자 자신의 서버측 원격 저장소에 올린다는 점이 다른 워크플로우와의 차이점이다.&lt;/p&gt;
+
+&lt;p&gt;둘째, 프로젝트 관리자에게 자신의 기여분을 공식 코드 베이스에 반영해 달라고 요청해야 한다. Bitbucket의 ‘풀 리퀘스트’ 버튼을 이용하면, 어떤 브랜치를 제출할 지 정할 수 있다. 보통 이번에 추가한 기능 브랜치를 프로젝트 공식 저장소의 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 병합해 달라고 요청할 것이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-44&quot;&gt;4.4.6. 프로젝트 관리자의 기여분 병합&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/07.svg&quot; alt=&quot;Forking Workflow: Integrate Features&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;풀 리퀘스트를 받은 프로젝트 관리자는 기여 받은 변경 내용을 공식 코드 베이스에 반영할지 말지를 결정해야 한다. 보통 다음 두 가지 중 하나의 방법을 사용한다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.  풀 리퀘스트의 코드를 직접 검토한다.
+2.  코드를 로컬 저장소로 가져와 수동으로 병합한다.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;변경 내용을 확인하고, 의견을 제시하고, GUI를 이용해서 병합 작업을 할 수 있기 때문에 첫번째 방법이 훨씬 쉽다. 그럼에도 불구하고, 풀 리퀘스트가 메인 코드 베이스와 충돌을 일으킨다면 두번째 방법을 이용해야 한다. 이 사례에서는 프로젝트 관리자가 기여자의 원격 저장소에 있는 기능 브랜치를 자신의 로컬 저장소로 가져와서 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치로 병합하면서 충돌을 해결하는 장면을 보여준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git fetch https://bitbucket.org/user/repo.git feature-branch
+&lt;span class=&quot;c&quot;&gt;# Inspect the changes&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git checkout master
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git merge FETCH_HEAD
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;변경 내용을 로컬 저장소의 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 전부 병합한 후, 다른 개발자들도 접근할 수 있도록 원격 저장소에 푸시한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;프로젝트 관리자의 &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;은 프로젝트 공식 저장소의 공식 코드 베이스이므로 기여자가 제출한 신규 기능은 이제 메인 코드 베이스에 포함되었다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-45&quot;&gt;4.4.7. 다른 개발자들의 프로젝트 공식 저장소 동기화&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/08.svg&quot; alt=&quot;Forking Workflow: Synchronize with the official repository&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;메인 코드 베이스가 변경되었으므로, 프로젝트 참여하는 모든 개발자가 자신의 로컬 저장소를 동기화해서 최신 상태로 만들어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git pull upstream master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-46&quot;&gt;4.5. 다음 단계&lt;/h2&gt;
+
+&lt;p&gt;이 글을 통해 어떤 개발자의 기여 활동이 어떻게 프로젝트의 공식 저장소에 반영될 수 있는지를 설명했다. 꼭 공식 저장소가 아니더라도 어떤 저장소에서든 이 방법을 적용할 수 있다. 예를 들어, 서브 팀이 특정 기능을 개발할 때, 메인 저장소를 건드리지 않고 팀 구성원들이 작업 내용을 공유할 수도 있을 것이다.&lt;/p&gt;
+
+&lt;p&gt;다른 개발자와 자신의 변경 내용을 쉽게 공유할 수 있고, 어떤 브랜치든 공식 코드 베이스에 병합할 수 있기 때문에, Forking Workflow는 느슨한 팀 구조에서도 강력한 협업 환경을 제공한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;section-47&quot;&gt;원문의 라이선스&lt;/h4&gt;
+
+&lt;p&gt;Except where otherwise noted, all content is licensed under a &lt;a href=&quot;http://creativecommons.org/licenses/by/2.5/au/&quot;&gt;Creative Commons Attribution 2.5 Australia License&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-48&quot;&gt;번역문의 라이선스&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;를 따른다.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/learn-n-think/comparing-workflows/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/comparing-workflows/</guid>
+        
+        <category>개발자</category>
+        
+        <category>git</category>
+        
+        <category>workflow</category>
+        
+        
+        <category>learn-n-think</category>
+        
+      </item>
+    
+      <item>
+        <title>dotfiles 만들기</title>
+        <description>&lt;p&gt;dotfiles는 개발자들이 사용하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.ssh&lt;/code&gt; 등 dot(&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;)으로 시작하는 파일 또는 디렉터리의 모음이다. &lt;strong&gt;dotfiles는 콘솔용 바이너리(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;gcc&lt;/code&gt;), 라이브러리, 애플리케이션의 설치 뿐만아니라, 그들의 설정을 잘 저장해 두었다가 컴퓨터를 빠르게 재구성하기 위한 워크플로우&lt;/strong&gt;다.&lt;/p&gt;
+
+&lt;p&gt;dotfiles를 구성해두면, 예를 들어 &lt;code class=&quot;highlighter-rouge&quot;&gt;gulp&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;git-flow&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sublime-text3&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;google-chrome&lt;/code&gt; 등, 내가 사용하는 애플리케이션 및 개발 도구의 목록과 설정을 저장해 두었다가 다른 컴퓨터 또는 새 운영체제에서 애플리케이션 설치뿐만아니라, 심지어 코드 에디터의 설정까지도 다른/이전 컴퓨터와 똑같이 &lt;strong&gt;‘바로’&lt;/strong&gt; 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이번에 맥을 밀고 다시 설치할 일이 있어서, 오랫 동안 미루어 두었던 dotfiles를 시전했다. 필자도 이번 경험을 통해 알게된 사실인데, 운영체제를 다시 설치할 때만 dotfiles를 만들거나 적용할 수 있다고 생각하지만, 사실이 아니다. &lt;strong&gt;dotfiles는 운영체제를 다시 설치하지 않더라도 언제든 준비할 수 있다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dotfiles.github.io/&quot;&gt;유명한 dotfiles&lt;/a&gt;들을 검토했는데 정석은 없더라. 쉘 스크립트만 이용한 사람, 주제별로 디렉터리를 분리한 사람, 다른 툴을 이용하는 사람, 운영체제도 제각각이더라. 이 포스트에서는 맥 운영체제 기준으로 dotfiles를 준비하는 방법을 공유한다. 다음 도구들을 이용한다. 앞서 말했듯이 정석은 없으므로 꼭 이렇게 할 필요는 없다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Homebrew/homebrew-bundle&quot;&gt;Homebrew Bundler&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/lra/mackup&quot;&gt;Mackup&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;.osx&lt;/li&gt;
+  &lt;li&gt;Shell Script&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;시전하는 과정에서 운영체제를 두 번 설치해 봤는데, 이 정도 경험으로는 다른 이의 맥에서도 동작하는 은총알 dotfiles How-to를 쓰기에는 무리다. 어쨌든 진리는 &lt;strong&gt;‘평상시에 dotfiles를 준비해 두면, 불의의 사고에 빠르게 대처할 수 있다’&lt;/strong&gt;라는 점이다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;homebrew&quot;&gt;1. Homebrew&lt;/h2&gt;
+
+&lt;p&gt;2012년에 생애 처음으로 맥을 영접했다. MS Office for Mac을 설치했다는 사실만으로도 맥 초보라는 것을 알 수 있을 것이다. 그러던 중 소프트웨어 개발을 다시 해야 할 상황이 닥쳤다. 필요한 것들이 너무 많았는데(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt;), 맥과 리눅스의 대가인 &lt;a href=&quot;https://www.facebook.com/jongwoong.lee.71&quot;&gt;Peter&lt;/a&gt;님이 MacPorts를 쓰라고 했다. 사실 뭔지 모르고 썼다.&lt;/p&gt;
+
+&lt;p&gt;MacPorts를 채 알기도 전에 ‘Homebrew-The missing package manager for OS X’로 전환했다. 적절한 비유인지 모르겠지만, MacPorts와 Homebrew는 Grunt와 Gulp, Bower와 Npm의 관계와 비슷해 보인다.&lt;/p&gt;
+
+&lt;p&gt;맥을 개발용 컴퓨터로 사용하면서 Homebrew를 아직도 사용하지 않는다면… GG. 지금이라도 늦지 않았다. Homebrew 바이너리 설치는 아래 한 줄을 복사해서, 콘솔에 붙여 넣는 것으로 끝이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;/usr/bin/ruby -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;1.1. 뭘 할 수 있을까?&lt;/h3&gt;
+
+&lt;p&gt;예를 들어, PHP7과 확장모듈을 &lt;strong&gt;쉽게&lt;/strong&gt; 설치할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew search php7
+&lt;span class=&quot;c&quot;&gt;# homebrew/php/php70    ...    homebrew/php/php70-xdebug&lt;/span&gt;
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew install homebrew/php/php70 homebrew/php/php70-xdebug
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;다른 명령들도 살펴 보자.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Homebrew&lt;/th&gt;
+      &lt;th&gt;Ubuntu equivalent&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew search php7&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ apt-cache search php&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;패키지를 검색한다. /text/처럼 정규표현식도 쓸 수 있다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew install php70&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get install php&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;패키지를 설치한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew info php&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ apt-cache show php&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;설치한 패키지의 정보를 확인한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew list&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ dpkg -l&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;현재 컴퓨터에 설치한 모든 패키지 목록을 출력한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew uninstall php70&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get remove php&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;패키지를 삭제한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew doctor&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get check&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;설치한 패키지의 문제점을 확인한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew cleanup&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get clean&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;로컬 캐시를 삭제한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew update&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get update&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;설치한 모든 패키지를 업데이트한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew outdated&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;오래된 패키지 목록을 출력한다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;한 가지 단점이라면, 설치할 패키지의 버전을 지정할 수 없다는 점이다. 현재 설치한 패키지의 버전을 고정하고, 더 이상 업데이트하지 않는 방법이 있긴 하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew pin php70    &lt;span class=&quot;c&quot;&gt;# 버전 고정&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew unpin php70  &lt;span class=&quot;c&quot;&gt;# 버전 고정 해제&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;버전을 고정할 패키지가 PHP와 같은 프로그래밍 언어라면, 하나로 고정하기보다는 다른 대안을 찾아 보라. &lt;code class=&quot;highlighter-rouge&quot;&gt;caskrook/versions&lt;/code&gt; Tap이나, &lt;code class=&quot;highlighter-rouge&quot;&gt;homebrew/php/phpenv&lt;/code&gt;와 같은 도구를 사용하는 것이 더 낫다. 개발 환경 전체를 고정하려면, Docker 컨테이너나 Vagrant 박스를 사용하는 것이 좋다.&lt;/p&gt;
+
+&lt;h3 id=&quot;tap&quot;&gt;1.2. Tap&lt;/h3&gt;
+
+&lt;p&gt;탭(Tap)은 Ubuntu의 apt-repository의 PPA(Personal Package Archive, 사설 패키지 저장소)와 비슷한 개념이다. 또 어떻게 보면 카테고리 또는 네임스페이스라 할 수도 있다. 앞서 본 &lt;code class=&quot;highlighter-rouge&quot;&gt;homebrew/php&lt;/code&gt;가 사실은 하나의 탭이다.&lt;/p&gt;
+
+&lt;p&gt;다음에 소개하는 탭에 관한 내용을 읽고 나면, 탭으로 나누어 놓은 이유와 유용성을 짐작할 수 있을 것이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;services&quot;&gt;1.2.1. Services&lt;/h4&gt;
+
+&lt;p&gt;맥에서 MySQL을 시작하려면 다음과 같이 해야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;웨에에엑~~ 이걸 외우라고? Ubuntu를 사용해 본 사람이라면, 이 이상하고 긴 명령이 정말 마음에 들지 않을 것이다. 물론 별칭(alias)를 만들 수도 있겠지만, 더 쉬운 방법이 있다. Services Tap을 설치하는 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap homebrew/services
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew services start mysql
+
+&lt;span class=&quot;c&quot;&gt;# 설치한 전체 서비스를 재시작하고 싶을 때는&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew services restart --all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ubuntu와는 순서가 다르니 유의한다(&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo service mysql start&lt;/code&gt;). &lt;code class=&quot;highlighter-rouge&quot;&gt;start|stop|restart&lt;/code&gt; 명령을 모두 쓸 수 있다.&lt;/p&gt;
+
+&lt;p&gt;서비스 목록은 &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; 명령으로 확인한다. 계속 써 보면 알겠지만, Homebrew의 명령들은 일관성이 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew services list
+&lt;span class=&quot;c&quot;&gt;# Name    Status  User  Plist&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# mysql   started appkr /Users/appkr/Library/LaunchAgents/homebrew.mxcl.mysql.plist&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;caskroom&quot;&gt;1.2.2. Caskroom&lt;/h4&gt;
+
+&lt;p&gt;Caskroom 하위의 Tap을 이용하면, IntelliJ와 같은 애플리케이션이나 Source Code Pro와 같은 폰트를 &lt;strong&gt;‘콘솔’&lt;/strong&gt;로 설치할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/fonts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Services Tap과 마찬가지로 Cask Tap도 Homebrew의 명령 체계를 그대로 이용한다. IntelliJ를 설치할 수 있는 지 먼저 확인하고, 설치해 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask search intellij
+&lt;span class=&quot;c&quot;&gt;# ==&amp;gt; Exact match&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# intellij-idea&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ==&amp;gt; Partial matches&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# intellij-idea-ce	  intellij-idea-ce-eap	    intellij-idea-eap&lt;/span&gt;
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install intellij-idea
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;폰트도 설치하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask search /font-source/
+&lt;span class=&quot;c&quot;&gt;# ==&amp;gt; Regexp matches&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# font-source-code-pro	  font-source-han-sans	    font-source-serif-pro&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# font-source-han-code-jp	  font-source-sans-pro&lt;/span&gt;
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install font-source-code-pro
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;homebrew-bundler&quot;&gt;2. Homebrew Bundler&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;composer.json&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;, … 뭐하는 파일들인가? 의존성을 기록해 놓는 레지스트리다.&lt;/p&gt;
+
+&lt;p&gt;Homebrew Bundler는 앞서 본 Homebrew 패키지들을 콘솔에서 한 줄씩 명령해서 설치할 필요 없이, &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;이란 레지스트리를 이용해서 관리하는 편리함을 제공한다. dotfiles 구성을 위해 수십 개의 &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;brew cask install&lt;/code&gt; 명령을 쉘 스크립트로 쓰고 관리해야 하는 번거로움을 덜어 준다.&lt;/p&gt;
+
+&lt;h3 id=&quot;brewfile-&quot;&gt;2.1. Brewfile 만들기&lt;/h3&gt;
+
+&lt;p&gt;먼저 Homebrew Bundler를 설치한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap homebrew/bundle
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;그간에 Homebrew를 이용해서 맥을 관리해 왔다면, 다음 명령으로 쉽게 &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;을 만들 수 있다. 기존의 &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;을 덮어 쓰려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;--force&lt;/code&gt; 옵션을 준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew bundle dump &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;--force]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;그간에 Homebrew와 Cask를 이용하지 않았다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt; 파일을 직접 만들고, 패키지(애플리케이션/바이너리) 목록을 작성한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew list&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;$ brew cask list&lt;/code&gt; 명령과 &lt;code class=&quot;highlighter-rouge&quot;&gt;/Applications&lt;/code&gt; 디렉터리를 열어 맥에 설치된 패키지를 확인해서 하나씩 써 준다. 애플리케이션 중에서는 Cask Tap으로 설치할 수 없고 꼭 앱 스토어를 이용해야만 하는 녀석들이 있는데, 기억력을 보조하기 위해 별도의 파일에 목록화해 놓고 dotfiles에 넣어서 관리하면 좋다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# dotfiles/Brewfile&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Taps&lt;/span&gt;
+tap &lt;span class=&quot;s1&quot;&gt;'caskroom/cask'&lt;/span&gt;
+tap &lt;span class=&quot;s1&quot;&gt;'caskroom/fonts'&lt;/span&gt;
+tap &lt;span class=&quot;s1&quot;&gt;'homebrew/dupes'&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;# 맥에 기본 설치된 툴을 대체하기 위한 Tap (e.g. nano 등)&lt;/span&gt;
+tap &lt;span class=&quot;s1&quot;&gt;'homebrew/php'&lt;/span&gt;
+tap &lt;span class=&quot;s1&quot;&gt;'homebrew/services'&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 중요! 이 줄이 없으면, ~/Applications에 설치하므로 꼭 넣어야 한다.&lt;/span&gt;
+cask_args appdir: &lt;span class=&quot;s1&quot;&gt;'/Applications'&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Binaries/Libraries&lt;/span&gt;
+brew &lt;span class=&quot;s1&quot;&gt;'zsh'&lt;/span&gt;
+brew &lt;span class=&quot;s1&quot;&gt;'git'&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Applications&lt;/span&gt;
+cask &lt;span class=&quot;s1&quot;&gt;'intellij-idea'&lt;/span&gt;
+cask &lt;span class=&quot;s1&quot;&gt;'iterm2'&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;설치 옵션을 지정하거나, 서비스를 재시작할 수도 있는데, &lt;a href=&quot;https://github.com/Homebrew/homebrew-bundle&quot;&gt;공식문서&lt;/a&gt;를 참고한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 Homebrew를 통해 설치할 수 있는 패키지의 설치 옵션은 다음 명령으로 확인한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew options php70
+&lt;span class=&quot;c&quot;&gt;# --with-cgi   Enable building of the CGI executable (implies --without-fpm)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# --with-debug Compile with debugging symbols&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;homebrew-bundler-&quot;&gt;2.2. Homebrew Bundler 실행하기&lt;/h3&gt;
+
+&lt;p&gt;다음 명령 한 줄로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;에 정의한 패키지들을 한 방에 설치할 수 있다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;이 다른 경로에 있다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;--file=$HOME/dotfiles/Brewfile&lt;/code&gt;처럼 경로를 지정할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew bundle &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;--file&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;path&amp;gt;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;현재 설치된 패키지들이 최신 상태인지 확인하려면 다음 명령을 이용한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew bundle check &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;--file&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;path&amp;gt;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;mackup&quot;&gt;3. Mackup&lt;/h2&gt;
+
+&lt;p&gt;맥에 설치한 애플리케이션의 설정을 백업하는 도구다. 백업 저장소의 기본값은 Dropbox이며, Google Drive, iCloud, 파일 시스템을 이용할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;맥은 설치한 애플리케이션의 사용자 설정을 전부 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Library/Preferences&lt;/code&gt; 디렉터리에 저장하기에 가능한 일이다. Mackup의 백업으로 부터 애플리케이션 설정을 복원하면, 새로 설치한 맥의 IntelliJ에서 이전과 똑같은 플러그인, 에디터 설정 등을 바로 사용할 수 있다. 업무용 맥에서 쓰던 환경을 집에 있는 세컨드 맥에서도 그대로 쓸 수 있단 말이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;mackup--&quot;&gt;3.1. Mackup 환경 설정&lt;/h3&gt;
+
+&lt;p&gt;Mackup도 Homebrew로 설치한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew install mackup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;기본값을 그대로 쓴다면 환경 설정은 필요 없다. 필자는 Dropbox 대신 Google Drive를 사용하고, 백업하고 싶은 파일들이 몇가지 더 있어서 &lt;code class=&quot;highlighter-rouge&quot;&gt;.mackup.cfg&lt;/code&gt; 환경 설정 파일을 만들었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# dotfiles/.mackup.cfg&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;storage]
+&lt;span class=&quot;nv&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;google_drive
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;configuration_files]
+.homestead
+.valet
+&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;3.2. 백업과 복원&lt;/h3&gt;
+
+&lt;p&gt;백업을 실행하기 전에 Google Drive(또는 Dropbox, iCloud)를 사용할 수 있는 상태여야 한다. 설치가 끝나면 Google Drive를 열어 로그인을 하고, 동기화할 디렉터리까지 지정해 주어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install google-drive
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;백업은 간단하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mackup backup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;디렉터리 목록을 확인해 보면 다음 그림과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-05-22-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-05-22-img-01.png&quot; alt=&quot;List of files backup-ed by Mackup&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;복원도 간단하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mackup restore
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;osx&quot;&gt;4. .osx&lt;/h2&gt;
+
+&lt;p&gt;Mac OS의 여러 가지 설정은 명령 줄에서도 할 수 있다. &lt;code class=&quot;highlighter-rouge&quot;&gt;.osx&lt;/code&gt; 파일은 이런 Mac OS 환경 설정을 모아서 담아 놓은 파일이다. 가령 휴지통 비우기할 때 정말로 삭제할 지를 묻는 대화상자등을 나오지 않게 하는 설정 말이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;defaults write com.apple.finder WarnOnEmptyTrash -bool &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.osx&lt;/code&gt; 파일의 내용은 &lt;a href=&quot;https://github.com/mathiasbynens/dotfiles/blob/master/.osx&quot;&gt;Mathias Bynen의 dotfiles&lt;/a&gt;를 참고했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;shell-script&quot;&gt;5. Shell Script&lt;/h2&gt;
+
+&lt;p&gt;필요한 도구들을 모두 살펴 봤다. 이제 이 도구들을 잘 조합해서 깔금하게 동작하는 부트스트랩 스크립트를 만들고, Git 저장소로 관리하면 될 것이다.&lt;/p&gt;
+
+&lt;p&gt;Git이나 클라우드로 관리하면 안되는 민감한 파일들은 반드시 별도로 보관해야 한다. 예를 들어 SSH Key 같은 파일들이 해당한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;bootstrap-script&quot;&gt;5.1. Bootstrap Script&lt;/h3&gt;
+
+&lt;p&gt;Mac OS를 처음 설치했다고 가정하고, 앞서 살펴본 모든 과정을 자동화해서, 빠르게 작업 환경을 구축하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;dotfiles/bootstrap.sh&lt;/code&gt; 스크립트를 만들어 보자. 코드 -&amp;gt; 설명 순으로 작성했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; ! &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;which brew&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;ruby -e &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#!&lt;/code&gt;(‘쉬뱅’이라 읽음)으로 이 스크립트를 실행할 바이너리를 지정한다. 시스템에 Homebrew가 없으면 설치한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew update
+brew tap homebrew/bundle
+brew bundle --file&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/dotfiles/Brewfile
+brew cleanup
+brew cask cleanup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;을 읽어서 지정한 패키지를 설치한다. 설치가 끝난 후, 디스크 절약을 위해 로컬 캐시를 전부 삭제했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -f &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.gitconfig &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ln -nfs &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/dotfiles/.gitconfig &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.gitconfig
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -f &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.gitignore_global &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ln -nfs &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/dotfiles/.gitignore_global &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.gitignore_global
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;홈 디렉터리에 &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitconfig&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore_global&lt;/code&gt; 파일이 없으면, &lt;code class=&quot;highlighter-rouge&quot;&gt;dotfiles&lt;/code&gt; 하위에 있는 파일을 홈 디렉터리로 링크한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chsh -s &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;which zsh&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+sh -c &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -f &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.zshrc &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ln -nfs &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/dotfiles/.zshrc &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.zshrc
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.zshrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;기본으로 실행할 쉘을 Zsh으로 변경한다. Oh-my-zsh를 설치하고, 홈 디렉터리에 &lt;code class=&quot;highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt; 파일을 링크하고, 실행한다. Zsh와 Oh-my-zsh의 관계는 프로그래밍 언어와 프레임워크의 관계로 비유할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;참고&lt;/code&gt;&lt;/strong&gt; 필자는 Bash(Bourne Again Shell)보다 Zsh를 더 선호한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt;과 같은 일을 담당한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ! -f &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.mackup.cfg &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ln -nfs &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/dotfiles/.mackup.cfg &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.mackup.cfg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Mackup 환경 설정 파일(&lt;code class=&quot;highlighter-rouge&quot;&gt;.mackup.cfg&lt;/code&gt;)파일을 홈 디렉터리에 링크한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/bin/composer global require laravel/installer laravel/envoy laravel/valet tightenco/jigsaw
+&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.composer/vendor/bin/valet install
+git clone git@github.com:laravel/homestead.git &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/Homestead
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;basename &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Homestead&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/Homestead
+vagrant box add laravel/homestead
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;[OPTIONAL] PHP 개발 환경을 셋팅했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install gulp-cli gulp yo http-server --global --save
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;[OPTIONAL] Node 글로벌 패키지를 설치했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install rails
+gem install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;[OPTIONAL] 글로벌 Ruby Gem을 설치했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/dotfiles/.osx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.osx&lt;/code&gt; 파일을 실행한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;dotfiles&quot;&gt;5.2. dotfiles&lt;/h3&gt;
+
+&lt;p&gt;다음과 같은 디렉터리 구조로 만들어 봤다. &lt;code class=&quot;highlighter-rouge&quot;&gt;.alias&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.export&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.extra&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.functions&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.path&lt;/code&gt; 등의 파일은 &lt;code class=&quot;highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;가 로드하도록 구성되어 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# ~/dotfiles&lt;/span&gt;
+
+~/dotfiles
+├── bin                 &lt;span class=&quot;c&quot;&gt;# 쉘 스크립트 저장소 (e.g. subl 등)&lt;/span&gt;
+├── .aliases            &lt;span class=&quot;c&quot;&gt;# 별칭 모음 (e.g. ll 등)&lt;/span&gt;
+├── .export             &lt;span class=&quot;c&quot;&gt;# 환경 변수 모음&lt;/span&gt;
+├── .extra              &lt;span class=&quot;c&quot;&gt;# 커밋하면 안되는 민감한 내용 (e.g. Github personal token 등)&lt;/span&gt;
+├── .functions          &lt;span class=&quot;c&quot;&gt;# 함수 (e.g. homestead() 등)&lt;/span&gt;
+├── .gitignore          &lt;span class=&quot;c&quot;&gt;# dotfiles용 .gitignore&lt;/span&gt;
+├── .gitconfig          &lt;span class=&quot;c&quot;&gt;# Global git 설정&lt;/span&gt;
+├── .gitignore_global   &lt;span class=&quot;c&quot;&gt;# 글로벌 gitignore&lt;/span&gt;
+├── .mackup.cfg         &lt;span class=&quot;c&quot;&gt;# Mackup 환경 설정&lt;/span&gt;
+├── .osx                &lt;span class=&quot;c&quot;&gt;# Mac OS Preference 자동 설정 스크립트&lt;/span&gt;
+├── .path               &lt;span class=&quot;c&quot;&gt;# 경로 모음&lt;/span&gt;
+├── .zshrc              &lt;span class=&quot;c&quot;&gt;# Zsh Profile&lt;/span&gt;
+├── Brewfile            &lt;span class=&quot;c&quot;&gt;# Homebrew Bundler용 레지스트리 파일&lt;/span&gt;
+├── bootstrap.sh        &lt;span class=&quot;c&quot;&gt;# 메인 스크립트&lt;/span&gt;
+└── manual_install_applications &lt;span class=&quot;c&quot;&gt;# 수동 설치해야 할 애플리케이션 목록&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;준비가 되었다면, Git 저장소로 만들고 원격 저장소에 동기화해 둔다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/dotfiles &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git init
+~/dotfiles &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class=&quot;s1&quot;&gt;'YOUR MESSAGE'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;5.3. 복원 프로세스&lt;/h3&gt;
+
+&lt;p&gt;새로 설치한 Mac OS 또는 세컨드 맥 앞에 앉아서 해야 할 일 목록이다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;앱 스토어를 방문해서 Xcode를 설치한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;설치가 끝나면 Xcode 라이선스에 동의하고, Command Line Tool을 설치해야 한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo xcodebuild -license &lt;span class=&quot;c&quot;&gt;# 콘솔에서 라이선스 동의하기&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;xcode-select --install   &lt;span class=&quot;c&quot;&gt;# Command Line Tool 설치&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SSH Key 설치&lt;/p&gt;
+
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cp SUPER_SAFE_DIRECTORY/.ssh/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; ~/.ssh
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;chmod -R 600 ~/.ssh
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;dotfiles 설치 및 실행&lt;/p&gt;
+
+    &lt;p&gt;실행하기 전에 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/shells&lt;/code&gt; 파일을 열어 파일 끝에 Zsh을 추가해 둔다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# etc/shells&lt;/span&gt;
+
+/usr/local/bin/zsh
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;각자의 dotfiles를 클론하고 부트스트랩 스크립트를 실행한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone git@github.com:GITHUB_USER_NAME/dotfiles.git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dotfiles/bootstrap.sh
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;재부팅이 필요할 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Mackup으로 복원한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mackup restore
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;맥을 재부팅 해 준다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;6. 결론&lt;/h2&gt;
+
+&lt;p&gt;해외의 유명한 개발자들이 자신만의 dotfiles를 만들고 Github에 공개하는 것이 단순히 유행인 줄 알았다. 그런데 이번에 해 보고 왜 dotfiles를 만드는 지 대~충~ 알았다.&lt;/p&gt;
+
+&lt;p&gt;서두에 언급했듯이 이 사실을 절대 놓치지 말자. 꼭 Mac OS를 다시 설치할 때만 dotfiles를 준비할 수 있는 것은 아니며, 평상시에 꾸준히 관리해 두면 불의의 사고에 대한 두려움을 줄일 수 있다. 또, 빠른 작업 환경 셋업의 잇점도 누릴 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이제 dotfiles 아래의 파일을 이용해서 맥을 계속 관리해야 한다. 가령, 새로운 애플리케이션을 설치하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Brewfile&lt;/code&gt;에 써 놓는 식으로 말이다.&lt;/p&gt;
+
+&lt;p&gt;Linux에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;yum&lt;/code&gt; 명령을 쉘 스크립트에 직접 쓰거나, &lt;a href=&quot;https://github.com/Linuxbrew/linuxbrew&quot;&gt;Linux Brew&lt;/a&gt;를 이용해서 dotfiles를 구성할 수 있을 것이다. Windows에서는 Bash Shell이 기본 내장되기 전까지는, 내장 명령 프롬프트를 대체할 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt;를 설치하고, Babun에 내장된 &lt;code class=&quot;highlighter-rouge&quot;&gt;pact&lt;/code&gt;라는 패키지 관리자를 이용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;필자의 dotfiles는 &lt;a href=&quot;https://github.com/appkr/dotfiles&quot;&gt;https://github.com/appkr/dotfiles&lt;/a&gt;에서 참고해 볼 수 있다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 22 May 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/dotfiles/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/dotfiles/</guid>
+        
+        <category>개발자</category>
+        
+        <category>dotfiles</category>
+        
+        <category>mac</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
+    
+  </channel>
+</rss>

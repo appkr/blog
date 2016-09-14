@@ -17,11 +17,12 @@ w1920xh1080|2,073,600|259,200|bits per frame|2073600x24bits
 49,766,400|6,220,800|bitrate @30fps|49766400x30frames|1,492,992,000
 186,624,000|bitrate @90min HD video|1492992000x60secx90min|8,062,156,800,000|1,007,769,600,000
 
+<!--more-->
 <div class="spacer">• • •</div>
 
 그런데, 실제 국내에서 상용 서비스 되고 있는 IPTV 의 경우, 영상을 H.264 로 부호화하여 전송을 하고 있으며, 필요한 Bandwidth 는 음성정보를 포함하여 대략 19Mbps 인 것으로 알고 있다. 이 차이는 H.264 부호화기 (Encoder) 가 Chroma subsampling 된 YUV4:2:0 (정식 용어로 YCbCr4:2:0) 포맷을 Camera Sensor 등의 소스로 부터 Input 받아, Motion estimation 이란 과정을 거쳐 영상을 부호화 때문이다. Motion Estimation 이란, 이전 프레임의 영상등의 정보를 바탕으로 다음 프레임의 움직임을 예측하는 알고리즘으로 대부분의 부호화기는 이 과정을 거치지만, 현재로서는 H.264 의 Algorithm 성능이 우수한 것으로 알려져 있다. H.264 부호화기는 압축 성능은 우수한 반면, 그 복잡성으로 인해 엄청난 CPU 연산량을 필요로 한다.
 
-## 주
+## 주)
 
 - `YUV` 아날로그 영상에서 사용하는 Color space 규격이다. 디지털에서는 YCbCr 로 표시해야 하지만, 일반적으로 YUV 라고 혼용해서 사용한다.
 - `Color Space` 우리가 일반적으로 알고 있고 LCD 에서 사용하는 RGB, 인쇄를 위한 CMYK 등을 Color Space 라 한다.

@@ -1,0 +1,1115 @@
+[
+  
+  {
+    "title"    : "RoRLab 워크숍 후기",
+    "category" : "around-me",
+    "tags"     : "개발자",
+    "url"      : "/around-me/rorlap-workshop-epilog/",
+    "date"     : "2016-08-21"
+  },
+  
+  {
+    "title"    : "자바스크립트와 프로미스",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, javascript",
+    "url"      : "/learn-n-think/javascript-promise-101/",
+    "date"     : "2016-08-07"
+  },
+  
+  {
+    "title"    : "RESTFul URL 설계 (@ModernPUG)",
+    "category" : "work-n-play",
+    "tags"     : "개발자, rest",
+    "url"      : "/work-n-play/restful-url-design-pug/",
+    "date"     : "2016-08-03"
+  },
+  
+  {
+    "title"    : "페이스북으로 데스크탑 라이브 스트리밍 하기",
+    "category" : "work-n-play",
+    "tags"     : "facebook, streaming, 개발자",
+    "url"      : "/work-n-play/facebook-live-streaming/",
+    "date"     : "2016-07-21"
+  },
+  
+  {
+    "title"    : "&quot;휙~&quot; 리얼 타임 라라벨 데모 프로젝트",
+    "category" : "work-n-play",
+    "tags"     : "개발자, laravel, websocket",
+    "url"      : "/work-n-play/realtime-web-with-laravel/",
+    "date"     : "2016-07-15"
+  },
+  
+  {
+    "title"    : "도커를 이용한 분산 서비스 아키텍처 맛보기",
+    "category" : "work-n-play",
+    "tags"     : "개발자, docker",
+    "url"      : "/work-n-play/dockerize/",
+    "date"     : "2016-07-11"
+  },
+  
+  {
+    "title"    : "RESTFul URL 설계 (@RoRLab)",
+    "category" : "work-n-play",
+    "tags"     : "개발자, rest",
+    "url"      : "/work-n-play/restful-url-design/",
+    "date"     : "2016-06-27"
+  },
+  
+  {
+    "title"    : "&quot;하루만에 배우는 라라벨 프레임워크&quot; 참가 안내",
+    "category" : "work-n-play",
+    "tags"     : "개발자, laravel",
+    "url"      : "/work-n-play/laravel-study-announcement/",
+    "date"     : "2016-06-21"
+  },
+  
+  {
+    "title"    : "Git을 이용한 협업 워크플로우 배우기",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, git, workflow",
+    "url"      : "/learn-n-think/comparing-workflows/",
+    "date"     : "2016-06-20"
+  },
+  
+  {
+    "title"    : "dotfiles 만들기",
+    "category" : "work-n-play",
+    "tags"     : "개발자, dotfiles, mac",
+    "url"      : "/work-n-play/dotfiles/",
+    "date"     : "2016-05-22"
+  },
+  
+  {
+    "title"    : "서비스 URL의 중요성 및 변경의 비용",
+    "category" : "work-n-play",
+    "tags"     : "개발자, URL Rewriting",
+    "url"      : "/work-n-play/importance-of-service-url/",
+    "date"     : "2016-05-18"
+  },
+  
+  {
+    "title"    : "Git Flow",
+    "category" : "work-n-play",
+    "tags"     : "개발자, 프로젝트관리, git-flow",
+    "url"      : "/work-n-play/git-flow/",
+    "date"     : "2016-05-04"
+  },
+  
+  {
+    "title"    : "소프트웨어 개발 비용",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, 프로젝트관리, 조직문화",
+    "url"      : "/learn-n-think/software-development-costs/",
+    "date"     : "2016-04-27"
+  },
+  
+  {
+    "title"    : "GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기",
+    "category" : "work-n-play",
+    "tags"     : "개발자, git",
+    "url"      : "/work-n-play/git-rebase/",
+    "date"     : "2016-04-25"
+  },
+  
+  {
+    "title"    : "엄청나게 빠른 버그 감지, 디버그, 코드 배포",
+    "category" : "work-n-play",
+    "tags"     : "개발자, 라라벨, laravel",
+    "url"      : "/work-n-play/super-fast-debug-deploy/",
+    "date"     : "2016-03-03"
+  },
+  
+  {
+    "title"    : "Gitbook 과 Pandoc 을 이용한 전자 출판",
+    "category" : "work-n-play",
+    "tags"     : "개발자",
+    "url"      : "/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/",
+    "date"     : "2016-02-23"
+  },
+  
+  {
+    "title"    : "생활코딩 작심5일 후기",
+    "category" : "learn-n-think",
+    "tags"     : "web, 개발자",
+    "url"      : "/learn-n-think/epilog-on-volunteer-work-for-open-tutorials/",
+    "date"     : "2016-02-21"
+  },
+  
+  {
+    "title"    : "내가 경험한 웹의 역사",
+    "category" : "learn-n-think",
+    "tags"     : "tech, web, 개발자",
+    "url"      : "/learn-n-think/history-lesson-on-web/",
+    "date"     : "2016-02-19"
+  },
+  
+  {
+    "title"    : "어중간하게 싸워서 지지마라",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학, 경력개발",
+    "url"      : "/learn-n-think/dont-be-looser/",
+    "date"     : "2016-02-17"
+  },
+  
+  {
+    "title"    : "CSS Specificity",
+    "category" : "work-n-play",
+    "tags"     : "개발자, css",
+    "url"      : "/work-n-play/css-specificity/",
+    "date"     : "2016-02-16"
+  },
+  
+  {
+    "title"    : "블로그 플랫폼 이전 5 - Disqus &amp; Facebook",
+    "category" : "work-n-play",
+    "tags"     : "개발자, jekyll",
+    "url"      : "/work-n-play/jekyll-blogging-part5/",
+    "date"     : "2016-02-13"
+  },
+  
+  {
+    "title"    : "블로그 플랫폼 이전 4 - Build Automation with Gulp",
+    "category" : "work-n-play",
+    "tags"     : "개발자, jekyll",
+    "url"      : "/work-n-play/jekyll-blogging-part4/",
+    "date"     : "2016-02-12"
+  },
+  
+  {
+    "title"    : "블로그 플랫폼 이전 3 - Publishing",
+    "category" : "work-n-play",
+    "tags"     : "개발자, jekyll",
+    "url"      : "/work-n-play/jekyll-blogging-part3/",
+    "date"     : "2016-02-11"
+  },
+  
+  {
+    "title"    : "블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll",
+    "category" : "work-n-play",
+    "tags"     : "개발자, jekyll",
+    "url"      : "/work-n-play/jekyll-blogging-part2/",
+    "date"     : "2016-02-10"
+  },
+  
+  {
+    "title"    : "블로그 플랫폼 이전 1 - 개발자로서의 새로운 삶",
+    "category" : "work-n-play",
+    "tags"     : "개발자, jekyll",
+    "url"      : "/work-n-play/jekyll-blogging-part1/",
+    "date"     : "2016-02-09"
+  },
+  
+  {
+    "title"    : "인간이 내리는 선택",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/day-to-day-selection/",
+    "date"     : "2011-03-31"
+  },
+  
+  {
+    "title"    : "예측의 정확함과 큰 그림과 작은 그림 사이의 착시 현상",
+    "category" : "learn-n-think",
+    "tags"     : "기업철학, 인생철학",
+    "url"      : "/learn-n-think/illusion-between-forest-and-tree-when-predicting-future/",
+    "date"     : "2010-11-25"
+  },
+  
+  {
+    "title"    : "ARM Connected Community Technical Symposium 2010 Keynote II",
+    "category" : "around-me",
+    "tags"     : "arm, soc, 기획자",
+    "url"      : "/around-me/arm-connected-community-technical-symposium-keynote2/",
+    "date"     : "2010-11-18"
+  },
+  
+  {
+    "title"    : "ARM Connected Community Technical Symposium 2010 Keynote I",
+    "category" : "around-me",
+    "tags"     : "arm, soc, 기획자",
+    "url"      : "/around-me/arm-connected-community-technical-symposium-keynote1/",
+    "date"     : "2010-11-18"
+  },
+  
+  {
+    "title"    : "전사와 학자",
+    "category" : "uncategorized",
+    "tags"     : "",
+    "url"      : "/uncategorized/fighter-and-scholar/",
+    "date"     : "2010-10-13"
+  },
+  
+  {
+    "title"    : "인생의 어두운 통로를 걷고 있는 사람들을 위해..",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/mindset-against-slump/",
+    "date"     : "2010-07-21"
+  },
+  
+  {
+    "title"    : "육아에 대한 반성",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/introspection-of-my-philosophy-on-caring-kids/",
+    "date"     : "2010-07-21"
+  },
+  
+  {
+    "title"    : "경력 개발에 대한 단상",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/thought-on-career-development/",
+    "date"     : "2010-07-17"
+  },
+  
+  {
+    "title"    : "망조 (잘못된 리더쉽)",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 조직관리",
+    "url"      : "/learn-n-think/doomed-organization/",
+    "date"     : "2010-07-17"
+  },
+  
+  {
+    "title"    : "2010 임베디드 SW Insight 컨퍼런스",
+    "category" : "around-me",
+    "tags"     : "android, tech",
+    "url"      : "/around-me/2010-embedded-software-insight-conference/",
+    "date"     : "2010-07-16"
+  },
+  
+  {
+    "title"    : "제2회 TEDxYonsei 후기",
+    "category" : "learn-n-think",
+    "tags"     : "ted, tedx",
+    "url"      : "/learn-n-think/epilog-on-2nd-tedx-yonsei/",
+    "date"     : "2010-07-12"
+  },
+  
+  {
+    "title"    : "잊혀져 가는 것들에 대한 鄕愁",
+    "category" : "uncategorized",
+    "tags"     : "취미, 특기",
+    "url"      : "/uncategorized/what-has-been-lost/",
+    "date"     : "2010-07-08"
+  },
+  
+  {
+    "title"    : "제 15차 Mobile Web Apps Camp (2010-04-30) 요약",
+    "category" : "around-me",
+    "tags"     : "android, apple, google",
+    "url"      : "/around-me/the-15th-mobile-web-app-camp/",
+    "date"     : "2010-05-11"
+  },
+  
+  {
+    "title"    : "일 잘하는 사람, 일 못하는 사람 #1",
+    "category" : "learn-n-think",
+    "tags"     : "조직관리, 인생철학",
+    "url"      : "/learn-n-think/about-craftsmanship/",
+    "date"     : "2010-04-19"
+  },
+  
+  {
+    "title"    : "모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점",
+    "category" : "learn-n-think",
+    "tags"     : "sns",
+    "url"      : "/learn-n-think/mobile-sns-and-location/",
+    "date"     : "2010-04-05"
+  },
+  
+  {
+    "title"    : "TEDx Kwangwoon 을 다녀와서",
+    "category" : "learn-n-think",
+    "tags"     : "ted, tedx",
+    "url"      : "/learn-n-think/epilog-on-tedx-kwangwoon/",
+    "date"     : "2010-03-27"
+  },
+  
+  {
+    "title"    : "Linux에서 Nand-FTL 기술의 사용",
+    "category" : "work-n-play",
+    "tags"     : "opensource, linux, 기획자",
+    "url"      : "/work-n-play/linux-nand-ftl/",
+    "date"     : "2010-03-24"
+  },
+  
+  {
+    "title"    : "보내지 못하는 편지",
+    "category" : "learn-n-think",
+    "tags"     : "memory",
+    "url"      : "/learn-n-think/letters-not-been-sent/",
+    "date"     : "2010-03-23"
+  },
+  
+  {
+    "title"    : "공장식 사고방식과 시장 지향적 사고방식",
+    "category" : "work-n-play",
+    "tags"     : "기업철학, 기획자",
+    "url"      : "/work-n-play/factory-oriented-vs-market-oriented-way-of-thinking/",
+    "date"     : "2010-03-18"
+  },
+  
+  {
+    "title"    : "인간을 담은 우주, 우주를 담은 인간",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/%EC%9D%B8%EA%B0%84%EC%9D%84-%EB%8B%B4%EC%9D%80-%EC%9A%B0%EC%A3%BC-%EC%9A%B0%EC%A3%BC%EB%A5%BC-%EB%8B%B4%EC%9D%80-%EC%9D%B8%EA%B0%84/",
+    "date"     : "2010-03-13"
+  },
+  
+  {
+    "title"    : "Java 가속 기술",
+    "category" : "work-n-play",
+    "tags"     : "android, java",
+    "url"      : "/work-n-play/java-performance-boosting-technology/",
+    "date"     : "2010-03-08"
+  },
+  
+  {
+    "title"    : "마이크로소프트 @cloud conference",
+    "category" : "around-me",
+    "tags"     : "cloud",
+    "url"      : "/around-me/epilog-on-microsoft-cloud-conference/",
+    "date"     : "2010-02-25"
+  },
+  
+  {
+    "title"    : "구글앱스를 이용하여 내 웹 아이덴티티 만들기",
+    "category" : "work-n-play",
+    "tags"     : "gtd, se",
+    "url"      : "/work-n-play/making-identity-using-google-apps/",
+    "date"     : "2010-02-24"
+  },
+  
+  {
+    "title"    : "개인과 기업에게 철학이 필요한 이유",
+    "category" : "learn-n-think",
+    "tags"     : "기업철학, 인생철학",
+    "url"      : "/learn-n-think/importance-of-philosophy-to-individual-and-corporate/",
+    "date"     : "2010-02-22"
+  },
+  
+  {
+    "title"    : "철학의 이해",
+    "category" : "imported",
+    "tags"     : "철학",
+    "url"      : "/imported/understanding-philosophy/",
+    "date"     : "2010-02-22"
+  },
+  
+  {
+    "title"    : "경제학적 사고 방식",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/economic-way-of-thinking/",
+    "date"     : "2010-02-21"
+  },
+  
+  {
+    "title"    : "관계 #4, 돌아가신 조상님과 현세인과의 관계, 그리고 家門의 의미에 대한 단상",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/relationship-part4/",
+    "date"     : "2010-02-16"
+  },
+  
+  {
+    "title"    : "제사의 의미",
+    "category" : "imported",
+    "tags"     : "인생철학",
+    "url"      : "/imported/thought-on-ancestor-memorial-service/",
+    "date"     : "2010-02-15"
+  },
+  
+  {
+    "title"    : "Windows Sharepoint Service 3.0 (WSS3.0) 설치",
+    "category" : "work-n-play",
+    "tags"     : "se, wss",
+    "url"      : "/work-n-play/installing-windows-sharepoint-services-3/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "우리 삶의 모순",
+    "category" : "imported",
+    "tags"     : "인생철학",
+    "url"      : "/imported/contradiction-of-our-life/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "리소스가 부족할 때 프로젝트 팀 빌드업",
+    "category" : "learn-n-think",
+    "tags"     : "소프트웨어공학, 인생철학, 조직관리",
+    "url"      : "/learn-n-think/teamup-when-resource-deficient/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "기회와 선택이란 무엇인가?",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/retrospect-of-early-days-of-my-lift/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "종교란 무엇인가?",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/thought-on-religion/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "용기(勇氣)란 무엇인가?",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 인생철학",
+    "url"      : "/learn-n-think/about-bravity/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "사랑과 배려, 그리고 세상을 바꾸어 나간다는 것",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 인생철학, 조직관리",
+    "url"      : "/learn-n-think/change-the-world-with-love/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "조직과 리더와 구성원들에 대한 단상",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 조직행동, 史記",
+    "url"      : "/learn-n-think/thought-on-team-up/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "애플 아이패드를 바라 보며",
+    "category" : "around-me",
+    "tags"     : "ios",
+    "url"      : "/around-me/first-impression-of-ipad/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "GTD, 하루 사용 설명서, 직업인으로서 나의 하루는?",
+    "category" : "work-n-play",
+    "tags"     : "gtd",
+    "url"      : "/work-n-play/gtd-in-action/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "워크샵, 기업문화",
+    "category" : "work-n-play",
+    "tags"     : "기업철학, 조직문화, 史記",
+    "url"      : "/work-n-play/thought-on-corporate-culture-at-workshop/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "관계 #3, 객체지향 개념과 새로운 서비스의 필요성",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학, sns",
+    "url"      : "/learn-n-think/relationship-part3/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "지난 주에 지른 소박한 아이템을 이용한 새로운 업무 환경",
+    "category" : "work-n-play",
+    "tags"     : "gtd, 생산성",
+    "url"      : "/work-n-play/rebuilding-work-environment/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "당신의 우주는 얼마나 큰가요?",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/how-big-is-your-universe/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "새로운 프로젝트 관리 프레임웤",
+    "category" : "work-n-play",
+    "tags"     : "프로젝트관리, 조직관리",
+    "url"      : "/work-n-play/homemade-project-management-framework/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "USB3.0 (vs. HDMI)",
+    "category" : "around-me",
+    "tags"     : "connectivity, 기획자",
+    "url"      : "/around-me/usb3-vs-hdmi/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "관계 #2, 사람을 안다는 것",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학, 史記",
+    "url"      : "/learn-n-think/relationship-part2/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "기계가 노동을 대체한다.",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/mechanization-of-labor/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "Google NexusOne 이 진짜라면...",
+    "category" : "around-me",
+    "tags"     : "android",
+    "url"      : "/around-me/impact-of-google-nexusone-speculation/",
+    "date"     : "2010-02-14"
+  },
+  
+  {
+    "title"    : "떠나신 분이 남긴 선물, 올바른 삶이란?",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/present-from-retired-employee/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Me-We, 진정한 나와 우리를 찾아서",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 인생철학, 조직관리",
+    "url"      : "/learn-n-think/finding-real-me-and-we/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "회사란?",
+    "category" : "learn-n-think",
+    "tags"     : "기업철학, 조직관리",
+    "url"      : "/learn-n-think/definition-of-company/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "한국 산업 기술 교류전 2009 (KITE EXPO 2009)",
+    "category" : "around-me",
+    "tags"     : "tech",
+    "url"      : "/around-me/kie-expo-2009/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "다 같이 죽고 혼자 사는 것, 다 같이 살고 혼자 죽는 것",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 기업철학, 인생철학, 史記",
+    "url"      : "/learn-n-think/egoism-and-utilitarianism/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "관계 #1, 신뢰에 기반한 관계",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/relationship-part1/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "모바일 서밋 토크 2010",
+    "category" : "learn-n-think",
+    "tags"     : "mobile",
+    "url"      : "/learn-n-think/mobile-summit-talk-2010/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Google, 모바일 검색 사용자 경험 향상",
+    "category" : "around-me",
+    "tags"     : "android, google, lbs",
+    "url"      : "/around-me/google-search-mobile/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "孫子兵法 에서 말하는 리더쉽",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 孫子兵法",
+    "url"      : "/learn-n-think/learning-leadership-from-mr-son-art-of-war/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "(상품/기술) 기획자가 가지고 있어야 할 것",
+    "category" : "work-n-play",
+    "tags"     : "기획자, gtd",
+    "url"      : "/work-n-play/toolbelt-for-product-planner/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "대수학적 사고를 하는 기획자, 기하학적 사고를 하는 기획자",
+    "category" : "learn-n-think",
+    "tags"     : "기획자, 자녀교육",
+    "url"      : "/learn-n-think/think-like-algebraist-or-geometrician/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "마인드 세트",
+    "category" : "learn-n-think",
+    "tags"     : "기획자, 인생철학",
+    "url"      : "/learn-n-think/mindset/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Linux &amp; Open Source Software",
+    "category" : "work-n-play",
+    "tags"     : "linux, opensource",
+    "url"      : "/work-n-play/linux-open-source-software/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "내가 선택하지 않은 인생은 없다.",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/your-decision-your-life/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "제 3 자에 의한 Android Market",
+    "category" : "around-me",
+    "tags"     : "android, opensource",
+    "url"      : "/around-me/3rd-party-android-market/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "MECE 와 기획자의 자료 정리",
+    "category" : "work-n-play",
+    "tags"     : "기획자",
+    "url"      : "/work-n-play/mece-and-orgznizing-things/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Google Maps Navigation, Navigation 전용 단말 수요를 흡수할 것",
+    "category" : "around-me",
+    "tags"     : "google, lbs",
+    "url"      : "/around-me/google-maps-will-swallow-pnd-market/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "OpenPlatform 전쟁, AppStore 전쟁",
+    "category" : "around-me",
+    "tags"     : "symbian, linux, limo, bada, android, windowsmobile",
+    "url"      : "/around-me/openplatform-war-and-application-market-war/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "마켓 리더의 조건",
+    "category" : "learn-n-think",
+    "tags"     : "기업철학, 기획자, 전략",
+    "url"      : "/learn-n-think/to-be-a-market-leader/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "훌륭한 기획자에 대한 斷想",
+    "category" : "learn-n-think",
+    "tags"     : "기획자",
+    "url"      : "/learn-n-think/thought-on-fabulous-planner/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "기획에 대한 斷想",
+    "category" : "work-n-play",
+    "tags"     : "기획자, 전략, soc",
+    "url"      : "/work-n-play/thought-on-product-planning/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "잘못된 전략",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 조직관리, 전략",
+    "url"      : "/learn-n-think/wrong-strategy/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "이상한 계산법: 100-1=0, 100+1=200",
+    "category" : "learn-n-think",
+    "tags"     : "기업철학, 조직관리",
+    "url"      : "/learn-n-think/broken-window-theory/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Leader 의 Positioning",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 孟子, 孫子兵法",
+    "url"      : "/learn-n-think/who-is-leader-in-an-organization/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Solutions Architect",
+    "category" : "learn-n-think",
+    "tags"     : "기획자",
+    "url"      : "/learn-n-think/solutions-architect/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Navigation 의 지능화",
+    "category" : "learn-n-think",
+    "tags"     : "lbs",
+    "url"      : "/learn-n-think/smart-and-smarter-navigation/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "HD video &amp; codecs",
+    "category" : "learn-n-think",
+    "tags"     : "codec, soc",
+    "url"      : "/learn-n-think/hd-video-codecs/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "SVG, Scalable Vector Graphic",
+    "category" : "learn-n-think",
+    "tags"     : "3d, opengles, openvg",
+    "url"      : "/learn-n-think/svg-scalable-vector-graphic/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Video Codec Roadmap by Applications",
+    "category" : "work-n-play",
+    "tags"     : "codec",
+    "url"      : "/work-n-play/video-codec-roadmap-by-applications/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "LiMo의 반격",
+    "category" : "around-me",
+    "tags"     : "android, limo",
+    "url"      : "/around-me/counterattack-from-limo/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Video Codec Quality Comparison",
+    "category" : "learn-n-think",
+    "tags"     : "codec",
+    "url"      : "/learn-n-think/video-codec-quality-comparison/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Chrome OS 에 숨어 있는 전략적 의도",
+    "category" : "around-me",
+    "tags"     : "chrome, google, microsoft",
+    "url"      : "/around-me/what-is-behind-chrome-os/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Evangelism, 그리고 경력개발을 위한 키워드",
+    "category" : "learn-n-think",
+    "tags"     : "cdp, 기획자",
+    "url"      : "/learn-n-think/evangelism-and-thought-on-career-development/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "영상/음성 압축 기술",
+    "category" : "learn-n-think",
+    "tags"     : "codec",
+    "url"      : "/learn-n-think/video-and-audio-compression-technologies/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "ARM Connected Community Technical Symposium 2009",
+    "category" : "around-me",
+    "tags"     : "arm",
+    "url"      : "/around-me/arm-connected-community-technical-symposium-2009/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Market pull vs. technology push",
+    "category" : "work-n-play",
+    "tags"     : "기업철학, 기획자, soc",
+    "url"      : "/work-n-play/market-pull-vs-technology-push/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "SoC 기획",
+    "category" : "work-n-play",
+    "tags"     : "arm, 기획자, soc",
+    "url"      : "/work-n-play/atoz-on-systems-on-chip-product-planning/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Android Customized Multimedia Structure",
+    "category" : "work-n-play",
+    "tags"     : "android, opencore",
+    "url"      : "/work-n-play/android-customized-multimedia-structure/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "bluetooth 솔루션 선택",
+    "category" : "work-n-play",
+    "tags"     : "bluetooth, connectivity, 기획자",
+    "url"      : "/work-n-play/technical-decision-on-bluetooth/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Flash Video",
+    "category" : "around-me",
+    "tags"     : "codec",
+    "url"      : "/around-me/flash-video/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "3D graphics 기술에 대한 이해",
+    "category" : "learn-n-think",
+    "tags"     : "3d, opengl, openvg",
+    "url"      : "/learn-n-think/3d-graphics/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Follow Up 이란?",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 기업철학, 기획자, 조직관리",
+    "url"      : "/learn-n-think/what-is-follow-up/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "내 뜻을 실행하기 위해 조직의 힘을 집결 시키려면...",
+    "category" : "learn-n-think",
+    "tags"     : "기획자",
+    "url"      : "/learn-n-think/feedback-and-feedforward/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Google 의 야망",
+    "category" : "around-me",
+    "tags"     : "google",
+    "url"      : "/around-me/ambition-of-google/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "기업 철학",
+    "category" : "learn-n-think",
+    "tags"     : "기업철학",
+    "url"      : "/learn-n-think/corporate-philosophy/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Steve Jobs 의 Presentation",
+    "category" : "learn-n-think",
+    "tags"     : "cdp, 기획자, presentation",
+    "url"      : "/learn-n-think/learning-presentation-skills-from-steve-jobs/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "자녀 교육, 부하 양성",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 조직관리",
+    "url"      : "/learn-n-think/education-of-children-and-junior-colleague/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "말/질문 잘하는 사람 = 일 잘하는 사람",
+    "category" : "learn-n-think",
+    "tags"     : "조직관리, 기획자",
+    "url"      : "/learn-n-think/speak-or-question-like-an-artisan/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Transcript of Commencement Speech at Stanford given by Steve Jobs",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학, presentation",
+    "url"      : "/learn-n-think/transcript-of-commencement-speech-at-stanford-given-by-steve-jobs/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Transcript of macworld 2007 keynote",
+    "category" : "learn-n-think",
+    "tags"     : "iphone, presentation",
+    "url"      : "/learn-n-think/transcript-of-macworld2007-keynote/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "GTD, Getting Things Done",
+    "category" : "work-n-play",
+    "tags"     : "gtd",
+    "url"      : "/work-n-play/gtd-getting-things-done/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "孟子, 天時不如地利 地利不如人和",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽, 기업철학, 조직관리, 史記, 孟子, 孫子兵法",
+    "url"      : "/learn-n-think/%E5%AD%9F%E5%AD%90-%E5%A4%A9%E6%99%82%EF%A5%A7%E5%A6%82%E5%9C%B0%E5%88%A9-%E5%9C%B0%E5%88%A9%EF%A5%A7%E5%A6%82%E4%BA%BA%E5%92%8C/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Xbox360 with Augmented Reality @ E3 2009",
+    "category" : "around-me",
+    "tags"     : "ar",
+    "url"      : "/around-me/xbox360-with-augmented-reality-e3-2009/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Android Emulator GMS 실행 하기",
+    "category" : "work-n-play",
+    "tags"     : "android, gms",
+    "url"      : "/work-n-play/how-to-run-android-emulator/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Android Emulator 실행법-SDK 1.6, Windows Machine 기준",
+    "category" : "work-n-play",
+    "tags"     : "android, emulator",
+    "url"      : "/work-n-play/how-to-run-android-emulator-on-windows/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Adobe Open Screen Project",
+    "category" : "around-me",
+    "tags"     : "adobe, flash, android",
+    "url"      : "/around-me/adobe-open-screen-project/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "PND, Paradigm shift to &#39;Connected&#39;",
+    "category" : "around-me",
+    "tags"     : "lbs, pnd",
+    "url"      : "/around-me/pnd-paradigm-shift-to-connected/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "질문하는 리더",
+    "category" : "learn-n-think",
+    "tags"     : "리더쉽",
+    "url"      : "/learn-n-think/questioning-and-listening-leader/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Architecture, Framework, Platform",
+    "category" : "learn-n-think",
+    "tags"     : "architecture, framework, platform",
+    "url"      : "/learn-n-think/architecture-framework-platform/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Free Agent Nation",
+    "category" : "learn-n-think",
+    "tags"     : "cdp, 리더쉽, 조직관리",
+    "url"      : "/learn-n-think/free-agent-nation/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Android Support Media",
+    "category" : "work-n-play",
+    "tags"     : "android, codec, opencore, pvcore",
+    "url"      : "/work-n-play/android-support-media/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "Linux fast boot technology",
+    "category" : "around-me",
+    "tags"     : "linux",
+    "url"      : "/around-me/linux-fast-boot-technology/",
+    "date"     : "2010-02-13"
+  },
+  
+  {
+    "title"    : "생각과 실행의 차이, Universal Remote",
+    "category" : "learn-n-think",
+    "tags"     : "arm, mcu",
+    "url"      : "/learn-n-think/think-of-practice/",
+    "date"     : "2010-02-12"
+  },
+  
+  {
+    "title"    : "CPU와 BUS의 발전사",
+    "category" : "around-me",
+    "tags"     : "amd, bus, cpu, intel, x86",
+    "url"      : "/around-me/cpu-bus/",
+    "date"     : "2010-02-12"
+  },
+  
+  {
+    "title"    : "너 누구냐? 넌 어디로 가는 놈이냐?",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/who-are-you/",
+    "date"     : "2010-02-12"
+  },
+  
+  {
+    "title"    : "Amazon Kindle",
+    "category" : "around-me",
+    "tags"     : "amazon, ebook",
+    "url"      : "/around-me/amazon-kindle/",
+    "date"     : "2010-02-12"
+  },
+  
+  {
+    "title"    : "파워포인트 블루스",
+    "category" : "learn-n-think",
+    "tags"     : "presentation",
+    "url"      : "/learn-n-think/powerpoint-blues/",
+    "date"     : "2010-02-12"
+  }
+  
+]

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="GPS 가 지원되는 아이폰등의 휴대단말 에서 트위터, 구글버즈, 페이스북, 포스퀘어와 같은 SNS 에 포스팅을 할 때는 각별히 주의해서, 공개해도 되는 위치와, 공개되면 안 되는 위치를 철저히 가려야 할 것 같다."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점">
+  <meta itemprop="description" content="GPS 가 지원되는 아이폰등의 휴대단말 에서 트위터, 구글버즈, 페이스북, 포스퀘어와 같은 SNS 에 포스팅을 할 때는 각별히 주의해서, 공개해도 되는 위치와, 공개되면 안 되는 위치를 철저히 가려야 할 것 같다.">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점" />
+  <meta name="twitter:description" content="GPS 가 지원되는 아이폰등의 휴대단말 에서 트위터, 구글버즈, 페이스북, 포스퀘어와 같은 SNS 에 포스팅을 할 때는 각별히 주의해서, 공개해도 되는 위치와, 공개되면 안 되는 위치를 철저히 가려야 할 것 같다." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/learn-n-think/mobile-sns-and-location/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/learn-n-think/mobile-sns-and-location/&title=모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/learn-n-think/mobile-sns-and-location/&title=모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점&text=모바일을 이용한 SNS에서 위치정보를 표시할 때 주의할 점" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/learn-n-think/mobile-sns-and-location/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-04-05
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/mobile-sns-and-location/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>GPS 가 지원되는 아이폰등의 휴대단말</strong> 에서 트위터, 구글버즈, 페이스북, 포스퀘어와 같은 SNS 에 포스팅을 할 때는 각별히 주의해서, 공개해도 되는 위치와, 공개되면 안 되는 위치를 철저히 가려야 할 것 같다.</p>
+
+<!--more-->
+
+<p>[그림 유실]</p>
+
+<h2 id="section">직업인의 사례</h2>
+
+<p>트위터나 구글버즈에서 내가 팔로우 하는 분들 중에는 기업에서 직원으로 일하시는 분들이 많다. 이런 분들이 개인적인 목적으로 업무시간에 아이폰으로 트윗이나 구글버즈 메시지를 남기는 경우가 많다. 트윗이나 버즈는 특별하게 비공개 (프로텍트) 옵션을 켜 놓지 않으면, 모든 사람이 볼 수 있는 상태가 된다.</p>
+
+<p>조금만 노력해서 그간의 포스팅 이력들을 둘러 보거나, 약간의 노력을 더 하여 검색해 보면, 이 사람이 어느 회사에 근무하는 지 금방 알아챌 수 있다. 어느 회사에 근무하는 것이 공개되는 것이 크게 문제가 되는 것은 아니다. 그런데, 매번 포스팅마다 위치가 표시된다는 것이다. “아 ~ 멀티미디어 솔루션을 개발하는 ABC 기업에 있는 이 분이 오전에는 을지로 SK T-Tower 에 있구나. ABC 기업이랑 SKT 랑 뭔가 하고 있군. 음, 오후에는 분당 정자동 KT 에 방문하셨구나. 순회 공연을 하고 계시는 구나.” 라고 짐작할 수 있게 된다.</p>
+
+<p>기업들이 SNS 를 기업의 홍보도구로 활용하려는 시도들은 하고 있지만, 기업 구성원 개개인들이 SNS 에서 해야 할 것과 하지 말아야 할 것은 규정짓지 못하고 있다—물론, 표현의 자유가 보장되는 자유 민주주의 사회에서는 웃긴 얘기지만, <strong>회사에 손해가 가는 일이 발생한다면 법률 문제에 휘말리게 될 개연성</strong>은 충분하다. 한국과 같이 폐쇄적인 기업 환경에서는 곧 큰 사회적 문제가 되지 않을까 걱정된다.</p>
+
+<h2 id="section-1">개인의 사례</h2>
+
+<p>개인적으로 사교활동을 하면서 먹은 맛있는 음식, 만난 사람과의 대화, 그날의 느낌들을 포스팅한다고 해서 무슨 문제가 되랴? 하지만, 범죄자, 나와 원수 관계에 있는 사람, 빚쟁이… 들에겐 너무 좋은 정보가 된다는 건 무시하면 안 된다. 특히 포스팅을 거의 SMS 수준으로 하는 사람들은 몇 일만 추적해 보면 공통적이고 고정적인 동선과 시간이 나오게 되니, 이 얼마나 무서운 일인가?</p>
+
+<div class="spacer">• • •</div>
+
+<p><strong>합리적인 사람들은 자신의 개인정보를 공개함으로써 얻는 이득이 손실보다 크다고 판단하면, 자신의 정보를 기꺼이 공개할 것을 선택</strong>한다. 하지만 위와 같은 위험성이 있음을 충분히 인지하고, 불쾌한 일이 발생하지 않도록 주의해서 사용하는 것이 필요하겠다.</p>
+
+<p><strong>서비스를 제공자들도 사용자가 이미 남겼던 위치정보를 삭제할 수 있는 옵션</strong>을 마련해 두고, 서비스 설정에서의 위치정보 비공개 옵션 뿐만 아니라, <strong>SNS App 의 각 포스트마다 위치 정보 공개/비공개 옵션</strong>을 제공해야 할 것이다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#sns">
+            sns
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/learn-n-think/epilog-on-tedx-kwangwoon/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              TEDx Kwangwoon 을 ...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/learn-n-think/about-craftsmanship/">
+            <span class="pager-title">
+              일 잘하는 사람, 일 못하는 사...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="어떤 일이든 마찬가지 겠지만, 일에는 “목적”과 “목표”가 있고, “제약조건”이 있기 마련이다. Mobile SoC (System on a Chip) 기획에서도 마찬가지 인듯 하다.• • •이게 시장의 요구사항이다.  BGM  12M JPEG Capture  Full HD Enco..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="SoC 기획"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="SoC 기획">
+  <meta itemprop="description" content="어떤 일이든 마찬가지 겠지만, 일에는 “목적”과 “목표”가 있고, “제약조건”이 있기 마련이다. Mobile SoC (System on a Chip) 기획에서도 마찬가지 인듯 하다.• • •이게 시장의 요구사항이다.  BGM  12M JPEG Capture  Full HD Enco...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="SoC 기획" />
+  <meta name="twitter:description" content="어떤 일이든 마찬가지 겠지만, 일에는 “목적”과 “목표”가 있고, “제약조건”이 있기 마련이다. Mobile SoC (System on a Chip) 기획에서도 마찬가지 인듯 하다.• • •이게 시장의 요구사항이다.  BGM  12M JPEG Capture  Full HD Enco..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/atoz-on-systems-on-chip-product-planning/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>SoC 기획 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">SoC 기획</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/atoz-on-systems-on-chip-product-planning/&title=SoC 기획" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/atoz-on-systems-on-chip-product-planning/&title=SoC 기획&text=SoC 기획" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/atoz-on-systems-on-chip-product-planning/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/atoz-on-systems-on-chip-product-planning/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>어떤 일이든 마찬가지 겠지만, 일에는 “목적”과 “목표”가 있고, “제약조건”이 있기 마련이다. Mobile SoC (System on a Chip) 기획에서도 마찬가지 인듯 하다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>이게 시장의 요구사항이다.</p>
+
+<ul>
+  <li>BGM</li>
+  <li>12M JPEG Capture</li>
+  <li>Full HD Encoding</li>
+  <li>TV-Out Preview with HDMI</li>
+  <li>3D UI</li>
+</ul>
+
+<p>이 모든게 동시에 가능해야 한다.</p>
+
+<p>즉, 배경음악을 들으면서, Full HD 동영상을 찍고 실시간으로 TV 에서 프리뷰하면서, 중간에 맘에 드는 장면은 JPEG 정지영상으로 남겨 놓는다는 의미이다. 이 모든 것들을 조작하기 위한 UI는 3D 로 되어야 한다는 것이다. 이 괴물은 어떤 디바이스일까? 스마트폰? MID? 모르겠다. 어쨌건 구현 가능성을 따져 봐야 한다.</p>
+
+<!--more-->
+
+<div class="spacer">• • •</div>
+
+<p>구현가능성은 다음 두 가지로 따져 볼 수 있다.</p>
+
+<ul>
+  <li>기술을 너무 앞서 나가는가? (현존하는 기술로 풀 수 없는가?)</li>
+  <li>구현할 수 있는 기술은 존재하지만, 내가/우리가 가지고 있지 않은가? (개발원가가 높아지겠지만, 라이센스-인 하면 구현 불가능하지 않다.)</li>
+</ul>
+
+<p>SoC 에서 성능적으로 가장 문제가 되는 부분은 2가지다.</p>
+
+<ul>
+  <li>CPU MIPS</li>
+  <li>Bus</li>
+</ul>
+
+<p><strong><code class="highlighter-rouge">주)</code></strong>
+<code class="highlighter-rouge">MIPS</code> Million Instruction Per Second, MHz 라고 쓰는 것이 정확하지만 산업에서는 1 MHz=1 MIPS 로 그냥 사용한다.</p>
+
+<p>전류 소모가 요구사항에 안들어간 것이 다행이다. Mobile 용 배터리 800mAh x 3.7V = (대략) 3,000mWH. 모르긴 해도 30분도 못 버틸 것이다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>JPEG, Encoding, 3D 등은 모두 전용 Hardware 로 돌리기 때문에 CPU 에 큰 부담이 없다. Software Audio Codec 을 쓰는 BGM 을 위한 약간의 MIPS, Application/UI 등의 Software 로 처리해야 하는 부분이 차지하는 MIPS, System 의 안정적 동작을 위한 10% 정도의 System Idle 을 포함하여 CPU Clock Speed 를 결정할 수 있다.</p>
+
+<p>일반적인 Video Encoding Process 는 Motion Estimation, Motion Vector 계산, 양자화 순으로 진행된다. CPU 및 Memory 와 가장 많은 Bandwidth 를 차지하는 것이 Motion Estimation 이다. 왜냐하면, 영상의 x 축 앞뒤 30pixel, y 축 앞뒤 30pixel 을 모두 예측하고 그 정보를 CPU 또는 Memory 와 주고 받아야 하기 때문이다.</p>
+
+<p>D1 (720*480) 기준 인코딩 과정에서 Motion Estimation 에만 필요한 Bandwidth는 40~60Mbps. 계산해 보자.</p>
+
+<ul>
+  <li>Full HD: 1920x1080=2,073,600</li>
+  <li>D1: 720*480=345,600</li>
+  <li>Full HD/D1 = 6배</li>
+</ul>
+
+<p><strong><code class="highlighter-rouge">주)</code></strong>
+<code class="highlighter-rouge">Screen Resolution</code> <a href="http://commons.wikimedia.org/wiki/File:Vector_Video_Standards2.svg">http://commons.wikimedia.org/wiki/File:Vector_Video_Standards2.svg</a></p>
+
+<p>딱, 6배다. 계산상으로는 240~360Mbps. 게다가, 1080p Display Unit 에서 40Mbps@D1x6배 정도의 Bandwidth 가 필요하니, 총 합이 480~720Mbps. 내가 확인할 수 있는 정보는 이 정도까지이다. 3D 나 HDMI 출력 등에 필요한 Bandwidth 는 확인된 바가 없다.</p>
+
+<p>인코딩만, 그것도 상위 Application 을 제외한 코덱만 이 정도라면…현존하는 기술로는 힘들다는 얘기인가? 모르겠다. 현재 Mobile 에서 사용하는 Bus 는 100~200MHz @ x32bit 정도. 계산하면, 3200~6400Mbps.</p>
+
+<p>PC(x86) Domain 에서는 1333MHz Bus 같은 것들이 있지만, ARM World 에서는 그렇게 제약조건 (시스템 자원) 이 너그럽지 않다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>그러면, 두가지 결정이 남는다.</p>
+
+<ul>
+  <li>(어떻게든) 시장에서 요구하는 제품을 만들어 볼 것인가?</li>
+  <li>(특정 시장이나 고객의 요구사항을 잊어 버리고) 우리가 만들 수 있는 제품을 만들 것인가?</li>
+</ul>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#arm">
+            arm
+          </a>
+          , 
+        
+          <a href="/tags#기획자">
+            기획자
+          </a>
+          , 
+        
+          <a href="/tags#soc">
+            soc
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/android-customized-multimedia-structure/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              Android Customize...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/market-pull-vs-technology-push/">
+            <span class="pager-title">
+              Market pull vs. t...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

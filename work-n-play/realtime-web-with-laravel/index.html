@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="‘휙~‘ 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 pusher, redis, log 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 ‘휙~’하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content=""휙~" 리얼 타임 라라벨 데모 프로젝트"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content=""휙~" 리얼 타임 라라벨 데모 프로젝트">
+  <meta itemprop="description" content="‘휙~‘ 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 pusher, redis, log 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 ‘휙~’하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content=""휙~" 리얼 타임 라라벨 데모 프로젝트" />
+  <meta name="twitter:description" content="‘휙~‘ 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 pusher, redis, log 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 ‘휙~’하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/realtime-web-with-laravel/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>"휙~" 리얼 타임 라라벨 데모 프로젝트 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">"휙~" 리얼 타임 라라벨 데모 프로젝트</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/realtime-web-with-laravel/&title="휙~" 리얼 타임 라라벨 데모 프로젝트" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/realtime-web-with-laravel/&title="휙~" 리얼 타임 라라벨 데모 프로젝트&text="휙~" 리얼 타임 라라벨 데모 프로젝트" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/realtime-web-with-laravel/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-07-15
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/realtime-web-with-laravel/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="highlighter-rouge">pusher</code>, <code class="highlighter-rouge">redis</code>, <code class="highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
+
+<p><strong>언제 어떻게 쓸 수 있나?</strong> 새로운 댓글이 작성되면 같은 댓글 목록을 보고 있는 사용자에게 새 댓글을 알리거나, 지금 서비스에 접속된 모든 사용자에게 푸시 알림을 보내는 등 서버에서 발생한 변경 내용을 클라이언트에 전파할 때 사용할 수 있다.</p>
+
+<p>이 포스트는 데모 프로젝트를 복붙으로 따라해보기 위한 명령 및 코드 목록을 담고 있다. <strong><em>각 절의 작동 원리는 읽지 말고, 전체 동작을 한번 확인할 것을 권장한다.</em></strong></p>
+
+<ol>
+  <li><em>데모 환경 준비_</em> 오늘 AWS에 인수된 클라우드9을 이용한다.</li>
+  <li><em>SocketChat_</em> Socket.io에서 제공하는 채팅 예제 프로젝트를 구동해 본다.</li>
+  <li><em>Redis_</em> 라라벨과 Socket.io간의 메시지 중계자로 Redis를 이용한다.</li>
+  <li><em>Broadcast_</em> 라라벨의 브로드캐스트 기능을 이용해 본다.</li>
+</ol>
+
+<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
+
+<p>이 프로젝트는 라라캐스트의 <a href="https://laracasts.com/series/real-time-laravel-with-socket-io">Real-time Laravel with Socket.io</a> 시리즈를 보고, 필자 나름대로 해석하고 적용한 결과물이다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="section">0. 용어 이해</h2>
+
+<p>이 포스트에서는 라라벨, Redis, Socket.io 등 여러 시스템을 사용하는데 비슷한 용어가 계속 등장하기 때문에, 이 포스트를 이해하는데 필요한 용어를 먼저 정리해 본다.</p>
+
+<p>라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.</p>
+
+<p>채널은 발신자와 수신자간의 데이터 파이프다. 발신자는 무차별적으로 여러 개의 파이프에 데이터를 흘려보내고, 수신자는 여러 개의 파이프 중 원하는 몇 개의 파이프만 연결하여 데이터를 받는다. 이벤트 시스템 컨텍스트에서는 이벤트 채널(이 포스트 4절의 이벤트 클래스)과 이벤트 데이터라 부르고, PubSub 관점에서는 채널과 메시지라고 부른다. 모두 같은 개념이다.</p>
+
+<p>PubSub 패턴은 두 시스템(발신자와 수신자)간의 결합도를 낮추어 애플리케이션의 확장성을 제공한다. 이 포스트 3절에서 라라벨과 자바스크립트간의 메신저로 Redis를 사용했는데, Redis의 PubSub 기능이 없었다면 PHP와 자바스크립트가 쉽게 통신할 수 없었을 것이다.</p>
+
+<h2 id="section-1">1. 데모 환경 준비</h2>
+
+<p><a href="https://c9.io">클라우드9</a>를 이용할텐데, 계정이 없다면 만든다. 대시보드에서 <kbd>Create a new workspace</kbd>를 눌러 새 PHP 워크스페이스(프로젝트)를 만든다.</p>
+
+<p><a href="/images/2016-07-15-img-01.png"><img src="/images/2016-07-15-img-01.png" alt="Cloud 9, Create a new workspace" /></a></p>
+
+<p>워크스페이스 이름은 아무렇게나 정해도 된다. 워크스페이스가 생성되면 클라우드9 콘솔에서 다음 명령을 수행한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 기본 생성된 파일들을 삭제한다.</span>
+you:~/workspace <span class="nv">$ </span>rm README.md php.ini hello-world.php
+
+<span class="c"># 프로젝트를 복제한다.</span>
+you:~/workspace <span class="nv">$ </span>git clone https://github.com/appkr/whik.git
+
+<span class="c"># .으로 시작하는 파일을 사용할 수 있도록 셸 옵션을 활성화한다.</span>
+you:~/workspace <span class="nv">$ </span><span class="nb">shopt</span> -s dotglob
+
+<span class="c"># 복제한 프로젝트를 워크스페이스 루트로 옮긴다.</span>
+you:~/workspace <span class="nv">$ </span>mv whik/<span class="k">*</span> ./ 
+
+<span class="c"># 복제한 프로젝트 디렉터리는 이제 필요없으므로 삭제한다. </span>
+you:~/workspace <span class="nv">$ </span>rm -rf whik 
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">public</code> 디렉터리를 웹 서버의 Document Root로 변경하기 위해 웹 서버 설정을 변경한다(<code class="highlighter-rouge">$ sudo nano /etc/apache2/sites-enabled/001-cloud9.conf</code>)</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># /etc/apache2/sites-enabled/001-cloud9.conf</span>
+
+<span class="c"># 이렇게 생긴 문장을</span>
+DocumentRoot /home/ubuntu/workspace
+
+<span class="c"># 이렇게 바꾸고 저장한다. nano로 열었다면 ctrl+x를 누른 후 y, 엔터를 누른다.</span>
+DocumentRoot /home/ubuntu/workspace/public
+</code></pre>
+</div>
+
+<p>설정을 바꾸었으니 아파치 웹 서버를 재실행한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>you:~/workspace <span class="nv">$ </span>sudo service apache2 restart
+</code></pre>
+</div>
+
+<p>이제 라라벨 프로젝트가 의존하는 라이브러리를 설치하고, 애플리케이션을 초기화한다. 라라벨 프로젝트를 복제했을 때 으례히 실행하는 명령셋이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 라라벨 프로젝트의 필요 라이브러리를 설치한다.</span>
+you:~/workspace <span class="nv">$ </span>composer install
+ 
+<span class="c"># 웹 서버 사용자(라라벨 프레임워크)에게 파일 시스템에 쓰기 권한을 부여한다. </span>
+you:~/workspace <span class="nv">$ </span>chmod -R 775 storage bootstrap/cache
+
+<span class="c"># 라라벨이 사용할 전역 환경 변수 설정 파일을 생성한다.</span>
+you:~/workspace <span class="nv">$ </span>cp .env.example .env 
+
+<span class="c"># 암호화 시드 키를 생성한다.</span>
+you:~/workspace <span class="nv">$ </span>php artisan key:generate 
+</code></pre>
+</div>
+
+<h2 id="socketchat">2. SocketChat</h2>
+
+<p>소스 코드의 <code class="highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
+
+<h3 id="section-2">2.1. 코드 수정</h3>
+
+<p>소스 코드에서 각자의 클라우드9 접속 주소를 반영한다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
+
+<span class="c1">// 이렇게 생긴 라인을</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'https://whik-appkr.c9users.io:8082'</span><span class="p">);</span>
+
+<span class="c1">// 각자의 접속 주소에 맞게 변경한다. 8082는 그대로 둔다.</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'https://your-c9-url:8082'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">2.2. 실험 준비</h3>
+
+<p>클라우드9 콘솔에서 다음 명령을 실행한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>you:~/workspace <span class="nv">$ </span><span class="nb">cd </span>public/socketchat
+
+<span class="c"># 필요한 Node 라이브러리를 설치한다.</span>
+you:~/workspace/public/socketchat <span class="nv">$ </span>npm install --only<span class="o">=</span>prod
+
+<span class="c"># Socket.io 서버를 실행한다.</span>
+you:~/workspace/public/socketchat <span class="nv">$ </span>npm start  
+</code></pre>
+</div>
+
+<h3 id="section-4">2.3. 실험</h3>
+
+<p>클라우드9 IDE 화면에서 <kbd>Run Project</kbd> 버튼을 누른다. <code class="highlighter-rouge">http://your-c9-url/socketchat</code>을 여러 개의 브라우저로 열어 채팅이 동작하는지 확인한다.</p>
+
+<p><a href="/images/2016-07-15-img-02.gif"><img src="/images/2016-07-15-img-02.gif" alt="Socketchat in action" /></a></p>
+
+<h3 id="section-5">2.4. 작동 원리</h3>
+
+<p>Socket.io는 리얼 타임 웹을 위한 자바스크립트 라이브러리다. 웹소켓을 기본으로 사용하고, 웹소켓을 사용할 수 없을 때는 XHR 폴링 등으로 폴백해서, Socket.io 라이브러리를 사용하는 클라이언트와 서버간에 통신할 수 있도록 한다.</p>
+
+<p>웹소켓은 말그대로 소켓이다. 서버와 클라이언트가 연결을 계속 유지하면서, 풀듀플렉스로 데이터를 스트리밍한다. 연결 협상을 할 때는 HTTP 프로토콜을 사용하지만, 웹소켓을 사용할 수 있으면 프로토콜을 업그레이드한다. 피어-투-피어는 아니다.</p>
+
+<h4 id="section-6">2.4.1. 클라이언트의 메시지 전송</h4>
+
+<p>클라이언트에서 <code class="highlighter-rouge">socket.emit()</code> API로 서버에 메시지를 보낸다. 여기서 <code class="highlighter-rouge">chat.message</code>란 채널 이름을 기억해두자.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
+
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'https://whik-appkr.c9users.io:8082'</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="c1">// 중략...</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">send</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h4 id="section-7">2.4.2. 서버의 메시지 브로드캐스트</h4>
+
+<p>클라이언트가 <code class="highlighter-rouge">chat.message</code> 채널로 보낸 메시지를 서버가 수신하면, 현재 접속된 모든 클라이언트에게 브로드캐스트한다. 이번에도 <code class="highlighter-rouge">emit()</code> API를 이용하고, 채널 이름을 인자로 넘겼다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// public/socketchat/index.js</span>
+
+<span class="kd">var</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'socket.io'</span><span class="p">)(</span><span class="nx">server</span><span class="p">);</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h4 id="section-8">2.4.3. 클라이언트의 메시지 수신 및 소비</h4>
+
+<p><code class="highlighter-rouge">socket.on(channel, callback)</code>은 제이쿼리에서 많이 봤던 <code class="highlighter-rouge">selector.on(event, callback)</code>과 같은 이벤트 리스너다. 서버의 브로드캐스트 메시지 중 <code class="highlighter-rouge">chat.message</code> 채널로 발행한 메시지가 있으면 콜백이 동작한다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">ready</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 콜백 안에서 인자로 받은 message 소비</span>
+    <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>종합하면, 어떤 클라이언트가 <code class="highlighter-rouge">https://your-c9-url/socketchat</code> 페이지에서 채팅 메시지를 작성하면, 같은 페이지에 접속한 다른 모든 클라이언트는 메시지를 받아 DOM을 업데이트한다.</p>
+
+<p><a href="/images/2016-07-15-img-05.jpg"><img src="/images/2016-07-15-img-05.jpg" alt="Socketchat Block Diagram" /></a></p>
+
+<p>Socket.io 공식 예제 대비 약간의 기능을 추가했다. 변경 내용은 <a href="https://github.com/appkr/whik/commit/6ea7551111c752bd3ee3ce5d56c2bd771be90400">커밋 로그</a>에서 확인할 수 있다.</p>
+
+<h2 id="redis">3. Redis</h2>
+
+<p>Redis는 라라벨과 Socket.io간의 메시지 중계자 역할을 한다.</p>
+
+<h3 id="section-9">3.1. 코드 수정</h3>
+
+<p>소스 코드에서 각자의 클라우드9 접속 주소를 반영한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># .env</span>
+
+<span class="c"># 이렇게 생긴 라인을 </span>
+<span class="nv">APP_URL</span><span class="o">=</span>https://whik-appkr.c9users.io
+
+<span class="c"># 각자의 접속 주소로 변경한다.</span>
+<span class="nv">APP_URL</span><span class="o">=</span>https://your-c9-url
+</code></pre>
+</div>
+
+<h3 id="section-10">3.2. 실험 준비</h3>
+
+<p>필요한 라이브러리를 설치하고, 클라우드9 콘솔에서 <code class="highlighter-rouge">feature/redis</code> 태그로 체크아웃한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 필요한 Node 라이브러리를 설치한다.</span>
+you:~/workspace <span class="o">(</span>master<span class="o">)</span> <span class="nv">$ </span>npm install --only<span class="o">=</span>prod
+
+<span class="c"># 체크아웃한다.</span>
+you:~/workspace <span class="o">(</span>master<span class="o">)</span> <span class="nv">$ </span>git checkout feature/redis
+</code></pre>
+</div>
+
+<p>클라우드9에 Redis는 이미 설치되어 있다. Redis 서버를 구동하고, Socket.io 서버를 실행한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Redis 시동</span>
+you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span class="nv">$ </span>sudo service redis-server restart
+
+<span class="c"># Socket.io 서버 실행</span>
+you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span class="nv">$ </span>npm start
+</code></pre>
+</div>
+
+<h3 id="section-11">3.3. 실험</h3>
+
+<p>클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="highlighter-rouge">http://your-c9-url/pub</code>과 <code class="highlighter-rouge">http://your-c9-url/sub</code>을 각각 브라우저로 연다. <code class="highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
+
+<p><a href="/images/2016-07-15-img-03.gif"><img src="/images/2016-07-15-img-03.gif" alt="Socketchat in action" /></a></p>
+
+<h3 id="section-12">3.4. 작동 원리</h3>
+
+<p>2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(<code class="highlighter-rouge">public/socketchat/index.js</code>). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들 간에 메시지를 릴레이하는 역할만 수행했다.</p>
+
+<p>그런데, 이번 절에서는 시나리오가 좀 다르다. 라라벨 애플리케이션이 Socket.io 라이브러리를 이용해서 클라이언트들과 통신하도록 해야 한다. 라라벨과 Socket.io를 서비스하는 Node.js는 서로 다른 애플리케이션이고, 둘 간에 메시지를 전달할 방법으로 Redis를 선택했다.</p>
+
+<p>Node.js 서비스는 Redis 서버에 미리 약속한 채널(<code class="highlighter-rouge">whik</code>)을 계속 바라보고 있다가, 라라벨이 Redis에 약속한 채널(<code class="highlighter-rouge">whik</code>)에 메시지를 발행하면, 발행된 값을 읽어서 Socket.io 클라이언트에게 브로드캐스트하는 식으로 동작한다.</p>
+
+<h4 id="redis--">3.4.1. 라라벨의 Redis 레코드 발행</h4>
+
+<p>라라벨의 <code class="highlighter-rouge">pub</code>라우팅을 방문하면, Redis 서버의 <code class="highlighter-rouge">whik</code> 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Http/routes.php
+
+<span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'event'</span> <span class="o">=&gt;</span> <span class="s1">'App\\Events\\NewUserCreated'</span><span class="p">,</span>
+        <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">App\User</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">(),</span>
+    <span class="p">];</span>
+
+    <span class="nx">Redis</span><span class="o">::</span><span class="na">publish</span><span class="p">(</span><span class="s1">'whik'</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="p">[],</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h4 id="nodejs-redis-">3.4.2. Node.js의 Redis 구독</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// socket.js</span>
+
+<span class="kd">var</span> <span class="nx">Redis</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ioredis'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">redis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Redis</span><span class="p">();</span>
+
+<span class="nx">redis</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">'whik'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h4 id="socketio--">3.4.3. Socket.io 메시지 브로드캐스트</h4>
+
+<p>Redis를 통해 Node.js측에서 받은 데이터는 다음과 같은 JSON 구조를 가진다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"event"</span><span class="err">:</span> <span class="s2">"App\\Events\\NewUserCreated"</span><span class="p">,</span>
+  <span class="s2">"data"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="err">:</span> <span class="s2">"foo"</span><span class="p">,</span>
+    <span class="s2">"email"</span><span class="err">:</span> <span class="s2">"foo@bar.com"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Redis에 새 레코드가 발행되면, Socket.io 서버는 <code class="highlighter-rouge">whik:App\\Events\\NewUserCreated</code> 채널로 접속된 모든 Socket.io 클라이언트에게 메시지를 브로드캐스트한다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// socket.js</span>
+
+<span class="nx">redis</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">message</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+  <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">channel</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">event</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h4 id="socketio---">3.4.4. Socket.io 클라이언트의 메시지 소비</h4>
+
+<p>라라벨의 <code class="highlighter-rouge">pub</code> 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Http/routes.php
+
+<span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'sub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Socket.io 클라이언트는 서버로부터 받은 메시지를 소비한다. <code class="highlighter-rouge">data</code>에는 <code class="highlighter-rouge"><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w"> </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo@bar.com"</span><span class="p">}</span></code>이 담겨 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// resources/views/welcome.blade.php</span>
+
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'{{ env('</span><span class="nx">APP_URL</span><span class="s1">') }}'</span> <span class="o">+</span> <span class="s1">':8082'</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="na">ready</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'whik:App\\Events\\NewUserCreated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 콜백 안에서 인자로 받은 data 소비</span>
+    <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><a href="/images/2016-07-15-img-06.jpg"><img src="/images/2016-07-15-img-06.jpg" alt="Laravel-Redis-Socket.io Block Diagram" /></a></p>
+
+<p>상세 변경 내용은 <a href="https://github.com/appkr/whik/commit/c124f70862e23c92207e87265287cb83171493e8">커밋 로그</a>에서 확인할 수 있다.</p>
+
+<h2 id="broadcast">4. Broadcast</h2>
+
+<p>라라벨은 도메인 이벤트를 바로 클라이언트에게 브로드캐스팅할 수 있다. 아주 편리하게~</p>
+
+<h3 id="section-13">4.1. 실험 준비</h3>
+
+<p>수정할 코드는 없다. <code class="highlighter-rouge">feature/broadcast</code> 태그로 체크아웃만 하면 된다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 체크아웃한다.</span>
+you:~/workspace <span class="o">(</span>master<span class="o">)</span> <span class="nv">$ </span>git checkout feature/broadcast
+</code></pre>
+</div>
+
+<p>3.2절과 같이 Redis 서버를 구동하고, Socket.io 서버를 실행한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Redis 시동</span>
+you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span class="nv">$ </span>sudo service redis-server restart
+
+<span class="c"># Socket.io 서버 실행</span>
+you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span class="nv">$ </span>npm start
+</code></pre>
+</div>
+
+<h3 id="section-14">4.2. 실험</h3>
+
+<p>3.3절과 똑같다. 클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="highlighter-rouge">http://your-c9-url/pub</code>과 <code class="highlighter-rouge">http://your-c9-url/sub</code>을 각각 연다. <code class="highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
+
+<h3 id="section-15">4.3. 작동 원리</h3>
+
+<p>라라벨은 프레임워크 어디서든 도메인 이벤트를 발행할 수 있다. 라라벨에서 이벤트를 던지는 방법은 여러 가지인데, 여기서는 이벤트 클래스(==이벤트 채널, ==Data Transfer Object)를 이용했다.</p>
+
+<h4 id="section-16">4.3.1. 이벤트 클래스</h4>
+
+<p>이벤트 클래스는 아티즌 콘솔로 만든다(<code class="highlighter-rouge">$ php artisan make:event NewUserCreated</code>). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 <code class="highlighter-rouge">ShouldBroadcast</code> 인터페이스를 구현하면 된다. 인터페이스의 메서드는 <code class="highlighter-rouge">broadcastOn()</code> 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Events/NewUserCreated.php
+
+<span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Events</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Broadcasting\ShouldBroadcast</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">NewUserCreated</span> <span class="k">extends</span> <span class="nx">Event</span> <span class="k">implements</span> <span class="nx">ShouldBroadcast</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">SerializesModels</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nv">$user</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$user</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">broadcastOn</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">'whik'</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="section-17">4.3.2. 이벤트 발행</h4>
+
+<p>이제 <code class="highlighter-rouge">NewUserCreated</code> 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 <code class="highlighter-rouge">public</code>으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, <code class="highlighter-rouge">config/broadcasting.php</code>에 정의한 드라이버로 브로드캐스팅한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Http/routes.php
+
+<span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">App\User</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+    <span class="nx">event</span><span class="p">(</span><span class="k">new</span> <span class="nx">App\Events\NewUserCreated</span><span class="p">(</span><span class="nv">$user</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>나머지는 3절과 같다.</p>
+
+<p>변경 내용은 <a href="https://github.com/appkr/whik/commit/57365503be757253a0830590d74fe9e8ea855b0b">커밋로그</a>에서 확인할 수 있다.</p>
+
+<h2 id="section-18">5. 결론</h2>
+
+<p>리얼 타임 웹은 프런트와 백엔드를 아우르는 풀스택스러운 고오급 기술이고, 라라벨과 Redis를 이용하면 비교적 쉽게 구현할 수 있다. Redis 대신 Pusher 드라이버를 이용하면 더 간단하다(Pusher는 가입형 서비스다).</p>
+
+<p>한 때, URL이 바뀌어도 전체 페이지를 다시 로드하지 않는 SPA(Single Page Application)가 유행했다. 그런데, SPA는…</p>
+
+<ol>
+  <li>처음 로드할 때 어마어마한 양의 자바스크립트를 받고 프로세싱해서 랜딩 페이지를 렌더링하는데까지 엄청난 시간이 걸리고,</li>
+  <li>프런트엔드에서 뷰를 렌더링하기 때문에 검색 엔진들은 크롤링해도 아무것도 없는 빈 페이지 밖에 없어 어쩔 줄 몰라했었고,</li>
+  <li>다른 서비스에서 리디렉션하여 돌아 왔을 때의 네비게이션 문제점 등 여러 가지 문제점을 안고 있었다.</li>
+</ol>
+
+<p>모바일 앱에는 적합하지만, 웹에는 적합하지 않다는 것이 중론이다.</p>
+
+<p>이제 URL마다 페이지를 다시 로드 하는 전통적인 웹에, Socket.io를 결합하여 서버측의 변경 내용을 뷰에 반영하는 방식으로 바뀌어 가고 있다(사실 꽤 됐다).</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://vuejs.org/">Vue.js</a>_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, <a href="https://github.com/trending?since=monthly">깃허브 트렌딩에 계속 노미네이트</a>되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>PubSub_ <a href="https://en.wikipedia.org/wiki/Publish-subscribe_pattern">https://en.wikipedia.org/wiki/Publish-subscribe_pattern</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Socket.io에서 제공하는 채팅 예제 프로젝트_ <a href="http://socket.io/get-started/chat/">http://socket.io/get-started/chat/</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#laravel">
+            laravel
+          </a>
+          , 
+        
+          <a href="/tags#websocket">
+            websocket
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/dockerize/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              도커를 이용한 분산 서비스 아키...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/facebook-live-streaming/">
+            <span class="pager-title">
+              페이스북으로 데스크탑 라이브 스...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

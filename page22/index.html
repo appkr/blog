@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="appkr's blog to record day-to-day life & thoughts."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Appkr.memo(new Life)"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Appkr.memo(new Life)">
+  <meta itemprop="description" content="appkr's blog to record day-to-day life & thoughts.">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Appkr.memo(new Life)" />
+  <meta name="twitter:description" content="appkr's blog to record day-to-day life & thoughts." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/page22/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/learn-n-think/video-and-audio-compression-technologies/">영상/음성 압축 기술</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/video-and-audio-compression-technologies/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>멀티미디어는 인터넷보다 더 오래된 화두이다. 1990 년 마이크로소프트를 중심으로 MPC (Multimedia PC) 레벨 1 을 발표했다. 사실상 CD-ROM 하나 달랑 달아놓고 멀티미디어 PC 라고 우기는 것처럼 보인다. 이후에 1993 년에 발표된 MPC 레벨 2 에서는 ‘Video for Window’와 그것을 기반으로 하는 ‘640×480×16비트’ 컬러의 동영상 재생과 16 비트 음원 재생 조건을 명시한다. 10년이라는 세월은 1920×1080×30fps 의 HD 영상과 5.1～7.1 채널의 고음질 멀티미디어 시대로 바꾸어 놓았다. 여기서는 이 시대의 PC를 위주로 한 멀티미디어 재생 환경과 포맷에 대해 얘기해 보겠다.</p>
+
+<h2 id="divx-">DivX 전성시대</h2>
+
+<p>공룡의 전성시대는 중생대 쥬라기이다. 21 세기 현대 인터넷은 DivX 라는 공룡의 시대이다. 아마 DVD, 공중파 HDTV 보다 DivX 로 영화를 보는 사람이 많을지도 모른다. MPEG-2 를 기반으로 하는 DVD 보다 MPEG-4 를 기반으로 하는 DivX 는 압축률이 높기 때문에 CD 1～3 장 정도의 분량에 DVD 영화와 크게 차이나지 않는 화질과 음질로 저장할 수 있는 큰 매력이 있다. 정품 DVD 시장이 불법 DivX 영상 때문에 황폐해진다는 영화와 음반 산업계의 경고가 DivX 영화를 하루아침에 사라진 공룡처럼 초토화시켜 버릴지도 모르겠다. 하지만 점차 고화질, 고음질로 고품질화되는 멀티미디어 파일에 DivX 라는 기술과 여기에 사용되는 DivX, DIVX, AC3, DTS 등의 용어의 의미와 이유를 짚어보자.</p>
+
+<h2 id="divx--divx">DIVX 와 DivX</h2>
+
+<p>DivX 의 어원(?)은 DIVX이다. 현재 사용되고 있는 DivX 라는 이름은 DIVX (DIgital Video eXpress의 약자) 에서 따온 것이다. 그러나 DIVX 와 DivX 는 이름만 같은 뿐, 전혀 관련이 없는 것이다. 하지만 DivX 의 이름을 DIVX 에서 따온 것에는 이유가 있고 역사를 되짚어 보는 것도 재미있으니 DIVX 에 대해 먼저 알아보자.</p>
+
+<p>DIVX 는 1997 년에 미국 최대의 전자유통 회사 중 하나인 서킷 시티 (Circuit City) 와 할리우드 영화 판권 중계업을 하는 지프렌 (Ziffren), 브리텐햄 (Brittenham), 밴카&amp;피셔 (Banca&amp;Fischer) 의 3 개사가 공동으로 출자한 디지털 비디오 익스프레스 (Digital Video Express) 가 개발한 DVD 형식의 디스크를 위한 비디오 영화 대여 시스템이었다.</p>
+
+<p>DIVX 를 이용하려면 300～500 달러 정도의 모뎀, 암호화 마이크로칩, 그리고 플래시 메모리 등 DIVX 가 장착된 DVD 플레이어를 구입해야 했다. 그 후 DIVX 디스크를 넣고 DVD 플레이어에 붙어 있는 재생 단추를 누르면 만 48 시간 동안만 그 디스크를 재생해 비디오 영화를 볼 수 있었다. 반환하지 않는 대여 디스크인 셈이다. 첩보영화에 나오는 자동파괴 디스크와 개념적으로 흡사하다고 할 수 있다. 그리고 추가로 그 비디오 영화를 더 보고 싶을 때는 전화선과 연결된 모뎀을 통해 시청 시간을 연장할 수 있었다.</p>
+
+<p>기존 DVD 타이틀이 1 편 당 20∼30 달러이며 대부분 구입한 타이틀을 2 번 이상 반복해서 보지 않는다는 점을 감안할 때, 5 달러 이하에 DIVX 용 DVD 타이틀을 살 수 있다는 점과 불법복제를 차단할 수 있는 장점 때문에 관련 업계로부터 상당한 호응을 얻었다. 장비 제조업체 중 미국의 제니스 (LG전자가 인수) 와 톰슨, 일본의 마쓰시타는 이 기술을 수용하겠다는 입장을 표명했으며, 메이저 영화사에서는 그때까지 DVD 타이틀 제작에 미온적인 반응을 보여왔던 디즈니를 필두로 파라마운트, 유니버설, 드림웍스가 이 기술을 지지하고 나섰다. 그러나 여러 DVD 업체와 시민단체들의 반발이 계속되면서 소비자들이 외면하게 되었고 1999년 6 월 16 일 DIVX 의 회장은 이 새로운 포맷이 시장에서 실패했고 2 년 후 업계에서 완전히 철수할 것이라고 공식적으로 발표했다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/video-and-audio-compression-technologies/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/around-me/arm-connected-community-technical-symposium-2009/">ARM Connected Community Technical Symposium 2009</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#around-me">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/around-me/arm-connected-community-technical-symposium-2009/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>ARM 社는 일반인에게는 잘 알려져 있지 않지만, Embedded System 산업의 가장 근간이 되는 IP (설계자산) 회사이다. PC 에서 사용하는 CPU 가 Intel 社의 x86 Architecture 를 사용하는 것과 마찬가지로, 이동통신단말/PMP/NAS/PND/eBook/… 등에는 모두 ARM 社의 ARMv5/v6/v7 Architecture 가 탑재되어 있다. Intel 社는 종합반도체 (IDM) 회사로 자신이 x86 설계자산을 가지고 반도체를 설계하고 생산도 하지만, ARM 社는 직접 반도체를 제조하지는 않고 개발된 IP 를 반도체 제조사에 라이센스하는 비즈니스를 한다. ARM Architecture 를 라이센스 받아 반도체를 개발하는 회사는 우리가 잘 알고 있는 Qualcomm 을 비롯하여, nVidia, TI, Marvell, ST Microelectronics, NXP… 국내의 CoreLogic, Telechips, Mtekvision 등의 Fabless 기업들이 해당한다.</p>
+
+<blockquote>
+  <p>Fabless, 반도체 산업에서는 특이하게 공장이라 부르지 않고 Fabrication (Fab, 팹) 이라 부른다.</p>
+
+  <p>대만의 TSMC, UMC 와 같이 Fab 만 운영하는 회사를 Foundry 라고 분류한다. 생산시설은 없지만, 반도체를 설계만 하고 생산을 Foundry 에 위탁하는 기업을 Fabless (팹리스) 라 부른다. Intel, Samsung, ST 와 같은 회사는 설계와 생산을 모두 하기 때문에, IDM (종합 반도체) 이라 부른다.</p>
+</blockquote>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/around-me/arm-connected-community-technical-symposium-2009/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/market-pull-vs-technology-push/">Market pull vs. technology push</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/market-pull-vs-technology-push/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>[그림 유실]</p>
+
+<blockquote>
+  <p>우리가 만들 수 있는 제품을 만들 것인가? 아니면 시장에서 요구하는 제품을 만들 것인가?</p>
+</blockquote>
+
+<div class="spacer">• • •</div>
+
+<p>스티브잡스가 Macintosh를 기획했을 때, 그는 이사진들에게 시장에서 요구하지도 않는 제품을 만들어서 어떻게 하겠다는 것인가라는 비난을 면치 못했다. 이때, 잡스의 답변은</p>
+
+<blockquote>
+  <p>벨 연구소가 전화기 만들 때, 시장에서 요구해서 만든거냐?</p>
+</blockquote>
+
+<p>라고 반박했던 일화는 유명하다. 개인용 컴퓨터라는 것이 물론 세상에 없던 것은 아니었으나, 기존의 상식을 뛰어 넘는 혁신적인 제품이기에 이사진들은 시장의 Acceptance 여부에 대한 의문이 들 수 밖에 없었을 것이다. Mac 을 상품화 할 수 있었던 이유는 Apple 이 필요한 기반 기술을 모두 가지고 있었기 때문이다. 만들 수 있는 제품을 기획하고 개발하고 난 후 시장을 만들어 가는 Technology Push 의 전형적인 사례이다.</p>
+
+<p>iPod, iPhone, iTunes, AppStore 도 마찬가지이다. mp3 player, Symbian/Blackberry Smartphone, P2P/Napster, eBay 등, 세상에 없던 것들은 아니었으나 기술과 기술이 가져다 줄 미래 비젼에 대한 새로운 사고방식을 가졌기 때문에 가능했으리라. 또, Hardware 기술, MacOS X 의 모체가 된 NeXT 의 OS, 혁신적인 UI 기술, Open Market Infrastructure 등 모든 기반기술을 가졌기 때문이기도 하다.</p>
+
+<p>그런데, 내가 아무리 많은 기술을 가지고 있다고 해도, 모든 기능을 때려 박은 제품은 성공할 수 없다. 2006 년 T 사에서 만든 B 라는 PMP 가 있었다. 회사 규모는 30 명 수준이었던 것으로 기억한다. 현존하는 모든 기능을 한 단말에 집어 넣은 수퍼 울트라 단말이 탄생했다. NoteBook 에서도 초창기였던 USB Host 를 통한 HSDPA Modem 연결을 Embedded 단말에서 구현했을 뿐 아니라, 인터넷 브라우저는 물론, DMB 를 포함한 거의 모든 멀티미디어 기능을 집어 넣었다. 시장의 반응은? Technology Push 는 기술 리더쉽을 무기로 새로운 시장을 창출해 갈 수 있는 기업들의 접근방식인 듯 하다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/market-pull-vs-technology-push/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/atoz-on-systems-on-chip-product-planning/">SoC 기획</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/atoz-on-systems-on-chip-product-planning/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>어떤 일이든 마찬가지 겠지만, 일에는 “목적”과 “목표”가 있고, “제약조건”이 있기 마련이다. Mobile SoC (System on a Chip) 기획에서도 마찬가지 인듯 하다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>이게 시장의 요구사항이다.</p>
+
+<ul>
+  <li>BGM</li>
+  <li>12M JPEG Capture</li>
+  <li>Full HD Encoding</li>
+  <li>TV-Out Preview with HDMI</li>
+  <li>3D UI</li>
+</ul>
+
+<p>이 모든게 동시에 가능해야 한다.</p>
+
+<p>즉, 배경음악을 들으면서, Full HD 동영상을 찍고 실시간으로 TV 에서 프리뷰하면서, 중간에 맘에 드는 장면은 JPEG 정지영상으로 남겨 놓는다는 의미이다. 이 모든 것들을 조작하기 위한 UI는 3D 로 되어야 한다는 것이다. 이 괴물은 어떤 디바이스일까? 스마트폰? MID? 모르겠다. 어쨌건 구현 가능성을 따져 봐야 한다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/atoz-on-systems-on-chip-product-planning/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/android-customized-multimedia-structure/">Android Customized Multimedia Structure</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/android-customized-multimedia-structure/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>이게 가능할까? openCORE 를 들어 내고, Proprietary MM Framework 로 갈아 치우는 것이 가능할까? Helix Community 에서도 유사한 시도를 하고 있다. <a href="https://porting.helixcommunity.org/2008/android">HelixDNA Client 를 Andorid 에 포팅 하는 프로젝트</a>를 …</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/android-customized-multimedia-structure/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/page23/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            Older
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/page21/">
+            Newer
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

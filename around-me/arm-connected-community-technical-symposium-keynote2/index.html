@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="Challenges of Making a High-performance Mobile SoC-An IP Perspective김진현상무, SamsungA. Mobile Device Usages and Demand Forecast1. Smart Life인터넷 커넥티비티가 확보된 모바일 ..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="ARM Connected Community Technical Symposium 2010 Keynote II"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="ARM Connected Community Technical Symposium 2010 Keynote II">
+  <meta itemprop="description" content="Challenges of Making a High-performance Mobile SoC-An IP Perspective김진현상무, SamsungA. Mobile Device Usages and Demand Forecast1. Smart Life인터넷 커넥티비티가 확보된 모바일 ...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="ARM Connected Community Technical Symposium 2010 Keynote II" />
+  <meta name="twitter:description" content="Challenges of Making a High-performance Mobile SoC-An IP Perspective김진현상무, SamsungA. Mobile Device Usages and Demand Forecast1. Smart Life인터넷 커넥티비티가 확보된 모바일 ..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/around-me/arm-connected-community-technical-symposium-keynote2/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>ARM Connected Community Technical Symposium 2010 Keynote II | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">ARM Connected Community Technical Symposium 2010 Keynote II</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/around-me/arm-connected-community-technical-symposium-keynote2/&title=ARM Connected Community Technical Symposium 2010 Keynote II" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/around-me/arm-connected-community-technical-symposium-keynote2/&title=ARM Connected Community Technical Symposium 2010 Keynote II&text=ARM Connected Community Technical Symposium 2010 Keynote II" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/around-me/arm-connected-community-technical-symposium-keynote2/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-11-18
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#around-me">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/around-me/arm-connected-community-technical-symposium-keynote2/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <h2 id="challenges-of-making-a-high-performance-mobile-soc-an-ip-perspective">Challenges of Making a High-performance Mobile SoC-An IP Perspective</h2>
+
+<p><em>김진현상무, Samsung</em></p>
+
+<h3 id="a-mobile-device-usages-and-demand-forecast">A. Mobile Device Usages and Demand Forecast</h3>
+
+<h4 id="smart-life">1. Smart Life</h4>
+
+<p>인터넷 커넥티비티가 확보된 모바일 디바이스의 보급으로 인해, 언제 어디서든, 실시간으로 사실상 무한대의 정보에 접근할 수 있는 길이 열리게 되었다.</p>
+
+<h4 id="processing-performance-trend">2. Processing Performance Trend</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>2008</th>
+      <th>2009</th>
+      <th>2010</th>
+      <th>2011</th>
+      <th>2012</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3D Graphics</td>
+      <td>4M Tri/s</td>
+      <td>10M Tri/s</td>
+      <td>20M Tri/s</td>
+      <td>50M Tri/s</td>
+      <td>200M Tri/s</td>
+    </tr>
+    <tr>
+      <td>CPU</td>
+      <td>ARM11 677MHz</td>
+      <td>Cortex-A8 600MHz</td>
+      <td>Cortex-A8 1GHz</td>
+      <td>Cortex-A9 Dual 1GHz</td>
+      <td>Eagle Dual Core</td>
+    </tr>
+    <tr>
+      <td>Multimedia</td>
+      <td>SD 480p</td>
+      <td>HD 720p</td>
+      <td>HD1080p</td>
+      <td>1080p 3D Vision</td>
+      <td>UHD</td>
+    </tr>
+    <tr>
+      <td>Applications</td>
+      <td>Web Browsing/Social Networking</td>
+      <td> </td>
+      <td>3D Gaming / 3D UI</td>
+      <td> </td>
+      <td>Augmented Reality / 3D Display / Imaging</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="process-technology-trend">3. Process Technology Trend</h4>
+<ul>
+  <li>Gate density doubles at each node</li>
+  <li>with more integrated functions and features</li>
+  <li>with higher performance</li>
+  <li>with lower active and static power</li>
+</ul>
+
+<h4 id="gate-density-mmm2-65nm--x2--45nm--x2--32nm">4. Gate Density (M/mm^2): 65nm → x2 → 45nm → x2 → 32nm</h4>
+<ul>
+  <li>Relative Performance (Ring Oscillator): 65nm → 23% up → 45nm → 45% up → 32nm</li>
+  <li>Relative Power: 미세화 공정을 한 단계 거칠수록 평균 Active Power/MHz 25% Down, Standby Leakage 50% Down</li>
+</ul>
+
+<h4 id="market-outlook-smartphone--tablet-m-units">5. Market Outlook: Smartphone &amp; Tablet (M Units)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>2009</th>
+      <th>2010</th>
+      <th>2011</th>
+      <th>2012</th>
+      <th>2013</th>
+      <th>CAGR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mobile phone</td>
+      <td>1,290</td>
+      <td>1,380</td>
+      <td>1,460</td>
+      <td>1,545</td>
+      <td>1,625</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Smartphone</td>
+      <td>173</td>
+      <td>280</td>
+      <td>405</td>
+      <td>540</td>
+      <td>678</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Smartphone Penetration</td>
+      <td>13%</td>
+      <td>20%</td>
+      <td>28%</td>
+      <td>35%</td>
+      <td>42%</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>0</td>
+      <td>17</td>
+      <td>53</td>
+      <td>78</td>
+      <td>108</td>
+      <td>85%</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--more-->
+
+<div class="spacer">• • •</div>
+
+<h3 id="b-mobile-soc-market-landscape">B. Mobile SoC Market Landscape</h3>
+
+<h4 id="mobile-soc">1. Mobile SoC</h4>
+
+<p>is a Key Enabler of Mobile Experience</p>
+
+<h4 id="key-ingredients-in-mobile-soc">2. Key Ingredients in Mobile SoC</h4>
+
+<ul>
+  <li>CPU
+    <ul>
+      <li>OS와 applications 을 구동하기 위한 General-purpose CPU core(s) 필요</li>
+      <li>Mobile 기기가 점점 범용성이 높은 PC 와 같은 기능을 하면서 CPU Core 의 중요성 증가</li>
+    </ul>
+  </li>
+  <li>Multimedia IP
+    <ul>
+      <li>고품질의 비주얼 경험에 대한 요구사항 증가</li>
+      <li>3D, Video Codec, ISP(Image Signal Processing) 등 하드웨어 가속 기반 사용자 경험 제공 필요</li>
+    </ul>
+
+    <p><em>삼성전자는 저전력 요구사항을 만족하기 위해 당분간은 Programmable (DSP) IP를 제공하지 않고, Full Hardware IP를 채용하는 것을 제품 전략으로 하고 있음.</em></p>
+  </li>
+  <li>Memory Subsystem
+    <ul>
+      <li>풍부한 사용자 경험을 제공하기 위해 메모리 대역폭에 대한 수요 증가</li>
+      <li>시스템 간의 연결을 위한 버스와 메모리 컨트롤러로 구성</li>
+    </ul>
+  </li>
+  <li>
+    <p>Status of AP Market: PC 시장과 달리, Mobile SoC 시장은 서부 개척 시대와 같은 상황.</p>
+  </li>
+  <li>
+    <p>삼성전자의 Mobile CPU 전략</p>
+
+    <p><em>삼성의 경쟁사 대비 빠른 미세공정기술 기반으로, 최신의 CPU Core 를 탑재한 Mobile SoC 를 경쟁사 보다 빨리 시장에 제공함으로써, 시장을 선도해 나간다.</em></p>
+  </li>
+  <li>삼성전자의 Key Multimedia Hardware 가속 IP
+    <ul>
+      <li>Video
+        <ul>
+          <li>Full HD enc/dec: H.264, MPEG4, VC-1 and more…</li>
+          <li>Feature ‘10: 1080p 60fps real-time processing</li>
+          <li>Feature ‘11~: Stereoscopic, UHD (4x of Full HD), and HDR</li>
+        </ul>
+      </li>
+      <li>3D Grahpics
+        <ul>
+          <li>Desktop or console game quality for smartphone</li>
+          <li>Feature ‘10: ~4 shaders, 60M Tri/s</li>
+          <li>Feature ‘11~: 4~32 full-precision shaders, ~400M Tri/s</li>
+        </ul>
+      </li>
+      <li>ISP
+        <ul>
+          <li>12Mpix imaging and Full HD motion video support</li>
+          <li>Feature ‘10: 12Mpix @15fps or 3Mpix @60fpx</li>
+          <li>Feature ‘11~: 24MPix @15fps or 6Mpix @60fps</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="spacer">• • •</div>
+
+<h3 id="c-ip-development-process">C. IP DEVELOPMENT PROCESS</h3>
+
+<h4 id="ip-development-challenges">1. IP Development Challenges</h4>
+<ul>
+  <li>Schedule
+    <ul>
+      <li>사용자의 요구사항에 대응하기 위해서는 항상 공격적인 IP 개발 일정을 운영해야 함.</li>
+      <li>새로운 멀티미디어 IP의 개발과 지속적인 성능 향상</li>
+      <li>메모리 서브시스템 제약사항에 대한 고려</li>
+    </ul>
+  </li>
+  <li>Power Requirement
+    <ul>
+      <li>Power 요구사항을 만족시키기 위한 Hardwired 디자인</li>
+      <li>다양한 Power Saving Feature 필요</li>
+    </ul>
+  </li>
+  <li>Verification
+    <ul>
+      <li>대량 생산 제품에서의 Bug 는 회사 경영에 치명적 영향</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="ip-development-phases">2. IP Development Phases</h4>
+
+<p>VoC → Exploration → Implementation (→ Iteration) → Verification (← Iteration)</p>
+
+<h4 id="example-multi-format-video-codec-ip">3. (Example) Multi-Format Video Codec IP</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Previous Generation</th>
+      <th>Current Generation</th>
+      <th>Next Generation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td># of supported Standard/Profile</td>
+      <td>Enc:6, Dec: 12</td>
+      <td>Enc:7, Dec: 12</td>
+      <td>Enc: 8, Dec: 16</td>
+    </tr>
+    <tr>
+      <td>Performance</td>
+      <td>720p @30fps</td>
+      <td>1080p @30fps</td>
+      <td>1080p @60fps</td>
+    </tr>
+    <tr>
+      <td>Design Complexity</td>
+      <td>3.0M Gates</td>
+      <td>4.0M Gates</td>
+      <td>6~7 M Gates</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Exploration: Structural C-Model
+    <ul>
+      <li>실제 하드웨어 디자인을 하기 전에 알고리즘 및 기능적 정확성을 위해 C-Model 로 Feasibility 검증</li>
+      <li>새로운 Encoding, Decoding 표준 추가 및 성능 개선</li>
+      <li>C-Model 에서 Conformance 및 성능 시험</li>
+      <li>Firmware development platform</li>
+    </ul>
+  </li>
+  <li>
+    <p>Exploration: Memory Bandwidth Trends in Mobile SoC</p>
+  </li>
+  <li>Verification: Goal is to deliver stable bug-free IP
+    <ul>
+      <li>“Maximize coverage within time and resource restriction”</li>
+      <li>개발과정에서의 버그 비용은 크지 않지만, 양산 이후의 버그 비용은 엄청나다, 특히 하드웨어일 경우에는 …</li>
+      <li>삼성전자의 MFC conformance test streamdms ~20K</li>
+      <li>Error resilience test</li>
+      <li>검증환경: RTL Simulation, H/W emulation, FPGA</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="spacer">• • •</div>
+
+<h3 id="d-concluding-remarks">D. CONCLUDING REMARKS</h3>
+
+<ul>
+  <li>Mobile 기기의 보급으로 사람들이 언제 어디서나 일하고, 놀 수 있게 되었다.</li>
+  <li>고 품질 사용자 경험에 대한 요구사항 증가로, Mobile 기기는 더 강력해진 반면, 전력 소모는 더 줄어들고 있다.</li>
+  <li>사용자 경험의 Key Enabler 는 Mobile SoC 이고, 성공적인 Mobile SoC 사업을 위해서는 파트너와의 밀접한 협업과, 차별화된 IP 보유가 필수적이다.</li>
+</ul>
+
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#arm">
+            arm
+          </a>
+          , 
+        
+          <a href="/tags#soc">
+            soc
+          </a>
+          , 
+        
+          <a href="/tags#기획자">
+            기획자
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/around-me/arm-connected-community-technical-symposium-keynote1/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              ARM Connected Com...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/learn-n-think/illusion-between-forest-and-tree-when-predicting-future/">
+            <span class="pager-title">
+              예측의 정확함과 큰 그림과 작은...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="최근 페이스북에 추가된 훌륭한 기능 중에 하나가 ‘라이브’다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="페이스북으로 데스크탑 라이브 스트리밍 하기"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="페이스북으로 데스크탑 라이브 스트리밍 하기">
+  <meta itemprop="description" content="최근 페이스북에 추가된 훌륭한 기능 중에 하나가 ‘라이브’다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="페이스북으로 데스크탑 라이브 스트리밍 하기" />
+  <meta name="twitter:description" content="최근 페이스북에 추가된 훌륭한 기능 중에 하나가 ‘라이브’다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/facebook-live-streaming/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>페이스북으로 데스크탑 라이브 스트리밍 하기 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">페이스북으로 데스크탑 라이브 스트리밍 하기</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/facebook-live-streaming/&title=페이스북으로 데스크탑 라이브 스트리밍 하기" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/facebook-live-streaming/&title=페이스북으로 데스크탑 라이브 스트리밍 하기&text=페이스북으로 데스크탑 라이브 스트리밍 하기" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/facebook-live-streaming/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-07-21
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/facebook-live-streaming/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>최근 페이스북에 추가된 훌륭한 기능 중에 하나가 ‘라이브’다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하면 좋을 듯 하다.</p>
+
+<p><a href="/images/2016-07-21-img-06.png"><img src="/images/2016-07-21-img-06.png" alt="방송하기" /></a></p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="section">1. 툴 체인 준비</h2>
+
+<p>데스크탑을 스트리밍하려면 두 가지가 필요하다.</p>
+
+<ol>
+  <li>데스크탑 화면을 캡처하는 도구</li>
+  <li>캡처된 화면을 스트리밍할 서비스(페이스북)</li>
+</ol>
+
+<h3 id="open-broadcaster-softwareobs">1.1. Open Broadcaster Software(OBS)</h3>
+
+<p>OBS는 무료로 쓸 수 있는 오픈소스 화면 캡처 도구다. OS X는 홈브루로 설치할 수 있다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew tap caskroom/cask <span class="c"># 기존에 Cask tap을 추가하지 않았다면.</span>
+<span class="gp">$ </span>brew cask install obs --appdir<span class="o">=</span>/Applications
+</code></pre>
+</div>
+
+<p>홈브루를 쓰지 못한다면, 직접 <a href="https://obsproject.com/">다운로드</a> 받아 설치하면 된다.</p>
+
+<h3 id="section-1">1.2. 페이스북 라이브 스트리밍 스타터 개발</h3>
+
+<p>서두에 말했다시피 데스크탑에서 페이스북 라이브를 시작하는 UI가 없다. UI만 없을 뿐 API는 열려 있다.</p>
+
+<h4 id="section-2">1.2.1. 개발자가 아니라면</h4>
+
+<p>1.2.2. 절은 그냥 무시하라. 이 블로그에 만들어 놓은 <a href="http://blog.appkr.kr/live/">Facebook Live Streaming Starter</a>에서 <kbd>Create Live Stream To Facebook</kbd> 버튼을 이용하면 된다.</p>
+
+<h4 id="section-3">1.2.2. 개발자라면</h4>
+
+<h5 id="section-4">1단계 페이스북에 앱 등록</h5>
+
+<p><a href="https://developers.facebook.com/quickstarts/?platform=web">https://developers.facebook.com/quickstarts/?platform=web</a> 주소를 방문하여 앱 등록 절차를 거친다.</p>
+
+<p>앱 등록을 마치면 <code class="highlighter-rouge">앱 ID</code>가 발급된다.</p>
+
+<p><a href="/images/2016-07-21-img-01.png"><img src="/images/2016-07-21-img-01.png" alt="페이스북 앱 대시보드" /></a></p>
+
+<h5 id="section-5">2단계 스타터 페이지 개발</h5>
+
+<p>이제 로컬에서 코드 에디터를 열고 HTML 페이지를 만든다. 자바스트립트에서 <code class="highlighter-rouge">YOUR_APP_ID</code>라 자리표시해 놓은 부분을 1단계에서 얻은 본인의 <code class="highlighter-rouge">앱 ID</code>로 교체한다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--// whatever/index.html --&gt;</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Facebook Live Streaming Starter<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"liveButton"</span><span class="nt">&gt;</span>
+    Create Live Stream To Facebook
+  <span class="nt">&lt;/button&gt;</span>
+
+  <span class="nt">&lt;script&gt;</span>
+    <span class="c1">// 페이스북 SDK 임포트 및 초기화</span>
+    <span class="c1">// https://developers.facebook.com/docs/javascript/quickstart </span>
+    <span class="c1">// 에서 최신 스크립트를 확인하고 사용하시길 권장한다.</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">fbAsyncInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+        <span class="na">appId</span><span class="p">:</span> <span class="nx">YOUR_APP_ID</span><span class="p">,</span>
+        <span class="na">xfbml</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">version</span><span class="p">:</span> <span class="s1">'v2.5'</span>
+      <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">id</span><span class="p">){</span>
+      <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
+      <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+      <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"//connect.facebook.net/en_US/sdk.js"</span><span class="p">;</span>
+      <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
+    <span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="s1">'script'</span><span class="p">,</span> <span class="s1">'facebook-jssdk'</span><span class="p">));</span>
+
+    <span class="c1">// 페이스북 라이브 스트리밍 스타터</span>
+    <span class="c1">// https://developers.facebook.com/docs/videos/live-video-api#golivedialog</span>
+    <span class="c1">// 에서 최신 스크립트를 확인하고 사용하시길 권장한다.</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'liveButton'</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">FB</span><span class="p">.</span><span class="nx">ui</span><span class="p">({</span>
+        <span class="na">display</span><span class="p">:</span> <span class="s1">'popup'</span><span class="p">,</span>
+        <span class="na">method</span><span class="p">:</span> <span class="s1">'live_broadcast'</span><span class="p">,</span>
+        <span class="na">phase</span><span class="p">:</span> <span class="s1">'create'</span><span class="p">,</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">alert</span><span class="p">(</span><span class="s1">'dialog canceled'</span><span class="p">);</span>
+          <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">'stream url:'</span> <span class="o">+</span> <span class="nx">response</span><span class="p">.</span><span class="nx">secure_stream_url</span><span class="p">);</span>
+        <span class="nx">FB</span><span class="p">.</span><span class="nx">ui</span><span class="p">({</span>
+          <span class="na">display</span><span class="p">:</span> <span class="s1">'popup'</span><span class="p">,</span>
+          <span class="na">method</span><span class="p">:</span> <span class="s1">'live_broadcast'</span><span class="p">,</span>
+          <span class="na">phase</span><span class="p">:</span> <span class="s1">'publish'</span><span class="p">,</span>
+          <span class="na">broadcast_data</span><span class="p">:</span> <span class="nx">response</span><span class="p">,</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">alert</span><span class="p">(</span><span class="s2">"video status: \n"</span> <span class="o">+</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">};</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>이렇게 만든 페이지는 페이스북과 통신할 수 있는 상태여야 하므로, 인터넷에 올려야 한다(e.g. 깃허브 페이지 등).</p>
+
+<p><a href="/images/2016-07-21-img-02.png"><img src="/images/2016-07-21-img-02.png" alt="페이스북 라이브 스트리밍 스타터 페이지" /></a></p>
+
+<h2 id="section-6">2. 방송하기</h2>
+
+<h3 id="section-7">2.1. 스타터 페이지</h3>
+
+<p>앞 절에서 만든 스타터 페이지에서 <kbd>Create Live Stream To Facebook</kbd> 버튼을 누른다. 두 개의 팝업 창이 순차적으로 뜬다.</p>
+
+<p>첫번째 팝업에서는 그냥 <kbd>다음</kbd> 버튼을 누른다.</p>
+
+<p><a href="/images/2016-07-21-img-03.png"><img src="/images/2016-07-21-img-03.png" alt="페이스북 라이브 스트리밍 팝업 #1" /></a></p>
+
+<p>두번째 팝업에서 <code class="highlighter-rouge">스트림 키</code>를 복사한다.</p>
+
+<p><a href="/images/2016-07-21-img-04.png"><img src="/images/2016-07-21-img-04.png" alt="페이스북 라이브 스트리밍 팝업 #1" /></a></p>
+
+<h3 id="obs-">2.2. OBS 설정</h3>
+
+<h4 id="section-8">1단계</h4>
+
+<p>OBS를 열고 캡처할 소스를 정한다. 화면 전체를 캡처하려면 <code class="highlighter-rouge">Display Capture</code>, 특정 창만 캡처하려면 <code class="highlighter-rouge">Window Capture</code>, 웹캠을 캡처하려면 <code class="highlighter-rouge">Video Capture Device</code>를 선택한다. 영상 믹싱도 가능하고, 별도 마이크를 이용할 수도 있다. UI가 직관적이어서 눈으로 보면 금방 이해할 수 있을 것이다.</p>
+
+<h4 id="section-9">2단계</h4>
+
+<p>OBS UI에서 <kbd>Settings</kbd> 버튼을 눌러, <code class="highlighter-rouge">Stream</code> 메뉴를 선택하고 다음과 같이 셋팅한다.</p>
+
+<ul>
+  <li>Service: Facebook Live</li>
+  <li>Stream Key: 앞절에서 복사해 둔 <code class="highlighter-rouge">스트림 키</code> 붙여넣기</li>
+</ul>
+
+<p><a href="/images/2016-07-21-img-05.png"><img src="/images/2016-07-21-img-05.png" alt="OBS 설정" /></a></p>
+
+<p><code class="highlighter-rouge">Video</code> 메뉴를 선택하고, <code class="highlighter-rouge">Output (Scaled) Resolution</code>을 1280x720 이하로 맞춘다(1280x720을 넘는 영상은 잘린다). 설정을 저장한다.</p>
+
+<h4 id="section-10">3단계</h4>
+
+<p>OBS UI에서 <kbd>Start Streaming</kbd> 버튼을 누르면, 앞 절의 두번째 페이스북 팝업에 화면이 표시되기 시작한다.</p>
+
+<p><a href="/images/2016-07-21-img-06.png"><img src="/images/2016-07-21-img-06.png" alt="방송하기" /></a></p>
+
+<p>이 창에서 <kbd>방송하기</kbd> 버튼을 누르고 라이브 스트리밍을 시작한다.</p>
+
+<h3 id="section-11">보너스. 하드웨어 인코더 사용하기</h3>
+
+<p>고화질 영상을 x264 소프트웨어 인코더로 인코딩하다보면 CPU가 100%를 치면서 컴퓨터가 터지려할 것이다. 머신에 비디오 인코딩 전용 하드웨어가 장착되어 있다면 CPU의 부하를 덜 수 있다.</p>
+
+<p>OBS 설정에서 <code class="highlighter-rouge">Output</code> 메뉴를 선택하고, <code class="highlighter-rouge">Output Mode</code>를 <code class="highlighter-rouge">Advanced</code>로 바꾸면 인코더를 선택할 수 있는 UI가 활성화된다.</p>
+
+<p><a href="/images/2016-07-21-img-07.png"><img src="/images/2016-07-21-img-07.png" alt="하드웨어 인코더 활성화" /></a></p>
+
+<h2 id="section-12">3. 결론</h2>
+
+<p>방송을 끝내고 싶을 때는 OBS UI에서 <kbd>Stop Streaming</kbd>버튼을 누른다. 아직 정확히 확인하지 못했지만, 방송 중에는 사용자의 영상을 받아 on-the-fly로 HLS(HTTP Live Streaming)으로 바꾸어 시청자의 네트워크 상태에 따라 Bitrate를 조정하며 스트리밍하는 것으로 보인다. 방송이 끝나고 나면 고화질 영상으로 인코딩해서 다시 볼 수 있도록 담벼락에 남겨 준다.</p>
+
+<p>어제, 그제 생활코딩 춘천편에 자원봉사를 다녀왔는데, egoing님이 기존 수업과 달리 보너스로 <a href="https://disqus.com/">Disqus 댓글</a>, <a href="https://analytics.google.com">Google Analytics</a>,  <a href="https://uploadcare.com/">Uploadcare 파일 업로드</a> 기능을 정적 페이지에 추가하는 데모를 학생들에게 보여 주며, “이게 얼마나 편한건지, 이 기능을 구현하려고 고민/고생해 보지 않은 분은 잘 모를겁니다”라고 말했다.</p>
+
+<p>마찬가지다. 라이브 스트리밍을 한다는 것은 상상할 수도 없이 어려운 일이다. 설령 직접 구현했다 치더라도, 서버의 트래픽 비용을 감당하기가 만만치 않다. 이걸 페이스북이 전부 거저 해 주는 거다. 게다라 페이스북의 구전 시스템을 통해 컨텐츠를 널리 퍼뜨릴 수 있으니 손 안대고 코 푸는 격이다.</p>
+
+<p>보통 업계 1위를 하면 관료주의와 매너리즘에 빠지기 일쑤다. 현재에 안주하지 않고 계속 기능을 추가해 나가는 페이스북에 박수를 보낸다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#facebook">
+            facebook
+          </a>
+          , 
+        
+          <a href="/tags#streaming">
+            streaming
+          </a>
+          , 
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/realtime-web-with-laravel/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              "휙~" 리얼 타임 라라벨 데모...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/restful-url-design-pug/">
+            <span class="pager-title">
+              RESTFul URL 설계 (@...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

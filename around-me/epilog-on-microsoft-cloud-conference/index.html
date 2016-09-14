@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="우리가 사용하는 클라우드 서비스들의 백엔드에서 움직이는 시스템의 구성과 그 시스템들이 움직이는 원리를 이해할 수 있는 좋은 기회였다.마이크로소프트 클라우드 제품군은 개념적으로  Infra@cloud  Data@could  Application@cloud로 구분한다. 기조연설이 끝나..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="마이크로소프트 @cloud conference"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="마이크로소프트 @cloud conference">
+  <meta itemprop="description" content="우리가 사용하는 클라우드 서비스들의 백엔드에서 움직이는 시스템의 구성과 그 시스템들이 움직이는 원리를 이해할 수 있는 좋은 기회였다.마이크로소프트 클라우드 제품군은 개념적으로  Infra@cloud  Data@could  Application@cloud로 구분한다. 기조연설이 끝나...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="마이크로소프트 @cloud conference" />
+  <meta name="twitter:description" content="우리가 사용하는 클라우드 서비스들의 백엔드에서 움직이는 시스템의 구성과 그 시스템들이 움직이는 원리를 이해할 수 있는 좋은 기회였다.마이크로소프트 클라우드 제품군은 개념적으로  Infra@cloud  Data@could  Application@cloud로 구분한다. 기조연설이 끝나..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/around-me/epilog-on-microsoft-cloud-conference/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>마이크로소프트 @cloud conference | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">마이크로소프트 @cloud conference</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/around-me/epilog-on-microsoft-cloud-conference/&title=마이크로소프트 @cloud conference" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/around-me/epilog-on-microsoft-cloud-conference/&title=마이크로소프트 @cloud conference&text=마이크로소프트 @cloud conference" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/around-me/epilog-on-microsoft-cloud-conference/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-25
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#around-me">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/around-me/epilog-on-microsoft-cloud-conference/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>우리가 사용하는 클라우드 서비스들의 백엔드에서 움직이는 시스템의 구성과 그 시스템들이 움직이는 원리를 이해할 수 있는 좋은 기회였다.</p>
+
+<p>마이크로소프트 클라우드 제품군은 개념적으로</p>
+
+<ul>
+  <li>Infra@cloud</li>
+  <li>Data@could</li>
+  <li>Application@cloud</li>
+</ul>
+
+<p>로 구분한다. 기조연설이 끝나고 나서, 각 제품군별로 3개의 트랙으로 나누어 세션들이 진행되었으며, 난 Infra@cloud 에 참석했다. 대부분의 청중들은 각 기업의 IT 관리자였다.</p>
+
+<h2 id="section">지식노동자들은 어떻게 일하는가?</h2>
+
+<p>지식노동자들의 일의 본질은 무엇인가를 선택하는 것이다. 올바른 선택을 위해 데이터가 필요하고, 데이터는 데이터소스로 부터 받을 수 있다. 방대한 데이터에서 유용한 데이터를 선택하고 해석하고 사용하는 일일 것이다.</p>
+
+<h2 id="section-1">‘클라우드’ 란 무엇인가?</h2>
+
+<p>마이크로소프트는 클라우드를</p>
+
+<blockquote>
+  <p>필요에 의해 유연하게 확장될 수도 축소될 수도 있는 컴퓨팅 리소스들—하드웨어, 소프트웨어, 데이터베이스, 네크워크—의 풀</p>
+</blockquote>
+
+<p>로 정의한다.</p>
+
+<p>과거에는 기업들이 데이터센터를 보유했었다 (비용↑, 통제가능성↑). 그 이후엔 소유는 하되, 외부 전문 관리 업체에 맡겼었다 (비용↓, 통제가능성↓). 반면 클라우드는 컴퓨팅 자원 및 데이터센터를 소유하지 않고, 빌려 쓰는 개념이다 (비용↓, 통제가능성↑).</p>
+
+<p>클라우드란 갑자기 생긴 기술이 아니다. SaaS, IT Governance, … 등 많은 기술이나 개념들이 존재해 왔었고, 그 기술들을 융복합해서 클라우드라고 부르기로 한 것이다. 따라서, 클라우드라는 용어는 일시적인 유행일 수 있으나, 클라우드를 위한 인프라와 그 위에서 동작하는 서비스가 갑자기 사라지지는 않을 것이다.</p>
+
+<p>분명, 마이크로소프트, IT 관리자가 생각하는 클라우드, 일반 사용자가 생각하는 클라우드의 정의는 분명이 다르다.</p>
+
+<!--more-->
+
+<h2 id="section-2">‘클라우드’ 의 구분</h2>
+
+<h3 id="public-cloud">Public Cloud</h3>
+
+<p>Public Cloud 는 Google, Amazon EC2 등에서 컴퓨팅 리소스를 완전 빌려서 사용하는 클라우드 서비스를 의미한다. 이들은 서비스를 제공하기 위해 필경 백엔드 하드웨어와 소프트웨어 솔루션을 사용하고 있을 것이다. 이런 솔루션 중 마이크로소프트에서 제공하는 것이 Azure (한국어로 하늘색 이란 뜻) 솔루션이다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>App Fabric (Windows Azure Platform)
+-----------------------------------
+SQL Azure
+-----------------------------------
+Windows Azure
+</code></pre>
+</div>
+
+<p>[스택 다이어그램] Microsoft Product for Public Cloud</p>
+
+<h3 id="private-cloud">Private Cloud</h3>
+
+<p>Private Cloud 는 클라우드 서비스 제공자로 부터 완전 빌려서 사용하는 것이 아니라, 스스로 기업의 데이터센터 내에 보유 (within self-managed datacenter) 하면서 사용자를 대상으로 클라우드 서비스를 제공하는 개념이다. 가령, 5,000 개의 소프트웨어 제품 라인업이 있는 기업에서 고객을 대상으로 패치를 발행한다고 생각해 보라. 이 경우, 적절한 보안 수준을 유지하면서 비용을 최소화 할 수 있는 방법은 컴퓨팅 필요량에 따라 리소스가 유동적으로 가동/중단되는 시스템일 것이다. 이때 Private Cloud 의 위력이 발휘된다. 마이크로소프트가 제공하는 솔루션은 다음과 같다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Windows Power Shell
+-----------------------------------
+Dynamic Datacenter Toolkit
+-----------------------------------
+Windows Server App Fabric
+-----------------------------------
+System Center
+-----------------------------------
+Windows Server 2008 R2 with Hyper-V
+</code></pre>
+</div>
+
+<p>[스택 다이어그램] Microsoft Product for Private Cloud</p>
+
+<h2 id="section-3">클라우드가 왜 필요한가?</h2>
+
+<h3 id="for-scale">1. for SCALE</h3>
+
+<p>클라우드는 컴퓨팅 리소스의 유연한 확장과 축소를 위해 필요하다. 미리 정의된 이벤트—Traffic의 급속한 증가—가 발생하면 Windows Workflow Foundation 이 동작해서, 1 분 이내에 1 대의 서버를 11 대의 서버로 확장했다가, 다시 Traffic 이 줄어 들면 다시 Workflow 에 의해서 1 대로 줄어드는 데모는 상당히 인상적이었다.</p>
+
+<p>즉, 필요한 서비스 수준에 따라 컴퓨팅 리소스를 유연하게 사용함으로써, 서비스 비용 및 운영 비용을 최적화 할 수 있음을 의미한다.
+ </p>
+<h3 id="for-multi-tenancy">2. for Multi-Tenancy</h3>
+
+<p>다양한 서비스를 유연하게 사용하기 위해서 클라우드가 필요하다. 가령, 어떤 사용자는 Windows 가 필요한 반면, 다른 사용자는 Linux 나 CentOS 가 필요할 수도 있다. ASP.net 이 아니라, PHP 나 Java 가 필요할 수도 있다.</p>
+
+<h3 id="for-compute">3. for Compute</h3>
+
+<p>클라이언트의 요청에 대해 Master 서버가 여러 Worker 컴퓨터에게 작업을 할당하기 위해 필요할 수 있다.</p>
+
+<h3 id="for-storage">4. for Storage</h3>
+
+<p>Blobs, Tables, Relational Data 들을 효율적으로 저장하기 위해서 필요하다.</p>
+
+<h3 id="for-communiation">5. for Communiation</h3>
+
+<p>이건 위의 모든 내용을 종합한 것이 아닐까 싶다. 컴퓨팅 리소스를 사용해야 하는 지식노동자들의 가장 큰 업무가 의사소통이니까… 그게 이메일이든, 메신저든, 그 온라인 소통 매체이든…</p>
+
+<h2 id="section-4">기업내 사용자들의 ‘클라우드’ 사용 시나리오</h2>
+
+<p>사용자는 ‘위키서비스를 하려고 하는데 CPU 2 개, RAM 2GB, Linux, Apache, PHP, PostgreSQL 이 필요하다’ 와 같이 요구하기 보다는 최대 동시 사용자수 300 명, 서버응답속도 2 초 와 같이 요구한다. (이를 SLA, Service Level Agreement 라 한다)</p>
+
+<p>클라우드와 엮여서 동작하는 Application@cloud 데모로 2010 년 5 월에 발표예정인 Excel 2010 용 <a href="http://powerpivot.co.kr">PowerPivot</a> Add-in 데모는 정말 훌륭했다. 실시간 데모에서 워싱턴에 위치한 SQL 이나 DataFeed 등으로 부터 1 억 줄의 레코드를 가져와 엑셀에 표시하는데 10 초, 1 억 줄을 정렬하는데 1 초도 안 걸렸다. 속도도 속도지만, 클라우드가 뭔지도 모르는, 하지만 비즈니스 데이터를 분석해야 하는 사용자가 익숙한 엑셀 인터페이스로 쉽게 사용할 수 있는 기능들을 제공하고 있었다. PowerPivot 기능은 SharePoint 2010 에도 통합되어 있다.</p>
+
+<h2 id="section-5">보고 와서 …</h2>
+
+<p>2008 년 인가 처음 Azure 에 대한 내용을 듣고 보았다. 그때 난 사용자 입장에서 클라우드가 뭔지도 잘 몰랐다. 이번 컨퍼런스를 통해 Azure 가 클라우드를 구현하는 백엔드 솔루션 (플랫폼) 으로 많이 발전된 모습을 보고 왔다. (마이크로소프트는 소프트웨어 개발은 정말 잘 한다. 시장이나 고객에 대한 고민도 많이 한다.) 지금 난 구글을 사용하고, 윈도우라이브를 사용하고, … 사용자가 클라우드라는 용어 조차 모른다 해도, 우리에게 익숙한 서비스들은 이미 클라우드이다. 즉, 솔루션 제공자들의 솔루션 성숙도도 높아졌고, 사용자의 서비스에 대한 기대수준도 상당히 높아졌다고 볼 수 있다.</p>
+
+<p>IT 관리자라면, 마이크로소프트에서 제공하는 Opalis 란 관리용 도구를 주목할 필요가 있겠다. 서버들의 물리적인 구조를 개념적인 그림으로 표시해 주고, 프론트엔드에 장애가 발생하면, 백엔드 어떤 노드에서 문제점이 발생했는 지를 직관적으로 보여 주고, 드릴다운을 통해 문제의 원인을 쉽게 파악 할 수 있도록 해 준다. 솔루션의 편리함 뿐만 아니라, 마케팅매니저와 더 마케팅스러운 개발자가 유기적으로 진행하는 마이크로소프트의 컨퍼런스 진행과 데모 수준에도 또 한번 깜짝 놀랐다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#cloud">
+            cloud
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/making-identity-using-google-apps/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              구글앱스를 이용하여 내 웹 아이...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/java-performance-boosting-technology/">
+            <span class="pager-title">
+              Java 가속 기술
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

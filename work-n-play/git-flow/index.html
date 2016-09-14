@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="Git Flow 는 Vincent Driessen이 제안한 깃 브랜칭 전략을 실행할 수 있도록 돕는 Git 확장 프로그램이다. 이 전략은 master와 develop을 각각 배포 및 개발 브랜치로 사용하면서, feature, release, hotfix 등을 위한 임시 브랜치를 사..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Git Flow"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Git Flow">
+  <meta itemprop="description" content="Git Flow 는 Vincent Driessen이 제안한 깃 브랜칭 전략을 실행할 수 있도록 돕는 Git 확장 프로그램이다. 이 전략은 master와 develop을 각각 배포 및 개발 브랜치로 사용하면서, feature, release, hotfix 등을 위한 임시 브랜치를 사...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Git Flow" />
+  <meta name="twitter:description" content="Git Flow 는 Vincent Driessen이 제안한 깃 브랜칭 전략을 실행할 수 있도록 돕는 Git 확장 프로그램이다. 이 전략은 master와 develop을 각각 배포 및 개발 브랜치로 사용하면서, feature, release, hotfix 등을 위한 임시 브랜치를 사..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/git-flow/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Git Flow | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">Git Flow</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/git-flow/&title=Git Flow" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/git-flow/&title=Git Flow&text=Git Flow" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/git-flow/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-05-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/git-flow/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Git Flow 는 <a href="http://nvie.com/posts/a-successful-git-branching-model/">Vincent Driessen이 제안한 깃 브랜칭 전략</a>을 실행할 수 있도록 돕는 Git 확장 프로그램이다. 이 전략은 <code class="highlighter-rouge">master</code>와 <code class="highlighter-rouge">develop</code>을 각각 배포 및 개발 브랜치로 사용하면서, <code class="highlighter-rouge">feature</code>, <code class="highlighter-rouge">release</code>, <code class="highlighter-rouge">hotfix</code> 등을 위한 임시 브랜치를 사용한다.</p>
+
+<p>아래 그림은 Git을 소개하는 웹 문서나 서적에서 한번은 본 그림일 것이다. 많은 개발자들이 이 전략을 모범 사례로 인식하고, 따르고 있다는 방증이다.</p>
+
+<p><a href="http://nvie.com/img/git-model@2x.png"><img src="http://nvie.com/img/git-model@2x.png" alt="" /></a></p>
+
+<p>이 포스트는 Git Flow의 기본적인 사용법을 담고 있다. 사실 여기 수록한 내용이 전부인 듯 하다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="section">1. 설치</h2>
+
+<p>홈브루로 설치한다. 맥포트, wget/curl로 설치한다면 <a href="https://github.com/nvie/gitflow/wiki/Mac-OS-X">이 위키 문서</a>를 참고한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew install git-flow
+
+<span class="gp">$ </span>git flow version
+<span class="c"># 0.4.1</span>
+
+<span class="gp">$ </span>git flow
+<span class="c"># usage: git flow &lt;subcommand&gt;</span>
+<span class="c"># </span>
+<span class="c"># Available subcommands are:</span>
+<span class="c">#    init      Initialize a new git repo with support for the branching model.</span>
+<span class="c">#    feature   Manage your feature branches.</span>
+<span class="c">#    release   Manage your release branches.</span>
+<span class="c">#    hotfix    Manage your hotfix branches.</span>
+<span class="c">#    support   Manage your support branches.</span>
+<span class="c">#    version   Shows version information.</span>
+<span class="c"># </span>
+<span class="c"># Try 'git flow &lt;subcommand&gt; help' for details.</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">feature</code>, <code class="highlighter-rouge">release</code>, <code class="highlighter-rouge">hotfix</code>, <code class="highlighter-rouge">support</code> 등의 하위 명령이 있다.</p>
+
+<h2 id="section-1">2. 데모 프로젝트</h2>
+
+<p>데모 프로젝트를 만들고, Git 및 Git Flow를 초기화한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git init gitflow-demo <span class="o">&amp;&amp;</span> <span class="nb">cd </span>gitflow-demo
+
+~/gitflow-demo<span class="o">(</span>branch:master<span class="o">)</span> <span class="nv">$ </span>git flow init
+<span class="c"># No branches exist yet. Base branches must be created now.</span>
+<span class="c"># Branch name for production releases: [master]</span>
+<span class="c"># Branch name for "next release" development: [develop]</span>
+<span class="c"># </span>
+<span class="c"># How to name your supporting branch prefixes?</span>
+<span class="c"># Feature branches? [feature/]</span>
+<span class="c"># Release branches? [release/]</span>
+<span class="c"># Hotfix branches? [hotfix/]</span>
+<span class="c"># Support branches? [support/]</span>
+<span class="c"># Version tag prefix? []</span>
+</code></pre>
+</div>
+
+<p>Git Flow 초기화 과정에서 <code class="highlighter-rouge">master</code>와 <code class="highlighter-rouge">develop</code> 브랜치를 자동으로 만들어 준다. 그리고, <code class="highlighter-rouge">feature</code>, <code class="highlighter-rouge">release</code>, <code class="highlighter-rouge">hotfix</code>로 사용할 브랜치의 접두어 정보를 미리 설정한다. 초기화 과정을 마치면, 자동으로 <code class="highlighter-rouge">develop</code> 브랜치로 체크아웃된다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git branch
+<span class="c"># * develop</span>
+<span class="c">#   master</span>
+</code></pre>
+</div>
+
+<h2 id="feature-">3. Feature 개발</h2>
+
+<p>모든 작업은 <code class="highlighter-rouge">develop</code> 브랜치에서 시작한다. <code class="highlighter-rouge">feature start 이름</code>으로 시작하고, <code class="highlighter-rouge">feature finish 이름</code>으로 끝난다. 다른 하위 명령도 모두 마찬가지다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow feature start awesome
+<span class="c"># Switched to a new branch 'feature/awesome'</span>
+<span class="c"># </span>
+<span class="c"># Summary of actions:</span>
+<span class="c"># - A new branch 'feature/awesome' was created, based on 'develop'</span>
+<span class="c"># - You are now on branch 'feature/awesome'</span>
+<span class="c"># </span>
+<span class="c"># Now, start committing on your feature. When done, use:</span>
+<span class="c"># </span>
+<span class="c">#      git flow feature finish awesome</span>
+</code></pre>
+</div>
+
+<p>자세히 보면, <code class="highlighter-rouge">develop</code> 브랜치에서 <code class="highlighter-rouge">feature/awesome</code> 브랜치를 땄고, 새로 만든 브랜치로 이동했다. 이제 Feature를 개발하고, 평상시 처럼 커밋하면 된다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:feature/awesome<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'...'</span>
+~/gitflow-demo<span class="o">(</span>branch:feature/awesome<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'feature finished'</span>
+</code></pre>
+</div>
+
+<p>계획했던 개발이 끝나면, Git Flow로 Feature 개발을 끝낸다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo(branch:feature/awesome) $ git flow feature finish awesome
+# Summary of actions:
+# - The feature branch 'feature/awesome' was merged into 'develop'
+# - Feature branch 'feature/awesome' has been removed
+# - You are now on branch 'develop'
+</code></pre>
+</div>
+
+<p>Git Flow가 자동으로 <code class="highlighter-rouge">feature/awesome</code> 브랜치를 <code class="highlighter-rouge">develop</code> 브랜치에 머지하고, 필요 없는 브랜치는 삭제했다.</p>
+
+<h2 id="section-2">4. 릴리스</h2>
+
+<p>릴리스도 <code class="highlighter-rouge">develop</code> 브랜치에서 시작한다. 최종 결과는 <code class="highlighter-rouge">master</code> 브랜치에 적용된다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow release start 0.0.1
+<span class="c"># Switched to a new branch 'release/0.0.1'</span>
+<span class="c"># </span>
+<span class="c"># Summary of actions:</span>
+<span class="c"># - A new branch 'release/0.0.1' was created, based on 'develop'</span>
+<span class="c"># - You are now on branch 'release/0.0.1'</span>
+<span class="c"># </span>
+<span class="c"># Follow-up actions:</span>
+<span class="c"># - Bump the version number now!</span>
+<span class="c"># - Start committing last-minute fixes in preparing your release</span>
+<span class="c"># - When done, run:</span>
+<span class="c"># </span>
+<span class="c">#      git flow release finish '0.0.1'</span>
+</code></pre>
+</div>
+
+<p>Git Flow가 <code class="highlighter-rouge">develop</code> 브랜치에서 <code class="highlighter-rouge">release/0.0.1</code> 브랜치를 땄다. 이제 코드에 수정할 부분들을 수정하면 된다. 버전 번호가 하드코드도 되어 있다면 수정하고, README.md 등에 설치/사용법들을 업데이트하는 작업이 될 것이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'...'</span>
+~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'release ready'</span>
+</code></pre>
+</div>
+
+<p>이제 Git Flow로 릴리스 작업을 끝낸다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git flow release finish 0.0.1
+</code></pre>
+</div>
+
+<p>에디터가 총 세 번 뜬다.</p>
+
+<ol>
+  <li>릴리스를 <code class="highlighter-rouge">master</code> 브랜치에 머지할 때 메시지를 입력하는 에디터</li>
+  <li>릴리스의 태그를 메기는 에디터</li>
+  <li>릴리스 브랜치에서 변경된 내용을 포함해서 <code class="highlighter-rouge">develop</code> 브랜치에 머지할 때 메시지를 입력하는 에디터</li>
+</ol>
+
+<p>최종 메시지는 다음과 같다. <code class="highlighter-rouge">origin</code>의 변경사항도 가져온다는 점을 눈여겨봐야 한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Summary of actions:</span>
+<span class="c"># - Latest objects have been fetched from 'origin'</span>
+<span class="c"># - Release branch has been merged into 'master'</span>
+<span class="c"># - The release was tagged 'v0.0.1'</span>
+<span class="c"># - Release branch has been back-merged into 'develop'</span>
+<span class="c"># - Release branch 'release/0.0.1' has been deleted</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">5. 핫 픽스</h2>
+
+<p>Feature 개발과 다를 바 없다. 다만, 핫 픽스는 릴리스에 바로 반영된다는 점이 다르다. 다시 말하면, Feature 개발과 릴리스를 합쳐 놓은 동작이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow hotfix start hotfix1
+<span class="c"># Switched to a new branch 'hotfix/hotfix1'</span>
+<span class="c"># </span>
+<span class="c"># Summary of actions:</span>
+<span class="c"># - A new branch 'hotfix/hotfix1' was created, based on 'master'</span>
+<span class="c"># - You are now on branch 'hotfix/hotfix1'</span>
+<span class="c"># </span>
+<span class="c"># Follow-up actions:</span>
+<span class="c"># - Bump the version number now!</span>
+<span class="c"># - Start committing your hot fixes</span>
+<span class="c"># - When done, run:</span>
+<span class="c"># </span>
+<span class="c">#      git flow hotfix finish 'hotfix1'</span>
+</code></pre>
+</div>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'...'</span>
+~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'hotfix done'</span>
+</code></pre>
+</div>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git flow hotfix finish hotfix1
+</code></pre>
+</div>
+
+<p>역시 에디터가 세 번 뜬다. 최종 메시지는 다음과 같다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Summary of actions:</span>
+<span class="c"># - Latest objects have been fetched from 'origin'</span>
+<span class="c"># - Hotfix branch has been merged into 'master'</span>
+<span class="c"># - The hotfix was tagged 'hotfix1'</span>
+<span class="c"># - Hotfix branch has been back-merged into 'develop'</span>
+<span class="c"># - Hotfix branch 'hotfix/hotfix1' has been deleted</span>
+~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="err">$</span>
+</code></pre>
+</div>
+
+<p>모든 과정이 끝나면 자동으로 <code class="highlighter-rouge">develop</code> 브랜치로 돌아 온다.</p>
+
+<h2 id="section-4">6. 결론</h2>
+
+<p>엉뚱한 브랜치에 작업을 하고 머리를 쥐어 뜯은 적이 있다. Git Flow는 <code class="highlighter-rouge">master</code> 브랜치에서 직접 작업하는 것을 막고, <code class="highlighter-rouge">develop</code> 브랜치에서 모든 작업을 수행하도록 도와 준다. 수동으로 하려면 엄청 복잡하고, 실수하기 쉬운 작업 흐름을 Git Flow가 도와 준다. Git Flow를 이용하면 <code class="highlighter-rouge">master</code>와 <code class="highlighter-rouge">develop</code>은 깔끔하게 하나의 라인으로 로그 그래프를 뽑을 수 있다. Git 만세다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#프로젝트관리">
+            프로젝트관리
+          </a>
+          , 
+        
+          <a href="/tags#git-flow">
+            git-flow
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/learn-n-think/software-development-costs/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              소프트웨어 개발 비용
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/importance-of-service-url/">
+            <span class="pager-title">
+              서비스 URL의 중요성 및 변경...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

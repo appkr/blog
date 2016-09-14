@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.      Gitbook    GitBook is a command line tool (and Node...."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Gitbook 과 Pandoc 을 이용한 전자 출판"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Gitbook 과 Pandoc 을 이용한 전자 출판">
+  <meta itemprop="description" content="Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.      Gitbook    GitBook is a command line tool (and Node....">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Gitbook 과 Pandoc 을 이용한 전자 출판" />
+  <meta name="twitter:description" content="Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.      Gitbook    GitBook is a command line tool (and Node...." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Gitbook 과 Pandoc 을 이용한 전자 출판 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">Gitbook 과 Pandoc 을 이용한 전자 출판</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/&title=Gitbook 과 Pandoc 을 이용한 전자 출판" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/&title=Gitbook 과 Pandoc 을 이용한 전자 출판&text=Gitbook 과 Pandoc 을 이용한 전자 출판" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-23
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/GitbookIO/gitbook">Gitbook</a></p>
+
+    <p>GitBook is a command line tool (and Node.js library) for building beautiful books using GitHub/Git and Markdown</p>
+  </li>
+  <li>
+    <p><a href="http://pandoc.org/">Pandoc</a></p>
+
+    <p>If you need to convert files from one markup format into another, pandoc is your swiss-army knife.</p>
+  </li>
+</ul>
+
+<!--more-->
+
+<div class="spacer">• • •</div>
+
+<h2 id="install-gitbook">Install Gitbook</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm install gitbook-cli -g
+<span class="gp">$ </span>gitbook --version <span class="c"># 1.0.1</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">.epub</code>, <code class="highlighter-rouge">.mobi</code>, <code class="highlighter-rouge">.pdf</code> 출판을 위한 Calibre 확장 설치</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew install Caskroom/cask/calibre
+</code></pre>
+</div>
+
+<h2 id="install-pandoc">Install Pandoc</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew install pandoc
+<span class="gp">$ </span>pandoc --version <span class="c"># pandoc 1.16.0.2</span>
+</code></pre>
+</div>
+
+<div class="spacer">• • •</div>
+
+<p>필요한 도구가 모두 준비되었으니, 이제 새로운 전자출판 프로젝트를 만들고 책을 집필하자.</p>
+
+<h2 id="create-project">Create Project</h2>
+
+<p>책 본문은 <code class="highlighter-rouge">_draft</code> 디렉터리에 담는다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># -p 옵션을 주면 만드려는 디렉터리의 부모 디렉터리가 없을 때 만든다.</span>
+<span class="gp">$ </span>mkdir -p my-book/_draft <span class="o">&amp;&amp;</span> <span class="nb">cd </span>my-book
+</code></pre>
+</div>
+
+<h2 id="write-contents">Write Contents</h2>
+
+<p>Markdown 문법으로 책 본문을 쓰자. 실험 집필에서는 <code class="highlighter-rouge">_draft/chapter1.md</code>, <code class="highlighter-rouge">_draft/chapter2.md</code> 2개의 Markdown 파일을 만들었다. 책에 쓰이는 이미지 파일들은 <code class="highlighter-rouge">_draft/images</code> 에 넣었다.</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--_draft/chapter1.md--&gt;</span>
+
+<span class="gh"># An exhibit of Markdown</span>
+
+This note demonstrates some of what <span class="p">[</span><span class="nv">Markdown</span><span class="p">][</span><span class="ss">1</span><span class="p">]</span> is capable of doing.
+
+<span class="ge">*Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*</span>
+
+!<span class="err">[</span>](images/markdown_editor.png)
+
+<span class="p">[</span><span class="ss">1</span><span class="p">]:</span> <span class="sx">http://daringfireball.net/projects/markdown/</span>
+</code></pre>
+</div>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--_draft/chapter2.md--&gt;</span>
+
+<span class="gh"># An exhibit of Markdown</span>
+
+<span class="gu">## Unordered list</span>
+<span class="p">
+-</span> An item
+<span class="p">-</span> Another item<span class="p">[</span><span class="nv">^1</span><span class="p">]</span>
+<span class="p">-</span> Yet another item
+<span class="p">-</span> And there's more...
+
+<span class="p">[</span><span class="ss">^1</span><span class="p">]:</span> <span class="sx">Another</span> Item_ http://blog.appkr.kr 
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">README.md</code> 와 <code class="highlighter-rouge">SUMMARY.md</code> 2개의 파일은 Gitbook Mandatory 이므로 꼭 만들어 주어야 한다. (프로젝트 루트에 만든다.)</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--README.md--&gt;</span>
+
+<span class="gh"># My Book</span>
+
+by appkr
+</code></pre>
+</div>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--SUMMARY.md--&gt;</span>
+
+<span class="gh"># Table of Contents</span>
+<span class="p">
+-</span> <span class="p">[</span><span class="nv">Chapter 1</span><span class="p">](</span><span class="sx">_draft/chapter1.md</span><span class="p">)</span>
+<span class="p">-</span> <span class="p">[</span><span class="nv">Chapter 2</span><span class="p">](</span><span class="sx">_draft/chapter2.md</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="gitbook-serve">Gitbook Serve</h2>
+
+<p>속도가 빠르지는 않지만, Gitbook 을 이용하면 집필 중에 Markdown 컴파일 결과를 미리 확인할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gitbook serve
+</code></pre>
+</div>
+
+<p><a href="/images/2016-02-23-img-02.png"><img src="/images/2016-02-23-img-02.png" alt="Gitbook 이 생성한 정적 웹 페이지" /></a></p>
+
+<div class="spacer">• • •</div>
+
+<p>이제 시험 집필이 끝났으니, 전자책으로 빌드(출판)한다. 빌드 결과는 <code class="highlighter-rouge">_build</code> 디렉터리에 저장하는 것으로 하자.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir _build
+</code></pre>
+</div>
+
+<h2 id="gitbook-build">Gitbook Build</h2>
+
+<p>Gitbook 으로 <code class="highlighter-rouge">my-book.pdf</code>, <code class="highlighter-rouge">my-book.epub</code>, <code class="highlighter-rouge">my-book.mobi</code> 전자책을 빌드한다. Gitbook 은 <code class="highlighter-rouge">README.md</code> 및 <code class="highlighter-rouge">SUMMARY.md</code> 파일을 기준으로 동작한다. 따라서 이 파일들이 위치한 디렉터리에서 아래 명령들을 실행해야 한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># gitbook {format} {source_path} {output_path}</span>
+
+<span class="gp">$ </span>gitbook pdf ./ _build/my-book.pdf
+<span class="gp">$ </span>gitbook epub ./ _build/my-book.epub
+<span class="gp">$ </span>gitbook mobi ./ _build/my-book.mobi
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">$ gitbook build</code> 명령을 이용하면 정적 웹페이지를 빌드할 수 있다. 빌드된 웹페이지는 <code class="highlighter-rouge">_book</code> 디렉터리에 저장되는데, 웹 서버에 올리면 바로 온라인 책이 된다. 프로젝트 루트에 <code class="highlighter-rouge">.bookignore</code> 파일을 만들고, 정적 웹페이지 빌드에 제외할 파일과 디렉터리를 지정할 수 있다.</p>
+
+<h2 id="pandoc-build">Pandoc Build</h2>
+
+<p>Pandoc 으로도 Gitbook 으로 빌드한 형식의 파일들을 빌드할 수 있다. 그런데, 내가 Pandoc 을 이용하는 이유는 MS워드 형식(<code class="highlighter-rouge">.docx</code>) 때문이다. <strong>Gitbook 과 달리 Pandoc 은 빌드할 Markdown 파일이 위치한 경로를 기준으로 동작한다.</strong> 프로젝트 루트에서 Pandoc 빌드를 실행하면, 마크다운 안에 위치한 상대경로(e.g. 그림 파일)들이 모두 망가지기 때문에 주의해야 한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Change working directory</span>
+<span class="gp">$ </span><span class="nb">cd </span>_draft
+
+<span class="c"># pandoc {options} {source_files}</span>
+<span class="gp">$ </span>pandoc --smart --output<span class="o">=</span>../_build/my-book.docx <span class="se">\</span>
+          ../README.md <span class="se">\</span>
+          ../SUMMARY.md <span class="se">\</span>
+          chapter1.md <span class="se">\</span>
+          chapter2.md
+</code></pre>
+</div>
+
+<p>오오~ 멋지다.</p>
+
+<p><a href="/images/2016-02-23-img-01.png"><img src="/images/2016-02-23-img-01.png" alt="Pages 에서 오픈한 my-book.docx" /></a></p>
+
+<div class="spacer">• • •</div>
+
+<p>현재까지 작업한 프로젝트의 디렉터리 구조이다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>.
+├── .bookignore
+├── .gitignore
+├── README.md
+├── SUMMARY.md
+├── _book
+├── _build
+│   ├── my-book.docx
+│   ├── my-book.epub
+│   ├── my-book.mobi
+│   └── my-book.pdf
+└── _draft
+    ├── chapter1.md
+    ├── chapter2.md
+    └── images
+</code></pre>
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Gitbook 은 웹 서버에 바로 올릴 수 있는 정적 HTML 페이지를 생성해 준다. 책 전체 색인, 좌우 스크롤/화살표 네비게이션 뿐 아니라, 검색, 배경색 변경, 글꼴 크기, SNS 공유 등의 부가 기능도 제공하는 꽤 쓸만한 웹 페이지 이다. 그리고, Gitbook 으로 빌드한 전자책의 짜임새가 Pandoc 보다 조금 더 낫다.</p>
+
+<p>Pandoc 은 Markdown 으로 집필한 책을 MS워드 형식으로 변환해 준다. (Pandoc 은 훨씬 더 많은 일을 할 수 있지만, 나는 이 목적으로만 쓴다.) 출판 업계가 교정 및 편집을 위해 MS워드를 표준으로 사용하고 있다는 점 때문에, Pandoc 의 가치는 더 빛난다.</p>
+
+<p>어쨌든 3시간 남짓의 실험으로 Markdown 형식으로 쓴 책을 <code class="highlighter-rouge">.epub</code>, <code class="highlighter-rouge">.mobi</code>, <code class="highlighter-rouge">.pdf</code>, <code class="highlighter-rouge">.docx</code> 뿐 아니라, 웹으로도 출판할 수 있는 도구를 얻었다. 예제 프로젝트는 이 <a href="https://github.com/appkr/book-writing-kit">Github Repo</a> 에서 받을 수 있다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/learn-n-think/epilog-on-volunteer-work-for-open-tutorials/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              생활코딩 작심5일 후기
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/super-fast-debug-deploy/">
+            <span class="pager-title">
+              엄청나게 빠른 버그 감지, 디버...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

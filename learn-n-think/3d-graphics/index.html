@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="3D Graphics 101일반적으로 3D 그래픽스의 처리과정은 크게  응용프로그램 단계 (application stage)  지오메트리 단계 (geometry stage)  래스터라이제이션 단계 (rasterization stage)의 세 단계로 구분된다."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="3D graphics 기술에 대한 이해"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="3D graphics 기술에 대한 이해">
+  <meta itemprop="description" content="3D Graphics 101일반적으로 3D 그래픽스의 처리과정은 크게  응용프로그램 단계 (application stage)  지오메트리 단계 (geometry stage)  래스터라이제이션 단계 (rasterization stage)의 세 단계로 구분된다.">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="3D graphics 기술에 대한 이해" />
+  <meta name="twitter:description" content="3D Graphics 101일반적으로 3D 그래픽스의 처리과정은 크게  응용프로그램 단계 (application stage)  지오메트리 단계 (geometry stage)  래스터라이제이션 단계 (rasterization stage)의 세 단계로 구분된다." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/learn-n-think/3d-graphics/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>3D graphics 기술에 대한 이해 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">3D graphics 기술에 대한 이해</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/learn-n-think/3d-graphics/&title=3D graphics 기술에 대한 이해" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/learn-n-think/3d-graphics/&title=3D graphics 기술에 대한 이해&text=3D graphics 기술에 대한 이해" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/learn-n-think/3d-graphics/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/3d-graphics/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <h2 id="d-graphics-101">3D Graphics 101</h2>
+
+<p>일반적으로 3D 그래픽스의 처리과정은 크게</p>
+
+<ul>
+  <li>응용프로그램 단계 (application stage)</li>
+  <li>지오메트리 단계 (geometry stage)</li>
+  <li>래스터라이제이션 단계 (rasterization stage)</li>
+</ul>
+
+<p>의 세 단계로 구분된다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<p>[그림 1 유실] 3D 그래픽스 처리 과정</p>
+
+<p>[그림 1] 은 3D 그래픽스 처리과정을 간략하게 보여주고 있다.</p>
+
+<p>응용프로그램 단계는 CPU에서 수행되며 사용자 입력 처리와 3D 오브젝트간 충돌 등과 같은 물리적 연산을 담당한다.</p>
+
+<p>지오메트리 단계에 버텍스(vertex) 데이터를 제공하는 역할을 한다. 버텍스는 3D 오브젝트를 이루고 있는 프리미티브, 즉 점 그 자체, 선의 양 끝점, 삼각형 또는 다각형의 꼭지점이다. 버텍스 데이터는 버텍스 좌표, 색깔, 텍스처 좌표, 법선 벡터 등을 포함한다. 지오메트리 단계에서는 응용프로그램 단계로부터 입력된 각각의 버텍스에 대해 지오메트리 변환(transformation) 연산과 광원에 의한 색깔 값이 계산된다. 변환 연산은 변환 행렬과 버텍스 벡터의 곱셈에 해당하며 빛에 대한 계산은 광원의 특성에 따라 연산이 달라진다.</p>
+
+<p>그 다음, 버텍스는 프리미티브 단위로 묶인 뒤 내부를 채우고 있는 각 픽셀의 색을 결정하기 위해 래스터라이제이션 단계로 보내지게 된다. 마지막 단계인 래스터라이제이션 단계에서는 미리 로딩되어 있는 텍스처 이미지를 외부 메모리로부터 읽어와 텍스처 매핑(texture mapping)을 하고 안개 효과(fog effect), 투명도(alpha) 반영 등의 나머지 픽셀별 연산을 통해 각 픽셀의 색깔 값을 결정하여 최종 결과를 프레임 버퍼(frame buffer)에 저장한다.</p>
+
+<p><strong><code class="highlighter-rouge">참고</code></strong> 보통은 전류소모를 최소화 하기 위해서 Frame Buffer를 GPU에 내장한다. (GPU 안에 Memory Controller가 있음을 의미함)</p>
+
+<!--more-->
+
+<h2 id="gpu">GPU</h2>
+
+<p>과거에는 앞서 살펴본 모든 단계를 CPU에서 처리하였으나 특화된 하드웨어를 통해 지오메트리 단계 또는 래스터라이제이션 단계를 가속시킴으로써 CPU의 부담을 덜어주고 3D 그래픽스 연산이 갖는 병렬처리가 가능한 특성을 살려 렌더링 성능을 높이기 위해 GPU가 등장하였다. GPU의 발전과정을 살펴보면 GPU를 구성하는 내부 하드웨어 구조의 변화, CPU와 GPU간의 데이터 전달을 위한 버스 성능의 개선에 따라 다음과 같이 크게 3세대로 구분할 수 있다</p>
+
+<h3 id="gpu-1">1세대 : 래스터라이제이션 단계를 가속하던 GPU</h3>
+
+<p>1990년대 중반에 등장한 초기의 GPU는 3D 그래픽스 래스터라이제이션 단계만을 가속할 수 있는 간단한 구조를 가지고 있었다. 비교적 적은 연산으로 3D 오브젝트에 사실감을 더하기 위해 그림이나 사진을 덧씌우는 텍스처 매핑이 가능했으며 GPU가 발전하면서 멀티-텍스처링(multi-texturing)이 가능해져 한 오브젝트에 매핑 가능한 텍스처의 수가 점점 늘어났다. 이 시기의 GPU와 CPU와의 통신에는 전통적인 방식의 PCI가 사용되었다.</p>
+
+<h3 id="gpu-2">2세대 : 지오메트리 연산이 가능한 고정된 기능의 GPU</h3>
+
+<p>1990년대 후반에 등장하여 2000년대 초반까지 많이 사용되었던 GPU는 지오메트리 단계를 포함한 전체 3D 그래픽스 연산이 하드웨어로 가속되는 형태를 갖추었다. 지오메트리 단계는 3D 모델의 버텍스 변환과 빛에 대한 연산을 포함했다. 3D 모델은 고정된 기능의 하드웨어를 통해 짧은 시간 안에 렌더링되었고 멀티텍스처링 수는 보다 늘어났다. 따라서, CPU-GPU간의 데이터 전송을 위해 필요한 대역폭(bandwidth)은 급격히 늘어났다. AGP는 이러한 문제를 해결하기 위해 고안되어 사용되었다.</p>
+
+<h3 id="gpu-3">3세대 : 프로그램이 가능한 GPU</h3>
+
+<p>2000년대 초반에는 래스터라이제이션 단계에 프로그램 가능한 그래픽용 프로세서인 픽셀 셰이더(pixel shader)가 포함되었으며 얼마 지나지 않아 지오메트리 단계도 버텍스 셰이더(vertex shader)를 포함하게 되었다. 이로써, 이전의 고정된 형태의 GPU가 갖던 표현의 한계를 극복하여 게임 제작자 또는 3D 콘텐츠 개발자의 의도대로 보다 실제에 가까운 표현이 가능하게 되었다. 이러한 형태의 GPU는 현재 가장 보편적으로 사용되고 있으며 CPU와의 보다 빠른 통신을 위해 AGP 방식에서 벗어나 PCI Express를 사용한다. 초기의 셰이더는 어셈블리어 형태의 저수준 언어로 프로그램 되었지만 최근에는 Cg, HLSL, GLSL 등과 같이 C언어와 유사한 상위 수준의 셰이딩 언어(shading language)가 개발되어 셰이더 프로그램의 작성이 용이해졌다.</p>
+
+<p>PC, 워크스테이션, 게임콘솔 등에 사용되는 GPU기술은 성능을 극대화시키기 위해 각 단계의 연산이 동시에 처리가 가능한 그래픽의 특성을 이용하여 끊임없이 하드웨어 면적을 넓혀가고 있다. 또한, 버텍스 및 픽셀 셰이더의 프로그램능력(programmability)을 극대화하여 표현의 한계를 허물고 있다. 이들 셰이더는 복잡한 소수점 연산에 대해 범용 CPU의 성능을 능가하는데다 프로그램능력의 향상으로 과학적 시뮬레이션 등 다른 분야에의 활용 가치도 높다. 가장 최근에는 응용프로그램의 특성에 따라 연산량이 버텍스 셰이더 또는 픽셀 셰이더 어느 한쪽에 집중되는 단점을 극복하고 하드웨어 사용의 효율성을 극대화시키기 위해 기능이 통합된 통합 셰이더(unified shader)를 GPU에 내장하는 움직임도 일고 있다.</p>
+
+<h2 id="d----api">3D 그래픽스 가속을 위한 API</h2>
+
+<h3 id="opengl">OpenGL</h3>
+
+<p>OpenGL은 Open Graphics Library의 약자로 1990년 SGI에 의해 고안된 3D 그래픽스 하드웨어를 위한 소프트웨어 인터페이스로써, 3D 그래픽스 응용프로그램을 만들기 위한 API이다. OpenGL은 로열티가 없는 공개 표준으로 하드웨어 제작자와 이를 이용하는 응용프로그램 개발자가 서로 독립적으로 일하는 것을 가능하게 한다. 개발 초기부터 Sun, DEC, SGI 등의 다양한 플랫폼에서 Windows95, X Windows, Windows NT, OS/2 등 다양한 운영 시스템에 이식되어 성능이 검증된 OpenGL은 최근 크로노스 그룹의 일부가 된 OpenGL ARB 워킹 그룹에 의해 제정과 관리가 이루어지고 있다. OpenGL은 주로 데스크톱 PC나 워크스테이션에서 사용된다.</p>
+
+<p>OpenGL은 GPU의 발전과 밀접하게 관련이 있어 초기에는 고정된 기능의 파이프라인 형태를 유지하다가 프로그램 가능한 파이프라인의 형태를 갖추게 되었다. OpenGL 1.0, 1.1, 1.2, 1.3, 1.4, 1.5는 고정된 기능의 파이프라인에 해당하며 상위 버전으로 갈수록 기능이 추가되었고 1.5 버전 이후로는 고정된 파이프라인을 갖는 버전은 만들어지고 있지 않다. 반면 OpenGL 2.0과 최근에 발표된 2.1 버전은 버텍스 프로세서와 프래그먼트 프로세서를 갖는 프로그램 가능한 파이프라인을 갖는다. 이들 프로세서를 프로그래밍 하기 위한 GLSL도 함께 발표되고 있다. OpenGL 2.x는 프로그램 가능하도록 파이프라인에 큰 변화를 주었지만 앞선 버전들에 대한 호환성을 유지하고 있다. 다시 말해 1.x에서 실행되던 응용프로그램이 2.x에서 수정 없이 실행된다. 한편, OpenGL ARB는 가장 최근에 OpenGL 3.0에 대해 공식적으로 발표하였으며 사양서는 최종 승인단계를 거쳐 배포될 예정이다.
+ </p>
+<h3 id="opengl-es">OpenGL ES</h3>
+
+<p>OpenGL ES는 3D 그래픽을 지원하는 내장 시스템(embedded system)을 위한 API로 크로노스 그룹에 의해 제정과 관리가 이루어지고 있다. OpenGL ES는 OpenGL과 마찬가지로 로열티가 없는 공개 표준이며, OpenGL의 부분집합으로 구성된 프로파일이다. OpenGL ES는 소프트웨어와 GPU간의 유연하면서도 강력한 저 수준의 인터페이스를 제공하는 한편 메모리가 작은 환경과 저전력이 요구되는 환경에 적합하여 주요 모바일 및 내장 시스템 플랫폼 환경에서 3D 게임과 다양한 고급 3D 그래픽 기능을 제공하는 데 기여하고 있다. OpenGL ES는 OpenGL을 기반으로 하고 있으므로 특별히 새로운기술을 배울 필요 없이 응용프로그램 개발의 시너지효과를 기대할 수 있다.</p>
+
+<p>OpenGL ES 1.1은 고정된 파이프라인을 갖고 있으며 1.0과 완전한 호환이 가능하다. 반면에 2.0은 프로그램 가능, 즉 버텍스 및 프래그먼트 프로세서를 포함하며 1.x와의 완벽한 호환을 지원하지 않는다. OpenGL이 고정된 기능의 파이프라인을 갖는 버전을 더 이상 제정하고 있지 않는 것과 달리 OpenGL ES는 1.x와 2.x가 각각 성능 개선을 위한 개정이 진행 중에 있다.</p>
+
+<h3 id="directx-direct3d">DirectX Direct3D</h3>
+
+<p>우리가 잘 아는 마이크로소프트사의 DirectX는 Windows 운영체제 기반 컴퓨터를 멀티미디어 응용프로그램을 위한 이상적인 플랫폼으로 만들기 위해 기술된 기술 모음으로써, DirectX를 사용하면 2D 그래픽, 비디오, 3D 그래픽, 오디오 등 다양한 멀티미디어 구성요소를 이용하여 응용프로그램을 개발할 수 있다. 이 가운데 Direct3D는 DirectX 중에서 가장 큰 부분을 차지하며 활발한 개정이 이루어지고 있다. Direct3D는 가장 보편적으로 많은 게임 개발업체들이 지원하는 API이다. Direct3D 역시 GPU의 발전 과정과 밀접하게 연관되어 있는데, 최근에는 Direct3D의 다음 버전이 발표되면 하드웨어 제작사들은 이를 지원하는 GPU를 경쟁적으로 내놓고 있는 추세이다. GPU가 나오기 시작하던 초기에는 OpenGL의 사용만이 3D 그래픽스 응용프로그램을 개발하기 위한 유일한 효율적인 방법이었지만 DirectX의 초기 버전이 발표되고 빠른 속도로 새로운 기법들을 추가해감으로써 인기를 얻기 시작하였다. 대부분의 사용자들이 Windows 운영체제를 사용하고, 따라서 PC용 3D 게임 역시 대부분 Windows를 위해 개발되기 때문에 DirectX의 입지는 더욱 굳건해지고 있다.</p>
+
+<p>Direct3D와 OpenGL은 완전히 일치하지는 않지만 적어도 비슷한 기능을 지원하는 API들이 많으며 한 쪽에서 가능한 일은 대부분 다른 쪽에서도 가능하다. Direct3D는 새 버전을 발표하면서 꾸준히 새로운 버전의 ‘셰이더 모델’을 발표하고 있다. 셰이더 모델은 버텍스 셰이더, 픽셀 셰이더 등을 프로그래머 입장에서 바라본 모델로 입출력 레지스터, 사용 가능한 명령어 등을 정의한다. 현재 최신의 DirectX 10에서는 기존의 버텍스 셰이더와 픽셀 셰이더 이외에 새롭게 지오메트리 셰이더가 추가된 ‘셰이더 모델 4.0’을 지원하도록 하고 있다.</p>
+
+<h3 id="direct3d-mobile">Direct3D Mobile</h3>
+
+<p>모바일 기기를 위한 마이크로소프트의 운영체제인 Windows Mobile 5.0에서 Direct3D Mobile을 사용하여 3D 그래픽 응용프로그램을 작성할 수 있다. Direct3D Mobile은 Direct3D 8에 가장 근접하며 Direct3D 9버전의 일부 요소도 포함하고 있다. Direct3D Mobile은 데스크톱용 버전들보다 작은 런타임을 갖도록 간단하게 설계되어 있다. OpenGL ES가 그러하듯, Direct3D Mobile 역시 데스크톱 버전에서 필수적인 부분만을 모아 놓은 프로파일이라 할 수 있다. 그러나, Direct3D Mobile에서는 아직 버텍스 및 픽셀 셰이더를 지원하지는 않고 있다.</p>
+
+<h3 id="khronos-group-----api">Khronos Group의 멀티미디어 가속을 위한 표준 API</h3>
+
+<p>[그림 유실] Khronos Group의 표준 API</p>
+
+<p>Direct-X와 같이 Audio, Video, 3D를 합쳐 OpenKODE라는 표준 API Set를 제공한다. 우리가 흔히 사용하는 Flash나 Webpage들의 Vector Font/Graphic 등은 OpenVG 위에서 동작한다.</p>
+
+<p>OpenGL ES가 주로 Perspective/Lighting에 우수한 반면, OpenVG는 선명한 Shape/Color등을 위해서 사용한다.</p>
+
+<p>[그림 유실] OpenGL ES와 OpenVG
+ </p>
+<h2 id="d-">3D 성능</h2>
+
+<ul>
+  <li>3D 성능은 보통 Poligon/Sec과 Pixel/Sec로 표시한다. Poligon은 초당 몇 개의 다각형을 그릴 수 있는 지의 성능을 표시하며, Pixel은 그려진 다각형에 초당 몇 Pixel을 채울 수 있는 지를 표현한다.</li>
+  <li>Pipe의 갯수, Shader GFLOPS, Shader Integer GOPs 등의 기준을 추가로 쓰기도 한다.</li>
+</ul>
+
+<h2 id="section">참고문헌</h2>
+
+<ul>
+  <li>전자통신동향분석 제 22권 제 5호 2007년 10월, “3D 그래픽스 가속 하드웨어 기술”</li>
+  <li>Wikipedia</li>
+</ul>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#3d">
+            3d
+          </a>
+          , 
+        
+          <a href="/tags#opengl">
+            opengl
+          </a>
+          , 
+        
+          <a href="/tags#openvg">
+            openvg
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/learn-n-think/what-is-follow-up/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              Follow Up 이란?
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/around-me/flash-video/">
+            <span class="pager-title">
+              Flash Video
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

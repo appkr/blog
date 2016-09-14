@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 ‘도커’라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 A..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="도커를 이용한 분산 서비스 아키텍처 맛보기"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="도커를 이용한 분산 서비스 아키텍처 맛보기">
+  <meta itemprop="description" content="같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 ‘도커’라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 A...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="도커를 이용한 분산 서비스 아키텍처 맛보기" />
+  <meta name="twitter:description" content="같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 ‘도커’라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 A..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/dockerize/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>도커를 이용한 분산 서비스 아키텍처 맛보기 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">도커를 이용한 분산 서비스 아키텍처 맛보기</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/dockerize/&title=도커를 이용한 분산 서비스 아키텍처 맛보기" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/dockerize/&title=도커를 이용한 분산 서비스 아키텍처 맛보기&text=도커를 이용한 분산 서비스 아키텍처 맛보기" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/dockerize/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-07-11
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/dockerize/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 ‘도커’라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 AWS에서 도커를 지원한다는 소식을 접했고, 도커 자체적으로도 Swarm이란 컨테이너 배포 툴 프로젝트를 공개함으로써, 운영 환경에 바로 쓸 수 있는 도구로 재인식됐다. IoT, 마이크로 프레임워크, 마이크로 서비스 등 시대적 흐름과도 잘 부합하는 도구라 생각한다.</p>
+
+<p>이 포스트는 <em>‘맛보기’</em>다. 아래 목록은 구글링으로 쉽게 찾을 수 있어 이 포스트에서는 다루지 않는다. 도커를 경험해보지 않은 독자가 복붙(copy &amp; paste) 만으로 포스트를 따라해 보고 스스로 도커의 유용성을 경험하도록하는 것이 이 포스트의 목적이다.</p>
+
+<p>도커를 몰라도 된다. 라라벨을 몰라도 된다. 무작정 따라해 보면 된다. 중간에 중간에 각 명령에 대해 간략히만 설명을 추가했다.</p>
+
+<ul>
+  <li><del>도커란 무엇인가? 왜 써야 하는가?</del></li>
+  <li><del>Dockerfile 작성법</del></li>
+  <li><del>docker-compose.yml 작성법</del></li>
+</ul>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<p>이하 명령들은 모두 Mac OS 기준이다.</p>
+
+<h2 id="section">1. 도커 툴체인 설치</h2>
+
+<p><a href="http://brew.sh/">홈브루-The missing package manager for OS X</a>는 Mac OS 필수 바이너리다. 없다면 링크를 눌러 설치한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Cask는 Mac Os용 애플리케이션을 설치하기 위한 홈브루 탭(사설 저장소)이다.</span>
+<span class="gp">$ </span>brew tap caskroom/cask
+<span class="gp">$ </span>brew cask install dockertoolbox --appdir<span class="o">=</span>/Applications
+<span class="gp">$ </span>docker --version
+<span class="c"># Docker version 1.11.1, build 5604cbe</span>
+</code></pre>
+</div>
+
+<h2 id="host-vm-">2. Host VM 만들기</h2>
+
+<p>도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다(VMWare등을 사용해도 된다, <code class="highlighter-rouge">docker-machine create --driver vmwarefusion default</code>).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 홈브루에 Cask 탭을 추가한적이 없다면</span>
+<span class="gp">$ </span>brew tap caskroom/cask
+
+<span class="c"># 버추얼박스 설치</span>
+<span class="gp">$ </span>brew cask install virtualbox --appdir<span class="o">=</span>/Applications
+
+<span class="c"># 호스트로 사용할 VM 만들기</span>
+<span class="gp">$ </span>docker-machine create --driver virtualbox default
+</code></pre>
+</div>
+
+<p>우리가 만든 VM의 이름은 <code class="highlighter-rouge">default</code>다. 다른 이름을 쓴다면, <code class="highlighter-rouge">docker-machine</code> 명령을 이용할 때마다 VM 이름을 명시해야 한다(e.g. <code class="highlighter-rouge">$ docker-machine ip foo</code>).</p>
+
+<p>새로 만든 VM을 구동하고, IP를 확인한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker-machine start
+<span class="gp">$ </span>docker-machine ip
+<span class="c"># 192.168.99.100</span>
+</code></pre>
+</div>
+
+<p>[선택 사항] Mac OS의 hosts 파일을 수정해서, 개발 중에 사용할 도메인 <code class="highlighter-rouge">quickstart.app</code>을 등록한다. 이 과정을 건너뛰면, Mac OS에서 도커 호스트/컨테이너에 접속할 때 192.168.99.100 IP를 쓰면 된다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># /etc/hosts</span>
+
+192.168.99.100  quickstart.app
+</code></pre>
+</div>
+
+<h2 id="section-1">3. 프로젝트 복제</h2>
+
+<p>맛보기를 위해 필자가 만들어 놓은 라라벨 프로젝트를 <code class="highlighter-rouge">~/quickstart</code> 디렉터리로 복제한다. 이 프로젝트는 <a href="https://github.com/laravel/quickstart-intermediate">라라벨의 Quickstart 프로젝트(이하 ‘라라벨 프로젝트’로 칭함)</a>를 포크한 후, 도커 컨테이너 프로젝트를 깃 서브 모듈로 추가하고, 환경 변수를 약간 수정한 것이다. 오리지널 프로젝트 대비 변경 내역은 <a href="https://github.com/appkr/quickstart-intermediate/commits/master">커밋 로그</a>를 참조하라.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git clone git@github.com:appkr/quickstart-intermediate.git quickstart
+</code></pre>
+</div>
+
+<p>컴포저로 라라벨 프로젝트가 의존성하는 컴포넌트들을 설치한다(<strong>처음 한번은 꽤 시간이 걸린다</strong>).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 컴포저가 없다면... 컴포저는 PHP의 표준 의존성 관리자다(like maven, bundler, pip, ...).</span>
+<span class="gp">$ </span>brew tap homebrew/php
+<span class="gp">$ </span>brew install composer
+<span class="gp">$ </span>composer --version
+<span class="c"># Composer version 1.1.3 2016-06-26 15:42:08</span>
+
+<span class="c"># 의존성 설치</span>
+<span class="gp">$ </span><span class="nb">cd </span>quickstart
+~/quickstart <span class="nv">$ </span>composer install
+</code></pre>
+</div>
+
+<p>도커 컨테이너 프로젝트도 설치한다. 컨테이너 프로젝트는 <a href="https://github.com/LaraDock/laradock">Laradock(이하 ‘컨테이너 프로젝트’로 칭함)</a>을 포크해서 필자가 수정한 것이다. 스케일 아웃을 위해, HAProxy 로드 밸런서 컨테이너(<code class="highlighter-rouge">lb</code>)를 추가하고, Nginx+PHP-FPM+Supervisor를 묶은 웹 및 애플리케이션 서버 컨테이너(<code class="highlighter-rouge">web</code>)을 추가한 것이다. 오리지널 프로젝트 대비 상세 변경 내역은 <a href="https://github.com/appkr/laradock/commits/develop"><code class="highlighter-rouge">develop</code> 브랜치의 커밋 로그</a>를 참고하라.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/quickstart <span class="nv">$ </span>git submodule init <span class="o">&amp;&amp;</span> git submodule update 
+</code></pre>
+</div>
+
+<p>도커 컨테이너 프로젝트의 디렉터리 구조를 간단히 살펴보자. 라라벨 프로젝트(<code class="highlighter-rouge">.</code>) 안에 도커 컨테이너 프로젝트(<code class="highlighter-rouge">./laradock</code>)가 포함된 구조다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>.
+├── app
+├── <span class="c"># ...</span>
+├── laradock
+│   ├── application         <span class="c"># 라라벨 프로젝트를 담고 있는 컨테이너</span>
+│   ├── beanstalkd          <span class="c"># Beanstalk 큐 워커 컨테이너</span>
+│   ├── beanstalkd-console  
+│   ├── data                <span class="c"># 데이터베이스의 데이터 파일을 담고 있는 컨테이너</span>
+│   │                       <span class="c"># 컨테이너가 사라져도 데이터는 영속성을 유지해야 하므로</span>
+│   │                       <span class="c"># 운영 환경 적용시에는 호스트 OS의 파일시스템을 마운트해서 사용해야 한다.</span>
+│   ├── docker-compose.yml  <span class="c"># 도커 컨테이너간의 오케이스트레이션 설정 파일</span>
+│   │                       <span class="c"># 분산 환경을 편리하게 구성하기 위해 핵심적인 파일이다.</span>
+│   ├── lb                  <span class="c"># HAProxy 로드 밸런서 컨테이너</span>
+│   ├── logs                <span class="c"># 도커를 실행한 후 생성되고 Mac OS와 공유되는 디렉터리</span>
+│   │   ├── nginx
+│   │   │   └── error.log       <span class="c"># Nginx 오류 로그</span>
+│   │   └── supervisor
+│   │       └── supervisord.log <span class="c"># Supervisor 실행 로그</span>
+│   ├── mariadb             <span class="c"># MariaDB 데이터베이스 컨테이너</span>
+│   ├── memcached           <span class="c"># Memcache 데이터베이스 컨테이너</span>
+│   ├── mysql               <span class="c"># MySQL 데이터베이스 컨테이너</span>
+│   ├── neo4j               <span class="c"># Neo4J 데이터베이스 컨테이너</span>
+│   ├── nginx               <span class="c"># Nginx 웹 서버 컨테이너. 우리 예제에서 사용하지 않음.</span>
+│   ├── php-fpm             <span class="c"># PHP-FPM FastCGI 컨테이너. 우리 예제에서 사용하지 않음.</span>
+│   ├── postgres            <span class="c"># Postgres 데이터베이스 컨테이너</span>
+│   ├── redis               <span class="c"># Redis 데이터베이스 컨테이너</span>
+│   ├── web                 <span class="c"># 웹 및 애플리케이션 서버 컨테이너(Nginx+PHP-FPM+Supervisord)</span>
+│   └── workspace           <span class="c"># 도커 컨테이너로 구동되는 라라벨 프로젝트에 셸로 접근하기 위한 컨테이너</span>
+│                           <span class="c"># Bash, Git, Composer, NPM 등의 도구 사용 가능  </span>
+├── <span class="c"># ...</span>
+└── tests
+</code></pre>
+</div>
+
+<h2 id="section-2">4. 도커 컨테이너 구동</h2>
+
+<p>로드 밸런서, 웹 및 애플리케이션 서버, MySQL, 레디스를 구동할 것이다.</p>
+
+<p>구동하기 전에 라라벨 프로젝트의 환경 설정을 변경한다(코드 에디터에서 라라벨 프로젝트의 <code class="highlighter-rouge">.env</code> 파일을 열어 수정하고 저장하라는 의미).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># .env</span>
+
+<span class="nv">DB_HOST</span><span class="o">=</span>192.168.99.100
+<span class="nv">CACHE_DRIVER</span><span class="o">=</span>redis
+<span class="nv">SESSION_DRIVER</span><span class="o">=</span>redis
+<span class="nv">REDIS_HOST</span><span class="o">=</span>192.168.99.100
+</code></pre>
+</div>
+
+<p>위 설정은 다음을 의미한다. 라라벨 프로젝트는 192.168.99.100에 위치한 MySQL 서버에 데이터를 저장한다. 라라벨의 캐시와 세션은 192.168.99.100에 있는 레디스 서버에 저장한다.</p>
+
+<p>구동해 보자. <strong>처음 한번은 필요한 이미지를 다운로드 받아 프로비저닝하기 때문에 10분 이상이 걸린다.</strong> 다음 번 구동할 때는 5초도 걸리지 않을 것이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/quickstart <span class="nv">$ </span><span class="nb">cd </span>laradock
+
+<span class="c"># VM의 IP를 포함한 환경변수를 현재 셸에 적용한다.</span>
+~/quickstart/laradock <span class="nv">$ </span><span class="nb">eval</span> <span class="k">$(</span>docker-machine env<span class="k">)</span>
+
+<span class="c"># lb, web, mysql, redis 컨테이너를 구동한다.</span>
+~/quickstart/laradock <span class="nv">$ </span>docker-compose up -d lb web mysql redis 
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">docker-compose</code> 명령은 <code class="highlighter-rouge">docker-compose.yml</code> 파일이 있는 위치에서 실행해야 한다. 이 파일은 도커를 이용한 분산 서비스 환경 구성을 위해 핵심적인 설정들을 담고 있다. 가령, 컨테이너간의 의존성, 마운트할 볼륨 등의 설정 말이다.</p>
+
+<p>컨테이너 실행은 <code class="highlighter-rouge">up</code> 서브 명령으로 할 수 있으며, 구동할 컨테이너 이름을 명령의 인자로 제시해야 한다. <code class="highlighter-rouge">-d</code> 옵션을 이용하면 격리 모드(데몬 모드라 생각하면 됨)로 실행할 수 있다.</p>
+
+<p><code class="highlighter-rouge">ps</code> 서브 명령으로 구동 상태를 확인할 수 있다(Command 열은 삭제했다).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/quickstart/laradock <span class="nv">$ </span>docker-compose ps
+<span class="c">#          Name            State           Ports</span>
+<span class="c"># -------------------------------------------------------------</span>
+<span class="c"># laradock_application_1   Exit 0</span>
+<span class="c"># laradock_data_1          Exit 0</span>
+<span class="c"># laradock_lb_1            Up       1936/tcp, </span>
+<span class="c">#                                   0.0.0.0:443-&gt;443/tcp, </span>
+<span class="c">#                                   0.0.0.0:80-&gt;80/tcp</span>
+<span class="c"># laradock_mysql_1         Up       0.0.0.0:3306-&gt;3306/tcp</span>
+<span class="c"># laradock_redis_1         Up       0.0.0.0:6379-&gt;6379/tcp</span>
+<span class="c"># laradock_web_1           Up       443/tcp, 80/tcp, 9000/tcp</span>
+<span class="c"># laradock_workspace_1     Up</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">application</code>과 <code class="highlighter-rouge">data</code> 컨테이너는 단순 볼륨이기 때문에 <code class="highlighter-rouge">Exit 0</code>으로 출력된다. 포트 열을 보면 <code class="highlighter-rouge">lb</code> 컨테이너는 80과 443 포트가 열려 있고, 이를 다시 80, 443 내부 포트로 연결하는 것을 볼 수 있다. <code class="highlighter-rouge">web</code> 역시 80과 443 포트를 열고, <code class="highlighter-rouge">lb</code>에서 넘겨주는 작업을 받을 준비를 하고 있다. MySQL과 레디스는 외부에서도 접근할 수 있도록 각자의 포트를 열고 있다.</p>
+
+<p>이대로 실험해도 되지만… 이제 웹 및 애플리케이션 서버를 스케일 아웃할 것이다. <code class="highlighter-rouge">scale</code> 서브 명령을 이용하고, 컨테이너 이름과 복제할 인스턴스 개수를 명령 인자로 넘긴다. <code class="highlighter-rouge">scale</code> 명령은 <code class="highlighter-rouge">up</code> 명령을 실행하기 전에 해도 된다. 처음부터 n개의 인스턴스를 만들 것이냐, 하나만 시작했다가 중간에 인스턴스를 늘릴 것이냐의 차이다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/quickstart/laradock <span class="nv">$ </span>docker-compose scale <span class="nv">web</span><span class="o">=</span>3
+<span class="c"># Creating and starting laradock_web_2 ... done</span>
+<span class="c"># Creating and starting laradock_web_3 ... done</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">5. 실험</h2>
+
+<p><code class="highlighter-rouge">workspace</code> 컨테이너로 로그인해서 데이터베이스 스키마를  마이그레이션 한다. <code class="highlighter-rouge">artisan tinker</code> REPL로 데이터베이스와 캐시가 정상 작동하는지도 확인해 본다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># 컨테이너에 로그인</span>
+~/quickstart/laradock <span class="nv">$ </span>docker-compose run web bash
+
+<span class="c"># 데이터베이스 마이그레이션 (like $ bundle exec rake db:migrate)</span>
+<span class="gp">root@dca220f5e753:/var/www/laravel# </span>php artisan migrate
+
+<span class="c"># 데이터베이스 동작 확인 (like $ rails console)</span>
+<span class="gp">root@dca220f5e753:/var/www/laravel# </span>php artisan tinker
+<span class="gp">&gt;&gt;&gt; </span>factory<span class="o">(</span><span class="s1">'App\User'</span><span class="o">)</span>-&gt;create<span class="o">()</span>;
+<span class="gp">&gt;&gt;&gt; </span>App<span class="se">\U</span>ser::first<span class="o">()</span>;
+<span class="c"># =&gt; App\User {#686</span>
+<span class="c">#      id: 1,</span>
+<span class="c">#      name: "Lottie Huels",</span>
+<span class="c">#      email: "rylan21@example.net",</span>
+<span class="c">#      created_at: "2016-07-11 06:13:03",</span>
+<span class="c">#      updated_at: "2016-07-11 06:14:08",</span>
+<span class="c">#    }</span>
+
+<span class="c"># 캐시 동작 확인</span>
+<span class="gp">&gt;&gt;&gt; </span>Cache::put<span class="o">(</span><span class="s1">'foo'</span>, <span class="s1">'bar'</span>, 10<span class="o">)</span>;
+<span class="c"># =&gt; null</span>
+<span class="gp">&gt;&gt;&gt; </span>Cache::get<span class="o">(</span><span class="s1">'foo'</span><span class="o">)</span>;
+<span class="c"># =&gt; "bar"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">exit</span>
+
+<span class="c"># 컨테이너에서 로그아웃</span>
+<span class="gp">root@dca220f5e753:/var/www/laravel# </span><span class="nb">exit</span>
+</code></pre>
+</div>
+
+<p>브라우저에서 실험할 준비가 끝났다. http://quickstart.app(Mac OS의 <code class="highlighter-rouge">/etc/hosts</code>에 레코드를 추가하지 않았다면 http://192.168.99.100)을 열고 <a href="http://quickstart.app/register">사용자 등록</a> 페이지에서 실험에 사용할 사용자를 등록하고, 할일 목록 UI에서 할일을 추가해 본다.</p>
+
+<p>로드 밸런서의 동작을 확인하기 위해, 라라벨 프로젝트의 마스터 레이아웃에 다음 코드를 미리 추가해 두었다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- // resources/views/layouts/app.blade.php --&gt;</span>
+
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"text-danger"</span><span class="nt">&gt;</span>
+  @<span class="nt">&lt;strong&gt;</span>{{ gethostname() }}<span class="nt">&lt;/strong&gt;</span>
+<span class="nt">&lt;/span&gt;</span>
+</code></pre>
+</div>
+
+<p>이제 여러 개의 브라우저 창을 열어 로드 밸런서가 잘 동작하는 지 확인하자. 아래 그림처럼 네이게이션 바의 컴퓨터 이름을 잘 보기 바란다. 이 값은 <code class="highlighter-rouge">web</code> 컨테이너의 컴퓨터 이름이다. 여러 개의 창이 아니더라도, 페이지를 리프레시할 때마다 요청을 처리하는 <code class="highlighter-rouge">web</code> 컨테이너는 달라진다(지금 HAProxy 로드 밸런싱 알고리즘 설정은 Round Robin이다).</p>
+
+<p>서로 다른 <code class="highlighter-rouge">web</code> 컨테이너에서 같은 사용자로 로그인하고 할일 목록을 로드했을 때 자신의 할일 목록이 잘 출력된다는 것은, <code class="highlighter-rouge">web</code> 컨테이너가 <code class="highlighter-rouge">mysql</code>과 <code class="highlighter-rouge">redis</code> 컨테이너를 잘 공유하고 있다는 것으로 해석할 수 있다.</p>
+
+<p><a href="/images/2016-07-11-img-01.png"><img src="/images/2016-07-11-img-01.png" alt="Docker in Action" /></a></p>
+
+<h2 id="section-4">6. 요약</h2>
+
+<h3 id="section-5">6.1. 끄기</h3>
+
+<p>실행 중인 도커 컨테이너를 끄는 방법은 다음과 같다. <code class="highlighter-rouge">stop</code> 대신 <code class="highlighter-rouge">down</code> 명령을 이용하면 컨테이너를 삭제한다. <code class="highlighter-rouge">down</code>하고 다시 <code class="highlighter-rouge">up</code>할 때는 이미지를 다시 받아 빌드하지는 않지만, 지난 번 구동할 때 사용자가 변경한 내용은 모두 유실된다. <code class="highlighter-rouge">stop</code> 상태에서 사용자 변경 내용을 삭제하려면 <code class="highlighter-rouge">rm</code> 명령을 이용한다(e.g. <code class="highlighter-rouge">$ docker-compose rm redis</code>).</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/quickstart/laradock <span class="nv">$ </span>docker-compose stop
+~/quickstart/laradock <span class="nv">$ </span>docker-compose ps
+<span class="c">#          Name                       Command               State</span>
+<span class="c"># -----------------------------------------------------------------</span>
+<span class="c"># laradock_application_1   true                             Exit 0</span>
+<span class="c"># laradock_data_1          true                             Exit 0</span>
+<span class="c"># laradock_lb_1            /sbin/tini -- dockercloud- ...   Exit 1</span>
+<span class="c"># laradock_mysql_1         docker-entrypoint.sh mysqld      Exit 0</span>
+<span class="c"># laradock_redis_1         docker-entrypoint.sh redis ...   Exit 0</span>
+<span class="c"># laradock_web_1           /usr/bin/supervisord -c /e ...   Exit 0</span>
+<span class="c"># laradock_web_2           /usr/bin/supervisord -c /e ...   Exit 0</span>
+<span class="c"># laradock_web_3           /usr/bin/supervisord -c /e ...   Exit 0</span>
+<span class="c"># laradock_workspace_1     /sbin/my_init                    Exit 0</span>
+</code></pre>
+</div>
+
+<h3 id="section-6">6.2. 개발 환경 구성</h3>
+
+<p>맥에서 <a href="http://www.sequelpro.com/">Sequel Pro</a>(MySQL GUI)로 도커에서 구동하는 <code class="highlighter-rouge">mysql</code> 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.</p>
+
+<ul>
+  <li>Host: <code class="highlighter-rouge">quickstart.app</code> 또는 <code class="highlighter-rouge">192.168.99.100</code></li>
+  <li>Username: <code class="highlighter-rouge">homestead</code></li>
+  <li>Password: <code class="highlighter-rouge">secret</code> (루트 비밀번호는 <code class="highlighter-rouge">root</code>)</li>
+  <li>Port: <code class="highlighter-rouge">3306</code></li>
+</ul>
+
+<p><a href="/images/2016-07-11-img-02.png"><img src="/images/2016-07-11-img-02.png" alt="Sequel Pro" /></a></p>
+
+<p>맥에서 <a href="http://www.redisdesktop.com/">Redis Desktop Manager</a>로 도커에서 구동하는 ‘redis’ 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.</p>
+
+<p><a href="/images/2016-07-11-img-03.png"><img src="/images/2016-07-11-img-03.png" alt="Redis Desktop Manager" /></a></p>
+
+<ul>
+  <li>Host: <code class="highlighter-rouge">quickstart.app</code> 또는 <code class="highlighter-rouge">192.168.99.100</code></li>
+  <li>Port: <code class="highlighter-rouge">6379</code></li>
+</ul>
+
+<h3 id="section-7">6.3. 큰 그림</h3>
+
+<p>예제로 구동한 내용과 운영체제 및 컨테이너간의 관계를 그림으로 표현하면 다음과 같다. <strong>이 그림을 이해하면, 이 포스트 전체를 이해한 것이다.</strong></p>
+
+<p><a href="/images/2016-07-11-img-04.png"><img src="/images/2016-07-11-img-04.png" alt="Big Picture" /></a></p>
+
+<h3 id="section-8">6.4. 원상 복구</h3>
+
+<p>무작정 따라하기가 끝난 후, 이 포스트를 시전하면서 추가한 것들을 더 이상 사용할 일이 없다면, 이전 상태로 돌려 놓는다.</p>
+
+<p>컨테이너는 전부 VM에 올라간다. VM을 삭제하면 모든 컨테이너도 삭제된다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker-machine rm default
+</code></pre>
+</div>
+
+<p>라라벨 및 컨테이너 프로젝트를 삭제한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rm -rf <span class="nv">$HOME</span>/quickstart
+</code></pre>
+</div>
+
+<p>도구를 삭제한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew uninstall composer
+<span class="gp">$ </span>brew cask uninstall virtualbox dockertoolbox
+<span class="gp">$ </span>brew untap homebrew/php caskroom/cask
+</code></pre>
+</div>
+
+<h2 id="section-9">7. 결론</h2>
+
+<p>이 포스트에서는 한 대의 리눅스 호스트에 총 9개의 컨테이너를 띄웠다. 쉽게 9대의 서로 다른 리눅스 머신이라 생각하면 된다. 맥 컴퓨터에 9대의 리눅스 VM을 동시에 띄우는 것은 불가능하다. 도커라면 가능하다.</p>
+
+<p>한편 개발 환경에서 사용하던 컨테이너를 자유롭게 조합해서 운영 환경에 사용할 수 있다. 가령, <code class="highlighter-rouge">web</code>과 <code class="highlighter-rouge">application</code> 컨테이너를 한 대의 물리 서버에 놓고, 백엔드에 해당하는 인프라 및 파일 업로드 디렉터리등은 별도의 물리 서버로 분리할 수도 있을 것이다. 어떻게 구성하든 코드 배포할 때는 <code class="highlighter-rouge">application</code> 컨테이너만 신경쓰면 된다. 하나의 구성 예일 뿐이며 각자의 환경에 맞게 응용하시면 될 것이다.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>호스트_ VM을 실행하는 맥을 호스트, VM을 게스트라 한다. 여기서는 맥락상 게스트 컨테이너들의 플랫폼이 되는 VM을 별도의 독립된 리눅스 머신이라 생각하고 도커 호스트라 부르자. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#docker">
+            docker
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/restful-url-design/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              RESTFul URL 설계 (@...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/realtime-web-with-laravel/">
+            <span class="pager-title">
+              "휙~" 리얼 타임 라라벨 데모...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

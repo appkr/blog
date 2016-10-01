@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="블로그 플랫폼 이전 4 - Build Automation with Gulp"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="블로그 플랫폼 이전 4 - Build Automation with Gulp">
+  <meta itemprop="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="블로그 플랫폼 이전 4 - Build Automation with Gulp" />
+  <meta name="twitter:description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-4-build-automation-with-gulp/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>블로그 플랫폼 이전 4 - Build Automation with Gulp | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">블로그 플랫폼 이전 4 - Build Automation with Gulp</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-4-build-automation-with-gulp/&title=블로그 플랫폼 이전 4 - Build Automation with Gulp" id="sns-facebook">Facebook</a></li>
+              <li><a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-4-build-automation-with-gulp/&title=블로그 플랫폼 이전 4 - Build Automation with Gulp&text=블로그 플랫폼 이전 4 - Build Automation with Gulp" id="sns-twitter">Twitter</a></li>
+              <li><a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-4-build-automation-with-gulp/" id="sns-google">Google+</a></li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-12
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-4-build-automation-with-gulp/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.</p>
+
+<ol>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶">개발자로서의 새로운 삶</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll">Goodbye Wordpress, Hello Jekyll</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-3-publishing">Publishing</a></li>
+  <li><em>Build Automation with Gulp</em></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-5-disqus-facebook">Disqus &amp; Facebook</a></li>
+</ol>
+
+<p>지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.</p>
+
+<div class="spacer">• • •</div>
+
+<h2 id="jekyll-serve">Jekyll Serve</h2>
+
+<p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>jekyll serve
+<span class="c"># Configuration file: /.../blog/_config.yml</span>
+<span class="c">#             Source: /.../blog</span>
+<span class="c">#        Destination: public</span>
+<span class="c">#  Incremental build: disabled. Enable with --incremental</span>
+<span class="c">#       Generating...</span>
+<span class="c">#                     done in 1.432 seconds.</span>
+<span class="c">#  Auto-regeneration: enabled for '/.../blog'</span>
+<span class="c"># Configuration file: /.../blog/_config.yml</span>
+<span class="c">#     Server address: http://127.0.0.1:4000/</span>
+<span class="c">#   Server running... press ctrl-c to stop.</span>
+</code></pre>
+</div>
+
+<p><a href="/images/2016-02-12-img-01.png"><img src="/images/2016-02-12-img-01.png" alt="Preview with Jekyll built-in web server" /></a></p>
+
+<p>그런데 2% 가 부족했다.</p>
+
+<!--more-->
+
+<h2 id="resort-to-gulp">Resort to Gulp</h2>
+
+<p>프로젝트 시작부터 <a href="http://gulpjs.com/">Gulp</a> 를 사용한 것은 아니었다. Jekyll 이 Sass/SCSS/Coffee 컴파일을 지원한다는 사실이 좋았다. 그런데, JS 는 어떻하지? 이미지 최적화나 파일/디렉토리 복사, 배포는 또 어떻게 해야 하지? 구글링을 했지만, 마음에 드는 레시피를 찾지는 못한 상태였는데… “Gulp 를 못 쓸 이유는 없을 것 같은데?” 라고 자문하고, 바로 작업에 들어갔다.</p>
+
+<p>Gulp 스크립트 구동에 필요한 의존성 패키지들은 <code class="highlighter-rouge">package.json</code> 에 정의되어 있는데… 좀 많긴하다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s2">"{}"</span> &gt; package.json
+<span class="gp">$ </span>npm install --save-dev babel-core babel-preset-es2015 browser-sync del gulp gulp-autoprefixer gulp-babel gulp-clean gulp-concat gulp-if gulp-imagemin gulp-load-plugins gulp-minify-css gulp-newer gulp-sass gulp-size gulp-sourcemaps gulp-subtree gulp-uglify run-sequence
+</code></pre>
+</div>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/package.json</span>
+
+<span class="p">{</span>
+  <span class="s2">"devDependencies"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"babel-core"</span><span class="err">:</span> <span class="s2">"^6.0.15"</span><span class="p">,</span>
+    <span class="s2">"babel-preset-es2015"</span><span class="err">:</span> <span class="s2">"^6.0.15"</span><span class="p">,</span>
+    <span class="s2">"browser-sync"</span><span class="err">:</span> <span class="s2">"^2.9.0"</span><span class="p">,</span>
+    <span class="s2">"del"</span><span class="err">:</span> <span class="s2">"^2.0.2"</span><span class="p">,</span>
+    <span class="s2">"gulp"</span><span class="err">:</span> <span class="s2">"^3.9.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-autoprefixer"</span><span class="err">:</span> <span class="s2">"^3.1.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-babel"</span><span class="err">:</span> <span class="s2">"^6.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-clean"</span><span class="err">:</span> <span class="s2">"^0.3.1"</span><span class="p">,</span>
+    <span class="s2">"gulp-concat"</span><span class="err">:</span> <span class="s2">"^2.5.2"</span><span class="p">,</span>
+    <span class="s2">"gulp-if"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-imagemin"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-load-plugins"</span><span class="err">:</span> <span class="s2">"^1.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-minify-css"</span><span class="err">:</span> <span class="s2">"^1.1.6"</span><span class="p">,</span>
+    <span class="s2">"gulp-newer"</span><span class="err">:</span> <span class="s2">"^1.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-sass"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-size"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-sourcemaps"</span><span class="err">:</span> <span class="s2">"^1.3.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-subtree"</span><span class="err">:</span> <span class="s2">"^0.1.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-uglify"</span><span class="err">:</span> <span class="s2">"^1.0.1"</span><span class="p">,</span>
+    <span class="s2">"run-sequence"</span><span class="err">:</span> <span class="s2">"^1.0.1"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="gulpfilebabeljs">Gulpfile.babel.js</h2>
+
+<p>아래는 전체 스크립트이다. 특징은 <a href="https://browsersync.io/">BrowserSync</a> 이용한다는 점과, <a href="https://babeljs.io/docs/learn-es2015/">ES2015</a> 사용한다는 점 등을 들 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/gulpfile.babel.js</span>
+<span class="c1">// Referenced from Google Web Starter Kit</span>
+<span class="c1">// @see https://github.com/google/web-starter-kit</span>
+
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kr">import</span> <span class="nx">cp</span> <span class="nx">from</span> <span class="s1">'child_process'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">gulp</span> <span class="nx">from</span> <span class="s1">'gulp'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">del</span> <span class="nx">from</span> <span class="s1">'del'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">runSequence</span> <span class="nx">from</span> <span class="s1">'run-sequence'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">browserSync</span> <span class="nx">from</span> <span class="s1">'browser-sync'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">gulpLoadPlugins</span> <span class="nx">from</span> <span class="s1">'gulp-load-plugins'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">pkg</span> <span class="nx">from</span> <span class="s1">'./package.json'</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">gulpLoadPlugins</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">reload</span> <span class="o">=</span> <span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">;</span>
+
+<span class="cm">/**
+ * Task 'clean' : Clean output directory
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'clean'</span><span class="p">,</span> <span class="nx">cb</span> <span class="o">=&gt;</span> <span class="nx">del</span><span class="p">([</span><span class="s1">'.tmp'</span><span class="p">,</span> <span class="s1">'images'</span><span class="p">,</span> <span class="s1">'scripts'</span><span class="p">,</span> <span class="s1">'styles'</span><span class="p">,</span> <span class="s1">'public'</span><span class="p">],</span> <span class="p">{</span><span class="na">dot</span><span class="p">:</span> <span class="kc">true</span><span class="p">}));</span>
+
+<span class="cm">/**
+ * Task 'jekyll' : Build jekyll sites
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Task 'images' : Optimize images
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'images'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'_assets/images/**/*.*'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">imagemin</span><span class="p">({</span><span class="na">progressive</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">interlaced</span><span class="p">:</span> <span class="kc">true</span><span class="p">}))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'images'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">size</span><span class="p">({</span><span class="na">title</span><span class="p">:</span> <span class="s1">'images'</span><span class="p">}))</span>
+<span class="p">);</span>
+
+<span class="cm">/**
+ * Task 'styles' : Compile and automatically prefix stylesheets
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'styles'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">AUTOPREFIXER_BROWSERS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'ie &gt;= 10'</span><span class="p">,</span>
+    <span class="s1">'ie_mob &gt;= 10'</span><span class="p">,</span>
+    <span class="s1">'ff &gt;= 30'</span><span class="p">,</span>
+    <span class="s1">'chrome &gt;= 34'</span><span class="p">,</span>
+    <span class="s1">'safari &gt;= 7'</span><span class="p">,</span>
+    <span class="s1">'opera &gt;= 23'</span><span class="p">,</span>
+    <span class="s1">'ios &gt;= 7'</span><span class="p">,</span>
+    <span class="s1">'android &gt;= 4.4'</span><span class="p">,</span>
+    <span class="s1">'bb &gt;= 10'</span>
+  <span class="p">];</span>
+
+  <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">([</span>
+    <span class="s1">'_assets/styles/main.scss'</span>
+  <span class="p">])</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">newer</span><span class="p">(</span><span class="s1">'.tmp/styles'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">init</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sass</span><span class="p">({</span><span class="na">precision</span><span class="p">:</span> <span class="mi">10</span><span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">sass</span><span class="p">.</span><span class="nx">logError</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">autoprefixer</span><span class="p">(</span><span class="nx">AUTOPREFIXER_BROWSERS</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'.tmp/styles'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'main.min.css'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="k">if</span><span class="p">(</span><span class="s1">'*.css'</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">minifyCss</span><span class="p">()))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">size</span><span class="p">({</span><span class="na">title</span><span class="p">:</span> <span class="s1">'styles'</span><span class="p">}))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'./'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'styles'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Task 'scripts' : Concatenate and minify JavaScript.
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'scripts'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">([</span>
+    <span class="s1">'_assets/vendor/fastclick/lib/fastclick.js'</span><span class="p">,</span>
+    <span class="s1">'_assets/vendor/jquery/dist/jquery.js'</span><span class="p">,</span>
+    <span class="s1">'_assets/vendor/simple-jekyll-search/dest/jekyll-search.js'</span><span class="p">,</span>
+    <span class="s1">'_assets/vendor/bootstrap-sass/assets/javascripts/bootstrap.js'</span><span class="p">,</span>
+    <span class="s1">'_assets/vendor/bootstrap-material-design/scripts/material.js'</span><span class="p">,</span>
+    <span class="s1">'_assets/vendor/bootstrap-material-design/scripts/ripples.js'</span><span class="p">,</span>
+    <span class="s1">'_assets/scripts/main.js'</span>
+  <span class="p">])</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">init</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">babel</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'.tmp/scripts'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'main.min.js'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">uglify</span><span class="p">({</span><span class="na">preserveComments</span><span class="p">:</span> <span class="s1">'some'</span><span class="p">}))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">size</span><span class="p">({</span><span class="na">title</span><span class="p">:</span> <span class="s1">'scripts'</span><span class="p">}))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">sourcemaps</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'.'</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'scripts'</span><span class="p">))</span>
+<span class="p">);</span>
+
+<span class="cm">/**
+ * Task 'serve' : Watch files for changes &amp; reload
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'serve'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'images'</span><span class="p">,</span> <span class="s1">'styles'</span><span class="p">,</span> <span class="s1">'scripts'</span><span class="p">,</span> <span class="s1">'jekyll'</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">browserSync</span><span class="p">({</span>
+    <span class="na">notify</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">logPrefix</span><span class="p">:</span> <span class="s1">'Jekyll'</span><span class="p">,</span>
+    <span class="na">server</span><span class="p">:</span> <span class="p">[</span><span class="s1">'public'</span><span class="p">],</span>
+    <span class="na">port</span><span class="p">:</span> <span class="mi">3000</span>
+  <span class="p">});</span>
+
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'_assets/styles/**/*.{scss,css}'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'styles'</span><span class="p">,</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="nx">reload</span><span class="p">]);</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'_assets/scripts/**/*.js'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'scripts'</span><span class="p">,</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="nx">reload</span><span class="p">]);</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'_assets/images/**/*'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'images'</span><span class="p">,</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="nx">reload</span><span class="p">]);</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'**/*.{html,md,markdown}'</span><span class="p">,</span> <span class="s1">'!public/**/*.*'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="nx">reload</span><span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Task 'default' : Build production files, the default task
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">[],</span> <span class="nx">cb</span> <span class="o">=&gt;</span> <span class="nx">runSequence</span><span class="p">(</span><span class="s1">'styles'</span><span class="p">,</span> <span class="s1">'scripts'</span><span class="p">,</span> <span class="s1">'images'</span><span class="p">,</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="nx">cb</span><span class="p">));</span>
+
+<span class="cm">/**
+ * Task 'deploy' : This will run the build task, then push it to the gh-pages branch
+ */</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'deploy'</span><span class="p">,</span> <span class="p">[],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'sed'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'-i'</span><span class="p">,</span> <span class="s2">"''"</span><span class="p">,</span> <span class="s1">'s/public/#public/'</span><span class="p">,</span> <span class="s1">'.gitignore'</span><span class="p">],</span> <span class="p">{</span> <span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span> <span class="p">});</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'public'</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">subtree</span><span class="p">());</span>
+  <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'git'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'checkout'</span><span class="p">,</span> <span class="s1">'.gitignore'</span><span class="p">],</span> <span class="p">{</span> <span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span> <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h2 id="how-to-run">How to Run</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp <span class="o">{</span>taskName<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="tasks">Tasks</h2>
+
+<h3 id="clean">clean</h3>
+
+<p>빌드 과정에서 생성된 임시 디렉토리 (<code class="highlighter-rouge">.tmp</code>) 와 빌드 결과를 담는 디렉토리 (<code class="highlighter-rouge">public</code>) 등을 삭제하고 초기화하는 작업을 수행한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp clean
+</code></pre>
+</div>
+
+<h3 id="jekyll">jekyll</h3>
+
+<p><code class="highlighter-rouge">$ jekyll build</code> 를 수행한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp jekyll
+</code></pre>
+</div>
+
+<h3 id="images">images</h3>
+
+<p><code class="highlighter-rouge">_assets/images</code> 디렉토리에 담긴 이미지를 최적화하여 <code class="highlighter-rouge">images</code> 디렉토리로 출판한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp images
+</code></pre>
+</div>
+
+<h3 id="styles">styles</h3>
+
+<p><code class="highlighter-rouge">_assets/styles</code> 에 있는 모든 Stylesheets (css, scss, sass) 에 대해</p>
+
+<ul>
+  <li>Sass/SCSS Compile</li>
+  <li>Vendor Prefix</li>
+  <li>모든 파일을 main.min.css 로 합침</li>
+  <li>Minification</li>
+  <li>Source Map 작성</li>
+</ul>
+
+<p>한 후, <code class="highlighter-rouge">styles</code> 디렉토리로 출판한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp styles
+</code></pre>
+</div>
+
+<h3 id="scripts">scripts</h3>
+
+<p><code class="highlighter-rouge">gulp.src()</code> 에서 인자로 받은 Javascripts 에 대해</p>
+
+<ul>
+  <li>Babelify (Ecma Script 에서 Legacy JS 로 변환)</li>
+  <li>모든 파일을 main.min.js 로 합침</li>
+  <li>Uglify (난독화, 파일 사이즈 축소 목적)</li>
+  <li>Source Map 작성</li>
+</ul>
+
+<p>한 후, <code class="highlighter-rouge">scripts</code> 디렉토리에 출판한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp scripts
+</code></pre>
+</div>
+
+<h3 id="serve">serve</h3>
+
+<p><code class="highlighter-rouge">images</code>, <code class="highlighter-rouge">styles</code>, <code class="highlighter-rouge">scripts</code>, <code class="highlighter-rouge">jekyll</code> Task 를 순차적으로 수행한 후, <code class="highlighter-rouge">http://localhost:3000</code> 웹 서버를 띄우고 BrowserSync 를 구동시킨다. BrowserSync 구동 이후, <code class="highlighter-rouge">_assets</code> 디렉토리 하위의 Stylesheets, Javascripts, Image 및 <code class="highlighter-rouge">.html</code>, <code class="highlighter-rouge">.md</code> 파일의 변경을 감시한다. 파일 변경이 있으면, 현재 <code class="highlighter-rouge">http://localhost:3000</code> 이 열려있는 모든 브라우저를 리프레시 한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp serve
+</code></pre>
+</div>
+
+<p><a href="/images/2016-02-12-img-02.png"><img src="/images/2016-02-12-img-02.png" alt="gulp serve" /></a></p>
+
+<h4 id="section">덧</h4>
+
+<p>BrowerSync 를 이용하면, 동일한 서브넷에 접속되어 있는 모바일 기기를 포함한 다른 Machine 에서도 페이지에 접속할 수 있다. iOS 디바이스에서는 Safari 브라우저를 이용하면 <a href="https://developers.google.com/web/tools/chrome-devtools/debug/remote-debugging/remote-debugging#remote-debugging-on-ios-with-safari-web-inspector">리모트 디버깅</a> 도 가능하다. Android 디바이스는 당연히 Chrome Browser 를 이용해 리모트 디버깅할 수 있다.</p>
+
+<p><a href="/images/2016-02-12-img-03.png"><img src="/images/2016-02-12-img-03.png" alt="BrowserSync across Multiple Devices" /></a></p>
+
+<p>BrowserSync 의 고유기능인데, 현재 열려있는 모든 브라우저에서의 키보드 입력, 스크롤등은 동기화된다. 가령 iOS 디바이스에서 페이지를 스크롤하면 데스크탑 브라우저에 열려 있는 페이지도 같이 스크롤된다. 코드 변경사항 또한 모든 브라우저에 반영된다.</p>
+
+<h3 id="default">default</h3>
+
+<p><code class="highlighter-rouge">images</code>, <code class="highlighter-rouge">styles</code>, <code class="highlighter-rouge">scripts</code>, <code class="highlighter-rouge">jekyll</code> 빌드 작업만 수행하고, 웹 서버 구동, BrowserSync 구동, 파일 감시는 하지 않는다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp
+</code></pre>
+</div>
+
+<h3 id="deploy">deploy</h3>
+
+<p>현재 프로젝트를 <code class="highlighter-rouge">gh-pages</code> 브랜치로 checkout 한 후, <a href="https://pages.github.com/">Github Page</a> 에 배포한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp deploy
+</code></pre>
+</div>
+
+<div class="spacer">• • •</div>
+
+<p><a href="https://pages.github.com/">Github Page</a> 를 이용한 호스팅은 무료이다. Github Page 에서는 백엔드 플랫폼을 쓸 수 없기에, 정적 페이지를 미리 컴파일할 수 있는 Jekyll 과 궁합이 아주 잘 맞다. 많은 개발자들이 Github Page + Jekyll 조합으로 웹 서비스를 하고 있다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#jekyll">
+            jekyll
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              블로그 플랫폼 이전 3 - Pu...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-5-disqus-facebook/">
+            <span class="pager-title">
+              블로그 플랫폼 이전 5 - Di...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

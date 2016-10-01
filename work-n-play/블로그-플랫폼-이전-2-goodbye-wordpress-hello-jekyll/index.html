@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll">
+  <meta itemprop="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" />
+  <meta name="twitter:description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-2-goodbye-wordpress-hello-jekyll/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-2-goodbye-wordpress-hello-jekyll/&title=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" id="sns-facebook">Facebook</a></li>
+              <li><a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-2-goodbye-wordpress-hello-jekyll/&title=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll&text=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" id="sns-twitter">Twitter</a></li>
+              <li><a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-2-goodbye-wordpress-hello-jekyll/" id="sns-google">Google+</a></li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-10
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-2-goodbye-wordpress-hello-jekyll/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.</p>
+
+<ol>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶">개발자로서의 새로운 삶</a></li>
+  <li><em>Goodbye Wordpress, Hello Jekyll</em></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-3-publishing">Publishing</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp">Build Automation with Gulp</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-5-disqus-facebook">Disqus &amp; Facebook</a></li>
+</ol>
+
+<p>지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p><a href="http://jekyllrb.com/docs/home/#so-what-is-jekyll-exactly">Jekyll[dƷékəl,dƷí:k-,줴클]</a> 은 Ruby 언어로 개발된 정적 (Static) 페이지를 생성 도구 이다. Jekyll 은 로컬 컴퓨터에서 HTML 또는 Markdown 으로 작성한 글을 미리 정적 페이지로 컴파일 하는 일을 한다. 컴파일 된 결과물을 웹 서버의 Document Root 로 복사하는 것만으로 서비스가 가능하다. 더구나, 정적 페이지는 동적 페이지 대비 응답 속도가 더 빠르다는 장점이 있다. 즉, Jekyll 은 서버에 백엔드 플랫폼/프레임웍 없이도 고급스러운 웹 서비스를 만들 수 있는 도구이다.</p>
+
+<!--more-->
+
+<h2 id="goodbye-wordpress">Goodbye Wordpress</h2>
+
+<p>호스팅 버전 워드프레스에서 서비스되던 포스트를 Jekyll 로 옮겨야 한다. 우선, 워드프레스 호스팅에서 ‘글 내보내기’ 를 하여 파일로 떨군 후, 로컬에 설치형 워드프레스를 구동시키고 ‘글 가져오기’ 를 하였다. 이 과정을 통해 MySql 데이터베이스에 접근하여 기존 포스트 데이터를 마음대로 조작할 수 있게 되었다.</p>
+
+<p><a href="/images/2016-02-10-img-01.png"><img src="/images/2016-02-10-img-01.png" alt="Import wordpress.com data to Local database" /></a></p>
+
+<p>So, Goodbye Wordpress~</p>
+
+<h2 id="hello-jekyll">Hello Jekyll</h2>
+
+<h3 id="install-jekyll">Install Jekyll</h3>
+
+<p>Jekyll 설치와 프로젝트 생성 방법은 간단한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install jekyll
+<span class="gp">$ </span>jekyll new blog
+</code></pre>
+</div>
+
+<h3 id="how-to-write-a-post">How to Write a Post</h3>
+
+<p>Jekyll 에서 포스트는 이렇게 작성한다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">_posts</code> 디렉토리 아래에 <code class="highlighter-rouge">Y-m-d-title.{html,md}</code> 형식의 파일을 만든다.</li>
+  <li>파일 내용은 Front Formatter 와 포스트 본문으로 구성된다.
+    <ul>
+      <li>Front Formatter 는 포스트의 메타데이터이다. Front Formatter 는 상단에 3개의 연속된 대시 (<code class="highlighter-rouge">-</code>) 블럭에 YAML 형식으로 쓴다.</li>
+      <li>본문은 HTML 또는 Markdown 형식으로 편하게 쓴다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<span class="s">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="s">title</span><span class="pi">:</span>  <span class="s">Welcome to Jekyll!</span>
+<span class="nn">---</span>
+<span class="ge">*Lorem ipsum*</span> dolor sit amet, consectetur adipisicing elit.
+</code></pre>
+</div>
+
+<h3 id="liquid-template-engine">Liquid Template Engine</h3>
+
+<p>Jekyll 은 <a href="https://github.com/Shopify/liquid/wiki">Liquid Template Engine</a> 을 이용한다. 사용법은 다른 Template Engine 과 거의 유사하다. Liquid 는 제어/반복/할당 등은 <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> 를 이용하고, 변수 Interpolation 은 <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> 를 이용한다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/index.html --&gt;</span>
+---
+layout: default
+---
+{% for post in paginator.posts %}
+  <span class="nt">&lt;article&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ post.url | prepend: site.baseurl }}"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/h2&gt;</span>
+  
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box-body"</span><span class="nt">&gt;</span>
+      {{ post.content }}
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/article&gt;</span>
+{% endfor %}
+</code></pre>
+</div>
+
+<h2 id="section">블로그에서 어떤 기능을 제공할 것인가?</h2>
+
+<ul>
+  <li>Profile 페이지</li>
+  <li>Category 기능</li>
+  <li>Tag 기능</li>
+  <li>포스트 검색</li>
+  <li>페이지네이션</li>
+  <li>RSS 피드</li>
+  <li>SEO(==검색엔진최적화)/사이트맵</li>
+</ul>
+
+<p>기능 기획을 했으니, 어떤 프레임웍을 도입할 지 결정해야 한다.</p>
+
+<ul>
+  <li>SCSS &amp; jQuery</li>
+  <li>Material Design &amp; Twitter Bootstrap</li>
+  <li>Assets Management with Bower</li>
+  <li>Gulp Build</li>
+  <li>Ruby Gems
+    <ul>
+      <li>jekyll-paginate</li>
+      <li>jekyll-sitemap</li>
+      <li>jekyll-feed</li>
+    </ul>
+  </li>
+</ul>
+
+<p>이제 이 기능을 담을 프로젝트 구조를 짜야 한다.</p>
+
+<h2 id="structure-amp-config">Structure &amp; Config</h2>
+
+<p>아래 처럼 디렉토리 구조를 잡았다. 일반적인 Jekyll 프로젝트 구조 대비 달라진 점은, <code class="highlighter-rouge">_assets</code> 디렉토리에 뷰 제어 관련 리소스를 전부 몰어 넣어 놓은 점과, Jekyll Build 결과물을 <code class="highlighter-rouge">_sites</code> 가 아닌 <code class="highlighter-rouge">public</code> 디렉토리에 담는다는 점 정도 이다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>.
+├── _assets                           <span class="c"># Housing for Images, JS, CSS</span>
+│   ├── images                        <span class="c"># Images used in posts</span>
+│   ├── scripts                       <span class="c"># Javascripts (my JS)</span>
+│   │   └── main.js
+│   ├── styles                        <span class="c"># Stylesheets (my CSS/SCSS)</span>
+│   │   └── main.scss
+│   └── vendor                        <span class="c"># 3rd party JS, Stylesheets</span>
+│       ├── bootstrap-material-design
+│       ├── bootstrap-sass
+│       ├── fastclick
+│       ├── jquery
+│       └── simple-jekyll-search
+├── _drafts                           <span class="c"># Drafts (초안)</span>
+├── _includes                         <span class="c"># HTML partials</span>
+├── _layouts                          <span class="c"># Master HTML layouts</span>
+├── _posts                            <span class="c"># Posts (공개할 글)</span>
+├── categories                        <span class="c"># Category 기능을 위한 페이지</span>
+├── lib                               <span class="c"># Wordpress-&gt;Jekyll migration 을 위한 Libraries</span>
+├── node_modules                      <span class="c"># Gulp build 를 위한 Node packages</span>
+├── profile                           <span class="c"># Profile 페이지</span>
+├── public                            <span class="c"># Jekyll 이 컴파일한 정적 페이지를 담는 공간</span>
+├── tags                              <span class="c"># Tag 기능을 위한 페이지</span>
+├── .babelrc                          <span class="c"># Babelify 설정</span>
+├── .bowerrc                          <span class="c"># Bower 설정</span>
+├── .gitignore
+├── _config.yml                       <span class="c"># Jekyll 설정</span>
+├── bower.json                        <span class="c"># Bower package definition</span>
+├── CNAME                             <span class="c"># blog.appkr.kr 도메인을 쓰기 위한 도메인 별칭 설정 파일</span>
+├── feed.xml                          <span class="c"># Rss 피드 페이지</span>
+├── gulpfile.babel.js                 <span class="c"># Gulp build 자동화 스크립트</span>
+├── index.html                        <span class="c"># 대문 페이지</span>
+├── package.json                      <span class="c"># Node package definition</span>
+└── search.json                       <span class="c"># Posts 검색을 위한 인덱스 (For simple-jekyll-search)</span>
+</code></pre>
+</div>
+
+<p>아래는 이 Jekyll 프로젝트의 글로벌 설정이다.</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/_config.yml</span>
+
+<span class="c1"># Plugins</span>
+<span class="s">gems</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">jekyll-paginate</span>
+  <span class="pi">-</span> <span class="s">jekyll-sitemap</span>
+  <span class="pi">-</span> <span class="s">jekyll-feed</span>
+
+<span class="c1"># Site settings</span>
+<span class="s">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Appkr.memo(new</span><span class="nv"> </span><span class="s">Life)"</span>
+
+<span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr's</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">day-to-day</span><span class="nv"> </span><span class="s">life</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">thoughts."</span>
+<span class="s">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># the subpath of your site, e.g. /blog</span>
+<span class="s">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://blog.appkr.kr"</span> <span class="c1"># the base hostname &amp; protocol for your site</span>
+
+<span class="s">excerpt_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
+
+<span class="c1"># Contacts</span>
+<span class="s">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr"</span>
+<span class="s">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">juwonkim@me.com"</span>
+<span class="s">github</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/appkr"</span>
+<span class="s">facebook</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://www.facebook.com/juwonkimatmedotcom"</span>
+
+<span class="c1"># Build settings</span>
+<span class="s">exclude</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">lib</span>
+  <span class="pi">-</span> <span class="s">Gemfile</span>
+  <span class="pi">-</span> <span class="s">Gemfile.lock</span>
+  <span class="pi">-</span> <span class="s">node_modules</span>
+  <span class="pi">-</span> <span class="s">bower.json</span>
+  <span class="pi">-</span> <span class="s">gulpfile.babel.js</span>
+  <span class="pi">-</span> <span class="s">package.json</span>
+<span class="s">permalink</span><span class="pi">:</span> <span class="s">/:categories/:slug/</span>
+<span class="s">lsi</span><span class="pi">:</span> <span class="s">false</span> <span class="c1"># if set to true generate related posts</span>
+
+<span class="c1"># Conversion</span>
+<span class="s">markdown</span><span class="pi">:</span> <span class="s">redcarpet</span>
+<span class="s">redcarpet</span><span class="pi">:</span>
+  <span class="s">extensions</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">smart</span>
+    <span class="pi">-</span> <span class="s">fenced_code_blocks</span>
+    <span class="pi">-</span> <span class="s">autolink</span>
+    <span class="pi">-</span> <span class="s">tables</span>
+    <span class="pi">-</span> <span class="s">strikethrough</span>
+    <span class="pi">-</span> <span class="s">superscript</span>
+    <span class="pi">-</span> <span class="s">underline</span>
+    <span class="pi">-</span> <span class="s">highlight</span>
+    <span class="pi">-</span> <span class="s">quote</span>
+    <span class="pi">-</span> <span class="s">footnote_ref</span>
+  <span class="s">highlighter</span><span class="pi">:</span> <span class="s">pygments</span>
+
+<span class="c1"># Outputting</span>
+<span class="s">paginate</span><span class="pi">:</span> <span class="s">5</span>
+<span class="s">paginate_path</span><span class="pi">:</span> <span class="s">/page:num/</span>
+<span class="s">destination</span><span class="pi">:</span> <span class="s">public</span>
+</code></pre>
+</div>
+
+<p>프로젝트 구조와 기본 설정이 준비 되었으니, 로컬 데이터베이스로 가져온 워드프레스 포스트들을 Jekyll 형식으로 변경해야 한다.</p>
+
+<h2 id="migrate-posts">Migrate Posts</h2>
+
+<p>데이터 마이그레이션을 위해 아래 Ruby 스크립트를 작성하였다. 이 스크립트에서 주목할만한 부분은 워드프레스 <code class="highlighter-rouge">wp_posts.post_content</code> 컬럼에 기록된 HTML 형식의 포스트 본문을 <a href="https://github.com/cousine/downmark_it"><code class="highlighter-rouge">DownmarkIt</code></a> 라이브러리를 이용하여 다시 Markdown 형식으로 변경하는 부분이다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>wget https://raw.githubusercontent.com/cousine/downmark_it/master/downmark_it.rb -O lib/downmark_it.rb
+<span class="c"># downmark_it.rb 는 hpricot 라이브러리에 의존하므로 설치한다. </span>
+<span class="gp">$ </span>gem install hpricot
+</code></pre>
+</div>
+
+<p>아래는 변환 스크립트 전체 소스이다. 이 스크립트의 역할은 로컬 데이터베이스 테이블에서 워드프레스에서 생성된 데이터를 가져온 후, Jekyll 형식에 맞는 내용으로 변경한 후 <code class="highlighter-rouge">Y-m-d-title.md</code> 파일에 저장하는 것이다.</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/lib/wordpress.rb</span>
+<span class="c1"># Inspired from vitobotta's script</span>
+<span class="c1"># @see https://gist.github.com/vitobotta/888709</span>
+
+<span class="sx">%w(rubygems sequel fileutils yaml active_support/inflector)</span><span class="p">.</span><span class="nf">each</span><span class="p">{</span><span class="o">|</span><span class="n">g</span><span class="o">|</span> <span class="nb">require</span> <span class="n">g</span><span class="p">}</span>
+
+<span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">),</span> <span class="s2">"downmark_it"</span><span class="p">)</span>
+
+<span class="k">module</span> <span class="nn">WordPress</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">import</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">table_prefix</span> <span class="o">=</span> <span class="s1">'wp'</span><span class="p">,</span> <span class="n">host</span> <span class="o">=</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">3306</span><span class="p">)</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="no">Sequel</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="ss">:adapter</span> <span class="o">=&gt;</span> <span class="s1">'mysql2'</span><span class="p">,</span> <span class="ss">:host</span> <span class="o">=&gt;</span> <span class="n">host</span><span class="p">,</span> <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="n">port</span><span class="p">,</span> <span class="ss">:database</span> <span class="o">=&gt;</span> <span class="n">database</span><span class="p">,</span> <span class="ss">:user</span> <span class="o">=&gt;</span> <span class="n">user</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="n">password</span><span class="p">,</span> <span class="ss">:encoding</span> <span class="o">=&gt;</span> <span class="s1">'utf8'</span><span class="p">)</span>
+
+    <span class="sx">%w(_posts _drafts)</span><span class="p">.</span><span class="nf">each</span><span class="p">{</span><span class="o">|</span><span class="n">folder</span><span class="o">|</span> <span class="no">FileUtils</span><span class="p">.</span><span class="nf">mkdir_p</span> <span class="n">folder</span><span class="p">}</span>
+
+    <span class="c1"># Get the contents of wp_posts table.</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="o">&lt;&lt;-</span><span class="no">EOS</span><span class="sh">
+        SELECT  post_title, post_name, post_date, post_content, post_excerpt, ID, guid, post_status, post_type, post_status,
+             (  SELECT  guid
+              FROM  </span><span class="si">#{</span><span class="n">table_prefix</span><span class="si">}</span><span class="sh">_posts
+              WHERE ID = (  SELECT  meta_value
+                    FROM  </span><span class="si">#{</span><span class="n">table_prefix</span><span class="si">}</span><span class="sh">_postmeta
+                    WHERE   post_id = post.ID AND meta_key = "_thumbnail_id") ) AS post_image
+        FROM </span><span class="si">#{</span><span class="n">table_prefix</span><span class="si">}</span><span class="sh">_posts AS post
+        WHERE  post_type = 'post'
+</span><span class="no">    EOS</span>
+
+    <span class="c1"># Get the contents of wp_term_taxonomy table.</span>
+    <span class="n">categories_and_tags_query</span> <span class="o">=</span> <span class="o">&lt;&lt;-</span><span class="no">EOS</span><span class="sh">
+      SELECT t.taxonomy, term.name, term.slug
+        FROM        </span><span class="si">#{</span><span class="n">table_prefix</span><span class="si">}</span><span class="sh">_term_relationships AS tr
+        INNER JOIN  </span><span class="si">#{</span><span class="n">table_prefix</span><span class="si">}</span><span class="sh">_term_taxonomy AS t ON t.term_taxonomy_id = tr.term_taxonomy_id
+        INNER JOIN  </span><span class="si">#{</span><span class="n">table_prefix</span><span class="si">}</span><span class="sh">_terms AS term ON term.term_id = t.term_id
+        WHERE       tr.object_id = %d
+        ORDER BY    tr.term_order
+</span><span class="no">    EOS</span>
+
+    <span class="c1"># wp_terms.slug and wp_posts.post_name written in Korean are terrible.</span>
+    <span class="c1"># The following is the pattern to generate correctly formatted slugs on the fly.</span>
+    <span class="n">pattern_special_chars</span> <span class="o">=</span> <span class="sr">/(?&lt;chars&gt;`|~|!|@|#|\$|%|\^|&amp;|\*|\(|\)|\[|\]|\.|\\|\/|:|;|"|'|,|\.|&lt;|&gt;|\?)/</span>
+    <span class="n">pattern_white_spaces</span>  <span class="o">=</span> <span class="sr">/(?&lt;spaces&gt;\s+)/</span>
+
+    <span class="n">db</span><span class="p">[</span><span class="n">query</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span>
+      <span class="n">title</span>      <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="ss">:post_title</span><span class="p">]</span>
+      <span class="n">slug</span>       <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="ss">:post_title</span><span class="p">]</span>
+          <span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="n">pattern_special_chars</span><span class="p">,</span> <span class="s2">""</span><span class="p">).</span><span class="nf">gsub</span><span class="p">(</span><span class="n">pattern_white_spaces</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">)</span>
+      <span class="n">date</span>       <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="ss">:post_date</span><span class="p">]</span>
+      <span class="n">content</span>    <span class="o">=</span> <span class="no">DownmarkIt</span><span class="p">.</span><span class="nf">to_markdown</span> <span class="n">post</span><span class="p">[</span><span class="ss">:post_content</span><span class="p">]</span>
+      <span class="n">status</span>     <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="ss">:post_status</span><span class="p">]</span>
+      <span class="nb">name</span>       <span class="o">=</span> <span class="s2">"%02d-%02d-%02d-%s.md"</span> <span class="o">%</span> <span class="p">[</span><span class="n">date</span><span class="p">.</span><span class="nf">year</span><span class="p">,</span> <span class="n">date</span><span class="p">.</span><span class="nf">month</span><span class="p">,</span> <span class="n">date</span><span class="p">.</span><span class="nf">day</span><span class="p">,</span> <span class="n">slug</span><span class="p">]</span>
+      <span class="n">categories</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">post_tags</span>  <span class="o">=</span> <span class="p">[]</span>
+
+      <span class="nb">puts</span> <span class="n">title</span>
+
+      <span class="n">db</span><span class="p">[</span><span class="n">categories_and_tags_query</span> <span class="o">%</span> <span class="n">post</span><span class="p">[</span><span class="ss">:ID</span><span class="p">]].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category_or_tag</span><span class="o">|</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">category_or_tag</span><span class="p">[</span><span class="ss">:taxonomy</span><span class="p">].</span><span class="nf">pluralize</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">category_or_tag</span><span class="p">[</span><span class="ss">:name</span><span class="p">]</span>
+            <span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="n">pattern_special_chars</span><span class="p">,</span> <span class="s2">""</span><span class="p">).</span><span class="nf">gsub</span><span class="p">(</span><span class="n">pattern_white_spaces</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">)</span>
+      <span class="k">end</span>
+
+      <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="s1">'layout'</span>        <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+         <span class="s1">'title'</span>         <span class="o">=&gt;</span> <span class="n">title</span><span class="p">.</span><span class="nf">to_s</span><span class="p">,</span>
+         <span class="s1">'date'</span>          <span class="o">=&gt;</span> <span class="n">date</span><span class="p">.</span><span class="nf">to_s</span><span class="p">,</span>
+         <span class="s1">'categories'</span>    <span class="o">=&gt;</span> <span class="n">categories</span><span class="p">,</span>
+         <span class="s1">'tags'</span>          <span class="o">=&gt;</span> <span class="n">post_tags</span>
+       <span class="p">}.</span><span class="nf">delete_if</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="p">.</span><span class="nf">nil?</span> <span class="o">||</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">''</span><span class="p">}.</span><span class="nf">to_yaml</span>
+
+      <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">status</span> <span class="o">==</span> <span class="s1">'publish'</span> <span class="p">?</span> <span class="s1">'_posts'</span> <span class="p">:</span> <span class="s1">'_drafts'</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+        <span class="n">f</span><span class="p">.</span><span class="nf">puts</span> <span class="n">data</span>
+        <span class="n">f</span><span class="p">.</span><span class="nf">puts</span> <span class="s2">"---"</span>
+        <span class="n">f</span><span class="p">.</span><span class="nf">puts</span> <span class="n">content</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>잘 되기를 기도하면서, Run…</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">$ </span>ruby -r <span class="s1">'./lib/wordpress'</span> -e <span class="s1">'WordPress::import("wordpress", "homestead", "secret", "wp", "localhost", 3306)'</span>
+<span class="c"># where:</span>
+<span class="c">#  "wordpress" is database name</span>
+<span class="c">#  "homestead" is the database username</span>
+<span class="c">#  "secret" is the database password</span>
+<span class="c">#  "wp" is the table prefix (default "wp")</span>
+<span class="c">#  "localhost" is the database host (default "localhost")</span>
+<span class="c">#  3306 is the mysql server's tcp port (default 3306)</span>
+</code></pre>
+</div>
+
+<p>한번에 됐을까? 절대 그런 일은 일어나지 않는다. 어쨌든, 워드프레스에서 Jekyll 포스트 형태로 모두 변경되었다. 완벽한 변환이란 없다, 수 작업은 필수~</p>
+
+<div class="spacer">• • •</div>
+
+<h3 id="section-1">삽질</h3>
+
+<p>워드프레스 데이터베이스에 입력된 이상한 대시 문자 때문에 이런 고생을 하기도 했다. <a href="https://github.com/vmg/redcarpet/issues/543">https://github.com/vmg/redcarpet/issues/543</a>. 개발자로 다시 성장해 가는 과정이라 생각하자.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#jekyll">
+            jekyll
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-1-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A1%9C%EC%84%9C%EC%9D%98-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%B6/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              블로그 플랫폼 이전 1 - 개발...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/">
+            <span class="pager-title">
+              블로그 플랫폼 이전 3 - Pu...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

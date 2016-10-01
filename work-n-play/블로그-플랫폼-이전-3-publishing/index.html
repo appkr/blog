@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="블로그 플랫폼 이전 3 - Publishing"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="블로그 플랫폼 이전 3 - Publishing">
+  <meta itemprop="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="블로그 플랫폼 이전 3 - Publishing" />
+  <meta name="twitter:description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>블로그 플랫폼 이전 3 - Publishing | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">블로그 플랫폼 이전 3 - Publishing</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/&title=블로그 플랫폼 이전 3 - Publishing" id="sns-facebook">Facebook</a></li>
+              <li><a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/&title=블로그 플랫폼 이전 3 - Publishing&text=블로그 플랫폼 이전 3 - Publishing" id="sns-twitter">Twitter</a></li>
+              <li><a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/" id="sns-google">Google+</a></li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-11
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-3-publishing/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.</p>
+
+<ol>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶">개발자로서의 새로운 삶</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll">Goodbye Wordpress, Hello Jekyll</a></li>
+  <li><em>Publishing</em></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp">Build Automation with Gulp</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-5-disqus-facebook">Disqus &amp; Facebook</a></li>
+</ol>
+
+<p>지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>연초에 블로그 이전을 생각하며 여기 저기 눈팅하던 중 디자인 (<a href="http://themeforest.net/item/globals-material-universal-psd-template/11932290">themeforest-Globals</a>) 하나가 눈에 들어왔다. 내용과 품질에 비해서 너무 저렴한 가격 $12. 지르지 않을 이유가 없었다.</p>
+
+<p><a href="http://s6.postimg.org/ejkibz8o1/01_header.png"><img src="http://s6.postimg.org/ejkibz8o1/01_header.png" alt="themeforest-Globals" /></a></p>
+
+<div class="spacer"></div>
+
+<p>그런데, 구매한 후 다운로드하고 파일 압축을 풀고서야 알았다, “PSD 파일 밖에 없다는 것을”. 기존에 구매했던 관리자용 템플릿인 <a href="https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S">Inspina</a> 처럼, AngularJS, MEAN, RoR, .. 등 대부분의 플랫폼에 미리 포팅되어 동작하는 템플릿을 기대하고 있었던 것이다.</p>
+
+<!--more-->
+
+<h2 id="section">퍼블리싱</h2>
+
+<p>이번에 디자이너와 코더라는 직종이 별도로 있는 지 처음 알았다. 요즘은 이 둘을 합쳐서 퍼블리셔라 한다고 들었다.</p>
+
+<p>기존에 HTML, CSS Markup 은 많이 해 보았지만, 디자인을 그대로 옮긴 경험은 없었다. 이 바닥에서 먹고 살려면 어차피 익숙해져야 하는 일이니 이번에 퍼블리싱을 경험해 보자며 뛰어든 작업의 결과물이 이 블로그이다.</p>
+
+<h2 id="layout--html-markup">Layout &amp; HTML Markup</h2>
+
+<p>마스터 레이아웃이다. 앞서 SEO (==검색 엔진 최적화) 를 언급했는데, 그 중 일부가 여기에 포함되어 있다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_layouts/default.html --&gt;</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | strip | truncate: 160 }}{% else %}{{ site.description }}{% endif %}"</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- Facebook Meta --&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/styles/main.min.css"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+  {% include site-header.html %}
+  {{ content }}
+  {% include site-footer.html %}
+
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/scripts/main.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>위 마스터 레이아웃을 이용(상속)하는 뷰들은 아래 처럼 작성하였다. 아래는 대문 페이지의 일부~</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/index.html --&gt;</span>
+---
+layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미임.
+# 이하 HTML Markup 들은 모두 /_layouts/default.html 에 쓴 {{ content }} 영역에 렌더링 됨.
+---
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main"</span> <span class="na">class=</span><span class="s">"col-md-9"</span><span class="nt">&gt;</span>
+    {% for post in paginator.posts %}
+    <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"box"</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- ... --&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box-body"</span><span class="nt">&gt;</span>
+        {{ post.content | split:'<span class="c">&lt;!--more--&gt;</span>' | first }}
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/article&gt;</span>
+    {% endfor %}
+
+    <span class="nt">&lt;nav</span> <span class="na">id=</span><span class="s">"pagination"</span><span class="nt">&gt;</span><span class="c">&lt;!-- ... --&gt;</span><span class="nt">&lt;/nav&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;aside</span> <span class="na">id=</span><span class="s">"sidebar"</span> <span class="na">class=</span><span class="s">"col-md-3"</span><span class="nt">&gt;</span>
+    {% include site-sidebar.html %}
+  <span class="nt">&lt;/aside&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<p>전체 레이아웃은 다음 그림과 같다. 레이아웃 맨 아래에 <code class="highlighter-rouge">_layouts/site-footer.html</code> 은 스크린샷에서 빠졌다.</p>
+
+<p><a href="/images/2016-02-11-img-03.png"><img src="/images/2016-02-11-img-03.png" alt="" /></a></p>
+
+<h2 id="bower">Bower</h2>
+
+<p>3rd Party Front-end 패키지 관리를 위해 <a href="http://bower.io/">Bower</a> 를 계속 이용해 왔다. 이 프로젝트에서 사용할 Assets 을 정의할 <code class="highlighter-rouge">bower.json</code> 과 Bower 설정을 저장할 <code class="highlighter-rouge">.bowerrc</code> 파일을 만들었다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bower init
+<span class="gp">$ </span>touch .bowerrc
+</code></pre>
+</div>
+
+<p><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll/#structure-config">이전 포스트의 프로젝트 구조</a> 에서 정한 대로 Bower 가 끌고오는 Assets 들의 설치 디렉토리를 <code class="highlighter-rouge">_assets/vendor</code> 로 변경해 주었다. 기본값으로 두었을 때 사용되는 <code class="highlighter-rouge">bower_components</code> 는 Gulp Build 자동화할 때 불편하기 때문에…</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/.bowerrc</span>
+
+<span class="p">{</span>
+  <span class="s2">"directory"</span><span class="err">:</span> <span class="s2">"_assets/vendor"</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">덧</h3>
+
+<p><a href="https://gofore.com/ohjelmistokehitys/stop-using-bower/">Bower 를 쓰지 말고 Npm 을 쓰자</a>는 움직임이 있는데, 아직은 익숙한 툴이라 사용하고 있다. 주목하고 있어야 할 흐름 중 하나이다.</p>
+
+<h2 id="styles">Styles</h2>
+
+<p>UI 요소를 위해 FezVrasta 의 <a href="https://github.com/FezVrasta/bootstrap-material-design">Bootstrap Material Design</a> 을 적용하였다. 개발을 모두 종료하고 보니, 상단 네비게이션 요소, 검색 박스, 아이콘을 제외하고는 사용한 것이 없었다. (걷어 내야할까 고민 중…)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bower install bootstrap-material-design --save-dev
+</code></pre>
+</div>
+
+<p>Sass 보다는 Curly Brace(<code class="highlighter-rouge"><span class="p">{}</span></code>)를 사용하는 SCSS 문법을 선호한다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span> <span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="nc">.com</span><span class="o">/</span><span class="nt">appkr</span><span class="o">/</span><span class="nt">blog</span><span class="o">/</span><span class="nt">blob</span><span class="o">/</span><span class="nt">master</span><span class="o">/</span><span class="nt">_assets</span><span class="o">/</span><span class="nt">styles</span><span class="o">/</span><span class="nt">main</span><span class="nc">.scss</span>
+
+<span class="k">@charset</span> <span class="s1">"utf-8"</span><span class="p">;</span>
+
+<span class="k">@import</span> <span class="s1">"../vendor/bootstrap-sass/assets/stylesheets/bootstrap"</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s1">"../vendor/bootstrap-material-design/sass/bootstrap-material-design"</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s1">"../vendor/bootstrap-material-design/sass/ripples"</span><span class="p">;</span>
+
+<span class="err">$</span><span class="nt">text-color</span><span class="o">:</span> <span class="nf">#9699a6</span><span class="o">;</span>
+<span class="o">//</span> <span class="o">...</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="err">$</span><span class="n">text-color</span><span class="p">;</span>
+  <span class="err">//</span> <span class="err">...</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="o">...</span>
+</code></pre>
+</div>
+
+<h3 id="section-2">덧</h3>
+
+<p>Jekyll 은 Fenced Code Block 의 스타일링을 기본 지원한다. 이 프로젝트에서는 Jekyll 의 기본 값인 <code class="highlighter-rouge">Rouge</code> 를 이용하지 않고, 일부러 <a href="http://pygments.org/"><code class="highlighter-rouge">Pygments</code></a> 를 이용하였다. <code class="highlighter-rouge">Pygments</code> 는 Python 으로 작성된 Syntax Highlighter 로, <code class="highlighter-rouge">Rouge</code> 보다 <a href="http://pygments.org/languages/">더 많은 언어의 문법</a>을 지원하기 때문이다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pip install Pygments
+<span class="gp">$ </span>gem install pygments.rb
+</code></pre>
+</div>
+
+<p>여기까지 했다고 해서 Fenced Code Block 이 예쁘게 표시되는 것은 아니다. <code class="highlighter-rouge">Pygments</code> 의 역할은, 가령 <code class="highlighter-rouge">&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;</code> 처럼, 코드 영역에 class 를 덧 붙여주는 역할을 한다. 따라서, <code class="highlighter-rouge">Pygments</code> 에 호환되도록 스타일시트를 정의해 주어야 한다. 이 프로젝트에서는 <a href="https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L209">SETI Theme</a> 을 적용하였다.</p>
+
+<h2 id="javascripts">Javascripts</h2>
+
+<p>검색 기능을 부여하기 위해 <a href="https://github.com/christian-fei/Simple-Jekyll-Search">Simple-Jekyll-Search</a>를 이용하였다. 포스트에 포함된 이미지를 확대해서 Lightbox 로 보여 주기 위해 <a href="https://github.com/ashleydw/lightbox">Bootstrap 3 Lightbox</a> 도 가져왔다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bower install simple-jekyll-search ekko-lightbox --save-dev
+</code></pre>
+</div>
+
+<h3 id="search">Search</h3>
+
+<p>“데이터베이스를 사용하지 않는 정적 페이지인데 검색이 가능해?” 라고 반문하는 방문자가 있다면 당연한 일이다. 나도 그랬으니까… Simple-Jekyll-Search 의 동작 원리는 <code class="highlighter-rouge">search.json</code> 이란 파일에 사이트 전체의 인덱스를 미리 만들 수 있도록 Liquid 문법으로 써 놓고, Jekyll Build 때 인덱싱된 파일이 떨구어지도록 하는 식이다. <code class="highlighter-rouge">search.json</code> 이 생성되면 프로젝트를 배포할 때 같이 배포되며, Javascript 가 Ajax 요청으로 로컬에 위치한 전체 사이트 인덱스를 검색하고 결과를 뷰로 보여줄 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/search.json</span>
+
+<span class="o">---</span>
+<span class="o">---</span>
+<span class="p">[</span>
+  <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">post</span> <span class="k">in</span> <span class="nx">site</span><span class="p">.</span><span class="nx">posts</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span>
+    <span class="s2">"title"</span>    <span class="err">:</span> <span class="s2">"{{ post.title | escape }}"</span><span class="p">,</span>
+    <span class="s2">"category"</span> <span class="err">:</span> <span class="s2">"{{ post.category }}"</span><span class="p">,</span>
+    <span class="s2">"tags"</span>     <span class="err">:</span> <span class="s2">"{{ post.tags | join: ', ' }}"</span><span class="p">,</span>
+    <span class="s2">"url"</span>      <span class="err">:</span> <span class="s2">"{{ site.baseurl }}{{ post.url }}"</span><span class="p">,</span>
+    <span class="s2">"date"</span>     <span class="err">:</span> <span class="s2">"{{ post.date }}"</span>
+  <span class="p">}{</span><span class="o">%</span> <span class="nx">unless</span> <span class="nx">forloop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endunless</span> <span class="o">%</span><span class="p">}</span>
+  <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+
+<p>검색 폼과 검색 결과를 보여줄 HTML Markup 을 준비하고,</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_includes/site-sidebar.html#L3 --&gt;</span>
+
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"#"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control input-lg"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"q"</span> <span class="na">placeholder=</span><span class="s">"Search..."</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"q-results"</span><span class="nt">&gt;&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="c">&lt;!-- ... --&gt;</span>
+</code></pre>
+</div>
+
+<p>Javascript 로 Symple-Jekyll-Search 를 구동하면 끝~</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L141</span>
+
+<span class="nx">SimpleJekyllSearch</span><span class="p">({</span>
+  <span class="na">searchInput</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'q'</span><span class="p">),</span>
+  <span class="na">resultsContainer</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'q-results'</span><span class="p">),</span>
+  <span class="na">json</span><span class="p">:</span> <span class="s1">'/search.json'</span><span class="p">,</span>
+  <span class="na">searchResultTemplate</span><span class="p">:</span> <span class="s1">'&lt;li&gt;&lt;a href="{url}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
+  <span class="na">noResultsText</span><span class="p">:</span> <span class="s1">'&lt;li class="text-warning"&gt;No results found&lt;/li&gt;'</span><span class="p">,</span>
+  <span class="na">limit</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="na">fuzzy</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">exclude</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><a href="/images/2016-02-11-img-01.png"><img src="/images/2016-02-11-img-01.png" alt="Search" /></a></p>
+
+<h3 id="lightbox">Lightbox</h3>
+
+<p>이미지를 클릭/터치했을 때 <a href="http://getbootstrap.com/javascript/#modals">Modal</a> 로 보여 주는 기능이다. <a href="https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L590">스타일</a>은 약간만 수정해 주면 나머지는 Bootstrap 제공 스타일이 거의 그대로 사용된다. 기능 활성화를 위해 아래 Javascript 를 작성하였다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L67</span>
+
+<span class="kd">var</span> <span class="nx">imgObjects</span> <span class="o">=</span> <span class="nx">bodyContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'img'</span><span class="p">);</span>
+
+<span class="nx">imgObjects</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="nx">that</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-toggle'</span><span class="p">,</span> <span class="s1">'lightbox'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-title'</span><span class="p">,</span> <span class="nx">that</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'alt'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">bodyContainer</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">'*[data-toggle="lightbox"]'</span><span class="p">,</span> <span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">ekkoLightbox</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><a href="/images/2016-02-11-img-02.png"><img src="/images/2016-02-11-img-02.png" alt="Lightbox" /></a></p>
+
+<div class="spacer">• • •</div>
+
+<h2 id="section-3">삽질</h2>
+
+<p>삽질은 개발자의 고유한 특징이다. 비 개발자는 그냥 ‘안되는구나~’ 라고 불평하며 다른 대안을 찾아 나서기 때문이다.</p>
+
+<p>Twitter Boostrap (==twbs) 클래스들이 오버라이드될 줄 알았는데, 잘못된 가정이었다. 이번에 알게된 사실은 CSS 스타일 정의에서 가중치 또는 우선순위이다. HTML Element 에 부여된 id 는 100 점, class 는 10 점, tag 는 1 점 이라는 것이다. 가령 <code class="highlighter-rouge">blockquote  {...}</code> 는 1점인 반면, <code class="highlighter-rouge">#app blockquote {...}</code> 는 101 점. <code class="highlighter-rouge">blockquote {... !important}</code> 를 쓰는 것은 안티패턴이다. 해서 twbs 클래스를 오버라이드하는 가장 좋은 방법은 아래 처럼 id 를 이용하는 방법..</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_layouts/default.html --&gt;</span>
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+<span class="c">&lt;!-- ... --&gt;</span>
+</code></pre>
+</div>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span> <span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="nc">.com</span><span class="o">/</span><span class="nt">appkr</span><span class="o">/</span><span class="nt">blog</span><span class="o">/</span><span class="nt">blob</span><span class="o">/</span><span class="nt">master</span><span class="o">/</span><span class="nt">_assets</span><span class="o">/</span><span class="nt">styles</span><span class="o">/</span><span class="nt">main</span><span class="nc">.scss</span>
+
+<span class="nf">#app</span> <span class="p">{</span>
+  <span class="err">blockquote</span> <span class="err">{</span>
+    <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="err">//</span> <span class="err">...</span>
+  <span class="p">}</span>
+<span class="err">}</span>
+</code></pre>
+</div>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#jekyll">
+            jekyll
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-2-goodbye-wordpress-hello-jekyll/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              블로그 플랫폼 이전 2 - Go...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/work-n-play/%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%9D%B4%EC%A0%84-4-build-automation-with-gulp/">
+            <span class="pager-title">
+              블로그 플랫폼 이전 4 - Bu...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

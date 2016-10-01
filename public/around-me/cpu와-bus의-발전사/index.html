@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="과거 펜티엄3의 CPU Clock 속도가 1GHz, Bus 속도가 133MHz 이었던 것을 생각하면, 몇 년 새 굉장히 빠르게 발전한 듯 하다. CortexA8/9 를 채용한 모바일 칩들이 800MHz~1GHz 클럭에 200MHz 듀얼 버스니까. 93년 생애 처음으로 소유했던 48..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="CPU와 BUS의 발전사"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="CPU와 BUS의 발전사">
+  <meta itemprop="description" content="과거 펜티엄3의 CPU Clock 속도가 1GHz, Bus 속도가 133MHz 이었던 것을 생각하면, 몇 년 새 굉장히 빠르게 발전한 듯 하다. CortexA8/9 를 채용한 모바일 칩들이 800MHz~1GHz 클럭에 200MHz 듀얼 버스니까. 93년 생애 처음으로 소유했던 48...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="CPU와 BUS의 발전사" />
+  <meta name="twitter:description" content="과거 펜티엄3의 CPU Clock 속도가 1GHz, Bus 속도가 133MHz 이었던 것을 생각하면, 몇 년 새 굉장히 빠르게 발전한 듯 하다. CortexA8/9 를 채용한 모바일 칩들이 800MHz~1GHz 클럭에 200MHz 듀얼 버스니까. 93년 생애 처음으로 소유했던 48..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/around-me/cpu%EC%99%80-bus%EC%9D%98-%EB%B0%9C%EC%A0%84%EC%82%AC/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>CPU와 BUS의 발전사 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">CPU와 BUS의 발전사</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/around-me/cpu%EC%99%80-bus%EC%9D%98-%EB%B0%9C%EC%A0%84%EC%82%AC/&title=CPU와 BUS의 발전사" id="sns-facebook">Facebook</a></li>
+              <li><a href="http://twitter.com/share?url=http://blog.appkr.kr/around-me/cpu%EC%99%80-bus%EC%9D%98-%EB%B0%9C%EC%A0%84%EC%82%AC/&title=CPU와 BUS의 발전사&text=CPU와 BUS의 발전사" id="sns-twitter">Twitter</a></li>
+              <li><a href="https://plus.google.com/share?url=http://blog.appkr.kr/around-me/cpu%EC%99%80-bus%EC%9D%98-%EB%B0%9C%EC%A0%84%EC%82%AC/" id="sns-google">Google+</a></li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-12
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#around-me">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/around-me/cpu%EC%99%80-bus%EC%9D%98-%EB%B0%9C%EC%A0%84%EC%82%AC/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>과거 펜티엄3의 CPU Clock 속도가 1GHz, Bus 속도가 133MHz 이었던 것을 생각하면, 몇 년 새 굉장히 빠르게 발전한 듯 하다. CortexA8/9 를 채용한 모바일 칩들이 800MHz~1GHz 클럭에 200MHz 듀얼 버스니까. 93년 생애 처음으로 소유했던 486SX 의 클럭은 40MHz 였던 생각이 난다. 격세지감이다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Apple I. 케이스와 키보드는 이 Apple 의 소유자가 만든 것으로 추정됨.</p>
+
+<p>Apple I 은 알맹이 보드만으로 구성되어 있었다. 즉, 그 당시만 해도 컴퓨터란 키보드와 모니터를 연결하기 위해 납땜 등 많은 작업을 추가적으로 해야 하는 전문가들을 위한 기기였다.</p>
+
+<p>[그림 유실] MSX. 어린 시절 나의 로망이었던… 테입을 꽂으면 게임을 할 수 있었다.</p>
+
+<p>우리나라에서 PC(Personal Computer) 즉 개인용 컴퓨터라고 하면 APPLE 과 MSX 를 빼놓고는 이야기를 시작할 수 없을 것이다. 먼저 APPLE 컴퓨터는 미국에서 스티브 잡스가 워즈니악과 함께 개발한 개인용 컴퓨터로 당시 세운상가 등에서 APPLE II의 복제품이 유행을 했었다. 이 APPLE II 에는 6502라는 CPU 를 사용했었고 클럭속도는 1Mhz 였다. 그뒤 일본에서 표준이 정해진 MSX 컴퓨터가 들어와 당시 대우전자에서 판매하며 APPLE 호환 기종과 함께 양대산맥으로 8비트 컴퓨터시장을 이끌어 간다. 이때 여기에 탑제된 CPU 는 Z-80A라는 CPU 로 당시에 3.54Mhz 로 동작하였다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] 8086, 8088. 이렇게 생겼었다.</p>
+
+<p>아마 개인적인 견해로 IBM 이라는 회사가 없었다면 오늘날의 인텔사는 없었다고 생각된다. 8비트시장이 활성화 되었을 당시 IBM 은 중대형 컴퓨터시장에 막강한 영향력을 끼치고 있던 회사로, 이런 IBM 사에서 개인용컴퓨터시장에 눈독을 들이고 만들어낸 개인용컴퓨터가 IBM-XT 이며, 이 IBM-XT에 탑재된 CPU 가 인텔사의 8086이라는 CPU 이다. 이 8086은 내부/외부를 모두 16비트로 처리하는 CPU 로 당시에는 8비트가 주류를 이루고 있었기 때문에 8비트 주변기기와 호환성에 문제를 일으키게 된다. 이에 인텔에서는 8088이라는 새로운 CPU 를 IBM-XT에 탑재시키는데 내부/외부를 16비트/8비트로 처리하여 주변기기와의 호환성을 높였다. 반면 속도에서는 8086에 비해 동일 클럭에서 약간 감소하였지만 클럭 속도를 높여 만회하였다. 당시 속도는 8086이 4.77Mhz 로 시작하였으며, 8088-1이 10Mhz, 8088-2가 8Mhz 로 동작하였고 트랜지스터 집적도는 29,000개였다. 이때 시스템버스 속도는 8Mhz 의 ISA 버스로 8비트/16비트로 작동하였으며 CPU 와 버스간의 속도 균형으로 병목현상은 거의 일어나지 않았다.</p>
+
+<!--more-->
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Macintosh. 스티브 잡스가 제록스의 PARC 연구소 로부터 GUI 특허를 사들여 만든 최초의 일체형 컴퓨터.</p>
+
+<p>8비트시절에 APPLE 로 재미를 보았던 애플사는 IBM 에 대항하기 위하여 APPLE IIe, APPLE II의 16비트 버젼인 APPLE IIgs(여기서 gs란 각각 그래픽과 사운드의 약자로 그래픽과 사운드를 강화시켰음)를 발표하지만 큰 빛은 보지 못하고 매킨토시 기종을 발표하면서 약간의 빛을 보기 시작한다. 하지만 IBM 기종은 누구나 만들어 팔 수 있는 개방적 구조인 반면(IBM 호환 기종은 IBM 사뿐만 아니라 전세계 여러 회사에서 만들어 판매하였음), 매킨토시는 애플사에서만 만들어 팔 수 있는 폐쇠적 구조로 점차 IBM 호환 기종이 전세계적으로 점유율을 높여가며 이에 따라 인텔의 매출도 기하급수적으로 늘어간다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] 80286</p>
+
+<p>IBM-XT 의 발표로 기선을 잡은 IBM 은 바로 IBM-AT를 발표한다. 여기에 들어간 CPU 역시 인텔사의 제품으로 80286이라는 CPU 가 탑재되었다. 이 80286은 8086과 마찬가지로 내부/외부를16비트로 처리하였는데, 여기에는 IBM 의 치밀한 계산이 깔려 있다. 이미 8 비트 유저들을 16 비트로 많이 이동시켰고, 그에 따른 시장지배력으로 여러 주변기기 업체에서 16 비트 IBM 호환기종에 맞는 주변기기를 발 빠르게 만들어 내고 있었기 때문이다. 80286 이 기존 8086 및 8088 과 다른 점은 주소공간이 1MB 에서 16MB 로 늘어났다는 점인데, 당시 운영프로그램 (DOS) 의 640KB 의 물리적 한계로 단지 속도가 빠른 IBM-XT 정도로 인식되었다. 클럭 속도는 8,10,12Mhz 였고 130,000 개의 트랜지스터 집적도를 보였다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Intel 386DX (상), AMD AM386 (하)</p>
+
+<p>그 다음으로 발표된 기종이 386호환기종인데,왜 컴퓨터 이름에 IBM 이라는 이름이 들어가지 않고 386이라는 이름이 들어갔는지는 좀 전에 약간의 언급을 생각하면 나온다. 인텔이 초기 IBM 사의 주문을 받아 CPU 를 납품했지만 개방형 구조로 인하여 IBM 사뿐만 아니라 세계 여러 나라의 회사에서 인텔의 80386 칩을 탑재하여 컴퓨터를 만들고 있었기 때문이다. 그러다 보니 IBM 이라는 브랜드 보다는 인텔의 X86이라는 브랜드 가치가 더욱 높게 되었던 것이다.</p>
+
+<p>80386은 기존 16비트와는 다른 32비트 CPU 로 16~33Mhz 라는 당시 획기적인 속도를 보였다. 주소공간도 4GB나 되었으며, 275,000개의 트랜지스터 집적도를 보인다. 그리고 이때부터 버스와 CPU 간의 병목현상이 본격적으로 나타나기 시작한다.</p>
+
+<p>CPU 는 33Mhz 로 동작을 하는데, 버스는 아직도 16비트(8Mhz) 의 ISA 버스였기 때문이다. 그리고 처음에 8086이 나타났을 때와 같은 문제가 발생하여, 발표된 CPU 가 바로 80386SX 이다. 이 CPU 는 내부/외부를 32비트/16비트로 처리하여 기존 80386DX 보다는 속도가 떨어졌다. 당시에 병목현상을 줄이기 위하여 여러 방안 (EISA, ISA의 확장판으로 32비트작동), MCA(IBM 이 개방형에서 폐쇄 구조로 바뀌면서 채택)이 나오기는 했지만 가격 및 호환성의 문제로 흥행에는 실패하였다.</p>
+
+<p>인텔에서는 80386DX(33Mhz)를 끝으로 80486으로 넘어가게 된다. 이때 AMD라는 회사에서 386DX(40Mhz)를 내 놓으며, 틈새 호환시장에서 조금의 두각을 나타낸다. 하지만 인텔은 이미 386시장을 버리고 486시장으로 넘어갔기 때문에 큰 경계를 나타내지는 않는다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Intel 486SX (상), AMD 486DX (하).</p>
+
+<p>80486 은 80486SX 와 80486DX 로 나누어 진다. 486SX는 코프로세서가 빠진 일종의 빠른 386 정도의 성능이었고, 486DX 는 코프로세서가 포함되어 있다는 것이 다른 점이다. 80486SX는 900,000의 트랜지스터집적도로 16~33Mhz 로 동작하였으며,80486DX는 1,180,000 의 트랜지스터 집적도에 25~50Mhz 로 동작하였다.</p>
+
+<p>80486이후 속도를 올리기 위한 연구는 계속되었는데, 주변기기의 속도와의 불균형으로 속도향상에 난항 (당시 486-50Mhz 가 주변기기의 속도가 50Mhz 를 받쳐주지 못하여 문제가 발생했었음) 을 겪고 있던 인텔사는 클럭 더블링 방식이라는 새로운 개념으로 92년도에 80486DX2 를 발표하게 된다. 여기에서 DX2 란 외부클럭은 기존 그대로 25Mhz, 33Mhz 로 두면서 내부에서 클럭을 두배로 튀겨서 50Mhz, 66Mhz 로 동작하게 만드는 것이다. 이렇게 되면 주변기기에 별 영향을 미치지 않으면서 속도를 올리기가 쉬워지게 된다. 오늘날 최신 펜티엄4 도 배율만 다를 뿐 비슷한 방식을 채택하고 있다. 아울러 주변기기의 병목현상도 줄이기 위하여 베사 로컬 방식이 도입되는데 이는 주변기기와 CPU를 1대1로 직접 연결하여 주는 방식으로 슬롯을 2 개 이상 만들 수 없다는 단점이 있는 반면, 추가되는 비용이 적어 인기를 끌었다. 베사 로컬 버스는 33Mhz 로 동작하며, 당시 병목현상이 가장 컸던 그래픽 및 IDE 연결에 사용되었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Intel Pentium</p>
+
+<p>그 다음 나온 제품이 펜티엄이다. 펜티엄은 기존에 X86 계열이 독점적 브랜드로 인정을 받지 못하고,호환업체에서 비슷한 이름으로 호환 칩을 만들었기 때문에 이를 방지하기 위하여 지어진 이름이다. 초기 펜티엄은 60,66Mhz 로 동작하였는데, 엄청난 발열 및 버그로 바로 퇴출 당하였고 코드명 P-54C 가 발표되면서 본격적인 펜티엄 시대가 열린다. 펜티엄은 기존 입출력 속도를 25~33Mhz 에서 50~66Mhz 로 높였고, 당시 버스방식도 변화가 있었는데, 베사 버스 방식 대신 PCI 버스를 채택하였다. PCI 는 기존 베사 버스가 CPU와 주변기기를 직접 연결해주는 방식과는 달리 중간에 교통정리를 해주는 단계를 거쳐 CPU 와 주변기기가 연결되게 된다.속도에 있어서는 베사 방식과 별차이가 없었지만 슬롯의 제한이 2개에서 5개로 늘어났다는 점에서 확장성에 높은 점수를 받았다. 펜티엄 (P-54C) 은 75Mhz 에서 시작하여 200Mhz 까지 발표하게 된다. 펜티엄 시절부터 호환업체의 본격적인 인텔 흔들기가 시작되는데 당시에 가장 큰 주목을 받았던 업체는 AMD 사와 사이릭스사였다. AMD 의 K5 시리즈는 높은 가격대 성능비로, 사이릭스사의 6X86 시리즈는 높은 정수연산으로 인기를 얻었다.</p>
+
+<p>이에 인텔에서는 펜티엄에 내부 캐쉬를 두배로 높이고 MMX 명령어를 추가하여 P-55C 펜티엄 MMX 를 내놓는다. 펜티엄 MMX 는 150~233Mhz 로 동작하였다. 여기에 AMD 에서는 넥스전자를 인수하여 만든 K6 로 도전을 하는데 인텔과 마찬가지로 MMX 를 탑재하고 클럭 또한 166~233Mhz 로 동작하였다. 하지만 실수연산에서 인텔에 뒤지는 바람에 큰 점유율을 기록하지는 못했다.</p>
+
+<p>하지만 인텔에서는 호환업체들의 추격이 달갑지만는 않았다. 그래서 기존 소켓7방식을 버리고 소켓8 방식의 펜티엄 PRO 를 발표하게 된다. 펜티엄 PRO 에서는 속도를 높이기 위하여 메인보드에 있던 2차 캐쉬를 CPU 안으로 넣어 속도를 높였다.</p>
+
+<p>펜티엄 PRO는 150~200Mhz 로 동작하였는데, 당시 기술로 150~200Mhz 의 캐쉬 메모리를 CPU 안에 넣는데는 기술적 한계가 있었고, 더군다나 그렇게 빠른 램을 만드는 것은 단가를 높이는 주범이 되어 크게 흥행하지는 못한다. 또 한가지 펜티엄 PRO의 약점은 32비트 환경에서는 빠른 속도를 보이지만, 16비트 환경에서는 다른 프로세서들에 비해 빠르지 못한 단점이 있었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Intel Pentium II Deschutes. 가운데가 Core, 오른쪽이 Cache.</p>
+
+<p>펜티엄 PRO 의 단점을 없애고, MMX 명령을 추가해 놓은 CPU 가 바로 펜티엄2이다. 펜티엄 2는 2차 케쉬를 CPU 밖으로 빼내어 CPU 의 1/2 속도로 동작하게 만들었으며, 펜티엄 PRO에는 빠져 있던 MMX 명령어를 탑재 하였고, 이때 다시 버스의 변동이 있는데, 지금도 널리 쓰이는 AGP 버스가 출현하였다.</p>
+
+<p>펜티엄2는 초기 클라머스 코어로 233Mhz 에서 300Mhz 가 있으며 입출력은 66Mhz 이고 단 300Mhz 에는 ECC(에러검증기능)가 들어있었다.</p>
+
+<p>다음 나온 펜티엄 2는 데슈츠 코어로 333Mhz 에서 450Mhz 까지 발표되었는데, 333Mhz 모델을 제외하고는 모두 입출력 속도를 100Mhz 로 높였다. 인텔은 중고가 시장에서는 승승장구 하고 있었지만 저가형 시장에서는 AMD 및 IDT 등의 업체에 조금씩 영역을 내어주고 있었다.특히 AMD 의 활약이 눈부셨는데, K6-2는 입출력이 100 Mhz로 우리나라에서도 좋은 인기를 얻었었다. 이에 인텔에서 발표한 CPU 가 셀러론이다. 초기 셀러론(코밍턴)은 데슈츠 코어에 2차 캐쉬를 제거하고 입출력속도를 66Mhz 로 줄여 발표되었다. 하지만 2차 캐쉬의 제거는 CPU 성능 저하에 큰 영향을 미치게 되어 멘도시노 코어의 셀러론을 다시 발표하게 된다. 멘도시노 셀러론은 128KB 의 풀스피드 2차 캐쉬를 가지고 있어 클라머스 펜티엄2와 비교하여 성능차이가 거의 없어 높은 인기를 얻는다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>[그림 유실] Intel Pentium III Katmai (상), AMD Athlon (하)</p>
+
+<p>인텔은 다시 한번 호환 칩 업체들을 떼어내기 위하여 펜티엄3을 발표하는데 초기 펜티엄 3 (카트마이)는 단지 펜티엄2에 KNI 라는 명령어만 추가되어 동일 클럭 펜티엄2와 성능차이가 거의 없었다. 이 사이 AMD 사에서는 K6-2, K6-2+, K6-3 등으로 기술력을 쌓아 에슬론 이라는 최대 히트작을 내놓게 된다. 기존 펜티엄2, 펜티엄 3은 구식의 펜티엄 PRO (6 세대)의 연장선에 있었지만 에슬론은 전혀 새로운 7 세대 제품으로 펜티엄 3의 성능을 정수뿐 아니라 실수연산에서까지 압도하였다.</p>
+
+<p>[그림 유실] Intel Pentium III Coppermine (상), AMD Palomino (하)</p>
+
+<p>이에 인텔은 2차 캐쉬를 풀 스피드로 올린 코퍼마인 코어의 펜티엄 3를 발표한다. 캐쉬량은 기존 512KB 에서 256KB로 줄었지만 캐쉬 속도의 증가로 속도에 많은 향상을 가져 왔다. 거기에 입출력속도도 133Mhz 로 높혔다. 이로써 성능면에서 에슬론과 펜티엄 3은 앞서거니, 뒤서거니 비슷해 졌지만 당시 꿈이었던 1 Ghz에는 에슬론이 먼저 깃발을 꼽는다. 그후 에슬론은 EV1 버스의 장점을 살려 DDRRAM 방식을 채용하고 클럭을 1.4Ghz 까지 끌어올려 펜티엄 3의 자존심을 짓밟는다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>인텔은 투알라틴 코어의 펜티엄 3을 내놓기는 하지만 클럭 상승에 한계를 느끼고 바로 펜티엄 4 (윌라멧)를 주력으로 한다. 펜티엄4는 쿼드 범핑 방식으로 기존 에슬론 계통의 EV1 버스의 2 배 가까운 효율을 내주었다. 하지만 펜티엄 PRO와 마찬가지로 초기에는 클럭 대비 성능이 좋지 못했다. 그 뒤 2차 캐쉬 메모리를 2 배로 늘린 노스우드 코어의 펜티엄 4를 내놓으며 다시 예전의 인기를 얻어낸다. 아울러 클럭 향상에도 여유를 가지게 되었다. 노스우드는 A방식 (캐쉬를 256에서 512KB 로 늘림), B방식 (입출력속도를 400Mhz에서 533Mhz 로 늘림) C방식 (입출력속도를 553 에서 800Mhz 로 늘림)로 이루어 지며 최고 3.4Ghz 까지 발표되며 지금도 높은 인기를 얻고 있다. 반면 에슬론 역시 펜티엄4에 대항하기 위하여 3D 프로페셔날 명령어를 추가하고 공정을 세밀화 하여 발열을 낮춘 에슬론 XP 를 발표한다. 에슬론 XP 는 초기 팔로미노 코어에서 써러브러드 코어를 거쳐 현재의 바톤 코어까지 발전한다. 각코어의 특징은 다음과 같다.</p>
+
+<ul>
+  <li>팔로미노: 1333Mhz~1733Mhz, 256KB캐쉬, FSB266Mhz</li>
+  <li>쎄러브러드코어: 1466Mhz~2200Mhz, 256KB캐쉬, FSB266~333Mhz</li>
+  <li>바톤코어: 1833~2158Mhz, 512KB캐쉬 FSB333~400Mhz</li>
+</ul>
+
+<p>현재 펜티엄 4는 캐쉬를 1MB 로 늘린 프레스캇으를 발표하였으나 높은 발열 및 파워의 문제로 노스우드 코어의 펜티엄4와 혼재되어 있으며, AMD 계열은 에슬론 XP가 저가형과 중고가형을 모두 커버하다가 최근에 저가형은 셈프론이 중고가형은 에슬론 64 가 맡고 있다. 인텔의 저가형인 셀러론은 멘도시노 코어를 거쳐 코퍼마인 코어, 투알라틴 코어, 윌라멧 코어, 노스우드 코어를 거쳐 현재에는 프레스캇 코어의 셀러론이 발표되었다. 그중 투알라틴 코어의 셀러론이 인기를 끌었으며, 이번에 발표된 프레스캇 코어의 셀러론 역시 캐쉬 및 입출력 속도의 증가로 셈프론과 더블어 저가시장에서 인기를 끌것으로 생각된다.</p>
+
+<p>버스은 이제 AGP 에서 PCI 익스프레스로이 이동이 시작되기는 했지만 아직까지는 제 성능이 나오지 않고 있어 조금 더 기가려야 할 듯 하다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>기술의 진화는 계속 된다. 중요한 기술적 의사결정을 해야 하는 사람은 패러다임의 변화와 기술의 생태학을 이해해야 한다.</p>
+
+<p> 
+## 덧글 (2010-01-31)</p>
+
+<blockquote>
+  <p>“졸면 죽는다”</p>
+
+  <p>KT 의 이동통신 사업을 이끌고 계시는 표현명 사장님이 늘 하시는 말씀입니다. 가슴에 와 닿는 말이지요. ^^</p>
+  <footer>드림위즈 이찬진 <cite>Twitter</cite></footer>
+</blockquote>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#amd">
+            amd
+          </a>
+          , 
+        
+          <a href="/tags#bus">
+            bus
+          </a>
+          , 
+        
+          <a href="/tags#cpu">
+            cpu
+          </a>
+          , 
+        
+          <a href="/tags#intel">
+            intel
+          </a>
+          , 
+        
+          <a href="/tags#x86">
+            x86
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/learn-n-think/%EB%84%88-%EB%88%84%EA%B5%AC%EB%83%90-%EB%84%8C-%EC%96%B4%EB%94%94%EB%A1%9C-%EA%B0%80%EB%8A%94-%EB%86%88%EC%9D%B4%EB%83%90/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              너 누구냐? 넌 어디로 가는 놈이냐?
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/learn-n-think/%EC%83%9D%EA%B0%81%EA%B3%BC-%EC%8B%A4%ED%96%89%EC%9D%98-%EC%B0%A8%EC%9D%B4-universal-remote/">
+            <span class="pager-title">
+              생각과 실행의 차이, Unive...
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

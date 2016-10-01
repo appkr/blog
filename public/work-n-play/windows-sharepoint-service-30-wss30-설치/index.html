@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Windows Sharepoint Service 3.0 (WSS3.0) 설치"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Windows Sharepoint Service 3.0 (WSS3.0) 설치">
+  <meta itemprop="description" content="WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Windows Sharepoint Service 3.0 (WSS3.0) 설치" />
+  <meta name="twitter:description" content="WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/windows-sharepoint-service-30-wss30-%EC%84%A4%EC%B9%98/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Windows Sharepoint Service 3.0 (WSS3.0) 설치 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">Windows Sharepoint Service 3.0 (WSS3.0) 설치</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/windows-sharepoint-service-30-wss30-%EC%84%A4%EC%B9%98/&title=Windows Sharepoint Service 3.0 (WSS3.0) 설치" id="sns-facebook">Facebook</a></li>
+              <li><a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/windows-sharepoint-service-30-wss30-%EC%84%A4%EC%B9%98/&title=Windows Sharepoint Service 3.0 (WSS3.0) 설치&text=Windows Sharepoint Service 3.0 (WSS3.0) 설치" id="sns-twitter">Twitter</a></li>
+              <li><a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/windows-sharepoint-service-30-wss30-%EC%84%A4%EC%B9%98/" id="sns-google">Google+</a></li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-02-14
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/windows-sharepoint-service-30-wss30-%EC%84%A4%EC%B9%98/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋은 무료 협업 도구이다.</p>
+
+<p>host name 은 <code class="highlighter-rouge">sbd</code> 라 하자.</p>
+
+<h3 id="install-net-framework">Install-.net Framework</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>dotnetfx35sp1.exe
+</code></pre>
+</div>
+
+<h3 id="install-sql-utilities">Install-SQL Utilities</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>sqlcli.msi
+<span class="gp">\&gt; </span>SQLServer2005_SQLCMD.msi
+<span class="gp">\&gt; </span>SQLServer2005_SSMSEE.msi
+</code></pre>
+</div>
+
+<h3 id="install-wss30">Install-WSS3.0</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>sharepoint.exe
+</code></pre>
+</div>
+
+<p>약관동의 -&gt; 고급설치 -&gt; 서버유형:독립실행형 -&gt; 데이터위치: <code class="highlighter-rouge">d:\wss_data</code> -&gt; “지금 Sharepoint 제품 및 기술 구성 마법사 실행”</p>
+
+<!--more-->
+
+<h3 id="configure-smtp-">Configure-SMTP 서버</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SMTP Server: xxx.xxx.xxx.xxx
+</code></pre>
+</div>
+
+<h3 id="configure-wss-log">Configure-WSS Log</h3>
+
+<p>WSS 중앙관리 -&gt; 작업 -&gt; 진단 로깅 활성화</p>
+
+<h3 id="configure-database--c--d--">Configure-Database 를 <code class="highlighter-rouge">C:\</code> 에서 <code class="highlighter-rouge">D:\</code> 로 이동</h3>
+
+<p>IIS/WSS Service 종료 후, Content Database 이름 확인</p>
+
+<p>중앙관리 -&gt; 응용 프로그램 관리 -&gt; 콘텐츠 데이터베이스: “WSS_Content”</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>C:<span class="se">\P</span>rogram Files<span class="se">\M</span>icrosoft SQL Server<span class="se">\9</span>0<span class="se">\T</span>ools<span class="se">\b</span>inn
+<span class="gp">\&gt; </span>sqlcmd -S <span class="se">\.</span>pipemssql<span class="nv">$microsoft</span><span class="c">##sseesqlquery -E</span>
+</code></pre>
+</div>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'WSS_Content'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\W</span>SS_Content.mdf d:<span class="se">\w</span>ss_db<span class="se">\</span>
+<span class="gp">\&gt; </span>copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\W</span>SS_Content_log.ldf d:<span class="se">\w</span>ss_db<span class="se">\</span>
+</code></pre>
+</div>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_attach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="n">WSS_Content</span><span class="s1">', @filename1 = '</span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="n">wss_db</span><span class="err">\</span><span class="n">WSS_Content</span><span class="p">.</span><span class="n">mdf</span><span class="s1">', @filename2 = '</span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="n">wss_db</span><span class="err">\</span><span class="n">WSS_Content_log</span><span class="p">.</span><span class="n">ldf</span><span class="s1">'
+sql&gt; Go
+</span></code></pre>
+</div>
+
+<p>나머지 데이터베이스 이름도 확인</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">sysdatabases</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+<span class="o">#</span> <span class="n">SharePoint_Config_2e0e9493</span><span class="o">-</span><span class="n">bccb</span><span class="o">-</span><span class="mi">4</span><span class="n">b66</span><span class="o">-</span><span class="mi">9</span><span class="n">e61</span><span class="o">-</span><span class="n">ea4c2974a310</span>
+<span class="o">#</span> <span class="n">SharePoint_AdminContent_b597bf8d</span><span class="o">-</span><span class="mi">8</span><span class="n">ed5</span><span class="o">-</span><span class="mi">4</span><span class="n">de7</span><span class="o">-</span><span class="mi">86</span><span class="n">dc</span><span class="o">-</span><span class="mi">774</span><span class="n">a919cab5c</span>
+<span class="o">#</span> <span class="n">WSS_Search_SBD</span>
+<span class="o">#</span> <span class="n">WSS_Contents</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'WSS_Search_SBD'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+</code></pre>
+</div>
+
+<p>파일 복사</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\*</span>.<span class="k">*</span> d:<span class="se">\w</span>ss_db
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310', @filename1 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310.mdf',
+@filename2 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310_log.ldf'
+sql&gt; Go
+sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c',
+@filename1 = 'd:wss_db\SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c.mdf',
+@filename2 = 'd:wss_db\SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c_log.ldf'
+sql&gt; Go
+sql&gt; EXEC sp_attach_db @dbname = 'WSS_Search_SBD', @filename1 = 'd:wss_db\WSS_Search_SBD.mdf', @filename2 = 'd:wss_db\WSS_Search_SBD_log.ldf'
+sql&gt; Go
+</code></pre>
+</div>
+
+<p>IIS/WSS 서비스 재 구동 후, SQL Management Studio에서 Database 파일들이 정상적으로 이동되었는 지 확인.</p>
+
+<h3 id="install-search-server-2008-express">Install-Search Server 2008 Express</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>SearchServerExpress.exe
+</code></pre>
+</div>
+
+<p>서버유형: 독립실행형 -&gt; Index파일 위치: <code class="highlighter-rouge">d:\sse_index</code></p>
+
+<p>“Sharepoing 제품 및 기술 구성 마법사” -&gt; “Shared Service Provider (SSP): <code class="highlighter-rouge">http://sbd/ssp/admin</code>” -&gt; “SSP Database” -&gt; 데이터베이스 서버: SBDOfficeServers -&gt; 데이터베이스 이름: SharedServices1_DB -&gt; “검색 Database” -&gt; 데이터베이스 이름: <code class="highlighter-rouge">SharedServices1_Search_DB</code> -&gt; “인덱스 서버” -&gt; 인덱스 파일 경로 위치: <code class="highlighter-rouge">d:\sse_index\Office Server\Applications</code></p>
+
+<h3 id="configure-search-server--">Configure-Search Server 사이트 만들기</h3>
+
+<h3 id="configure-">Configure-중앙관리</h3>
+
+<p>작업 -&gt; 진단 로깅 설정 -&gt; 추적 로그 경로: <code class="highlighter-rouge">d:\wss_log</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 일반 설정 -&gt; 기본 표준 시간대 : GMT+9 서울 -&gt; 최대 업로드 크기 : <code class="highlighter-rouge">999MB</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 정책 -&gt; NT AUTHORITY\LOCAL SERVICE: <code class="highlighter-rouge">전체 읽기</code></p>
+
+<h3 id="install-application-template-core">Install-Application Template Core</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>C:Program Files<span class="se">\C</span>ommon Files<span class="se">\m</span>icrosoft shared<span class="se">\W</span>eb Server Extensions12<span class="se">\B</span>IN
+<span class="gp">\&gt; </span>Stsadm -o addsolution -filename ApplicationTemplateCore.wsp
+<span class="gp">\&gt; </span>Stsadm -o deploysolution -name ApplicationTemplateCore.wsp -allowgacdeployment -immediate
+<span class="gp">\&gt; </span>Stsadm -o copyappbincontent
+<span class="gp">\&gt; </span>Stsadm -o execadmsvcjobs
+</code></pre>
+</div>
+
+<h3 id="pdf-icon-">Pdf icon 표시하기</h3>
+
+<p>Pdf icon 구하기 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions12\TEMPLATE\IMAGES 에 pdf icon 복사 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\TEMPLATE\XMLDOCICON.XML 에 레코드 추가</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- XMLDOCICON.XML --&gt;</span>
+<span class="nt">&lt;Mapping</span> <span class="na">Key=</span><span class="s">"pdf"</span> <span class="na">Value=</span><span class="s">"PDFICON.gif"</span><span class="nt">/&gt;</span>
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>iisreset
+</code></pre>
+</div>
+
+<h3 id="configure--">Configure-작업 예약</h3>
+
+<p>중앙관리 -&gt; 작업 -&gt; 사용현황분석프로세스 -&gt; 로그파일 위치 : <code class="highlighter-rouge">d:\wss_user_log</code> -&gt; 분석 시간 : <code class="highlighter-rouge">오전 03:00~04:00</code></p>
+
+<p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup.bat -&gt; 매일 오전 05:00</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># wss_backup.bat</span>
+stsadm.exe -o backup -directory d:wss_backup -backupmethod differential
+</code></pre>
+</div>
+
+<p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup_network.bat -&gt; 매주 일요일 오전 07:00</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># wss_backup_network.bat</span>
+NET USE z: <span class="se">\x</span>xx.xxx.xxx.xxx<span class="se">\S</span>BDBackup USERPASS /USER:USERNAME@DOMAIN
+xcopy d:<span class="se">\w</span>ss_backup z: /S /Y
+NET USE z: /DELETE
+</code></pre>
+</div>
+
+<h3 id="configure---html-">Configure-계산된 열에 html 허용</h3>
+
+<p><a href="http://blog.ray1.net/2008/01/enabling-html-andor-images-in.html">http://blog.ray1.net/2008/01/enabling-html-andor-images-in.html</a></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>notepad C:<span class="se">\P</span>rogram Files<span class="se">\C</span>ommon Files<span class="se">\M</span>icrosoft Shared<span class="se">\w</span>eb server extensions<span class="se">\1</span>2<span class="se">\T</span>EMPLATE<span class="se">\X</span>MLFLDTYPES.XML
+</code></pre>
+</div>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- XMLFLDTYPES.XML --&gt;</span>
+<span class="nt">&lt;RenderPattern</span> <span class="na">Name=</span><span class="s">"DisplatPattern"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Default&gt;</span> <span class="nt">&lt;Column</span> <span class="na">HTMLEncode=</span><span class="s">"TRUE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Column/&gt;</span>
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>iisreset
+</code></pre>
+</div>
+
+<h3 id="install-ifilter60">Install-iFilter6.0</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>ifilter.exe
+</code></pre>
+</div>
+
+<p>IISAdmin -&gt; Server 중지</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>c:<span class="se">\P</span>rogram files<span class="se">\a</span>dobe<span class="se">\p</span>df ifilter 6.0
+<span class="gp">\&gt; </span>regsvr32.exe pdffilt.dll
+</code></pre>
+</div>
+
+<p>Server Reboot 후, Search Server 전체 크롤링</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#se">
+            se
+          </a>
+          , 
+        
+          <a href="/tags#wss">
+            wss
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/imported/%EC%9A%B0%EB%A6%AC-%EC%82%B6%EC%9D%98-%EB%AA%A8%EC%88%9C/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              우리 삶의 모순
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next">
+          <a href="/imported/%EC%A0%9C%EC%82%AC%EC%9D%98-%EC%9D%98%EB%AF%B8/">
+            <span class="pager-title">
+              제사의 의미
+            </span>
+            <span class="pager-title-sm">Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">69</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">40</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 186%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
+          <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
+          <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
+          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

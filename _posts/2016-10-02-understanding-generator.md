@@ -1,7 +1,7 @@
 ---
 layout: post-minimal
 title: '제너레이터 이해하기' 
-date: 2016-08-10 00:00:00 +0900
+date: 2016-10-02 00:00:00 +0900
 categories:
 - learn-n-think
 tags:
@@ -9,9 +9,7 @@ tags:
 - generator
 ---
 
-제너레이터(generator)는 대용량 데이터를 순회하며 작업할 때 유용한 기능이며, 대부분의 프로그래밍 언어에서 찾아볼 수 있다. 언어만 다를 뿐 개념은 모두 같다. 이 포스트는 제너레이터에 대한 필자 나름의 이해 방식을 기록한 것이다. 
-
-[![발전기](https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/High-Current_Copper-Brush_Commutated_Dynamo.jpg/1920px-High-Current_Copper-Brush_Commutated_Dynamo.jpg)](https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/High-Current_Copper-Brush_Commutated_Dynamo.jpg/1920px-High-Current_Copper-Brush_Commutated_Dynamo.jpg)
+제너레이터(generator)는 대용량 데이터를 순회하며 작업할 때 유용한 기능이며, 대부분의 프로그래밍 언어에서 찾아볼 수 있다. 언어만 다를 뿐 개념은 모두 같다. 이 포스트는 자바스크립트 및 PHP 제너레이터에 대한 필자 나름의 이해 방식을 기록한 것이다. 
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -87,10 +85,44 @@ iterator                                numbers(generator instance)
 - 호출하는 쪽에서 이터레이션의 시작과 다음 이터레이션을 제어할 수 있다(On-demand Iteration).
 - 어디까지 실행했는지 상태를 가진 객체다.
 
-## 3. 응용
+## 3. 예제 - PHP
 
-앞 절의 예제에서 데이터는 1, 2 두개 뿐이다. 백만개를 메모리에 올린다고 가정해 보면...
+실전에 사용한 예제는 AWS PHP SDK에서 찾아 볼 수 있다. AWS SDK에서 이터레이션은 거의 대부분 제너레이터를 사용하는 것을 볼 수 있다.
 
-http://www.slideshare.net/wan2land/php-gcm-feat-async-generator
+```php
+<?php
+// https://github.com/aws/aws-sdk-php/blob/master/src/functions.php#L49
 
+namespace Aws;
 
+/**
+ * Applies a map function $f to each value in a collection.
+ *
+ * @param mixed    $iterable Iterable sequence of data.
+ * @param callable $f        Map function to apply.
+ *
+ * @return \Generator
+ */
+function map($iterable, callable $f)
+{
+    foreach ($iterable as $value) {
+        yield $f($value);
+    }
+}
+```
+
+이렇게 사용할 수 있다. 
+
+```php
+<?php
+
+$generator = Aws\map(range(1, 1000000), function ($value) {
+    return $value * 2;
+});
+
+foreach ($generator as $number) {
+    echo $number, PHP_EOL;
+}
+```
+
+이 예제에서는 큰 차이를 못 느낄 수 있지만, 배열 요소 하나가 큰 데이터를 가지고 있을 때는 제너레이터를 쓰지 않고는 `php.ini` 설정에서 `memory_limit` 값을 엄청 늘려야 할 것이다. 배열 순회에 필요한 모든 데이터를 메모리에 적재한 후 실행하는 것과, 이번 순회에 필요한 데이터만 읽어오는 차이가 있다.

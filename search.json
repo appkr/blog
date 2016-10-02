@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "제너레이터 이해하기",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, generator",
+    "url"      : "/learn-n-think/understanding-generator/",
+    "date"     : "2016-10-02"
+  },
+  
+  {
     "title"    : "API 인증 - Json Web Token",
     "category" : "work-n-play",
     "tags"     : "개발자, API, JWT",

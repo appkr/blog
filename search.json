@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "API 인증 - Json Web Token",
+    "category" : "work-n-play",
+    "tags"     : "개발자, API, JWT",
+    "url"      : "/work-n-play/json-web-token/",
+    "date"     : "2016-10-01"
+  },
+  
+  {
     "title"    : "RoRLab 워크숍 후기",
     "category" : "around-me",
     "tags"     : "개발자",

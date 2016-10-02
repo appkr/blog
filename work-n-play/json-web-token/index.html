@@ -6,34 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="지난 주는 생활코딩 작심5일 수업에 자원봉사자로 참여했었다. 첫 날은 다른 일 때문에 참석하지 못했고, 나머지 4일 동안을 참여 했다.이 강의는 일반인에게  웹 서비스의 기본적인 동작 원리를 가르쳐 주고  웹 프로그래밍 입문을 돕는 것이 목적이다.학습 항목은 개발환경설치, HTML..."/>
+  <meta name="description" content="10월 5일에 있을 모던 PHP 유저 그룹 10월 정기 모임 발표 자료입니다. 라라벨 프로젝트에서 Json Web Token을 적용하는 구현을 라이브로 진행합니다. 관심 있는 분들은 7시 30분 학동역 옐로우스토리 지하 1층 카페로 오시면 됩니다.            open_in..."/>
   <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
   <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
 
   <meta name="msapplication-tap-highlight" content="no"/>
 
   <!-- Facebook Meta -->
-  <meta property="og:title" content="생활코딩 작심5일 후기"/>
+  <meta property="og:title" content="API 인증 - Json Web Token"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
   <meta property="og:image" content=""/>
 
   <!-- Google+ Meta -->
-  <meta itemprop="name" content="생활코딩 작심5일 후기">
-  <meta itemprop="description" content="지난 주는 생활코딩 작심5일 수업에 자원봉사자로 참여했었다. 첫 날은 다른 일 때문에 참석하지 못했고, 나머지 4일 동안을 참여 했다.이 강의는 일반인에게  웹 서비스의 기본적인 동작 원리를 가르쳐 주고  웹 프로그래밍 입문을 돕는 것이 목적이다.학습 항목은 개발환경설치, HTML...">
+  <meta itemprop="name" content="API 인증 - Json Web Token">
+  <meta itemprop="description" content="10월 5일에 있을 모던 PHP 유저 그룹 10월 정기 모임 발표 자료입니다. 라라벨 프로젝트에서 Json Web Token을 적용하는 구현을 라이브로 진행합니다. 관심 있는 분들은 7시 30분 학동역 옐로우스토리 지하 1층 카페로 오시면 됩니다.            open_in...">
   <meta itemprop="image" content="">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
-  <meta name="twitter:title" content="생활코딩 작심5일 후기" />
-  <meta name="twitter:description" content="지난 주는 생활코딩 작심5일 수업에 자원봉사자로 참여했었다. 첫 날은 다른 일 때문에 참석하지 못했고, 나머지 4일 동안을 참여 했다.이 강의는 일반인에게  웹 서비스의 기본적인 동작 원리를 가르쳐 주고  웹 프로그래밍 입문을 돕는 것이 목적이다.학습 항목은 개발환경설치, HTML..." />
+  <meta name="twitter:title" content="API 인증 - Json Web Token" />
+  <meta name="twitter:description" content="10월 5일에 있을 모던 PHP 유저 그룹 10월 정기 모임 발표 자료입니다. 라라벨 프로젝트에서 Json Web Token을 적용하는 구현을 라이브로 진행합니다. 관심 있는 분들은 7시 30분 학동역 옐로우스토리 지하 1층 카페로 오시면 됩니다.            open_in..." />
   <meta name="twitter:image" content="" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
-  <link rel="canonical" href="http://blog.appkr.kr/learn-n-think/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%91%EC%8B%AC5%EC%9D%BC-%ED%9B%84%EA%B8%B0/"/>
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/json-web-token/"/>
   <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
   <link rel="stylesheet" href="/styles/main.min.css"/>
 
-  <title>생활코딩 작심5일 후기 | Appkr.memo(new Life)</title>
+  <title>API 인증 - Json Web Token | Appkr.memo(new Life)</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -78,19 +78,32 @@
 
 
   <div class="container">
-  <section id="main" class="col-md-9">
+  <section id="main" class="col-md-9 minimal">
     <article class="box">
       <div class="box-header">
         <h2>
-          <span class="title">생활코딩 작심5일 후기</span>
+          <span class="title">API 인증 - Json Web Token</span>
           <span class="action dropdown pull-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
               <i class="material-icons">share</i>
             </a>
+
             <ul class="dropdown-menu">
-              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/learn-n-think/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%91%EC%8B%AC5%EC%9D%BC-%ED%9B%84%EA%B8%B0/&title=생활코딩 작심5일 후기" id="sns-facebook">Facebook</a></li>
-              <li><a href="http://twitter.com/share?url=http://blog.appkr.kr/learn-n-think/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%91%EC%8B%AC5%EC%9D%BC-%ED%9B%84%EA%B8%B0/&title=생활코딩 작심5일 후기&text=생활코딩 작심5일 후기" id="sns-twitter">Twitter</a></li>
-              <li><a href="https://plus.google.com/share?url=http://blog.appkr.kr/learn-n-think/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%91%EC%8B%AC5%EC%9D%BC-%ED%9B%84%EA%B8%B0/" id="sns-google">Google+</a></li>
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/json-web-token/&title=API 인증 - Json Web Token" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/json-web-token/&title=API 인증 - Json Web Token&text=API 인증 - Json Web Token" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/json-web-token/" id="sns-google">
+                  Google+
+                </a>
+              </li>
             </ul>
           </span>
         </h2>
@@ -98,7 +111,7 @@
         <p class="box-meta">
           <span>
             <i class="material-icons">today</i>
-            2016-02-21
+            2016-10-01
           </span>
           <span>
             <i class="material-icons">face</i>
@@ -107,9 +120,9 @@
           <span>
             <i class="material-icons">turned_in</i>
             
-              <a href="/categories#learn-n-think">
+              <a href="/categories#work-n-play">
                 
-                    Learn & Think
+                    Work & Play
                   
               </a>
               
@@ -117,117 +130,42 @@
           </span>
           <span>
             <i class="material-icons">forum</i>
-            <a href="/learn-n-think/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%91%EC%8B%AC5%EC%9D%BC-%ED%9B%84%EA%B8%B0/#disqus_thread" title="comments">0</a>
+            <a href="/work-n-play/json-web-token/#disqus_thread" title="comments">0</a>
           </span>
         </p>
       </div>
 
       <div class="box-body">
-        <p>지난 주는 <a href="http://onoffmix.com/event/61685">생활코딩 작심5일</a> 수업에 자원봉사자로 참여했었다. 첫 날은 다른 일 때문에 참석하지 못했고, 나머지 4일 동안을 참여 했다.</p>
+        <p>10월 5일에 있을 모던 PHP 유저 그룹 10월 정기 모임 발표 자료입니다. 라라벨 프로젝트에서 Json Web Token을 적용하는 구현을 라이브로 진행합니다. 관심 있는 분들은 7시 30분 학동역 옐로우스토리 지하 1층 카페로 오시면 됩니다.</p>
 
-<p>이 강의는 일반인에게</p>
+<p><img src="/images/2016-10-01-img-01.png" alt="API 인증 - Json Web Token" /></p>
 
-<ul>
-  <li>웹 서비스의 기본적인 동작 원리를 가르쳐 주고</li>
-  <li>웹 프로그래밍 입문을 돕는 것</li>
-</ul>
-
-<p>이 목적이다.</p>
-
-<p>학습 항목은 개발환경설치, HTML, CSS, JavaScript, PHP, SQL, AWS 서버 준비 및 코드 배포 등 이다. 이 강좌를 완주한 수강생들은 <strong>“무엇을 모르는 지 모르는 상태”</strong> 에서 <strong>“무엇을 모르는 지는 아는 상태”</strong>, 즉 스스로 문제를 해결하기 위한 기본 지식과, 다음 단계로 나아가기 위한 소양을 갖추게 된다.</p>
-
-<p>교육자는 감동을 주는 사람이다. 단언건데, 생활코딩 운영자 egoing 님은 교육자이다. 그 감동은 오랫 동안 남아 있을 것이다. 왜냐하면…?</p>
-
-<!--more-->
-
-<div class="spacer">• • •</div>
-
-<h2 id="section">눈 높이</h2>
-
-<p>가슴에 손을 얹고 말해 보라. 내가 아는 것을 정말 6 살 어린이에게 설명할 수 있는 지를? 가장 먼저 부딛히는 벽은 어휘의 선택일 것이다. 내가 사용하는 어휘는 6 살 어린이가 이해할 수 있는 단어들로 재배열하고, 풀어서 말해야 하는데…</p>
-
-<blockquote>
-  <p>If you can’t explain it to a six year old, you don’t understand it yourself. &lt;footer&gt;Albert Einstein&lt;/footer&gt;</p>
-</blockquote>
-
-<p>이번 이벤트의 정원은 100 명 이었으나, 출석부를 기준으로 총 120 명 정도가 참석하셨고, 마지막날 출석률은 80 명 정도였다. 전라도 광주에서 오신 분이 있는가 하면 (Spatially), 연령대는 중학교 2 학년 학생 ~ 70+ 어르신까지 (Temporally) 다양했다. 또, 배경 지식 수준도 다양했는데, 참석자의 70 % 정도가 “웹” 프로그래밍을 한번도 안해본 분들이었다.</p>
-
-<p>조교로서 가장 많이 봐 드려야 했던 분 중에, 자신을 기자라고 소개하신 한 분이 있었다. 딱 봐도 코드를 한번도 짜본 적이 없는 분이셨다. 그런데, 끝까지 완주하셨다. 눈 높이이 맞는 교육이 이루어졌다는 것은 완주율로 알 수 있다.</p>
-
-<p>테니스 동호회에 참여하면서 배운 점 중 하나는, 신입 회원이 들어왔을 때 그 들이 떠나는 이유는 딱 두 가지라는 것이다.</p>
-
-<ol>
-  <li>우리 동호회의 수준이 자신의 실력/기대 수준에 못 미치거나,</li>
-  <li>아니면 자신의 실력이 우리 동호회 활동하기에 벅차거나.</li>
-</ol>
-
-<p>그 외 잘 활동하다가 떠나는 경우는 생업이나 인간관계 때문에 발생하는 테니스라는 본질과는 무관한 이유였다. 이번 강좌에서 완주하지 않고 떠나신 분들은 1 의 이유, 즉, 이번 강의에 굳이 참여하실 이유가 없는 분들이었으리라.</p>
-
-<h2 id="section-1">목적 적합성</h2>
-
-<p>우리는 하나를 얻기 위해 하나를 포기해야 한다. 가령, 적시성을 얻기 위해 정확성을 잠시 보류해야 한다거나… 프로그래밍 입문자에게 변수, 자료형, 조건문, 반복문 등 기초를 전달하는 것이 본질이라면, 그 본질을 벗어 나는 곁다리 장식들은 버려야 한다. 이게 목적 적합성이다.</p>
-
-<p>아래는 이 강좌의 최종 코드이다.</p>
-
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="nv">$conn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="s1">'root'</span><span class="p">,</span> <span class="s1">'111111'</span><span class="p">,</span> <span class="s1">'opentutorials'</span><span class="p">);</span> <span class="cp">?&gt;</span>
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;title&gt;</span>작심5일<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body</span> <span class="na">id=</span><span class="s">"target"</span> <span class="na">class=</span><span class="s">"white"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.php"</span><span class="nt">&gt;</span>작심5일<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
-<span class="nt">&lt;ol&gt;</span>
-<span class="cp">&lt;?php</span>
-<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"SELECT id, title FROM topic"</span><span class="p">;</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="nv">$sql</span><span class="p">);</span>
-<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$result</span><span class="p">))</span> <span class="p">{</span>
-  <span class="k">print</span><span class="p">(</span><span class="s2">"&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">index.php?id=</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]}</span><span class="nx">\</span><span class="s2">"&gt;</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]}</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;&lt;/</span><span class="nx">li</span><span class="o">&gt;</span><span class="s2">");
-}
-?&gt;
-&lt;/ol&gt;
-&lt;div id="</span><span class="nx">article</span><span class="s2">"&gt;
-  &lt;input type="</span><span class="nx">button</span><span class="s2">" value="</span><span class="nx">white</span><span class="s2">" onclick="</span><span class="nx">document</span><span class="o">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'target'</span><span class="p">)</span><span class="o">.</span><span class="nx">className</span><span class="o">=</span><span class="s1">'white'</span><span class="s2">"&gt;
-  &lt;input type="</span><span class="nx">button</span><span class="s2">" value="</span><span class="nx">black</span><span class="s2">" onclick="</span><span class="nx">document</span><span class="o">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'target'</span><span class="p">)</span><span class="o">.</span><span class="nx">className</span><span class="o">=</span><span class="s1">'black'</span><span class="s2">"&gt;
-&lt;?php
-if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
-  print("</span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="o">!!!!&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span><span class="s2">");
-} else {
-  </span><span class="nv">$sql</span><span class="s2"> = "</span><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">topic</span> <span class="nx">WHERE</span> <span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]}</span><span class="s2">";
-  </span><span class="nv">$result</span><span class="s2"> = mysqli_query(</span><span class="nv">$conn</span><span class="s2">, </span><span class="nv">$sql</span><span class="s2">);
-  </span><span class="nv">$row</span><span class="s2"> = mysqli_fetch_assoc(</span><span class="nv">$result</span><span class="s2">);
-  print("</span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]}</span><span class="o">&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span><span class="s2">");
-  print(</span><span class="nv">$row['description']</span><span class="s2">);
-}
-?&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</span></code></pre>
+<div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
+  <div class="panel-body text-center">
+    <a href="https://drive.google.com/open?id=0Bx8_tW_C70eNMHpiRk93dUt6NFU">
+      <i class="material-icons">open_in_browser</i>
+      브라우저에서 슬라이드 열기
+    </a>
+  </div>
 </div>
-
-<p>웹 개발을 전업으로 하는 프로 개발자들이 이 코드를 본다면, 목적, 배경, 과정에 대한 이해 없이 결과만 보고 바로 코드의 품질을 비난할 것이다. 이 강좌는 <strong>“무엇인가를 하는 법”</strong> 을 가르쳐 주는 것이 목적이다. 배운 내용을 기반으로 <strong>“무엇인가를 잘 하는 법”</strong> 은 스스로 해야 한다.</p>
-
-<p>강의와 결과물 코드는 목적 적합했다.</p>
-
-<div class="spacer">• • •</div>
-
-<p>지난 일주일의 경험은 정말 알차고 보람있었다. 소중한 일주일을 경험하게 해 주신 egoing 님과 미림여자정보과학고 함기훈 선생님 외 선생님들, 수업에 참여하신 수강생 분들에게 감사드린다.</p>
 
       </div>
 
       <footer class="box-tags">
         <span><i class="material-icons">label</i> Tags:</span>
         
-          <a href="/tags#web">
-            web
+          <a href="/tags#개발자">
+            개발자
           </a>
           , 
         
-          <a href="/tags#개발자">
-            개발자
+          <a href="/tags#API">
+            API
+          </a>
+          , 
+        
+          <a href="/tags#JWT">
+            JWT
           </a>
           
         
@@ -238,25 +176,22 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       <ul class="pager">
         
         <li class="previous">
-          <a href="/learn-n-think/%EB%82%B4%EA%B0%80-%EC%95%84%EB%8A%94-%EC%9B%B9%EC%9D%98-%EC%97%AD%EC%82%AC/">
+          <a href="/around-me/rorlap-workshop-epilog/">
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
             <span class="pager-title-sm">Older</span>
             <span class="pager-title">
-              내가 경험한 웹의 역사
+              RoRLab 워크숍 후기
             </span>
           </a>
         </li>
         
 
         
-        <li class="next">
-          <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">
-            <span class="pager-title">
-              Gitbook 과 Pandoc ...
-            </span>
-            <span class="pager-title-sm">Newer</span>
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>
@@ -315,7 +250,7 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">40</span>
+          <span class="badge">41</span>
         </a>
       </li>
       <li>
@@ -346,6 +281,18 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
     <span style="font-size: 98%">
       <a href="/tags#3d">
         3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
       </a>
     </span>
     
@@ -787,7 +734,7 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       </a>
     </span>
     
-    <span style="font-size: 186%">
+    <span style="font-size: 190%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -909,6 +856,13 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-10-01</small>
+          <a href="/work-n-play/json-web-token/">API 인증 - Json Web Token</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
           <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
         </h4>
@@ -918,13 +872,6 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
           <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
-          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
         </h4>
       </li>
       

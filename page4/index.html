@@ -83,6 +83,68 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/super-fast-debug-deploy/">엄청나게 빠른 버그 감지, 디버그, 코드 배포</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-03-03
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/super-fast-debug-deploy/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>어제 있었던 일이다. 저녁에 있을 모임에 나가기 위해 하던 일을 슬슬 정리하려던 차였다. 그런데, 슬랙으로 날아온 버그 메시지. 버그를 감지하고 바로 고친후 프로덕션에 배포했는데, 이 모든 과정이 딱 10분 걸렸다. 어떻게 가능했을까?</p>
+
+<p>이 포스트는</p>
+
+<ul>
+  <li>라라벨<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 프레임워크의 우수성을 알린다.</li>
+  <li>가난한 개발자가 자신의 서비스를 지키는 방법과 몇가지 개발 도구를 소개한다.</li>
+</ul>
+
+<p>라는 목적을 가진다. (이 블로그의 포스트들의 방문자가 갑자기 많아졌다. 그래서 웃고 운다.)</p>
+
+<p>이 포스트의 대상이 되는 프로젝트는 내가 쓴 <a href="https://github.com/appkr/l5essential">라라벨 5 온라인 강좌</a>임을 미리 밝힌다. 해당 강좌를 통해 개발한 최종 결과물은 현재 아마존웹서비스(AWS)에서 올려 <a href="http://l5.appkr.kr/">라이브데모</a>라며 서비스하는데, 이 포스트는 라이브데모의 방문자 중 한분이 겪은 문제에 대한 해결 이력이다. 그런데 불편함을 겪었던 그 분은 ‘그냥 안되네~’라며 페이지를 떠나신 것 같다. 내 메일 주소를 찾아 가면서 문제점을 기술(description)하면서 고쳐달라고 말하는 친절을 베풀지는 않았지만, 버그를 만들어 주셨으니 나한테는 고마운 분이다.</p>
+
+<p>이 포스트의 내용과는 조금은 다른 관점인데.. 서비스에 문제가 생겼을 때 사용자가 별 노력 없이도 문제점을 개발자에게 알릴 수 있는 사용자인터페이스(UI)나 장치를 만드는 것도, 서비스의 품질을 높일 수 있는 좋은 방법이다. 이런 옵트인(opt-in) 방식의 리포팅은 팝업 형태로 표시되어 사용자의 동의를 받아 전송하는 것이 일반적이다.</p>
+
+<p>가능한 모든 경우의 수를 따져서 개발자는 프로그래밍하고 테스트를 하려고 하지만, 세상에 ‘완벽’이란 단어는 없다. 구현이 조금 부족하고 테스트가 덜 됐을 수 있지만, 버그를 리포팅하는 장치를 프로그램에 심어서 배포하고, 리포트된 버그를 분석하고 코드를 고쳐서 빠르게 안정화하며, 초기 사용자의 반응을 관찰하는 것이 더 낫다는 것이 나의 생각이다. 완벽주의 개발자들로 포진된 스타트업들이 오버 엔지니어링을 하다가 실기(失期)하는 사례를 여러번 봤다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/super-fast-debug-deploy/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">Gitbook 과 Pandoc 을 이용한 전자 출판</a>
         </h2>
         <p class="box-meta">
@@ -311,79 +373,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/css-specificity/">CSS Specificity</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-02-16
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/css-specificity/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>speci.., specifif…, speficyfyf…, specificificfy… what?</p>
-
-<h2 id="css-specificity">CSS Specificity</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td>[*</td>
-      <td>spesɪ</td>
-      <td>fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. <a href="http://blog.appkr.kr/work-n-play/블로그-플랫폼-이전-3-publishing/#삽질">블로그 플랫폼 이전 3 - Publishing</a> 포스트에서 twbs 클래스들을 오버라이드하는 과정에서 잘못 이해한 것을, 실험을 통해 배우고 고쳐서 정리해 놓는다.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="test">Test</h2>
-
-<p>이번 주는 <a href="http://onoffmix.com/event/61685">생활코딩 작심5일</a> 수업에 자원봉사자로 참여하고 있다. 오늘 수업에서 CSS 얘기를 듣다가 문득 궁금증이 생겼다.</p>
-
-<p>내가 기존에 알고 있던 지식은</p>
-
-<ul>
-  <li>Tag Selector 1 점 (<em>e.g. <code class="highlighter-rouge">a {...}</code></em>)</li>
-  <li>Class Selector 10 점 (<em>e.g. <code class="highlighter-rouge">.darth {...}</code></em>)</li>
-  <li>Id Selector 100 점 (<em>e.g. <code class="highlighter-rouge">#sith {...}</code></em>)</li>
-</ul>
-
-<p>였다. 궁금증은 <em>‘Tag 를 11 개 중첩해서 쓰면 Class 하나를 오버라이드할 수 있을까?’</em> 라는 것.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/css-specificity/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -446,7 +435,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">40</span>
+          <span class="badge">41</span>
         </a>
       </li>
       <li>
@@ -477,6 +466,18 @@
     <span style="font-size: 98%">
       <a href="/tags#3d">
         3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
       </a>
     </span>
     
@@ -918,7 +919,7 @@
       </a>
     </span>
     
-    <span style="font-size: 186%">
+    <span style="font-size: 190%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1040,6 +1041,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-10-01</small>
+          <a href="/work-n-play/json-web-token/">API 인증 - Json Web Token</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-08-21</small>
           <a href="/around-me/rorlap-workshop-epilog/">RoRLab 워크숍 후기</a>
         </h4>
@@ -1049,13 +1057,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-08-07</small>
           <a href="/learn-n-think/javascript-promise-101/">자바스크립트와 프로미스</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-08-03</small>
-          <a href="/work-n-play/restful-url-design-pug/">RESTFul URL 설계 (@ModernPUG)</a>
         </h4>
       </li>
       

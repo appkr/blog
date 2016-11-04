@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "RPC - Apache Thrift 입문 1부",
+    "category" : "work-n-play",
+    "tags"     : "개발자, rpc, apache thrift",
+    "url"      : "/work-n-play/how-to-use-apache-thrift-in-php-part-1/",
+    "date"     : "2016-11-04"
+  },
+  
+  {
     "title"    : "제너레이터 이해하기",
     "category" : "learn-n-think",
     "tags"     : "개발자, generator",

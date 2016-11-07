@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "라라벨-루멘-PHP 날코딩 성능 비교",
+    "category" : "work-n-play",
+    "tags"     : "개발자, laravel, lumen",
+    "url"      : "/work-n-play/performance-comparison-between-laravel-lumen-homemade/",
+    "date"     : "2016-11-07"
+  },
+  
+  {
     "title"    : "RPC - Apache Thrift 입문 1부",
     "category" : "work-n-play",
     "tags"     : "개발자, rpc, apache thrift",

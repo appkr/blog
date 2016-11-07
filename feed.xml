@@ -5,9 +5,228 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Nov 2016 23:38:13 +0900</pubDate>
-    <lastBuildDate>Sat, 05 Nov 2016 23:38:13 +0900</lastBuildDate>
+    <pubDate>Mon, 07 Nov 2016 23:35:59 +0900</pubDate>
+    <lastBuildDate>Mon, 07 Nov 2016 23:35:59 +0900</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>라라벨-루멘-PHP 날코딩 성능 비교</title>
+        <description>&lt;p&gt;라라벨과 루멘, PHP 날코딩간의 성능 비교를 해 보신 분들이 없는 것 같아 직접 해 봤다. &lt;strong&gt;결론은 뻔하지만, PHP 날코딩이 가장 빠르고, 메모리 사용량도 적다. 프레임워크를 써야 이유는 다른 곳에 있으니, 이 실험 결과만 보고 오해나 곡해하지 마시기 바란다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;주의&lt;/code&gt;&lt;/strong&gt; 이 실험은 다른 PHP 프레임워크 또는 다른 플랫폼의 프레임워크와 라라벨 또는 루멘의 성능을 비교하기 위한 것이 아니다(다른 PHP 프레임워크와의 비교는 &lt;a href=&quot;http://taylorotwell.com/how-lumen-is-benchmarked/&quot;&gt;“How Lumen Is Benchmarked”&lt;/a&gt;를 참고하라). &lt;strong&gt;이 실험은 라라벨과 루멘의 기본적인 속도와 필요 리소스를 측정해 봄으로써, PHP 날코딩의 성능과 프레임워크가 제공하는 이점 간의 트레이드오프(trade-off)에 대한 의사 결정 포인트를 제공하기 위한 목적으로 수행하였다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;1. 실험 환경&lt;/h2&gt;
+
+&lt;p&gt;다음 머신에서 실험했다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;macOS Sierra 10.12.1&lt;/li&gt;
+  &lt;li&gt;2.7 GHz Intel Core i5&lt;/li&gt;
+  &lt;li&gt;8GB 1867 MHz DDR3&lt;/li&gt;
+  &lt;li&gt;SSD&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;사용한 소프트웨어 버전은 다음과 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PHP 7.0.11 with Xdebug, without OPcache&lt;/li&gt;
+  &lt;li&gt;MySQL 5.7.15&lt;/li&gt;
+  &lt;li&gt;Laravel Valet 1.1.22 (로컬 웹 서버)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;2. 실험 방법&lt;/h2&gt;
+
+&lt;p&gt;다음과 같이 실험했다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹 브라우저에서 테스트를 위한 URL 엔드포인트를 각 시나리오별로 총 5회 방문했고, 아웃라이어 2개는 버리고 남은 3개만 이용했다.&lt;/li&gt;
+  &lt;li&gt;해당 엔드포인트는 MySQL 데이터베이스에서 2개의 레코드를 가져와서 HTTP 응답을 내 보내는 일을 하는데, HTTP 응답을 반환하기 직전에 현재까지의 1) 실행 시간, 2) 메모리 사용량을 로그에 기록하였다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mysql--&quot;&gt;2.1. MySQL 테이블 레코드&lt;/h3&gt;
+
+&lt;p&gt;MySQL에 저장된 2개의 레코드를 팅커(라라벨 내장 REPL) 콘솔에서 확인했봤다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-11-01-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-11-07-img-01.png&quot; alt=&quot;Test Vector&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;2.2. 테스트 코드&lt;/h3&gt;
+
+&lt;p&gt;라라벨 기준으로 성능 측정 코드는 다음과 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// index.php
+&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'LARAVEL_START'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;microtime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// routes/web.php
+&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$todos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Todo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'metric'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$todos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;performance()&lt;/code&gt; 함수는 이렇게 생겼다. 할당된 메모리 양이 아니라, 사용한 메모리 양으로 측정했다(&lt;a href=&quot;http://php.net/manual/en/function.memory-get-usage.php&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;memory_get_usage()&lt;/code&gt;&lt;/a&gt;).&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/helpers.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;implode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'처리시간(ms): '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;microtime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LARAVEL_START&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'메모리(MB) : '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;memory_get_usage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'CPU(%): '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sys_getloadavg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;3. 실험 결과&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;3.1. 라라벨&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;laravel/framework 5.3.19&lt;/code&gt; 버전을 이용했다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;구분&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;처리시간(ms)&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;메모리(MB)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;48.988103867&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;7.369736000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;43.443918228&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;7.369736000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;43.838024139&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;7.369736000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;평균&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;45.343995094&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;7.369736000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;3.2. 루멘&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;laravel/lumen-framework 5.3.1&lt;/code&gt; 버전을 이용했다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;구분&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;처리시간(ms)&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;메모리(MB)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;23.682117462&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4.800936000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;23.600816727&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4.800936000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;25.380134583&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4.800936000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;평균&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;24.163961411&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4.800936000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;php-&quot;&gt;3.3. PHP 날코딩&lt;/h3&gt;
+
+&lt;p&gt;날 코딩이라 하지만, 컴포저와 PDO를 사용하고 MVC 구조로 짠 코드다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;구분&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;처리시간(ms)&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;메모리(MB)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3.256082535&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.916032000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4.014015198&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.916032000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3.664970398&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.916032000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;평균&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3.560066223&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;0.916032000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;4. 결론&lt;/h2&gt;
+
+&lt;p&gt;속도나 메모리 사용량 면에서 PHP 날코딩이 확실히 유리하다. 이 테스트 기준으로 2GB 메모리 머신에서 PHP 날코딩이 1초당 610,649개의 요청을 처리할 수 있다면(2000/0.92 * 1000/3.56), 라라벨은 5,895개의 요청을 처리할 수 있다(2000/7.37 * 1000/45.34).&lt;/p&gt;
+
+&lt;p&gt;물론, 현실 세계에서 이런 간단한 서비스는 없으므로, 한 요청당 수십 MB의 메모리를 사용하고 수백 ms의 처리 시간이 걸린다. 운영 환경에서는 아파치나 엔진엑스를 사용하고, Xdebug를 끄고, OPcache를 켜서 성능을 향상시킬 수 있다.&lt;/p&gt;
+
+&lt;p&gt;프레임워크의 장점으로 생산성, 안정성, 보안을 들 수 있다. 수퍼 개발자가 있어 열 명이 해야 할일을 혼자서 처리하고, 해킹에 뚫릴 일이 전혀 없고 유지보수 하기도 편리한 자체 서비스 프레임워크를 직접 개발할 수 있다면, 라라벨과 루멘과 같은 프레임워크를 쓸 필요 없다.&lt;/p&gt;
+
+&lt;p&gt;경험적으로 수퍼 개발자에 의존하는 서비스 운영은 절대 바람직하지 않다. 수퍼 개발자가 자신의 지위를 악용하거나, 아프거나 퇴사라도 하는 순간 서비스는 한 순간에 무너진다.&lt;/p&gt;
+
+&lt;p&gt;컴퓨터의 성능은 좋아졌고, 가격은 싸져서 스케일 업(scale-up)이 쉬워졌다. 또, 쉽게 스케일 아웃(scale-out)할 수 있는 클라우드도 널렸다. &lt;strong&gt;개발자 한 명 채용하는 비용보다 컴퓨터 비용이 훨씬 싸다는 점을 잊지 말자. 좋은 서버 쓰고 안정적인 코드를 빨리 개발하는 것이 더 현명하다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;반면 서비스가 궤도에 올라 사용자가 늘고 1ms와 1KB라도 쥐어 짜야 하는 상황이라면 자체 프레임워크 개발을 고려해볼 만한다. 물론 성능이 더 좋은 플랫폼으로 갈아 타는 방법도 있다. &lt;strong&gt;서비스를 살리기 위해 스택을 버려야지, 스택을 살리기 위해 서비스를 버리는 어리석음을 범하지 말라&lt;/strong&gt;. 라라벨이나 루멘은 범용 프레임워크이므로 최적화가 필요한 초대형 서비스에는 적합하지 않다는 생각이 든다.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 07 Nov 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/performance-comparison-between-laravel-lumen-homemade/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/performance-comparison-between-laravel-lumen-homemade/</guid>
+        
+        <category>개발자</category>
+        
+        <category>laravel</category>
+        
+        <category>lumen</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>RPC - Apache Thrift 입문 1부</title>
@@ -2097,35 +2316,6 @@ you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5736550&lt;span cl
         <category>개발자</category>
         
         <category>docker</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>RESTFul URL 설계 (@RoRLab)</title>
-        <description>&lt;p&gt;이 슬라이드는 RoRLab에서 주최하는 &lt;a href=&quot;http://rorlab.org/schedules/1&quot;&gt;“AGIAN2011 Workshop”&lt;/a&gt;의 2회차 워크숍 키노트 발표 자료입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2016-06-27-img-01.png&quot; alt=&quot;RESTful URL 설계&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
-  &lt;div class=&quot;panel-body text-center&quot;&gt;
-    &lt;a href=&quot;/files/again2011_workshop_keynote_2.pdf&quot;&gt;
-      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
-      브라우저에서 슬라이드 열기
-    &lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Mon, 27 Jun 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/restful-url-design/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/restful-url-design/</guid>
-        
-        <category>개발자</category>
-        
-        <category>rest</category>
         
         
         <category>work-n-play</category>

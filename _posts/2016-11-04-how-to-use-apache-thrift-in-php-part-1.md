@@ -720,11 +720,11 @@ Thrift 클라이언트가 보낸 HTTP 요청 본문은 이렇게 생겼다. `JSO
 -   클라이언트가 문서를 읽고 이해해서 데이터 형식에 맞추거나, 서버가 데이터 형식에 대한 유효성을 검사하는데 신경을 덜 쓸 수 있다.
 -   빠르다.
  
- Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 되므로, PHP 변수나 객체로 값을 검사하려면 프로토콜 안쪽에서 해야 한다. 2부에서는 Thrift 프로토콜 안쪽에서 작동하는 미들웨어를 만들어서 예외를 잡고 소비하는 방법을 다룰 예정이다.
+Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 되므로, PHP 변수나 객체로 값을 검사하려면 프로토콜 안쪽에서 해야 한다. 2부에서는 Thrift 프로토콜 안쪽에서 작동하는 미들웨어를 만들어서 예외를 잡고 소비하는 방법을 다룰 예정이다.
  
  <div class="spacer">• • •</div>
  
- 이번 포스트의 예제 프로젝트는 
+이번 포스트의 예제 프로젝트는 
  
 -   [https://github.com/appkr/thrift-example-idl](https://github.com/appkr/thrift-example-idl)
 -   [https://github.com/appkr/thrift-example-project](https://github.com/appkr/thrift-example-project)

@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "[광고 같은 광고 아닌 알짜 정보] &#39;라라벨로 배우는 실전 PHP 웹 프로그래밍&#39; 출간 안내",
+    "category" : "work-n-play",
+    "tags"     : "개발자, laravel",
+    "url"      : "/work-n-play/laravel-paper-book-published/",
+    "date"     : "2016-11-27"
+  },
+  
+  {
     "title"    : "라라벨-루멘-PHP 날코딩 성능 비교",
     "category" : "work-n-play",
     "tags"     : "개발자, laravel, lumen",

@@ -83,6 +83,89 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/importance-of-service-url/">서비스 URL의 중요성 및 변경의 비용</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-05-18
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/importance-of-service-url/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>웹 서비스를 하다 보면 마이그레이션을 해야 할 때가 반드시 찾아 온다. 트래픽 양이 변해서 더 큰 또는 작은 서버로 이전한다거나, 다른 프로그래밍 언어 또는 다른 프레임워크로 갈아타야 한다거나..</p>
+
+<p>나에게도 찾아 왔다. 라라벨 온라인 강좌의 라이브 데모 사이트를 AWS(Amazon Web Service)에서 서비스하고 있었는데, 요금이 꽤 나와서 Github Page로 옮겼다. 회원 가입등 서버가 필요한 동적 기능은 버리고, HTML로 강좌만 서비스하는 정적 웹 페이지로 바꾸었다. 이 과정에서 어쩔 수 없이 URL을 변경했다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>변경 전</th>
+      <th>변경 후</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">/lessons/01-welcome.md</code></td>
+      <td><code class="highlighter-rouge">/lessons/01-welcome.html</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="http://jigsaw.tighten.co/">Jigsaw</a>라고 하는 정적 사이트 빌더를 이용했는데, 로컬 컴퓨터에서 마크다운으로 작성한 강좌를 정적 HTML 파일로 전부 트랜스파일한 다음, Github Page에 올리는 방식이다. <a href="http://jekyllrb.com/">Jekyll</a>을 이용한 이 블로그와 빌드 도구만 다를 뿐 똑같은 방식이다.</p>
+
+<p>AWS 라이브 데모를 닫은 지 2주일 정도됐다. 사용자가 구글 검색 엔진을 통해 들어온다면, 기존의 URL은 당연히 열리지 않는 황당한 경험을 하게 된다. 구글로부터 최근에 404 응답이 많아졌다는 메일을 받았지만, 아무 생각없이 그냥 무시했었다. 커뮤니티에서 같이 활동을 하는 <a href="https://www.facebook.com/profile.php?id=100001411952158">김종운</a>님과 어제 대화를 나누기 전까지는 말이다.</p>
+
+<blockquote>
+  <p>URL이 바꼈던데, 그간에 쌓아 놓은 구글 검색 순위가 아깝지 않으세요?</p>
+
+  <footer>김종운님</footer>
+</blockquote>
+
+<p><a href="https://www.google.com/webmasters/tools">Google Search Console</a>로 확인해 보니 다행히 그간에 검색 엔진을 통해 들어온 사용자는 그리 많지 않았고, 순위도 그리 높지 않았을 것이라 생각한다. 그러나, 2 주간 불편을 겪었을, 또 앞으로 불편을 겪을 수도 있는 사용자를 생각하면 고치지 않을 수 없었다.</p>
+
+<p>이 포스트는 다음 내용을 다룬다. SEO(Search Engine Optimization, 검색 엔진 최적화)라는 관점에서 공통점이 있다.</p>
+
+<ol>
+  <li>Github Page에서 URL Redirect를 구현한 로그</li>
+  <li>SEO 관점에서 URL의 중요성 및 일반적인 URL Rewrite 방법</li>
+</ol>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/importance-of-service-url/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/git-flow/">Git Flow</a>
         </h2>
         <p class="box-meta">
@@ -314,66 +397,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">Gitbook 과 Pandoc 을 이용한 전자 출판</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-02-23
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.</p>
-
-<ul>
-  <li>
-    <p><a href="https://github.com/GitbookIO/gitbook">Gitbook</a></p>
-
-    <p>GitBook is a command line tool (and Node.js library) for building beautiful books using GitHub/Git and Markdown</p>
-  </li>
-  <li>
-    <p><a href="http://pandoc.org/">Pandoc</a></p>
-
-    <p>If you need to convert files from one markup format into another, pandoc is your swiss-army knife.</p>
-  </li>
-</ul>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -436,7 +459,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">43</span>
+          <span class="badge">44</span>
         </a>
       </li>
       <li>
@@ -716,7 +739,7 @@
       </a>
     </span>
     
-    <span style="font-size: 106%">
+    <span style="font-size: 110%">
       <a href="/tags#laravel">
         laravel
       </a>
@@ -944,7 +967,7 @@
       </a>
     </span>
     
-    <span style="font-size: 202%">
+    <span style="font-size: 206%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1066,6 +1089,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-11-27</small>
+          <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-11-07</small>
           <a href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/">라라벨-루멘-PHP 날코딩 성능 비교</a>
         </h4>
@@ -1075,13 +1105,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-11-04</small>
           <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-1/">RPC - Apache Thrift 입문 1부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-10-02</small>
-          <a href="/learn-n-think/understanding-generator/">제너레이터 이해하기</a>
         </h4>
       </li>
       

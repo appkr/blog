@@ -5,9 +5,119 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 07 Nov 2016 23:35:59 +0900</pubDate>
-    <lastBuildDate>Mon, 07 Nov 2016 23:35:59 +0900</lastBuildDate>
-    <generator>Jekyll v3.2.1</generator>
+    <pubDate>Mon, 28 Nov 2016 22:26:59 +0900</pubDate>
+    <lastBuildDate>Mon, 28 Nov 2016 22:26:59 +0900</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</title>
+        <description>&lt;p&gt;제가 집필한 책이 어제 출간되었습니다. &lt;strong&gt;웹 프로그래밍&lt;/strong&gt;을 다룹니다. 웹 프로그래밍을 위한 도구로는 &lt;strong&gt;PHP 언어로 작성된 라라벨 프레임워크&lt;/strong&gt;를 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;2016년 초에 완성하고 깃허브에 공개한 &lt;strong&gt;&lt;a href=&quot;https://github.com/appkr/l5essential&quot;&gt;무료 온라인 강의&lt;/a&gt;를 토대로 제이펍 출판사에 계신 프로페셔널들의 도움을 받아 비문을 고치고 부족한 설명을 보충&lt;/strong&gt;하였습니다. 게다가 생활 코딩 오프라인 수업에 조교로 자원 봉사(5회?), 8시간 또는 14시간 짜리 라라벨 입문 강의(각 4회씩 총 8회) 등을 통해 입문자와 예비 독자들을 만나며, 여러분들이 어려워하거나 실수하기 쉬운 내용을 캐치하고 책의 내용과 구성에 반영했습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://cfile2.uf.tistory.com/image/261326505829771C18CBB0&quot;&gt;&lt;img src=&quot;http://cfile2.uf.tistory.com/image/261326505829771C18CBB0&quot; alt=&quot;라라벨로 배우는 실전 PHP 웹 프로그래밍&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;프로그래밍을 생짜 처음 하신다고요?&lt;/h4&gt;
+
+&lt;p&gt;생활코딩의 &lt;a href=&quot;https://opentutorials.org/course/1688&quot;&gt;웹 애플리케이션 만들기&lt;/a&gt; 정도만 공부하신 수준이면 이 책을 시작하는데 무리가 없습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;임베디드, 응용, 시스템 프로그래밍을 하시거나/하셨는데, 필요에 의해 웹 프로그래밍을 하셔야 한다고요?&lt;/h4&gt;
+
+&lt;p&gt;이 책으로 시작하시는 당신은 행운아입니다.&lt;/p&gt;
+
+&lt;p&gt;이 곳에서 구매할 수 있습니다. &lt;a href=&quot;http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&amp;amp;mallGb=KOR&amp;amp;barcode=9791185890623&quot;&gt;교보문고&lt;/a&gt;, &lt;a href=&quot;http://www.bandinlunis.com/front/product/detailProduct.do?prodId=4011008&quot;&gt;반디앤루니스&lt;/a&gt;, &lt;a href=&quot;http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=96495117&quot;&gt;알라딘&lt;/a&gt;, &lt;a href=&quot;http://www.yes24.com/24/goods/33320248&quot;&gt;yes24&lt;/a&gt;, &lt;a href=&quot;http://book.interpark.com/product/BookDisplay.do?_method=detail&amp;amp;sc.shopNo=0000400000&amp;amp;sc.prdNo=261904099&quot;&gt;인터파크&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;개발자들은 코드를 보면 코드를 짠 사람의 실력과 성격을 어느 정도 가늠할 수 있다는 얘기를 들었습니다. 마찬가지로, 저희들은 원고를 보고 지은이의 내공과 성격을 어느 정도 유추하곤 합니다. 김주원 님의 원고를 처음 받았을 때의 느낌은 ‘참 꼼꼼하면서 정갈한 분이시겠구나’였습니다. 책 전체의 뼈대와 같은 차례도 탄탄하고, 글을 풀어가는 느낌도 군더더기가 없어서 좋았습니다. 물론, 원고를 받고 책이 나오기까지 많은 분의 도움으로 수정 및 보완 작업을 거치긴 했지만요.&lt;/p&gt;
+  &lt;footer&gt;제이펍 블로그 포스트 중에서 (http://jpub.tistory.com/622)&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;안내&lt;/code&gt;&lt;/strong&gt; 매월 첫째 주 수요일에 열리는 &lt;a href=&quot;http://www.modernpug.org/&quot;&gt;모던퍼그&lt;/a&gt; 정기 모임에 책을 들고 참여하시면 저자 싸인해 드리겠습니다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;1. 라라벨이 뭐길래?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://laravel.com/&quot;&gt;&lt;img src=&quot;/images/2016-11-27-img-01.png&quot; alt=&quot;라라벨 홈페이지&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;온오프믹스 오프라인 강의 모집 공고에 썼던 내용을 그대로 옮겨 왔습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;라라벨은 PHP 언어로 만든 풀 스택 웹 프레임워크&lt;/strong&gt;입니다. 루비하면 레일즈와 시나트라, 파이썬하면 장고와 플라스크가 대표적인 웹 프레임워크로 자리매김하고 있듯이, 지금은 PHP하면 라라벨로 통할 정도로 인기있는 도구입니다. 태어난 지 5년됐고 현재 최신 버전은 5.3입니다. 지난 5년 동안 16,000개의 이슈와 20,000개의 커밋이 발생했을 정도로 활동이 활발합니다. 오늘 기준으로 깃허브 전체 인기도 41위를 차지하고 있습니다&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. 국내에서도 라라벨을 채택하는 회사와 프로젝트가 최근에 부쩍 늘고 있습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;라라벨을 장착하면&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MVC로 깔끔하게 떨어지는 구조의 서비스를 개발할 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;남들은 다 한다는 ‘모던’ 개발 방법론과 서비스 아키텍처가 뭔지에 대해 서서히 눈뜨게 됩니다.&lt;/li&gt;
+  &lt;li&gt;객체 지향 프로그래밍의 디자인 패턴, SOLID를 이해하기 시작합니다. 이쯤되면 더 나은 코드에 대한 갈망이 용솟음 칩니다.&lt;/li&gt;
+  &lt;li&gt;레벨 업 → 더 좋은 회사 취업, 이직의 자유도 → 이력서에 ‘라라벨’ 한 줄로 러브콜이 쇄도하는 선순환 고리에 들어섭니다.&lt;/li&gt;
+  &lt;li&gt;결국은 만렙 웹 개발자가 되고, 다른 언어와 프레임워크를 친구 자취방처럼 넘나들 수 있는 경지에 이릅니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;한 마디로 라라벨은 모범 웹 개발 방법론의 결정체입니다. 라라벨에서 배운 라우팅, 템플릿, 마이그레이션, ORM, 의존성 관리, 객체 지향 설계등의 지식은 다른 프레임워크를 시작할 때도 그대로 이식할 수 있습니다. 반대로 다른 웹 프레임워크를 해 보신 분이 라라벨을 시작하신다면 이미 절반은 알고 계신거나 마찬가지입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;php-&quot;&gt;2. PHP가 뭐길래?&lt;/h2&gt;
+
+&lt;p&gt;PHP는 20년이 넘는 역사를 가지고 있습니다. 현존하는 모든 컴퓨터 언어를 놓고 봤을 때 전세계적으로 7위 정도의 인기를 누리고 있습니다&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;스스로를 범용 언어라고 포지셔닝하려하지만, 사실은 태생부터가 &lt;strong&gt;웹을 위한 언어&lt;/strong&gt;였습니다(시작은 C로 짠 템플릿 엔진 수준). 책 머리글에 PHP의 간략한 역사를 포함하고 있으니 참고해주세요. 그래서 웹만 이야기하면 PHP의 인기도와 채택율은 완전 달라집니다. 통계에 따르면 전세계 웹 트래픽의 80% 이상을 PHP 언어가 서브하는 것으로 알려져있습니다&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. 페이스북과 워드프레스의 영향이 크긴하지만 엄청난 수치입니다.&lt;/p&gt;
+
+&lt;p&gt;제가 현재 속한 회사도 안정성과 확장성이 필요한 핵심 서비스는 자바나 스칼라를 쓰지만, 고객과 인터페이스가 발생하고 자주 변하는 부분(API 엔드포인트)은 모두 PHP로 처리하고 있습니다. 즉, 웹 브라우저, iOS/Andorid 애플리케이션을 비롯한 웹 클라이언트의 80%가 PHP로 짠 서버에 접속한다는 의미입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;그러나,&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;PHP 문법이나 동작의 비일관성&lt;/li&gt;
+  &lt;li&gt;테스트와 유지보수가 불가한 난잡한 프레임워크(워드프레스)&lt;/li&gt;
+  &lt;li&gt;현업 개발자나 웹 에이전시들의 나쁜 코딩 습관&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;때문에 PHP는 개발자들로부터 많은 비난을 받아왔습니다. &lt;a href=&quot;http://noraesae.github.io/PHP-a-fractal-of-bad-design-kr/&quot;&gt;‘PHP:잘못된 디자인의 프랙탈’&lt;/a&gt; 문서를 보면 PHP를 암덩어리라고 느낄지도 모릅니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-11-27-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-11-27-img-02.png&quot; alt=&quot;PHP 성능&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이런 이유로 한 동안 PHP를 쳐다보지도 않았다면, 지금은 다시 한 번 쳐다보세요. 웹 서비스에서는 다른 언어 대비 엄청난 성능을 보이고&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;, 비일관성이나 코딩 습관은 PSR(PHP Standard Recommendation, Like JSR)과 라라벨과 같은 프레임워크가 어느 정도 가이드해줍니다.&lt;/p&gt;
+
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;p&gt;원고를 탈고하고 책이 출간되는 사이에 라라벨 버전업이 한 번 있었고, 따라서 전체 예제 코드를 새 버전에 맞게 전부 다시 짰습니다. 뿐만아니라 이 책이 세상에 태어나지 못할 수도 있는 여러 가지 위기 상황을 겪었습니다. 그래서 책을 받아 든 순간 만감이 교차했지요.&lt;/p&gt;
+
+&lt;p&gt;저는 라라벨이 국내에 확산되고, 그로 인해 자연스럽게 국내 PHP 및 웹 개발 생태계가 발전하기를 기대하며 이 책을 썼습니다. 국내 시장이 작은 이유도 있겠지만, 이번에 책을 쓰면서 출판 생태계를 알고 보니, 저자들이 책을 쓸 동기가 전혀 없겠다는 사실을 깨달았습니다. 사실 초판이 다 팔려도 저자들이 받는 인세는 그들이 들인 시간과 에너지에 비해 정말 작거든요.&lt;/p&gt;
+
+&lt;p&gt;우리는 정보 과잉의 시대에 살고 있습니다. 새로운 기술을 배울 수 있는 채널을 너무나도 많습니다. 하지만 웹 검색을 통해서 얻는 것은 단편적인 문제 해결 방법일 뿐입니다. 완전하게 이해하기에는 책보다 더 좋은 채널이 없습니다. 제 자신도 책을 잘 안 사는 편입니다만, 더 많은 잠재 저자들이 자신의 오덕함을 사람들과 나눌 수 있도록 도와 주세요. 앞으로 책을 또 쓰는 무모한 짓은 하지 않으려고 다짐하는데, 옆에서 ‘한 번이 어렵지~’라며 바람을 넣네요. 후후.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;https://github-ranking.com/repositories, Vue.js 7위(놀라워라~), 레일즈 10위, 익스프레스 31위, 장고 53위 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;http://www.tiobe.com/tiobe-index/ &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;https://w3techs.com/technologies/overview/programming_language/all &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;http://benchmarksgame.alioth.debian.org/, 테이블 헤더의 spectral-norm 등은 테스트 벡터 이름, secs는 실행 시간, KB/gz는 소스코드 크기, cpu는 CPU 사용 시간, 측정 값은 모두 4회 테스트한 결과의 평균치 &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 27 Nov 2016 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</guid>
+        
+        <category>개발자</category>
+        
+        <category>laravel</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>라라벨-루멘-PHP 날코딩 성능 비교</title>
@@ -1973,349 +2083,6 @@ you:~/workspace &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5736550&lt;span cl
         <category>laravel</category>
         
         <category>websocket</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>도커를 이용한 분산 서비스 아키텍처 맛보기</title>
-        <description>&lt;p&gt;같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 ‘도커’라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 AWS에서 도커를 지원한다는 소식을 접했고, 도커 자체적으로도 Swarm이란 컨테이너 배포 툴 프로젝트를 공개함으로써, 운영 환경에 바로 쓸 수 있는 도구로 재인식됐다. IoT, 마이크로 프레임워크, 마이크로 서비스 등 시대적 흐름과도 잘 부합하는 도구라 생각한다.&lt;/p&gt;
-
-&lt;p&gt;이 포스트는 &lt;em&gt;‘맛보기’&lt;/em&gt;다. 아래 목록은 구글링으로 쉽게 찾을 수 있어 이 포스트에서는 다루지 않는다. 도커를 경험해보지 않은 독자가 복붙(copy &amp;amp; paste) 만으로 포스트를 따라해 보고 스스로 도커의 유용성을 경험하도록하는 것이 이 포스트의 목적이다.&lt;/p&gt;
-
-&lt;p&gt;도커를 몰라도 된다. 라라벨을 몰라도 된다. 무작정 따라해 보면 된다. 중간에 중간에 각 명령에 대해 간략히만 설명을 추가했다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;del&gt;도커란 무엇인가? 왜 써야 하는가?&lt;/del&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Dockerfile 작성법&lt;/del&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;docker-compose.yml 작성법&lt;/del&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;p&gt;이하 명령들은 모두 Mac OS 기준이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;1. 도커 툴체인 설치&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://brew.sh/&quot;&gt;홈브루-The missing package manager for OS X&lt;/a&gt;는 Mac OS 필수 바이너리다. 없다면 링크를 눌러 설치한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Cask는 Mac Os용 애플리케이션을 설치하기 위한 홈브루 탭(사설 저장소)이다.&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install dockertoolbox --appdir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Applications
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker --version
-&lt;span class=&quot;c&quot;&gt;# Docker version 1.11.1, build 5604cbe&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;host-vm-&quot;&gt;2. Host VM 만들기&lt;/h2&gt;
-
-&lt;p&gt;도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다(VMWare등을 사용해도 된다, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine create --driver vmwarefusion default&lt;/code&gt;).&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 홈브루에 Cask 탭을 추가한적이 없다면&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask
-
-&lt;span class=&quot;c&quot;&gt;# 버추얼박스 설치&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install virtualbox --appdir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Applications
-
-&lt;span class=&quot;c&quot;&gt;# 호스트로 사용할 VM 만들기&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine create --driver virtualbox default
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;우리가 만든 VM의 이름은 &lt;code class=&quot;highlighter-rouge&quot;&gt;default&lt;/code&gt;다. 다른 이름을 쓴다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine&lt;/code&gt; 명령을 이용할 때마다 VM 이름을 명시해야 한다(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;$ docker-machine ip foo&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;새로 만든 VM을 구동하고, IP를 확인한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine start
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine ip
-&lt;span class=&quot;c&quot;&gt;# 192.168.99.100&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;[선택 사항] Mac OS의 hosts 파일을 수정해서, 개발 중에 사용할 도메인 &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart.app&lt;/code&gt;을 등록한다. 이 과정을 건너뛰면, Mac OS에서 도커 호스트/컨테이너에 접속할 때 192.168.99.100 IP를 쓰면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /etc/hosts&lt;/span&gt;
-
-192.168.99.100  quickstart.app
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;3. 프로젝트 복제&lt;/h2&gt;
-
-&lt;p&gt;맛보기를 위해 필자가 만들어 놓은 라라벨 프로젝트를 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/quickstart&lt;/code&gt; 디렉터리로 복제한다. 이 프로젝트는 &lt;a href=&quot;https://github.com/laravel/quickstart-intermediate&quot;&gt;라라벨의 Quickstart 프로젝트(이하 ‘라라벨 프로젝트’로 칭함)&lt;/a&gt;를 포크한 후, 도커 컨테이너 프로젝트를 깃 서브 모듈로 추가하고, 환경 변수를 약간 수정한 것이다. 오리지널 프로젝트 대비 변경 내역은 &lt;a href=&quot;https://github.com/appkr/quickstart-intermediate/commits/master&quot;&gt;커밋 로그&lt;/a&gt;를 참조하라.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone git@github.com:appkr/quickstart-intermediate.git quickstart
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;컴포저로 라라벨 프로젝트가 의존성하는 컴포넌트들을 설치한다(&lt;strong&gt;처음 한번은 꽤 시간이 걸린다&lt;/strong&gt;).&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 컴포저가 없다면... 컴포저는 PHP의 표준 의존성 관리자다(like maven, bundler, pip, ...).&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap homebrew/php
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew install composer
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;composer --version
-&lt;span class=&quot;c&quot;&gt;# Composer version 1.1.3 2016-06-26 15:42:08&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 의존성 설치&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;quickstart
-~/quickstart &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;도커 컨테이너 프로젝트도 설치한다. 컨테이너 프로젝트는 &lt;a href=&quot;https://github.com/LaraDock/laradock&quot;&gt;Laradock(이하 ‘컨테이너 프로젝트’로 칭함)&lt;/a&gt;을 포크해서 필자가 수정한 것이다. 스케일 아웃을 위해, HAProxy 로드 밸런서 컨테이너(&lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt;)를 추가하고, Nginx+PHP-FPM+Supervisor를 묶은 웹 및 애플리케이션 서버 컨테이너(&lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt;)을 추가한 것이다. 오리지널 프로젝트 대비 상세 변경 내역은 &lt;a href=&quot;https://github.com/appkr/laradock/commits/develop&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;develop&lt;/code&gt; 브랜치의 커밋 로그&lt;/a&gt;를 참고하라.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git submodule init &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git submodule update 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;도커 컨테이너 프로젝트의 디렉터리 구조를 간단히 살펴보자. 라라벨 프로젝트(&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;) 안에 도커 컨테이너 프로젝트(&lt;code class=&quot;highlighter-rouge&quot;&gt;./laradock&lt;/code&gt;)가 포함된 구조다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
-├── app
-├── &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
-├── laradock
-│   ├── application         &lt;span class=&quot;c&quot;&gt;# 라라벨 프로젝트를 담고 있는 컨테이너&lt;/span&gt;
-│   ├── beanstalkd          &lt;span class=&quot;c&quot;&gt;# Beanstalk 큐 워커 컨테이너&lt;/span&gt;
-│   ├── beanstalkd-console  
-│   ├── data                &lt;span class=&quot;c&quot;&gt;# 데이터베이스의 데이터 파일을 담고 있는 컨테이너&lt;/span&gt;
-│   │                       &lt;span class=&quot;c&quot;&gt;# 컨테이너가 사라져도 데이터는 영속성을 유지해야 하므로&lt;/span&gt;
-│   │                       &lt;span class=&quot;c&quot;&gt;# 운영 환경 적용시에는 호스트 OS의 파일시스템을 마운트해서 사용해야 한다.&lt;/span&gt;
-│   ├── docker-compose.yml  &lt;span class=&quot;c&quot;&gt;# 도커 컨테이너간의 오케이스트레이션 설정 파일&lt;/span&gt;
-│   │                       &lt;span class=&quot;c&quot;&gt;# 분산 환경을 편리하게 구성하기 위해 핵심적인 파일이다.&lt;/span&gt;
-│   ├── lb                  &lt;span class=&quot;c&quot;&gt;# HAProxy 로드 밸런서 컨테이너&lt;/span&gt;
-│   ├── logs                &lt;span class=&quot;c&quot;&gt;# 도커를 실행한 후 생성되고 Mac OS와 공유되는 디렉터리&lt;/span&gt;
-│   │   ├── nginx
-│   │   │   └── error.log       &lt;span class=&quot;c&quot;&gt;# Nginx 오류 로그&lt;/span&gt;
-│   │   └── supervisor
-│   │       └── supervisord.log &lt;span class=&quot;c&quot;&gt;# Supervisor 실행 로그&lt;/span&gt;
-│   ├── mariadb             &lt;span class=&quot;c&quot;&gt;# MariaDB 데이터베이스 컨테이너&lt;/span&gt;
-│   ├── memcached           &lt;span class=&quot;c&quot;&gt;# Memcache 데이터베이스 컨테이너&lt;/span&gt;
-│   ├── mysql               &lt;span class=&quot;c&quot;&gt;# MySQL 데이터베이스 컨테이너&lt;/span&gt;
-│   ├── neo4j               &lt;span class=&quot;c&quot;&gt;# Neo4J 데이터베이스 컨테이너&lt;/span&gt;
-│   ├── nginx               &lt;span class=&quot;c&quot;&gt;# Nginx 웹 서버 컨테이너. 우리 예제에서 사용하지 않음.&lt;/span&gt;
-│   ├── php-fpm             &lt;span class=&quot;c&quot;&gt;# PHP-FPM FastCGI 컨테이너. 우리 예제에서 사용하지 않음.&lt;/span&gt;
-│   ├── postgres            &lt;span class=&quot;c&quot;&gt;# Postgres 데이터베이스 컨테이너&lt;/span&gt;
-│   ├── redis               &lt;span class=&quot;c&quot;&gt;# Redis 데이터베이스 컨테이너&lt;/span&gt;
-│   ├── web                 &lt;span class=&quot;c&quot;&gt;# 웹 및 애플리케이션 서버 컨테이너(Nginx+PHP-FPM+Supervisord)&lt;/span&gt;
-│   └── workspace           &lt;span class=&quot;c&quot;&gt;# 도커 컨테이너로 구동되는 라라벨 프로젝트에 셸로 접근하기 위한 컨테이너&lt;/span&gt;
-│                           &lt;span class=&quot;c&quot;&gt;# Bash, Git, Composer, NPM 등의 도구 사용 가능  &lt;/span&gt;
-├── &lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
-└── tests
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;4. 도커 컨테이너 구동&lt;/h2&gt;
-
-&lt;p&gt;로드 밸런서, 웹 및 애플리케이션 서버, MySQL, 레디스를 구동할 것이다.&lt;/p&gt;
-
-&lt;p&gt;구동하기 전에 라라벨 프로젝트의 환경 설정을 변경한다(코드 에디터에서 라라벨 프로젝트의 &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; 파일을 열어 수정하고 저장하라는 의미).&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# .env&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;DB_HOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.99.100
-&lt;span class=&quot;nv&quot;&gt;CACHE_DRIVER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;redis
-&lt;span class=&quot;nv&quot;&gt;SESSION_DRIVER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;redis
-&lt;span class=&quot;nv&quot;&gt;REDIS_HOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.99.100
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;위 설정은 다음을 의미한다. 라라벨 프로젝트는 192.168.99.100에 위치한 MySQL 서버에 데이터를 저장한다. 라라벨의 캐시와 세션은 192.168.99.100에 있는 레디스 서버에 저장한다.&lt;/p&gt;
-
-&lt;p&gt;구동해 보자. &lt;strong&gt;처음 한번은 필요한 이미지를 다운로드 받아 프로비저닝하기 때문에 10분 이상이 걸린다.&lt;/strong&gt; 다음 번 구동할 때는 5초도 걸리지 않을 것이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;laradock
-
-&lt;span class=&quot;c&quot;&gt;# VM의 IP를 포함한 환경변수를 현재 셸에 적용한다.&lt;/span&gt;
-~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker-machine env&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# lb, web, mysql, redis 컨테이너를 구동한다.&lt;/span&gt;
-~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose up -d lb web mysql redis 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; 명령은 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 파일이 있는 위치에서 실행해야 한다. 이 파일은 도커를 이용한 분산 서비스 환경 구성을 위해 핵심적인 설정들을 담고 있다. 가령, 컨테이너간의 의존성, 마운트할 볼륨 등의 설정 말이다.&lt;/p&gt;
-
-&lt;p&gt;컨테이너 실행은 &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; 서브 명령으로 할 수 있으며, 구동할 컨테이너 이름을 명령의 인자로 제시해야 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt; 옵션을 이용하면 격리 모드(데몬 모드라 생각하면 됨)로 실행할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ps&lt;/code&gt; 서브 명령으로 구동 상태를 확인할 수 있다(Command 열은 삭제했다).&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose ps
-&lt;span class=&quot;c&quot;&gt;#          Name            State           Ports&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# -------------------------------------------------------------&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_application_1   Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_data_1          Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_lb_1            Up       1936/tcp, &lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#                                   0.0.0.0:443-&amp;gt;443/tcp, &lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#                                   0.0.0.0:80-&amp;gt;80/tcp&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_mysql_1         Up       0.0.0.0:3306-&amp;gt;3306/tcp&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_redis_1         Up       0.0.0.0:6379-&amp;gt;6379/tcp&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_web_1           Up       443/tcp, 80/tcp, 9000/tcp&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_workspace_1     Up&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; 컨테이너는 단순 볼륨이기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Exit 0&lt;/code&gt;으로 출력된다. 포트 열을 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt; 컨테이너는 80과 443 포트가 열려 있고, 이를 다시 80, 443 내부 포트로 연결하는 것을 볼 수 있다. &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 역시 80과 443 포트를 열고, &lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt;에서 넘겨주는 작업을 받을 준비를 하고 있다. MySQL과 레디스는 외부에서도 접근할 수 있도록 각자의 포트를 열고 있다.&lt;/p&gt;
-
-&lt;p&gt;이대로 실험해도 되지만… 이제 웹 및 애플리케이션 서버를 스케일 아웃할 것이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; 서브 명령을 이용하고, 컨테이너 이름과 복제할 인스턴스 개수를 명령 인자로 넘긴다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scale&lt;/code&gt; 명령은 &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; 명령을 실행하기 전에 해도 된다. 처음부터 n개의 인스턴스를 만들 것이냐, 하나만 시작했다가 중간에 인스턴스를 늘릴 것이냐의 차이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose scale &lt;span class=&quot;nv&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3
-&lt;span class=&quot;c&quot;&gt;# Creating and starting laradock_web_2 ... done&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Creating and starting laradock_web_3 ... done&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;5. 실험&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;workspace&lt;/code&gt; 컨테이너로 로그인해서 데이터베이스 스키마를  마이그레이션 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;artisan tinker&lt;/code&gt; REPL로 데이터베이스와 캐시가 정상 작동하는지도 확인해 본다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 컨테이너에 로그인&lt;/span&gt;
-~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose run web bash
-
-&lt;span class=&quot;c&quot;&gt;# 데이터베이스 마이그레이션 (like $ bundle exec rake db:migrate)&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;root@dca220f5e753:/var/www/laravel# &lt;/span&gt;php artisan migrate
-
-&lt;span class=&quot;c&quot;&gt;# 데이터베이스 동작 확인 (like $ rails console)&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;root@dca220f5e753:/var/www/laravel# &lt;/span&gt;php artisan tinker
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;factory&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'App\User'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-&amp;gt;create&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;App&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser::first&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; App\User {#686&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      id: 1,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      name: &quot;Lottie Huels&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      email: &quot;rylan21@example.net&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      created_at: &quot;2016-07-11 06:13:03&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      updated_at: &quot;2016-07-11 06:14:08&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#    }&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 캐시 동작 확인&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;Cache::put&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'bar'&lt;/span&gt;, 10&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; null&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;Cache::get&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; &quot;bar&quot;&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 컨테이너에서 로그아웃&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;root@dca220f5e753:/var/www/laravel# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;브라우저에서 실험할 준비가 끝났다. http://quickstart.app(Mac OS의 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;에 레코드를 추가하지 않았다면 http://192.168.99.100)을 열고 &lt;a href=&quot;http://quickstart.app/register&quot;&gt;사용자 등록&lt;/a&gt; 페이지에서 실험에 사용할 사용자를 등록하고, 할일 목록 UI에서 할일을 추가해 본다.&lt;/p&gt;
-
-&lt;p&gt;로드 밸런서의 동작을 확인하기 위해, 라라벨 프로젝트의 마스터 레이아웃에 다음 코드를 미리 추가해 두었다.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- // resources/views/layouts/app.blade.php --&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text-danger&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  @&lt;span class=&quot;nt&quot;&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;{{ gethostname() }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이제 여러 개의 브라우저 창을 열어 로드 밸런서가 잘 동작하는 지 확인하자. 아래 그림처럼 네이게이션 바의 컴퓨터 이름을 잘 보기 바란다. 이 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너의 컴퓨터 이름이다. 여러 개의 창이 아니더라도, 페이지를 리프레시할 때마다 요청을 처리하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너는 달라진다(지금 HAProxy 로드 밸런싱 알고리즘 설정은 Round Robin이다).&lt;/p&gt;
-
-&lt;p&gt;서로 다른 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너에서 같은 사용자로 로그인하고 할일 목록을 로드했을 때 자신의 할일 목록이 잘 출력된다는 것은, &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; 컨테이너가 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt; 컨테이너를 잘 공유하고 있다는 것으로 해석할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-01.png&quot; alt=&quot;Docker in Action&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;6. 요약&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;6.1. 끄기&lt;/h3&gt;
-
-&lt;p&gt;실행 중인 도커 컨테이너를 끄는 방법은 다음과 같다. &lt;code class=&quot;highlighter-rouge&quot;&gt;stop&lt;/code&gt; 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;down&lt;/code&gt; 명령을 이용하면 컨테이너를 삭제한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;down&lt;/code&gt;하고 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt;할 때는 이미지를 다시 받아 빌드하지는 않지만, 지난 번 구동할 때 사용자가 변경한 내용은 모두 유실된다. &lt;code class=&quot;highlighter-rouge&quot;&gt;stop&lt;/code&gt; 상태에서 사용자 변경 내용을 삭제하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;rm&lt;/code&gt; 명령을 이용한다(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;$ docker-compose rm redis&lt;/code&gt;).&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose stop
-~/quickstart/laradock &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose ps
-&lt;span class=&quot;c&quot;&gt;#          Name                       Command               State&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# -----------------------------------------------------------------&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_application_1   true                             Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_data_1          true                             Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_lb_1            /sbin/tini -- dockercloud- ...   Exit 1&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_mysql_1         docker-entrypoint.sh mysqld      Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_redis_1         docker-entrypoint.sh redis ...   Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_web_1           /usr/bin/supervisord -c /e ...   Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_web_2           /usr/bin/supervisord -c /e ...   Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_web_3           /usr/bin/supervisord -c /e ...   Exit 0&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# laradock_workspace_1     /sbin/my_init                    Exit 0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;6.2. 개발 환경 구성&lt;/h3&gt;
-
-&lt;p&gt;맥에서 &lt;a href=&quot;http://www.sequelpro.com/&quot;&gt;Sequel Pro&lt;/a&gt;(MySQL GUI)로 도커에서 구동하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql&lt;/code&gt; 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Host: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart.app&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.99.100&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Username: &lt;code class=&quot;highlighter-rouge&quot;&gt;homestead&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Password: &lt;code class=&quot;highlighter-rouge&quot;&gt;secret&lt;/code&gt; (루트 비밀번호는 &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;Port: &lt;code class=&quot;highlighter-rouge&quot;&gt;3306&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-02.png&quot; alt=&quot;Sequel Pro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;맥에서 &lt;a href=&quot;http://www.redisdesktop.com/&quot;&gt;Redis Desktop Manager&lt;/a&gt;로 도커에서 구동하는 ‘redis’ 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-03.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-03.png&quot; alt=&quot;Redis Desktop Manager&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Host: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart.app&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.99.100&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Port: &lt;code class=&quot;highlighter-rouge&quot;&gt;6379&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section-7&quot;&gt;6.3. 큰 그림&lt;/h3&gt;
-
-&lt;p&gt;예제로 구동한 내용과 운영체제 및 컨테이너간의 관계를 그림으로 표현하면 다음과 같다. &lt;strong&gt;이 그림을 이해하면, 이 포스트 전체를 이해한 것이다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-07-11-img-04.png&quot;&gt;&lt;img src=&quot;/images/2016-07-11-img-04.png&quot; alt=&quot;Big Picture&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section-8&quot;&gt;6.4. 원상 복구&lt;/h3&gt;
-
-&lt;p&gt;무작정 따라하기가 끝난 후, 이 포스트를 시전하면서 추가한 것들을 더 이상 사용할 일이 없다면, 이전 상태로 돌려 놓는다.&lt;/p&gt;
-
-&lt;p&gt;컨테이너는 전부 VM에 올라간다. VM을 삭제하면 모든 컨테이너도 삭제된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine rm default
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;라라벨 및 컨테이너 프로젝트를 삭제한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rm -rf &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/quickstart
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;도구를 삭제한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew uninstall composer
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask uninstall virtualbox dockertoolbox
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew untap homebrew/php caskroom/cask
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;section-9&quot;&gt;7. 결론&lt;/h2&gt;
-
-&lt;p&gt;이 포스트에서는 한 대의 리눅스 호스트에 총 9개의 컨테이너를 띄웠다. 쉽게 9대의 서로 다른 리눅스 머신이라 생각하면 된다. 맥 컴퓨터에 9대의 리눅스 VM을 동시에 띄우는 것은 불가능하다. 도커라면 가능하다.&lt;/p&gt;
-
-&lt;p&gt;한편 개발 환경에서 사용하던 컨테이너를 자유롭게 조합해서 운영 환경에 사용할 수 있다. 가령, &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; 컨테이너를 한 대의 물리 서버에 놓고, 백엔드에 해당하는 인프라 및 파일 업로드 디렉터리등은 별도의 물리 서버로 분리할 수도 있을 것이다. 어떻게 구성하든 코드 배포할 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;application&lt;/code&gt; 컨테이너만 신경쓰면 된다. 하나의 구성 예일 뿐이며 각자의 환경에 맞게 응용하시면 될 것이다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;호스트_ VM을 실행하는 맥을 호스트, VM을 게스트라 한다. 여기서는 맥락상 게스트 컨테이너들의 플랫폼이 되는 VM을 별도의 독립된 리눅스 머신이라 생각하고 도커 호스트라 부르자. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Mon, 11 Jul 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/dockerize/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/dockerize/</guid>
-        
-        <category>개발자</category>
-        
-        <category>docker</category>
         
         
         <category>work-n-play</category>

@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "Monolog를 이용한 애플리케이션 로깅",
+    "category" : "work-n-play",
+    "tags"     : "개발자, PHP, laravel",
+    "url"      : "/work-n-play/php-application-logging-to-elasticsearch-using-monolog/",
+    "date"     : "2016-12-03"
+  },
+  
+  {
     "title"    : "[광고 같은 광고 아닌 알짜 정보] &#39;라라벨로 배우는 실전 PHP 웹 프로그래밍&#39; 출간 안내",
     "category" : "work-n-play",
     "tags"     : "개발자, laravel",

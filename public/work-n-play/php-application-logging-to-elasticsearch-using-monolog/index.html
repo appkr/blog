@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="이 포스트에서는 PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 Monolog의 사용법을 소개한다. Monolog는 PSR-3 LoggerInterface를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="Monolog를 이용한 애플리케이션 로깅"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="Monolog를 이용한 애플리케이션 로깅">
+  <meta itemprop="description" content="이 포스트에서는 PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 Monolog의 사용법을 소개한다. Monolog는 PSR-3 LoggerInterface를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="Monolog를 이용한 애플리케이션 로깅" />
+  <meta name="twitter:description" content="이 포스트에서는 PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 Monolog의 사용법을 소개한다. Monolog는 PSR-3 LoggerInterface를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>Monolog를 이용한 애플리케이션 로깅 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">Monolog를 이용한 애플리케이션 로깅</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/&title=Monolog를 이용한 애플리케이션 로깅" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/&title=Monolog를 이용한 애플리케이션 로깅&text=Monolog를 이용한 애플리케이션 로깅" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-03
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>이 포스트에서는 <strong>PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 <a href="https://github.com/Seldaek/monolog">Monolog</a>의 사용법을 소개</strong>한다. Monolog는 <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md">PSR-3</a> <code class="highlighter-rouge">LoggerInterface</code>를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, <strong>파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리</strong>할 수 있다.</p>
+
+<p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
+
+<ul>
+  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
+  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
+  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></li>
+</ul>
+
+<p>이 포스트의 소스 코드는 <a href="https://github.com/appkr/monolog-scratchpad">https://github.com/appkr/monolog-scratchpad</a>에서 받을 수 있다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="section">1. 로그 쓰기</h2>
+
+<p>새로 만든 라라벨 프로젝트의 라우팅 정의 파일을 이용해서 로그를 써 봤다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php
+</span>
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello Monolog"</span><span class="p">;</span>
+    <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">];</span>
+    
+    <span class="nx">Log</span><span class="o">::</span><span class="na">emergency</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">alert</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">critical</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">notice</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>그리고, 로그 파일을 확인해 보면 다음과 같은 로그가 기록된 것을 확인할 수 있다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
+
+<span class="o">[</span>2016-12-03 06:58:34] local.EMERGENCY: Hello Monolog <span class="o">{</span><span class="s2">"foo"</span>:<span class="s2">"bar"</span><span class="o">}</span> 
+<span class="o">[</span>2016-12-03 06:58:34] local.ALERT: Hello Monolog  
+<span class="o">[</span>2016-12-03 06:58:34] local.CRITICAL: Hello Monolog  
+<span class="o">[</span>2016-12-03 06:58:34] local.ERROR: Hello Monolog  
+<span class="o">[</span>2016-12-03 06:58:34] local.WARNING: Hello Monolog  
+<span class="o">[</span>2016-12-03 06:58:34] local.NOTICE: Hello Monolog  
+<span class="o">[</span>2016-12-03 06:58:34] local.INFO: Hello Monolog  
+<span class="o">[</span>2016-12-03 06:58:34] local.DEBUG: Hello Monolog  
+</code></pre>
+</div>
+
+<h2 id="monolog--">2. Monolog 살펴 보기</h2>
+
+<p>Monolog 라이브러리는 다음과 같은 디렉토리 구조로, 크게 보면</p>
+
+<ol>
+  <li>PSR-3 <code class="highlighter-rouge">LoggerInterface</code> 구현체</li>
+  <li>로그 핸들러</li>
+  <li>로그 포매터</li>
+  <li>로그 프로세서</li>
+</ol>
+
+<p>로 구성되어 있다. 각각의 역할과 예는 아래 블럭에 인라인 주석으로 표시했다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>tree vendor/monolog/monolog/src/Monolog
+<span class="c"># vendor/monolog/monolog/src/Monolog</span>
+<span class="c"># ├── ErrorHandler.php            # Monolog를 전역 예외 처리기로 등록할 때 편리한 헬퍼</span>
+<span class="c"># ├── Logger.php                  # PSR-3 LoggerInterface를 구현한 구체 클래스</span>
+<span class="c"># ├── Registry.php                # 로거 인스턴스를 등록해놓은 간단한 레지스트리 클래스</span>
+<span class="c"># |                                 애플리케이션에서 여러 개의 로거를 사용할 때 쓴다.</span>
+<span class="c"># ├── Formatter                   # 포매터</span>
+<span class="c"># │   ├── FormatterInterface.php</span>
+<span class="c"># │   ├── ...</span>
+<span class="c"># │   └── LineFormatter.php       # 로그를 문자열(String)로 포매팅한다.</span>
+<span class="c"># ├── Handler                     # 로그 핸들러</span>
+<span class="c"># │   ├── AbstractHandler.php</span>
+<span class="c"># │   ├── HandlerInterface.php</span>
+<span class="c"># │   ├── ErrorLogHandler.php     # 로그를 stdout으로 보낸다.</span>
+<span class="c"># │   ├── ...</span>
+<span class="c"># │   └── SlackHandler.php        # 로그를 슬랙으로 보낸다.</span>
+<span class="c"># └── Processor                   # 프로세서, 로그를 가공하거나 추가 정보를 더한다.</span>
+<span class="c">#     ├── ...</span>
+<span class="c">#     └── GitProcessor.php        # 로그에 Git 브랜치와 커밋 해시를 추가한다.</span>
+<span class="c">#</span>
+<span class="c"># 7 directories, 88 files</span>
+</code></pre>
+</div>
+
+<h2 id="elastic-search---">3. Elastic Search를 이용한 로그 핸들링</h2>
+
+<h3 id="elastic-search-">3.1. Elastic Search 설치</h3>
+
+<p>Elastic Search를 이용하는 이유는 다음과 같다.</p>
+
+<ol>
+  <li>검색이 빠르다.</li>
+  <li><a href="https://www.elastic.co/products/kibana">Kibana</a> 등 시각화 도구와 연결하기 좋다.</li>
+</ol>
+
+<h4 id="docker--">3.1.1. Docker 데몬 설치</h4>
+
+<p>아래 설치법은 맥 OS X 기준인데, 다른 운영체제도 <a href="https://www.docker.com/">Docker 홈페이지</a>를 방문해서 Docker 패키지를 다운로드 받으면 된다. Docker 패키지는 가벼운 리눅스 커널과 유틸리티의 모음이라고 이해하면 된다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew tap caskroom/cask
+<span class="gp">$ </span>brew cask install docker --appdir<span class="o">=</span>/Application
+</code></pre>
+</div>
+
+<p><strong><code class="highlighter-rouge">Note</code>`</strong> Docker 데몬은 관리자 권한을 요구하므로, 설치 후 최초 한번 실행해서 운영체제 로그인 정보를 입력하여 권한을 부여해야한다.</p>
+
+<h4 id="elastic-search----">3.1.2. Elastic Search 이미지 다운로드 및 실행</h4>
+
+<p>Docker를 쓰는 이유는 환경 격리다. 호스트 운영체제가 윈도우든 맥이든 Docker 이미지는 같은 리눅스 커널 위에서 작동하므로 호스트 운영체제의 영향을 받지 않는다. 게다가 운영체제에 맞춘 복잡한 컴파일 과정을 거치지 않아도 된다. 그냥 아래 명령어들을 복사해서 콘솔에 붙여넣기만 하면 된다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 도커 컨테이너와 호스트 머신이 공유할 폴더를 만든다.</span>
+<span class="c"># 호스트 머신이란 로컬 컴퓨터를 말한다. </span>
+<span class="c"># Docker 이미지는 서버의 스냅샷이고 이를 실행한 상태를 컨테이너라 한다(정확한 표현은 아니다.)</span>
+~/monolog-scratchpad <span class="nv">$ </span>mkdir esdata
+
+<span class="c"># 이미지를 다운로드 받고 실행한다.</span>
+~/monolog-scratchpad <span class="nv">$ </span>docker run -d <span class="se">\</span>
+    --name es50 <span class="se">\</span>
+    -v <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/esdata:/usr/share/elasticsearch/data <span class="se">\</span>
+    -p 9200:9200 <span class="se">\</span>
+    elasticsearch
+<span class="c"># Unable to find image 'elasticsearch:latest' locally</span>
+<span class="c"># ...</span>
+<span class="c"># Status: Downloaded newer image for elasticsearch:latest</span>
+<span class="c"># a88d12860180...</span>
+
+<span class="c"># 실행 상태를 확인한다.</span>
+<span class="c"># CONTAINER ID 해시는 필자의 것과 다르다.</span>
+~/monolog-scratchpad <span class="nv">$ </span>docker ps
+<span class="c"># CONTAINER ID        IMAGE            COMMAND    CREATED    STATUS    PORTS    NAMES</span>
+<span class="c"># a88d12860180        elasticsearch    ...        ...        ...       9200/tcp es50</span>
+</code></pre>
+</div>
+
+<p>브라우저에서 <code class="highlighter-rouge">http://localhost:9200</code>을 방문해서 방금 Docker 컨테이너로 구동한 Elastic Search가 잘 작동하나 확인해 보자.</p>
+
+<p><a href="/images/2016-12-03-img-01.png"><img src="/images/2016-12-03-img-01.png" alt="Elastic Search Welcome Page" /></a></p>
+
+<h3 id="elastic-search-php-----">3.2. Elastic Search PHP 클라이언트 설치 및 작동 확인</h3>
+
+<p>앞서 Elastic Search는 REST API를 제공한다고 했다. REST API를 소비하는 PHP 클라이언트를 설치한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>composer require elasticsearch/elasticsearch
+</code></pre>
+</div>
+
+<p>라우트 정의 파일로 설치한 Elastic Search 라이브러리가 작동하지는 확인한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php 
+</span>
+<span class="k">use</span> <span class="nx">Elasticsearch\ClientBuilder</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$esClient</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="nx">dd</span><span class="p">(</span><span class="nv">$esClient</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><a href="/images/2016-12-03-img-02.png"><img src="/images/2016-12-03-img-02.png" alt="Elastic Search Client" /></a></p>
+
+<h3 id="monolog--elastic-search--">3.3. Monolog를 위한 Elastic Search 핸들러 만들기</h3>
+
+<p>Monolog 라이브러리에는 <code class="highlighter-rouge">ElasticSearchHandler</code>가 이미 포함되어 있다. 그런데, 앞 절에서 설치한 Elastic Search 공식 클라이언트가 아닌 다른 클라이언트를 사용하고 있다. API가 달라 부득이 별도의 핸들러를 만들어야 한다. Monolog와 Elastic Search 문서를 읽어 보니 어렵지 않다. 만들어 보자.</p>
+
+<p>라라벨 <a href="https://laravel.com/docs/5.3/errors#configuration">공식 문서</a>에서는 <code class="highlighter-rouge">bootstrap/app.php</code>에서 등록하는 방법을 설명하고 있다. 좀 더 고급지고, 다른 프로젝트에서 재활용할 수 있도록 별도 서비스 프로바이더로 만들어 봤다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>php artisan make:provider CustomLogProvider
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">boot()</code> 메서드에서 <code class="highlighter-rouge">ESHandler</code> 인스턴스를 만들고 포매터와 프로세서를 추가한 후, <code class="highlighter-rouge">Monolog</code> 인스턴스에 추가한다. 몇 가지 예제를 더 추가했는데 인라인 주석을 달아 두었다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\LogHandlers\ESHandler</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Elasticsearch\ClientBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Formatter\NormalizerFormatter</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Processor\WebProcessor</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 라라벨이 부팅하면서 서비스 컨테이너에 이미 등록해놓은 Monolog 인스턴스를 가져온다.
+</span>        <span class="nv">$monolog</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="p">[</span><span class="s1">'log'</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getMonolog</span><span class="p">();</span>
+        
+        <span class="c1">// Elastic Search REST 클라이언트 인스턴스를 만든다.
+</span>        <span class="nv">$esClient</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+        
+        <span class="c1">// Monolog에 추가할 Elastic Search 핸들러 인스턴스를 만든다.
+</span>        <span class="nv">$esHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ESHandler</span><span class="p">(</span><span class="nv">$esClient</span><span class="p">);</span>
+        
+        <span class="c1">// NormalizerFormatter는 라이브러리에 내장되어 있다.
+</span>        <span class="c1">// Monolog 메서드의 인자인 $message, $context 값을 정규화한다.
+</span>        <span class="c1">// 정규화란 데이터 타입을 판단하고 적졀한 형태로 가공하는 것을 말한다.
+</span>        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">setFormatter</span><span class="p">(</span><span class="k">new</span> <span class="nx">NormalizerFormatter</span><span class="p">(</span><span class="s1">'Y-m-d\TH:i:s.uP'</span><span class="p">));</span>
+        
+        <span class="c1">// WebProcessor는 HTTP 요청에서 url, ip, http_method, referrer 등의 
+</span>        <span class="c1">// 값을 추출하고 로그 메시지에 추가하는 일을 한다.
+</span>        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">pushProcessor</span><span class="p">(</span><span class="k">new</span> <span class="nx">WebProcessor</span><span class="p">);</span>
+        
+        <span class="c1">// Monolog 라이브러리에 기본 포함된 프로세서가 아닌 정말 정말 커스컴 프로세서를 추가해서
+</span>        <span class="c1">// 로깅할 데이터를 더 추가한다. 여기서는 애플리케이션 이름, 버전, HTTP 요청을 구분할 수 있는 Hash 값을 추가했다.
+</span>        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">pushProcessor</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="k">array</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$record</span><span class="p">[</span><span class="s1">'extra'</span><span class="p">][</span><span class="s1">'app_name'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">'app.name'</span><span class="p">);</span>
+            <span class="nv">$record</span><span class="p">[</span><span class="s1">'extra'</span><span class="p">][</span><span class="s1">'app_version'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'APP_VERSION'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nv">$record</span><span class="p">[</span><span class="s1">'extra'</span><span class="p">][</span><span class="s1">'fingerprint'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">request</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fingerprint</span><span class="p">();</span>
+            <span class="k">return</span> <span class="nv">$record</span><span class="p">;</span>
+        <span class="p">});</span>
+        
+        <span class="c1">// Elastic Search 핸들러를 Monolog에 추가했다.
+</span>        <span class="c1">// Monolog는 핸들러를 쌓아 두었다가, 하나씩 순차적으로 실행한다.
+</span>        <span class="c1">// 즉, 라라벨이 기본으로 생성한 StreamHanlder(파일 로그)를 실행하고, 방금 만든 ESHandler도 실행한다.
+</span>        <span class="c1">// 이미 생성된 인스턴스의 속성을 변경하는 것이므로 return할 필요 없다.
+</span>        <span class="nv">$monolog</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="nv">$esHandler</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>이제 <code class="highlighter-rouge">ESHandler</code>를 만들 차례인데, Elastic Search API 문서를 참고해야 한다. 다음 코드 블록에서 <code class="highlighter-rouge">write</code> 메서드는 부모 클래스에서 구현을 강제한 메서드이며, 메서드 본문은 Elastic Search PHP 클라이언트의 사용법을 참고한 것이다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/LogHandlers/ESHandler.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\LogHandlers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Elasticsearch\Client</span> <span class="k">as</span> <span class="nx">ESClient</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Handler\AbstractProcessingHandler</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Logger</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ESHandler</span> <span class="k">extends</span> <span class="nx">AbstractProcessingHandler</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$esClient</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">ESClient</span> <span class="nv">$esClient</span><span class="p">,</span> <span class="nv">$level</span> <span class="o">=</span> <span class="nx">Logger</span><span class="o">::</span><span class="na">DEBUG</span><span class="p">,</span> <span class="nv">$bubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="nv">$bubble</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">esClient</span> <span class="o">=</span> <span class="nv">$esClient</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">write</span><span class="p">(</span><span class="k">array</span> <span class="nv">$record</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="nv">$payload</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">'refresh'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s1">'body'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="s1">'index'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                        <span class="s1">'_index'</span> <span class="o">=&gt;</span> <span class="s1">'monolog'</span><span class="p">,</span>
+                        <span class="s1">'_type'</span> <span class="o">=&gt;</span> <span class="nx">config</span><span class="p">(</span><span class="s1">'app.name'</span><span class="p">)</span>
+                    <span class="p">]</span>
+                <span class="p">],</span>
+                <span class="nv">$record</span><span class="p">[</span><span class="s1">'formatted'</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">];</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">esClient</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">3.4. 서비스 프로바이더 등록 및 테스트</h3>
+
+<p>라라벨 프로젝트에서 서비스 프로바이더를 등록하는 일반적인 방법이다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// config/app.php
+</span>
+<span class="k">return</span> <span class="p">[</span>
+    <span class="c1">// ...
+</span>    <span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="c1">// ...
+</span>        <span class="nx">App\Providers\CustomLogProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+
+<p>라우트 정의 파일에서 로그 쓰는 부분을 좀 더 단순히 고쳤다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// web/routes.php
+</span>
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello Monolog"</span><span class="p">;</span>
+    <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">];</span>
+    <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>아래 그림은 <code class="highlighter-rouge">http://localhost:9200/monolog/Laravel/_search?size=100&amp;sort=datetime:desc</code>로 요청했을 때의 출력 결과다.</p>
+
+<p><a href="/images/2016-12-03-img-03.png"><img src="/images/2016-12-03-img-03.png" alt="Elastic Search에 적재된 로그" /></a></p>
+
+<p>라라벨의 로그 저장소(파일)에도 잘 기록되었나 확인해 보자.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
+
+<span class="o">[</span>2016-12-03 10:36:35] local.DEBUG: Hello Monolog <span class="o">{</span><span class="s2">"foo"</span>:<span class="s2">"bar"</span><span class="o">}</span> 
+</code></pre>
+</div>
+
+<h2 id="section-2">4. 결론</h2>
+
+<p><strong>Monolog는 PHP 커뮤니티 규칙을 따르는 로거</strong>로서, 핸들러, 포매터, 프로세서 등의 기능을 이용해서, 애플리케이션 로깅의 자유도와 확장성을 제공한다. 본문에서 봤다시피 <strong>핸들러를 계속 스태킹(stacking)하여 여러 가지 방법으로 로그를 처리</strong>할 수 있다. 가령 이 글의 예제처럼 파일에도 쓰고, Elastic Search에도 쓰고, 덧붙여서 <code class="highlighter-rouge">stdout</code> 또는 <code class="highlighter-rouge">stderr</code>로도 출력하고 싶다면 <code class="highlighter-rouge">ErrorLogHandler</code>를 추가하면 된다. 아래처럼 말이다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php
+</span>
+<span class="k">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// ...
+</span>        <span class="nv">$errorLogHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Monolog\Handler\ErrorLogHandler</span><span class="p">();</span>
+        <span class="nv">$monolog</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="nv">$errorLogHandler</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong><code class="highlighter-rouge">Note</code></strong> Docker 컨테이너를 중지하려면 <code class="highlighter-rouge">docker stop es50</code> 명령을 수행한다. <code class="highlighter-rouge">docker rm es50</code> 명령으로 이미 만든 컨테이너를 완전히 삭제하지 않았다면 다음 번 실행할 때는 <code class="highlighter-rouge">docker start es50</code> 명령으로 간단히 시작할 수 있다. Elastic Search는 꽤 무거운 서비스라 부팅하는데 10초 정도 걸릴 수 있다.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>라라벨 https://laravel.com <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Elastic Search https://www.elastic.co/kr/ <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Docker https://www.docker.com/ <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#PHP">
+            PHP
+          </a>
+          , 
+        
+          <a href="/tags#laravel">
+            laravel
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/laravel-paper-book-published/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              [광고 같은 광고 아닌 알짜 정...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">70</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">45</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apache thrift">
+        apache thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#css">
+        css
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#docker">
+        docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#dotfiles">
+        dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#facebook">
+        facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#generator">
+        generator
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#git">
+        git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#git-flow">
+        git-flow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#javascript">
+        javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#jekyll">
+        jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#laravel">
+        laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#lumen">
+        lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mac">
+        mac
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#rest">
+        rest
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#rpc">
+        rpc
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#streaming">
+        streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#web">
+        web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#websocket">
+        websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#workflow">
+        workflow
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#라라벨">
+        라라벨
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-03</small>
+          <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-11-27</small>
+          <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-11-07</small>
+          <a href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/">라라벨-루멘-PHP 날코딩 성능 비교</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

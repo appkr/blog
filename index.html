@@ -83,6 +83,64 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/testing-private-method-in-php/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>최근에 회사 일로 검색 서비스를 개발했다. 검색 엔진으로는 Elastic Search를 사용했고, 매일 최한시(off-peak time)에 한 번씩 운영 데이터베이스에서 검색, 필터링, 정렬, Aggregation 등에 필요한 컬럼만 골라 인덱싱하도록 설계했다. 그리고, 재고 수량과 같이 실시간 업데이트가 필요한 값 들은 다른 서비스에서 SNS 메시지 또는 메시지 큐를 이용해서 전달하고, 전달 받은 값을 인덱싱에 반영하도록 구현했다.</p>
+
+<p>Elastic Search는 사용법이 복잡하긴 하지만, 인덱싱된 필드 값에 따라 내림차순, 오름차순으로 미리 정렬된 결과를 받을 수 있다. 그런데, 아무리 실시간 업데이트를 한다고 해도, 인덱싱된 값만으로 정렬이 불가능한 경우가 있고, 이 경우에는 검색 결과를 받아서 후 처리로 배열을 순회하면서 다시 정렬을 해야 한다. 같은 클래스의 Public 메서드가 정렬 요청을 하므로, 당연히 Protected 메서드로 구현했다.</p>
+
+<p>일반적으로 알려진 <strong>테스트 모범 사례</strong>는 다음과 같다.</p>
+
+<ul>
+  <li><strong>내가 짠 코드만 테스트한다.</strong> 외부에서 가져온 라이브러리를 테스트할 이유는 없다.</li>
+  <li><strong>Public 메서드만 테스트한다.</strong> Private나 Protected 메서드는 Public 메서드가 작동하는데 도움을 주는 메서드들이므로, Public 메서드를 테스트함으로써 자동으로 테스트된다.</li>
+</ul>
+
+<p>후처리 정렬의 정상 작동을 확인해야 할 필요성이 생긴 것이다. 물론 구현한 Protected 메서드의 가시성을 Public으로 변경하면 쉽다. 그런데, 다른 클래스에서 호출하지도 않을 메서드를 Public으로 선언하는 것은 기분이 찜찜하다. 이 포스트에서는 <strong>Private나 Protected로 선언된 메서드를 유닛 테스트하는 방법을 설명</strong>한다. 결론부터 말하면, <strong>PHP의 <code class="highlighter-rouge">Reflection</code> API를 이용</strong>하는 것이다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/testing-private-method-in-php/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
         </h2>
         <p class="box-meta">
@@ -307,53 +365,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/understanding-generator/">제너레이터 이해하기</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-10-02
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/understanding-generator/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>제너레이터(generator)는 대용량 데이터를 순회하며 작업할 때 유용한 기능이며, 대부분의 프로그래밍 언어에서 찾아볼 수 있다. 언어만 다를 뿐 개념은 모두 같다. 이 포스트는 자바스크립트 및 PHP 제너레이터에 대한 필자 나름의 이해 방식을 기록한 것이다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/understanding-generator/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -416,7 +427,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">45</span>
+          <span class="badge">46</span>
         </a>
       </li>
       <li>
@@ -450,9 +461,51 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 102%">
       <a href="/tags#API">
         API
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Facebook">
+        Facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
       </a>
     </span>
     
@@ -463,14 +516,80 @@
     </span>
     
     <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
       <a href="/tags#PHP">
         PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Streaming">
+        Streaming
       </a>
     </span>
     
     <span style="font-size: 94%">
       <a href="/tags#URL Rewriting">
         URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
       </a>
     </span>
     
@@ -495,12 +614,6 @@
     <span style="font-size: 142%">
       <a href="/tags#android">
         android
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#apache thrift">
-        apache thrift
       </a>
     </span>
     
@@ -583,24 +696,6 @@
     </span>
     
     <span style="font-size: 94%">
-      <a href="/tags#css">
-        css
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#docker">
-        docker
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#dotfiles">
-        dotfiles
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
       <a href="/tags#ebook">
         ebook
       </a>
@@ -613,12 +708,6 @@
     </span>
     
     <span style="font-size: 94%">
-      <a href="/tags#facebook">
-        facebook
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
       <a href="/tags#flash">
         flash
       </a>
@@ -627,24 +716,6 @@
     <span style="font-size: 94%">
       <a href="/tags#framework">
         framework
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#generator">
-        generator
-      </a>
-    </span>
-    
-    <span style="font-size: 98%">
-      <a href="/tags#git">
-        git
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#git-flow">
-        git-flow
       </a>
     </span>
     
@@ -690,24 +761,6 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
-      <a href="/tags#javascript">
-        javascript
-      </a>
-    </span>
-    
-    <span style="font-size: 110%">
-      <a href="/tags#jekyll">
-        jekyll
-      </a>
-    </span>
-    
-    <span style="font-size: 114%">
-      <a href="/tags#laravel">
-        laravel
-      </a>
-    </span>
-    
     <span style="font-size: 106%">
       <a href="/tags#lbs">
         lbs
@@ -723,18 +776,6 @@
     <span style="font-size: 106%">
       <a href="/tags#linux">
         linux
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#lumen">
-        lumen
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#mac">
-        mac
       </a>
     </span>
     
@@ -817,18 +858,6 @@
     </span>
     
     <span style="font-size: 98%">
-      <a href="/tags#rest">
-        rest
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#rpc">
-        rpc
-      </a>
-    </span>
-    
-    <span style="font-size: 98%">
       <a href="/tags#se">
         se
       </a>
@@ -847,18 +876,12 @@
     </span>
     
     <span style="font-size: 94%">
-      <a href="/tags#streaming">
-        streaming
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
       <a href="/tags#symbian">
         symbian
       </a>
     </span>
     
-    <span style="font-size: 102%">
+    <span style="font-size: 98%">
       <a href="/tags#tech">
         tech
       </a>
@@ -876,27 +899,9 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
-      <a href="/tags#web">
-        web
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#websocket">
-        websocket
-      </a>
-    </span>
-    
     <span style="font-size: 94%">
       <a href="/tags#windowsmobile">
         windowsmobile
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#workflow">
-        workflow
       </a>
     </span>
     
@@ -930,7 +935,7 @@
       </a>
     </span>
     
-    <span style="font-size: 210%">
+    <span style="font-size: 214%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -951,12 +956,6 @@
     <span style="font-size: 174%">
       <a href="/tags#기획자">
         기획자
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#라라벨">
-        라라벨
       </a>
     </span>
     
@@ -1032,7 +1031,7 @@
       </a>
     </span>
     
-    <span style="font-size: 102%">
+    <span style="font-size: 98%">
       <a href="/tags#프로젝트관리">
         프로젝트관리
       </a>
@@ -1052,6 +1051,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-04</small>
+          <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-03</small>
           <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
         </h4>
@@ -1061,13 +1067,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-11-27</small>
           <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-11-07</small>
-          <a href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/">라라벨-루멘-PHP 날코딩 성능 비교</a>
         </h4>
       </li>
       

@@ -6,7 +6,7 @@ categories:
 - work-n-play
 tags:
 - 개발자
-- laravel
+- Laravel
 ---
 
 이 포스트는 ["하루만에 배우는 라라벨 프레임워크"](https://www.facebook.com/groups/codingeverybody/permalink/1232487436791790) 강좌에 참석하시는 분들을 위한 안내문입니다. 

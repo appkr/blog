@@ -6,7 +6,7 @@ categories:
 - work-n-play
 tags:
 - 개발자
-- css
+- CSS
 ---
 speci.., specifif..., speficyfyf..., specificificfy... what? 
 

@@ -6,6 +6,7 @@ categories:
 - around-me
 tags:
 - 개발자
+- Ruby
 ---
 
 이 슬라이드는 RoRLab에서 주최하는 ["AGIAN2011 Workshop"](http://rorlab.org/schedules/1)의 후기 발표 자료 입니다.

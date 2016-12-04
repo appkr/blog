@@ -6,8 +6,9 @@ categories:
 - work-n-play
 tags:
 - 개발자
-- rpc
-- "apache thrift"
+- RPC
+- "Apache Thrift"
+- PHP
 ---
 
 RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다. 

@@ -6,8 +6,8 @@ categories:
 - work-n-play
 tags:
 - 개발자
-- laravel
-- websocket
+- Laravel
+- Websocket
 ---
 
 **'[휙~](https://github.com/appkr/whik)'** 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 `pusher`, `redis`, `log` 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 **'휙~'**하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 **'휙~'**하고 메시지를 전파한다. 

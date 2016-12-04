@@ -6,8 +6,7 @@ categories:
 - learn-n-think
 tags:
 - 개발자
-- git
-- workflow
+- Git
 ---
 
 이 문서는 Atlassian社에서 쓴 'Getting Git Right' 튜토리얼 중 ['Comparing Workflows'](https://www.atlassian.com/git/tutorials/comparing-workflows)라는 글을 한글로 번역한 것이다. 이 글에서는 총 네 개의 워크플로우를 소개한다.

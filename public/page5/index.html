@@ -83,6 +83,70 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/git-rebase/">GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-04-25
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/git-rebase/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>깃(git)을 꽤 오랫동안 썼지만 잘 모르는 기능 중에 하나가 리베이스(rebase)다. 사실 리베이스를 할 줄 알고 모름에 따라, 초급과 중급으로 구분된다고 해도 과언이 아니다. 리베이스를 꽤 오랫동안 썼지만, 주로 하는 것은 커밋 합치기(fixup, or squash)와 커밋 메시지 바꾸기(reword) 정도였다.</p>
+
+<p>이번에 예전에 커밋한 내용을 수정할 일이 있어서 수정(edit) 기능을 처음 써봤다. 최종 목표는 이렇다.</p>
+
+<ol>
+  <li>이전에 커밋한 내용을 수정하고, 그 뒤에 연속되는 커밋에 변경 내용을 모두 반영한다.</li>
+  <li>리베이스하기 전의 전체 커밋 로그를 리베이스 후에도 그대로 유지한다.</li>
+</ol>
+
+<p>말로는 쉬워보이지만, 2번이 정말 어려웠다.</p>
+
+<p>예를 들어, <code class="highlighter-rouge">foo</code> -&gt; <code class="highlighter-rouge">bar</code> -&gt; <code class="highlighter-rouge">baz</code> 커밋 로그가 있다고 하자. 리베이스로 <code class="highlighter-rouge">foo</code> 커밋의 내용을 수정했는데 <code class="highlighter-rouge">bar</code>에서 충돌이 발생했다. <code class="highlighter-rouge">bar</code> 커밋에서 발생한 충돌을 해결하고 나면, <code class="highlighter-rouge">bar</code> 커밋은 <code class="highlighter-rouge">foo</code> 커밋으로 합쳐지고, <code class="highlighter-rouge">bar</code> 커밋 로그는 남지 않는다.</p>
+
+<p>‘최종 커밋만 있으면 되지~’, ‘중간 커밋을 살리는 것이 무슨 의미가…?’라는 의문이 생길 수 있다. 맞다. 최종 커밋만 있으면 된다. 그런데, 나는 이번에 나올 책에서 챕터별로 예제 코드를 커밋했고, 커밋 로그 하나가 사라지면 챕터에 해당하는 소스코드의 이력이 사라지기 때문에 이 문제를 꼭 해결해야만 했다.</p>
+
+<p>이 고생을 한 이유는 책을 쓰는 도중 라라벨 프레임워크의 수버전이(유의적 버전은 주.부.수로 쓴다) 변경되었고, 이번 버전 업에서는 라우트 사용법이 변경되었기 때문이다. 라우트는 웹 서버와 라라벨의 경계에 해당하는 부분이라 아주 아주 아주 중요할뿐더러, 책의 가장 첫 부분이기도 하다. 독자들은 새 버전의 프레임워크로 프로젝트를 시작할테고, 바뀐 사용법을 적용하지 않으면 책의 시작부터 작동하지 않는 소스코드를 만나게 되는 셈이다.</p>
+
+<p>어쨌든… 이 포스트는 이 문제점을 해결한 이력이다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/git-rebase/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/super-fast-debug-deploy/">엄청나게 빠른 버그 감지, 디버그, 코드 배포</a>
         </h2>
         <p class="box-meta">
@@ -315,64 +379,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/dont-be-looser/">어중간하게 싸워서 지지마라</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-02-17
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/dont-be-looser/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>팀원 중에 좀 심하게 표현하자면 ‘애플 혐오자’ 라 불리울 만한 친구가 한 명 있었다. 그런데, 그 친구가 회사를 퇴직하고 노란색 바탕을 가진 채팅 서비스하는 다*카** 란 회사에 입사했는데 거긴 모든 개발자가 Mac 만 사용해야 한다는… 연말 모임에서 만난 그 친구는 심하게 Mac 의 불편함을 호소했다. “월급 받으면 안 되던 것도 다 되게 된다~” 라고 모두가 위로(??)해 주었다.</p>
-
-<p>이게 내 철학이었는데.. 내 생각이 틀렸다. 도구는 그냥 도구이다. 본질은 도구가 아니라 ‘치열함’이나 ‘집요함’이다. 원래 열정으로 똘똘 뭉친 친구이니, 3개월 정도 지난 시점에 열정이 도구를 얼마나 이겨냈는지 연락 한번 해 봐야 겠다.</p>
-
-<div class="spacer">• • •</div>
-
-<blockquote>
-  <p>싫어 하는 일에도 최선을 다하는 태도를 가질 수 있을 때, 당신은 정말 꿈을 위한 일에 온 몸을 바칠 수 있게 된다.<br />
-어중간하게 싸워서 지지 마라. 몸과 마음을 다해 싸운 자에게는 저마다 만족할 수 있는 인생이 준비되어 있다. &lt;footer&gt;와다 이치로 <cite>18 년이나 다닌 회사를 그만두고 후회한 12가지</cite>&lt;/footer&gt;</p>
-</blockquote>
-
-<p>온 몸에 소름이 돋는다. 이 책이나 저 책이나, 그 내용이 그 내용이라 지금은 전혀 읽지 않고, 이제는 전혀 쓸모도 없다고 생각되어 불매 운동이라고 하고 싶은 자기계발서인데, 오랜만에 전율을 느꼈다. 우선 꿈을 가지고 사느냐가 중요하다. 아직도 꿈을 잃지 않았다면, 지금 하는 일이 꿈을 향해 가는 한 걸음이라 생각하며 매 순간 순간에 최선을 다해야 한다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/dont-be-looser/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -435,7 +441,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">45</span>
+          <span class="badge">46</span>
         </a>
       </li>
       <li>
@@ -469,9 +475,51 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 102%">
       <a href="/tags#API">
         API
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Facebook">
+        Facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
       </a>
     </span>
     
@@ -482,14 +530,80 @@
     </span>
     
     <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
       <a href="/tags#PHP">
         PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Streaming">
+        Streaming
       </a>
     </span>
     
     <span style="font-size: 94%">
       <a href="/tags#URL Rewriting">
         URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
       </a>
     </span>
     
@@ -514,12 +628,6 @@
     <span style="font-size: 142%">
       <a href="/tags#android">
         android
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#apache thrift">
-        apache thrift
       </a>
     </span>
     
@@ -602,24 +710,6 @@
     </span>
     
     <span style="font-size: 94%">
-      <a href="/tags#css">
-        css
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#docker">
-        docker
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#dotfiles">
-        dotfiles
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
       <a href="/tags#ebook">
         ebook
       </a>
@@ -632,12 +722,6 @@
     </span>
     
     <span style="font-size: 94%">
-      <a href="/tags#facebook">
-        facebook
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
       <a href="/tags#flash">
         flash
       </a>
@@ -646,24 +730,6 @@
     <span style="font-size: 94%">
       <a href="/tags#framework">
         framework
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#generator">
-        generator
-      </a>
-    </span>
-    
-    <span style="font-size: 98%">
-      <a href="/tags#git">
-        git
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#git-flow">
-        git-flow
       </a>
     </span>
     
@@ -709,24 +775,6 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
-      <a href="/tags#javascript">
-        javascript
-      </a>
-    </span>
-    
-    <span style="font-size: 110%">
-      <a href="/tags#jekyll">
-        jekyll
-      </a>
-    </span>
-    
-    <span style="font-size: 114%">
-      <a href="/tags#laravel">
-        laravel
-      </a>
-    </span>
-    
     <span style="font-size: 106%">
       <a href="/tags#lbs">
         lbs
@@ -742,18 +790,6 @@
     <span style="font-size: 106%">
       <a href="/tags#linux">
         linux
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#lumen">
-        lumen
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#mac">
-        mac
       </a>
     </span>
     
@@ -836,18 +872,6 @@
     </span>
     
     <span style="font-size: 98%">
-      <a href="/tags#rest">
-        rest
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#rpc">
-        rpc
-      </a>
-    </span>
-    
-    <span style="font-size: 98%">
       <a href="/tags#se">
         se
       </a>
@@ -866,18 +890,12 @@
     </span>
     
     <span style="font-size: 94%">
-      <a href="/tags#streaming">
-        streaming
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
       <a href="/tags#symbian">
         symbian
       </a>
     </span>
     
-    <span style="font-size: 102%">
+    <span style="font-size: 98%">
       <a href="/tags#tech">
         tech
       </a>
@@ -895,27 +913,9 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
-      <a href="/tags#web">
-        web
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#websocket">
-        websocket
-      </a>
-    </span>
-    
     <span style="font-size: 94%">
       <a href="/tags#windowsmobile">
         windowsmobile
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#workflow">
-        workflow
       </a>
     </span>
     
@@ -949,7 +949,7 @@
       </a>
     </span>
     
-    <span style="font-size: 210%">
+    <span style="font-size: 214%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -970,12 +970,6 @@
     <span style="font-size: 174%">
       <a href="/tags#기획자">
         기획자
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#라라벨">
-        라라벨
       </a>
     </span>
     
@@ -1051,7 +1045,7 @@
       </a>
     </span>
     
-    <span style="font-size: 102%">
+    <span style="font-size: 98%">
       <a href="/tags#프로젝트관리">
         프로젝트관리
       </a>
@@ -1071,6 +1065,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-04</small>
+          <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-03</small>
           <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
         </h4>
@@ -1080,13 +1081,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-11-27</small>
           <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-11-07</small>
-          <a href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/">라라벨-루멘-PHP 날코딩 성능 비교</a>
         </h4>
       </li>
       

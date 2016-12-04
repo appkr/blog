@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://blog.appkr.kr/work-n-play/testing-private-method-in-php/</loc>
+<lastmod>2016-12-04T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</loc>
 <lastmod>2016-12-03T00:00:00+09:00</lastmod>
 </url>
@@ -681,6 +685,9 @@
 </url>
 <url>
 <loc>http://blog.appkr.kr/page29/</loc>
+</url>
+<url>
+<loc>http://blog.appkr.kr/page30/</loc>
 </url>
 <url>
 <loc>http://blog.appkr.kr/files/again2011_workshop_keynote_2.pdf</loc>

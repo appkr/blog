@@ -6,7 +6,8 @@ categories:
 - work-n-play
 tags:
 - 개발자
-- rest
+- RESTful
+- API
 ---
 
 ## 1. 발표 자료

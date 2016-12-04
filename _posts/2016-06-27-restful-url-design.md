@@ -6,7 +6,8 @@ categories:
 - work-n-play
 tags:
 - 개발자
-- rest
+- RESTful
+- API
 ---
 
 이 슬라이드는 RoRLab에서 주최하는 ["AGIAN2011 Workshop"](http://rorlab.org/schedules/1)의 2회차 워크숍 키노트 발표 자료입니다.

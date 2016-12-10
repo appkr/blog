@@ -8,6 +8,7 @@ tags:
 - 개발자
 - PHP
 - Laravel
+image: /images/2016-12-03-img-01.png
 ---
 
 이 포스트에서는 **PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 [Monolog](https://github.com/Seldaek/monolog)의 사용법을 소개**한다. Monolog는 [PSR-3](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) `LoggerInterface`를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, **파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리**할 수 있다.

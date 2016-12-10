@@ -9,6 +9,7 @@ tags:
 - RPC
 - "Apache Thrift"
 - PHP
+image: /images/2016-11-04-img-01.png
 ---
 
 RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다. 
@@ -105,34 +106,6 @@ struct Post {                           // Post 메시지 타입을 정의한다
 }
 
 /**
- * Post 엔티티의 필드들
- */
-enum PostField {                        // enum 필드는 PHP 코드에서 클래스 상수로 변환된다.
-    /** 제목 필드 */
-    TITLE = 1,                          // 메시지 정의할 때는 콜론(:), enum에서는 등호(=)를 사용한다. 주의하자.
-                                        // enum의 값으로 연속된 정수를 쓸 필요는 없다. 100, 200, ..도 가능하다.
-    /** 본문 필드 */
-    CONTENT = 2,
-
-    /** 최초 생성 시각 */
-    CREATED_AT = 3,
-
-    /** 최종 수정 시각 */
-    UPDATED_AT = 4,
-}
-
-/**
- * 정렬 방향
- */
-enum SortDirection {
-    /** 오름 차순 */
-    ASC = 1,
-
-    /** 내림 차순 */
-    DESC = 2,
-}
-
-/**
  * PostCollection 엔티티
  */
 typedef list<Post> PostCollection       // Thrift가 제공하는 기본 타입 외 커스텀 타입도 정의할 수 있다.
@@ -145,10 +118,10 @@ struct QueryFilter {
     1: optional string keyword = '',    // 기본 값을 할당했다.
 
     /** 정렬 기준이 되는 필드 */
-    2: optional PostField sortBy = PostField.CREATED_AT,
+    2: optional string sortBy = 'created_at'
 
     /** 정렬 방향 */
-    3: optional SortDirection sortDirection = SortDirection.DESC
+    3: optional string sortDirection = 'desc'
 }
 
 /**
@@ -386,8 +359,7 @@ SQLite 데이터베이스를 만든다.
 4절 에서 정의한 대로 `id`, `title`, `content`, `created_at`, `updated_at` 컬럼을 정의한다.
 
 ```php
-<?php
-// database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php
+<?php // database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -422,8 +394,7 @@ class CreatePostsTable extends Migration
 방금 만든 테이블에 테스트 데이터를 채우기 위해 모델 팩토리를 만든다.
 
 ```php
-<?php
-// database/factory/ModelFactory.php
+<?php // database/factory/ModelFactory.php
 
 // ...
 
@@ -449,8 +420,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 클라이언트가 접근할 수 있는 URL 엔드포인트가 필요하다. Thrift에서는 모든 데이터를 HTTP 본문으로 보내기 때문에 HTTP `POST` 메서드로 요청을 보내고 받아야 한다. 
 
 ```php
-<?php
-// routes/api.php
+<?php // routes/api.php
 
 Route::post('posts', 'PostsController@handle');
 ```
@@ -464,8 +434,7 @@ Route::post('posts', 'PostsController@handle');
 컨트롤러의 내용을 채운다.
 
 ```php
-<?php
-// app/Http/Controllers/PostsController.php
+<?php // app/Http/Controllers/PostsController.php
 
 namespace App\Http\Controllers;
 
@@ -484,7 +453,7 @@ class PostsController extends Controller
                                         // 서비스 인스턴스를 프로세서에 주입한다.
         
         return ThriftResponse::make($request, $processor, 'json');
-                                        // HTTP 요청을 Process하고 HTTP 응답을 반환한다.
+                                        // HTTP 요청을 Process하고 JSON HTTP 응답을 반환한다.
     }
 }
 ```
@@ -494,26 +463,22 @@ class PostsController extends Controller
 다음 그림은 Thrift의 네트워크 스택이다. `Transport`는 HTTP 서버와 클라이언트다. `Protocol` 객체는 입력 및 출력 스트림(HTTP 본문)을 읽거나 쓰고, Thrift 객체로 (역)직렬화한다. `Processor`는 매니저와 같은 역할로, 역직렬화된 입력 스트림을 넘겨 받아 생성자로 받은 서비스 객체에게 처리를 위임하고 리턴 값을 받아 `Protocol`에게 넘겨주는 일을 한다.
  
 ```sh
-         +--------------------------------------------+
-         |                    Service                 |
-         |                   (직접 구현)                |
-         +--------------------------------------------+
-         |     ↑              Processor         ↓     |
-         |                (컴파일러가 자동 생성)           |
-         +--------------------------------------------+
-         |     ↑(역직렬화)      Protocol    (직렬화)↓     |
-         |         (Thrift 라이브러리에 포함되어 있음)      |
-         +--------------------------------------------+
- --wire->|                   Transport                |--wire->
-         |         (Thrift 라이브러리에 포함되어 있음)      |
-         +--------------------------------------------+
+         +------------------------------------+
+         |   Service (직접 구현해야 함)           |
+         +------------------------------------+
+         | ↑ Processor (컴파일러가 자동 생성)     ↓|
+         +------------------------------------+
+         |   Protocol (Thrift 라이브러리에 포함)   |
+         | ↑ (역직렬화)                 (직렬화) ↓|
+         +------------------------------------+
+ --wire->|   Transport (Thrift 라이브러리에 포함)  |--wire->
+         +------------------------------------+
 ```
 
 컨트롤러에서 본 `ThriftResponse`를 만든다.
 
 ```php
-<?php
-// app/Thrift/ThriftResponse.php
+<?php // app/Thrift/ThriftResponse.php
 
 namespace App\Thrift;
 
@@ -581,19 +546,20 @@ class ThriftResponse
 API를 가지고 있으므로 여기서 구현해 주면 된다. IDL에 의하면 `\Appkr\Thrift\Post\Post` 객체지만, `App\Post` 엘로퀀트 모델과 구분을 위해 일부러 `ThriftPost`로 썼다.
 
 ```php
-<?php
-// app/Service/PostsService.php
+<?php // app/Service/PostsService.php
 
 namespace App\Services;
 
+use App\Post as EloquentPost;
 use Appkr\Thrift\Post\Post as ThriftPost;
 use Appkr\Thrift\Post\PostServiceIf;
+use Appkr\Thrift\Post\QueryFilter;
 
 class PostService implements PostServiceIf
 {
-    public function all(\Appkr\Thrift\Post\QueryFilter $qf, $offset, $limit)
+    public function all(QueryFilter $qf, $offset, $limit)
     {
-        $posts = \App\Post::offset($offset)->limit($limit)->get();
+        $posts = EloquentPost::offset($offset)->limit($limit)->get();
                                         // $offset을 건너뛰고 $limit개의 포스트를 조회하는 엘로퀀트 쿼리다. 
                                         // QueryFilter는 이번 포스트에서는 쓰지 않는다.
         return $posts->map(function ($post) {
@@ -603,14 +569,14 @@ class PostService implements PostServiceIf
 
     public function find($id)
     {
-        $post = \App\Post::find($id);
+        $post = EloquentPost::find($id);
 
         return new ThriftPost($post->toArray());
     }
 
     public function store($title, $content)
     {
-        $post = new \App\Post;
+        $post = new EloquentPost;
         $post->title = $title;
         $post->content = $content;
         $post->save();
@@ -627,36 +593,48 @@ class PostService implements PostServiceIf
 PHP 프로젝트니까 PHPUnit 테스트에서 Thrift 클라이언트를 만들고 같은 프로젝트에 있는 Thrift 서버로 요청을 보내서 정상 작동을 테스트해 볼 것이다.
 
 ```php
-<?php
-// tests/ThriftClientTest.php
+<?php // tests/ThriftClientTest.php
+
+use App\Post;
+use Appkr\Thrift\Post\PostServiceClient;
+use Appkr\Thrift\Post\QueryFilter;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Thrift\Protocol\TJSONProtocol;
+use Thrift\Transport\THttpClient;
 
 class ThriftClientTest extends TestCase
 {
+    use DatabaseMigrations;
+
     protected $client;
 
     public function setUp()
     {
         parent::setUp();
 
-        $transport = new \Thrift\Transport\THttpClient(
+        $transport = new THttpClient(
             'localhost',
             '8000',
             'api/posts'
         );                              // apache/thrfit 라이브러에서 제공하는 HTTP 클라이언트다.
 
-        $protocol = new \Thrift\Protocol\TJSONProtocol($transport);
+        $protocol = new TJSONProtocol($transport);
                                         // 편의를 위해 JSONProtocol을 이용했다.
 
-        $this->client = new \Appkr\Thrift\Post\PostServiceClient($protocol);
-                                        // IDL 컴파일할 때 자동 생성된 클라이언트다. 
+        $this->client = new PostServiceClient($protocol);
+                                        // IDL 컴파일할 때 자동 생성된 클라이언트다.
+        
+        factory(Post::class, 20)->create();
+                                        // 매번 테스트마다 Post를 20개씩 만든다.
+                                        // DatabaseMigrations에 의해서 테스트가 끝나면 롤백된다.
     }
 
     public function testAll()
     {
-        $queryFilter = new \Appkr\Thrift\Post\QueryFilter([
+        $queryFilter = new QueryFilter([
             'keyword' => 'Lorem',
-            'sortBy' => \Appkr\Thrift\Post\PostField::CREATED_AT,
-            'sortDirection' => \Appkr\Thrift\Post\SortDirection::DESC
+            'sortBy' => 'created_at',
+            'sortDirection' => 'desc'
         ]);                             // QueryFilter 객체를 만들었다.
                                         // 앞서 언급했듯이 연관 배열 형식으로 객체를 만들 수 있다.
                                         // 정의하지 않은 필드는 무시된다. 예) 'foo' => 'bar'는 무시됨.
@@ -721,7 +699,7 @@ Thrift 클라이언트가 보낸 HTTP 요청 본문은 이렇게 생겼다. `JSO
 -   클라이언트가 문서를 읽고 이해해서 데이터 형식에 맞추거나, 서버가 데이터 형식에 대한 유효성을 검사하는데 신경을 덜 쓸 수 있다.
 -   빠르다.
  
-Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 되므로, PHP 변수나 객체로 값을 검사하려면 프로토콜 안쪽에서 해야 한다. 2부에서는 Thrift 프로토콜 안쪽에서 작동하는 미들웨어를 만들어서 예외를 잡고 소비하는 방법을 다룰 예정이다.
+Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 되므로, PHP 변수나 객체로 값을 검사하려면 프로토콜 안쪽에서 해야 한다. [2부](/work-n-play/how-to-use-apache-thrift-in-php-part-2/)에서는 Thrift 프로토콜 안쪽에서 작동하는 미들웨어를 만들어서 예외를 잡고 소비하는 방법을 다룰 예정이다.
  
  <div class="spacer">• • •</div>
  

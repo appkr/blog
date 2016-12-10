@@ -8,6 +8,7 @@ tags:
 - 개발자
 - RESTful
 - API
+image: /images/2016-08-03-img-01.png
 ---
 
 ## 1. 발표 자료

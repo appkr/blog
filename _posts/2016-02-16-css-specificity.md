@@ -7,6 +7,7 @@ categories:
 tags:
 - 개발자
 - CSS
+image: https://stuffandnonsense.co.uk/archives/images/specificitywars-05v2.jpg
 ---
 speci.., specifif..., speficyfyf..., specificificfy... what? 
 

@@ -16,12 +16,12 @@
   <meta property="og:title" content=""휙~" 리얼 타임 라라벨 데모 프로젝트"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
-  <meta property="og:image" content=""/>
+  <meta property="og:image" content="/images/2016-07-15-img-01.png"/>
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content=""휙~" 리얼 타임 라라벨 데모 프로젝트">
   <meta itemprop="description" content="‘휙~‘ 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 pusher, redis, log 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 ‘휙~’하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에...">
-  <meta itemprop="image" content="">
+  <meta itemprop="image" content="/images/2016-07-15-img-01.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
@@ -29,7 +29,7 @@
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content=""휙~" 리얼 타임 라라벨 데모 프로젝트" />
   <meta name="twitter:description" content="‘휙~‘ 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 pusher, redis, log 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 ‘휙~’하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에..." />
-  <meta name="twitter:image" content="" />
+  <meta name="twitter:image" content="/images/2016-07-15-img-01.png" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
@@ -385,10 +385,8 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <p>라라벨의 <code class="highlighter-rouge">pub</code>라우팅을 방문하면, Redis 서버의 <code class="highlighter-rouge">whik</code> 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Http/routes.php
-
-<span class="cp">&lt;?php</span>
-
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php
+</span>
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">'event'</span> <span class="o">=&gt;</span> <span class="s1">'App\\Events\\NewUserCreated'</span><span class="p">,</span>
@@ -442,10 +440,8 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <p>라라벨의 <code class="highlighter-rouge">pub</code> 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Http/routes.php
-
-<span class="cp">&lt;?php</span>
-
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php
+</span>
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'sub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
 <span class="p">});</span>
@@ -507,10 +503,8 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <p>이벤트 클래스는 아티즌 콘솔로 만든다(<code class="highlighter-rouge">$ php artisan make:event NewUserCreated</code>). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 <code class="highlighter-rouge">ShouldBroadcast</code> 인터페이스를 구현하면 된다. 인터페이스의 메서드는 <code class="highlighter-rouge">broadcastOn()</code> 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Events/NewUserCreated.php
-
-<span class="cp">&lt;?php</span>
-
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Events/NewUserCreated.php
+</span>
 <span class="k">namespace</span> <span class="nx">App\Events</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
@@ -539,10 +533,8 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <p>이제 <code class="highlighter-rouge">NewUserCreated</code> 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 <code class="highlighter-rouge">public</code>으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, <code class="highlighter-rouge">config/broadcasting.php</code>에 정의한 드라이버로 브로드캐스팅한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code>// app/Http/routes.php
-
-<span class="cp">&lt;?php</span>
-
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php
+</span>
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$user</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">App\User</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
     <span class="nx">event</span><span class="p">(</span><span class="k">new</span> <span class="nx">App\Events\NewUserCreated</span><span class="p">(</span><span class="nv">$user</span><span class="p">));</span>
@@ -692,7 +684,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">46</span>
+          <span class="badge">47</span>
         </a>
       </li>
       <li>
@@ -732,7 +724,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#Apache Thrift">
         Apache Thrift
       </a>
@@ -810,7 +802,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 110%">
+    <span style="font-size: 114%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -822,7 +814,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#RPC">
         RPC
       </a>
@@ -1200,7 +1192,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 214%">
+    <span style="font-size: 218%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1316,6 +1308,13 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
+          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-04</small>
           <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
         </h4>
@@ -1325,13 +1324,6 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-03</small>
           <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-11-27</small>
-          <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
         </h4>
       </li>
       

@@ -8,6 +8,7 @@ tags:
 - 개발자
 - Laravel
 - Websocket
+image: /images/2016-07-15-img-01.png
 ---
 
 **'[휙~](https://github.com/appkr/whik)'** 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 `pusher`, `redis`, `log` 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 **'휙~'**하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 **'휙~'**하고 메시지를 전파한다. 
@@ -258,9 +259,7 @@ Node.js 서비스는 Redis 서버에 미리 약속한 채널(`whik`)을 계속 �
 라라벨의 `pub`라우팅을 방문하면, Redis 서버의 `whik` 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.
 
 ```php
-// app/Http/routes.php
-
-<?php
+<?php // app/Http/routes.php
 
 Route::get('pub', function () {
     $data = [
@@ -315,9 +314,7 @@ redis.on('message', function (channel, message) {
 라라벨의 `pub` 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다. 
 
 ```php
-// app/Http/routes.php
-
-<?php
+<?php // app/Http/routes.php
 
 Route::get('sub', function () {
     return view('welcome');
@@ -380,9 +377,7 @@ you:~/workspace (5736550) $ npm start
 이벤트 클래스는 아티즌 콘솔로 만든다(`$ php artisan make:event NewUserCreated`). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 `ShouldBroadcast` 인터페이스를 구현하면 된다. 인터페이스의 메서드는 `broadcastOn()` 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.
 
 ```php
-// app/Events/NewUserCreated.php
-
-<?php
+<?php // app/Events/NewUserCreated.php
 
 namespace App\Events;
 
@@ -412,9 +407,7 @@ class NewUserCreated extends Event implements ShouldBroadcast
 이제 `NewUserCreated` 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 `public`으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, `config/broadcasting.php`에 정의한 드라이버로 브로드캐스팅한다. 
 
 ```php
-// app/Http/routes.php
-
-<?php
+<?php // app/Http/routes.php
 
 Route::get('pub', function () {
     $user = factory(App\User::class)->make()->toArray();

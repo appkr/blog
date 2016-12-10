@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="앞서 1부에서는 다음 내용을 다루었다.  RPC 시스템에 대한 이해와 여러 가지 RPC 프레임워크의 특징  Thrift IDL(Interface Definition Language)를 이용해서 API 규격 만드는 방법  API 규격을 다양한 언어로 컴파일하고 라이브러리화 하는 방법..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="RPC - Apache Thrift 입문 2부"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content="https://rofildex86.files.wordpress.com/2015/02/clack-middleware-2.png"/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="RPC - Apache Thrift 입문 2부">
+  <meta itemprop="description" content="앞서 1부에서는 다음 내용을 다루었다.  RPC 시스템에 대한 이해와 여러 가지 RPC 프레임워크의 특징  Thrift IDL(Interface Definition Language)를 이용해서 API 규격 만드는 방법  API 규격을 다양한 언어로 컴파일하고 라이브러리화 하는 방법...">
+  <meta itemprop="image" content="https://rofildex86.files.wordpress.com/2015/02/clack-middleware-2.png">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="RPC - Apache Thrift 입문 2부" />
+  <meta name="twitter:description" content="앞서 1부에서는 다음 내용을 다루었다.  RPC 시스템에 대한 이해와 여러 가지 RPC 프레임워크의 특징  Thrift IDL(Interface Definition Language)를 이용해서 API 규격 만드는 방법  API 규격을 다양한 언어로 컴파일하고 라이브러리화 하는 방법..." />
+  <meta name="twitter:image" content="https://rofildex86.files.wordpress.com/2015/02/clack-middleware-2.png" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>RPC - Apache Thrift 입문 2부 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">RPC - Apache Thrift 입문 2부</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/&title=RPC - Apache Thrift 입문 2부" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/&title=RPC - Apache Thrift 입문 2부&text=RPC - Apache Thrift 입문 2부" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-10
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>앞서 <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-1/">1부</a>에서는 다음 내용을 다루었다.</p>
+
+<ul>
+  <li>RPC 시스템에 대한 이해와 여러 가지 RPC 프레임워크의 특징</li>
+  <li>Thrift IDL(Interface Definition Language)를 이용해서 API 규격 만드는 방법</li>
+  <li>API 규격을 다양한 언어로 컴파일하고 라이브러리화 하는 방법</li>
+  <li>API 서버 프로젝트에 라이브러리를 플러그인하고 API 규격에 맞춘 서비스를 개발하는 방법</li>
+  <li>API 클라이언트가 서버에 접속하여 Thrift 프로토콜로 통신하는 방법</li>
+</ul>
+
+<p>1부에서 언급했다시피, <strong>Thrift 요청과 응답은 Thrift 프로토콜 안쪽에서 (역)직렬화</strong> 된다. 1부의 내용만으로는 디버깅이 어려워 서비스를 개발하기가 수월치 않다. 그래서 2부에서는 다음 내용을 다룬다.</p>
+
+<ul>
+  <li><strong>Thrift 프로토콜 안쪽에서 작동하는 미들웨어</strong>를 만들어서 Thrift 요청을 핸들링하고 그 과정에서 발생한 예외를 잡고 소비하는 방법</li>
+  <li><strong>책임 연쇄(Chain of Responsibility) 패턴</strong>의 이해</li>
+  <li>통합 테스트(Integration Test) 구현</li>
+</ul>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="section">1. 통합 테스트 작성</h2>
+
+<p>Thrift 클라이언트가 IDL에서 정의한 API를 호출하는 경우를 상정하고, Outside-In으로 설명하는 것이 더 쉬울 것 같다. 아래 통합 테스트는 Thrift 클라이언트를 만들고 같은 프로젝트 디렉터리에 있는 API 서버를 호출한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php
+</span>
+<span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Foundation\Testing\DatabaseTransactions</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Thrift\Transport\THttpClient</span><span class="p">;</span>
+
+<span class="sd">/**
+ * @property \Appkr\Thrift\Post\PostServiceClient client
+ */</span>
+<span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="p">{</span>
+    <span class="c1">// 테스트 중에 생성된 데이터를 테스트가 끝나면 롤백해주는 라라벨의 내장 Trait다.  
+</span>    <span class="k">use</span> <span class="nx">DatabaseTransactions</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">setUp</span><span class="p">();</span>
+
+        <span class="nv">$transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THttpClient</span><span class="p">(</span>
+            <span class="s1">'localhost'</span><span class="p">,</span>
+            <span class="s1">'8000'</span><span class="p">,</span>
+            <span class="s1">'api/posts'</span>
+        <span class="p">);</span>
+
+        <span class="nv">$protocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TJSONProtocol</span><span class="p">(</span><span class="nv">$transport</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceClient</span><span class="p">(</span><span class="nv">$protocol</span><span class="p">);</span>
+
+        <span class="c1">// 테스트를 위해 레코드 20개를 만든다.
+</span>        <span class="c1">// testAll, testFind, testStore 등 테스트 메서드가 세 개이므로 총 세 번 호출된다.
+</span>        <span class="nx">factory</span><span class="p">(</span><span class="nx">EloquentPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAll</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$queryFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueryFilter</span><span class="p">([</span>
+            <span class="s1">'keyword'</span> <span class="o">=&gt;</span> <span class="s1">'Lorem'</span><span class="p">,</span>
+            <span class="s1">'sortBy'</span> <span class="o">=&gt;</span> <span class="s1">'id'</span><span class="p">,</span>
+            <span class="s1">'sortDirection'</span> <span class="o">=&gt;</span> <span class="s1">'desc'</span>
+        <span class="p">]);</span>
+
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">(</span><span class="nv">$queryFilter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$response</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// Lorem이란 텍스트를 가진 레코드가 없을 수도 있어, if 절에 넣었다.
+</span>            <span class="c1">// 응답으로 받은 컬렉션의 요소가 ThriftPost 객체인지 검사한다(IDL에 그렇게 정의했음).
+</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">ThriftPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$response</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFind</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">ThriftPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testStore</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span>
+            <span class="s1">'foo'</span><span class="p">,</span>
+            <span class="s1">'Lorem content'</span>
+        <span class="p">);</span>
+
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">ThriftPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">2. 서비스 수정</h2>
+
+<p>1부에서는 클라이언트가 넘긴 <code class="highlighter-rouge">QueryFilter</code>를 이용해서 검색을 수행하거나, 정렬하는 로직을 구현하지 않았다. 본 포스트의 주제와는 크게 관련은 없지만, Thrift IDL에서 정의한 <code class="highlighter-rouge">struct</code>를 사용하는 법을 엿볼 수 있다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Services/PostService.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostField</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nx">QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EloquentPost</span><span class="p">;</span>
+
+        <span class="c1">// $qf 변수는 QueryFilter 객체다.
+</span>        <span class="c1">// $qf 변수는 라라벨에서 쓰던 Request 객체라고 생각하면 되는데,
+</span>        <span class="c1">// Thrift에서는 클라이언트가 IDL에 정의한 객체(struct)를 넘기므로
+</span>        <span class="c1">// 서버에서 $qf-&gt;keyword처럼 객체 액세스를 할 수 있다.
+</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">keyword</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 고급 DB를 사용한다면 Full text BOOLEAN MATCH를 사용할 수 있을 것이다.
+</span>            <span class="c1">// 여기서는 간략히 QueryFilter를 사용하는 컨셉만 소개한다.
+</span>            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'like'</span><span class="p">,</span> <span class="s2">"%</span><span class="si">{</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">keyword</span><span class="si">}</span><span class="s2">%"</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$posts</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">sortBy</span><span class="p">,</span> <span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">sortDirection</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">offset</span><span class="p">(</span><span class="nv">$offset</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="nv">$limit</span><span class="p">)</span>
+                         <span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nv">$posts</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+        <span class="p">})</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 1부와 동일 ...
+</span>    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">store</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="nv">$content</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 1부와 동일 ...
+</span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-2">3. 미들웨어와 책임 연쇄 패턴</h2>
+
+<p>미들웨어란 아케이드 게임에서 최종 보스를 만나기 위해서 상대해야 하는 중간 보스, 또는 최종 결재를 받기 위해 거쳐야 하는 중간 결재선에 비유할 수 있다. 중간 과정을 통과하지 못하면 최종 목적지에 도달하지 못한다. 이 프로젝트에서는 <code class="highlighter-rouge">PostService</code>에 도달하기 위해서 거쳐야 하는 중간 과정으로 이해하면 된다. 다음 그림을 참고하자.</p>
+
+<p><a href="https://rofildex86.files.wordpress.com/2015/02/clack-middleware-2.png"><img src="https://rofildex86.files.wordpress.com/2015/02/clack-middleware-2.png" alt="Http Middleware" /></a></p>
+
+<p><small>그림 출처: <a href="https://rofildex86.wordpress.com/2015/02/20/laravel5-series-4-middleware/">Laravel/5 Series 4: Middleware</a></small></p>
+
+<p>미들웨어를 구현하는데 적합한 패턴은 책임 연쇄 패턴(Chain of Responsibility)이다.</p>
+
+<h3 id="section-3">3.1. 서비스에 미들웨어 적용하기</h3>
+
+<p>글로 설명하기 너무 힘들다, 즉 설명할 수 없다는 것은 필자도 잘 모른다는 의미이기도 하다ㅜㅜ. 코드에 인라인 주석을 참고한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/PostsController
+</span>
+<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Services\PostService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Thrift\BarMiddleware</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Thrift\FooMiddleware</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Thrift\ThriftResponse</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Thrift\ThriftServiceHandler</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nv">$format</span> <span class="o">=</span> <span class="s1">'json'</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 그림에서 본 것처럼 Thrift 요청은 바깥쪽에 있는 FooMiddleware를 먼저 거치게 된다.
+</span>        <span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FooMiddleware</span><span class="p">(</span>
+            <span class="k">new</span> <span class="nx">BarMiddleware</span>
+        <span class="p">);</span>
+
+        <span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostService</span><span class="p">();</span>
+        <span class="c1">// PostService를 앞서 만든 미들웨어로 싸서 ThriftServiceHandler를 만들었다. 
+</span>        <span class="nv">$handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThriftServiceHandler</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$middleware</span><span class="p">);</span>
+        <span class="c1">// 이제 Thrift 컴파일러가 만들어준 프로세서에 미들웨어로 여러겹 포장한 서비스를 넘겨서 처리를 위임한다.
+</span>        <span class="nv">$processor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceProcessor</span><span class="p">(</span><span class="nv">$handler</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">ThriftResponse</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="nv">$format</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="section-4">3.2. 서비스 핸들러 만들기</h3>
+
+<p>서비스를 미들웨어로 감싸 줄 <code class="highlighter-rouge">ThriftServiceHandler</code>를 만들 차례다. 핸들러의 개념을 이해하기 어려운데 미들웨어가 있으면 미들웨어를 구동시키고, 없으면 서비스를 바로 호출해 주는 녀석이다. 진짜 서비스가 아니지만 자신이 서비스인 양 행세해서, 프로세서가 서비스로 간주하고 호출하는 녀석이다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftServiceHandler.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+
+<span class="sd">/**
+ * @property service
+ * @property \App\Thrift\ThriftMiddleware|null middleware
+ */</span>
+<span class="k">class</span> <span class="nc">ThriftServiceHandler</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nx">ThriftMiddleware</span> <span class="nv">$middleware</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span> <span class="o">=</span> <span class="nv">$service</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span> <span class="o">=</span> <span class="nv">$middleware</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 가령 클라이언트가 all API를 호출했다면, PostServiceProcessor가 PostService::all()
+</span>    <span class="c1">// 메서드를 호출할 때 클라이언트가 제시한 인자인 QueryParameter 객체와, offset 0, limit 10을
+</span>    <span class="c1">// 넘겨준다. 그런데, 앞 절에서 PostServiceProcessor에 넘겨 준 것은 PostService가 아니라
+</span>    <span class="c1">// 이 서비스를 미들웨어로 몇 꺼풀 싸 놓은 ThriftServiceHandler를 넘겼다.
+</span>    <span class="c1">// ThriftServiceHandler에는 all 메서드가 없다. 일치하는 메서드가 없으므로 __call 메서드가 호출된다. 
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">__call</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 생성자를 통해 초기화한 미들웨어가 있으면 이 로직을 수행한다.
+</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 등록된 미들웨어의 handle 메서드를 호출한다. 1절의 테스트를 가정하면,
+</span>            <span class="c1">// 이 때 PostService 객체, all, [QueryFilter 객체, 0, 10] 등을 인자로 넘기게 된다.
+</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 등록된 미들웨어가 없으면 클라이언트가 전달한 인자로 PostService::all 메서드를 바로 호출한다. 
+</span>        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">([</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="section-5">3.3. 미들웨어 만들기</h3>
+
+<p><code class="highlighter-rouge">PostService</code>를 감쌌던 <code class="highlighter-rouge">FooMiddleware</code>를 만들어 보자(<code class="highlighter-rouge">BarMiddleware</code>는 생략한다). 역시 인라인으로 주석을 달았다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/FooMiddleware.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\ErrorCode</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\SystemException</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\UserException</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Log</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FooMiddleware</span> <span class="k">extends</span> <span class="nx">ThriftMiddleware</span>
+<span class="p">{</span>
+    <span class="c1">// ThriftServiceHandler::__call에서 이 메서드를 호출했다. 
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// 컨셉만 보여 주기 위해서 로그에 메시지를 쓰는 것으로 대신한다.
+</span>            <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'handling thrift request'</span><span class="p">,</span> <span class="p">[</span><span class="nb">func_get_args</span><span class="p">(),</span> <span class="nx">__METHOD__</span><span class="p">]);</span>
+
+            <span class="c1">// 책임 연쇄 패턴에서 가장 중요한 부분이다. next 메서드는 다음 절에서 살펴본다.
+</span>            <span class="c1">// 우리 예제에서 next는 BarMiddleware다.
+</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">next</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">SystemException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 추가적인 예외 처리를 여기서 한다.
+</span>            <span class="c1">// SystemException은 Thrift IDL에 정의한 struct므로 클라이언트와 연결된 프로토콜을 통해
+</span>            <span class="c1">// 안전하게 전달된다. 클라이언트 측에서도 SystemException으로 역 직렬화되어 바로 사용할 수 있다.
+</span>            <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">UserException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// SystemException 및 UserException을 제외한 라라벨의 일반적인 예외를 핸들링한다.
+</span>            <span class="c1">// 이 예제에서는 로그에 디버그 메시지를 쓴다. Thrift가 없는 라라벨 프로젝트라면
+</span>            <span class="c1">// app/Exceptions/Handler.php의 전역 예외 처리기가 예외를 소비했을 것이다.
+</span>            <span class="c1">// 라라벨의 Handler::report 메서드를 대신하는 역할을 한다.
+</span>            <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span>
+                <span class="s2">"%s </span><span class="se">\n\n</span><span class="s2">%s </span><span class="se">\n</span><span class="s2">%s:%d </span><span class="se">\n\n</span><span class="s2">%s"</span><span class="p">,</span>
+                <span class="nb">get_class</span><span class="p">(</span><span class="nv">$e</span><span class="p">),</span>
+                <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
+                <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(),</span>
+                <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getLine</span><span class="p">(),</span>
+                <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getTraceAsString</span><span class="p">()</span>
+            <span class="p">));</span>
+
+            <span class="c1">// Thrift 클라이언트가 이해할 수 있는 SystemException으로 변경하여 클라이언트에게 돌려준다.
+</span>            <span class="c1">// 라라벨의 Handler::render 메서드를 대신하는 역할을 한다.
+</span>            <span class="k">throw</span> <span class="k">new</span> <span class="nx">SystemException</span><span class="p">([</span>
+                <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="nx">ErrorCode</span><span class="o">::</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="p">,</span>
+                <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">()</span>
+            <span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="section-6">3.4. 추상 미들웨어</h3>
+
+<p>앞 절의 인라인 주석에서 책임 연쇄 패턴에 가장 중요한 메서드가 <code class="highlighter-rouge">next()</code>라고 말한 바 있다. 이 절에서는 이 <code class="highlighter-rouge">next()</code> 메서드의 작동 원리를 파헤쳐본다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftMiddleware.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">ThriftMiddleware</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$successor</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">ThriftMiddleware</span> <span class="nv">$successor</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 3.1.절에서 new FooMiddleware(new BarMiddleware)처럼
+</span>        <span class="c1">// 미들웨어 생성자에 다른 미들웨어를 넣은 것을 기억할 것이다. 바로 이 부분이다.
+</span>        <span class="c1">// $successor는 이번 미들웨어를 통과하고 나면, 그 다음에 통과해야 할 미들웨어다.
+</span>        <span class="c1">// 이제 FooMiddleware의 $successor는 BarMiddleware다.
+</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span> <span class="o">=</span> <span class="nv">$successor</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">next</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 구체 미들웨어 클래스의 handle 메서드에서 항상 next 메서드를 호출했던 것을 기억할 것이다.
+</span>            <span class="c1">// FooMiddleware는 BarMiddleware라는 $successor를 가지고 있으므로
+</span>            <span class="c1">// BarMiddlware::handle 메서드가 호출될 것이다.
+</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 반면 BarMiddlware는 $succesor가 없으므로 아래 구문이 호출된다.
+</span>        <span class="c1">// 이 예제에서는 PostService::all 메서드가 호출되는 것이다.
+</span>        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">([</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-7">4. 테스트</h2>
+
+<p>테스트를 위해 로컬 서버를 기동하고, <code class="highlighter-rouge">phpunit</code> 테스트를 실행한다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/thrift-example-project <span class="nv">$ </span>php artisan serve
+<span class="c"># Laravel development server started on http://localhost:8000/</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>~/thrift-example-project $ vendor/bin/phpunit
+# PHPUnit 5.6.2 by Sebastian Bergmann and contributors.
+# ...
+# OK (3 tests, 5 assertions)
+</code></pre>
+</div>
+
+<p>다음 로그를 보면 <code class="highlighter-rouge">FooMiddleware</code> 및 <code class="highlighter-rouge">BarMiddlware</code>에서 Thrift 요청을 처리한 흔적을 볼 수 있다. <code class="highlighter-rouge">all</code>, <code class="highlighter-rouge">find</code>, <code class="highlighter-rouge">store</code> 총 세 개의 API를 테스트 했으므로 총 여섯 개의 로그가 찍혔다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
+
+<span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"all"</span>,[<span class="s2">"[object] (Appkr</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">Post</span><span class="se">\\</span><span class="s2">QueryFilter: {</span><span class="se">\"</span><span class="s2">keyword</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Lorem</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortBy</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortDirection</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">desc</span><span class="se">\"</span><span class="s2">})"</span>,0,10]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">FooMiddleware::handle"</span><span class="o">]</span> 
+<span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"all"</span>,[<span class="s2">"[object] (Appkr</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">Post</span><span class="se">\\</span><span class="s2">QueryFilter: {</span><span class="se">\"</span><span class="s2">keyword</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Lorem</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortBy</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortDirection</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">desc</span><span class="se">\"</span><span class="s2">})"</span>,0,10]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">BarMiddleware::handle"</span><span class="o">]</span> 
+<span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"find"</span>,[1]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">FooMiddleware::handle"</span><span class="o">]</span> 
+<span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"find"</span>,[1]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">BarMiddleware::handle"</span><span class="o">]</span> 
+<span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"store"</span>,[<span class="s2">"foo"</span>,<span class="s2">"Lorem content"</span><span class="o">]]</span>,<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">FooMiddleware::handle"</span><span class="o">]</span> 
+<span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"store"</span>,[<span class="s2">"foo"</span>,<span class="s2">"Lorem content"</span><span class="o">]]</span>,<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">BarMiddleware::handle"</span><span class="o">]</span> 
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">FooMiddlware</code>가 예외를 잘 소비하는 지 확인하기 위해서 통합 테스트를 다음과 같이 수정하고 테스트했다. 100번 아이디를 가진 레코드는 없어서 라라벨에서 <code class="highlighter-rouge">ModelNotFoundException</code>이 나야하고, <code class="highlighter-rouge">FooMiddleware</code>에 의해서 Thrift 클라이언트에게 <code class="highlighter-rouge">SystemException</code>으로 전달되어야 한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php
+</span>
+<span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="p">{</span>
+    <span class="c1">// ...
+</span>    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFind</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">ThriftPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// ...
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>아래 그림에서 <code class="highlighter-rouge">Appkr\Thrift\Errors\SystemException: No query results for model [App\Post] 100</code>처럼 예외 객체가 클라이언트에게 정확하게 전달된 것을 확인할 수 있다.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># PHPUnit에서 특정 테스트 메서드만 필터링해서 실행하고 싶을 때 --filter 옵션을 사용한다.</span>
+~/thrift-example-project <span class="nv">$ </span>vendor/bin/phpunit --filter testFind
+</code></pre>
+</div>
+
+<p><a href="/images/2016-12-10-img-01.png"><img src="/images/2016-12-10-img-01.png" alt="ModelNotFoundException" /></a></p>
+
+<h2 id="section-8">5. 결론</h2>
+
+<p>Thrift를 사용하는 동안 디버깅의 괴로움에 스트레스를 받아야 했다. 그럼에도 불구하고 좋았던 점은 서버와 클라이언트간의 약속을 코드로 표현하고, 그 코드를 문서로 즉시 변환해 공유할 수 있다는 점이었다. 클라이언트 개발자가 서버 코드가 개발되고 문서가 나오기까지 멍 때리고 있는 것이 아니라, 서버와 클라이언트가 병렬로 개발을 시작할 수 있었다.</p>
+
+<p>책임 연쇄 패턴을 한 번에 이해했다면 거짓말이다. 이 예제에서 사용한 Thrift 미들웨어의 콜 스택을 이해하기 쉽도록 아래 그림으로 표현했다.</p>
+
+<p><a href="/images/2016-12-10-img-02.png"><img src="/images/2016-12-10-img-02.png" alt="Thrift Middleware Call Stack" /></a></p>
+
+<p>이번 포스트의 예제 프로젝트는</p>
+
+<ul>
+  <li><a href="https://github.com/appkr/thrift-example-idl">https://github.com/appkr/thrift-example-idl</a></li>
+  <li><a href="https://github.com/appkr/thrift-example-project">https://github.com/appkr/thrift-example-project</a></li>
+</ul>
+
+<p>에 공개되어 있다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#RPC">
+            RPC
+          </a>
+          , 
+        
+          <a href="/tags#Apache Thrift">
+            Apache Thrift
+          </a>
+          , 
+        
+          <a href="/tags#PHP">
+            PHP
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/testing-private-method-in-php/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              Private(or Protec...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">70</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">47</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Facebook">
+        Facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Streaming">
+        Streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 218%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
+          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-04</small>
+          <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-03</small>
+          <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

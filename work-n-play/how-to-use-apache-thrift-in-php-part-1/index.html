@@ -16,12 +16,12 @@
   <meta property="og:title" content="RPC - Apache Thrift 입문 1부"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
-  <meta property="og:image" content=""/>
+  <meta property="og:image" content="/images/2016-11-04-img-01.png"/>
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content="RPC - Apache Thrift 입문 1부">
   <meta itemprop="description" content="RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다.REST가 API를 통해 원격 서버에 있는 리소스(모델 또는 데이터)에 대한 상태를 주고 받는다고 생각하는 반면, RPC...">
-  <meta itemprop="image" content="">
+  <meta itemprop="image" content="/images/2016-11-04-img-01.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
@@ -29,7 +29,7 @@
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content="RPC - Apache Thrift 입문 1부" />
   <meta name="twitter:description" content="RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다.REST가 API를 통해 원격 서버에 있는 리소스(모델 또는 데이터)에 대한 상태를 주고 받는다고 생각하는 반면, RPC..." />
-  <meta name="twitter:image" content="" />
+  <meta name="twitter:image" content="/images/2016-11-04-img-01.png" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
@@ -240,34 +240,6 @@
 <span class="o">}</span>
 
 <span class="cm">/**
- * Post 엔티티의 필드들
- */</span>
-<span class="kd">enum</span> <span class="n">PostField</span> <span class="o">{</span>                        <span class="c1">// enum 필드는 PHP 코드에서 클래스 상수로 변환된다.</span>
-    <span class="cm">/** 제목 필드 */</span>
-    <span class="n">TITLE</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span>                          <span class="c1">// 메시지 정의할 때는 콜론(:), enum에서는 등호(=)를 사용한다. 주의하자.</span>
-                                        <span class="c1">// enum의 값으로 연속된 정수를 쓸 필요는 없다. 100, 200, ..도 가능하다.</span>
-    <span class="cm">/** 본문 필드 */</span>
-    <span class="n">CONTENT</span> <span class="o">=</span> <span class="mi">2</span><span class="o">,</span>
-
-    <span class="cm">/** 최초 생성 시각 */</span>
-    <span class="n">CREATED_AT</span> <span class="o">=</span> <span class="mi">3</span><span class="o">,</span>
-
-    <span class="cm">/** 최종 수정 시각 */</span>
-    <span class="n">UPDATED_AT</span> <span class="o">=</span> <span class="mi">4</span><span class="o">,</span>
-<span class="o">}</span>
-
-<span class="cm">/**
- * 정렬 방향
- */</span>
-<span class="kd">enum</span> <span class="n">SortDirection</span> <span class="o">{</span>
-    <span class="cm">/** 오름 차순 */</span>
-    <span class="n">ASC</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span>
-
-    <span class="cm">/** 내림 차순 */</span>
-    <span class="n">DESC</span> <span class="o">=</span> <span class="mi">2</span><span class="o">,</span>
-<span class="o">}</span>
-
-<span class="cm">/**
  * PostCollection 엔티티
  */</span>
 <span class="n">typedef</span> <span class="n">list</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span> <span class="n">PostCollection</span>       <span class="c1">// Thrift가 제공하는 기본 타입 외 커스텀 타입도 정의할 수 있다.</span>
@@ -280,10 +252,10 @@
     <span class="mi">1</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">keyword</span> <span class="o">=</span> <span class="err">''</span><span class="o">,</span>    <span class="c1">// 기본 값을 할당했다.</span>
 
     <span class="cm">/** 정렬 기준이 되는 필드 */</span>
-    <span class="mi">2</span><span class="o">:</span> <span class="n">optional</span> <span class="n">PostField</span> <span class="n">sortBy</span> <span class="o">=</span> <span class="n">PostField</span><span class="o">.</span><span class="na">CREATED_AT</span><span class="o">,</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">sortBy</span> <span class="o">=</span> <span class="err">'</span><span class="n">created_at</span><span class="err">'</span>
 
     <span class="cm">/** 정렬 방향 */</span>
-    <span class="mi">3</span><span class="o">:</span> <span class="n">optional</span> <span class="n">SortDirection</span> <span class="n">sortDirection</span> <span class="o">=</span> <span class="n">SortDirection</span><span class="o">.</span><span class="na">DESC</span>
+    <span class="mi">3</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">sortDirection</span> <span class="o">=</span> <span class="err">'</span><span class="n">desc</span><span class="err">'</span>
 <span class="o">}</span>
 
 <span class="cm">/**
@@ -521,8 +493,7 @@
 
 <p>4절 에서 정의한 대로 <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">title</code>, <code class="highlighter-rouge">content</code>, <code class="highlighter-rouge">created_at</code>, <code class="highlighter-rouge">updated_at</code> 컬럼을 정의한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php
 </span>
 <span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
@@ -557,8 +528,7 @@
 
 <p>방금 만든 테이블에 테스트 데이터를 채우기 위해 모델 팩토리를 만든다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// database/factory/ModelFactory.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factory/ModelFactory.php
 </span>
 <span class="c1">// ...
 </span>
@@ -584,8 +554,7 @@
 
 <p>클라이언트가 접근할 수 있는 URL 엔드포인트가 필요하다. Thrift에서는 모든 데이터를 HTTP 본문으로 보내기 때문에 HTTP <code class="highlighter-rouge">POST</code> 메서드로 요청을 보내고 받아야 한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// routes/api.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php
 </span>
 <span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="s1">'PostsController@handle'</span><span class="p">);</span>
 </code></pre>
@@ -599,8 +568,7 @@
 
 <p>컨트롤러의 내용을 채운다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// app/Http/Controllers/PostsController.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/PostsController.php
 </span>
 <span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
 
@@ -619,7 +587,7 @@
                                         <span class="c1">// 서비스 인스턴스를 프로세서에 주입한다.
 </span>        
         <span class="k">return</span> <span class="nx">ThriftResponse</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="s1">'json'</span><span class="p">);</span>
-                                        <span class="c1">// HTTP 요청을 Process하고 HTTP 응답을 반환한다.
+                                        <span class="c1">// HTTP 요청을 Process하고 JSON HTTP 응답을 반환한다.
 </span>    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -629,26 +597,22 @@
 
 <p>다음 그림은 Thrift의 네트워크 스택이다. <code class="highlighter-rouge">Transport</code>는 HTTP 서버와 클라이언트다. <code class="highlighter-rouge">Protocol</code> 객체는 입력 및 출력 스트림(HTTP 본문)을 읽거나 쓰고, Thrift 객체로 (역)직렬화한다. <code class="highlighter-rouge">Processor</code>는 매니저와 같은 역할로, 역직렬화된 입력 스트림을 넘겨 받아 생성자로 받은 서비스 객체에게 처리를 위임하고 리턴 값을 받아 <code class="highlighter-rouge">Protocol</code>에게 넘겨주는 일을 한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>         +--------------------------------------------+
-         |                    Service                 |
-         |                   <span class="o">(</span>직접 구현<span class="o">)</span>                |
-         +--------------------------------------------+
-         |     ↑              Processor         ↓     |
-         |                <span class="o">(</span>컴파일러가 자동 생성<span class="o">)</span>           |
-         +--------------------------------------------+
-         |     ↑<span class="o">(</span>역직렬화<span class="o">)</span>      Protocol    <span class="o">(</span>직렬화<span class="o">)</span>↓     |
-         |         <span class="o">(</span>Thrift 라이브러리에 포함되어 있음<span class="o">)</span>      |
-         +--------------------------------------------+
- --wire-&gt;|                   Transport                |--wire-&gt;
-         |         <span class="o">(</span>Thrift 라이브러리에 포함되어 있음<span class="o">)</span>      |
-         +--------------------------------------------+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>         +------------------------------------+
+         |   Service <span class="o">(</span>직접 구현해야 함<span class="o">)</span>           |
+         +------------------------------------+
+         | ↑ Processor <span class="o">(</span>컴파일러가 자동 생성<span class="o">)</span>     ↓|
+         +------------------------------------+
+         |   Protocol <span class="o">(</span>Thrift 라이브러리에 포함<span class="o">)</span>   |
+         | ↑ <span class="o">(</span>역직렬화<span class="o">)</span>                 <span class="o">(</span>직렬화<span class="o">)</span> ↓|
+         +------------------------------------+
+ --wire-&gt;|   Transport <span class="o">(</span>Thrift 라이브러리에 포함<span class="o">)</span>  |--wire-&gt;
+         +------------------------------------+
 </code></pre>
 </div>
 
 <p>컨트롤러에서 본 <code class="highlighter-rouge">ThriftResponse</code>를 만든다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// app/Thrift/ThriftResponse.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftResponse.php
 </span>
 <span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
 
@@ -718,19 +682,20 @@
 
 <p>API를 가지고 있으므로 여기서 구현해 주면 된다. IDL에 의하면 <code class="highlighter-rouge">\Appkr\Thrift\Post\Post</code> 객체지만, <code class="highlighter-rouge">App\Post</code> 엘로퀀트 모델과 구분을 위해 일부러 <code class="highlighter-rouge">ThriftPost</code>로 썼다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// app/Service/PostsService.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Service/PostsService.php
 </span>
 <span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
 
+<span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nx">\Appkr\Thrift\Post\QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nx">QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$posts</span> <span class="o">=</span> <span class="nx">\App\Post</span><span class="o">::</span><span class="na">offset</span><span class="p">(</span><span class="nv">$offset</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="nv">$limit</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+        <span class="nv">$posts</span> <span class="o">=</span> <span class="nx">EloquentPost</span><span class="o">::</span><span class="na">offset</span><span class="p">(</span><span class="nv">$offset</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="nv">$limit</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
                                         <span class="c1">// $offset을 건너뛰고 $limit개의 포스트를 조회하는 엘로퀀트 쿼리다. 
 </span>                                        <span class="c1">// QueryFilter는 이번 포스트에서는 쓰지 않는다.
 </span>        <span class="k">return</span> <span class="nv">$posts</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
@@ -740,14 +705,14 @@
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$post</span> <span class="o">=</span> <span class="nx">\App\Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+        <span class="nv">$post</span> <span class="o">=</span> <span class="nx">EloquentPost</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
 
         <span class="k">return</span> <span class="k">new</span> <span class="nx">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
     <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">store</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="nv">$content</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\App\Post</span><span class="p">;</span>
+        <span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EloquentPost</span><span class="p">;</span>
         <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$title</span><span class="p">;</span>
         <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span>
         <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
@@ -764,36 +729,48 @@
 
 <p>PHP 프로젝트니까 PHPUnit 테스트에서 Thrift 클라이언트를 만들고 같은 프로젝트에 있는 Thrift 서버로 요청을 보내서 정상 작동을 테스트해 볼 것이다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="c1">// tests/ThriftClientTest.php
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php
 </span>
+<span class="k">use</span> <span class="nx">App\Post</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Foundation\Testing\DatabaseMigrations</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Thrift\Transport\THttpClient</span><span class="p">;</span>
+
 <span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <span class="p">{</span>
+    <span class="k">use</span> <span class="nx">DatabaseMigrations</span><span class="p">;</span>
+
     <span class="k">protected</span> <span class="nv">$client</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="k">parent</span><span class="o">::</span><span class="na">setUp</span><span class="p">();</span>
 
-        <span class="nv">$transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Thrift\Transport\THttpClient</span><span class="p">(</span>
+        <span class="nv">$transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THttpClient</span><span class="p">(</span>
             <span class="s1">'localhost'</span><span class="p">,</span>
             <span class="s1">'8000'</span><span class="p">,</span>
             <span class="s1">'api/posts'</span>
         <span class="p">);</span>                              <span class="c1">// apache/thrfit 라이브러에서 제공하는 HTTP 클라이언트다.
 </span>
-        <span class="nv">$protocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Thrift\Protocol\TJSONProtocol</span><span class="p">(</span><span class="nv">$transport</span><span class="p">);</span>
+        <span class="nv">$protocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TJSONProtocol</span><span class="p">(</span><span class="nv">$transport</span><span class="p">);</span>
                                         <span class="c1">// 편의를 위해 JSONProtocol을 이용했다.
 </span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Appkr\Thrift\Post\PostServiceClient</span><span class="p">(</span><span class="nv">$protocol</span><span class="p">);</span>
-                                        <span class="c1">// IDL 컴파일할 때 자동 생성된 클라이언트다. 
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceClient</span><span class="p">(</span><span class="nv">$protocol</span><span class="p">);</span>
+                                        <span class="c1">// IDL 컴파일할 때 자동 생성된 클라이언트다.
+</span>        
+        <span class="nx">factory</span><span class="p">(</span><span class="nx">Post</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+                                        <span class="c1">// 매번 테스트마다 Post를 20개씩 만든다.
+</span>                                        <span class="c1">// DatabaseMigrations에 의해서 테스트가 끝나면 롤백된다.
 </span>    <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">testAll</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$queryFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Appkr\Thrift\Post\QueryFilter</span><span class="p">([</span>
+        <span class="nv">$queryFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueryFilter</span><span class="p">([</span>
             <span class="s1">'keyword'</span> <span class="o">=&gt;</span> <span class="s1">'Lorem'</span><span class="p">,</span>
-            <span class="s1">'sortBy'</span> <span class="o">=&gt;</span> <span class="nx">\Appkr\Thrift\Post\PostField</span><span class="o">::</span><span class="na">CREATED_AT</span><span class="p">,</span>
-            <span class="s1">'sortDirection'</span> <span class="o">=&gt;</span> <span class="nx">\Appkr\Thrift\Post\SortDirection</span><span class="o">::</span><span class="na">DESC</span>
+            <span class="s1">'sortBy'</span> <span class="o">=&gt;</span> <span class="s1">'created_at'</span><span class="p">,</span>
+            <span class="s1">'sortDirection'</span> <span class="o">=&gt;</span> <span class="s1">'desc'</span>
         <span class="p">]);</span>                             <span class="c1">// QueryFilter 객체를 만들었다.
 </span>                                        <span class="c1">// 앞서 언급했듯이 연관 배열 형식으로 객체를 만들 수 있다.
 </span>                                        <span class="c1">// 정의하지 않은 필드는 무시된다. 예) 'foo' =&gt; 'bar'는 무시됨.
@@ -861,7 +838,7 @@
   <li>빠르다.</li>
 </ul>
 
-<p>Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 되므로, PHP 변수나 객체로 값을 검사하려면 프로토콜 안쪽에서 해야 한다. 2부에서는 Thrift 프로토콜 안쪽에서 작동하는 미들웨어를 만들어서 예외를 잡고 소비하는 방법을 다룰 예정이다.</p>
+<p>Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 되므로, PHP 변수나 객체로 값을 검사하려면 프로토콜 안쪽에서 해야 한다. <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">2부</a>에서는 Thrift 프로토콜 안쪽에서 작동하는 미들웨어를 만들어서 예외를 잡고 소비하는 방법을 다룰 예정이다.</p>
 
 <div class="spacer">• • •</div>
 
@@ -983,7 +960,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">46</span>
+          <span class="badge">47</span>
         </a>
       </li>
       <li>
@@ -1023,7 +1000,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#Apache Thrift">
         Apache Thrift
       </a>
@@ -1101,7 +1078,7 @@
       </a>
     </span>
     
-    <span style="font-size: 110%">
+    <span style="font-size: 114%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1113,7 +1090,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#RPC">
         RPC
       </a>
@@ -1491,7 +1468,7 @@
       </a>
     </span>
     
-    <span style="font-size: 214%">
+    <span style="font-size: 218%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1607,6 +1584,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
+          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-04</small>
           <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
         </h4>
@@ -1616,13 +1600,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-03</small>
           <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-11-27</small>
-          <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
         </h4>
       </li>
       

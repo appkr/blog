@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "RPC - Apache Thrift 입문 2부",
+    "category" : "work-n-play",
+    "tags"     : "개발자, RPC, Apache Thrift, PHP",
+    "url"      : "/work-n-play/how-to-use-apache-thrift-in-php-part-2/",
+    "date"     : "2016-12-10"
+  },
+  
+  {
     "title"    : "Private(or Protected) 메서드 테스트 하기 ",
     "category" : "work-n-play",
     "tags"     : "개발자, PHP",
@@ -60,7 +68,7 @@
     "title"    : "RoRLab 워크숍 후기",
     "category" : "around-me",
     "tags"     : "개발자, Ruby",
-    "url"      : "/around-me/rorlap-workshop-epilog/",
+    "url"      : "/around-me/rorlab-workshop-epilog/",
     "date"     : "2016-08-21"
   },
   

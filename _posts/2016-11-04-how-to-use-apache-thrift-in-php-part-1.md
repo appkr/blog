@@ -9,7 +9,7 @@ tags:
 - RPC
 - "Apache Thrift"
 - PHP
-image: /images/2016-11-04-img-01.png
+image: http://blog.appkr.kr/images/2016-11-04-img-01.png
 ---
 
 RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다. 

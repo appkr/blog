@@ -8,7 +8,7 @@ tags:
 - 개발자
 - RESTful
 - API
-image: /images/2016-06-27-img-01.png
+image: http://blog.appkr.kr/images/2016-06-27-img-01.png
 ---
 
 이 슬라이드는 RoRLab에서 주최하는 ["AGIAN2011 Workshop"](http://rorlab.org/schedules/1)의 2회차 워크숍 키노트 발표 자료입니다.

@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - Javascript
-image: /images/2016-08-07-img-01.png
+image: http://blog.appkr.kr/images/2016-08-07-img-01.png
 ---
 
 자바스크립트를 처음 접했을 때 프로미스(Promise)가 어려웠다. 일반적으로 컴퓨터 프로그램은 여러 개의 로직(작업)을 순차적으로 수행한다. 시간이 오래 걸리는 로직이 끼어 있으면 다음 로직은 앞의 로직이 끝나기를 기다려야 한다. 

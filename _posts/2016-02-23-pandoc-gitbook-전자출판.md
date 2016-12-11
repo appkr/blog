@@ -6,7 +6,7 @@ categories:
 - work-n-play
 tags:
 - 개발자
-image: /images/2016-02-23-img-02.png
+image: http://blog.appkr.kr/images/2016-02-23-img-02.png
 ---
 
 Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.

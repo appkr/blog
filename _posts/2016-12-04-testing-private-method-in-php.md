@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - PHP
-image: /images/2016-12-04-img-01.png
+image: http://blog.appkr.kr/images/2016-12-04-img-01.png
 ---
 
 최근에 회사 일로 검색 서비스를 개발했다. 검색 엔진으로는 Elastic Search를 사용했고, 매일 최한시(off-peak time)에 한 번씩 운영 데이터베이스에서 검색, 필터링, 정렬, Aggregation 등에 필요한 컬럼만 골라 인덱싱하도록 설계했다. 그리고, 재고 수량과 같이 실시간 업데이트가 필요한 값 들은 다른 서비스에서 SNS 메시지 또는 메시지 큐를 이용해서 전달하고, 전달 받은 값을 인덱싱에 반영하도록 구현했다.

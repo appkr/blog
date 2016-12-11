@@ -5,8 +5,8 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Dec 2016 18:17:06 +0900</pubDate>
-    <lastBuildDate>Sun, 11 Dec 2016 18:17:06 +0900</lastBuildDate>
+    <pubDate>Sun, 11 Dec 2016 21:50:08 +0900</pubDate>
+    <lastBuildDate>Sun, 11 Dec 2016 21:50:08 +0900</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -422,7 +422,7 @@
 
 &lt;p&gt;Thrift를 사용하는 동안 디버깅의 괴로움에 스트레스를 받아야 했다. 그럼에도 불구하고 좋았던 점은 서버와 클라이언트간의 약속을 코드로 표현하고, 그 코드를 문서로 즉시 변환해 공유할 수 있다는 점이었다. 클라이언트 개발자가 서버 코드가 개발되고 문서가 나오기까지 멍 때리고 있는 것이 아니라, 서버와 클라이언트가 병렬로 개발을 시작할 수 있었다.&lt;/p&gt;
 
-&lt;p&gt;책임 연쇄 패턴을 한 번에 이해했다면 거짓말이다. 이 예제에서 사용한 Thrift 미들웨어의 콜 스택을 이해하기 쉽도록 아래 그림으로 표현했다.&lt;/p&gt;
+&lt;p&gt;책임 연쇄 패턴을 한 번에 이해했다면 거짓말이다. 이 예제에서 사용한 Thrift 미들웨어의 동작을 이해하기 쉽도록 아래 콜 스택 다이어그램으로 표현했다.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/images/2016-12-10-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-12-10-img-02.png&quot; alt=&quot;Thrift Middleware Call Stack&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1208,7 +1208,7 @@
 
 &lt;p&gt;MySQL에 저장된 2개의 레코드를 팅커(라라벨 내장 REPL) 콘솔에서 확인했봤다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;/images/2017-11-01-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-11-07-img-01.png&quot; alt=&quot;Test Vector&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/images/2016-11-07-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-11-07-img-01.png&quot; alt=&quot;Test Vector&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;section-2&quot;&gt;2.2. 테스트 코드&lt;/h3&gt;
 

@@ -9,7 +9,7 @@ tags:
 - Laravel
 - Lumen
 - PHP
-image: /images/2017-11-01-img-02.png
+image: http://blog.appkr.kr/images/2016-11-07-img-01.png
 ---
 
 라라벨과 루멘, PHP 날코딩간의 성능 비교를 해 보신 분들이 없는 것 같아 직접 해 봤다. **결론은 뻔하지만, PHP 날코딩이 가장 빠르고, 메모리 사용량도 적다. 프레임워크를 써야 이유는 다른 곳에 있으니, 이 실험 결과만 보고 오해나 곡해하지 마시기 바란다.**
@@ -45,7 +45,7 @@ image: /images/2017-11-01-img-02.png
 
 MySQL에 저장된 2개의 레코드를 팅커(라라벨 내장 REPL) 콘솔에서 확인했봤다.
 
-[![Test Vector](/images/2016-11-07-img-01.png)](/images/2017-11-01-img-02.png)
+[![Test Vector](/images/2016-11-07-img-01.png)](/images/2016-11-07-img-01.png)
 
 ### 2.2. 테스트 코드
 

@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - 'URL Rewriting'
-image: /images/2016-05-18-img-01.png
+image: http://blog.appkr.kr/images/2016-05-18-img-01.png
 ---
 
 웹 서비스를 하다 보면 마이그레이션을 해야 할 때가 반드시 찾아 온다. 트래픽 양이 변해서 더 큰 또는 작은 서버로 이전한다거나, 다른 프로그래밍 언어 또는 다른 프레임워크로 갈아타야 한다거나..

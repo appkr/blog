@@ -8,7 +8,7 @@ categories:
 tags:
 - 개발자
 - Jekyll
-image: /images/2016-02-10-img-01.png
+image: http://blog.appkr.kr/images/2016-02-10-img-01.png
 ---
 Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 

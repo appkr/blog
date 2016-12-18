@@ -3,11 +3,403 @@
   <channel>
     <title>Appkr.memo(new Life)</title>
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
-    <link>http://blog.appkr.kr/</link>
-    <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Dec 2016 21:50:08 +0900</pubDate>
-    <lastBuildDate>Sun, 11 Dec 2016 21:50:08 +0900</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 24 Dec 2016 15:16:17 +0900</pubDate>
+    <lastBuildDate>Sat, 24 Dec 2016 15:16:17 +0900</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</title>
+        <description>&lt;p&gt;&lt;strong&gt;FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스&lt;/strong&gt;다. 과거 GCM(Google Cloud Message)이 진화한 것이다.&lt;/p&gt;
+
+&lt;p&gt;PubNub, Pusher 등의 메시징 서비스와 FCM이 다른 점은 단말기가 꺼져 있거나, 잠김 모드에 있거나, 메시지를 받을 애플리케이션이 실행 중이지 않을 때도 메시지를 보낼 수 있다는 점이다.&lt;/p&gt;
+
+&lt;p&gt;FCM을 이용한 푸쉬 메시징 시스템을 구성하라면 다음 두 가지가 필요하다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;푸쉬 메시지를 받을 모바일 &lt;strong&gt;단말용 애플리케이션&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;푸쉬 메시지를 전송할 모바일 단말을 선별하고, 원하는 메시지와 함께 구글 FCM 서버에 메시지 전송 요청을 부탁할 &lt;strong&gt;애플리케이션 서버&lt;/strong&gt;(&lt;a href=&quot;https://firebase.google.com/docs/cloud-messaging/server&quot;&gt;구글 공식 문서&lt;/a&gt;에서는 “앱 서버”라고 칭하기도 한다).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이 포스트에서는 &lt;strong&gt;애플리케이션 서버를 구현하는 과정&lt;/strong&gt;을 기술해본다. 모바일 단말용 애플리케이션은 이 포스트에서 다루지 않는다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;fcm--&quot;&gt;1. FCM 작동 원리&lt;/h2&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;1.1. 프로젝트 등록&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://console.firebase.google.com/&quot;&gt;Firebase 콘솔&lt;/a&gt;에서 프로젝트를 만든다. 프로젝트를 등록하는 과정 중에 모바일 애플리케이션의 패키지 이름을 등록해야한다. 등록 과정이 끝나면 대시보드의 설정을 클릭해서 서버 키와 발신자 ID를 얻을 수 있다. 이 값은 메시지를 보낼 때 사용된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-12-18-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-12-18-img-01.png&quot; alt=&quot;FCM Console&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-12-18-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-12-18-img-02.png&quot; alt=&quot;FCM Console&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;1.2. 단말기 등록&lt;/h3&gt;
+
+&lt;p&gt;FCM 콘솔에 등록한 패키지 이름으로 FCM SDK를 적용해서 앱을 만들고, 앱을 시작할 때 FCM 서버와 통신하여, 앱을 실행한 해당 단말기를 식별할 수 있는 고유 토큰(&lt;code class=&quot;highlighter-rouge&quot;&gt;registration_id&lt;/code&gt;)을 받을 수 있다. 전화번호처럼 이 단말기의 고유 식별 번호라 생각하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;App Server      FCM Server      Mobile
+│               │ Request token │
+│               │&amp;lt;--------------│
+│               │ Respond &lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt; │
+│               │--------------&amp;gt;│
+│      Token save request &lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt; │
+│&amp;lt;------------------------------│
+│ Saved                         │
+│------------------------------&amp;gt;│
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 시퀀스 다이어그램에서 모바일 애플리케이션이 FCM 서버로 부터 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;foo&quot;&lt;/code&gt;라는 토큰을 받았다.&lt;/li&gt;
+  &lt;li&gt;모바일 애플리케이션은 앱 서버에 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;foo&quot;&lt;/code&gt; 토큰 저장 요청을 한다.&lt;/li&gt;
+  &lt;li&gt;이 때 앱 서버는 토큰 저장을 요청한 클라이언트(단말 또는 사용자)를 식별하고 전달 받은 토큰을 데이터베이스에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;fcm-&quot;&gt;1.3. FCM 보내기&lt;/h3&gt;
+
+&lt;p&gt;메시지를 보내고 싶은 단말기의 토큰을 선별한 후, FCM 서버의 API 엔드포인트로 받을 단말기 목록과 보낼 메시지를 전달하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;App Server      FCM Server      Mobile
+│ push message  │               │
+│ req heading   │               │
+│ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt;     │               │
+│--------------&amp;gt;│               │
+│               │ Deliver       │
+│               │ message       │
+│               │--------------&amp;gt;│
+│        Result │               │
+│&amp;lt;--------------│               │
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;모든 과정이 순조로울 수는 없다. 메시지 전송 요청에 대한 FCM 서버의 응답에 따라, 서버에 저장된 클라이언트의 토큰(&lt;code class=&quot;highlighter-rouge&quot;&gt;registration_id&lt;/code&gt;)을 업데이트하거나 삭제하는 등 몇 가지 후속 처리를 해야할 경우도 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;2. 단말기 등록 서비스 구현&lt;/h2&gt;
+
+&lt;p&gt;우리의 모바일 애플리케이션이 FCM 서버와 통신하여 고유한 토큰을 이미 얻은 상태라고 가정하고, 모바일 애플리케이션이 앱 서버에 단말기 등록 요청을 할 수 있는 기능을 구현해 볼 것이다. 1.2절의 내용이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;2.1. 프로젝트 생성&lt;/h3&gt;
+
+&lt;p&gt;라라벨 프로젝트를 만든다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer create-project laravel/laravel fcm-scratchpad
+&lt;span class=&quot;c&quot;&gt;# Installing laravel/laravel (v5.3.16)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Application key [xxx] set successfully.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;예제 프로젝트이므로 SQLite 데이터베이스를 사용하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;fcm-scratchpad
+~/fcm-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;touch database/database.sqlite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# .env&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;DB_CONNECTION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;sqlite
+&lt;span class=&quot;c&quot;&gt;#DB_CONNECTION=mysql&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#DB_HOST=127.0.0.1&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#DB_PORT=3306&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#DB_DATABASE=homestead&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#DB_USERNAME=homestead&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#DB_PASSWORD=secret&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;2.2. 모델, 마이그레이션, 시더 만들기&lt;/h3&gt;
+
+&lt;p&gt;모델과 마이그레이션을 동시에 만든다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/fcm-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan make:model Device --migration
+&lt;span class=&quot;c&quot;&gt;# Model created successfully.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Created Migration: YYYY_MM_DD_xxxxxx_create_devices_table&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;마이그레이션을 작성한다. 우리 예제에서는 모바일 애플리케이션이 저장을 요청하는 토큰을 &lt;code class=&quot;highlighter-rouge&quot;&gt;push_service_id&lt;/code&gt; 컬럼에 저장하기로 하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// YYYY_MM_DD_xxxxxx_create_devices_table.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Support\Facades\Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Database\Schema\Blueprint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Database\Migrations\Migration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CreateDevicesTable&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Migration&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'devices'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Blueprint&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;increments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'user_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unsigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'device_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nullable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'push_service_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nullable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;timestamps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;foreign&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'user_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;references&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'users'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onDelete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'cascade'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;down&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'devices'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Blueprint&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 외래키 관계를 선언했다면, 리버스 마이그레이션 할때 에러를 피하기 위해
+&lt;/span&gt;            &lt;span class=&quot;c1&quot;&gt;// 테이블을 삭제하기 전에 외래키를 먼저 삭제하는 것이 중요하다.
+&lt;/span&gt;            &lt;span class=&quot;nv&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dropForeign&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'devices_user_id_foreign'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dropIfExists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'devices'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; 모델과 &lt;code class=&quot;highlighter-rouge&quot;&gt;Device&lt;/code&gt; 모델 간의 관계는 일대다 관계라고 가정하자. 한 사람이 여러 대의 단말기를 가질 수 있다는 의미다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/User.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Foundation\Auth\User&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Authenticatable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Authenticatable&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;devices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasMany&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Device&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;반대 관계도 설정한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Device.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Database\Eloquent\Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Device&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Model&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fillable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'device_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'push_service_id'&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;belongsTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;테스트 데이터를 심을 시더를 만든다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// database/seeds/DatabaseSeeder.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Database\Seeder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DatabaseSeeder&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Seeder&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 라라벨에 기본 내장된 User 모델 팩토리를 이용했다.
+&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App\User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'email'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'user@example.com'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'김고객'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// User-Device 간 관계를 이용해서 새 더미 레코드를 생성했다.
+&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;devices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'device_id'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;str_rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;'push_service_id'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;str_rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;152&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;2.3. 라우팅과 컨트롤러 만들기&lt;/h3&gt;
+
+&lt;p&gt;모바일 애플리케이션이 토큰을 등록할 수 있는 API 엔드포인트를 만든다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// routes/api.php
+&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/devices'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DevicesController@upsert'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;HTTP 요청 처리 로직을 작성한다. 예제 프로젝트에서는 레코드가 없으면 새로 만들고, 레코드가 있으면 업데이트하는 업서트 로직을 만들었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/fcm-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan make:controller DeviceController
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Http/Controllers/DevicesController.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Http\Controllers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Http\Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DevicesController&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upsert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Request&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 사용자 인증 기능을 구현하지 않았으므로 하드코드로 사용자를 지정해주었다.
+&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;devices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;whereDeviceId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;device_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;nv&quot;&gt;$input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;devices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;로컬 서버를 구동하고 포스트맨 등으로 단말기 등록이 잘 작동하는지 확인해 본다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/fcm-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan serve
+&lt;span class=&quot;c&quot;&gt;# Laravel development server started on http://localhost:8000/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-http highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;POST http://localhost:8000/api/devices
+Accept: application/json
+Content-Type: application/json
+
+{
+  &quot;device_id&quot;: &quot;1234567890abcdef&quot;,
+  &quot;push_service_id&quot;: &quot;...&quot;
+}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;http---&quot;&gt;2.4. HTTP 기본 인증 구현&lt;/h3&gt;
+
+&lt;p&gt;API 클라이언트 인증을 위해 HTTP 기본 인증을 하는 미들웨어를 만들자. &lt;code class=&quot;highlighter-rouge&quot;&gt;Auth::onceBasic()&lt;/code&gt; 메서드는 클라이언트가 &lt;code class=&quot;highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; 헤더로 제출한 &lt;code class=&quot;highlighter-rouge&quot;&gt;base64_encode(&quot;{$email}:{$password}&quot;)&lt;/code&gt;를 검사하고 로그인 정보가 맞으면 이번 요청 동안만 로그인을 유지하고, 잘못된 로그인 정보라면 401 응답을 반환한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/fcm-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan make:middlware AuthenticateOnceWithBasicAuth
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Http/Middleware/AuthenticateOnceWithBasicAuth.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Http\Middleware&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Support\Facades\Auth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthenticateOnceWithBasicAuth&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Auth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onceBasic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;미들웨어를 만들면 HTTP 커널에 등록해야 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;auth.basic.once&lt;/code&gt;라는 별칭으로 등록했다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Http/Kernel.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Foundation\Http\Kernel&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HttpKernel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Kernel&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HttpKernel&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$routeMiddleware&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'auth.basic.once'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\App\Http\Middleware\AuthenticateOnceWithBasicAuth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 미들웨어를 클라이언트 인증 미들웨어를 사용할 수 있는 상태이므로 라우팅에 적용하자. 라우팅 정의 파일에서 직접 적용하는 방법과 컨트롤러 생성자에서 적용하는 방법이 있는 데 후자를 이용한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Http/Controllers/DevicesController.php
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DevicesController&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;middleware&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'auth.basic.once'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upsert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DeviceRequest&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// $user = User::find(1);
+&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;다음 그림처럼 포스트맨에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; 탭을 누르고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Username: user@example.com&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Password: secret&lt;/code&gt;를 입력한 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;Update Request&lt;/code&gt; 버튼을 누르면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; 헤더가 업데이트된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2016-12-18-img-03.png&quot;&gt;&lt;img src=&quot;/images/2016-12-18-img-03.png&quot; alt=&quot;Postman&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;포스트의 내용보다 그림에서는 전송하는 데이터의 내용이 좀 더 많을 수 있다. 깃허브 예제 프로젝트 구현을 전부 설명할 수 없어서 일부 축약했기 때문이다.&lt;/small&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-http highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;POST http://localhost:8000/api/devices
+Accept: application/json
+Content-Type: application/json
+Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
+
+{
+  &quot;device_id&quot;: &quot;1234567890abcdef&quot;,
+  &quot;push_service_id&quot;: &quot;...&quot;
+}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.3절과 같은 결과를 얻을 수 있으면 클라언트를 정상적으로 인증하고, 단말기 정보를 잘 등록한 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;p&gt;포스트가 길어져서 여기서 끊고 나머지는 2부에서 이어가기로 한다.&lt;/p&gt;
+
+&lt;p&gt;이번 포스트의 예제 프로젝트는 &lt;a href=&quot;https://github.com/appkr/fcm-scratchpad&quot;&gt;https://github.com/appkr/fcm-scratchpad&lt;/a&gt;에 공개되어 있다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 18 Dec 2016 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/work-n-play/firebase-cloud-message-php-server-implementation-part-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/firebase-cloud-message-php-server-implementation-part-1/</guid>
+        
+        <category>개발자</category>
+        
+        <category>Laravel</category>
+        
+        <category>PHP</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>RPC - Apache Thrift 입문 2부</title>
@@ -436,8 +828,8 @@
 &lt;p&gt;에 공개되어 있다.&lt;/p&gt;
 </description>
         <pubDate>Sat, 10 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/</guid>
+        <link>http://localhost:4000/work-n-play/how-to-use-apache-thrift-in-php-part-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/how-to-use-apache-thrift-in-php-part-2/</guid>
         
         <category>개발자</category>
         
@@ -675,8 +1067,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 04 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/testing-private-method-in-php/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/testing-private-method-in-php/</guid>
+        <link>http://localhost:4000/work-n-play/testing-private-method-in-php/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/testing-private-method-in-php/</guid>
         
         <category>개발자</category>
         
@@ -1041,8 +1433,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Sat, 03 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</guid>
+        <link>http://localhost:4000/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</guid>
         
         <category>개발자</category>
         
@@ -1153,8 +1545,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 27 Nov 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</guid>
+        <link>http://localhost:4000/work-n-play/laravel-paper-book-published/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/laravel-paper-book-published/</guid>
         
         <category>개발자</category>
         
@@ -1372,8 +1764,8 @@
 &lt;p&gt;반면 서비스가 궤도에 올라 사용자가 늘고 1ms와 1KB라도 쥐어 짜야 하는 상황이라면 자체 프레임워크 개발을 고려해볼 만한다. 물론 성능이 더 좋은 플랫폼으로 갈아 타는 방법도 있다. &lt;strong&gt;서비스를 살리기 위해 스택을 버려야지, 스택을 살리기 위해 서비스를 버리는 어리석음을 범하지 말라&lt;/strong&gt;. 라라벨이나 루멘은 범용 프레임워크이므로 최적화가 필요한 초대형 서비스에는 적합하지 않다는 생각이 든다.&lt;/p&gt;
 </description>
         <pubDate>Mon, 07 Nov 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/performance-comparison-between-laravel-lumen-homemade/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/performance-comparison-between-laravel-lumen-homemade/</guid>
+        <link>http://localhost:4000/work-n-play/performance-comparison-between-laravel-lumen-homemade/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/performance-comparison-between-laravel-lumen-homemade/</guid>
         
         <category>개발자</category>
         
@@ -2106,8 +2498,8 @@
 &lt;p&gt;에 공개되어 있다.&lt;/p&gt;
 </description>
         <pubDate>Fri, 04 Nov 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-1/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-1/</guid>
+        <link>http://localhost:4000/work-n-play/how-to-use-apache-thrift-in-php-part-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/how-to-use-apache-thrift-in-php-part-1/</guid>
         
         <category>개발자</category>
         
@@ -2245,8 +2637,8 @@
 &lt;p&gt;이 예제에서는 큰 차이를 못 느낄 수 있지만, 배열 요소 하나가 큰 데이터를 가지고 있을 때는 제너레이터를 쓰지 않고는 &lt;code class=&quot;highlighter-rouge&quot;&gt;php.ini&lt;/code&gt; 설정에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;memory_limit&lt;/code&gt; 값을 엄청 늘려야 할 것이다. 배열 순회에 필요한 모든 데이터를 메모리에 적재한 후 실행하는 것과, 이번 순회에 필요한 데이터만 읽어오는 차이가 있다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Oct 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/understanding-generator/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/understanding-generator/</guid>
+        <link>http://localhost:4000/learn-n-think/understanding-generator/</link>
+        <guid isPermaLink="true">http://localhost:4000/learn-n-think/understanding-generator/</guid>
         
         <category>개발자</category>
         
@@ -2273,8 +2665,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Sat, 01 Oct 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/json-web-token/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/json-web-token/</guid>
+        <link>http://localhost:4000/work-n-play/json-web-token/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/json-web-token/</guid>
         
         <category>개발자</category>
         
@@ -2303,8 +2695,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 21 Aug 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/around-me/rorlab-workshop-epilog/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/around-me/rorlab-workshop-epilog/</guid>
+        <link>http://localhost:4000/around-me/rorlab-workshop-epilog/</link>
+        <guid isPermaLink="true">http://localhost:4000/around-me/rorlab-workshop-epilog/</guid>
         
         <category>개발자</category>
         
@@ -2312,86 +2704,6 @@
         
         
         <category>around-me</category>
-        
-      </item>
-    
-      <item>
-        <title>자바스크립트와 프로미스</title>
-        <description>&lt;p&gt;자바스크립트를 처음 접했을 때 프로미스(Promise)가 어려웠다. 일반적으로 컴퓨터 프로그램은 여러 개의 로직(작업)을 순차적으로 수행한다. 시간이 오래 걸리는 로직이 끼어 있으면 다음 로직은 앞의 로직이 끝나기를 기다려야 한다.&lt;/p&gt;
-
-&lt;p&gt;자바스크립트도 앞서 언급한 것 처럼 순차적으로 실행되지만, 시간이 오래 걸리는 작업은(e.g. 파일 IO, 네트워크 IO), 작업이 끝나면 실행할 콜백을 심어 놓고, 그냥 다음 로직으로 진행한다. 콜백에 콜백을 등록하고, 또 그 콜백에 콜백을 등록하는 “콜백 지옥”을 경험하게 된다. 콜백 지옥을 완화하기 위해 자바스크립트가 제시한 방안이 프로미스다.&lt;/p&gt;
-
-&lt;p&gt;난 프로미스를 임시로 고용한 작업자라고 이해했다. ‘난 바빠서 다음 일 처리하러 가야 하는데요. 철수님, “Foo” 작업을 대신 좀 봐 주세요. 대략 5초 정도 걸릴거에요. “Foo” 작업이 끝나면 “성공콜백”을 실행해주세요.’&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-08-07-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-08-07-img-01.png&quot; alt=&quot;Promise&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;이하 코드들은 크롬 콘솔(&lt;kbd&gt;Cmd&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;c&lt;/kbd&gt;)에 붙여 넣으면 동작을 확인해 볼 수 있다.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;promise&quot;&gt;1. Promise&lt;/h2&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실패콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'철수 작업자가 할당되었습니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  
-  &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'5초가 필요한 &quot;Foo&quot; 작업을 시뮬레이션합니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    
-    &lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;작업이름&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;작업이름&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot; 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;철수&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Promise&lt;/code&gt; 클래스의 인스턴스다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Promise&lt;/code&gt; 클래스는 &lt;code class=&quot;highlighter-rouge&quot;&gt;then()&lt;/code&gt; API를 가지고 있고, 함수를 인자로 받는다. 인자로 받은 함수는 다시 성공 또는 실패했을 때 실행할 콜백을 인자로 받는다.&lt;/p&gt;
-
-&lt;p&gt;자바스크립트는 개발자가 제어할 수 없는 클라이언트에서 작동하고, 클라이언트 측의 인코딩때문에 어떤 문제가 발생할 지 전혀 예측할 수 없다. 실무에서 한글 코딩은 비추한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;es6&quot;&gt;2. ES6&lt;/h2&gt;
-
-&lt;p&gt;똑같은 코드를 ES6로 쓰면,&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실패콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'철수 작업자가 할당되었습니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  
-  &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'5초가 필요한 &quot;Foo&quot; 작업을 시뮬레이션합니다.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    
-    &lt;span class=&quot;err&quot;&gt;성공콜백&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;철수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;작업이름&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;${작업이름}&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;작업이&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;성공하면&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수에게&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실행해&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;달라고&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;부탁한&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;로직입니다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;이&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;메시지가&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;표시된다면&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;철수가&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;로직을&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;실행한&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;것입니다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;오늘도 Coffee 스크립트를 많이 사용하는 프레임워크 모임에 다녀왔는데, 이제 Coffee를 쓸 이유가 없다. ES6가 Coffee의 문법을 거의 대부분 채택하고 있기 때문이다. 그림에서 보다시피 최신 브라우저에서는 ES6 -&amp;gt; ES5 컴파일하지 않고도 최신 문법이 작동한다&lt;small&gt;(내 최신 브라우저에서 작동한다고, 다른 이의 브라우저에서 작동한다고 보장할 수 없으므로 아직은 컴파일해야 한다)&lt;/small&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;Prototype&lt;/code&gt;등 익숙치 않은 개념은 이제 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;constructor&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; 등 다른 언어에서 항상 쓰던 문법으로 교체되었다.&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;3. 결론&lt;/h2&gt;
-
-&lt;p&gt;자고 일어나면 새로운 기술이 나오는 시대에서 풀 스택 웹 개발자로 살아가기란 힘들다. 나처럼 서버 사이드에서 시작한 사람이 자바스크립트를 익힐 때 가장 먼저 만난 벽은 이벤트 프로그래밍이었고(&lt;a href=&quot;http://laravel.io/bin/zjvNv&quot;&gt;블로킹 vs 논-블로킹 IO, Sync vs Async&lt;/a&gt;), 그 중에서도 프로미스였다. 이 포스트는 나만의 프로미스 이해 방식을 정리한 것이다.&lt;/p&gt;
-
-&lt;p&gt;풀스택 개발자를 지향하는 후배들이 조언을 요청하면 요즘은 항상 이렇게 답해준다. 2016년에 배워야 할 프런트 엔드 기술은 1) &lt;a href=&quot;http://es6-features.org&quot;&gt;ES6&lt;/a&gt; 2) 본문에 언급은 없었지만, 제이쿼리에서 &lt;a href=&quot;http://vuejs.org/&quot;&gt;Vue.js&lt;/a&gt;등 양방향 데이터 바인딩을 지원하는 라이브러리로 마이그레이션하는 것, 두 가지라고. 여유가 된다면 3) 빌드 시스템과 4) 태스크 러너도 배우면 좋다.&lt;/p&gt;
-
-&lt;p&gt;다행히 내가 주력으로 하는 라라벨 웹 프레임워크는 &lt;a href=&quot;https://webpack.github.io/&quot;&gt;Webpack&lt;/a&gt; 빌드 시스템과, &lt;a href=&quot;http://gulpjs.com/&quot;&gt;Gulp&lt;/a&gt; 태스크 러너를 기본으로 사용하고 있어 두 개의 짐은 덜었다.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 07 Aug 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/javascript-promise-101/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/javascript-promise-101/</guid>
-        
-        <category>개발자</category>
-        
-        <category>Javascript</category>
-        
-        
-        <category>learn-n-think</category>
         
       </item>
     

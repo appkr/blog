@@ -5,7 +5,7 @@
 gems:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-feed
+#  - jekyll-feed
 
 ##
 # Site settings

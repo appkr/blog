@@ -33,8 +33,8 @@
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
-  <link rel="canonical" href="http://localhost:4000/page7/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://localhost:4000/feed.xml"/>
+  <link rel="canonical" href="http://blog.appkr.kr/page7/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -79,6 +79,92 @@
 
   <div class="container">
   <section id="main" class="col-md-9 minimal">
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/jekyll-blogging-part5/">블로그 플랫폼 이전 5 - Disqus & Facebook</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-13
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/jekyll-blogging-part5/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.</p>
+
+<ol>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶">개발자로서의 새로운 삶</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll">Goodbye Wordpress, Hello Jekyll</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-3-publishing">Publishing</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp">Build Automation with Gulp</a></li>
+  <li><em>Disqus &amp; Facebook</em></li>
+</ol>
+
+<p>지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>기존 Wordpress to Jekyll 마이그레이션 시리즈에 하나의 포스트를 더 추가한다. 오늘 구현한 따끈한 기능 2가지 이다.</p>
+
+<ul>
+  <li>Disqus<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 최신 댓글 뽑아 오기</li>
+  <li>Facebook 최신 포스트 뽑아 오기</li>
+</ul>
+
+<h2 id="disqus----">Disqus 최근 댓글 뽑아 오기</h2>
+
+<p>Disqus 에서 이미 위젯을 제공하고 있어서 구현은 아주 간단한다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_includes/site-sidebar.html#L64 --&gt;</span>
+
+<span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"box"</span> <span class="na">id=</span><span class="s">"recent-comments"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box-header"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h3&gt;</span>Recent Comments<span class="nt">&lt;/h3&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box-body dsq-widget"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://appkr.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_mods=0&amp;hide_avatars=0&amp;avatar_size=32&amp;excerpt_length=100"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+<span class="c">&lt;!-- ... --&gt;</span>
+</code></pre>
+</div>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/jekyll-blogging-part5/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
     
     <article class="box">
       <div class="box-header">
@@ -353,60 +439,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/day-to-day-selection/">인간이 내리는 선택</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2011-03-31
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/day-to-day-selection/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <h2 id="section">합리적인 판단</h2>
-
-<p>합리적이란 것은 경제적인 합리성을 의미한다. 100 을 얻기 위해 50 을 포기한다는 것은 합리적인 선택이다. 만일 어느 나라의 지도자가 자신의 나라에 도로를 깔면 100 이란 국가 자원을 써야 하고 본인이 얻는 이득이 5 이며, 도로를 깔지 않으면 본인이 얻는 이득이 10 이라고 하자. 합리적인 사람이라면 후자를 선택한다.</p>
-
-<h2 id="section-1">도덕적인 판단</h2>
-
-<p>개인에게 비합리적일 지라도 타인과 공동체에 이득이 되는 판단. 위의 지도자 사례에서, 본인이 얻을 수 있는 이익 5 를 포기하는 대가로 국가 경제에 200 이란 이득을 안겨줄 수 있다. 이 지도자는 대의를 위해 도덕적인 판단을 했다고 할 수 있다.</p>
-
-<p>반면, 이 지도자의 도덕적인 선택으로 국제 사회에 500 이란 손실을 가져다 주었다고 하자. 그럼, 더 이상 도덕적인 선택이 아니라, 국가 단위에서의 합리적인 선택이며, 집단 이기주의라 할 수 있다.</p>
-
-<h2 id="section-2">정치적인 판단</h2>
-
-<p>난 도덕적인 판단을 했으나, 내 상급자가 합리적인 판단을 했다고 하자. 내 의견을 굽히고 상급자의 의견을 수용하는 것이 정치적인 판단이다. 판단과 선택은 같은 의미로 쓰였다.</p>
-
-      </div>
-
-      <footer class="box-footer">
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -469,7 +501,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">48</span>
+          <span class="badge">49</span>
         </a>
       </li>
       <li>
@@ -569,7 +601,7 @@
       </a>
     </span>
     
-    <span style="font-size: 118%">
+    <span style="font-size: 122%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -587,7 +619,7 @@
       </a>
     </span>
     
-    <span style="font-size: 118%">
+    <span style="font-size: 122%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -977,7 +1009,7 @@
       </a>
     </span>
     
-    <span style="font-size: 222%">
+    <span style="font-size: 226%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1093,6 +1125,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
+          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
@@ -1102,13 +1141,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
           <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-04</small>
-          <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
         </h4>
       </li>
       

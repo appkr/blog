@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스다. 과거 GCM(Google Cloud Message)이 진화한 것이다.지난 1부에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 FCM..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content="http://blog.appkr.kr/images/images/2016-12-24-img-01.png"/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부">
+  <meta itemprop="description" content="FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스다. 과거 GCM(Google Cloud Message)이 진화한 것이다.지난 1부에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 FCM...">
+  <meta itemprop="image" content="http://blog.appkr.kr/images/images/2016-12-24-img-01.png">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부" />
+  <meta name="twitter:description" content="FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스다. 과거 GCM(Google Cloud Message)이 진화한 것이다.지난 1부에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 FCM..." />
+  <meta name="twitter:image" content="http://blog.appkr.kr/images/images/2016-12-24-img-01.png" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-2/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li class="active"><a href="/">Blog</a></li>
+        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
+        <li><a href="/profile/">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-2/&title=모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-2/&title=모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부&text=모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-2/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-24
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
+
+<p>지난 <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">1부</a>에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 FCM 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="fcm----">1. FCM 라이브러리 선택 및 적용</h2>
+
+<p>이 글을 쓰는 시점에 PHP 버전의 공식 FCM 라이브러리는 없다. <a href="https://packagist.org/">Packagist</a>를 검색해보면 다음과 같은 결과를 얻을 수 있다.</p>
+
+<p><a href="/images/2016-12-24-img-01.png"><img src="/images/2016-12-24-img-01.png" alt="Packagist Search" /></a></p>
+
+<p>다운로드 9,070회와 좋아요 59개를 받은 <code class="highlighter-rouge">brozot/laravel-fcm</code>, 8,456회와 50개를 받은 <code class="highlighter-rouge">paragraph1/php-fcm</code> 라이브러리가 눈에 들어온다. 스페이스 대신 탭을 쓰고, PHP에는 없는 ENUM을 만들어 쓰는 등 Java 스러워서 한참을 고민하다, 버전이 1.2.x이고 코드 퀄리티가 더 훌륭해서 <code class="highlighter-rouge">brozot/laravel-fcm</code>로 선택했다.</p>
+
+<h3 id="section">1.1. 라이브러리 설치</h3>
+
+<p>컴포저로 라이브러리를 가져온다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/fcm-scratchpad <span class="nv">$ </span>composer require brozot/laravel-fcm
+</code></pre>
+</div>
+
+<p>설치한 라이브러리를 라라벨에서 사용하기 위해서는 라이브러리에서 제공하는 서비스 프로바이더를 등록해야 한다. 서비스 프로바이더가 라라벨 부팅 시점에 필요한 인스턴스를 생성해서 서비스 컨테이너에 미리 등록하면, 애플리케이션 실행 중에 언제든 꺼내 쓸 수 있다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// config/app.php
+</span>
+<span class="k">return</span> <span class="p">[</span>
+    <span class="c1">// ...
+</span>    <span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="c1">// ...
+</span>        <span class="nx">LaravelFCM\FCMServiceProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">]</span>  
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<p>이전 포스트에서 설명했듯이 Firebase 콘솔로 부터 받은 서버 키와 발신자 ID를 방금 설치한 라이브러리에 알려주어야 FCM 서버와 정상적으로 HTTP 통신을 할 수 있다. 라이브러리의 설정 파일을 복제하고, <code class="highlighter-rouge">.env</code> 파일에 값을 기록하자.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/fcm-scratchpad <span class="nv">$ </span>php artisan vendor:publish --provider<span class="o">=</span><span class="s2">"LaravelFCM</span><span class="se">\F</span><span class="s2">CMServiceProvider"</span>
+</code></pre>
+</div>
+
+<p>위 명령은 <code class="highlighter-rouge">config/fcm.php</code> 파일을 생성한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// config/fcm.php
+</span>
+<span class="k">return</span> <span class="p">[</span>
+    <span class="c1">// ...
+</span>    <span class="s1">'http'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'server_key'</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'FCM_SERVER_KEY'</span><span class="p">,</span> <span class="s1">'Your FCM server key'</span><span class="p">),</span>
+        <span class="s1">'sender_id'</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'FCM_SENDER_ID'</span><span class="p">,</span> <span class="s1">'Your sender id'</span><span class="p">),</span>
+        <span class="c1">// ...
+</span>    <span class="p">],</span>
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<p>아하! <code class="highlighter-rouge">FCM_SERVER_KEY</code>, <code class="highlighter-rouge">FCM_SENDER_ID</code> 두 개의 환경 변수를 참조하는 것을 알았으므로, 1부에서 FCM 콘솔에서 프로젝트를 등록하고 얻은 값들을 <code class="highlighter-rouge">.env</code> 파일에 써준다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># .env</span>
+
+<span class="nv">FCM_SERVER_KEY</span><span class="o">=</span>AAAAMqBU...OJy1Dw
+<span class="nv">FCM_SENDER_ID</span><span class="o">=</span>217...581
+</code></pre>
+</div>
+
+<h3 id="fcm-">1.2. 설치한 라이브러리를 사용하여 FCM 보내기</h3>
+
+<p>설치한 라이브러리의 기능을 가장 쉽게 확인할 수 있는 방법은 라우트를 하나 만들고 브라우저에서 해당 라우트로 접속해서 작동을 확인하는 방법이다. 아래 코드는 <a href="https://github.com/brozot/Laravel-FCM#basic-usage">라이브러리의 <code class="highlighter-rouge">README</code>에 소개된 내용</a> 그대로다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php
+</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Message\OptionsBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Message\PayloadDataBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Message\PayloadNotificationBuilder</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'fcm'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$optionBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OptionsBuilder</span><span class="p">();</span>
+    <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">setTimeToLive</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">20</span><span class="p">);</span>
+
+    <span class="nv">$notificationBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadNotificationBuilder</span><span class="p">(</span><span class="s1">'알림 제목'</span><span class="p">);</span>
+    <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">setBody</span><span class="p">(</span><span class="s1">'알림 본문'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setSound</span><span class="p">(</span><span class="s1">'default'</span><span class="p">);</span>
+
+    <span class="nv">$dataBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadDataBuilder</span><span class="p">();</span>
+    <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">([</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">]);</span>
+
+    <span class="nv">$option</span> <span class="o">=</span> <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="nv">$notification</span> <span class="o">=</span> <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+
+    <span class="nv">$token</span> <span class="o">=</span> <span class="s1">'eI..b0:APA...FJx'</span><span class="p">;</span>
+
+    <span class="nv">$downstreamResponse</span> <span class="o">=</span> <span class="nx">app</span><span class="p">(</span><span class="s1">'fcm.sender'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">sendTo</span><span class="p">(</span><span class="nv">$token</span><span class="p">,</span> <span class="nv">$option</span><span class="p">,</span> <span class="nv">$notification</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'numberSuccess'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">numberSuccess</span><span class="p">());</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'numberFailure'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">());</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'numberModification'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">numberModification</span><span class="p">());</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'tokensToDelete'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">tokensToDelete</span><span class="p">());</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'tokensToModify'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">tokensToModify</span><span class="p">());</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'tokensToRetry'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">tokensToRetry</span><span class="p">());</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'tokensWithError'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">tokensWithError</span><span class="p">());</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>로컬 서버를 구동하고 <code class="highlighter-rouge">GET /api/fcm</code>을 방문하면 다음 결과를 얻을 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/fcm-scratchpad/routes/api.php:46:string <span class="s1">'numberSuccess'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>13<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:46:int 0
+
+~/fcm-scratchpad/routes/api.php:47:string <span class="s1">'numberFailure'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>13<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:47:int 1
+
+~/fcm-scratchpad/routes/api.php:48:string <span class="s1">'numberModification'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>18<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:48:int 0
+
+~/fcm-scratchpad/routes/api.php:49:string <span class="s1">'tokensToDelete'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>14<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:49:
+array <span class="o">(</span><span class="nv">size</span><span class="o">=</span>1<span class="o">)</span>
+  0 <span class="o">=</span>&gt; string <span class="s1">'eI..b0:APA...FJx'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>152<span class="o">)</span>
+  
+~/fcm-scratchpad/routes/api.php:50:string <span class="s1">'tokensToModify'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>14<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:50:
+array <span class="o">(</span><span class="nv">size</span><span class="o">=</span>0<span class="o">)</span>
+  empty
+  
+~/fcm-scratchpad/routes/api.php:51:string <span class="s1">'tokensToRetry'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>13<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:51:
+array <span class="o">(</span><span class="nv">size</span><span class="o">=</span>0<span class="o">)</span>
+  empty
+  
+~/fcm-scratchpad/routes/api.php:52:string <span class="s1">'tokensWithError'</span> <span class="o">(</span><span class="nv">length</span><span class="o">=</span>15<span class="o">)</span>
+~/fcm-scratchpad/routes/api.php:52:
+array <span class="o">(</span><span class="nv">size</span><span class="o">=</span>0<span class="o">)</span>
+  empty
+</code></pre>
+</div>
+
+<p>유효하지 않은 단말기 토큰이므로 실패가 떨어지는 것은 당연하다. 우리의 PHP 애플리케이션 서버에서 생성한 메시지가 FCM 서버를 거쳐 단말기에게 전달되는 전체 과정을 확인하지는 못했지만, 적어도 FCM 서버와 통신이 된다는 것은 확인했다.</p>
+
+<h2 id="fcm---">2. 푸쉬 메시지 요청에 대한 FCM 서버 응답의 이해</h2>
+
+<p>아무리 라이브러리를 가져다 쓴다지만 <a href="https://firebase.google.com/docs/cloud-messaging/server#response">FCM 문서</a>를 이해하지 않고는, FCM 서버의 응답 메시지에 따라 어떤 후속 처리를 해야 할지 알 수 없다. 다음은 총 6개의 단말기에 푸쉬 메시지를 보냈을 때 FCM 서버의 응답 예제이다.</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"multicast_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"failure"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"canonical_ids"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:0408"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unavailable"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InvalidRegistration"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:1516"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:2342"</span><span class="p">,</span><span class="w"> </span><span class="nt">"registration_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NotRegistered"</span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>우선 <code class="highlighter-rouge">results.message_id</code>가 있는 메시지들은 성공한 것이다. 다행히 우리가 설치한 라이브러리는 FCM 서버의 응답을 미리 파싱해서 이해하기 쉬운 메서드 이름으로 제공하고 있는데, 다음 표로 정리했다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>응답 필드</th>
+      <th>라이브러리의 메서드(<code class="highlighter-rouge">DownstreamResponse</code>)</th>
+      <th>설명</th>
+      <th>예제 응답 번호(zero-index)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">success</code></td>
+      <td><code class="highlighter-rouge">numberSuccess()</code></td>
+      <td>푸쉬 메시지 전달에 성공한 건수</td>
+      <td>0,3,4</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">failure</code></td>
+      <td><code class="highlighter-rouge">numberFailure()</code></td>
+      <td>푸쉬 메시지 전달에 실패한 건수</td>
+      <td>1,2,5</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">canonical_ids</code></td>
+      <td><code class="highlighter-rouge">numberModification()</code></td>
+      <td>단말기의 고유 식별 토큰이 변경된 건수</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">tokensToDelete()</code></td>
+      <td>애플리케이션 서버에서 삭제할 토큰의 목록</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">tokensToModify()</code></td>
+      <td>애플리케이션 서버에서 업데이트할 토큰의 목록</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">tokensToRetry()</code></td>
+      <td>애플리케이션 서버에서 재 전송해야 하는 토큰의 목록</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">tokensWithError()</code></td>
+      <td>에러가 난 이유 목록</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="fcm------">3. FCM 전송 및 응답 처리 클래스 구현</h2>
+
+<p>라이브러리가 제공하는 사용법 예제만으로는 뭔가 부족하다. 우리 서비스만을 위한 클래스를 만들텐데, 이름을 <code class="highlighter-rouge">FCMHandler</code>라고 하자. 이 클래스는 라이브러리의 API를 이용하여 FCM 메시지를 보내고 응답 결과에 따라 전송을 재시도하거나 서버에 등록된 단말기 등록 정보를 조작하는 일을 할 것이다. 아래 코드 블록의 인라인 설명 및 주석을 참고한다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Services/FCMHandler.php
+</span>
+<span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Device</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Message\OptionsBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Message\PayloadDataBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Message\PayloadNotificationBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Response\DownstreamResponse</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FCMHandler</span>
+<span class="p">{</span>
+    <span class="sd">/**
+     * 푸쉬 메시지를 보낼 단말기의 registration_id(==push_service_id) 목록.
+     *
+     * @var array[string $push_service_id]
+     */</span>
+    <span class="k">protected</span> <span class="nv">$to</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="sd">/**
+     * 보낼 메시지.
+     *
+     * @var array[string $key =&gt; string $value]
+     */</span>
+    <span class="k">protected</span> <span class="nv">$data</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="sd">/**
+     * @var \LaravelFCM\Sender\FCMSender
+     */</span>
+    <span class="k">protected</span> <span class="nv">$fcm</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * 전송이 실패해서 여러 번 재전송할 때를 대비해 한 번 만든 메시지 인스턴스를 캐시하는 저장소.
+     *
+     * @var array
+     *  [
+     *      'optionBuilder' =&gt; \LaravelFCM\Message\Options,
+     *      'notificationBuilder' =&gt; \LaravelFCM\Message\PayloadNotification,
+     *      'data' =&gt; \LaravelFCM\Message\PayloadData
+     *  ]
+     */</span>
+    <span class="k">private</span> <span class="nv">$cache</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="sd">/**
+     * FCMHandler constructor.
+     * @param array $to
+     * @param array $data
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$to</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">$data</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span> <span class="o">=</span> <span class="nv">$to</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
+        <span class="c1">// 라이브러리가 제공한 LaravelFCM\FCMServiceProvider를 열어 보면
+</span>        <span class="c1">// 라라벨의 서비스 컨테이너에 인스턴스를 등록할 때의 키를 알 수 있다.
+</span>        <span class="c1">// 'fcm.sender'라는 키를 사용하고 있어서, app() 헬퍼를 이용해서 등록된 인스턴스를 가져왔다.
+</span>        <span class="c1">// 마치 $container = ['key' =&gt; new stdClass]에서 $container['key']를
+</span>        <span class="c1">// 사용해서 할당된 stdClass 인스턴스를 얻어 오는 것과 같은 개념이다.
+</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fcm</span> <span class="o">=</span> <span class="nx">app</span><span class="p">(</span><span class="s1">'fcm.sender'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 푸쉬 메시지를 보낼 단말기의 registration_id 목록을 설정한다.
+     *
+     * @param array $to
+     * @return $this
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">to</span><span class="p">(</span><span class="k">array</span> <span class="nv">$to</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span> <span class="o">=</span> <span class="nv">$to</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 푸쉬 메시지 전송을 라이브러리에 위임하고, 전송 결과를 처리한다.
+     *
+     * @param array $data
+     * @return DownstreamResponse
+     * @throws \Exception
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">send</span><span class="p">(</span><span class="nv">$data</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
+        <span class="nv">$retryCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nv">$retryInterval</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fire</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberModification</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 단말기 공장 초기화 등의 이유로 registration_id가 바뀌었다.
+</span>            <span class="nv">$tokens</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensModify</span><span class="p">();</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">updateDevices</span><span class="p">(</span><span class="nv">$tokens</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToDelete</span><span class="p">())</span> <span class="p">{</span>
+                <span class="c1">// 해당 registration_id를 가진 단말기가 구글 FCM 서비스에 등록되어 있지 않다.
+</span>                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deleteDevices</span><span class="p">(</span><span class="nv">$tokens</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToRetry</span><span class="p">())</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="nv">$tokens</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$retryInterval</span><span class="p">[</span><span class="nv">$retryCount</span><span class="p">]))</span> <span class="p">{</span>
+                    <span class="c1">// 메시지 전송에 실패했다.
+</span>                    <span class="c1">// 1,2,4초 간격으로 총 세 번 재 시도한다.
+</span>                    <span class="nb">sleep</span><span class="p">(</span><span class="nv">$retryInterval</span><span class="p">[</span><span class="nv">$retryCount</span><span class="p">]);</span>
+                    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+                    <span class="nv">$retryCount</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="c1">// 세 번을 재시도했음에도 성공하지 못했다 ㅜㅜ.
+</span>                    <span class="nx">\Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span>
+                        <span class="s1">'푸쉬 메시지를 보낼 수 없습니다.'</span><span class="p">,</span>
+                        <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensWithError</span><span class="p">()</span>
+                    <span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 이제 진짜로 푸쉬 메시지를 전송한다.
+     *
+     * @return DownstreamResponse
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">fire</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fcm</span><span class="o">-&gt;</span><span class="na">sendTo</span><span class="p">(</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTo</span><span class="p">(),</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildOption</span><span class="p">(),</span>
+            <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildPayload</span><span class="p">()</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 중복 수신자를 제거한 수신자 목록을 반환한다.
+     *
+     * @return array
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getTo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">array_unique</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 푸쉬 메시지 전송 옵션을 설정한다.
+     *
+     * @return \LaravelFCM\Message\Options
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildOption</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">'optionBuilder'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// 캐시 되어 있으면 캐시를 사용한다.
+</span>            <span class="c1">// 마치 위에서 app() 헬퍼를 쓴 것과 비슷하다.
+</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'optionBuilder'</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="nv">$optionBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OptionsBuilder</span><span class="p">();</span>
+        <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">setTimeToLive</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">20</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'optionBuilder'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * (단말기의 Notification Center에 표시될) 알림 제목과 본문을 설정한다.
+     *
+     * @param string $title
+     * @param string $body
+     * @return \LaravelFCM\Message\PayloadNotification
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildNotification</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$title</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$body</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">'notificationBuilder'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'notificationBuilder'</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="nv">$notificationBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadNotificationBuilder</span><span class="p">(</span><span class="nv">$title</span><span class="p">);</span>
+        <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">setBody</span><span class="p">(</span><span class="nv">$body</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setSound</span><span class="p">(</span><span class="s1">'default'</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'notificationBuilder'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 메시지 본문을 설정한다.
+     *
+     * @return \LaravelFCM\Message\PayloadData
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildPayload</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'data'</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="nv">$dataBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadDataBuilder</span><span class="p">();</span>
+        <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 변경된 단말기의 토큰을 DB에 기록한다.
+     *
+     * @param array[string $old =&gt; string $new] $tokens
+     * @return bool
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">updateDevices</span><span class="p">(</span><span class="k">array</span> <span class="nv">$tokens</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="k">as</span> <span class="nv">$old</span> <span class="o">=&gt;</span> <span class="nv">$new</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">wherePushServiceId</span><span class="p">(</span><span class="nv">$old</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">firstOrFail</span><span class="p">();</span>
+            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">push_service_id</span> <span class="o">=</span> <span class="nv">$new</span><span class="p">;</span>
+            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * 유효하지 않은 단말기 토큰을 DB에서 삭제한다.
+     *
+     * @param array[string $push_service_id] $tokens
+     * @return bool
+     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">deleteDevices</span><span class="p">(</span><span class="k">array</span> <span class="nv">$tokens</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="k">as</span> <span class="nv">$token</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">wherePushServiceId</span><span class="p">(</span><span class="nv">$token</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">firstOrFail</span><span class="p">();</span>
+            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>우리의 <code class="highlighter-rouge">FCMHandler</code> 클래스가 노출하는 API는 딱 두 개다. <code class="highlighter-rouge">to(array $to)</code> 메서드는 수신자를 지정한다. <code class="highlighter-rouge">send(array $data)</code> 메서드는 라이브러리의 API를 한번 더 랩핑한 것으로 푸쉬 메시지 전송을 라이브러리의 API에 위임하고 응답 결과를 받아 처리하는 일을 한다. 가령 FCM 서버로부터 <code class="highlighter-rouge">Unavailable</code> 응답을 받았다면, 1, 2, 4초 간격으로 <code class="highlighter-rouge">send()</code> 메서드 자신을 다시 호출하여 메시지 전송을 재시도한다.</p>
+
+<h2 id="fcm--">4. FCM 보내기 구현</h2>
+
+<p>1.2절에서 썼던 코드는 <code class="highlighter-rouge">FCMHandler</code>를 이용하면 다음과 같이 바뀐다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php
+</span>
+<span class="c1">// ...
+</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Services\FCMHandler</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'fcm'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">FCMHandler</span> <span class="nv">$fcm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 푸쉬 메시지를 수신할 단말기의 토큰 목록을 추출한다.
+</span>    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">();</span>
+    <span class="nv">$to</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pluck</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$to</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// 보낼 내용이 마땅치 않아 로그인한 사용자 모델을 푸쉬 메시지 본몬으로 ㅡㅡ;. 
+</span>        <span class="nv">$message</span> <span class="o">=</span> <span class="nb">array_merge</span><span class="p">(</span>
+            <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">(),</span>
+            <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">]</span>
+        <span class="p">);</span>
+
+        <span class="c1">// FCMHandler 덕분에 코드는 이렇게 한 줄로 간결해졌다.
+</span>        <span class="nv">$fcm</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="nv">$to</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">([</span>
+        <span class="s1">'success'</span> <span class="o">=&gt;</span> <span class="s1">'HTTP 요청 처리 완료'</span>
+    <span class="p">]);</span>
+<span class="p">})</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">'auth.basic.once'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>로컬 서버를 구동한다. 1부에서 구현했던 단말기 등록 API를 먼저 호출해서 단말기를 등록한다. 포스트맨에서 <code class="highlighter-rouge">GET /api/fcm</code> 요청해서 푸쉬 메시지를 보내본다.</p>
+
+<div class="language-http highlighter-rouge"><pre class="highlight"><code><span class="err">GET http://localhost:8000/api/fcm
+Accept: application/json
+Content-Type: application/json
+Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
+</span></code></pre>
+</div>
+
+<p>그림과 같은 응답을 받았고, 로그 파일에는 전송 실패 메시지가 기록되었다.</p>
+
+<p><a href="/images/2016-12-24-img-02.png"><img src="/images/2016-12-24-img-02.png" alt="Postman" /></a></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel-fcm.log</span>
+
+<span class="o">[</span>2016-12-24 04:55:46] Laravel-FCM.INFO: notification send to 1 devices success: 0 failures: 1 number of modified token : 0  <span class="o">[]</span> <span class="o">[]</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">5. 결론</h2>
+
+<p>2부에 걸친 포스트를 통해 모바일 단말기에 Firebase Cloud Message를 보내기 위한 PHP 애플리케이션 서버를 구현하는 방법을 다루었다. 3부를 쓸 기회가 있다면 빠진 퍼즐 조각인 모바일 앱 부분을 소개할 예정이다.</p>
+
+<p>고정된 위치에서 전원과 인터넷에 연결되어 있는 기기와 달리, 모바일은 계속 변하는 환경에 노출되어 있다. 따라서 모바일 환경에 적합한 기술을 선택하는 것이 중요한데, FCM이 최고의 선택이라고 장담할 수는 없지만, 가장 대중적인 선택임에는 틀림없다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>이번 포스트의 예제 프로젝트는 <a href="https://github.com/appkr/fcm-scratchpad">https://github.com/appkr/fcm-scratchpad</a>에 공개되어 있다. 이 포스트에서 사용한 포스트맨 콜렉션은 <a href="https://www.getpostman.com/collections/c1d8a2c441fa0ef43330">https://www.getpostman.com/collections/c1d8a2c441fa0ef43330</a>에서 받을 수 있다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#Laravel">
+            Laravel
+          </a>
+          , 
+        
+          <a href="/tags#PHP">
+            PHP
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              모바일 푸쉬 메시지(FCM)를 ...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">70</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">49</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Facebook">
+        Facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 122%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 122%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Streaming">
+        Streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 226%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
+          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
+          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
+          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2016 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

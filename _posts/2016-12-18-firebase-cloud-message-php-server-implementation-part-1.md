@@ -60,7 +60,7 @@ App Server      FCM Server      Mobile
 메시지를 보내고 싶은 단말기의 토큰을 선별한 후, FCM 서버의 API 엔드포인트로 받을 단말기 목록과 보낼 메시지를 전달하면 된다.
 
 ```bash
-App Server      FCM Server      Mobile
+App Server      FCM Server      Mobile("foo")
 │ push message  │               │
 │ req heading   │               │
 │ for "foo"     │               │
@@ -380,4 +380,4 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 
 포스트가 길어져서 여기서 끊고 나머지는 2부에서 이어가기로 한다.
 
-이번 포스트의 예제 프로젝트는 [https://github.com/appkr/fcm-scratchpad](https://github.com/appkr/fcm-scratchpad)에 공개되어 있다.
+이번 포스트의 예제 프로젝트는 [https://github.com/appkr/fcm-scratchpad](https://github.com/appkr/fcm-scratchpad)에 공개되어 있다. 이 포스트에서 사용한 포스트맨 콜렉션은 [https://www.getpostman.com/collections/c1d8a2c441fa0ef43330](https://www.getpostman.com/collections/c1d8a2c441fa0ef43330)에서 받을 수 있다. 

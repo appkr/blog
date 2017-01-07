@@ -31,7 +31,7 @@ image: http://blog.appkr.kr/images/2016-03-03-img-01.png
 
 ## Bug Detection
 
-아래는 어제 오후 5시 16분에 라이브데모 사이트에서 발생한 예외를 라라벨의 전역 예외처리기가 캐치하고, 스택트레이스(stack trace)를 슬랙(Slack)으로 보내온 것이다. `Call to undifined method Lararacasts\Flash\FlashNotifier::error()`. 없는 메서드를 호출했단다. 얼마나 자세(informative)한가?
+아래는 어제 오후 5시 16분에 라이브데모 사이트에서 발생한 예외를 라라벨의 전역 예외처리기가 캐치하고, 스택트레이스(stack trace)를 슬랙(Slack)으로 보내온 것이다. `Call to undifined method Lararacasts\Flash\FlashNotifier::errors()`. 없는 메서드를 호출했단다. 얼마나 자세(informative)한가?
 
 [![슬랙으로 전달된 스택트레이스](/images/2016-03-03-img-01.png)](/images/2016-03-03-img-01.png)
 

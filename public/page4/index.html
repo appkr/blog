@@ -83,6 +83,68 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/realtime-web-with-laravel/">"휙~" 리얼 타임 라라벨 데모 프로젝트</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-07-15
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/realtime-web-with-laravel/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="highlighter-rouge">pusher</code>, <code class="highlighter-rouge">redis</code>, <code class="highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
+
+<p><strong>언제 어떻게 쓸 수 있나?</strong> 새로운 댓글이 작성되면 같은 댓글 목록을 보고 있는 사용자에게 새 댓글을 알리거나, 지금 서비스에 접속된 모든 사용자에게 푸시 알림을 보내는 등 서버에서 발생한 변경 내용을 클라이언트에 전파할 때 사용할 수 있다.</p>
+
+<p>이 포스트는 데모 프로젝트를 복붙으로 따라해보기 위한 명령 및 코드 목록을 담고 있다. <strong><em>각 절의 작동 원리는 읽지 말고, 전체 동작을 한번 확인할 것을 권장한다.</em></strong></p>
+
+<ol>
+  <li><em>데모 환경 준비_</em> 오늘 AWS에 인수된 클라우드9을 이용한다.</li>
+  <li><em>SocketChat_</em> Socket.io에서 제공하는 채팅 예제 프로젝트를 구동해 본다.</li>
+  <li><em>Redis_</em> 라라벨과 Socket.io간의 메시지 중계자로 Redis를 이용한다.</li>
+  <li><em>Broadcast_</em> 라라벨의 브로드캐스트 기능을 이용해 본다.</li>
+</ol>
+
+<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
+
+<p>이 프로젝트는 라라캐스트의 <a href="https://laracasts.com/series/real-time-laravel-with-socket-io">Real-time Laravel with Socket.io</a> 시리즈를 보고, 필자 나름대로 해석하고 적용한 결과물이다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/realtime-web-with-laravel/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/dockerize/">도커를 이용한 분산 서비스 아키텍처 맛보기</a>
         </h2>
         <p class="box-meta">
@@ -298,69 +360,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/dotfiles/">dotfiles 만들기</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-05-22
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/dotfiles/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>dotfiles는 개발자들이 사용하는 <code class="highlighter-rouge">.bash_profile</code>, <code class="highlighter-rouge">.ssh</code> 등 dot(<code class="highlighter-rouge">.</code>)으로 시작하는 파일 또는 디렉터리의 모음이다. <strong>dotfiles는 콘솔용 바이너리(e.g. <code class="highlighter-rouge">gcc</code>), 라이브러리, 애플리케이션의 설치 뿐만아니라, 그들의 설정을 잘 저장해 두었다가 컴퓨터를 빠르게 재구성하기 위한 워크플로우</strong>다.</p>
-
-<p>dotfiles를 구성해두면, 예를 들어 <code class="highlighter-rouge">gulp</code>, <code class="highlighter-rouge">git-flow</code>, <code class="highlighter-rouge">sublime-text3</code>, <code class="highlighter-rouge">google-chrome</code> 등, 내가 사용하는 애플리케이션 및 개발 도구의 목록과 설정을 저장해 두었다가 다른 컴퓨터 또는 새 운영체제에서 애플리케이션 설치뿐만아니라, 심지어 코드 에디터의 설정까지도 다른/이전 컴퓨터와 똑같이 <strong>‘바로’</strong> 사용할 수 있다.</p>
-
-<p>이번에 맥을 밀고 다시 설치할 일이 있어서, 오랫 동안 미루어 두었던 dotfiles를 시전했다. 필자도 이번 경험을 통해 알게된 사실인데, 운영체제를 다시 설치할 때만 dotfiles를 만들거나 적용할 수 있다고 생각하지만, 사실이 아니다. <strong>dotfiles는 운영체제를 다시 설치하지 않더라도 언제든 준비할 수 있다.</strong></p>
-
-<p><a href="https://dotfiles.github.io/">유명한 dotfiles</a>들을 검토했는데 정석은 없더라. 쉘 스크립트만 이용한 사람, 주제별로 디렉터리를 분리한 사람, 다른 툴을 이용하는 사람, 운영체제도 제각각이더라. 이 포스트에서는 맥 운영체제 기준으로 dotfiles를 준비하는 방법을 공유한다. 다음 도구들을 이용한다. 앞서 말했듯이 정석은 없으므로 꼭 이렇게 할 필요는 없다.</p>
-
-<ol>
-  <li><a href="http://brew.sh/">Homebrew</a></li>
-  <li><a href="https://github.com/Homebrew/homebrew-bundle">Homebrew Bundler</a></li>
-  <li><a href="https://github.com/lra/mackup">Mackup</a></li>
-  <li>.osx</li>
-  <li>Shell Script</li>
-</ol>
-
-<p>시전하는 과정에서 운영체제를 두 번 설치해 봤는데, 이 정도 경험으로는 다른 이의 맥에서도 동작하는 은총알 dotfiles How-to를 쓰기에는 무리다. 어쨌든 진리는 <strong>‘평상시에 dotfiles를 준비해 두면, 불의의 사고에 빠르게 대처할 수 있다’</strong>라는 점이다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/dotfiles/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -423,7 +422,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">49</span>
+          <span class="badge">50</span>
         </a>
       </li>
       <li>
@@ -541,7 +540,7 @@
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -931,7 +930,7 @@
       </a>
     </span>
     
-    <span style="font-size: 226%">
+    <span style="font-size: 230%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1047,6 +1046,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
+          <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
         </h4>
@@ -1056,13 +1062,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
-          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
         </h4>
       </li>
       
@@ -1115,7 +1114,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2016 •
+    &copy; 2008~2017 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

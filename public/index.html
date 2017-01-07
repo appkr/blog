@@ -83,6 +83,63 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-01-07
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/understanding-php-exception-class/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>국어 사전에서는 <strong>‘일반적인 규칙이나 정례에서 벗어나는 일’</strong>을 예외라고 정의하고 있다.</p>
+
+<p>컴퓨터에서 예외란 <strong>‘프로그램을 실행하는 중에 발생하는 비정상적인 상황’</strong>으로 프로그램의 일반적인 실행 흐름을 바꾼다. 예를 들어 함수에 허용하지 않는 인자가 전달되었다거나, 디스크에서 무언가를 읽거나 써야 하는데 디스크에 접근할 수 없다거나, 메모리 공간이 부족해서 변수 값을 저장할 수 없는 경우 등을 들 수 있다.</p>
+
+<p>개발자는 프로그래밍을 할 때 발생할 수 있는 예외 상황을 미리 식별하고, 앞서 말한 상황이 발생하면 예외를 던지고(Throw 또는 Raise), 잡은 예외를 개발자 자신만의 방식으로 핸들링할 수 있다(Catch 또는 Rescue). 개발자가 예상치 못한 예외라면 런타임(PHP의 경우라면 PHP 엔진)이 프로그램의 실행을 멈추고 오류 메시지를 출력하는 등의 일을 할 것이다.</p>
+
+<p><a href="http://rypress.com/tutorials/objective-c/media/exceptions/exceptions-vs-errors.png"><img src="http://rypress.com/tutorials/objective-c/media/exceptions/exceptions-vs-errors.png" alt="" /></a></p>
+
+<p>위 그림은 Objective-C 쪽 얘긴데, 사실 PHP에서 완전 반대다. 어쨌든 PHP 7부터는 <code class="highlighter-rouge">try {...} catch {...}</code> 구문에서 예외(Exception) 뿐만 아니라, 오류(Error)도 캐치할 수 있도록 지원하고 있다.</p>
+
+<p>이 포스트에서는 PHP의 예외 클래스(Exception Class)를 사용하는 기본적인 방법을 설명한다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/understanding-php-exception-class/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
         </h2>
         <p class="box-meta">
@@ -308,63 +365,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-12-03
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>이 포스트에서는 <strong>PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 <a href="https://github.com/Seldaek/monolog">Monolog</a>의 사용법을 소개</strong>한다. Monolog는 <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md">PSR-3</a> <code class="highlighter-rouge">LoggerInterface</code>를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, <strong>파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리</strong>할 수 있다.</p>
-
-<p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
-
-<ul>
-  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
-  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
-  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></li>
-</ul>
-
-<p>이 포스트의 소스 코드는 <a href="https://github.com/appkr/monolog-scratchpad">https://github.com/appkr/monolog-scratchpad</a>에서 받을 수 있다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -427,7 +427,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">49</span>
+          <span class="badge">50</span>
         </a>
       </li>
       <li>
@@ -545,7 +545,7 @@
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -935,7 +935,7 @@
       </a>
     </span>
     
-    <span style="font-size: 226%">
+    <span style="font-size: 230%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1051,6 +1051,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
+          <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
         </h4>
@@ -1060,13 +1067,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-10</small>
-          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
         </h4>
       </li>
       
@@ -1119,7 +1119,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2016 •
+    &copy; 2008~2017 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

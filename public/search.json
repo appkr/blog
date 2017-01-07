@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "PHP의 예외 클래스 이해하기",
+    "category" : "work-n-play",
+    "tags"     : "개발자, PHP",
+    "url"      : "/work-n-play/understanding-php-exception-class/",
+    "date"     : "2017-01-07"
+  },
+  
+  {
     "title"    : "모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부",
     "category" : "work-n-play",
     "tags"     : "개발자, Laravel, PHP",

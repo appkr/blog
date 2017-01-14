@@ -135,7 +135,7 @@
       </div>
 
       <div class="box-body">
-        <h3 id="jdk">1. JDK</h3>
+        <h3 id="1-jdk">1. JDK</h3>
 
 <p><a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u16-oth-JPR@CDS-CDS_Developer">JDK</a> 를 다운로드하여 설치한다.</p>
 
@@ -144,7 +144,7 @@
 <!--more--></p>
 <div class="spacer">• • •</div>
 
-<h3 id="java-runtime--path--windows----">2. Java Runtime 의 Path 를 Windows 환경 변수에 넣어 준다.</h3>
+<h3 id="2-java-runtime-의-path-를-windows-환경-변수에-넣어-준다">2. Java Runtime 의 Path 를 Windows 환경 변수에 넣어 준다.</h3>
 
 <p>내 컴퓨터 &gt; 속성 &gt; 고급 &gt; 환경변수 &gt; 시스템 변수&gt; Path 로 이동하여, Java Runtime (java.exe) 가 위치한 경로를 넣어 주어야 한다. 내 경우에는 C:Program Files\Javajdk1.6.0_16\bin 에 java.exe 가 있었다.</p>
 
@@ -152,11 +152,11 @@
 
 <!--more-->
 
-<h3 id="sdk-">3. SDK 다운로드</h3>
+<h3 id="3-sdk-다운로드">3. SDK 다운로드</h3>
 
 <p><a href="http://developer.android.com/sdk/download.html?v=android-sdk_r3-windows.zip">SDK</a> 를 다운로드하고, 적절한 위치에 압축을 해제 한다.</p>
 
-<h3 id="sdk----target-device--">4. 콘솔을 띄워, SDK에 미리 정의되어 있는 Target Device 를 확인한다.</h3>
+<h3 id="4-콘솔을-띄워-sdk에-미리-정의되어-있는-target-device-를-확인한다">4. 콘솔을 띄워, SDK에 미리 정의되어 있는 Target Device 를 확인한다.</h3>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>path_to_your_android_sdktools
 <span class="gp">\&gt; </span>path_to_your_android_sdktoolsandroid list targets
@@ -167,7 +167,7 @@
 
 <p>[그림 유실]</p>
 
-<h3 id="avdandroid-virtual-device-">5. AVD(Android Virtual Device)를 생성한다.</h3>
+<h3 id="5-avdandroid-virtual-device를-생성한다">5. AVD(Android Virtual Device)를 생성한다.</h3>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>android create avd -n donut -c 2048M -t 1
 <span class="c"># `-n donut`: donut 라는 이름의 avd를 생성한다.</span>
@@ -188,7 +188,7 @@
 
 <p>[그림 유실]
  </p>
-<h3 id="emulator-">6. Emulator를 실행한다.</h3>
+<h3 id="6-emulator를-실행한다">6. Emulator를 실행한다.</h3>
 
 <p>Emulator 부팅에는 수분의 시간이 걸린다.</p>
 
@@ -204,13 +204,13 @@
 </code></pre>
 </div>
 
-<h3 id="sd-card--mount--">7. SD Card가 정상적으로 Mount 되었는지 확인한다.</h3>
+<h3 id="7-sd-card가-정상적으로-mount-되었는지-확인한다">7. SD Card가 정상적으로 Mount 되었는지 확인한다.</h3>
 
 <p>Settings &gt; SD Card &amp; Phone Storage로 접근한다.</p>
 
 <p>[그림 유실]</p>
 
-<h3 id="sd-card-contents-">8. SD Card에 Contents를 복사한다.</h3>
+<h3 id="8-sd-card에-contents를-복사한다">8. SD Card에 Contents를 복사한다.</h3>
 
 <ul>
   <li>
@@ -235,19 +235,19 @@
 
 <p>[그림 유실]</p>
 
-<h3 id="emulator-gt-dev-tools-gt-media-scanner">9. <strong><code class="highlighter-rouge">중요</code></strong> Emulator &gt; Dev Tools &gt; Media Scanner</h3>
+<h3 id="9-중요-emulator--dev-tools--media-scanner">9. <strong><code class="highlighter-rouge">중요</code></strong> Emulator &gt; Dev Tools &gt; Media Scanner</h3>
 
 <p>이 작업을 해 주지 않으면, SDCard에 복사한 Contents를 Emulator에서 재생할 수 없다.</p>
 
-<h3 id="gallery--music----contents---">10. Gallery 나 Music 으로 이동하여 복사한 Contents 를 재생해 본다.</h3>
+<h3 id="10-gallery-나-music-으로-이동하여-복사한-contents-를-재생해-본다">10. Gallery 나 Music 으로 이동하여 복사한 Contents 를 재생해 본다.</h3>
 
 <p>Landscape/Portrait 모드로 토글은 Ctrl + F11.
  
 [그림 유실]</p>
 
-<h3 id="emulator-ddms--------">11. Emulator, <code class="highlighter-rouge">ddms</code> 등은 창을 닫으면 모든 리소스가 반환되고, 프로그램이 종료된다.</h3>
+<h3 id="11-emulator-ddms-등은-창을-닫으면-모든-리소스가-반환되고-프로그램이-종료된다">11. Emulator, <code class="highlighter-rouge">ddms</code> 등은 창을 닫으면 모든 리소스가 반환되고, 프로그램이 종료된다.</h3>
 
-<h3 id="help--">12. 각 명령의 도움말은 -help 스위치를 사용한다.</h3>
+<h3 id="12-각-명령의-도움말은--help-스위치를-사용한다">12. 각 명령의 도움말은 -help 스위치를 사용한다.</h3>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>android -help
 <span class="gp">\&gt; </span>emulator -hlep
@@ -357,7 +357,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">50</span>
+          <span class="badge">51</span>
         </a>
       </li>
       <li>
@@ -457,7 +457,7 @@
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -475,7 +475,7 @@
       </a>
     </span>
     
-    <span style="font-size: 126%">
+    <span style="font-size: 130%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -865,7 +865,7 @@
       </a>
     </span>
     
-    <span style="font-size: 230%">
+    <span style="font-size: 234%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -981,6 +981,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
@@ -990,13 +997,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
       </li>
       

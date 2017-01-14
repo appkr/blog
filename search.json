@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "PHP의 예외 클래스 이해하기 2부",
+    "category" : "work-n-play",
+    "tags"     : "개발자, PHP, Laravel",
+    "url"      : "/work-n-play/understanding-php-exception-class-part-2/",
+    "date"     : "2017-01-15"
+  },
+  
+  {
     "title"    : "PHP의 예외 클래스 이해하기",
     "category" : "work-n-play",
     "tags"     : "개발자, PHP",

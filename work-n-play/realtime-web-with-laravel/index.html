@@ -156,7 +156,7 @@
 <!--more-->
 <div class="spacer">• • •</div>
 
-<h2 id="section">0. 용어 이해</h2>
+<h2 id="0-용어-이해">0. 용어 이해</h2>
 
 <p>이 포스트에서는 라라벨, Redis, Socket.io 등 여러 시스템을 사용하는데 비슷한 용어가 계속 등장하기 때문에, 이 포스트를 이해하는데 필요한 용어를 먼저 정리해 본다.</p>
 
@@ -166,7 +166,7 @@
 
 <p>PubSub 패턴은 두 시스템(발신자와 수신자)간의 결합도를 낮추어 애플리케이션의 확장성을 제공한다. 이 포스트 3절에서 라라벨과 자바스크립트간의 메신저로 Redis를 사용했는데, Redis의 PubSub 기능이 없었다면 PHP와 자바스크립트가 쉽게 통신할 수 없었을 것이다.</p>
 
-<h2 id="section-1">1. 데모 환경 준비</h2>
+<h2 id="1-데모-환경-준비">1. 데모 환경 준비</h2>
 
 <p><a href="https://c9.io">클라우드9</a>를 이용할텐데, 계정이 없다면 만든다. 대시보드에서 <kbd>Create a new workspace</kbd>를 눌러 새 PHP 워크스페이스(프로젝트)를 만든다.</p>
 
@@ -225,11 +225,11 @@ you:~/workspace <span class="nv">$ </span>php artisan key:generate
 </code></pre>
 </div>
 
-<h2 id="socketchat">2. SocketChat</h2>
+<h2 id="2-socketchat">2. SocketChat</h2>
 
 <p>소스 코드의 <code class="highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
 
-<h3 id="section-2">2.1. 코드 수정</h3>
+<h3 id="21-코드-수정">2.1. 코드 수정</h3>
 
 <p>소스 코드에서 각자의 클라우드9 접속 주소를 반영한다.</p>
 
@@ -243,7 +243,7 @@ you:~/workspace <span class="nv">$ </span>php artisan key:generate
 </code></pre>
 </div>
 
-<h3 id="section-3">2.2. 실험 준비</h3>
+<h3 id="22-실험-준비">2.2. 실험 준비</h3>
 
 <p>클라우드9 콘솔에서 다음 명령을 실행한다.</p>
 
@@ -257,19 +257,19 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 </code></pre>
 </div>
 
-<h3 id="section-4">2.3. 실험</h3>
+<h3 id="23-실험">2.3. 실험</h3>
 
 <p>클라우드9 IDE 화면에서 <kbd>Run Project</kbd> 버튼을 누른다. <code class="highlighter-rouge">http://your-c9-url/socketchat</code>을 여러 개의 브라우저로 열어 채팅이 동작하는지 확인한다.</p>
 
 <p><a href="/images/2016-07-15-img-02.gif"><img src="/images/2016-07-15-img-02.gif" alt="Socketchat in action" /></a></p>
 
-<h3 id="section-5">2.4. 작동 원리</h3>
+<h3 id="24-작동-원리">2.4. 작동 원리</h3>
 
 <p>Socket.io는 리얼 타임 웹을 위한 자바스크립트 라이브러리다. 웹소켓을 기본으로 사용하고, 웹소켓을 사용할 수 없을 때는 XHR 폴링 등으로 폴백해서, Socket.io 라이브러리를 사용하는 클라이언트와 서버간에 통신할 수 있도록 한다.</p>
 
 <p>웹소켓은 말그대로 소켓이다. 서버와 클라이언트가 연결을 계속 유지하면서, 풀듀플렉스로 데이터를 스트리밍한다. 연결 협상을 할 때는 HTTP 프로토콜을 사용하지만, 웹소켓을 사용할 수 있으면 프로토콜을 업그레이드한다. 피어-투-피어는 아니다.</p>
 
-<h4 id="section-6">2.4.1. 클라이언트의 메시지 전송</h4>
+<h4 id="241-클라이언트의-메시지-전송">2.4.1. 클라이언트의 메시지 전송</h4>
 
 <p>클라이언트에서 <code class="highlighter-rouge">socket.emit()</code> API로 서버에 메시지를 보낸다. 여기서 <code class="highlighter-rouge">chat.message</code>란 채널 이름을 기억해두자.</p>
 
@@ -289,7 +289,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 </code></pre>
 </div>
 
-<h4 id="section-7">2.4.2. 서버의 메시지 브로드캐스트</h4>
+<h4 id="242-서버의-메시지-브로드캐스트">2.4.2. 서버의 메시지 브로드캐스트</h4>
 
 <p>클라이언트가 <code class="highlighter-rouge">chat.message</code> 채널로 보낸 메시지를 서버가 수신하면, 현재 접속된 모든 클라이언트에게 브로드캐스트한다. 이번에도 <code class="highlighter-rouge">emit()</code> API를 이용하고, 채널 이름을 인자로 넘겼다.</p>
 
@@ -305,7 +305,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 </code></pre>
 </div>
 
-<h4 id="section-8">2.4.3. 클라이언트의 메시지 수신 및 소비</h4>
+<h4 id="243-클라이언트의-메시지-수신-및-소비">2.4.3. 클라이언트의 메시지 수신 및 소비</h4>
 
 <p><code class="highlighter-rouge">socket.on(channel, callback)</code>은 제이쿼리에서 많이 봤던 <code class="highlighter-rouge">selector.on(event, callback)</code>과 같은 이벤트 리스너다. 서버의 브로드캐스트 메시지 중 <code class="highlighter-rouge">chat.message</code> 채널로 발행한 메시지가 있으면 콜백이 동작한다.</p>
 
@@ -327,11 +327,11 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <p>Socket.io 공식 예제 대비 약간의 기능을 추가했다. 변경 내용은 <a href="https://github.com/appkr/whik/commit/6ea7551111c752bd3ee3ce5d56c2bd771be90400">커밋 로그</a>에서 확인할 수 있다.</p>
 
-<h2 id="redis">3. Redis</h2>
+<h2 id="3-redis">3. Redis</h2>
 
 <p>Redis는 라라벨과 Socket.io간의 메시지 중계자 역할을 한다.</p>
 
-<h3 id="section-9">3.1. 코드 수정</h3>
+<h3 id="31-코드-수정">3.1. 코드 수정</h3>
 
 <p>소스 코드에서 각자의 클라우드9 접속 주소를 반영한다.</p>
 
@@ -345,7 +345,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 </code></pre>
 </div>
 
-<h3 id="section-10">3.2. 실험 준비</h3>
+<h3 id="32-실험-준비">3.2. 실험 준비</h3>
 
 <p>필요한 라이브러리를 설치하고, 클라우드9 콘솔에서 <code class="highlighter-rouge">feature/redis</code> 태그로 체크아웃한다.</p>
 
@@ -367,13 +367,13 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 </code></pre>
 </div>
 
-<h3 id="section-11">3.3. 실험</h3>
+<h3 id="33-실험">3.3. 실험</h3>
 
 <p>클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="highlighter-rouge">http://your-c9-url/pub</code>과 <code class="highlighter-rouge">http://your-c9-url/sub</code>을 각각 브라우저로 연다. <code class="highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
 
 <p><a href="/images/2016-07-15-img-03.gif"><img src="/images/2016-07-15-img-03.gif" alt="Socketchat in action" /></a></p>
 
-<h3 id="section-12">3.4. 작동 원리</h3>
+<h3 id="34-작동-원리">3.4. 작동 원리</h3>
 
 <p>2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(<code class="highlighter-rouge">public/socketchat/index.js</code>). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들 간에 메시지를 릴레이하는 역할만 수행했다.</p>
 
@@ -381,7 +381,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <p>Node.js 서비스는 Redis 서버에 미리 약속한 채널(<code class="highlighter-rouge">whik</code>)을 계속 바라보고 있다가, 라라벨이 Redis에 약속한 채널(<code class="highlighter-rouge">whik</code>)에 메시지를 발행하면, 발행된 값을 읽어서 Socket.io 클라이언트에게 브로드캐스트하는 식으로 동작한다.</p>
 
-<h4 id="redis--">3.4.1. 라라벨의 Redis 레코드 발행</h4>
+<h4 id="341-라라벨의-redis-레코드-발행">3.4.1. 라라벨의 Redis 레코드 발행</h4>
 
 <p>라라벨의 <code class="highlighter-rouge">pub</code>라우팅을 방문하면, Redis 서버의 <code class="highlighter-rouge">whik</code> 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.</p>
 
@@ -400,7 +400,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 </code></pre>
 </div>
 
-<h4 id="nodejs-redis-">3.4.2. Node.js의 Redis 구독</h4>
+<h4 id="342-nodejs의-redis-구독">3.4.2. Node.js의 Redis 구독</h4>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// socket.js</span>
 
@@ -411,7 +411,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 </code></pre>
 </div>
 
-<h4 id="socketio--">3.4.3. Socket.io 메시지 브로드캐스트</h4>
+<h4 id="343-socketio-메시지-브로드캐스트">3.4.3. Socket.io 메시지 브로드캐스트</h4>
 
 <p>Redis를 통해 Node.js측에서 받은 데이터는 다음과 같은 JSON 구조를 가진다.</p>
 
@@ -436,7 +436,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 </code></pre>
 </div>
 
-<h4 id="socketio---">3.4.4. Socket.io 클라이언트의 메시지 소비</h4>
+<h4 id="344-socketio-클라이언트의-메시지-소비">3.4.4. Socket.io 클라이언트의 메시지 소비</h4>
 
 <p>라라벨의 <code class="highlighter-rouge">pub</code> 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다.</p>
 
@@ -468,11 +468,11 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <p>상세 변경 내용은 <a href="https://github.com/appkr/whik/commit/c124f70862e23c92207e87265287cb83171493e8">커밋 로그</a>에서 확인할 수 있다.</p>
 
-<h2 id="broadcast">4. Broadcast</h2>
+<h2 id="4-broadcast">4. Broadcast</h2>
 
 <p>라라벨은 도메인 이벤트를 바로 클라이언트에게 브로드캐스팅할 수 있다. 아주 편리하게~</p>
 
-<h3 id="section-13">4.1. 실험 준비</h3>
+<h3 id="41-실험-준비">4.1. 실험 준비</h3>
 
 <p>수정할 코드는 없다. <code class="highlighter-rouge">feature/broadcast</code> 태그로 체크아웃만 하면 된다.</p>
 
@@ -491,15 +491,15 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 </code></pre>
 </div>
 
-<h3 id="section-14">4.2. 실험</h3>
+<h3 id="42-실험">4.2. 실험</h3>
 
 <p>3.3절과 똑같다. 클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="highlighter-rouge">http://your-c9-url/pub</code>과 <code class="highlighter-rouge">http://your-c9-url/sub</code>을 각각 연다. <code class="highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
 
-<h3 id="section-15">4.3. 작동 원리</h3>
+<h3 id="43-작동-원리">4.3. 작동 원리</h3>
 
 <p>라라벨은 프레임워크 어디서든 도메인 이벤트를 발행할 수 있다. 라라벨에서 이벤트를 던지는 방법은 여러 가지인데, 여기서는 이벤트 클래스(==이벤트 채널, ==Data Transfer Object)를 이용했다.</p>
 
-<h4 id="section-16">4.3.1. 이벤트 클래스</h4>
+<h4 id="431-이벤트-클래스">4.3.1. 이벤트 클래스</h4>
 
 <p>이벤트 클래스는 아티즌 콘솔로 만든다(<code class="highlighter-rouge">$ php artisan make:event NewUserCreated</code>). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 <code class="highlighter-rouge">ShouldBroadcast</code> 인터페이스를 구현하면 된다. 인터페이스의 메서드는 <code class="highlighter-rouge">broadcastOn()</code> 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.</p>
 
@@ -529,7 +529,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 </code></pre>
 </div>
 
-<h4 id="section-17">4.3.2. 이벤트 발행</h4>
+<h4 id="432-이벤트-발행">4.3.2. 이벤트 발행</h4>
 
 <p>이제 <code class="highlighter-rouge">NewUserCreated</code> 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 <code class="highlighter-rouge">public</code>으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, <code class="highlighter-rouge">config/broadcasting.php</code>에 정의한 드라이버로 브로드캐스팅한다.</p>
 
@@ -548,7 +548,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <p>변경 내용은 <a href="https://github.com/appkr/whik/commit/57365503be757253a0830590d74fe9e8ea855b0b">커밋로그</a>에서 확인할 수 있다.</p>
 
-<h2 id="section-18">5. 결론</h2>
+<h2 id="5-결론">5. 결론</h2>
 
 <p>리얼 타임 웹은 프런트와 백엔드를 아우르는 풀스택스러운 고오급 기술이고, 라라벨과 Redis를 이용하면 비교적 쉽게 구현할 수 있다. Redis 대신 Pusher 드라이버를 이용하면 더 간단하다(Pusher는 가입형 서비스다).</p>
 
@@ -569,13 +569,13 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p><a href="http://vuejs.org/">Vue.js</a>_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, <a href="https://github.com/trending?since=monthly">깃허브 트렌딩에 계속 노미네이트</a>되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p><a href="http://vuejs.org/">Vue.js</a>_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, <a href="https://github.com/trending?since=monthly">깃허브 트렌딩에 계속 노미네이트</a>되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다.&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>PubSub_ <a href="https://en.wikipedia.org/wiki/Publish-subscribe_pattern">https://en.wikipedia.org/wiki/Publish-subscribe_pattern</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>PubSub_ <a href="https://en.wikipedia.org/wiki/Publish-subscribe_pattern">https://en.wikipedia.org/wiki/Publish-subscribe_pattern</a>&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>Socket.io에서 제공하는 채팅 예제 프로젝트_ <a href="http://socket.io/get-started/chat/">http://socket.io/get-started/chat/</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+      <p>Socket.io에서 제공하는 채팅 예제 프로젝트_ <a href="http://socket.io/get-started/chat/">http://socket.io/get-started/chat/</a>&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -684,7 +684,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">50</span>
+          <span class="badge">51</span>
         </a>
       </li>
       <li>
@@ -784,7 +784,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -802,7 +802,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 126%">
+    <span style="font-size: 130%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1192,7 +1192,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 230%">
+    <span style="font-size: 234%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1308,6 +1308,13 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
@@ -1317,13 +1324,6 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
       </li>
       

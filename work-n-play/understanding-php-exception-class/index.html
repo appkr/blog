@@ -234,7 +234,7 @@
 </code></pre>
 </div>
 
-<h2 id="section">1. 정상 실행</h2>
+<h2 id="1-정상-실행">1. 정상 실행</h2>
 
 <p>이 코드의 실행 결과는 다음과 같다.</p>
 
@@ -260,7 +260,7 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
   <li><code class="highlighter-rouge">try {} catch {}</code> 블록에서 <code class="highlighter-rouge">throw</code> 또는 <code class="highlighter-rouge">return</code> 구문을 만나지 않았으므로 마지막 문장은 실행된다.</li>
 </ul>
 
-<h2 id="section-1">2. 예외 상황</h2>
+<h2 id="2-예외-상황">2. 예외 상황</h2>
 
 <p>예외 상황을 만들어 보자.</p>
 
@@ -346,7 +346,7 @@ string<span class="o">(</span>24<span class="o">)</span> <span class="s2">"Inval
   <li><code class="highlighter-rouge">catch</code> 블록에서 예외를 다시 던졌으므로, 그 이하의 내용, 즉 마지막 문장은 실행되지 않는다.</li>
 </ul>
 
-<h2 id="section-2">3. 예외 처리 로직 분기</h2>
+<h2 id="3-예외-처리-로직-분기">3. 예외 처리 로직 분기</h2>
 
 <p>우리 예제에서는 <code class="highlighter-rouge">foo()</code> 함수를 실행할 때 <code class="highlighter-rouge">InvalidArgumentException</code>만 발생하지만, 실제로는 <code class="highlighter-rouge">try</code> 블록 안쪽의 코드를 실행하는 동안 다양한 예외가 발생할 수 있다. 이 때 <code class="highlighter-rouge">catch</code> 블록에 딱 정확한 예외 이름을 타입 힌트로 제공해서 예외 처리 로직을 분기할 수 있다. 예제 코드를 다음과 같이 수정했다.</p>
 
@@ -414,7 +414,7 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 </code></pre>
 </div>
 
-<h2 id="section-3">4. 결론</h2>
+<h2 id="4-결론">4. 결론</h2>
 
 <p>예외를 처리하지 않는 경우를 상상해 보자. <code class="highlighter-rouge">foo()</code> 함수에 타입 힌트를 써서 예외 상황을 만들었다.</p>
 
@@ -431,15 +431,15 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 
 <p>이 코드의 실행 결과는 다음과 같다. 전역 예외 처리기 또는 에러 처리가가 없으므로, PHP 런타임이 치명적 오류(Fatal error)를 내 뱉고 있는 상황이다. 운영 중인 웹 사이트에서 이런 메시지가 나온 적이 있는가? 그런데, 이 상황을 몇 시간째 모르고 있었던 경우는 없는가? 아찔하다~</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>PHP Fatal error:  Uncaught TypeError: Argument 1 passed to foo<span class="o">()</span> must be of the <span class="nb">type </span>integer, string given, called <span class="k">in</span> /Users/appkr/workspace/exceptions.php on line 31 and defined <span class="k">in</span> /Users/appkr/workspace/exceptions.php:22
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>PHP Fatal error:  Uncaught TypeError: Argument 1 passed to foo<span class="o">()</span> must be of the <span class="nb">type </span>integer, string given, called <span class="k">in</span> ~/working-with-exceptions/exceptions.php on line 31 and defined <span class="k">in</span> ~/working-with-exceptions/exceptions.php:22
 Stack trace:
-<span class="c">#0 /Users/appkr/workspace/exceptions.php(31): foo('string')</span>
+<span class="c">#0 ~/working-with-exceptions/exceptions.php(31): foo('string')</span>
 <span class="c">#1 {main}</span>
-  thrown <span class="k">in</span> /Users/appkr/workspace/exceptions.php on line 22
+  thrown <span class="k">in</span> ~/working-with-exceptions/exceptions.php on line 22
 
 Call Stack:
-    0.0002     355912   1. <span class="o">{</span>main<span class="o">}()</span> /Users/appkr/workspace/exceptions.php:0
-    0.0002     355912   2. foo<span class="o">()</span> /Users/appkr/workspace/exceptions.php:31
+    0.0002     355912   1. <span class="o">{</span>main<span class="o">}()</span> ~/working-with-exceptions/exceptions.php:0
+    0.0002     355912   2. foo<span class="o">()</span> ~/working-with-exceptions/exceptions.php:31
 </code></pre>
 </div>
 
@@ -480,9 +480,12 @@ Call Stack:
         
 
         
-        <li class="next disabled">
-          <a href="#">
-            <span>Newer</span>
+        <li class="next">
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">
+            <span class="pager-title">
+              PHP의 예외 클래스 이해하기 2부
+            </span>
+            <span class="pager-title-sm">Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>
@@ -541,7 +544,7 @@ Call Stack:
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">50</span>
+          <span class="badge">51</span>
         </a>
       </li>
       <li>
@@ -641,7 +644,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -659,7 +662,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 126%">
+    <span style="font-size: 130%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1049,7 +1052,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 230%">
+    <span style="font-size: 234%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1165,6 +1168,13 @@ Call Stack:
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
@@ -1174,13 +1184,6 @@ Call Stack:
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
       </li>
       

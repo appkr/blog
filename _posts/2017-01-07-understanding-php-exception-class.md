@@ -299,15 +299,15 @@ var_dump(foo('string'));
 이 코드의 실행 결과는 다음과 같다. 전역 예외 처리기 또는 에러 처리가가 없으므로, PHP 런타임이 치명적 오류(Fatal error)를 내 뱉고 있는 상황이다. 운영 중인 웹 사이트에서 이런 메시지가 나온 적이 있는가? 그런데, 이 상황을 몇 시간째 모르고 있었던 경우는 없는가? 아찔하다~
 
 ```bash
-PHP Fatal error:  Uncaught TypeError: Argument 1 passed to foo() must be of the type integer, string given, called in /Users/appkr/workspace/exceptions.php on line 31 and defined in /Users/appkr/workspace/exceptions.php:22
+PHP Fatal error:  Uncaught TypeError: Argument 1 passed to foo() must be of the type integer, string given, called in ~/working-with-exceptions/exceptions.php on line 31 and defined in ~/working-with-exceptions/exceptions.php:22
 Stack trace:
-#0 /Users/appkr/workspace/exceptions.php(31): foo('string')
+#0 ~/working-with-exceptions/exceptions.php(31): foo('string')
 #1 {main}
-  thrown in /Users/appkr/workspace/exceptions.php on line 22
+  thrown in ~/working-with-exceptions/exceptions.php on line 22
 
 Call Stack:
-    0.0002     355912   1. {main}() /Users/appkr/workspace/exceptions.php:0
-    0.0002     355912   2. foo() /Users/appkr/workspace/exceptions.php:31
+    0.0002     355912   1. {main}() ~/working-with-exceptions/exceptions.php:0
+    0.0002     355912   2. foo() ~/working-with-exceptions/exceptions.php:31
 ```
 
 다음 편에서는 라라벨 프레임워크를 이용해서 커스텀 예외 클래스를 만들고 프로그램 실행 흐름을 안전하게 제어하는 방법을 살펴 보기로 하자.

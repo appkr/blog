@@ -310,6 +310,21 @@ body {
       .il { color: #cd3f45;} /* Literal.Number.Integer.Long */
     }
 
+    // Code Block Line Numbers
+    .line-numbers {
+      text-align: right;
+      padding-right: 1em;
+      margin-right: 1em;
+      border-right: 1px solid #888;
+      color: #888;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
     .box-header, .box-body, .box-footer {
       margin: 0;
       padding: 0;

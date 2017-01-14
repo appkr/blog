@@ -12,6 +12,7 @@
     this.registerGlobals();
     this.addListeners();
     this.activateMaterialDesign();
+    this.activateCodeLineNumbers();
     this.activateSearch();
     this.activateDisqus();
   };
@@ -30,24 +31,7 @@
       /* Activate Fastclick */
       FastClick.attach(document.body);
 
-      /* Add active class when profile page is selected */
-      // var currentUrl = location.pathname.split('/')[1];
-      // var activeItem = navItem.find('active');
-
-      // switch (currentUrl) {
-      //   case 'guest-book':
-      //     navItem.eq(1).addClass('active');
-      //     break;
-      //   case 'profile':
-      //     navItem.eq(2).addClass('active');
-      //     break;
-      //   default:
-      //     navItem.eq(0).addClass('active');
-      // }
-
-      // activeItem.removeClass('active');
-
-      // Old logic, when there was only two menu items.
+      /* Set active menu */
       if (location.pathname.split('/')[1] == 'profile') {
        navItem.first().removeClass('active').siblings(1).addClass('active');
       }
@@ -141,8 +125,56 @@
     $.material.init();
   };
 
+  App.activateCodeLineNumbers = function () {
+    var lineNumbersBlock = function (element) {
+      if (typeof element !== 'object') return;
+
+      var parent = element.parentNode;
+      var lines = getCountLines(parent.textContent);
+
+      if (lines > 0) {
+        var l = '';
+        for (var i = 0; i < lines; i++) {
+          l += (i + 1) + '\n';
+        }
+
+        var linesPanel = document.createElement('code');
+        linesPanel.className = 'line-numbers';
+        linesPanel.style.float = 'left';
+        linesPanel.textContent = l;
+
+        parent.insertBefore(linesPanel, element);
+      }
+    };
+
+    var getCountLines = function (text) {
+      if (text.length === 0) return 0;
+
+      var regExp = /\r\n|\r|\n/g;
+      var lines = text.match(regExp);
+      lines = lines ? lines.length : 0;
+
+      if (!text[text.length - 1].match(regExp)) {
+        lines += 1;
+      }
+
+      return lines;
+    };
+
+    try {
+      var blocks = document.querySelectorAll('.linenos>pre>code');
+
+      for (var i in blocks) {
+        if (blocks.hasOwnProperty(i)) {
+          lineNumbersBlock(blocks[i]);
+        }
+      }
+    } catch (e) {
+      console.error('LineNumbers error: ', e);
+    }
+  };
+
   App.activateDisqus = function() {
-    var self = this;
     var dqsScript = document.createElement('script');
 
     dqsScript.async = true;

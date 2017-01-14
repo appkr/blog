@@ -157,7 +157,7 @@
 <!--more-->
 <div class="spacer">• • •</div>
 
-<h2 id="section">1. 통합 테스트 작성</h2>
+<h2 id="1-통합-테스트-작성">1. 통합 테스트 작성</h2>
 
 <p>Thrift 클라이언트가 IDL에서 정의한 API를 호출하는 경우를 상정하고, Outside-In으로 설명하는 것이 더 쉬울 것 같다. 아래 통합 테스트는 Thrift 클라이언트를 만들고 같은 프로젝트 디렉터리에 있는 API 서버를 호출한다.</p>
 
@@ -243,7 +243,7 @@
 </code></pre>
 </div>
 
-<h2 id="section-1">2. 서비스 수정</h2>
+<h2 id="2-서비스-수정">2. 서비스 수정</h2>
 
 <p>1부에서는 클라이언트가 넘긴 <code class="highlighter-rouge">QueryFilter</code>를 이용해서 검색을 수행하거나, 정렬하는 로직을 구현하지 않았다. 본 포스트의 주제와는 크게 관련은 없지만, Thrift IDL에서 정의한 <code class="highlighter-rouge">struct</code>를 사용하는 법을 엿볼 수 있다.</p>
 
@@ -296,7 +296,7 @@
 </code></pre>
 </div>
 
-<h2 id="section-2">3. 미들웨어와 책임 연쇄 패턴</h2>
+<h2 id="3-미들웨어와-책임-연쇄-패턴">3. 미들웨어와 책임 연쇄 패턴</h2>
 
 <p>미들웨어란 아케이드 게임에서 최종 보스를 만나기 위해서 상대해야 하는 중간 보스, 또는 최종 결재를 받기 위해 거쳐야 하는 중간 결재선에 비유할 수 있다. 중간 과정을 통과하지 못하면 최종 목적지에 도달하지 못한다. 이 프로젝트에서는 <code class="highlighter-rouge">PostService</code>에 도달하기 위해서 거쳐야 하는 중간 과정으로 이해하면 된다. 다음 그림을 참고하자.</p>
 
@@ -306,7 +306,7 @@
 
 <p>미들웨어를 구현하는데 적합한 패턴은 책임 연쇄 패턴(Chain of Responsibility)이다.</p>
 
-<h3 id="section-3">3.1. 서비스에 미들웨어 적용하기</h3>
+<h3 id="31-서비스에-미들웨어-적용하기">3.1. 서비스에 미들웨어 적용하기</h3>
 
 <p>글로 설명하기 너무 힘들다, 즉 설명할 수 없다는 것은 필자도 잘 모른다는 의미이기도 하다ㅜㅜ. 코드에 인라인 주석을 참고한다.</p>
 
@@ -343,7 +343,7 @@
 </code></pre>
 </div>
 
-<h3 id="section-4">3.2. 서비스 핸들러 만들기</h3>
+<h3 id="32-서비스-핸들러-만들기">3.2. 서비스 핸들러 만들기</h3>
 
 <p>서비스를 미들웨어로 감싸 줄 <code class="highlighter-rouge">ThriftServiceHandler</code>를 만들 차례다. 핸들러의 개념을 이해하기 어려운데 미들웨어가 있으면 미들웨어를 구동시키고, 없으면 서비스를 바로 호출해 주는 녀석이다. 진짜 서비스가 아니지만 자신이 서비스인 양 행세해서, 프로세서가 서비스로 간주하고 호출하는 녀석이다.</p>
 
@@ -384,7 +384,7 @@
 </code></pre>
 </div>
 
-<h3 id="section-5">3.3. 미들웨어 만들기</h3>
+<h3 id="33-미들웨어-만들기">3.3. 미들웨어 만들기</h3>
 
 <p><code class="highlighter-rouge">PostService</code>를 감쌌던 <code class="highlighter-rouge">FooMiddleware</code>를 만들어 보자(<code class="highlighter-rouge">BarMiddleware</code>는 생략한다). 역시 인라인으로 주석을 달았다.</p>
 
@@ -442,7 +442,7 @@
 </code></pre>
 </div>
 
-<h3 id="section-6">3.4. 추상 미들웨어</h3>
+<h3 id="34-추상-미들웨어">3.4. 추상 미들웨어</h3>
 
 <p>앞 절의 인라인 주석에서 책임 연쇄 패턴에 가장 중요한 메서드가 <code class="highlighter-rouge">next()</code>라고 말한 바 있다. 이 절에서는 이 <code class="highlighter-rouge">next()</code> 메서드의 작동 원리를 파헤쳐본다.</p>
 
@@ -482,7 +482,7 @@
 </code></pre>
 </div>
 
-<h2 id="section-7">4. 테스트</h2>
+<h2 id="4-테스트">4. 테스트</h2>
 
 <p>테스트를 위해 로컬 서버를 기동하고, <code class="highlighter-rouge">phpunit</code> 테스트를 실행한다.</p>
 
@@ -543,9 +543,13 @@
 
 <p><a href="/images/2016-12-10-img-01.png"><img src="/images/2016-12-10-img-01.png" alt="ModelNotFoundException" /></a></p>
 
-<h2 id="section-8">5. 결론</h2>
+<h2 id="5-결론">5. 결론</h2>
 
-<p>Thrift를 사용하는 동안 디버깅의 괴로움에 스트레스를 받아야 했다. 그럼에도 불구하고 좋았던 점은 서버와 클라이언트간의 약속을 코드로 표현하고, 그 코드를 문서로 즉시 변환해 공유할 수 있다는 점이었다. 클라이언트 개발자가 서버 코드가 개발되고 문서가 나오기까지 멍 때리고 있는 것이 아니라, 서버와 클라이언트가 병렬로 개발을 시작할 수 있었다.</p>
+<p>Thrift를 사용하는 동안 디버깅의 괴로움에 스트레스를 받아야 했다.</p>
+
+<p>그럼에도 불구하고 좋았던 점은 서버와 클라이언트간의 약속을 코드로 표현하고, 그 코드를 문서로 즉시 변환해 공유할 수 있다는 점이었다. 클라이언트 개발자가 서버 코드가 개발되고 문서가 나오기까지 멍 때리고 있는 것이 아니라, 서버와 클라이언트가 병렬로 개발을 시작할 수 있었다.</p>
+
+<p>또, 이기종 시스템간에 함수 호출을 통해 모델을 그대로 주고 받을 수 있기 때문에 데이터 스키마나 역호환성과 같은 골치꺼리로 부터 해방될 수 있는 장정미 있었다. 풀어서 말하면 PHP 서버에서 <code class="highlighter-rouge">Post</code> 모델을 보내면 클라이언트에서는 Java, Javascript, .. 객체로 바로 쓸 수 있고, 클라이언트에서 보낸 객체는 서버에서 PHP 객체로 그냥 쓸 수 있다는 뜻이다.</p>
 
 <p>책임 연쇄 패턴을 한 번에 이해했다면 거짓말이다. 이 예제에서 사용한 Thrift 미들웨어의 동작을 이해하기 쉽도록 아래 콜 스택 다이어그램으로 표현했다.</p>
 
@@ -669,7 +673,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">50</span>
+          <span class="badge">51</span>
         </a>
       </li>
       <li>
@@ -769,7 +773,7 @@
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -787,7 +791,7 @@
       </a>
     </span>
     
-    <span style="font-size: 126%">
+    <span style="font-size: 130%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1177,7 +1181,7 @@
       </a>
     </span>
     
-    <span style="font-size: 230%">
+    <span style="font-size: 234%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1293,6 +1297,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
@@ -1302,13 +1313,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
       </li>
       

@@ -152,7 +152,7 @@
 <!--more-->
 <div class="spacer">• • •</div>
 
-<h2 id="section">1. 테스트 타겟</h2>
+<h2 id="1-테스트-타겟">1. 테스트 타겟</h2>
 
 <p>테스트의 대상은 아래 클래스의 <code class="highlighter-rouge">sortByStoreStatusAndCanBuyNow()</code> 메서드다. 여러 단계를 거치긴 하지만, Public으로 선언한 <code class="highlighter-rouge">query()</code> 메서드의 의해서 호출된다. 인라인으로 간략한 설명을 달아 두었다.</p>
 
@@ -248,9 +248,9 @@
 </code></pre>
 </div>
 
-<h2 id="section-1">2. 테스트 작성</h2>
+<h2 id="2-테스트-작성">2. 테스트 작성</h2>
 
-<h3 id="section-2">2.1. 테스트 헬퍼</h3>
+<h3 id="21-테스트-헬퍼">2.1. 테스트 헬퍼</h3>
 
 <p><code class="highlighter-rouge">getTestableMethod()</code> 메서드는 PHP의 <code class="highlighter-rouge">Reflection</code> 클래스를 이용해서 인자로 받은 <code class="highlighter-rouge">$class::$name</code> 메서드를 이번 프로세스 동안만 Private 또는 Protected 메서드를 Public으로 변경해준다. 즉, 테스트를 수행하는 동안은 테스트 클래스가 타켓 메서드에 접근할 수 있다.</p>
 
@@ -280,7 +280,7 @@
 </code></pre>
 </div>
 
-<h3 id="section-3">2.2. 테스트 코드</h3>
+<h3 id="22-테스트-코드">2.2. 테스트 코드</h3>
 
 <p>이제 테스트 코드를 쓰면 된다. 앞 절에서 만든 헬퍼에서 반환 받은 메서드에 <code class="highlighter-rouge">invokeArgs(클래스 인스턴스, [메서드의 인자])</code>식으로 사용하면 원래 감추진 메서드를 호출하여 결과를 얻을 수 있다.</p>
 
@@ -339,7 +339,7 @@
 <!--more-->
 <div class="spacer">• • •</div>
 
-<h2 id="elastic-search--">덧. Elastic Search 검색 성능</h2>
+<h2 id="덧-elastic-search-검색-성능">덧. Elastic Search 검색 성능</h2>
 
 <p>지난 달에 열린 XECon에서 <a href="https://www.facebook.com/findstar">안정수</a>님이 <a href="https://laravel.kr/docs/5.3/scout">라라벨 Scout</a>를 발표했는데, 청중 중에 한 분이 Scout의 성능에 대한 질문을 하셨다. Scout는 Algolia 또는 Elastic Search 등의 검색 엔진을 라라벨 프로젝트에서 사용하기 쉽도록 랩핑한 라이브러리다. 본 포스트의 주제와 무관하지만 필자가 측정한 성능을 남겨 놓는다.</p>
 
@@ -455,7 +455,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">50</span>
+          <span class="badge">51</span>
         </a>
       </li>
       <li>
@@ -555,7 +555,7 @@
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -573,7 +573,7 @@
       </a>
     </span>
     
-    <span style="font-size: 126%">
+    <span style="font-size: 130%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -963,7 +963,7 @@
       </a>
     </span>
     
-    <span style="font-size: 230%">
+    <span style="font-size: 234%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1079,6 +1079,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
@@ -1088,13 +1095,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
       </li>
       

@@ -147,7 +147,7 @@
 <!--more-->
 <div class="spacer">• • •</div>
 
-<h2 id="section">1. 왜?</h2>
+<h2 id="1-왜">1. 왜?</h2>
 
 <p>웹 API는 클라이언트와 서버가 메시지를 주고 받기 위한 약속이다. 클라이언트가 HTTP 프로토콜을 통해 직렬화된 데이터를 보내면 서버는 받은 데이터를 역직렬화해서 클라이언트의 요청을 이해한다. 서버가 클라이언트의 요청을 처리하는 과정에서 데이터베이스에 접근하고, 데이터베이스에서 조회한 데이터를 가공해서 JSON/XML 형태로 직렬화해서 다시 HTTP 프로토콜로 응답한다. 이 모든 과정은 순조롭다. 그런데 우리가 개발하는 API는 구글, 페이스북, 깃허브등이 하는 오픈 API가 아니라, 대부분이 자체 서비스를 위한 내부 API라는 점이다.</p>
 
@@ -157,7 +157,7 @@
 
 <p>물론 새로운 것을 배워야 하고 메시지 패킷을 직접 정의해야 하는 등의 번거로움이 있다. 익숙해지기 전까지는 개발자들에겐 이 모든 것이 헬(hell)이고, 생성성은 떨어질 수 밖에 없다.</p>
 
-<h2 id="rpc-">2. 다른 RPC 프레임워크</h2>
+<h2 id="2-다른-rpc-프레임워크">2. 다른 RPC 프레임워크</h2>
 
 <p>Apache Thrift 외에도 선택지는 더 있다.</p>
 
@@ -189,7 +189,7 @@
   </li>
 </ul>
 
-<h2 id="section-1">3. 워크플로우</h2>
+<h2 id="3-워크플로우">3. 워크플로우</h2>
 
 <p>REST든 RPC든 서버와 클라이언트간의 약속을 정하는 일이 먼저다. 대신 RPC는 몇 가지 과정을 더 거쳐야 한다.</p>
 
@@ -201,7 +201,7 @@
 
 <p>이상에서 언급한 워크플로우에 따라 Apache Thrift를 이용해서 PHP 서버 프로젝트를 만드는 법을 설명한다.</p>
 
-<h2 id="idl-">4. 약속(IDL) 작성</h2>
+<h2 id="4-약속idl-작성">4. 약속(IDL) 작성</h2>
 
 <p>IDL을 설명하는 Thrift 공식 문서는 많이 부실하다. 필자가 찾은 가이드 중 <a href="https://diwakergupta.github.io/thrift-missing-guide/">https://diwakergupta.github.io/thrift-missing-guide/</a>가 가장 좋았다.</p>
 
@@ -312,7 +312,7 @@
 </code></pre>
 </div>
 
-<h2 id="section-2">5. 컴파일해서 보일러 플레이트 코드 생성</h2>
+<h2 id="5-컴파일해서-보일러-플레이트-코드-생성">5. 컴파일해서 보일러 플레이트 코드 생성</h2>
 
 <p>Thrift IDL 문법으로 인터페이스 작성이 끝나면 Thrift 컴파일러 바이너리로 보일러 플레이트 코드를 생성한다.</p>
 
@@ -409,11 +409,11 @@
 </code></pre>
 </div>
 
-<h2 id="section-3">6. 애플리케이션 개발</h2>
+<h2 id="6-애플리케이션-개발">6. 애플리케이션 개발</h2>
 
 <p>이제 5절에서 생성한 인터페이스를 구현한 PHP 서버 프로젝트를 만들 것이다.</p>
 
-<h3 id="section-4">6.1. 새 프로젝트 생성</h3>
+<h3 id="61-새-프로젝트-생성">6.1. 새 프로젝트 생성</h3>
 
 <p>새 라라벨 프로젝트를 생성한다(꼭 라라벨일 필요는 없다).</p>
 
@@ -447,7 +447,7 @@
 </code></pre>
 </div>
 
-<h3 id="thrift-----">6.2. Thrift가 컴파일한 보일러 플레이트 코드 가져오기</h3>
+<h3 id="62-thrift가-컴파일한-보일러-플레이트-코드-가져오기">6.2. Thrift가 컴파일한 보일러 플레이트 코드 가져오기</h3>
 
 <p>우리의 서버 애플리케이션에서는 Apache Thrift 라이브러리와 5절에서 생성한 보일러 플레이트 코드가 필요하다. 깃허브와 컴포저를 이용했는데, 그냥 복사해서 vendor 디렉터리 아래에 붙여 넣어도 된다. <code class="highlighter-rouge">composer.json</code>에 <code class="highlighter-rouge">apache/thrift</code>와 <code class="highlighter-rouge">appkr/thrift-example-idl</code>를 추가한다(5절에서 만든 보일러 플레이트 코드는 packagist.org에 등록되어 있지 않으므로, <code class="highlighter-rouge">composer.json</code>에서 <code class="highlighter-rouge">repositories</code> 키를 이용했다).</p>
 
@@ -480,9 +480,9 @@
 </code></pre>
 </div>
 
-<h3 id="section-5">6.3. 서비스 개발</h3>
+<h3 id="63-서비스-개발">6.3. 서비스 개발</h3>
 
-<h4 id="section-6">6.3.1. 데이터 준비</h4>
+<h4 id="631-데이터-준비">6.3.1. 데이터 준비</h4>
 
 <p>모델과 마이그레이션을 만들고 테스트에 사용할 데이터를 만든다.</p>
 
@@ -550,7 +550,7 @@
 </code></pre>
 </div>
 
-<h4 id="section-7">6.3.2. 라우팅 및 컨트롤러</h4>
+<h4 id="632-라우팅-및-컨트롤러">6.3.2. 라우팅 및 컨트롤러</h4>
 
 <p>클라이언트가 접근할 수 있는 URL 엔드포인트가 필요하다. Thrift에서는 모든 데이터를 HTTP 본문으로 보내기 때문에 HTTP <code class="highlighter-rouge">POST</code> 메서드로 요청을 보내고 받아야 한다.</p>
 
@@ -670,7 +670,7 @@
 
 <p>트랜스포트와 프로토콜 구현은 컴포저로 가져온 Thrift 라이브러리에 이미 포함되어 있으므로 순서에 맞게 잘 조립하기만 하면 된다. 코드에서 보다시피 <code class="highlighter-rouge">json</code>, <code class="highlighter-rouge">binary</code>, <code class="highlighter-rouge">compact</code> 등의 프로토콜을 이용할 수 있다. 이 코드는 한번 짜놓으면 바꿀 일이 거의 없으므로 내용을 따지지 말고 그냥 공식처럼 가져다 쓰자.</p>
 
-<h4 id="section-8">6.3.3. 서비스 개발</h4>
+<h4 id="633-서비스-개발">6.3.3. 서비스 개발</h4>
 
 <p><code class="highlighter-rouge">PostServiceIf</code>는 Thrift가 IDL로 자동 생성한 PHP의 클래스 인터페이스다. IDL에 정의했듯이 이 인터페이스는</p>
 
@@ -725,7 +725,7 @@
 
 <p>각 API 들이 IDL에서 정의한 <code class="highlighter-rouge">list&lt;ThriftPost&gt;</code> 및 <code class="highlighter-rouge">ThriftPost</code> 타입을 반환해야 하므로, <code class="highlighter-rouge">all()</code> 메서드에서는 엘로퀀트 쿼리에 의해 번환된 <code class="highlighter-rouge">EloquentCollection</code> 객체를 순회하면서 <code class="highlighter-rouge">ThriftPost</code> 객체로 맵핑해 주었다.</p>
 
-<h4 id="section-9">6.3.4. 작동 테스트</h4>
+<h4 id="634-작동-테스트">6.3.4. 작동 테스트</h4>
 
 <p>PHP 프로젝트니까 PHPUnit 테스트에서 Thrift 클라이언트를 만들고 같은 프로젝트에 있는 Thrift 서버로 요청을 보내서 정상 작동을 테스트해 볼 것이다.</p>
 
@@ -817,7 +817,7 @@
 
 <p><a href="/images/2016-11-04-img-02.png"><img src="/images/2016-11-04-img-02.png" alt="PHPUnit" /></a></p>
 
-<h2 id="section-10">7. 결론</h2>
+<h2 id="7-결론">7. 결론</h2>
 
 <p>Thrift 클라이언트가 보낸 HTTP 요청 본문은 이렇게 생겼다. <code class="highlighter-rouge">JSONProtocol</code>을 썼으니 그나마 읽을 수 있는 것이지, <code class="highlighter-rouge">BinaryProtocol</code>을 쓰면 전혀 읽을 수 없는 본문이 전달된다.</p>
 
@@ -960,7 +960,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">50</span>
+          <span class="badge">51</span>
         </a>
       </li>
       <li>
@@ -1060,7 +1060,7 @@
       </a>
     </span>
     
-    <span style="font-size: 122%">
+    <span style="font-size: 126%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -1078,7 +1078,7 @@
       </a>
     </span>
     
-    <span style="font-size: 126%">
+    <span style="font-size: 130%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1468,7 +1468,7 @@
       </a>
     </span>
     
-    <span style="font-size: 230%">
+    <span style="font-size: 234%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1584,6 +1584,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
+          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
@@ -1593,13 +1600,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
           <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-18</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
         </h4>
       </li>
       

@@ -13,6 +13,8 @@ image: http://blog.appkr.kr/images/images/2016-12-18-img-01.png
 
 **FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스**다. 과거 GCM(Google Cloud Message)이 진화한 것이다.
 
+![Firebase Logo](https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png)
+
 PubNub, Pusher 등의 메시징 서비스와 FCM이 다른 점은 단말기가 꺼져 있거나, 잠김 모드에 있거나, 메시지를 받을 애플리케이션이 실행 중이지 않을 때도 메시지를 보낼 수 있다는 점이다.
 
 FCM을 이용한 푸쉬 메시징 시스템을 구성하라면 다음 두 가지가 필요하다.

@@ -17,7 +17,7 @@ image: http://blog.appkr.kr/images/2017-02-11-img-02.png
 
 최근 회사에서 관련된 일도 있었고 해서, 스물스물 호기심이 발동하기 시작했습니다.
 
-[MySQL은 소스코드가 깃허브에 완전 공개](https://github.com/mysql/mysql-server)되어있어 완전 블랙박스라 할 수는 없지만, 죽을 때까지도 코드를 까볼 생각은 안할 겁니다. 대신 **간단한 배열을 이용해서 데이터베이스를 흉내내고, 기본 키(Primary Key), 문자열 컬럼에 대한 풀 스캔, 바이너리 스캔, 인덱스, 조인 등에서 성능 차이가 발생하는 이유를 추측해보기**로 했습니다. 
+[MySQL은 소스코드가 깃허브에 완전 공개](https://github.com/mysql/mysql-server)되어있어 블랙박스라 할 수는 없지만, 죽을 때까지 코드를 까볼 생각은 없습니다. 대신 **간단한 배열을 이용해서 데이터베이스를 흉내내고, 기본 키(Primary Key), 문자열 컬럼에 대한 풀 스캔, 바이너리 스캔, 인덱스, 조인 등에서 성능 차이가 발생하는 이유를 추측해보기**로 했습니다. 
 
 이 실험을 위한 소스코드는 [이곳에서 다운로드](https://github.com/appkr/db-performance-illustration) 받을 수 있습니다.
 
@@ -143,7 +143,7 @@ return [
 
 ### 2.2. `$users` 배열
 
-`User` 인스턴스 만 개를 담은 배열입니다. `Faker` 라이브러리와 같이 동작해서 매번 테스트 시나리오를 수행할 때마다 지난 번과 다른 10만개의 배열을 새로 만듭니다. 각 인스턴스는 `Team` 모델에 `team_id`라는 속성으로 연결되어 있습니다.  
+`User` 인스턴스 만 개를 담은 배열입니다. `Faker` 라이브러리와 같이 동작해서 매번 테스트 시나리오를 수행할 때마다 지난 번과 다른 일 만 개의 `User` 인스턴스를 담은 배열을 새로 만듭니다. 각 인스턴스는 `Team` 모델에 `team_id`라는 속성으로 연결되어 있습니다.
 
 ```php
 <?php // data/users.php
@@ -189,7 +189,7 @@ return $userIndex;
 
 1 절의 테스트 러너에서 봤듯이 데이터 생성이 끝난 후 타이머를 시작하고, 테스터가 선택한 시나리오를 수행합니다.
 
-이하 모든 실험 환경은 필자의 맥북 프로기준이며, PHP 7.1과 [라라벨 Valet 서버](https://laravel.kr/docs/valet)를 이용했습니다.
+이하 모든 실험 환경은 필자의 맥북 프로기준이며, PHP 7.1(xdebug on, opcache off)과 [라라벨 Valet 서버](https://laravel.kr/docs/valet)를 이용했습니다.
 
 ### 3.1. `primary` 시나리오
 
@@ -278,16 +278,16 @@ GET /indexed.php
 
 ~~게다가 우리 시나리오의 경우, 찾고자 하는 값이 배열 맨 끝에 위치하고 있어 총 2 만번의 루프가 발생하고 있습니다.~~
  
-`@huhushow`님의 가르침으로 검색을 먼저하고 맵핑하는 로직으로 변경했습니다. 결과는 풀스캔과 성능 차이는 거의 없었습니다.
+`@huhushow`님의 가르침으로 검색을 먼저하고 맵핑하는 로직으로 변경했습니다. 배열 순회 회수는 풀스캔과 같고, 찾은 사용자가 속한 `Team`을 찾아 머지하는 로직만 추가 되었으므로 풀스캔 대비 성능 차이는 거의 없었습니다.
 
 ```php
 <?php // scenario/join.php
 
 $found = null;
 
-foreach ($users as $found) {
-    if (strpos($found->name, '_9999') !== false) {
-        $found = $found;
+foreach ($users as $user) {
+    if (strpos($user->name, '_9999') !== false) {
+        $found = $user;
     }
 }
 
@@ -359,7 +359,7 @@ GET /binary.php
 
 막연하게만 알던 내용을, 실험을 통해 검증하는 계기가 되었습니다. `@huhushow`님의 의견의 따라 로직을 수정하니 결론은 완전히 달라졌습니다.
 
--   어떤 방식을 사용하든 풀스캔의 대상이 되는 레코드셋의 양을 줄이는 것은 성능 향상에 도움이 된다.
+-   어떤 방식을 사용하든 풀스캔의 대상이 될 레코드셋의 양을 줄이는 것은 성능 향상에 도움이 된다.
 -   ~~테이블 조인은 메모리를 많이 사용하고, 속도도 느리다.~~
 
 ~~데이터베이스 모델링할 때, 중복을 최소화하고, 데이터간 무결성을 유지하기 위해 정규화를 했습니다. 하지만 레코드 수가 많아지면 조인으로 인한 성능 낭비가 커지므로, **조인이 잦은 테이블을 비정규화**하여 약간의 중복을 허용하는 식으로 구성하는 것도 좋은 방법이란 생각이 들었습니다. 또는 조인할 때 **참조되는 테이블을 애플리케이션의 배열이나 인-메모리 캐시**에 올려두는 것도 생각해 볼 수 있겠네요.~~
@@ -407,4 +407,4 @@ SQL|시나리오|3회 평균 처리 시간(ms)
 
 <div class="spacer">• • •</div>
 
-스택오버플로에 올라온 ['mysql 5.0 indexes - Unique vs Non Unique'](http://stackoverflow.com/a/389824/7511247)라는 질답의 좌표를 남기며 마칩니다. 링크의 내용을 요약하면 성능은 Primary > Unique > Index > Non-indexed 순이란 이야기입니다.
+스택오버플로에 올라온 ['mysql 5.0 indexes - Unique vs Non Unique'](http://stackoverflow.com/a/389824/7511247)라는 질답의 좌표를 남기며 마칩니다. 링크의 내용을 요약하면 성능은 ~~Primary > Unique > Index > Non-indexed~~ Primary > Unique & Non-Unique-Index > Non-indexed 순이란 이야기입니다.

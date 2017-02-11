@@ -33,8 +33,8 @@
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
-  <link rel="canonical" href="http://blog.appkr.kr/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+  <link rel="canonical" href="http://localhost:4000/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://localhost:4000/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -79,6 +79,56 @@
 
   <div class="container">
   <section id="main" class="col-md-9 minimal">
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-02-11
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/style-changed/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>이 블로그는 직업인으로서의 일상과 생각을 정리하여 기록하기 위해 2008년부터 쓰기 시작했습니다. 당시에는 모바일 반도체를 개발하는 회사에서 제품을 기획하는 일을 하고 있었지요. 블로그 플랫폼도 네이버로 시작했던 걸로 기억합니다. 일기처럼 쓰는 글이었으므로 당연히 평서형(반말)을 썼습니다.</p>
+
+<p>네이버에서 텍스타일로, 텍스타일에서 티스토리로, 다시 워드프레스로 이전하며 블로깅을 하다가 2011년 반도체 회사를 떠나면서 더 이상 글을 쓰지 않았습니다. 개발자의 삶을 살기로 마음먹은 2015년 중반부터 개발자스럽게 블로그 플랫폼을 Jekyll로 옮겨 개발자로서 배운 내용을 하나씩 남기기 시작했습니다.</p>
+
+<p>깃허브에 라라벨 프레임워크에 대한 온라인 강의를 연재하고, 책을 집필하고, 오프라인 강의를 하면서, <strong>블로그는 지난 세월 기획자로 살던 저를 개발자 appkr로 세상에 알리는 든든한 지원군 역할</strong>을 해 왔습니다. 덕분에 성공적으로 경력 전환도 할 수 있었습니다.</p>
+
+<p><a href="/images/2017-02-11-img-01.png"><img src="/images/2017-02-11-img-01.png" alt="블로그 방문자 추이" /></a></p>
+
+<p>그림처럼 꽤 많은 분들이 찾아 주셨고, 이제 이 블로그는 혼자만의 일상을 기록하기보다는 다른 개발자들과 소통하는 공간으로 성격이 변모되었습니다. 해서 <strong>앞으로는 존칭형(존댓말)으로 글을 쓰려고 합니다</strong>. 사실 존칭형으로 글 쓰는 것이 더 쉽기도하고요~</p>
+
+      </div>
+
+      <footer class="box-footer">
+        
+      </footer>
+    </article>
     
     <article class="box">
       <div class="box-header">
@@ -301,69 +351,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-12-10
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>앞서 <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-1/">1부</a>에서는 다음 내용을 다루었다.</p>
-
-<ul>
-  <li>RPC 시스템에 대한 이해와 여러 가지 RPC 프레임워크의 특징</li>
-  <li>Thrift IDL(Interface Definition Language)를 이용해서 API 규격 만드는 방법</li>
-  <li>API 규격을 다양한 언어로 컴파일하고 라이브러리화 하는 방법</li>
-  <li>API 서버 프로젝트에 라이브러리를 플러그인하고 API 규격에 맞춘 서비스를 개발하는 방법</li>
-  <li>API 클라이언트가 서버에 접속하여 Thrift 프로토콜로 통신하는 방법</li>
-</ul>
-
-<p>1부에서 언급했다시피, <strong>Thrift 요청과 응답은 Thrift 프로토콜 안쪽에서 (역)직렬화</strong> 된다. 1부의 내용만으로는 디버깅이 어려워 서비스를 개발하기가 수월치 않다. 그래서 2부에서는 다음 내용을 다룬다.</p>
-
-<ul>
-  <li><strong>Thrift 프로토콜 안쪽에서 작동하는 미들웨어</strong>를 만들어서 Thrift 요청을 핸들링하고 그 과정에서 발생한 예외를 잡고 소비하는 방법</li>
-  <li><strong>책임 연쇄(Chain of Responsibility) 패턴</strong>의 이해</li>
-  <li>통합 테스트(Integration Test) 구현</li>
-</ul>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -420,7 +407,7 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">70</span>
+          <span class="badge">71</span>
         </a>
       </li>
       <li>
@@ -1050,6 +1037,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
+          <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
           <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
         </h4>
@@ -1059,13 +1053,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
           <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2016-12-24</small>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
         </h4>
       </li>
       

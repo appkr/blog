@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "존칭형으로 블로그 쓰기",
+    "category" : "learn-n-think",
+    "tags"     : "",
+    "url"      : "/learn-n-think/style-changed/",
+    "date"     : "2017-02-11"
+  },
+  
+  {
     "title"    : "PHP의 예외 클래스 이해하기 2부",
     "category" : "work-n-play",
     "tags"     : "개발자, PHP, Laravel",

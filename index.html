@@ -83,6 +83,61 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-02-11
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/db-query-performance-illustration-using-array/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>많은 양의 데이터를 체계적으로 저장하기 위해 데이터베이스를 사용합니다. 필요할 때마다 빠르게 꺼내 보거나, 수정하고, 불필요해지면 삭제하기도 합니다. 이처럼 데이터베이스는 수 많은 레코드셋에서 원하는 레코드만 빠르게 추출해 낼 수 있는데, <strong>내부에서 어떻게 작동하는 지는 완전 블랙박스</strong>죠?</p>
+
+<p>가령 ‘인덱스를 걸면 빠르다’, ‘조인은 느리다’처럼 일반적으로 알려진 상식이 있고, 이런 상식에 따라 모델링을 하면 대체적으로 잘 돌아가지만…</p>
+
+<p>최근 회사에서 관련된 일도 있었고 해서, 스물스물 호기심이 발동하기 시작했습니다.</p>
+
+<p><a href="https://github.com/mysql/mysql-server">MySQL은 소스코드가 깃허브에 완전 공개</a>되어있어 완전 블랙박스라 할 수는 없지만, 죽을 때까지도 코드를 까볼 생각은 안할 겁니다. 대신 <strong>간단한 배열을 이용해서 데이터베이스를 흉내내고, 기본 키(Primary Key), 문자열 컬럼에 대한 풀 스캔, 바이너리 스캔, 인덱스, 조인 등에서 성능 차이가 발생하는 이유를 추측해보기</strong>로 했습니다.</p>
+
+<p>이 실험을 위한 소스코드는 <a href="https://github.com/appkr/db-performance-illustration">이곳에서 다운로드</a> 받을 수 있습니다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/db-query-performance-illustration-using-array/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
         </h2>
         <p class="box-meta">
@@ -291,66 +346,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-12-18
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
-
-<p><img src="https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png" alt="Firebase Logo" /></p>
-
-<p>PubNub, Pusher 등의 메시징 서비스와 FCM이 다른 점은 단말기가 꺼져 있거나, 잠김 모드에 있거나, 메시지를 받을 애플리케이션이 실행 중이지 않을 때도 메시지를 보낼 수 있다는 점이다.</p>
-
-<p>FCM을 이용한 푸쉬 메시징 시스템을 구성하라면 다음 두 가지가 필요하다.</p>
-
-<ul>
-  <li>푸쉬 메시지를 받을 모바일 <strong>단말용 애플리케이션</strong></li>
-  <li>푸쉬 메시지를 전송할 모바일 단말을 선별하고, 원하는 메시지와 함께 구글 FCM 서버에 메시지 전송 요청을 부탁할 <strong>애플리케이션 서버</strong>(<a href="https://firebase.google.com/docs/cloud-messaging/server">구글 공식 문서</a>에서는 “앱 서버”라고 칭하기도 한다).</li>
-</ul>
-
-<p>이 포스트에서는 <strong>애플리케이션 서버를 구현하는 과정</strong>을 기술해본다. 모바일 단말용 애플리케이션은 이 포스트에서 다루지 않는다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -413,7 +408,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">51</span>
+          <span class="badge">52</span>
         </a>
       </li>
       <li>
@@ -462,6 +457,12 @@
     <span style="font-size: 94%">
       <a href="/tags#CSS">
         CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Database">
+        Database
       </a>
     </span>
     
@@ -531,7 +532,7 @@
       </a>
     </span>
     
-    <span style="font-size: 130%">
+    <span style="font-size: 134%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -921,7 +922,7 @@
       </a>
     </span>
     
-    <span style="font-size: 234%">
+    <span style="font-size: 238%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1038,6 +1039,13 @@
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
+          <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
           <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
         </h4>
       </li>
@@ -1046,13 +1054,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
           <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
-          <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
       </li>
       

@@ -83,6 +83,59 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/linux-nand-ftl/">Linux에서 Nand-FTL 기술의 사용</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2010-03-24
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/linux-nand-ftl/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <h2 id="ftl-이란">FTL 이란?</h2>
+
+<p>USB 케이블등을 이용해서 휴대단말과 PC 를 연결하여 카메라로 찍은 영상 등을 PC 로 가져오고, PC 에서 다운로드/인코딩한 동영상이나 파일을 휴대단말로 복사하는 것은 필수적인 기능이다.</p>
+
+<p>Nand Flash Memory 를 저장장치로 하는 휴대단말과 PC 를 서로 연결하여, 위와 같이 파일을 주고 받기 위해서 필요한 기술이 FTL (Flash Translation Layer) 이다. PC 는 Block 단위의 저장공간을 할당하는 반면에, Nand 는 Page 단위로 저장공간을 활용하기 때문에 양 File System 간의 상호운용성을 위해 단말 시스템에 필요한 기반 기술이 FTL 이라는 녀석이다.</p>
+
+<p>이런 문제점을 피하기 위해 휴대단말의 Nand 에 SD카드 인터페이스를 도입하여 PC 의 파일시스템을 그대로 사용할 수 있는 Movi-Nand 등이 있으나, Nand 와의 가격/특성 차이로 휴대 단말 제조사들의 상품 기획은 다양할 수 있다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/linux-nand-ftl/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/letters-not-been-sent/">보내지 못하는 편지</a>
         </h2>
         <p class="box-meta">
@@ -343,83 +396,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/around-me/epilog-on-microsoft-cloud-conference/">마이크로소프트 @cloud conference</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2010-02-25
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#around-me">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/around-me/epilog-on-microsoft-cloud-conference/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>우리가 사용하는 클라우드 서비스들의 백엔드에서 움직이는 시스템의 구성과 그 시스템들이 움직이는 원리를 이해할 수 있는 좋은 기회였다.</p>
-
-<p>마이크로소프트 클라우드 제품군은 개념적으로</p>
-
-<ul>
-  <li>Infra@cloud</li>
-  <li>Data@could</li>
-  <li>Application@cloud</li>
-</ul>
-
-<p>로 구분한다. 기조연설이 끝나고 나서, 각 제품군별로 3개의 트랙으로 나누어 세션들이 진행되었으며, 난 Infra@cloud 에 참석했다. 대부분의 청중들은 각 기업의 IT 관리자였다.</p>
-
-<h2 id="지식노동자들은-어떻게-일하는가">지식노동자들은 어떻게 일하는가?</h2>
-
-<p>지식노동자들의 일의 본질은 무엇인가를 선택하는 것이다. 올바른 선택을 위해 데이터가 필요하고, 데이터는 데이터소스로 부터 받을 수 있다. 방대한 데이터에서 유용한 데이터를 선택하고 해석하고 사용하는 일일 것이다.</p>
-
-<h2 id="클라우드-란-무엇인가">‘클라우드’ 란 무엇인가?</h2>
-
-<p>마이크로소프트는 클라우드를</p>
-
-<blockquote>
-  <p>필요에 의해 유연하게 확장될 수도 축소될 수도 있는 컴퓨팅 리소스들—하드웨어, 소프트웨어, 데이터베이스, 네크워크—의 풀</p>
-</blockquote>
-
-<p>로 정의한다.</p>
-
-<p>과거에는 기업들이 데이터센터를 보유했었다 (비용↑, 통제가능성↑). 그 이후엔 소유는 하되, 외부 전문 관리 업체에 맡겼었다 (비용↓, 통제가능성↓). 반면 클라우드는 컴퓨팅 자원 및 데이터센터를 소유하지 않고, 빌려 쓰는 개념이다 (비용↓, 통제가능성↑).</p>
-
-<p>클라우드란 갑자기 생긴 기술이 아니다. SaaS, IT Governance, … 등 많은 기술이나 개념들이 존재해 왔었고, 그 기술들을 융복합해서 클라우드라고 부르기로 한 것이다. 따라서, 클라우드라는 용어는 일시적인 유행일 수 있으나, 클라우드를 위한 인프라와 그 위에서 동작하는 서비스가 갑자기 사라지지는 않을 것이다.</p>
-
-<p>분명, 마이크로소프트, IT 관리자가 생각하는 클라우드, 일반 사용자가 생각하는 클라우드의 정의는 분명이 다르다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/around-me/epilog-on-microsoft-cloud-conference/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -482,7 +458,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">51</span>
+          <span class="badge">52</span>
         </a>
       </li>
       <li>
@@ -531,6 +507,12 @@
     <span style="font-size: 94%">
       <a href="/tags#CSS">
         CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Database">
+        Database
       </a>
     </span>
     
@@ -600,7 +582,7 @@
       </a>
     </span>
     
-    <span style="font-size: 130%">
+    <span style="font-size: 134%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -990,7 +972,7 @@
       </a>
     </span>
     
-    <span style="font-size: 234%">
+    <span style="font-size: 238%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1107,6 +1089,13 @@
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
+          <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
           <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
         </h4>
       </li>
@@ -1115,13 +1104,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
           <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-01-07</small>
-          <a href="/work-n-play/understanding-php-exception-class/">PHP의 예외 클래스 이해하기</a>
         </h4>
       </li>
       

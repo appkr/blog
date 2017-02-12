@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="AWS ECS(EC2 Container Service)는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. AWS ECR(Container Registry)은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="AWS ECS/ECR을 이용한 서비스 배포"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content="http://img.youtube.com/vi/zBqjh61QcB4/0.jpg"/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="AWS ECS/ECR을 이용한 서비스 배포">
+  <meta itemprop="description" content="AWS ECS(EC2 Container Service)는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. AWS ECR(Container Registry)은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도...">
+  <meta itemprop="image" content="http://img.youtube.com/vi/zBqjh61QcB4/0.jpg">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="AWS ECS/ECR을 이용한 서비스 배포" />
+  <meta name="twitter:description" content="AWS ECS(EC2 Container Service)는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. AWS ECR(Container Registry)은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도..." />
+  <meta name="twitter:image" content="http://img.youtube.com/vi/zBqjh61QcB4/0.jpg" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/deploy-with-ecs/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>AWS ECS/ECR을 이용한 서비스 배포 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li>
+          <a href="/">Blog</a>
+        </li>
+        <!--<li>
+          <a href="/guest-book/">Guest Book</a>
+        </li>-->
+        <li>
+          <a href="/profile/">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">AWS ECS/ECR을 이용한 서비스 배포</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/deploy-with-ecs/&title=AWS ECS/ECR을 이용한 서비스 배포" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/deploy-with-ecs/&title=AWS ECS/ECR을 이용한 서비스 배포&text=AWS ECS/ECR을 이용한 서비스 배포" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/deploy-with-ecs/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-02-12
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/deploy-with-ecs/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>AWS ECS(EC2 Container Service)</strong>는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. <strong>AWS ECR(Container Registry)</strong>은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.</p>
+
+<p>아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).</p>
+
+<p><a href="https://www.youtube.com/watch?v=zBqjh61QcB4"><img src="http://img.youtube.com/vi/zBqjh61QcB4/0.jpg" alt="Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS" /></a></p>
+
+<p>AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다<small>(협찬 좀…)</small>.</p>
+
+<ol>
+  <li>이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.</li>
+  <li>Service Discovery나 Container Orchestration등을 위해 <a href="https://kubernetes.io/">쿠버네티스(Kubernetes)</a>와 같이 어려운 도구를 다룰 필요가 없다.</li>
+</ol>
+
+<p>그런데 <strong>아직 서울 지역는 오픈되지 않았습니다.</strong> 빨리 좀 오픈해 주세요~ 갓마존.</p>
+
+<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="1-예제-프로젝트-설치">1. 예제 프로젝트 설치</h2>
+
+<p>ECS에 배포할 서비스가 있어야겠죠? 아래 주소를 방문하여 가이드에 따라 프로젝트를 설치하고, 도커 이미지를 빌드합니다.</p>
+
+<p><a href="https://github.com/appkr/deploy-laravel-with-ecs-and-ecr">https://github.com/appkr/deploy-laravel-with-ecs-and-ecr</a></p>
+
+<p>이 예제에서는 로컬의 <code class="highlighter-rouge">.env</code> 파일을 도커 이미지에 포함하여 애플리케이션의 실행 환경 변수를 설정하고 있습니다. 실제 배포에서는 AWS Console/로컬 셸에서 환경 변수를 등록하거나, <code class="highlighter-rouge">Dockerfile</code>에서 S3 등에 저장된 <code class="highlighter-rouge">.env</code>를 도커 이미지로 다운로드 받아 사용하도록 하는 것이 안전할 것입니다.</p>
+
+<h2 id="2-hello-ecs">2. Hello ECS</h2>
+
+<p>AWS Console에 로그인합니다. 가장 먼저 해야할 일은 리전을 Tokyo나 Singapore 등 ECS가 오픈된 지역으로 변경하는 일입니다. 필자는 Tokyo로 선택했습니다.</p>
+
+<p>Services 목록에서 <kbd>EC2 Container Service</kbd>로 진입하고 <kbd>Get Started</kbd> 버튼을 누릅니다.</p>
+
+<p>다음 화면이 나오면 체크박스를 모두 체크하고 <kbd>Continue</kbd> 버튼을 누릅니다.</p>
+
+<ul>
+  <li>[v] Deploy a sample application onto Amazon ECS Cluster</li>
+  <li>[v] Store container images securely with Amazon ECR</li>
+</ul>
+
+<p><a href="/images/2017-02-12-img-02.png"><img src="/images/2017-02-12-img-02.png" alt="Getting Started with Amazon EC2 Container Service(ECS)" /></a></p>
+
+<p>지금부터 여섯 단계를 거칩니다.</p>
+
+<h3 id="21-step-1-configure-repository">2.1. Step 1: Configure repository</h3>
+
+<p>ECR 레지스트리에 저장소 이름을 정하는 화면입니다. <code class="highlighter-rouge">appkr/myshop</code>으로 이름을 정했습니다.</p>
+
+<p><a href="/images/2017-02-12-img-03.png"><img src="/images/2017-02-12-img-03.png" alt="Step 1: Configure repository" /></a></p>
+
+<h3 id="22-step-2-build-tag-and-push-docker-image">2.2. Step 2: Build, tag, and push Docker image</h3>
+
+<p>화면에 ECR을 초기화하기 위한 자세한 안내가 나옵니다. 1 절에서 이미지는 빌드하고 테스트했으므로 빌드 과정은 건너 뜁니다. <code class="highlighter-rouge">appkr/myshop:latest</code> 이미지를 빌드했고, 실행하여 작동 테스트를 완료했다고 가정합니다. 나머지 과정은 다음과 같습니다.</p>
+
+<p>로컬 셸에서 ECR 서비스에 로그인합니다. 도커 허브나 <a href="https://docs.docker.com/registry/">도커 레지스트리</a>에 로그인하는 방법과 같습니다. 굉장히 긴 비밀번호가 달린 명령문을 콘솔에 출력하는데 그대로 복사해서 붙여 넣고 로그인합니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/any <span class="nv">$ </span>aws ecr get-login --region ap-northeast-1
+
+~/any <span class="nv">$ </span>docker login -u AWS -p &lt;LONG_PASS_STRING&gt; -e none https://628988759087.dkr.ecr.ap-northeast-1.amazonaws.com
+</code></pre>
+</div>
+
+<p>이제 ECR 레지스트리 URL을 포함한 네임스페이스를 달아 태깅하고, 태깅된 이미지를 ECR에 푸쉬합니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/any <span class="nv">$ </span>docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+
+~/any <span class="nv">$ </span>docker images
+<span class="c"># REPOSITORY                                                       TAG       IMAGE ID         CREATED           SIZE</span>
+<span class="c"># appkr/myshop                                                     latest    126f36ac9412     58 minutes ago    549 MB</span>
+<span class="c"># 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop   latest    126f36ac9412     58 minutes ago    549 MB</span>
+
+~/any <span class="nv">$ </span>docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+<span class="c"># The push refers to a repository [628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop]</span>
+<span class="c"># ...</span>
+<span class="c"># latest: digest: sha256:b8d0e4d0ab86db7436943573b11d06bdac34deb3d874423005670dfd47a39908 size: 5331</span>
+</code></pre>
+</div>
+
+<h3 id="23-step-3-create-a-task-definition">2.3. Step 3: Create a task definition</h3>
+
+<p>필자도 ECS를 배우고 있는 과정으로, 두 번 밖에 사용해 보지 않았기에 갓마존에서 말하는 <code class="highlighter-rouge">task</code>의 개념을 정확히 이해하지 못했습니다. <kbd>Create a task definition</kbd> 창에 다음과 같이 입력했습니다.</p>
+
+<ul>
+  <li>Task definition name*: deploy</li>
+  <li>Container name*: myshop</li>
+  <li>Image*: 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest</li>
+  <li>Memory Limits (MB)*: Hard limit 256</li>
+  <li>Port mappings: 80 80 tcp</li>
+</ul>
+
+<h3 id="24-step-4-configure-service">2.4. Step 4: Configure service</h3>
+
+<p>서비스를 설정하고, ELB(Elastic Load Balancer)를 활성화했습니다.</p>
+
+<ul>
+  <li>Service name*: myshop</li>
+  <li>Desired number of tasks*: 1</li>
+  <li>Elastic load balancing
+    <ul>
+      <li>Container name: myshop:80</li>
+      <li>ELB listener protocol*: HTTP</li>
+      <li>ELB health check: http:80/</li>
+      <li>ELB listener port*: 80</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="25-step-5-configure-cluster">2.5. Step 5: Configure cluster</h3>
+
+<p>클러스터는 서비스를 구성하기 위한 서버(컨테이너)들의 논리적 집합이라 이해하고 있습니다. 가령 지금 배포하는 애플리케이션이 RDS나 ElasticCache를 쓸 수도 있지만, MySQL과 Redis를 직접 컨테이너로 구성해서 클러스터에 넣을 수도 있을 겁니다. 여튼 다음과 같이 설정했습니다.</p>
+
+<ul>
+  <li>Cluster name*: myshop</li>
+  <li>EC2 instance type*: t2.micro</li>
+  <li>Number of instances*: 1</li>
+  <li>Key pair: aws-tokyo-ecs</li>
+  <li>Security group
+    <ul>
+      <li>Allowed ingress source(s)*: Anywhere</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Key pair는 컨테이너에 SSH 접속을 위해 필요합니다. 인스턴스 타입도 실험해 보고 지울 것이므로 가장 작은 것으로 선택하고, 인스턴스는 1개만 선택했습니다. AWS를 쓰던 사용자라면 각 입력 박스의 의미를 이해할 수 있을 것입니다.</p>
+
+<h3 id="26-step-6-review">2.6. Step 6: Review</h3>
+
+<p>지금까지 설정한 값들을 보여줍니다. <kbd>Launch</kbd> 버튼을 누르면 환경 구성이 시작됩니다. 환경 구성이 완료되면 <kbd>View Instance</kbd> 버튼이 활성화됩니다.</p>
+
+<p><a href="/images/2017-02-12-img-04.png"><img src="/images/2017-02-12-img-04.png" alt="Step 6: Review" /></a></p>
+
+<p>우선 여기까지 수행하면 애플리케이션이 ECS에서 작동하고 있는 상태가 됩니다.</p>
+
+<h2 id="3-로드-밸런싱-및-오토-스케일링">3. 로드 밸런싱 및 오토 스케일링</h2>
+
+<h3 id="31-로드-밸런서">3.1. 로드 밸런서</h3>
+
+<p><kbd>Cluster</kbd> 메뉴에서 <code class="highlighter-rouge">myshop</code> 서비스를 선택하면, <kbd>Load Balancing</kbd> 섹션을 볼 수 있습니다. 누르면 다음 화면을 볼 수 있습니다.</p>
+
+<p><a href="/images/2017-02-12-img-05.png"><img src="/images/2017-02-12-img-05.png" alt="EC2 Load Balancing" /></a></p>
+
+<p>하이라이트된 URL이 도커 컨테이너에서 실행 중인 서비스로서, 사용자가 접근할 수 있는 URL이 됩니다. 브라우저에서 열어보면 컨테이너 <code class="highlighter-rouge">59450439db83</code>에서 서비스가 실행 중인 것을 확인할 수 있습니다.</p>
+
+<p><a href="/images/2017-02-12-img-06.png"><img src="/images/2017-02-12-img-06.png" alt="EC2 Load Balancing" /></a></p>
+
+<h3 id="32-오토-스케일링">3.2. 오토 스케일링</h3>
+
+<p>아직 트래픽을 많이 만들지 못해서 오토 스케일링은 경험하지 못했습니다. 오토 스케일링을 설정한 후, 다음 스크립트를 여러 개의 셸에서 실행해서 서버에 부하를 주었지만 좀 처럼 CPU 로드가 올라가진 않더라구요ㅜ.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/any <span class="nv">$ </span><span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>curl http://ec2contai-ecselast-1lgfqkql0okbd-452428627.ap-northeast-1.elb.amazonaws.com:80<span class="se">\;</span> sleep 1; <span class="k">done</span>
+</code></pre>
+</div>
+
+<p>어쨌든 Elastic Beanstalk처럼 인스턴스를 처음부터 만들고, 서버 인프라를 구성하고, 환경변수를 추가하고, 애플리케이션 코드를 복제해야 하는 것과 달리, 도커는 애플리케이션까지 포함된 이미지를 ECR에서 받아 실행만 하는 것으므로, (로컬 환경의 경험으로 부터 유추해 보아) 대략 수 초 내에 새 컨테이너를 띄울 수 있을 것입니다.</p>
+
+<p><kbd>Cluster</kbd> 메뉴에서 <kbd>Update</kbd> 버튼을 눌러 오토 스케일링 옵션을 설정했습니다. 총 세 단계를 거칩니다.</p>
+
+<h4 id="1-단계-min-max-tasks-설정">1 단계: Min, Max Tasks 설정</h4>
+
+<p>그림과 같습니다. 필자는 최소 1대, 최대 2대로 설정했습니다.</p>
+
+<p><a href="/images/2017-02-12-img-07.png"><img src="/images/2017-02-12-img-07.png" alt="EC2 Load Balancing" /></a></p>
+
+<h4 id="23-단계-오토-스케일링-조건-및-액션-설정">2~3 단계: 오토 스케일링 조건 및 액션 설정</h4>
+
+<p>직전 5분 동안 CPU 사용량이 40%를 넘어서면 스케일링 아웃하도록 설정했습니다. 아~ 아까비!! 이 값을 5% 정도로 낮게 설정했다면 오토 스케일을 볼 수 있었을 텐데… 지금은 모든 환경을 지운 상태라 실험해 볼 수 없네요.</p>
+
+<p><a href="/images/2017-02-12-img-08.png"><img src="/images/2017-02-12-img-08.png" alt="EC2 Load Balancing" /></a></p>
+
+<p><a href="/images/2017-02-12-img-09.png"><img src="/images/2017-02-12-img-09.png" alt="EC2 Load Balancing" /></a></p>
+
+<h2 id="4-워크-플로우">4. 워크 플로우</h2>
+
+<p>이제 로컬 개발 환경에서 애플리케이션 코드가 변경되면, <code class="highlighter-rouge">docker build</code> -&gt; <code class="highlighter-rouge">docker tag</code> -&gt; <code class="highlighter-rouge">docker push</code> 명령만으로 변경된 애플리케이션을 AWS ECS 클러스터에 배포할 수 있습니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/deploy-laravel-with-ecs-and-ecr <span class="nv">$ </span>docker build --tag appkr/myshop .
+
+~/any <span class="nv">$ </span>docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+
+~/any <span class="nv">$ </span>docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+</code></pre>
+</div>
+
+<p>이상의 과정을 Jenkins등 CI/CD 도구에 걸어 놓으면, 코드 변경 -&gt; <code class="highlighter-rouge">git push</code> -&gt; Test by CI tool -&gt; Deploy by CD tool 등으로 애플리케이션 개발 및 수정 이후의 모든 과정을 완전 자동화할 수 있을 겁니다. 도커, CI/CD를 통한 테스트 및 배포 자동화는 배포에 대한 개발자의 두려움을 없애 줍니다.</p>
+
+<p>배포 및 운영만을 담당하는 엔지니어가 별도로 있는 조오~은 회사가 아니라면, 결과적으로 ECS/ECR를 이용한 서비스 배포는 개발자가 비즈니스 로직 개발에만 집중할 수 있도록 함으로써, 비즈니스 싸이클이 빨리지는 효과를 얻을 수 있습니다.</p>
+
+<hr />
+
+<p>도커 이용의 장점이나 사용법을 배우려면 <code class="highlighter-rouge">subicura</code>님의 블로그 포스트를 참고하시기 바랍니다.</p>
+
+<p><a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">초보를 위한 도커 안내서 by subicura(김충섭)</a></p>
+
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#Docker">
+            Docker
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/db-query-performance-illustration-using-array/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              데이터베이스 쿼리 성능 차이를 ...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">71</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">53</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Database">
+        Database
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Facebook">
+        Facebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 126%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 134%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Streaming">
+        Streaming
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 242%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-12</small>
+          <a href="/work-n-play/deploy-with-ecs/">AWS ECS/ECR을 이용한 서비스 배포</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
+          <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
+          <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2017 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

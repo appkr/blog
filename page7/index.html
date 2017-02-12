@@ -89,6 +89,66 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">Gitbook 과 Pandoc 을 이용한 전자 출판</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-02-23
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/GitbookIO/gitbook">Gitbook</a></p>
+
+    <p>GitBook is a command line tool (and Node.js library) for building beautiful books using GitHub/Git and Markdown</p>
+  </li>
+  <li>
+    <p><a href="http://pandoc.org/">Pandoc</a></p>
+
+    <p>If you need to convert files from one markup format into another, pandoc is your swiss-army knife.</p>
+  </li>
+</ul>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/epilog-on-volunteer-work-for-open-tutorials/">생활코딩 작심5일 후기</a>
         </h2>
         <p class="box-meta">
@@ -330,92 +390,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/jekyll-blogging-part5/">블로그 플랫폼 이전 5 - Disqus & Facebook</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-02-13
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/jekyll-blogging-part5/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.</p>
-
-<ol>
-  <li><a href="/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶">개발자로서의 새로운 삶</a></li>
-  <li><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll">Goodbye Wordpress, Hello Jekyll</a></li>
-  <li><a href="/work-n-play/블로그-플랫폼-이전-3-publishing">Publishing</a></li>
-  <li><a href="/work-n-play/블로그-플랫폼-이전-4-build-automation-with-gulp">Build Automation with Gulp</a></li>
-  <li><em>Disqus &amp; Facebook</em></li>
-</ol>
-
-<p>지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.</p>
-
-<div class="spacer">• • •</div>
-
-<p>기존 Wordpress to Jekyll 마이그레이션 시리즈에 하나의 포스트를 더 추가한다. 오늘 구현한 따끈한 기능 2가지 이다.</p>
-
-<ul>
-  <li>Disqus<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 최신 댓글 뽑아 오기</li>
-  <li>Facebook 최신 포스트 뽑아 오기</li>
-</ul>
-
-<h2 id="disqus-최근-댓글-뽑아-오기">Disqus 최근 댓글 뽑아 오기</h2>
-
-<p>Disqus 에서 이미 위젯을 제공하고 있어서 구현은 아주 간단한다.</p>
-
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_includes/site-sidebar.html#L64 --&gt;</span>
-
-<span class="c">&lt;!-- ... --&gt;</span>
-<span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"box"</span> <span class="na">id=</span><span class="s">"recent-comments"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box-header"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;h3&gt;</span>Recent Comments<span class="nt">&lt;/h3&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box-body dsq-widget"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://appkr.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_mods=0&amp;hide_avatars=0&amp;avatar_size=32&amp;excerpt_length=100"</span><span class="nt">&gt;&lt;/script&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/section&gt;</span>
-<span class="c">&lt;!-- ... --&gt;</span>
-</code></pre>
-</div>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/jekyll-blogging-part5/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -478,7 +452,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">52</span>
+          <span class="badge">53</span>
         </a>
       </li>
       <li>
@@ -536,7 +510,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#Docker">
         Docker
       </a>
@@ -992,7 +966,7 @@
       </a>
     </span>
     
-    <span style="font-size: 238%">
+    <span style="font-size: 242%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1108,6 +1082,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-12</small>
+          <a href="/work-n-play/deploy-with-ecs/">AWS ECS/ECR을 이용한 서비스 배포</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
           <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
         </h4>
@@ -1117,13 +1098,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
           <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
-          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
         </h4>
       </li>
       

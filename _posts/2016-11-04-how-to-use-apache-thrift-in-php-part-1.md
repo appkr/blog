@@ -707,5 +707,6 @@ Thrift 요청과 응답은 Thrift의 프로토콜 안쪽에서 (역)직렬화 �
  
 -   [https://github.com/appkr/thrift-example-idl](https://github.com/appkr/thrift-example-idl)
 -   [https://github.com/appkr/thrift-example-project](https://github.com/appkr/thrift-example-project)
+-   [https://github.com/appkr/thrift-js-poc-project](https://github.com/appkr/thrift-js-poc-project)
 
 에 공개되어 있다.

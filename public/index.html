@@ -89,6 +89,68 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/deploy-with-ecs/">AWS ECS/ECR을 이용한 서비스 배포</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-02-12
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/deploy-with-ecs/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>AWS ECS(EC2 Container Service)</strong>는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. <strong>AWS ECR(Container Registry)</strong>은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.</p>
+
+<p>아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).</p>
+
+<p><a href="https://www.youtube.com/watch?v=zBqjh61QcB4"><img src="http://img.youtube.com/vi/zBqjh61QcB4/0.jpg" alt="Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS" /></a></p>
+
+<p>AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다<small>(협찬 좀…)</small>.</p>
+
+<ol>
+  <li>이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.</li>
+  <li>Service Discovery나 Container Orchestration등을 위해 <a href="https://kubernetes.io/">쿠버네티스(Kubernetes)</a>와 같이 어려운 도구를 다룰 필요가 없다.</li>
+</ol>
+
+<p>그런데 <strong>아직 서울 지역는 오픈되지 않았습니다.</strong> 빨리 좀 오픈해 주세요~ 갓마존.</p>
+
+<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/deploy-with-ecs/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
         </h2>
         <p class="box-meta">
@@ -297,61 +359,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-12-24
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <blockquote>
-  <p>이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일에 코드 리팩토링 내용을 반영하여 변경되었습니다.</p>
-</blockquote>
-
-<p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
-
-<p><img src="https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png" alt="Firebase Logo" /></p>
-
-<p>지난 <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">1부</a>에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 FCM 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -414,7 +421,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">52</span>
+          <span class="badge">53</span>
         </a>
       </li>
       <li>
@@ -472,7 +479,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#Docker">
         Docker
       </a>
@@ -928,7 +935,7 @@
       </a>
     </span>
     
-    <span style="font-size: 238%">
+    <span style="font-size: 242%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1044,6 +1051,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-02-12</small>
+          <a href="/work-n-play/deploy-with-ecs/">AWS ECS/ECR을 이용한 서비스 배포</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
           <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
         </h4>
@@ -1053,13 +1067,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-02-11</small>
           <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-01-15</small>
-          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
         </h4>
       </li>
       

@@ -5,9 +5,219 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Feb 2017 14:39:27 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 14:39:27 +0900</lastBuildDate>
+    <pubDate>Tue, 21 Feb 2017 23:25:46 +0900</pubDate>
+    <lastBuildDate>Tue, 21 Feb 2017 23:25:46 +0900</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>AWS ECS/ECR을 이용한 서비스 배포</title>
+        <description>&lt;p&gt;&lt;strong&gt;AWS ECS(EC2 Container Service)&lt;/strong&gt;는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. &lt;strong&gt;AWS ECR(Container Registry)&lt;/strong&gt;은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zBqjh61QcB4&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/zBqjh61QcB4/0.jpg&quot; alt=&quot;Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다&lt;small&gt;(협찬 좀…)&lt;/small&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.&lt;/li&gt;
+  &lt;li&gt;Service Discovery나 Container Orchestration등을 위해 &lt;a href=&quot;https://kubernetes.io/&quot;&gt;쿠버네티스(Kubernetes)&lt;/a&gt;와 같이 어려운 도구를 다룰 필요가 없다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그런데 &lt;strong&gt;아직 서울 지역는 오픈되지 않았습니다.&lt;/strong&gt; 빨리 좀 오픈해 주세요~ 갓마존.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;1-예제-프로젝트-설치&quot;&gt;1. 예제 프로젝트 설치&lt;/h2&gt;
+
+&lt;p&gt;ECS에 배포할 서비스가 있어야겠죠? 아래 주소를 방문하여 가이드에 따라 프로젝트를 설치하고, 도커 이미지를 빌드합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/appkr/deploy-laravel-with-ecs-and-ecr&quot;&gt;https://github.com/appkr/deploy-laravel-with-ecs-and-ecr&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이 예제에서는 로컬의 &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; 파일을 도커 이미지에 포함하여 애플리케이션의 실행 환경 변수를 설정하고 있습니다. 실제 배포에서는 AWS Console/로컬 셸에서 환경 변수를 등록하거나, &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt;에서 S3 등에 저장된 &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt;를 도커 이미지로 다운로드 받아 사용하도록 하는 것이 안전할 것입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-hello-ecs&quot;&gt;2. Hello ECS&lt;/h2&gt;
+
+&lt;p&gt;AWS Console에 로그인합니다. 가장 먼저 해야할 일은 리전을 Tokyo나 Singapore 등 ECS가 오픈된 지역으로 변경하는 일입니다. 필자는 Tokyo로 선택했습니다.&lt;/p&gt;
+
+&lt;p&gt;Services 목록에서 &lt;kbd&gt;EC2 Container Service&lt;/kbd&gt;로 진입하고 &lt;kbd&gt;Get Started&lt;/kbd&gt; 버튼을 누릅니다.&lt;/p&gt;
+
+&lt;p&gt;다음 화면이 나오면 체크박스를 모두 체크하고 &lt;kbd&gt;Continue&lt;/kbd&gt; 버튼을 누릅니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;[v] Deploy a sample application onto Amazon ECS Cluster&lt;/li&gt;
+  &lt;li&gt;[v] Store container images securely with Amazon ECR&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-02.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-02.png&quot; alt=&quot;Getting Started with Amazon EC2 Container Service(ECS)&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;지금부터 여섯 단계를 거칩니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;21-step-1-configure-repository&quot;&gt;2.1. Step 1: Configure repository&lt;/h3&gt;
+
+&lt;p&gt;ECR 레지스트리에 저장소 이름을 정하는 화면입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;appkr/myshop&lt;/code&gt;으로 이름을 정했습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-03.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-03.png&quot; alt=&quot;Step 1: Configure repository&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;22-step-2-build-tag-and-push-docker-image&quot;&gt;2.2. Step 2: Build, tag, and push Docker image&lt;/h3&gt;
+
+&lt;p&gt;화면에 ECR을 초기화하기 위한 자세한 안내가 나옵니다. 1 절에서 이미지는 빌드하고 테스트했으므로 빌드 과정은 건너 뜁니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;appkr/myshop:latest&lt;/code&gt; 이미지를 빌드했고, 실행하여 작동 테스트를 완료했다고 가정합니다. 나머지 과정은 다음과 같습니다.&lt;/p&gt;
+
+&lt;p&gt;로컬 셸에서 ECR 서비스에 로그인합니다. 도커 허브나 &lt;a href=&quot;https://docs.docker.com/registry/&quot;&gt;도커 레지스트리&lt;/a&gt;에 로그인하는 방법과 같습니다. 굉장히 긴 비밀번호가 달린 명령문을 콘솔에 출력하는데 그대로 복사해서 붙여 넣고 로그인합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;aws ecr get-login --region ap-northeast-1
+
+~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker login -u AWS -p &amp;lt;LONG_PASS_STRING&amp;gt; -e none https://628988759087.dkr.ecr.ap-northeast-1.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 ECR 레지스트리 URL을 포함한 네임스페이스를 달아 태깅하고, 태깅된 이미지를 ECR에 푸쉬합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+
+~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker images
+&lt;span class=&quot;c&quot;&gt;# REPOSITORY                                                       TAG       IMAGE ID         CREATED           SIZE&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# appkr/myshop                                                     latest    126f36ac9412     58 minutes ago    549 MB&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop   latest    126f36ac9412     58 minutes ago    549 MB&lt;/span&gt;
+
+~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+&lt;span class=&quot;c&quot;&gt;# The push refers to a repository [628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop]&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# latest: digest: sha256:b8d0e4d0ab86db7436943573b11d06bdac34deb3d874423005670dfd47a39908 size: 5331&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;23-step-3-create-a-task-definition&quot;&gt;2.3. Step 3: Create a task definition&lt;/h3&gt;
+
+&lt;p&gt;필자도 ECS를 배우고 있는 과정으로, 두 번 밖에 사용해 보지 않았기에 갓마존에서 말하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;task&lt;/code&gt;의 개념을 정확히 이해하지 못했습니다. &lt;kbd&gt;Create a task definition&lt;/kbd&gt; 창에 다음과 같이 입력했습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Task definition name*: deploy&lt;/li&gt;
+  &lt;li&gt;Container name*: myshop&lt;/li&gt;
+  &lt;li&gt;Image*: 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest&lt;/li&gt;
+  &lt;li&gt;Memory Limits (MB)*: Hard limit 256&lt;/li&gt;
+  &lt;li&gt;Port mappings: 80 80 tcp&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;24-step-4-configure-service&quot;&gt;2.4. Step 4: Configure service&lt;/h3&gt;
+
+&lt;p&gt;서비스를 설정하고, ELB(Elastic Load Balancer)를 활성화했습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Service name*: myshop&lt;/li&gt;
+  &lt;li&gt;Desired number of tasks*: 1&lt;/li&gt;
+  &lt;li&gt;Elastic load balancing
+    &lt;ul&gt;
+      &lt;li&gt;Container name: myshop:80&lt;/li&gt;
+      &lt;li&gt;ELB listener protocol*: HTTP&lt;/li&gt;
+      &lt;li&gt;ELB health check: http:80/&lt;/li&gt;
+      &lt;li&gt;ELB listener port*: 80&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;25-step-5-configure-cluster&quot;&gt;2.5. Step 5: Configure cluster&lt;/h3&gt;
+
+&lt;p&gt;클러스터는 서비스를 구성하기 위한 서버(컨테이너)들의 논리적 집합이라 이해하고 있습니다. 가령 지금 배포하는 애플리케이션이 RDS나 ElasticCache를 쓸 수도 있지만, MySQL과 Redis를 직접 컨테이너로 구성해서 클러스터에 넣을 수도 있을 겁니다. 여튼 다음과 같이 설정했습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cluster name*: myshop&lt;/li&gt;
+  &lt;li&gt;EC2 instance type*: t2.micro&lt;/li&gt;
+  &lt;li&gt;Number of instances*: 1&lt;/li&gt;
+  &lt;li&gt;Key pair: aws-tokyo-ecs&lt;/li&gt;
+  &lt;li&gt;Security group
+    &lt;ul&gt;
+      &lt;li&gt;Allowed ingress source(s)*: Anywhere&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Key pair는 컨테이너에 SSH 접속을 위해 필요합니다. 인스턴스 타입도 실험해 보고 지울 것이므로 가장 작은 것으로 선택하고, 인스턴스는 1개만 선택했습니다. AWS를 쓰던 사용자라면 각 입력 박스의 의미를 이해할 수 있을 것입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;26-step-6-review&quot;&gt;2.6. Step 6: Review&lt;/h3&gt;
+
+&lt;p&gt;지금까지 설정한 값들을 보여줍니다. &lt;kbd&gt;Launch&lt;/kbd&gt; 버튼을 누르면 환경 구성이 시작됩니다. 환경 구성이 완료되면 &lt;kbd&gt;View Instance&lt;/kbd&gt; 버튼이 활성화됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-04.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-04.png&quot; alt=&quot;Step 6: Review&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;우선 여기까지 수행하면 애플리케이션이 ECS에서 작동하고 있는 상태가 됩니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-로드-밸런싱-및-오토-스케일링&quot;&gt;3. 로드 밸런싱 및 오토 스케일링&lt;/h2&gt;
+
+&lt;h3 id=&quot;31-로드-밸런서&quot;&gt;3.1. 로드 밸런서&lt;/h3&gt;
+
+&lt;p&gt;&lt;kbd&gt;Cluster&lt;/kbd&gt; 메뉴에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;myshop&lt;/code&gt; 서비스를 선택하면, &lt;kbd&gt;Load Balancing&lt;/kbd&gt; 섹션을 볼 수 있습니다. 누르면 다음 화면을 볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-05.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-05.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;하이라이트된 URL이 도커 컨테이너에서 실행 중인 서비스로서, 사용자가 접근할 수 있는 URL이 됩니다. 브라우저에서 열어보면 컨테이너 &lt;code class=&quot;highlighter-rouge&quot;&gt;59450439db83&lt;/code&gt;에서 서비스가 실행 중인 것을 확인할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-06.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-06.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;32-오토-스케일링&quot;&gt;3.2. 오토 스케일링&lt;/h3&gt;
+
+&lt;p&gt;아직 트래픽을 많이 만들지 못해서 오토 스케일링은 경험하지 못했습니다. 오토 스케일링을 설정한 후, 다음 스크립트를 여러 개의 셸에서 실행해서 서버에 부하를 주었지만 좀 처럼 CPU 로드가 올라가진 않더라구요ㅜ.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;curl http://ec2contai-ecselast-1lgfqkql0okbd-452428627.ap-northeast-1.elb.amazonaws.com:80&lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt; sleep 1; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;어쨌든 Elastic Beanstalk처럼 인스턴스를 처음부터 만들고, 서버 인프라를 구성하고, 환경변수를 추가하고, 애플리케이션 코드를 복제해야 하는 것과 달리, 도커는 애플리케이션까지 포함된 이미지를 ECR에서 받아 실행만 하는 것으므로, (로컬 환경의 경험으로 부터 유추해 보아) 대략 수 초 내에 새 컨테이너를 띄울 수 있을 것입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;kbd&gt;Cluster&lt;/kbd&gt; 메뉴에서 &lt;kbd&gt;Update&lt;/kbd&gt; 버튼을 눌러 오토 스케일링 옵션을 설정했습니다. 총 세 단계를 거칩니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-단계-min-max-tasks-설정&quot;&gt;1 단계: Min, Max Tasks 설정&lt;/h4&gt;
+
+&lt;p&gt;그림과 같습니다. 필자는 최소 1대, 최대 2대로 설정했습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-07.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-07.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;23-단계-오토-스케일링-조건-및-액션-설정&quot;&gt;2~3 단계: 오토 스케일링 조건 및 액션 설정&lt;/h4&gt;
+
+&lt;p&gt;직전 5분 동안 CPU 사용량이 40%를 넘어서면 스케일링 아웃하도록 설정했습니다. 아~ 아까비!! 이 값을 5% 정도로 낮게 설정했다면 오토 스케일을 볼 수 있었을 텐데… 지금은 모든 환경을 지운 상태라 실험해 볼 수 없네요.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-08.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-08.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-09.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-09.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-워크-플로우&quot;&gt;4. 워크 플로우&lt;/h2&gt;
+
+&lt;p&gt;이제 로컬 개발 환경에서 애플리케이션 코드가 변경되면, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker build&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;docker tag&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;docker push&lt;/code&gt; 명령만으로 변경된 애플리케이션을 AWS ECS 클러스터에 배포할 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/deploy-laravel-with-ecs-and-ecr &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker build --tag appkr/myshop .
+
+~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+
+~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이상의 과정을 Jenkins등 CI/CD 도구에 걸어 놓으면, 코드 변경 -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; -&amp;gt; Test by CI tool -&amp;gt; Deploy by CD tool 등으로 애플리케이션 개발 및 수정 이후의 모든 과정을 완전 자동화할 수 있을 겁니다. 도커, CI/CD를 통한 테스트 및 배포 자동화는 배포에 대한 개발자의 두려움을 없애 줍니다.&lt;/p&gt;
+
+&lt;p&gt;배포 및 운영만을 담당하는 엔지니어가 별도로 있는 조오~은 회사가 아니라면, 결과적으로 ECS/ECR를 이용한 서비스 배포는 개발자가 비즈니스 로직 개발에만 집중할 수 있도록 함으로써, 비즈니스 싸이클이 빨리지는 효과를 얻을 수 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;도커 이용의 장점이나 사용법을 배우려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;subicura&lt;/code&gt;님의 블로그 포스트를 참고하시기 바랍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html&quot;&gt;초보를 위한 도커 안내서 by subicura(김충섭)&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 12 Feb 2017 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/deploy-with-ecs/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/deploy-with-ecs/</guid>
+        
+        <category>개발자</category>
+        
+        <category>Docker</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</title>
@@ -3228,6 +3438,7 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/appkr/thrift-example-idl&quot;&gt;https://github.com/appkr/thrift-example-idl&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/appkr/thrift-example-project&quot;&gt;https://github.com/appkr/thrift-example-project&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/appkr/thrift-js-poc-project&quot;&gt;https://github.com/appkr/thrift-js-poc-project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;에 공개되어 있다.&lt;/p&gt;
@@ -3846,118 +4057,6 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
         <category>PHP</category>
         
         <category>Laravel</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</title>
-        <description>&lt;p&gt;제가 집필한 책이 어제 출간되었습니다. &lt;strong&gt;웹 프로그래밍&lt;/strong&gt;을 다룹니다. 웹 프로그래밍을 위한 도구로는 &lt;strong&gt;PHP 언어로 작성된 라라벨 프레임워크&lt;/strong&gt;를 사용합니다.&lt;/p&gt;
-
-&lt;p&gt;2016년 초에 완성하고 깃허브에 공개한 &lt;strong&gt;&lt;a href=&quot;https://github.com/appkr/l5essential&quot;&gt;무료 온라인 강의&lt;/a&gt;를 토대로 제이펍 출판사에 계신 프로페셔널들의 도움을 받아 비문을 고치고 부족한 설명을 보충&lt;/strong&gt;하였습니다. 게다가 생활 코딩 오프라인 수업에 조교로 자원 봉사(5회?), 8시간 또는 14시간 짜리 라라벨 입문 강의(각 4회씩 총 8회) 등을 통해 입문자와 예비 독자들을 만나며, 여러분들이 어려워하거나 실수하기 쉬운 내용을 캐치하고 책의 내용과 구성에 반영했습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://cfile2.uf.tistory.com/image/261326505829771C18CBB0&quot;&gt;&lt;img src=&quot;http://cfile2.uf.tistory.com/image/261326505829771C18CBB0&quot; alt=&quot;라라벨로 배우는 실전 PHP 웹 프로그래밍&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;프로그래밍을-생짜-처음-하신다고요&quot;&gt;프로그래밍을 생짜 처음 하신다고요?&lt;/h4&gt;
-
-&lt;p&gt;생활코딩의 &lt;a href=&quot;https://opentutorials.org/course/1688&quot;&gt;웹 애플리케이션 만들기&lt;/a&gt; 정도만 공부하신 수준이면 이 책을 시작하는데 무리가 없습니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;임베디드-응용-시스템-프로그래밍을-하시거나하셨는데-필요에-의해-웹-프로그래밍을-하셔야-한다고요&quot;&gt;임베디드, 응용, 시스템 프로그래밍을 하시거나/하셨는데, 필요에 의해 웹 프로그래밍을 하셔야 한다고요?&lt;/h4&gt;
-
-&lt;p&gt;이 책으로 시작하시는 당신은 행운아입니다.&lt;/p&gt;
-
-&lt;p&gt;이 곳에서 구매할 수 있습니다. &lt;a href=&quot;http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&amp;amp;mallGb=KOR&amp;amp;barcode=9791185890623&quot;&gt;교보문고&lt;/a&gt;, &lt;a href=&quot;http://www.bandinlunis.com/front/product/detailProduct.do?prodId=4011008&quot;&gt;반디앤루니스&lt;/a&gt;, &lt;a href=&quot;http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=96495117&quot;&gt;알라딘&lt;/a&gt;, &lt;a href=&quot;http://www.yes24.com/24/goods/33320248&quot;&gt;yes24&lt;/a&gt;, &lt;a href=&quot;http://book.interpark.com/product/BookDisplay.do?_method=detail&amp;amp;sc.shopNo=0000400000&amp;amp;sc.prdNo=261904099&quot;&gt;인터파크&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;개발자들은 코드를 보면 코드를 짠 사람의 실력과 성격을 어느 정도 가늠할 수 있다는 얘기를 들었습니다. 마찬가지로, 저희들은 원고를 보고 지은이의 내공과 성격을 어느 정도 유추하곤 합니다. 김주원 님의 원고를 처음 받았을 때의 느낌은 ‘참 꼼꼼하면서 정갈한 분이시겠구나’였습니다. 책 전체의 뼈대와 같은 차례도 탄탄하고, 글을 풀어가는 느낌도 군더더기가 없어서 좋았습니다. 물론, 원고를 받고 책이 나오기까지 많은 분의 도움으로 수정 및 보완 작업을 거치긴 했지만요.&lt;/p&gt;
-  &lt;footer&gt;제이펍 블로그 포스트 중에서 (http://jpub.tistory.com/622)&lt;/footer&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;안내&lt;/code&gt;&lt;/strong&gt; 매월 첫째 주 수요일에 열리는 &lt;a href=&quot;http://www.modernpug.org/&quot;&gt;모던퍼그&lt;/a&gt; 정기 모임에 책을 들고 참여하시면 저자 싸인해 드리겠습니다.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;1-라라벨이-뭐길래&quot;&gt;1. 라라벨이 뭐길래?&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://laravel.com/&quot;&gt;&lt;img src=&quot;/images/2016-11-27-img-01.png&quot; alt=&quot;라라벨 홈페이지&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;온오프믹스 오프라인 강의 모집 공고에 썼던 내용을 그대로 옮겨 왔습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;라라벨은 PHP 언어로 만든 풀 스택 웹 프레임워크&lt;/strong&gt;입니다. 루비하면 레일즈와 시나트라, 파이썬하면 장고와 플라스크가 대표적인 웹 프레임워크로 자리매김하고 있듯이, 지금은 PHP하면 라라벨로 통할 정도로 인기있는 도구입니다. 태어난 지 5년됐고 현재 최신 버전은 5.3입니다. 지난 5년 동안 16,000개의 이슈와 20,000개의 커밋이 발생했을 정도로 활동이 활발합니다. 오늘 기준으로 깃허브 전체 인기도 41위를 차지하고 있습니다&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. 국내에서도 라라벨을 채택하는 회사와 프로젝트가 최근에 부쩍 늘고 있습니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;라라벨을-장착하면&quot;&gt;라라벨을 장착하면&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MVC로 깔끔하게 떨어지는 구조의 서비스를 개발할 수 있습니다.&lt;/li&gt;
-  &lt;li&gt;남들은 다 한다는 ‘모던’ 개발 방법론과 서비스 아키텍처가 뭔지에 대해 서서히 눈뜨게 됩니다.&lt;/li&gt;
-  &lt;li&gt;객체 지향 프로그래밍의 디자인 패턴, SOLID를 이해하기 시작합니다. 이쯤되면 더 나은 코드에 대한 갈망이 용솟음 칩니다.&lt;/li&gt;
-  &lt;li&gt;레벨 업 → 더 좋은 회사 취업, 이직의 자유도 → 이력서에 ‘라라벨’ 한 줄로 러브콜이 쇄도하는 선순환 고리에 들어섭니다.&lt;/li&gt;
-  &lt;li&gt;결국은 만렙 웹 개발자가 되고, 다른 언어와 프레임워크를 친구 자취방처럼 넘나들 수 있는 경지에 이릅니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;한 마디로 라라벨은 모범 웹 개발 방법론의 결정체입니다. 라라벨에서 배운 라우팅, 템플릿, 마이그레이션, ORM, 의존성 관리, 객체 지향 설계등의 지식은 다른 프레임워크를 시작할 때도 그대로 이식할 수 있습니다. 반대로 다른 웹 프레임워크를 해 보신 분이 라라벨을 시작하신다면 이미 절반은 알고 계신거나 마찬가지입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-php가-뭐길래&quot;&gt;2. PHP가 뭐길래?&lt;/h2&gt;
-
-&lt;p&gt;PHP는 20년이 넘는 역사를 가지고 있습니다. 현존하는 모든 컴퓨터 언어를 놓고 봤을 때 전세계적으로 7위 정도의 인기를 누리고 있습니다&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-
-&lt;p&gt;스스로를 범용 언어라고 포지셔닝하려하지만, 사실은 태생부터가 &lt;strong&gt;웹을 위한 언어&lt;/strong&gt;였습니다(시작은 C로 짠 템플릿 엔진 수준). 책 머리글에 PHP의 간략한 역사를 포함하고 있으니 참고해주세요. 그래서 웹만 이야기하면 PHP의 인기도와 채택율은 완전 달라집니다. 통계에 따르면 전세계 웹 트래픽의 80% 이상을 PHP 언어가 서브하는 것으로 알려져있습니다&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. 페이스북과 워드프레스의 영향이 크긴하지만 엄청난 수치입니다.&lt;/p&gt;
-
-&lt;p&gt;제가 현재 속한 회사도 안정성과 확장성이 필요한 핵심 서비스는 자바나 스칼라를 쓰지만, 고객과 인터페이스가 발생하고 자주 변하는 부분(API 엔드포인트)은 모두 PHP로 처리하고 있습니다. 즉, 웹 브라우저, iOS/Andorid 애플리케이션을 비롯한 웹 클라이언트의 80%가 PHP로 짠 서버에 접속한다는 의미입니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;그러나&quot;&gt;그러나,&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;PHP 문법이나 동작의 비일관성&lt;/li&gt;
-  &lt;li&gt;테스트와 유지보수가 불가한 난잡한 프레임워크(워드프레스)&lt;/li&gt;
-  &lt;li&gt;현업 개발자나 웹 에이전시들의 나쁜 코딩 습관&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;때문에 PHP는 개발자들로부터 많은 비난을 받아왔습니다. &lt;a href=&quot;http://noraesae.github.io/PHP-a-fractal-of-bad-design-kr/&quot;&gt;‘PHP:잘못된 디자인의 프랙탈’&lt;/a&gt; 문서를 보면 PHP를 암덩어리라고 느낄지도 모릅니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-11-27-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-11-27-img-02.png&quot; alt=&quot;PHP 성능&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;이런 이유로 한 동안 PHP를 쳐다보지도 않았다면, 지금은 다시 한 번 쳐다보세요. 웹 서비스에서는 다른 언어 대비 엄청난 성능을 보이고&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;, 비일관성이나 코딩 습관은 PSR(PHP Standard Recommendation, Like JSR)과 라라벨과 같은 프레임워크가 어느 정도 가이드해줍니다.&lt;/p&gt;
-
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;p&gt;원고를 탈고하고 책이 출간되는 사이에 라라벨 버전업이 한 번 있었고, 따라서 전체 예제 코드를 새 버전에 맞게 전부 다시 짰습니다. 뿐만아니라 이 책이 세상에 태어나지 못할 수도 있는 여러 가지 위기 상황을 겪었습니다. 그래서 책을 받아 든 순간 만감이 교차했지요.&lt;/p&gt;
-
-&lt;p&gt;저는 라라벨이 국내에 확산되고, 그로 인해 자연스럽게 국내 PHP 및 웹 개발 생태계가 발전하기를 기대하며 이 책을 썼습니다. 국내 시장이 작은 이유도 있겠지만, 이번에 책을 쓰면서 출판 생태계를 알고 보니, 저자들이 책을 쓸 동기가 전혀 없겠다는 사실을 깨달았습니다. 사실 초판이 다 팔려도 저자들이 받는 인세는 그들이 들인 시간과 에너지에 비해 정말 작거든요.&lt;/p&gt;
-
-&lt;p&gt;우리는 정보 과잉의 시대에 살고 있습니다. 새로운 기술을 배울 수 있는 채널을 너무나도 많습니다. 하지만 웹 검색을 통해서 얻는 것은 단편적인 문제 해결 방법일 뿐입니다. 완전하게 이해하기에는 책보다 더 좋은 채널이 없습니다. 제 자신도 책을 잘 안 사는 편입니다만, 더 많은 잠재 저자들이 자신의 오덕함을 사람들과 나눌 수 있도록 도와 주세요. 앞으로 책을 또 쓰는 무모한 짓은 하지 않으려고 다짐하는데, 옆에서 ‘한 번이 어렵지~’라며 바람을 넣네요. 후후.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;https://github-ranking.com/repositories, Vue.js 7위(놀라워라~), 레일즈 10위, 익스프레스 31위, 장고 53위&amp;nbsp;&lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;http://www.tiobe.com/tiobe-index/&amp;nbsp;&lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;https://w3techs.com/technologies/overview/programming_language/all&amp;nbsp;&lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;http://benchmarksgame.alioth.debian.org/, 테이블 헤더의 spectral-norm 등은 테스트 벡터 이름, secs는 실행 시간, KB/gz는 소스코드 크기, cpu는 CPU 사용 시간, 측정 값은 모두 4회 테스트한 결과의 평균치&amp;nbsp;&lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sun, 27 Nov 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</guid>
-        
-        <category>개발자</category>
-        
-        <category>Laravel</category>
-        
-        <category>PHP</category>
         
         
         <category>work-n-play</category>

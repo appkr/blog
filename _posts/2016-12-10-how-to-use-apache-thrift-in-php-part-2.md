@@ -431,5 +431,6 @@ Thrift를 사용하는 동안 디버깅의 괴로움에 스트레스를 받아�
  
 -   [https://github.com/appkr/thrift-example-idl](https://github.com/appkr/thrift-example-idl)
 -   [https://github.com/appkr/thrift-example-project](https://github.com/appkr/thrift-example-project)
+-   [https://github.com/appkr/thrift-js-poc-project](https://github.com/appkr/thrift-js-poc-project)
 
 에 공개되어 있다.

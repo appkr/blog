@@ -31,11 +31,6 @@
       /* Activate Fastclick */
       FastClick.attach(document.body);
 
-      /* Set active menu */
-      // if (location.pathname.split('/')[1] == 'profile') {
-      //  navItem.first().removeClass('active').siblings(1).addClass('active');
-      // }
-
       /* Wrap table element to be responsive */
       bodyContainer.find('table')
         .addClass('table')

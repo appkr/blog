@@ -3,10 +3,10 @@
   <channel>
     <title>Appkr.memo(new Life)</title>
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
-    <link>http://blog.appkr.kr/</link>
-    <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Feb 2017 12:50:12 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 12:50:12 +0900</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 12 Feb 2017 14:32:59 +0900</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 14:32:59 +0900</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -589,8 +589,8 @@
 &lt;p&gt;스택오버플로에 올라온 &lt;a href=&quot;http://stackoverflow.com/a/389824/7511247&quot;&gt;‘mysql 5.0 indexes - Unique vs Non Unique’&lt;/a&gt;라는 질답의 좌표를 남기며 마칩니다. 링크의 내용을 요약하면 성능은 &lt;del&gt;Primary &amp;gt; Unique &amp;gt; Index &amp;gt; Non-indexed&lt;/del&gt; Primary &amp;gt; Unique &amp;amp; Non-Unique-Index &amp;gt; Non-indexed 순이란 이야기입니다.&lt;/p&gt;
 </description>
         <pubDate>Sat, 11 Feb 2017 01:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/db-query-performance-illustration-using-array/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/db-query-performance-illustration-using-array/</guid>
+        <link>http://localhost:4000/work-n-play/db-query-performance-illustration-using-array/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/db-query-performance-illustration-using-array/</guid>
         
         <category>개발자</category>
         
@@ -616,8 +616,8 @@
 &lt;p&gt;그림처럼 꽤 많은 분들이 찾아 주셨고, 이제 이 블로그는 혼자만의 일상을 기록하기보다는 다른 개발자들과 소통하는 공간으로 성격이 변모되었습니다. 해서 &lt;strong&gt;앞으로는 존칭형(존댓말)으로 글을 쓰려고 합니다&lt;/strong&gt;. 사실 존칭형으로 글 쓰는 것이 더 쉽기도하고요~&lt;/p&gt;
 </description>
         <pubDate>Sat, 11 Feb 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/style-changed/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/style-changed/</guid>
+        <link>http://localhost:4000/learn-n-think/style-changed/</link>
+        <guid isPermaLink="true">http://localhost:4000/learn-n-think/style-changed/</guid>
         
         
         <category>learn-n-think</category>
@@ -1403,8 +1403,8 @@ Stack trace:
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 15 Jan 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/understanding-php-exception-class-part-2/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/understanding-php-exception-class-part-2/</guid>
+        <link>http://localhost:4000/work-n-play/understanding-php-exception-class-part-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/understanding-php-exception-class-part-2/</guid>
         
         <category>개발자</category>
         
@@ -1729,8 +1729,8 @@ Call Stack:
 &lt;p&gt;다음 편에서는 라라벨 프레임워크를 이용해서 커스텀 예외 클래스를 만들고 프로그램 실행 흐름을 안전하게 제어하는 방법을 살펴 보기로 하자.&lt;/p&gt;
 </description>
         <pubDate>Sat, 07 Jan 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/understanding-php-exception-class/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/understanding-php-exception-class/</guid>
+        <link>http://localhost:4000/work-n-play/understanding-php-exception-class/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/understanding-php-exception-class/</guid>
         
         <category>개발자</category>
         
@@ -2394,8 +2394,8 @@ LaravelFCM&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;esponse&lt;span class=
 &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/image-04.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/image-04.png&quot; alt=&quot;Android Client Example&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 24 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-2/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-2/</guid>
+        <link>http://localhost:4000/work-n-play/firebase-cloud-message-php-server-implementation-part-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/firebase-cloud-message-php-server-implementation-part-2/</guid>
         
         <category>개발자</category>
         
@@ -2788,8 +2788,8 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 &lt;p&gt;이번 포스트의 예제 프로젝트는 &lt;a href=&quot;https://github.com/appkr/fcm-scratchpad&quot;&gt;https://github.com/appkr/fcm-scratchpad&lt;/a&gt;에 공개되어 있다. 이 포스트에서 사용한 포스트맨 콜렉션은 &lt;a href=&quot;https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/fcm-scratchpad.postman_collection.json&quot;&gt;https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/fcm-scratchpad.postman_collection.json&lt;/a&gt;에서 받을 수 있다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 18 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-1/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/firebase-cloud-message-php-server-implementation-part-1/</guid>
+        <link>http://localhost:4000/work-n-play/firebase-cloud-message-php-server-implementation-part-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/firebase-cloud-message-php-server-implementation-part-1/</guid>
         
         <category>개발자</category>
         
@@ -3233,8 +3233,8 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 &lt;p&gt;에 공개되어 있다.&lt;/p&gt;
 </description>
         <pubDate>Sat, 10 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/how-to-use-apache-thrift-in-php-part-2/</guid>
+        <link>http://localhost:4000/work-n-play/how-to-use-apache-thrift-in-php-part-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/how-to-use-apache-thrift-in-php-part-2/</guid>
         
         <category>개발자</category>
         
@@ -3472,8 +3472,8 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 04 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/testing-private-method-in-php/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/testing-private-method-in-php/</guid>
+        <link>http://localhost:4000/work-n-play/testing-private-method-in-php/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/testing-private-method-in-php/</guid>
         
         <category>개발자</category>
         
@@ -3838,8 +3838,8 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 &lt;/div&gt;
 </description>
         <pubDate>Sat, 03 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</guid>
+        <link>http://localhost:4000/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</guid>
         
         <category>개발자</category>
         
@@ -3950,8 +3950,8 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 27 Nov 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/laravel-paper-book-published/</guid>
+        <link>http://localhost:4000/work-n-play/laravel-paper-book-published/</link>
+        <guid isPermaLink="true">http://localhost:4000/work-n-play/laravel-paper-book-published/</guid>
         
         <category>개발자</category>
         

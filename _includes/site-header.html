@@ -14,9 +14,15 @@
 
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right text-center">
-        <li class="active"><a href="/">Blog</a></li>
-        <!--<li><a href="/guest-book/">Guest Book</a></li>-->
-        <li><a href="/profile/">Profile</a></li>
+        <li{% if page.url == "/" %} class="active"{% endif %}>
+          <a href="/">Blog</a>
+        </li>
+        <!--<li>
+          <a href="/guest-book/">Guest Book</a>
+        </li>-->
+        <li{% if page.url == "/profile/index.html" %} class="active"{% endif %}>
+          <a href="/profile/">Profile</a>
+        </li>
       </ul>
     </div>
   </div>

@@ -5,9 +5,41 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Feb 2017 23:25:46 +0900</pubDate>
-    <lastBuildDate>Tue, 21 Feb 2017 23:25:46 +0900</lastBuildDate>
+    <pubDate>Tue, 07 Mar 2017 15:23:30 +0900</pubDate>
+    <lastBuildDate>Tue, 07 Mar 2017 15:23:30 +0900</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Intro to RPC - Apache Thrift</title>
+        <description>&lt;p&gt;이 슬라이드는 Modern PHP User Group 2017년 3월 정기 모임 발표 자료입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2017-03-07-img-01.png&quot; alt=&quot;Intro to RPC - Apache Thrift&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;/files/RPC-intro-to-apache-thrift.pdf&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 07 Mar 2017 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/intro-to-apache-thrift-rpc/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/intro-to-apache-thrift-rpc/</guid>
+        
+        <category>개발자</category>
+        
+        <category>RPC</category>
+        
+        <category>Apache Thrift</category>
+        
+        <category>PHP</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>AWS ECS/ECR을 이용한 서비스 배포</title>
@@ -3689,374 +3721,6 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
         <category>개발자</category>
         
         <category>PHP</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>Monolog를 이용한 애플리케이션 로깅</title>
-        <description>&lt;p&gt;이 포스트에서는 &lt;strong&gt;PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 &lt;a href=&quot;https://github.com/Seldaek/monolog&quot;&gt;Monolog&lt;/a&gt;의 사용법을 소개&lt;/strong&gt;한다. Monolog는 &lt;a href=&quot;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md&quot;&gt;PSR-3&lt;/a&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;LoggerInterface&lt;/code&gt;를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, &lt;strong&gt;파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리&lt;/strong&gt;할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(&lt;code class=&quot;highlighter-rouge&quot;&gt;storage/logs/laravel.log&lt;/code&gt;)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이 포스트의 소스 코드는 &lt;a href=&quot;https://github.com/appkr/monolog-scratchpad&quot;&gt;https://github.com/appkr/monolog-scratchpad&lt;/a&gt;에서 받을 수 있다.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;1-로그-쓰기&quot;&gt;1. 로그 쓰기&lt;/h2&gt;
-
-&lt;p&gt;새로 만든 라라벨 프로젝트의 라우팅 정의 파일을 이용해서 로그를 써 봤다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// routes/web.php
-&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello Monolog&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;emergency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;critical&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;warning&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;notice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'welcome'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;그리고, 로그 파일을 확인해 보면 다음과 같은 로그가 기록된 것을 확인할 수 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# storage/logs/laravel.log&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.EMERGENCY: Hello Monolog &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.ALERT: Hello Monolog  
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.CRITICAL: Hello Monolog  
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.ERROR: Hello Monolog  
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.WARNING: Hello Monolog  
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.NOTICE: Hello Monolog  
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.INFO: Hello Monolog  
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 06:58:34] local.DEBUG: Hello Monolog  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;2-monolog-살펴-보기&quot;&gt;2. Monolog 살펴 보기&lt;/h2&gt;
-
-&lt;p&gt;Monolog 라이브러리는 다음과 같은 디렉토리 구조로, 크게 보면&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;PSR-3 &lt;code class=&quot;highlighter-rouge&quot;&gt;LoggerInterface&lt;/code&gt; 구현체&lt;/li&gt;
-  &lt;li&gt;로그 핸들러&lt;/li&gt;
-  &lt;li&gt;로그 포매터&lt;/li&gt;
-  &lt;li&gt;로그 프로세서&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;로 구성되어 있다. 각각의 역할과 예는 아래 블럭에 인라인 주석으로 표시했다.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/monolog-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tree vendor/monolog/monolog/src/Monolog
-&lt;span class=&quot;c&quot;&gt;# vendor/monolog/monolog/src/Monolog&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ├── ErrorHandler.php            # Monolog를 전역 예외 처리기로 등록할 때 편리한 헬퍼&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ├── Logger.php                  # PSR-3 LoggerInterface를 구현한 구체 클래스&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ├── Registry.php                # 로거 인스턴스를 등록해놓은 간단한 레지스트리 클래스&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# |                                 애플리케이션에서 여러 개의 로거를 사용할 때 쓴다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ├── Formatter                   # 포매터&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   ├── FormatterInterface.php&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   ├── ...&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   └── LineFormatter.php       # 로그를 문자열(String)로 포매팅한다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ├── Handler                     # 로그 핸들러&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   ├── AbstractHandler.php&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   ├── HandlerInterface.php&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   ├── ErrorLogHandler.php     # 로그를 stdout으로 보낸다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   ├── ...&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# │   └── SlackHandler.php        # 로그를 슬랙으로 보낸다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# └── Processor                   # 프로세서, 로그를 가공하거나 추가 정보를 더한다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#     ├── ...&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#     └── GitProcessor.php        # 로그에 Git 브랜치와 커밋 해시를 추가한다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 7 directories, 88 files&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;3-elastic-search를-이용한-로그-핸들링&quot;&gt;3. Elastic Search를 이용한 로그 핸들링&lt;/h2&gt;
-
-&lt;h3 id=&quot;31-elastic-search-설치&quot;&gt;3.1. Elastic Search 설치&lt;/h3&gt;
-
-&lt;p&gt;Elastic Search를 이용하는 이유는 다음과 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;검색이 빠르다.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/products/kibana&quot;&gt;Kibana&lt;/a&gt; 등 시각화 도구와 연결하기 좋다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;311-docker-데몬-설치&quot;&gt;3.1.1. Docker 데몬 설치&lt;/h4&gt;
-
-&lt;p&gt;아래 설치법은 맥 OS X 기준인데, 다른 운영체제도 &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker 홈페이지&lt;/a&gt;를 방문해서 Docker 패키지를 다운로드 받으면 된다. Docker 패키지는 가벼운 리눅스 커널과 유틸리티의 모음이라고 이해하면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew tap caskroom/cask
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;brew cask install docker --appdir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Application
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Note&lt;/code&gt;`&lt;/strong&gt; Docker 데몬은 관리자 권한을 요구하므로, 설치 후 최초 한번 실행해서 운영체제 로그인 정보를 입력하여 권한을 부여해야한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;312-elastic-search-이미지-다운로드-및-실행&quot;&gt;3.1.2. Elastic Search 이미지 다운로드 및 실행&lt;/h4&gt;
-
-&lt;p&gt;Docker를 쓰는 이유는 환경 격리다. 호스트 운영체제가 윈도우든 맥이든 Docker 이미지는 같은 리눅스 커널 위에서 작동하므로 호스트 운영체제의 영향을 받지 않는다. 게다가 운영체제에 맞춘 복잡한 컴파일 과정을 거치지 않아도 된다. 그냥 아래 명령어들을 복사해서 콘솔에 붙여넣기만 하면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 도커 컨테이너와 호스트 머신이 공유할 폴더를 만든다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 호스트 머신이란 로컬 컴퓨터를 말한다. &lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Docker 이미지는 서버의 스냅샷이고 이를 실행한 상태를 컨테이너라 한다(정확한 표현은 아니다.)&lt;/span&gt;
-~/monolog-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkdir esdata
-
-&lt;span class=&quot;c&quot;&gt;# 이미지를 다운로드 받고 실행한다.&lt;/span&gt;
-~/monolog-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker run -d &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    --name es50 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    -v &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;/esdata:/usr/share/elasticsearch/data &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    -p 9200:9200 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    elasticsearch
-&lt;span class=&quot;c&quot;&gt;# Unable to find image 'elasticsearch:latest' locally&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Status: Downloaded newer image for elasticsearch:latest&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# a88d12860180...&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 실행 상태를 확인한다.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# CONTAINER ID 해시는 필자의 것과 다르다.&lt;/span&gt;
-~/monolog-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker ps
-&lt;span class=&quot;c&quot;&gt;# CONTAINER ID        IMAGE            COMMAND    CREATED    STATUS    PORTS    NAMES&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# a88d12860180        elasticsearch    ...        ...        ...       9200/tcp es50&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;브라우저에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:9200&lt;/code&gt;을 방문해서 방금 Docker 컨테이너로 구동한 Elastic Search가 잘 작동하나 확인해 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-12-03-img-01.png&quot;&gt;&lt;img src=&quot;/images/2016-12-03-img-01.png&quot; alt=&quot;Elastic Search Welcome Page&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;32-elastic-search-php-클라이언트-설치-및-작동-확인&quot;&gt;3.2. Elastic Search PHP 클라이언트 설치 및 작동 확인&lt;/h3&gt;
-
-&lt;p&gt;앞서 Elastic Search는 REST API를 제공한다고 했다. REST API를 소비하는 PHP 클라이언트를 설치한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/monolog-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer require elasticsearch/elasticsearch
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;라우트 정의 파일로 설치한 Elastic Search 라이브러리가 작동하지는 확인한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// routes/web.php 
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Elasticsearch\ClientBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ClientBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;dd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-12-03-img-02.png&quot;&gt;&lt;img src=&quot;/images/2016-12-03-img-02.png&quot; alt=&quot;Elastic Search Client&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;33-monolog를-위한-elastic-search-핸들러-만들기&quot;&gt;3.3. Monolog를 위한 Elastic Search 핸들러 만들기&lt;/h3&gt;
-
-&lt;p&gt;Monolog 라이브러리에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;ElasticSearchHandler&lt;/code&gt;가 이미 포함되어 있다. 그런데, 앞 절에서 설치한 Elastic Search 공식 클라이언트가 아닌 다른 클라이언트를 사용하고 있다. API가 달라 부득이 별도의 핸들러를 만들어야 한다. Monolog와 Elastic Search 문서를 읽어 보니 어렵지 않다. 만들어 보자.&lt;/p&gt;
-
-&lt;p&gt;라라벨 &lt;a href=&quot;https://laravel.com/docs/5.3/errors#configuration&quot;&gt;공식 문서&lt;/a&gt;에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;bootstrap/app.php&lt;/code&gt;에서 등록하는 방법을 설명하고 있다. 좀 더 고급지고, 다른 프로젝트에서 재활용할 수 있도록 별도 서비스 프로바이더로 만들어 봤다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/monolog-scratchpad &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan make:provider CustomLogProvider
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;boot()&lt;/code&gt; 메서드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;ESHandler&lt;/code&gt; 인스턴스를 만들고 포매터와 프로세서를 추가한 후, &lt;code class=&quot;highlighter-rouge&quot;&gt;Monolog&lt;/code&gt; 인스턴스에 추가한다. 몇 가지 예제를 더 추가했는데 인라인 주석을 달아 두었다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Providers/CustomLogProvider.php
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Providers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\LogHandlers\ESHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Elasticsearch\ClientBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Illuminate\Support\ServiceProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Monolog\Formatter\NormalizerFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Monolog\Processor\WebProcessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomLogProvider&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ServiceProvider&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 라라벨이 부팅하면서 서비스 컨테이너에 이미 등록해놓은 Monolog 인스턴스를 가져온다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$monolog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'log'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMonolog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;// Elastic Search REST 클라이언트 인스턴스를 만든다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ClientBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;// Monolog에 추가할 Elastic Search 핸들러 인스턴스를 만든다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$esHandler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ESHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;// NormalizerFormatter는 라이브러리에 내장되어 있다.
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// Monolog 메서드의 인자인 $message, $context 값을 정규화한다.
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 정규화란 데이터 타입을 판단하고 적졀한 형태로 가공하는 것을 말한다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$esHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NormalizerFormatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Y-m-d\TH:i:s.uP'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;// WebProcessor는 HTTP 요청에서 url, ip, http_method, referrer 등의 
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 값을 추출하고 로그 메시지에 추가하는 일을 한다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$esHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pushProcessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WebProcessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;// Monolog 라이브러리에 기본 포함된 프로세서가 아닌 정말 정말 커스컴 프로세서를 추가해서
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 로깅할 데이터를 더 추가한다. 여기서는 애플리케이션 이름, 버전, HTTP 요청을 구분할 수 있는 Hash 값을 추가했다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$esHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pushProcessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'extra'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'app_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'app.name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'extra'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'app_version'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'APP_VERSION'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'extra'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fingerprint'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fingerprint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;// Elastic Search 핸들러를 Monolog에 추가했다.
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// Monolog는 핸들러를 쌓아 두었다가, 하나씩 순차적으로 실행한다.
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 즉, 라라벨이 기본으로 생성한 StreamHanlder(파일 로그)를 실행하고, 방금 만든 ESHandler도 실행한다.
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 이미 생성된 인스턴스의 속성을 변경하는 것이므로 return할 필요 없다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$monolog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pushHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$esHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이제 &lt;code class=&quot;highlighter-rouge&quot;&gt;ESHandler&lt;/code&gt;를 만들 차례인데, Elastic Search API 문서를 참고해야 한다. 다음 코드 블록에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;write&lt;/code&gt; 메서드는 부모 클래스에서 구현을 강제한 메서드이며, 메서드 본문은 Elastic Search PHP 클라이언트의 사용법을 참고한 것이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/LogHandlers/ESHandler.php
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\LogHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Elasticsearch\Client&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ESClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Monolog\Handler\AbstractProcessingHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Monolog\Logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ESHandler&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractProcessingHandler&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ESClient&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$level&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$bubble&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$level&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$bubble&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;esClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$esClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-            &lt;span class=&quot;s1&quot;&gt;'refresh'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;s1&quot;&gt;'body'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-                    &lt;span class=&quot;s1&quot;&gt;'index'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-                        &lt;span class=&quot;s1&quot;&gt;'_index'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'monolog'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                        &lt;span class=&quot;s1&quot;&gt;'_type'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'app.name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                &lt;span class=&quot;nv&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'formatted'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-
-        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;esClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;bulk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;34-서비스-프로바이더-등록-및-테스트&quot;&gt;3.4. 서비스 프로바이더 등록 및 테스트&lt;/h3&gt;
-
-&lt;p&gt;라라벨 프로젝트에서 서비스 프로바이더를 등록하는 일반적인 방법이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// config/app.php
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// ...
-&lt;/span&gt;    &lt;span class=&quot;s1&quot;&gt;'providers'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// ...
-&lt;/span&gt;        &lt;span class=&quot;nx&quot;&gt;App\Providers\CustomLogProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;라우트 정의 파일에서 로그 쓰는 부분을 좀 더 단순히 고쳤다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// web/routes.php
-&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello Monolog&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'foo'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'welcome'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;아래 그림은 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:9200/monolog/Laravel/_search?size=100&amp;amp;sort=datetime:desc&lt;/code&gt;로 요청했을 때의 출력 결과다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-12-03-img-03.png&quot;&gt;&lt;img src=&quot;/images/2016-12-03-img-03.png&quot; alt=&quot;Elastic Search에 적재된 로그&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;라라벨의 로그 저장소(파일)에도 잘 기록되었나 확인해 보자.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# storage/logs/laravel.log&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2016-12-03 10:36:35] local.DEBUG: Hello Monolog &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;4-결론&quot;&gt;4. 결론&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Monolog는 PHP 커뮤니티 규칙을 따르는 로거&lt;/strong&gt;로서, 핸들러, 포매터, 프로세서 등의 기능을 이용해서, 애플리케이션 로깅의 자유도와 확장성을 제공한다. 본문에서 봤다시피 &lt;strong&gt;핸들러를 계속 스태킹(stacking)하여 여러 가지 방법으로 로그를 처리&lt;/strong&gt;할 수 있다. 가령 이 글의 예제처럼 파일에도 쓰고, Elastic Search에도 쓰고, 덧붙여서 &lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;로도 출력하고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;ErrorLogHandler&lt;/code&gt;를 추가하면 된다. 아래처럼 말이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Providers/CustomLogProvider.php
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomLogProvider&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ServiceProvider&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// ...
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$errorLogHandler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\Monolog\Handler\ErrorLogHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$monolog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pushHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$errorLogHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Note&lt;/code&gt;&lt;/strong&gt; Docker 컨테이너를 중지하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stop es50&lt;/code&gt; 명령을 수행한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;docker rm es50&lt;/code&gt; 명령으로 이미 만든 컨테이너를 완전히 삭제하지 않았다면 다음 번 실행할 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker start es50&lt;/code&gt; 명령으로 간단히 시작할 수 있다. Elastic Search는 꽤 무거운 서비스라 부팅하는데 10초 정도 걸릴 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;라라벨 https://laravel.com&amp;nbsp;&lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;Elastic Search https://www.elastic.co/kr/&amp;nbsp;&lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;Docker https://www.docker.com/&amp;nbsp;&lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 03 Dec 2016 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/</guid>
-        
-        <category>개발자</category>
-        
-        <category>PHP</category>
-        
-        <category>Laravel</category>
         
         
         <category>work-n-play</category>

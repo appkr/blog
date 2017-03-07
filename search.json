@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "Intro to RPC - Apache Thrift",
+    "category" : "work-n-play",
+    "tags"     : "개발자, RPC, Apache Thrift, PHP",
+    "url"      : "/work-n-play/intro-to-apache-thrift-rpc/",
+    "date"     : "2017-03-07"
+  },
+  
+  {
     "title"    : "AWS ECS/ECR을 이용한 서비스 배포",
     "category" : "work-n-play",
     "tags"     : "개발자, Docker",

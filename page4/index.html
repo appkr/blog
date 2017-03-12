@@ -310,12 +310,12 @@
     <article class="box">
       <div class="box-header">
         <h2>
-          <a href="/work-n-play/facebook-live-streaming/">페이스북으로 데스크탑 라이브 스트리밍 하기</a>
+          <a href="/work-n-play/realtime-web-with-laravel/">"휙~" 리얼 타임 라라벨 데모 프로젝트</a>
         </h2>
         <p class="box-meta">
           <span>
             <i class="material-icons">today</i>
-            2016-07-21
+            2016-07-15
           </span>
           <span>
             <i class="material-icons">face</i>
@@ -334,22 +334,35 @@
           </span>
           <span>
             <i class="material-icons">forum</i>
-            <a href="/work-n-play/facebook-live-streaming/#disqus_thread" title="comments">0</a>
+            <a href="/work-n-play/realtime-web-with-laravel/#disqus_thread" title="comments">0</a>
           </span>
         </p>
       </div>
 
       <div class="box-body">
-        <p>최근 페이스북에 추가된 훌륭한 기능 중에 하나가 ‘라이브’다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하면 좋을 듯 하다.</p>
+        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="highlighter-rouge">pusher</code>, <code class="highlighter-rouge">redis</code>, <code class="highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
 
-<p><a href="/images/2016-07-21-img-06.png"><img src="/images/2016-07-21-img-06.png" alt="방송하기" /></a></p>
+<p><strong>언제 어떻게 쓸 수 있나?</strong> 새로운 댓글이 작성되면 같은 댓글 목록을 보고 있는 사용자에게 새 댓글을 알리거나, 지금 서비스에 접속된 모든 사용자에게 푸시 알림을 보내는 등 서버에서 발생한 변경 내용을 클라이언트에 전파할 때 사용할 수 있다.</p>
+
+<p>이 포스트는 데모 프로젝트를 복붙으로 따라해보기 위한 명령 및 코드 목록을 담고 있다. <strong><em>각 절의 작동 원리는 읽지 말고, 전체 동작을 한번 확인할 것을 권장한다.</em></strong></p>
+
+<ol>
+  <li><em>데모 환경 준비_</em> 오늘 AWS에 인수된 클라우드9을 이용한다.</li>
+  <li><em>SocketChat_</em> Socket.io에서 제공하는 채팅 예제 프로젝트를 구동해 본다.</li>
+  <li><em>Redis_</em> 라라벨과 Socket.io간의 메시지 중계자로 Redis를 이용한다.</li>
+  <li><em>Broadcast_</em> 라라벨의 브로드캐스트 기능을 이용해 본다.</li>
+</ol>
+
+<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
+
+<p>이 프로젝트는 라라캐스트의 <a href="https://laracasts.com/series/real-time-laravel-with-socket-io">Real-time Laravel with Socket.io</a> 시리즈를 보고, 필자 나름대로 해석하고 적용한 결과물이다.</p>
 
 
       </div>
 
       <footer class="box-footer">
         
-        <a class="btn btn-default" href="/work-n-play/facebook-live-streaming/">
+        <a class="btn btn-default" href="/work-n-play/realtime-web-with-laravel/">
           Read More <i class="material-icons">arrow_forward</i>
         </a>
         
@@ -418,7 +431,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">54</span>
+          <span class="badge">53</span>
         </a>
       </li>
       <li>
@@ -485,12 +498,6 @@
     <span style="font-size: 94%">
       <a href="/tags#Dotfiles">
         Dotfiles
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#Facebook">
-        Facebook
       </a>
     </span>
     
@@ -563,12 +570,6 @@
     <span style="font-size: 94%">
       <a href="/tags#Ruby">
         Ruby
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#Streaming">
-        Streaming
       </a>
     </span>
     
@@ -932,7 +933,7 @@
       </a>
     </span>
     
-    <span style="font-size: 246%">
+    <span style="font-size: 242%">
       <a href="/tags#개발자">
         개발자
       </a>

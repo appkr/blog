@@ -541,10 +541,6 @@
 <lastmod>2016-07-15T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://blog.appkr.kr/work-n-play/facebook-live-streaming/</loc>
-<lastmod>2016-07-21T00:00:00+09:00</lastmod>
-</url>
-<url>
 <loc>http://blog.appkr.kr/work-n-play/restful-url-design-pug/</loc>
 <lastmod>2016-08-03T00:00:00+09:00</lastmod>
 </url>
@@ -633,7 +629,7 @@
 <loc>http://blog.appkr.kr/guest-book/</loc>
 </url>
 <url>
-<loc>http://blog.appkr.kr/live/</loc>
+<loc>http://blog.appkr.kr/hidden/</loc>
 </url>
 <url>
 <loc>http://blog.appkr.kr/profile/</loc>

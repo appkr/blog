@@ -153,14 +153,6 @@
   },
   
   {
-    "title"    : "페이스북으로 데스크탑 라이브 스트리밍 하기",
-    "category" : "work-n-play",
-    "tags"     : "Facebook, Streaming, 개발자",
-    "url"      : "/work-n-play/facebook-live-streaming/",
-    "date"     : "2016-07-21"
-  },
-  
-  {
     "title"    : "&quot;휙~&quot; 리얼 타임 라라벨 데모 프로젝트",
     "category" : "work-n-play",
     "tags"     : "개발자, Laravel, Websocket",

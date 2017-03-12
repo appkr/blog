@@ -1,6 +1,6 @@
 ---
 layout: facebook
-permalink: live/index.html
+permalink: hidden/index.html
 title: Facebook Live Streaming Starter
 ---
 

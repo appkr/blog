@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "DDD Memo",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, DDD",
+    "url"      : "/learn-n-think/ddd-memo/",
+    "date"     : "2017-05-02"
+  },
+  
+  {
     "title"    : "Intro to RPC - Apache Thrift",
     "category" : "work-n-play",
     "tags"     : "개발자, RPC, Apache Thrift, PHP",

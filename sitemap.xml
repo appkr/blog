@@ -621,6 +621,10 @@
 <lastmod>2017-05-02T00:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/</loc>
+<lastmod>2017-06-04T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://blog.appkr.kr/categories/</loc>
 </url>
 <url>
@@ -727,6 +731,9 @@
 </url>
 <url>
 <loc>http://blog.appkr.kr/page31/</loc>
+</url>
+<url>
+<loc>http://blog.appkr.kr/page32/</loc>
 </url>
 <url>
 <loc>http://blog.appkr.kr/files/RPC-intro-to-apache-thrift.pdf</loc>

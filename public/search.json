@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "불변 밸류와 불변 엔티티",
+    "category" : "learn-n-think",
+    "tags"     : "개발자",
+    "url"      : "/learn-n-think/immutable-object-and-immutalbe-entity/",
+    "date"     : "2017-06-04"
+  },
+  
+  {
     "title"    : "DDD Memo",
     "category" : "learn-n-think",
     "tags"     : "개발자, DDD",

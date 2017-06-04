@@ -6,34 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="appkr's blog to record day-to-day life & thoughts."/>
+  <meta name="description" content="상수는 변하지 않는 값, 변수는 변하는 값이라고 배웠습니다. 객체에서도 마치 상수처럼 한 번 생성된 이후에 상태를 변경할 수 없는 객체를 불변(Immutable) 객체라고 합니다.1. 불변성에 대한 개념 익히기아래 예제를 살펴 볼까요?&lt;?php$a = 1;$b = $a;$b ..."/>
   <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
   <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
 
   <meta name="msapplication-tap-highlight" content="no"/>
 
   <!-- Facebook Meta -->
-  <meta property="og:title" content="Appkr.memo(new Life)"/>
+  <meta property="og:title" content="불변 밸류와 불변 엔티티"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
   <meta property="og:image" content=""/>
 
   <!-- Google+ Meta -->
-  <meta itemprop="name" content="Appkr.memo(new Life)">
-  <meta itemprop="description" content="appkr's blog to record day-to-day life & thoughts.">
+  <meta itemprop="name" content="불변 밸류와 불변 엔티티">
+  <meta itemprop="description" content="상수는 변하지 않는 값, 변수는 변하는 값이라고 배웠습니다. 객체에서도 마치 상수처럼 한 번 생성된 이후에 상태를 변경할 수 없는 객체를 불변(Immutable) 객체라고 합니다.1. 불변성에 대한 개념 익히기아래 예제를 살펴 볼까요?&lt;?php$a = 1;$b = $a;$b ...">
   <meta itemprop="image" content="">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
-  <meta name="twitter:title" content="Appkr.memo(new Life)" />
-  <meta name="twitter:description" content="appkr's blog to record day-to-day life & thoughts." />
+  <meta name="twitter:title" content="불변 밸류와 불변 엔티티" />
+  <meta name="twitter:description" content="상수는 변하지 않는 값, 변수는 변하는 값이라고 배웠습니다. 객체에서도 마치 상수처럼 한 번 생성된 이후에 상태를 변경할 수 없는 객체를 불변(Immutable) 객체라고 합니다.1. 불변성에 대한 개념 익히기아래 예제를 살펴 볼까요?&lt;?php$a = 1;$b = $a;$b ..." />
   <meta name="twitter:image" content="" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
-  <link rel="canonical" href="http://blog.appkr.kr/"/>
+  <link rel="canonical" href="http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/"/>
   <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
   <link rel="stylesheet" href="/styles/main.min.css"/>
 
-  <title>Appkr.memo(new Life)</title>
+  <title>불변 밸류와 불변 엔티티 | Appkr.memo(new Life)</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -68,7 +68,7 @@
 
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right text-center">
-        <li class="active">
+        <li>
           <a href="/">Blog</a>
         </li>
         <!--<li>
@@ -85,12 +85,35 @@
 
   <div class="container">
   <section id="main" class="col-md-9 minimal">
-    
     <article class="box">
       <div class="box-header">
         <h2>
-          <a href="/learn-n-think/immutable-object-and-immutalbe-entity/">불변 밸류와 불변 엔티티</a>
+          <span class="title">불변 밸류와 불변 엔티티</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/&title=불변 밸류와 불변 엔티티" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/&title=불변 밸류와 불변 엔티티&text=불변 밸류와 불변 엔티티" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
         </h2>
+
         <p class="box-meta">
           <span>
             <i class="material-icons">today</i>
@@ -180,269 +203,244 @@
 </span></code></pre>
 </div>
 
+<!--more-->
+<div class="spacer">• • •</div>
 
-      </div>
+<h2 id="2-불변-밸류">2. 불변 밸류</h2>
 
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/immutable-object-and-immutalbe-entity/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/ddd-memo/">DDD Memo</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-05-02
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/ddd-memo/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
+<h3 id="21-carbon">2.1. Carbon</h3>
 
-      <div class="box-body">
-        <p><img src="http://image.yes24.com/goods/27750871/L" alt="http://www.yes24.com/24/Goods/27750871" /></p>
+<p>라라벨 프로젝트에서 가장 쉽게 만날 수 있는 밸류 객체(Value Object, 값 객체)는 <code class="highlighter-rouge">Carbon</code> 입니다. 엘로퀀트 모델을 만들면 기본적으로 <code class="highlighter-rouge">created_at</code>, <code class="highlighter-rouge">updated_at</code>이란 속성이 추가되고, 이 속성에는 <code class="highlighter-rouge">Carbon</code> 객체가 할당됩니다.</p>
 
-<h1 id="1-도메인-모델-시작">1. 도메인 모델 시작</h1>
+<p>객체의 이점을 얻기 위해서 보통 원시 타입(<code class="highlighter-rouge">string</code>, <code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">float</code>, <code class="highlighter-rouge">array</code>)을 밸류 객체로 바꿔서 사용하는데, 예를 들면, <code class="highlighter-rouge">string</code> 타입의 블로그 포스트 제목을 <code class="highlighter-rouge">Title</code> 객체를 만들어 사용하는 것 같은 것이죠. 예제가 현실적이지는 않지만, 앞서 말한 <code class="highlighter-rouge">Carbon</code>을 이용함으로써 다음과 같은 편리함이 더해집니다.</p>
 
-<p>p7. 아키텍쳐 구성</p>
-
-<ul>
-  <li>사용자 인터페이스 또는 표현 (UI, Presentation)</li>
-  <li>응용 (Application)</li>
-  <li>도메인 (Domain)</li>
-  <li>인프라스트럭처 (Infrastructure)</li>
-</ul>
-
-<p>p11. 도메인을 모델링할 때 기본이 되는 작업은 모델을 구성하는 <strong>핵심 구성요소</strong>, <strong>규칙</strong>, <strong>기능</strong>을 찾는 것이다.</p>
-
-<p>p17. 엔티티와 밸류</p>
-
-<ul>
-  <li>엔티티의 가장 큰 특징은 <strong>식별자</strong>를 갖는다는 점.</li>
-  <li>밸류 타입은 <strong>개념적으로 완전한 하나를 표현</strong>할 때 사용한다 (예: “받는 사람”이란 밸류는 이름과 전화번호 속성으로 구성됨).</li>
-  <li>밸류 객체의 데이터를 변경할 때는 기존 데이터를 변경하기보다는 변경한 데이터를 갖는 새로운 밸류 객체를 생성한다(Immutable).</li>
-  <li>엔티티 타입의 두 객체가 같은지 비교할 때 주로 식별자를 사용한다면, 두 밸류 객체가 같은지 비교할 때는 모든 속성이 같은지 비교해야 한다.</li>
-</ul>
-
-<p>p32. 도메인 객체가 불완전한 상태로 사용되는 것을 막으려면 생성 시점에 필요한 것을 전달해 주어야 한다. 즉, <strong>생성자</strong>를 통해 필요한 데이터를 모두 받아야 한다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/ddd-memo/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/intro-to-apache-thrift-rpc/">Intro to RPC - Apache Thrift</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-03-07
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/intro-to-apache-thrift-rpc/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>이 슬라이드는 Modern PHP User Group 2017년 3월 정기 모임 발표 자료입니다.</p>
-
-<p><img src="/images/2017-03-07-img-01.png" alt="Intro to RPC - Apache Thrift" /></p>
-
-<div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
-  <div class="panel-body text-center">
-    <a href="/files/RPC-intro-to-apache-thrift.pdf">
-      <i class="material-icons">open_in_browser</i>
-      브라우저에서 슬라이드 열기
-    </a>
-  </div>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
+<span class="c"># Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$article</span> <span class="o">=</span> Article::first<span class="o">()</span>;
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$article</span>-&gt;created_at <span class="o">=</span> <span class="nv">$article</span>-&gt;created_at-&gt;addDays<span class="o">(</span>5<span class="o">)</span>;
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$article</span>-&gt;save<span class="o">()</span>;
+</code></pre>
 </div>
 
+<p><strong>그런데 <code class="highlighter-rouge">Carbon</code>은 불변 밸류가 아닙니다.</strong> 아래 예제는 무시무시합니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span>;
+<span class="c"># =&gt; Carbon\Carbon {#663</span>
+<span class="c">#      +"date": "2017-06-04 03:00:22.272655",</span>
+<span class="c">#    }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span>-&gt;addMonths<span class="o">(</span>1<span class="o">)</span>;
+<span class="c"># =&gt; Carbon\Carbon {#663</span>
+<span class="c">#      +"date": "2017-07-04 03:00:22.272655",</span>
+<span class="c">#    }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span>;
+<span class="c"># =&gt; Carbon\Carbon {#663</span>
+<span class="c">#      +"date": "2017-07-04 03:00:22.272655",</span>
+<span class="c">#    }</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">$now</code>라는 변수를 여러 곳에서 참조한다고 가정해보죠. 어떤 로직에서 <code class="highlighter-rouge">$now</code> 변수에 <code class="highlighter-rouge">addMonths()</code> API를 호출했다고 가정하죠. 그러면 그 뒤에 <code class="highlighter-rouge">$now</code> 변수를 참조하는 로직은 전부 한 달 뒤의 날짜 값을 사용하게 되는 겁니다. <code class="highlighter-rouge">Carbon</code>의 특성을 모르는 개발자가 이와 같이 코드를 짰을 때, <code class="highlighter-rouge">Carbon</code>의 특성에 대해 이해하고 있는 다른 개발자가 이 버그를 잡을 수 있을까요?</p>
+
+<p>아참 해결방법은 <code class="highlighter-rouge">clone</code> 키워드를 이용하는 것입니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span>;
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$oneMonthFromNow</span> <span class="o">=</span> <span class="o">(</span>clone <span class="nv">$now</span><span class="o">)</span>-&gt;addMonths<span class="o">(</span>1<span class="o">)</span>;
+</code></pre>
+</div>
+
+<h3 id="22-money">2.2. Money</h3>
+
+<p>불변 객체는 한 번 생성된 이후에 상태를 변경할 수 없는 객체입니다. 아래 <code class="highlighter-rouge">Money</code> 클래스 예제를 살펴보면, <code class="highlighter-rouge">add()</code> 메서드는 다른 <code class="highlighter-rouge">Money</code> 객체를 인자로 받고, <code class="highlighter-rouge">$value</code> 속성의 상태를 변경하는 것이 아니라, 완전 새로운 <code class="highlighter-rouge">Money</code> 객체를 반환합니다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Common/Model/Money.php
+</span>
+<span class="k">class</span> <span class="nc">Money</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">Money</span> <span class="nv">$other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Money</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">+</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="na">getAmount</span><span class="p">());</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAmount</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="nx">Money</span> <span class="nv">$other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">get_class</span><span class="p">()</span> <span class="o">===</span> <span class="nx">__CLASS__</span>
+            <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">===</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="na">getAmount</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>아래 팅커 출력 결과에서 객체의 번호가 <code class="highlighter-rouge">#683</code>, <code class="highlighter-rouge">#692</code>, <code class="highlighter-rouge">#694</code>로 모두 다름에 주목해야 합니다. 매번 다른 객체가 생성된다는 뜻이죠~</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
+<span class="c"># Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$baseSalary</span> <span class="o">=</span> new Money<span class="o">(</span>100<span class="o">)</span>;
+<span class="c"># =&gt; Money {#683}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$overtimeAllowance</span> <span class="o">=</span> new Money<span class="o">(</span>100<span class="o">)</span>;
+<span class="c"># =&gt; Money {#692}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$baseSalary</span> <span class="o">===</span> <span class="nv">$overtimeAllowance</span>;
+<span class="c"># =&gt; false</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$baseSalary</span>-&gt;isEqualTo<span class="o">(</span><span class="nv">$overtimeAllowance</span><span class="o">)</span>;
+<span class="c"># =&gt; true</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$totalSalary</span> <span class="o">=</span> <span class="nv">$baseSalary</span>-&gt;add<span class="o">(</span><span class="nv">$overtimeAllowance</span><span class="o">)</span>;
+<span class="c"># =&gt; Money {#694}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nv">$totalSalary</span>-&gt;getAmount<span class="o">()</span>;
+<span class="c"># =&gt; 200</span>
+</code></pre>
+</div>
+
+<p>밸류 객체는 객체의 속성 값이 모두 같다면 “같다”라고 할 수 있습니다. <code class="highlighter-rouge">User</code> 객체를 예로 들어 볼까요? 공교롭게도 어떤 <code class="highlighter-rouge">User</code>가 저와 같은 <code class="highlighter-rouge">$name</code>, <code class="highlighter-rouge">$age</code>를 가지고 있다고 가정해보죠? 그럼 두 <code class="highlighter-rouge">User</code>는 같을까요? 당연히 다르죠? 그런데, 2017-06-04 라는 값을 가진 <code class="highlighter-rouge">Date</code> 객체를 가정해보죠. 다른 <code class="highlighter-rouge">Date</code> 객체가 똑같이 2017-06-04라는 값을 가지고 있다면 둘은 같은걸까요? 예. 예로 든 <code class="highlighter-rouge">Date</code>는 밸류이고, <code class="highlighter-rouge">User</code>는 엔티티입니다.</p>
+
+<h2 id="3-불변-엔티티">3. 불변 엔티티</h2>
+
+<p>도메인 모델은 앤티티(Entity)와 밸류(Value, 값 객체)로 구분됩니다. 모델, 엔티티, 밸류, … 어려운 용어라 생각되지만, 따지고보면 결국은 클래스입니다. 앞서 클래스는 변수와 함수의 집합이라 했는데, 좀 더 구체적으로 말하면 다음과 같이 표현할 수 있습니다.</p>
+
+<blockquote>
+  <p>클래스란 Private 변수들과 그 Private 변수들을 사용하는 Public 함수들의 집합이다.</p>
+</blockquote>
+
+<p>엔티티는 고유 식별자를 가지고 있습니다. 엔티티는 생성된 후 식별자를 제외한 상태가 변경될 수 있습니다. “상태”라 표현한 것이 결국 클래스의 Private 변수들의 값이며, 이 Private 변수에는 다른 엔티티, 밸류 객체, 원시 타입 값들이 담기게 됩니다. 엔티티를 사용하는 클라이언트 클래스에서 엔티티의 Public 함수(API)를 호출하여 엔티티의 상태를 변경하겠죠~</p>
+
+<p>밸류는 식별자가 없습니다. <code class="highlighter-rouge">Carbon</code>처럼 상태가 변경될 수도 있지만, 앞서 살펴본 대로 불변 객체를 사용하는 것이 더 나은 설계라고 알려져 있습니다. 앞서 살펴본 <code class="highlighter-rouge">Money</code> 밸류처럼 말이죠. 밸류 객체 역시, 해당 밸류를 상태로 사용하는 엔티티가 대상 밸류에 포함된 Public API를 호출함으로써 엔티티 자신의 상태를 변경할 겁니다.</p>
+
+<p>객체로 생성되어 메모리에 살아 있는 동안 상태를 변경하고, 데이터베이스에 저장함으로써 다시 꺼내서 재생할 때까지 냉동 수면을 하게 됩니다.</p>
+
+<p>그런데 불변 엔티티란 무엇일까요? 웹에서 정확한 정의를 찾지 못했습니다만, 앞서 살펴본 내용을 응용해보면, 최초 한번 생성후 상태가 변하지 않는 엔티티가 아닐까요? Private 변수에 담긴 값을 전혀 변경할 수 없고, 데이터베이스에서 삭제하기 전까지 돌부처 같이 처음 만든 상태를 그대로 유지하는 녀석이 아닐까요?</p>
+
+<h3 id="31-필요성">3.1. 필요성</h3>
+
+<p>지난 번 회사 프로젝트를 하면서 불변 엔티티의 필요성을 느꼈습니다.</p>
+
+<ul>
+  <li>생성 시점의 정보를 참조해서 계산한 값으로 채워진 모델일 때 (e.g. 청구서)</li>
+  <li>그리고 한 번 생성된 후, 상태가 변경된다면 변경 이력을 추적해야 할 때</li>
+  <li>시간이 지남에 따라 변경될 수 있는 값을 생성 시점의 값으로 고정시키고자 할 때 (e.g. 청구서 발행 시점의 피청구자 정보)</li>
+</ul>
+
+<h3 id="32-리서치">3.2. 리서치</h3>
+
+<p>조사 결과 세 가지 정도의 구현 방식으로 정리됐습니다.</p>
+
+<h4 id="321-상태-테이블과-변경-내역-저장-테이블-분리">3.2.1. 상태 테이블과 변경 내역 저장 테이블 분리</h4>
+
+<p>최종 상태를 저장하는 메인 테이블과 변경 이력을 기록하는 테이블을 별도로 구성하는 방식입니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Table: bills
++-------------------------------+
+| 1 Bill <span class="k">for </span>User#1 <span class="k">for </span>2017-06 |
++-------------------------------+
+| 2 Bill <span class="k">for </span>User#2 <span class="k">for </span>2017-06 |
++-------------------------------+
+
+UPDATE bills SET base_charge <span class="o">=</span> 100 WHERE id <span class="o">=</span> 1;
+
+Tables:bill_history
++-------------------------------+
+| History <span class="k">for </span>bill_id#1 <span class="o">{</span>...<span class="o">}</span>   |
++-------------------------------+
+| History <span class="k">for </span>bill_id#1 <span class="o">{</span>...<span class="o">}</span>   |
++-------------------------------+
+
+INSERT INTO bill_history <span class="o">(</span>bill_id, changed, changed_by, changed_at, ...<span class="o">)</span> 
+VALUES <span class="o">(</span>1, <span class="s2">"{original:{base_charge:90}, changed:{base_charge:100}}"</span>, <span class="s2">"Foo"</span>, NOW<span class="o">()</span>, ...<span class="o">)</span>;
+</code></pre>
+</div>
+
+<h4 id="322-하나의-엔티티에-대해-여러-레코드를-기록">3.2.2. 하나의 엔티티에 대해 여러 레코드를 기록</h4>
+
+<p>3.2.1의 두 개 테이블을 하나로 합쳐서 상태를 저장하는 방식입니다. <code class="highlighter-rouge">UPDATE</code> 쿼리는 없고, 오직 <code class="highlighter-rouge">INSERT</code>만 허용합니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Table: bills
++-------------------------------+
+| Last state of Bill#1          |
++-------------------------------+
+| Past state of Bill#1          |
++-------------------------------+
+| Last state of Bill#2          |
++-------------------------------+
+SELECT <span class="k">*</span> FROM bills WHERE entity_id <span class="o">=</span> 1 ORDER BY version DESC LIMIT 1;
+
+INSERT INTO bills <span class="o">(</span>entity_id, version, subscriber_id, term, base_charge, 
+    valud_added_charge, discount_amout, fulfilled, last_modified_by, ...<span class="o">)</span>
+VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 100, 50, <span class="nb">false</span>, <span class="s2">"Foo"</span>, ...<span class="o">)</span>;
+</code></pre>
+</div>
+
+<h4 id="323-이벤트-소싱">3.2.3. 이벤트 소싱</h4>
+
+<p>이벤트를 데이터 소스로 사용하는 디자인 패턴입니다. 이벤트 데이터를 스택에 쌓아 놓고, 이벤트 리플레이를 통해 현재 상태를 계산해 냅니다. 핵심 함수와 전체 개념은 아래와 같습니다.</p>
+
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="n">decide</span><span class="o">(</span><span class="n">command</span><span class="o">,</span> <span class="n">state</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">ListEvent</span>
+<span class="n">apply</span><span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">event</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">state</span>
+<span class="n">replay</span><span class="o">(</span><span class="n">initialState</span><span class="o">,</span> <span class="nc">ListEvent</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">version</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p><img src="http://blog.leifbattermann.de/wp-content/uploads/2017/04/event-sourcing.svg" alt="" /></p>
+
+<p>웹에서 만난 전문가들도 이벤트 소싱의 이점을 충분히 누릴 수 있는 도메인에만 도입할 것을 권장합니다. 포스트 끝에 참고 자료들을 기록해 두었습니다.</p>
+
+<h3 id="33-예제-프로젝트">3.3. 예제 프로젝트</h3>
+
+<p>매월 주기적으로 핸드폰 청구서를 발행하는 예제를 통해서 불변 엔티티를 구현해 보고자 합니다. 데이터를 자주 변경하는 도메인이 아니므로 3.2.2 방식으로 구현하려고 합니다.</p>
+
+<p>틈틈이 작업 중인 저장소입니다. <a href="https://github.com/appkr/immutable-entity-poc">https://github.com/appkr/immutable-entity-poc</a></p>
+
+<hr />
+
+<h2 id="읽어보면-좋을만한-자료들">읽어보면 좋을만한 자료들</h2>
+
+<ul>
+  <li><a href="https://ocramius.github.io/doctrine-best-practices">doctrine-best-practices</a></li>
+  <li><a href="http://ziobrando.blogspot.kr/2010/06/about-entities-aggregates-and-data.html">About Entities, Aggregates and Data Duplication.</a></li>
+  <li><a href="http://www.ntaso.com/why-i-dont-use-value-objects-in-laravel-anymore/">Why I Don’t Use Value Objects in Laravel Anymore</a></li>
+  <li><a href="http://www.ntaso.com/value-objects-laravel-eloquent/">Value Objects in Laravel 5 with Eloquent Done Right</a></li>
+  <li><a href="https://www.slideshare.net/madvirus/event-source">이벤트 소싱 학습 내용 공유 by 최범균</a></li>
+  <li><a href="http://blog.leifbattermann.de/2017/04/21/12-things-you-should-know-about-event-sourcing/">12 Things You Should Know About Event Sourcing</a></li>
+  <li><a href="https://msdn.microsoft.com/magazine/mt422577">Cutting Edge - Event Sourcing for the Common Application</a></li>
+  <li><a href="http://blog.aliencube.org/ko/2015/11/12/building-applications-on-cloud-with-event-sourcing-pattern-and-cqrs-pattern/">이벤트 소싱 패턴과 CQRS 패턴을 적용해서 클라우드상에서 유연하게 앱 개발하기</a></li>
+  <li><a href="https://github.com/nWidart/Laravel-broadway">Laravel adapter for Broadway.</a></li>
+</ul>
+
       </div>
 
-      <footer class="box-footer">
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          
         
       </footer>
     </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/deploy-with-ecs/">AWS ECS/ECR을 이용한 서비스 배포</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-02-12
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/deploy-with-ecs/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><strong>AWS ECS(EC2 Container Service)</strong>는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. <strong>AWS ECR(Container Registry)</strong>은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.</p>
-
-<p>아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).</p>
-
-<p><a href="https://www.youtube.com/watch?v=zBqjh61QcB4"><img src="http://img.youtube.com/vi/zBqjh61QcB4/0.jpg" alt="Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS" /></a></p>
-
-<p>AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다<small>(협찬 좀…)</small>.</p>
-
-<ol>
-  <li>이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.</li>
-  <li>Service Discovery나 Container Orchestration등을 위해 <a href="https://kubernetes.io/">쿠버네티스(Kubernetes)</a>와 같이 어려운 도구를 다룰 필요가 없다.</li>
-</ol>
-
-<p>그런데 <strong>아직 서울 지역는 오픈되지 않았습니다.</strong> 빨리 좀 오픈해 주세요~ 갓마존.</p>
-
-<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/deploy-with-ecs/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/db-query-performance-illustration-using-array/">데이터베이스 쿼리 성능 차이를 이해하기 위한 실험</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-02-11
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/db-query-performance-illustration-using-array/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>많은 양의 데이터를 체계적으로 저장하기 위해 데이터베이스를 사용합니다. 필요할 때마다 빠르게 꺼내 보거나, 수정하고, 불필요해지면 삭제하기도 합니다. 이처럼 데이터베이스는 수 많은 레코드셋에서 원하는 레코드만 빠르게 추출해 낼 수 있는데, <strong>내부에서 어떻게 작동하는 지는 완전 블랙박스</strong>죠?</p>
-
-<p>가령 ‘인덱스를 걸면 빠르다’, ‘조인은 느리다’처럼 일반적으로 알려진 상식이 있고, 이런 상식에 따라 모델링을 하면 대체적으로 잘 돌아가지만…</p>
-
-<p>최근 회사에서 관련된 일도 있었고 해서, 스물스물 호기심이 발동하기 시작했습니다.</p>
-
-<p><a href="https://github.com/mysql/mysql-server">MySQL은 소스코드가 깃허브에 완전 공개</a>되어있어 블랙박스라 할 수는 없지만, 죽을 때까지 코드를 까볼 생각은 없습니다. 대신 <strong>간단한 배열을 이용해서 데이터베이스를 흉내내고, 기본 키(Primary Key), 문자열 컬럼에 대한 풀 스캔, 바이너리 스캔, 인덱스, 조인 등에서 성능 차이가 발생하는 이유를 추측해보기</strong>로 했습니다.</p>
-
-<p>이 실험을 위한 소스코드는 <a href="https://github.com/appkr/db-performance-illustration">이곳에서 다운로드</a> 받을 수 있습니다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/db-query-performance-illustration-using-array/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
         
         <li class="previous">
-          <a href="/page2/">
+          <a href="/learn-n-think/ddd-memo/">
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
-            Older
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              DDD Memo
+            </span>
           </a>
         </li>
         
@@ -450,7 +448,7 @@
         
         <li class="next disabled">
           <a href="#">
-            Newer
+            <span>Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>
@@ -459,6 +457,20 @@
         
       </ul>
     </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
   </section>
 
   <aside id="sidebar" class="col-md-3">

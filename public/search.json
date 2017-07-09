@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "아키텍처와 의존성",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, 아키텍처",
+    "url"      : "/learn-n-think/clean-architecture-and-dependency/",
+    "date"     : "2017-07-09"
+  },
+  
+  {
     "title"    : "불변 밸류와 불변 엔티티",
     "category" : "learn-n-think",
     "tags"     : "개발자",

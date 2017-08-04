@@ -20,10 +20,13 @@ permalink: "categories/index.html"
             {% when 'learn-n-think' %}
               Learn & Think
               <span class="badge">{{ site.categories['learn-n-think'].size }}</span>
-            {% when 'work-n-play'%}
+            {% when 'work-n-play' %}
               Work & Play
               <span class="badge">{{ site.categories['work-n-play'].size }}</span>
-            {% when 'work-n-play'%}
+            {% when 'cheatsheet' %}
+              Cheatsheet
+              <span class="badge">{{ site.categories['cheatsheet'].size }}</span>
+            {% when 'imported' %}
               Imported
               <span class="badge">{{ site.categories['imported'].size }}</span>
             {% else %}
@@ -48,9 +51,11 @@ permalink: "categories/index.html"
           Around Me
         {% when 'learn-n-think' %}
           Learn & Think
-        {% when 'work-n-play'%}
+        {% when 'work-n-play' %}
           Work & Play
-        {% when 'imported'%}
+        {% when 'cheatsheet' %}
+          Cheatsheet
+        {% when 'imported' %}
           Imported
         {% else %}
           Uncategorized

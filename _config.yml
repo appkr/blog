@@ -1,34 +1,33 @@
-##
+#-------------------------------------------------------------------------------
 # Plugins
-##
+#-------------------------------------------------------------------------------
 
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-sitemap
-#  - jekyll-feed
 
-##
+#-------------------------------------------------------------------------------
 # Site settings
-##
+#-------------------------------------------------------------------------------
 
 title: "Appkr.memo(new Life)"
 
 description: "appkr's blog to record day-to-day life & thoughts."
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.appkr.kr" # the base hostname & protocol for your site
+baseurl: ""
+url: "http://blog.appkr.kr"
 
 excerpt_separator: <!--more-->
 
-##
+#-------------------------------------------------------------------------------
 # Contacts
-##
+#-------------------------------------------------------------------------------
 
 author: "appkr"
 email: "juwonkim@me.com"
 
-##
+#-------------------------------------------------------------------------------
 # Build settings
-##
+#-------------------------------------------------------------------------------
 
 exclude:
   - lib
@@ -41,11 +40,11 @@ exclude:
   - publish.sh
   - public
 permalink: /:categories/:slug/
-lsi: false # if set to true generate related posts
+lsi: false
 
-##
+#-------------------------------------------------------------------------------
 # Outputting
-##
+#-------------------------------------------------------------------------------
 
 paginate: 5
 paginate_path: /page:num/

@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "MySQL 테이블 잠금 실험",
+    "category" : "cheatsheet",
+    "tags"     : "개발자, 데이터베이스",
+    "url"      : "/cheatsheet/understanding-mysql-db-lock/",
+    "date"     : "2017-08-04"
+  },
+  
+  {
     "title"    : "아키텍처와 의존성",
     "category" : "learn-n-think",
     "tags"     : "개발자, 아키텍처",

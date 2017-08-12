@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "코드 비용에 대한 2016년의 메모",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, 프로세스",
+    "url"      : "/learn-n-think/memo-in-early-2016/",
+    "date"     : "2017-08-12"
+  },
+  
+  {
     "title"    : "MySQL 테이블 잠금 실험",
     "category" : "cheatsheet",
     "tags"     : "개발자, 데이터베이스",

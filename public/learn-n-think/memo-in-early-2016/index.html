@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="책상을 정리하다가 “라라벨 빨간책”이라 알려진 책을 집필하며 2016년 초에 쓴 메모 중 일부를 찾았다.실무 개발자로 일하지 않던 시절 피상적으로만 생각하던 내용들이 지금은 피부에 와 닿는다. 이 포스트의 본문은 최근 나 또는 내가 속한 팀이 처한 상황에 거의 흡사하게 오버랩핑되는..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="코드 비용에 대한 2016년의 메모"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="코드 비용에 대한 2016년의 메모">
+  <meta itemprop="description" content="책상을 정리하다가 “라라벨 빨간책”이라 알려진 책을 집필하며 2016년 초에 쓴 메모 중 일부를 찾았다.실무 개발자로 일하지 않던 시절 피상적으로만 생각하던 내용들이 지금은 피부에 와 닿는다. 이 포스트의 본문은 최근 나 또는 내가 속한 팀이 처한 상황에 거의 흡사하게 오버랩핑되는...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="코드 비용에 대한 2016년의 메모" />
+  <meta name="twitter:description" content="책상을 정리하다가 “라라벨 빨간책”이라 알려진 책을 집필하며 2016년 초에 쓴 메모 중 일부를 찾았다.실무 개발자로 일하지 않던 시절 피상적으로만 생각하던 내용들이 지금은 피부에 와 닿는다. 이 포스트의 본문은 최근 나 또는 내가 속한 팀이 처한 상황에 거의 흡사하게 오버랩핑되는..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/learn-n-think/memo-in-early-2016/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>코드 비용에 대한 2016년의 메모 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li>
+          <a href="/">Blog</a>
+        </li>
+        <li>
+          <a href="/profile/">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">코드 비용에 대한 2016년의 메모</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/learn-n-think/memo-in-early-2016/&title=코드 비용에 대한 2016년의 메모" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/learn-n-think/memo-in-early-2016/&title=코드 비용에 대한 2016년의 메모&text=코드 비용에 대한 2016년의 메모" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/learn-n-think/memo-in-early-2016/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-08-12
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/memo-in-early-2016/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>책상을 정리하다가 “라라벨 빨간책”이라 알려진 책을 집필하며 2016년 초에 쓴 메모 중 일부를 찾았다.</p>
+
+<p>실무 개발자로 일하지 않던 시절 피상적으로만 생각하던 내용들이 지금은 피부에 와 닿는다. 이 포스트의 본문은 최근 나 또는 내가 속한 팀이 처한 상황에 거의 흡사하게 오버랩핑되는 2016년 메모의 일부분이다. 내 기억이 맞다면, 누군가의 영상 강의를 보고 메모한 것이다.</p>
+
+<p>이 시대의 스승(엉클 밥, 파울러 옹 등)들이 언급한 소프트웨어 개발자로서 코드를 대하는 자세, 즉 소프트웨어의 제 2가치와 제 1가치에 대해 다시 한번 되새겨본다.</p>
+
+<p>개발해서 남에게 납품하는 소프트웨어는 굳이 이럴 필요까진 없다고 생각한다. 그러나, 자신의 서비스를 위해 소프트웨어를 개발한다면, 개발자가 코드를 완전히 소유할 수 있는 시간과 비용을 인정해 줘야 한다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="cost-of-codeprogram">Cost of Code(=~Program)</h2>
+
+<ul>
+  <li>Cost of introduction (최초 개발 비용, 모두가 합의한 비용)</li>
+  <li>Cost of change (수정 비용, 사업적 필요에 의해 발생할 수 밖에 없는 비용)</li>
+  <li><strong>Cost of ownership</strong> (소유 비용, <strong>Time and effort it takes to maintain the owned application logic to support its ongoing change</strong>)</li>
+</ul>
+
+<blockquote>
+  <p>That’s why some engineers try to increase the cost of introduction in an attempt to affect the cost of change curve.</p>
+</blockquote>
+
+<h2 id="ownership-of-code">Ownership of Code.</h2>
+
+<ul>
+  <li>Own only the logic you need to change (계속 유지보수할 코드만 소유).</li>
+  <li>Write only the logic you need to own (완전히 소유할 코드만 작성).</li>
+  <li>Own everything you write (작성한 것은 완전히 소유).</li>
+  <li>Try not to write anything that you will not own (소유<small class="text-muted">유지보수</small>하지 않을 코드는 쓰지 말것).</li>
+  <li>Reuse everything else (나머지<small class="text-muted">이미 발명된 바퀴</small>는 전부 재사용).</li>
+</ul>
+
+<h2 id="code-process">Code Process</h2>
+
+<ul>
+  <li>Document the needs (요구사항 문서화).</li>
+  <li>Experiment with tools available (선행 기술 조사).</li>
+  <li>Document changes and constraints (변경 필요 요구사항과 한계점 판단).</li>
+  <li>Stabilize. Claim ownership when the thing grows outside of tool boundary (소유할 것과 하지 않을 것을 구분해서 개발).</li>
+  <li>Isolate religiously (경계를 명확히).</li>
+</ul>
+
+<p><a href="/images/2016-l5book-memo-9.jpg"><img src="/images/2016-l5book-memo-9.jpg" alt="Memo Page 9" /></a></p>
+
+<p><a href="/images/2016-l5book-memo-10.jpg"><img src="/images/2016-l5book-memo-10.jpg" alt="Memo Page 10" /></a></p>
+
+<p><a href="https://drive.google.com/file/d/0Bx8_tW_C70eNc2F4SC1tdzRabHM/view?usp=sharing">Memo Captured(pdf)</a></p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#프로세스">
+            프로세스
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/cheatsheet/understanding-mysql-db-lock/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              MySQL 테이블 잠금 실험
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">75</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">53</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#cheatsheet">
+          Cheatsheet
+          <span class="badge">1</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#DDD">
+        DDD
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Database">
+        Database
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 126%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 262%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#데이터베이스">
+        데이터베이스
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#아키텍처">
+        아키텍처
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#프로세스">
+        프로세스
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-08-12</small>
+          <a href="/learn-n-think/memo-in-early-2016/">코드 비용에 대한 2016년의 메모</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-08-04</small>
+          <a href="/cheatsheet/understanding-mysql-db-lock/">MySQL 테이블 잠금 실험</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-07-09</small>
+          <a href="/learn-n-think/clean-architecture-and-dependency/">아키텍처와 의존성</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2017 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

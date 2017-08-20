@@ -86,6 +86,77 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/learn-n-think/ddd-memo/">DDD Memo</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-05-02
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/ddd-memo/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><img src="http://image.yes24.com/goods/27750871/L" alt="http://www.yes24.com/24/Goods/27750871" /></p>
+
+<h1 id="1-도메인-모델-시작">1. 도메인 모델 시작</h1>
+
+<p>p7. 아키텍쳐 구성</p>
+
+<ul>
+  <li>사용자 인터페이스 또는 표현 (UI, Presentation)</li>
+  <li>응용 (Application)</li>
+  <li>도메인 (Domain)</li>
+  <li>인프라스트럭처 (Infrastructure)</li>
+</ul>
+
+<p>p11. 도메인을 모델링할 때 기본이 되는 작업은 모델을 구성하는 <strong>핵심 구성요소</strong>, <strong>규칙</strong>, <strong>기능</strong>을 찾는 것이다.</p>
+
+<p>p17. 엔티티와 밸류</p>
+
+<ul>
+  <li>엔티티의 가장 큰 특징은 <strong>식별자</strong>를 갖는다는 점.</li>
+  <li>밸류 타입은 <strong>개념적으로 완전한 하나를 표현</strong>할 때 사용한다 (예: “받는 사람”이란 밸류는 이름과 전화번호 속성으로 구성됨).</li>
+  <li>밸류 객체의 데이터를 변경할 때는 기존 데이터를 변경하기보다는 변경한 데이터를 갖는 새로운 밸류 객체를 생성한다(Immutable).</li>
+  <li>엔티티 타입의 두 객체가 같은지 비교할 때 주로 식별자를 사용한다면, 두 밸류 객체가 같은지 비교할 때는 모든 속성이 같은지 비교해야 한다.</li>
+</ul>
+
+<p>p32. 도메인 객체가 불완전한 상태로 사용되는 것을 막으려면 생성 시점에 필요한 것을 전달해 주어야 한다. 즉, <strong>생성자</strong>를 통해 필요한 데이터를 모두 받아야 한다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/ddd-memo/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/intro-to-apache-thrift-rpc/">Intro to RPC - Apache Thrift</a>
         </h2>
         <p class="box-meta">
@@ -303,55 +374,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/understanding-php-exception-class-part-2/">PHP의 예외 클래스 이해하기 2부</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-01-15
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/understanding-php-exception-class-part-2/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><a href="/work-n-play/understanding-php-exception-class/">지난 1부</a>에서는 예외의 기본적인 개념과 사용법, 그리고 프레임워크 없이 PHP 프로젝트를 할 때 사용할 수 있는 몇 가지 테크닉을 살펴봤다.</p>
-
-<p>이번 포스트에서는 <strong>라라벨로 만든 예제 프로젝트를 통해 사용자 정의 예외 클래스를 선언하고 사용하는 코드를 구현</strong>해 볼 것이다. PHP/라라벨 만의 특수한 내용은 일부에 불과하며, 다른 언어나 프레임워크에서도 사용할 수 있는 일반적인 내용이라 생각한다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/understanding-php-exception-class-part-2/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -408,7 +430,7 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">75</span>
+          <span class="badge">76</span>
         </a>
       </li>
       <li>
@@ -928,7 +950,7 @@
       </a>
     </span>
     
-    <span style="font-size: 262%">
+    <span style="font-size: 266%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1036,7 +1058,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#프로세스">
         프로세스
       </a>
@@ -1062,6 +1084,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-08-20</small>
+          <a href="/learn-n-think/agile-manifesto/">애자일 선언서 이해하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-08-12</small>
           <a href="/learn-n-think/memo-in-early-2016/">코드 비용에 대한 2016년의 메모</a>
         </h4>
@@ -1071,13 +1100,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-08-04</small>
           <a href="/cheatsheet/understanding-mysql-db-lock/">MySQL 테이블 잠금 실험</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-07-09</small>
-          <a href="/learn-n-think/clean-architecture-and-dependency/">아키텍처와 의존성</a>
         </h4>
       </li>
       

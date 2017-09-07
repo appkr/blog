@@ -5,9 +5,39 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Aug 2017 14:36:13 +0900</pubDate>
-    <lastBuildDate>Sun, 20 Aug 2017 14:36:13 +0900</lastBuildDate>
+    <pubDate>Thu, 07 Sep 2017 21:39:20 +0900</pubDate>
+    <lastBuildDate>Thu, 07 Sep 2017 21:39:20 +0900</lastBuildDate>
     <generator>Jekyll v3.5.1</generator>
+    
+      <item>
+        <title>UML 훑어보기</title>
+        <description>&lt;p&gt;이 슬라이드는 Modern PHP User Group 2017년 9월 정기 모임 (벼락치기 땜빵) 발표 자료입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2017-09-07-img-01.png&quot; alt=&quot;UML 훑어보기&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;https://drive.google.com/file/d/0Bx8_tW_C70eNZGF4YXhGUG5DcVU/view?usp=sharing&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Thu, 07 Sep 2017 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/uml-quick-peek/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/uml-quick-peek/</guid>
+        
+        <category>개발자</category>
+        
+        <category>UML</category>
+        
+        <category>OOP</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>애자일 선언서 이해하기</title>
@@ -2186,27 +2216,6 @@ VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1, 2, 1, &lt;span class=&qu
         
         
         <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>존칭형으로 블로그 쓰기</title>
-        <description>&lt;p&gt;이 블로그는 직업인으로서의 일상과 생각을 정리하여 기록하기 위해 2008년부터 쓰기 시작했습니다. 당시에는 모바일 반도체를 개발하는 회사에서 제품을 기획하는 일을 하고 있었지요. 블로그 플랫폼도 네이버로 시작했던 걸로 기억합니다. 일기처럼 쓰는 글이었으므로 당연히 평서형(반말)을 썼습니다.&lt;/p&gt;
-
-&lt;p&gt;네이버에서 텍스타일로, 텍스타일에서 티스토리로, 다시 워드프레스로 이전하며 블로깅을 하다가 2011년 반도체 회사를 떠나면서 더 이상 글을 쓰지 않았습니다. 개발자의 삶을 살기로 마음먹은 2015년 중반부터 개발자스럽게 블로그 플랫폼을 Jekyll로 옮겨 개발자로서 배운 내용을 하나씩 남기기 시작했습니다.&lt;/p&gt;
-
-&lt;p&gt;깃허브에 라라벨 프레임워크에 대한 온라인 강의를 연재하고, 책을 집필하고, 오프라인 강의를 하면서, &lt;strong&gt;블로그는 지난 세월 기획자로 살던 저를 개발자 appkr로 세상에 알리는 든든한 지원군 역할&lt;/strong&gt;을 해 왔습니다. 덕분에 성공적으로 경력 전환도 할 수 있었습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-11-img-01.png&quot;&gt;&lt;img src=&quot;/images/2017-02-11-img-01.png&quot; alt=&quot;블로그 방문자 추이&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;그림처럼 꽤 많은 분들이 찾아 주셨고, 이제 이 블로그는 혼자만의 일상을 기록하기보다는 다른 개발자들과 소통하는 공간으로 성격이 변모되었습니다. 해서 &lt;strong&gt;앞으로는 존칭형(존댓말)으로 글을 쓰려고 합니다&lt;/strong&gt;. 사실 존칭형으로 글 쓰는 것이 더 쉽기도하고요~&lt;/p&gt;
-</description>
-        <pubDate>Sat, 11 Feb 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/style-changed/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/style-changed/</guid>
-        
-        
-        <category>learn-n-think</category>
         
       </item>
     

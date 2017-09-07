@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "UML 훑어보기",
+    "category" : "work-n-play",
+    "tags"     : "개발자, UML, OOP",
+    "url"      : "/work-n-play/uml-quick-peek/",
+    "date"     : "2017-09-07"
+  },
+  
+  {
     "title"    : "애자일 선언서 이해하기",
     "category" : "learn-n-think",
     "tags"     : "개발자, 프로세스",

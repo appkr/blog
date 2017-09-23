@@ -319,13 +319,24 @@
 
 <p>Thrift IDL 문법으로 인터페이스 작성이 끝나면 Thrift 컴파일러 바이너리로 보일러 플레이트 코드를 생성한다.</p>
 
-<p>OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 작성 시점의 <code class="highlighter-rouge">thrift</code> 바이너리는 PHP의 PSR4를 지원하지 않는 0.9.3 버전이다. 따라서 Thrift 프로젝트의 <code class="highlighter-rouge">dev-master 1.0.0-candidate</code> 소스를 받아서 컴파일해야하는데 OS X에서는 여간 어려운 일이 아니다. 따라서 <a href="/files/thrift-osx.gz">OS X에서 미리 컴파일해 놓은 파일을 여기서 다운로드</a> 받아 사용할 것을 권장한다. 다운로드 받은 파일의 압축을 풀고 <code class="highlighter-rouge">/usr/local/bin</code> 디렉터리로 옮기고 실행 권한을 설정해 준다.</p>
+<p><del>OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 작성 시점의 <code class="highlighter-rouge">thrift</code> 바이너리는 PHP의 PSR4를 지원하지 않는 0.9.3 버전이다. 따라서 Thrift 프로젝트의 <code class="highlighter-rouge">dev-master 1.0.0-candidate</code> 소스를 받아서 컴파일해야하는데 OS X에서는 여간 어려운 일이 아니다. 따라서 <a href="/files/thrift-osx.gz">OS X에서 미리 컴파일해 놓은 파일을 여기서 다운로드</a> 받아 사용할 것을 권장한다. 다운로드 받은 파일의 압축을 풀고 <code class="highlighter-rouge">/usr/local/bin</code> 디렉터리로 옮기고 실행 권한을 설정해 준다.</del></p>
 
 <div class="language-sh highlighter-rouge"><pre class="highlight"><code>~ <span class="nv">$ </span>mv thrift /usr/local/bin/
 ~ <span class="nv">$ </span>chmod 755 /usr/local/bin/thrift
 ~ <span class="nv">$ </span>thrift --version
 <span class="c"># Thrift version 1.0.0-dev</span>
 </code></pre>
+</div>
+
+<div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
+  <div class="panel-body">
+    <p><strong>EDIT 2017-09-25</strong></p>
+    <p><a href="https://issues.apache.org/jira/browse/THRIFT-3915">아침에 Thrift 팀으로 부터 Jira 티켓 업데이트에 대한 메일을 받았습니다.</a> 1년이 걸렸군요. 홈브루로 thrift 바이너리를 삭제후 재설치해 본 결과 PSR을 지원한다는 사실을 확인했습니다.</p>
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>thrift --version
+    <span class="c"># Thrift version 0.10.0</span>
+    </code></pre>
+    </div>
+  </div>
 </div>
 
 <p>이제 컴파일해 보자.</p>
@@ -958,7 +969,7 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">76</span>
+          <span class="badge">77</span>
         </a>
       </li>
       <li>
@@ -1490,7 +1501,7 @@
       </a>
     </span>
     
-    <span style="font-size: 270%">
+    <span style="font-size: 274%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1598,7 +1609,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 102%">
       <a href="/tags#프로세스">
         프로세스
       </a>
@@ -1624,6 +1635,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-09-23</small>
+          <a href="/learn-n-think/software-craftsmanship-by-sandro-mancuso/">소프트웨어 장인 by 산드로 만쿠소</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-09-07</small>
           <a href="/work-n-play/uml-quick-peek/">UML 훑어보기</a>
         </h4>
@@ -1633,13 +1651,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-08-20</small>
           <a href="/learn-n-think/agile-manifesto/">애자일 선언서 이해하기</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-08-12</small>
-          <a href="/learn-n-think/memo-in-early-2016/">코드 비용에 대한 2016년의 메모</a>
         </h4>
       </li>
       

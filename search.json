@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "소프트웨어 장인 by 산드로 만쿠소",
+    "category" : "learn-n-think",
+    "tags"     : "개발자, 프로세스",
+    "url"      : "/learn-n-think/software-craftsmanship-by-sandro-mancuso/",
+    "date"     : "2017-09-23"
+  },
+  
+  {
     "title"    : "UML 훑어보기",
     "category" : "work-n-play",
     "tags"     : "개발자, UML, OOP",

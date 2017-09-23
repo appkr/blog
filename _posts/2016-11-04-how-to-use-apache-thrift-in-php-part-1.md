@@ -181,7 +181,7 @@ IDL 예제 프로젝트의 파일 목록은 다음과 같다.
 
 Thrift IDL 문법으로 인터페이스 작성이 끝나면 Thrift 컴파일러 바이너리로 보일러 플레이트 코드를 생성한다. 
 
-OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 작성 시점의 `thrift` 바이너리는 PHP의 PSR4를 지원하지 않는 0.9.3 버전이다. 따라서 Thrift 프로젝트의 `dev-master 1.0.0-candidate` 소스를 받아서 컴파일해야하는데 OS X에서는 여간 어려운 일이 아니다. 따라서 [OS X에서 미리 컴파일해 놓은 파일을 여기서 다운로드](/files/thrift-osx.gz) 받아 사용할 것을 권장한다. 다운로드 받은 파일의 압축을 풀고 `/usr/local/bin` 디렉터리로 옮기고 실행 권한을 설정해 준다.
+~~OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 작성 시점의 `thrift` 바이너리는 PHP의 PSR4를 지원하지 않는 0.9.3 버전이다. 따라서 Thrift 프로젝트의 `dev-master 1.0.0-candidate` 소스를 받아서 컴파일해야하는데 OS X에서는 여간 어려운 일이 아니다. 따라서 [OS X에서 미리 컴파일해 놓은 파일을 여기서 다운로드](/files/thrift-osx.gz) 받아 사용할 것을 권장한다. 다운로드 받은 파일의 압축을 풀고 `/usr/local/bin` 디렉터리로 옮기고 실행 권한을 설정해 준다.~~
 
 ```sh
 ~ $ mv thrift /usr/local/bin/
@@ -189,6 +189,17 @@ OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 �
 ~ $ thrift --version
 # Thrift version 1.0.0-dev
 ```
+
+<div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
+  <div class="panel-body">
+    <p><strong>EDIT 2017-09-25</strong></p>
+    <p><a href="https://issues.apache.org/jira/browse/THRIFT-3915">아침에 Thrift 팀으로 부터 Jira 티켓 업데이트에 대한 메일을 받았습니다.</a> 1년이 걸렸군요. 홈브루로 thrift 바이너리를 삭제후 재설치해 본 결과 PSR을 지원한다는 사실을 확인했습니다.</p>
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>thrift --version
+    <span class="c"># Thrift version 0.10.0</span>
+    </code></pre>
+    </div>
+  </div>
+</div>
 
 이제 컴파일해 보자.
 

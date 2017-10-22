@@ -5,9 +5,123 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 25 Sep 2017 10:10:54 +0900</pubDate>
-    <lastBuildDate>Mon, 25 Sep 2017 10:10:54 +0900</lastBuildDate>
+    <pubDate>Sun, 22 Oct 2017 21:16:28 +0900</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2017 21:16:28 +0900</lastBuildDate>
     <generator>Jekyll v3.5.1</generator>
+    
+      <item>
+        <title>라라벨 엘로퀀트 모델 이벤트 고찰</title>
+        <description>&lt;p&gt;라라벨 엘로퀀트에서 발생하는 모델 이벤트를 실험한 결과 입니다. &lt;a href=&quot;https://github.com/appkr/db-lock-poc&quot;&gt;선점 잠금과 비선점 잠금 실험을 위한 프로젝트&lt;/a&gt;에 이벤트 리스너를 등록하고 엘로퀀트 모델을 DB에 저장하고, 변경한 후 DB에 저장하고, 삭제할 때 어떤 이벤트가 발생하는지 살펴 봤습니다.&lt;/p&gt;
+
+&lt;p&gt;이벤트를 잡기 위한 리스너 클로저는 아래와 같습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventServiceProvider&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ServiceProvider&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'eloquent.*'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/appkr/pattern/tree/master/Behavioral/Observer2&quot;&gt;관찰자(Observer) 패턴&lt;/a&gt;은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, “밥 다되면 불러줘~”라고 미리 말해두고, 밥이 다 되면 알려주는 거죠.&lt;/p&gt;
+
+&lt;p&gt;“관찰자를 등록하고 사건이 발생하면 등록된 관찰자에들에게 알려준다”는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 &lt;code class=&quot;highlighter-rouge&quot;&gt;$observables&lt;/code&gt; 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;save()&lt;/code&gt;와 같은 퍼블릭 함수가 작동할 때, 자신의 &lt;code class=&quot;highlighter-rouge&quot;&gt;fireModelEvent('created')&lt;/code&gt; 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 &lt;code class=&quot;highlighter-rouge&quot;&gt;created($this)&lt;/code&gt;를 호출하는 식으로 작동합니다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;1-insert&quot;&gt;1. Insert&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$model-&amp;gt;update()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;$model-&amp;gt;push()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;$model-&amp;gt;touch()&lt;/code&gt; 등의 API도 결국에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;save()&lt;/code&gt; 함수를 거치게 됩니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;save()&lt;/code&gt; 함수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;saving&lt;/code&gt; 이벤트를 던진 후, 다시 Insert를 해야할지 Update를 해야할지 판단하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;performInsert()&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;performUpdate()&lt;/code&gt; 함수를 선택적으로 호출합니다. 분기된 함수 안에서 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;creating&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;created&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;..&lt;/code&gt; 등의 이벤트를 던집니다. 분기된 함수 오퍼레이션이 끝나면 &lt;code class=&quot;highlighter-rouge&quot;&gt;save()&lt;/code&gt; 함수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;saved&lt;/code&gt; 이벤트를 던지고 수명을 다합니다.&lt;/p&gt;
+
+&lt;p&gt;따라서, &lt;code class=&quot;highlighter-rouge&quot;&gt;saving&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;creating&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;created&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;saved&lt;/code&gt; 순서로 이벤트가 발생합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;users&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saving: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.creating: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: insert into &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;title&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;stock&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;price&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;description&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;created_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; values &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?, ?, ?, ?, ?, ?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TEST TITLE&quot;&lt;/span&gt;,10,1000,&lt;span class=&quot;s2&quot;&gt;&quot;TEST DESCRIPTION&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;2017-10-22 10:21:53&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;2017-10-22 10:21:53&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.created: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saved: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;2-update&quot;&gt;2. Update&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;saving&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;updating&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;updated&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;saved&lt;/code&gt; 순.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;users&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null limit 1 &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;update &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saving: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.updating: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: update &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;title&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;description&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;version&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;새 상품 (상품명 수정됨)&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,2,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.updated: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saved: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;3-delete&quot;&gt;3. Delete&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;deleting&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;deleted&lt;/code&gt; 순.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;12&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;users&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where 0 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1 and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.deleting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: update &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.deleted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 22 Oct 2017 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/</guid>
+        
+        <category>개발자</category>
+        
+        <category>Laravel</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>소프트웨어 장인 by 산드로 만쿠소</title>
@@ -1487,216 +1601,6 @@ VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1, 2, 1, &lt;span class=&qu
         <category>Apache Thrift</category>
         
         <category>PHP</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>AWS ECS/ECR을 이용한 서비스 배포</title>
-        <description>&lt;p&gt;&lt;strong&gt;AWS ECS(EC2 Container Service)&lt;/strong&gt;는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. &lt;strong&gt;AWS ECR(Container Registry)&lt;/strong&gt;은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zBqjh61QcB4&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/zBqjh61QcB4/0.jpg&quot; alt=&quot;Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다&lt;small&gt;(협찬 좀…)&lt;/small&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.&lt;/li&gt;
-  &lt;li&gt;Service Discovery나 Container Orchestration등을 위해 &lt;a href=&quot;https://kubernetes.io/&quot;&gt;쿠버네티스(Kubernetes)&lt;/a&gt;와 같이 어려운 도구를 다룰 필요가 없다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;그런데 &lt;strong&gt;아직 서울 지역는 오픈되지 않았습니다.&lt;/strong&gt; 빨리 좀 오픈해 주세요~ 갓마존.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;1-예제-프로젝트-설치&quot;&gt;1. 예제 프로젝트 설치&lt;/h2&gt;
-
-&lt;p&gt;ECS에 배포할 서비스가 있어야겠죠? 아래 주소를 방문하여 가이드에 따라 프로젝트를 설치하고, 도커 이미지를 빌드합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/appkr/deploy-laravel-with-ecs-and-ecr&quot;&gt;https://github.com/appkr/deploy-laravel-with-ecs-and-ecr&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;이 예제에서는 로컬의 &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; 파일을 도커 이미지에 포함하여 애플리케이션의 실행 환경 변수를 설정하고 있습니다. 실제 배포에서는 AWS Console/로컬 셸에서 환경 변수를 등록하거나, &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt;에서 S3 등에 저장된 &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt;를 도커 이미지로 다운로드 받아 사용하도록 하는 것이 안전할 것입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-hello-ecs&quot;&gt;2. Hello ECS&lt;/h2&gt;
-
-&lt;p&gt;AWS Console에 로그인합니다. 가장 먼저 해야할 일은 리전을 Tokyo나 Singapore 등 ECS가 오픈된 지역으로 변경하는 일입니다. 필자는 Tokyo로 선택했습니다.&lt;/p&gt;
-
-&lt;p&gt;Services 목록에서 &lt;kbd&gt;EC2 Container Service&lt;/kbd&gt;로 진입하고 &lt;kbd&gt;Get Started&lt;/kbd&gt; 버튼을 누릅니다.&lt;/p&gt;
-
-&lt;p&gt;다음 화면이 나오면 체크박스를 모두 체크하고 &lt;kbd&gt;Continue&lt;/kbd&gt; 버튼을 누릅니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;[v] Deploy a sample application onto Amazon ECS Cluster&lt;/li&gt;
-  &lt;li&gt;[v] Store container images securely with Amazon ECR&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-02.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-02.png&quot; alt=&quot;Getting Started with Amazon EC2 Container Service(ECS)&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;지금부터 여섯 단계를 거칩니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;21-step-1-configure-repository&quot;&gt;2.1. Step 1: Configure repository&lt;/h3&gt;
-
-&lt;p&gt;ECR 레지스트리에 저장소 이름을 정하는 화면입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;appkr/myshop&lt;/code&gt;으로 이름을 정했습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-03.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-03.png&quot; alt=&quot;Step 1: Configure repository&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;22-step-2-build-tag-and-push-docker-image&quot;&gt;2.2. Step 2: Build, tag, and push Docker image&lt;/h3&gt;
-
-&lt;p&gt;화면에 ECR을 초기화하기 위한 자세한 안내가 나옵니다. 1 절에서 이미지는 빌드하고 테스트했으므로 빌드 과정은 건너 뜁니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;appkr/myshop:latest&lt;/code&gt; 이미지를 빌드했고, 실행하여 작동 테스트를 완료했다고 가정합니다. 나머지 과정은 다음과 같습니다.&lt;/p&gt;
-
-&lt;p&gt;로컬 셸에서 ECR 서비스에 로그인합니다. 도커 허브나 &lt;a href=&quot;https://docs.docker.com/registry/&quot;&gt;도커 레지스트리&lt;/a&gt;에 로그인하는 방법과 같습니다. 굉장히 긴 비밀번호가 달린 명령문을 콘솔에 출력하는데 그대로 복사해서 붙여 넣고 로그인합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;aws ecr get-login --region ap-northeast-1
-
-~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker login -u AWS -p &amp;lt;LONG_PASS_STRING&amp;gt; -e none https://628988759087.dkr.ecr.ap-northeast-1.amazonaws.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이제 ECR 레지스트리 URL을 포함한 네임스페이스를 달아 태깅하고, 태깅된 이미지를 ECR에 푸쉬합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
-
-~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker images
-&lt;span class=&quot;c&quot;&gt;# REPOSITORY                                                       TAG       IMAGE ID         CREATED           SIZE&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# appkr/myshop                                                     latest    126f36ac9412     58 minutes ago    549 MB&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop   latest    126f36ac9412     58 minutes ago    549 MB&lt;/span&gt;
-
-~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
-&lt;span class=&quot;c&quot;&gt;# The push refers to a repository [628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop]&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# ...&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# latest: digest: sha256:b8d0e4d0ab86db7436943573b11d06bdac34deb3d874423005670dfd47a39908 size: 5331&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;23-step-3-create-a-task-definition&quot;&gt;2.3. Step 3: Create a task definition&lt;/h3&gt;
-
-&lt;p&gt;필자도 ECS를 배우고 있는 과정으로, 두 번 밖에 사용해 보지 않았기에 갓마존에서 말하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;task&lt;/code&gt;의 개념을 정확히 이해하지 못했습니다. &lt;kbd&gt;Create a task definition&lt;/kbd&gt; 창에 다음과 같이 입력했습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Task definition name*: deploy&lt;/li&gt;
-  &lt;li&gt;Container name*: myshop&lt;/li&gt;
-  &lt;li&gt;Image*: 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest&lt;/li&gt;
-  &lt;li&gt;Memory Limits (MB)*: Hard limit 256&lt;/li&gt;
-  &lt;li&gt;Port mappings: 80 80 tcp&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;24-step-4-configure-service&quot;&gt;2.4. Step 4: Configure service&lt;/h3&gt;
-
-&lt;p&gt;서비스를 설정하고, ELB(Elastic Load Balancer)를 활성화했습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Service name*: myshop&lt;/li&gt;
-  &lt;li&gt;Desired number of tasks*: 1&lt;/li&gt;
-  &lt;li&gt;Elastic load balancing
-    &lt;ul&gt;
-      &lt;li&gt;Container name: myshop:80&lt;/li&gt;
-      &lt;li&gt;ELB listener protocol*: HTTP&lt;/li&gt;
-      &lt;li&gt;ELB health check: http:80/&lt;/li&gt;
-      &lt;li&gt;ELB listener port*: 80&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;25-step-5-configure-cluster&quot;&gt;2.5. Step 5: Configure cluster&lt;/h3&gt;
-
-&lt;p&gt;클러스터는 서비스를 구성하기 위한 서버(컨테이너)들의 논리적 집합이라 이해하고 있습니다. 가령 지금 배포하는 애플리케이션이 RDS나 ElasticCache를 쓸 수도 있지만, MySQL과 Redis를 직접 컨테이너로 구성해서 클러스터에 넣을 수도 있을 겁니다. 여튼 다음과 같이 설정했습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Cluster name*: myshop&lt;/li&gt;
-  &lt;li&gt;EC2 instance type*: t2.micro&lt;/li&gt;
-  &lt;li&gt;Number of instances*: 1&lt;/li&gt;
-  &lt;li&gt;Key pair: aws-tokyo-ecs&lt;/li&gt;
-  &lt;li&gt;Security group
-    &lt;ul&gt;
-      &lt;li&gt;Allowed ingress source(s)*: Anywhere&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Key pair는 컨테이너에 SSH 접속을 위해 필요합니다. 인스턴스 타입도 실험해 보고 지울 것이므로 가장 작은 것으로 선택하고, 인스턴스는 1개만 선택했습니다. AWS를 쓰던 사용자라면 각 입력 박스의 의미를 이해할 수 있을 것입니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;26-step-6-review&quot;&gt;2.6. Step 6: Review&lt;/h3&gt;
-
-&lt;p&gt;지금까지 설정한 값들을 보여줍니다. &lt;kbd&gt;Launch&lt;/kbd&gt; 버튼을 누르면 환경 구성이 시작됩니다. 환경 구성이 완료되면 &lt;kbd&gt;View Instance&lt;/kbd&gt; 버튼이 활성화됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-04.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-04.png&quot; alt=&quot;Step 6: Review&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;우선 여기까지 수행하면 애플리케이션이 ECS에서 작동하고 있는 상태가 됩니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-로드-밸런싱-및-오토-스케일링&quot;&gt;3. 로드 밸런싱 및 오토 스케일링&lt;/h2&gt;
-
-&lt;h3 id=&quot;31-로드-밸런서&quot;&gt;3.1. 로드 밸런서&lt;/h3&gt;
-
-&lt;p&gt;&lt;kbd&gt;Cluster&lt;/kbd&gt; 메뉴에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;myshop&lt;/code&gt; 서비스를 선택하면, &lt;kbd&gt;Load Balancing&lt;/kbd&gt; 섹션을 볼 수 있습니다. 누르면 다음 화면을 볼 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-05.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-05.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;하이라이트된 URL이 도커 컨테이너에서 실행 중인 서비스로서, 사용자가 접근할 수 있는 URL이 됩니다. 브라우저에서 열어보면 컨테이너 &lt;code class=&quot;highlighter-rouge&quot;&gt;59450439db83&lt;/code&gt;에서 서비스가 실행 중인 것을 확인할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-06.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-06.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;32-오토-스케일링&quot;&gt;3.2. 오토 스케일링&lt;/h3&gt;
-
-&lt;p&gt;아직 트래픽을 많이 만들지 못해서 오토 스케일링은 경험하지 못했습니다. 오토 스케일링을 설정한 후, 다음 스크립트를 여러 개의 셸에서 실행해서 서버에 부하를 주었지만 좀 처럼 CPU 로드가 올라가진 않더라구요ㅜ.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;curl http://ec2contai-ecselast-1lgfqkql0okbd-452428627.ap-northeast-1.elb.amazonaws.com:80&lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt; sleep 1; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;어쨌든 Elastic Beanstalk처럼 인스턴스를 처음부터 만들고, 서버 인프라를 구성하고, 환경변수를 추가하고, 애플리케이션 코드를 복제해야 하는 것과 달리, 도커는 애플리케이션까지 포함된 이미지를 ECR에서 받아 실행만 하는 것으므로, (로컬 환경의 경험으로 부터 유추해 보아) 대략 수 초 내에 새 컨테이너를 띄울 수 있을 것입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;kbd&gt;Cluster&lt;/kbd&gt; 메뉴에서 &lt;kbd&gt;Update&lt;/kbd&gt; 버튼을 눌러 오토 스케일링 옵션을 설정했습니다. 총 세 단계를 거칩니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;1-단계-min-max-tasks-설정&quot;&gt;1 단계: Min, Max Tasks 설정&lt;/h4&gt;
-
-&lt;p&gt;그림과 같습니다. 필자는 최소 1대, 최대 2대로 설정했습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-07.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-07.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;23-단계-오토-스케일링-조건-및-액션-설정&quot;&gt;2~3 단계: 오토 스케일링 조건 및 액션 설정&lt;/h4&gt;
-
-&lt;p&gt;직전 5분 동안 CPU 사용량이 40%를 넘어서면 스케일링 아웃하도록 설정했습니다. 아~ 아까비!! 이 값을 5% 정도로 낮게 설정했다면 오토 스케일을 볼 수 있었을 텐데… 지금은 모든 환경을 지운 상태라 실험해 볼 수 없네요.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-08.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-08.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2017-02-12-img-09.png&quot;&gt;&lt;img src=&quot;/images/2017-02-12-img-09.png&quot; alt=&quot;EC2 Load Balancing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;4-워크-플로우&quot;&gt;4. 워크 플로우&lt;/h2&gt;
-
-&lt;p&gt;이제 로컬 개발 환경에서 애플리케이션 코드가 변경되면, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker build&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;docker tag&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;docker push&lt;/code&gt; 명령만으로 변경된 애플리케이션을 AWS ECS 클러스터에 배포할 수 있습니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/deploy-laravel-with-ecs-and-ecr &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker build --tag appkr/myshop .
-
-~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
-
-~/any &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이상의 과정을 Jenkins등 CI/CD 도구에 걸어 놓으면, 코드 변경 -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; -&amp;gt; Test by CI tool -&amp;gt; Deploy by CD tool 등으로 애플리케이션 개발 및 수정 이후의 모든 과정을 완전 자동화할 수 있을 겁니다. 도커, CI/CD를 통한 테스트 및 배포 자동화는 배포에 대한 개발자의 두려움을 없애 줍니다.&lt;/p&gt;
-
-&lt;p&gt;배포 및 운영만을 담당하는 엔지니어가 별도로 있는 조오~은 회사가 아니라면, 결과적으로 ECS/ECR를 이용한 서비스 배포는 개발자가 비즈니스 로직 개발에만 집중할 수 있도록 함으로써, 비즈니스 싸이클이 빨리지는 효과를 얻을 수 있습니다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;도커 이용의 장점이나 사용법을 배우려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;subicura&lt;/code&gt;님의 블로그 포스트를 참고하시기 바랍니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html&quot;&gt;초보를 위한 도커 안내서 by subicura(김충섭)&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 12 Feb 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/deploy-with-ecs/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/deploy-with-ecs/</guid>
-        
-        <category>개발자</category>
-        
-        <category>Docker</category>
         
         
         <category>work-n-play</category>

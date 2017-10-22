@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "라라벨 엘로퀀트 모델 이벤트 고찰",
+    "category" : "work-n-play",
+    "tags"     : "개발자, Laravel",
+    "url"      : "/work-n-play/investigating-laravel-model-events/",
+    "date"     : "2017-10-22"
+  },
+  
+  {
     "title"    : "소프트웨어 장인 by 산드로 만쿠소",
     "category" : "learn-n-think",
     "tags"     : "개발자, 프로세스",

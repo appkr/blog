@@ -6,34 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋..."/>
+  <meta name="description" content="라라벨 엘로퀀트에서 발생하는 모델 이벤트를 실험한 결과 입니다. 선점 잠금과 비선점 잠금 실험을 위한 프로젝트에 이벤트 리스너를 등록하고 엘로퀀트 모델을 DB에 저장하고, 변경한 후 DB에 저장하고, 삭제할 때 어떤 이벤트가 발생하는지 살펴 봤습니다.이벤트를 잡기 위한 리스너 클로..."/>
   <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
   <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
 
   <meta name="msapplication-tap-highlight" content="no"/>
 
   <!-- Facebook Meta -->
-  <meta property="og:title" content="Windows Sharepoint Service 3.0 (WSS3.0) 설치"/>
+  <meta property="og:title" content="라라벨 엘로퀀트 모델 이벤트 고찰"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
   <meta property="og:image" content=""/>
 
   <!-- Google+ Meta -->
-  <meta itemprop="name" content="Windows Sharepoint Service 3.0 (WSS3.0) 설치">
-  <meta itemprop="description" content="WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋...">
+  <meta itemprop="name" content="라라벨 엘로퀀트 모델 이벤트 고찰">
+  <meta itemprop="description" content="라라벨 엘로퀀트에서 발생하는 모델 이벤트를 실험한 결과 입니다. 선점 잠금과 비선점 잠금 실험을 위한 프로젝트에 이벤트 리스너를 등록하고 엘로퀀트 모델을 DB에 저장하고, 변경한 후 DB에 저장하고, 삭제할 때 어떤 이벤트가 발생하는지 살펴 봤습니다.이벤트를 잡기 위한 리스너 클로...">
   <meta itemprop="image" content="">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
-  <meta name="twitter:title" content="Windows Sharepoint Service 3.0 (WSS3.0) 설치" />
-  <meta name="twitter:description" content="WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋..." />
+  <meta name="twitter:title" content="라라벨 엘로퀀트 모델 이벤트 고찰" />
+  <meta name="twitter:description" content="라라벨 엘로퀀트에서 발생하는 모델 이벤트를 실험한 결과 입니다. 선점 잠금과 비선점 잠금 실험을 위한 프로젝트에 이벤트 리스너를 등록하고 엘로퀀트 모델을 DB에 저장하고, 변경한 후 DB에 저장하고, 삭제할 때 어떤 이벤트가 발생하는지 살펴 봤습니다.이벤트를 잡기 위한 리스너 클로..." />
   <meta name="twitter:image" content="" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
-  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/installing-windows-sharepoint-services-3/"/>
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/"/>
   <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
   <link rel="stylesheet" href="/styles/main.min.css"/>
 
-  <title>Windows Sharepoint Service 3.0 (WSS3.0) 설치 | Appkr.memo(new Life)</title>
+  <title>라라벨 엘로퀀트 모델 이벤트 고찰 | Appkr.memo(new Life)</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -81,28 +81,29 @@
 
 
   <div class="container">
-  <section id="main" class="col-md-9">
+  <section id="main" class="col-md-9 minimal">
     <article class="box">
       <div class="box-header">
         <h2>
-          <span class="title">Windows Sharepoint Service 3.0 (WSS3.0) 설치</span>
+          <span class="title">라라벨 엘로퀀트 모델 이벤트 고찰</span>
           <span class="action dropdown pull-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
               <i class="material-icons">share</i>
             </a>
+
             <ul class="dropdown-menu">
               <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/installing-windows-sharepoint-services-3/&title=Windows Sharepoint Service 3.0 (WSS3.0) 설치" id="sns-facebook">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/&title=라라벨 엘로퀀트 모델 이벤트 고찰" id="sns-facebook">
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/installing-windows-sharepoint-services-3/&title=Windows Sharepoint Service 3.0 (WSS3.0) 설치&text=Windows Sharepoint Service 3.0 (WSS3.0) 설치" id="sns-twitter">
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/&title=라라벨 엘로퀀트 모델 이벤트 고찰&text=라라벨 엘로퀀트 모델 이벤트 고찰" id="sns-twitter">
                   Twitter
                 </a>
               </li>
               <li>
-                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/installing-windows-sharepoint-services-3/" id="sns-google">
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/" id="sns-google">
                   Google+
                 </a>
               </li>
@@ -113,7 +114,7 @@
         <p class="box-meta">
           <span>
             <i class="material-icons">today</i>
-            2010-02-14
+            2017-10-22
           </span>
           <span>
             <i class="material-icons">face</i>
@@ -132,218 +133,123 @@
           </span>
           <span>
             <i class="material-icons">forum</i>
-            <a href="/work-n-play/installing-windows-sharepoint-services-3/#disqus_thread" title="comments">0</a>
+            <a href="/work-n-play/investigating-laravel-model-events/#disqus_thread" title="comments">0</a>
           </span>
         </p>
       </div>
 
       <div class="box-body">
-        <p>WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋은 무료 협업 도구이다.</p>
+        <p>라라벨 엘로퀀트에서 발생하는 모델 이벤트를 실험한 결과 입니다. <a href="https://github.com/appkr/db-lock-poc">선점 잠금과 비선점 잠금 실험을 위한 프로젝트</a>에 이벤트 리스너를 등록하고 엘로퀀트 모델을 DB에 저장하고, 변경한 후 DB에 저장하고, 삭제할 때 어떤 이벤트가 발생하는지 살펴 봤습니다.</p>
+
+<p>이벤트를 잡기 위한 리스너 클로저는 아래와 같습니다.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php
+</span>
+<span class="k">class</span> <span class="nc">EventServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Event</span><span class="o">::</span><span class="na">listen</span><span class="p">(</span><span class="s1">'eloquent.*'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a href="https://github.com/appkr/pattern/tree/master/Behavioral/Observer2">관찰자(Observer) 패턴</a>은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, “밥 다되면 불러줘~”라고 미리 말해두고, 밥이 다 되면 알려주는 거죠.</p>
+
+<p>“관찰자를 등록하고 사건이 발생하면 등록된 관찰자에들에게 알려준다”는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 <code class="highlighter-rouge">$observables</code> 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 <code class="highlighter-rouge">save()</code>와 같은 퍼블릭 함수가 작동할 때, 자신의 <code class="highlighter-rouge">fireModelEvent('created')</code> 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 <code class="highlighter-rouge">created($this)</code>를 호출하는 식으로 작동합니다.</p>
 
 <!--more-->
+<div class="spacer">• • •</div>
 
-<p>host name 은 <code class="highlighter-rouge">sbd</code> 라 하자.</p>
+<h2 id="1-insert">1. Insert</h2>
 
-<h3 id="install-net-framework">Install-.net Framework</h3>
+<p><code class="highlighter-rouge">$model-&gt;update()</code>, <code class="highlighter-rouge">$model-&gt;push()</code>, <code class="highlighter-rouge">$model-&gt;touch()</code> 등의 API도 결국에는 <code class="highlighter-rouge">save()</code> 함수를 거치게 됩니다. <code class="highlighter-rouge">save()</code> 함수는 <code class="highlighter-rouge">saving</code> 이벤트를 던진 후, 다시 Insert를 해야할지 Update를 해야할지 판단하고, <code class="highlighter-rouge">performInsert()</code> 또는 <code class="highlighter-rouge">performUpdate()</code> 함수를 선택적으로 호출합니다. 분기된 함수 안에서 다시 <code class="highlighter-rouge">creating</code>, <code class="highlighter-rouge">created</code>, <code class="highlighter-rouge">..</code> 등의 이벤트를 던집니다. 분기된 함수 오퍼레이션이 끝나면 <code class="highlighter-rouge">save()</code> 함수는 <code class="highlighter-rouge">saved</code> 이벤트를 던지고 수명을 다합니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>dotnetfx35sp1.exe
+<p>따라서, <code class="highlighter-rouge">saving</code> -&gt; <code class="highlighter-rouge">creating</code> -&gt; <code class="highlighter-rouge">created</code> -&gt; <code class="highlighter-rouge">saved</code> 순서로 이벤트가 발생합니다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42</span>
+
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>users<span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.saving: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.creating: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: insert into <span class="sb">`</span>products<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>title<span class="sb">`</span>, <span class="sb">`</span>stock<span class="sb">`</span>, <span class="sb">`</span>price<span class="sb">`</span>, <span class="sb">`</span>description<span class="sb">`</span>, <span class="sb">`</span>updated_at<span class="sb">`</span>, <span class="sb">`</span>created_at<span class="sb">`</span><span class="o">)</span> values <span class="o">(</span>?, ?, ?, ?, ?, ?<span class="o">)</span> <span class="o">[</span><span class="s2">"TEST TITLE"</span>,10,1000,<span class="s2">"TEST DESCRIPTION"</span>,<span class="s2">"2017-10-22 10:21:53"</span>,<span class="s2">"2017-10-22 10:21:53"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: eloquent.created: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.saved: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
 </code></pre>
 </div>
 
-<h3 id="install-sql-utilities">Install-SQL Utilities</h3>
+<h2 id="2-update">2. Update</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>sqlcli.msi
-<span class="gp">\&gt; </span>SQLServer2005_SQLCMD.msi
-<span class="gp">\&gt; </span>SQLServer2005_SSMSEE.msi
+<p><code class="highlighter-rouge">saving</code> -&gt; <code class="highlighter-rouge">updating</code> -&gt; <code class="highlighter-rouge">updated</code> -&gt; <code class="highlighter-rouge">saved</code> 순.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59</span>
+
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>users<span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? and <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null limit 1 <span class="k">for </span>update <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: eloquent.saving: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.updating: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: update <span class="sb">`</span>products<span class="sb">`</span> <span class="nb">set</span> <span class="sb">`</span>title<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>description<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>version<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>updated_at<span class="sb">`</span> <span class="o">=</span> ? where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? <span class="o">[</span><span class="s2">"새 상품 (상품명 수정됨)"</span>,<span class="s2">"..."</span>,2,<span class="s2">"..."</span>,12]
+<span class="o">[</span>...] local.INFO: eloquent.updated: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.saved: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
 </code></pre>
 </div>
 
-<h3 id="install-wss30">Install-WSS3.0</h3>
+<h2 id="3-delete">3. Delete</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>sharepoint.exe
+<p><code class="highlighter-rouge">deleting</code> -&gt; <code class="highlighter-rouge">deleted</code> 순.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96</span>
+
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? and <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null limit 1 <span class="o">[</span><span class="s2">"12"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
+<span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>users<span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where 0 <span class="o">=</span> 1 and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null
+<span class="o">[</span>...] local.INFO: eloquent.deleting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
+<span class="o">[</span>...] local.INFO: update <span class="sb">`</span>products<span class="sb">`</span> <span class="nb">set</span> <span class="sb">`</span>deleted_at<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>updated_at<span class="sb">`</span> <span class="o">=</span> ? where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? <span class="o">[</span><span class="s2">"..."</span>,<span class="s2">"..."</span>,12]
+<span class="o">[</span>...] local.INFO: eloquent.deleted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 </code></pre>
 </div>
-
-<p>약관동의 -&gt; 고급설치 -&gt; 서버유형:독립실행형 -&gt; 데이터위치: <code class="highlighter-rouge">d:\wss_data</code> -&gt; “지금 Sharepoint 제품 및 기술 구성 마법사 실행”</p>
-
-<h3 id="configure-smtp-서버">Configure-SMTP 서버</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>SMTP Server: xxx.xxx.xxx.xxx
-</code></pre>
-</div>
-
-<h3 id="configure-wss-log">Configure-WSS Log</h3>
-
-<p>WSS 중앙관리 -&gt; 작업 -&gt; 진단 로깅 활성화</p>
-
-<h3 id="configure-database-를-c-에서-d-로-이동">Configure-Database 를 <code class="highlighter-rouge">C:\</code> 에서 <code class="highlighter-rouge">D:\</code> 로 이동</h3>
-
-<p>IIS/WSS Service 종료 후, Content Database 이름 확인</p>
-
-<p>중앙관리 -&gt; 응용 프로그램 관리 -&gt; 콘텐츠 데이터베이스: “WSS_Content”</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>C:<span class="se">\P</span>rogram Files<span class="se">\M</span>icrosoft SQL Server<span class="se">\9</span>0<span class="se">\T</span>ools<span class="se">\b</span>inn
-<span class="gp">\&gt; </span>sqlcmd -S <span class="se">\.</span>pipemssql<span class="nv">$microsoft</span><span class="c">##sseesqlquery -E</span>
-</code></pre>
-</div>
-
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'WSS_Content'</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
-</code></pre>
-</div>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\W</span>SS_Content.mdf d:<span class="se">\w</span>ss_db<span class="se">\</span>
-<span class="gp">\&gt; </span>copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\W</span>SS_Content_log.ldf d:<span class="se">\w</span>ss_db<span class="se">\</span>
-</code></pre>
-</div>
-
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_attach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="n">WSS_Content</span><span class="s1">', @filename1 = '</span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="n">wss_db</span><span class="err">\</span><span class="n">WSS_Content</span><span class="p">.</span><span class="n">mdf</span><span class="s1">', @filename2 = '</span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="n">wss_db</span><span class="err">\</span><span class="n">WSS_Content_log</span><span class="p">.</span><span class="n">ldf</span><span class="s1">'
-sql&gt; Go
-</span></code></pre>
-</div>
-
-<p>나머지 데이터베이스 이름도 확인</p>
-
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">sysdatabases</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
-<span class="o">#</span> <span class="n">SharePoint_Config_2e0e9493</span><span class="o">-</span><span class="n">bccb</span><span class="o">-</span><span class="mi">4</span><span class="n">b66</span><span class="o">-</span><span class="mi">9</span><span class="n">e61</span><span class="o">-</span><span class="n">ea4c2974a310</span>
-<span class="o">#</span> <span class="n">SharePoint_AdminContent_b597bf8d</span><span class="o">-</span><span class="mi">8</span><span class="n">ed5</span><span class="o">-</span><span class="mi">4</span><span class="n">de7</span><span class="o">-</span><span class="mi">86</span><span class="n">dc</span><span class="o">-</span><span class="mi">774</span><span class="n">a919cab5c</span>
-<span class="o">#</span> <span class="n">WSS_Search_SBD</span>
-<span class="o">#</span> <span class="n">WSS_Contents</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310'</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c'</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'WSS_Search_SBD'</span>
-<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
-</code></pre>
-</div>
-
-<p>파일 복사</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\*</span>.<span class="k">*</span> d:<span class="se">\w</span>ss_db
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310', @filename1 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310.mdf',
-@filename2 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310_log.ldf'
-sql&gt; Go
-sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c',
-@filename1 = 'd:wss_db\SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c.mdf',
-@filename2 = 'd:wss_db\SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c_log.ldf'
-sql&gt; Go
-sql&gt; EXEC sp_attach_db @dbname = 'WSS_Search_SBD', @filename1 = 'd:wss_db\WSS_Search_SBD.mdf', @filename2 = 'd:wss_db\WSS_Search_SBD_log.ldf'
-sql&gt; Go
-</code></pre>
-</div>
-
-<p>IIS/WSS 서비스 재 구동 후, SQL Management Studio에서 Database 파일들이 정상적으로 이동되었는 지 확인.</p>
-
-<h3 id="install-search-server-2008-express">Install-Search Server 2008 Express</h3>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>SearchServerExpress.exe
-</code></pre>
-</div>
-
-<p>서버유형: 독립실행형 -&gt; Index파일 위치: <code class="highlighter-rouge">d:\sse_index</code></p>
-
-<p>“Sharepoing 제품 및 기술 구성 마법사” -&gt; “Shared Service Provider (SSP): <code class="highlighter-rouge">http://sbd/ssp/admin</code>” -&gt; “SSP Database” -&gt; 데이터베이스 서버: SBDOfficeServers -&gt; 데이터베이스 이름: SharedServices1_DB -&gt; “검색 Database” -&gt; 데이터베이스 이름: <code class="highlighter-rouge">SharedServices1_Search_DB</code> -&gt; “인덱스 서버” -&gt; 인덱스 파일 경로 위치: <code class="highlighter-rouge">d:\sse_index\Office Server\Applications</code></p>
-
-<h3 id="configure-search-server-사이트-만들기">Configure-Search Server 사이트 만들기</h3>
-
-<h3 id="configure-중앙관리">Configure-중앙관리</h3>
-
-<p>작업 -&gt; 진단 로깅 설정 -&gt; 추적 로그 경로: <code class="highlighter-rouge">d:\wss_log</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 일반 설정 -&gt; 기본 표준 시간대 : GMT+9 서울 -&gt; 최대 업로드 크기 : <code class="highlighter-rouge">999MB</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 정책 -&gt; NT AUTHORITY\LOCAL SERVICE: <code class="highlighter-rouge">전체 읽기</code></p>
-
-<h3 id="install-application-template-core">Install-Application Template Core</h3>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>C:Program Files<span class="se">\C</span>ommon Files<span class="se">\m</span>icrosoft shared<span class="se">\W</span>eb Server Extensions12<span class="se">\B</span>IN
-<span class="gp">\&gt; </span>Stsadm -o addsolution -filename ApplicationTemplateCore.wsp
-<span class="gp">\&gt; </span>Stsadm -o deploysolution -name ApplicationTemplateCore.wsp -allowgacdeployment -immediate
-<span class="gp">\&gt; </span>Stsadm -o copyappbincontent
-<span class="gp">\&gt; </span>Stsadm -o execadmsvcjobs
-</code></pre>
-</div>
-
-<h3 id="pdf-icon-표시하기">Pdf icon 표시하기</h3>
-
-<p>Pdf icon 구하기 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions12\TEMPLATE\IMAGES 에 pdf icon 복사 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\TEMPLATE\XMLDOCICON.XML 에 레코드 추가</p>
-
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- XMLDOCICON.XML --&gt;</span>
-<span class="nt">&lt;Mapping</span> <span class="na">Key=</span><span class="s">"pdf"</span> <span class="na">Value=</span><span class="s">"PDFICON.gif"</span><span class="nt">/&gt;</span>
-</code></pre>
-</div>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>iisreset
-</code></pre>
-</div>
-
-<h3 id="configure-작업-예약">Configure-작업 예약</h3>
-
-<p>중앙관리 -&gt; 작업 -&gt; 사용현황분석프로세스 -&gt; 로그파일 위치 : <code class="highlighter-rouge">d:\wss_user_log</code> -&gt; 분석 시간 : <code class="highlighter-rouge">오전 03:00~04:00</code></p>
-
-<p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup.bat -&gt; 매일 오전 05:00</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># wss_backup.bat</span>
-stsadm.exe -o backup -directory d:wss_backup -backupmethod differential
-</code></pre>
-</div>
-
-<p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup_network.bat -&gt; 매주 일요일 오전 07:00</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># wss_backup_network.bat</span>
-NET USE z: <span class="se">\x</span>xx.xxx.xxx.xxx<span class="se">\S</span>BDBackup USERPASS /USER:USERNAME@DOMAIN
-xcopy d:<span class="se">\w</span>ss_backup z: /S /Y
-NET USE z: /DELETE
-</code></pre>
-</div>
-
-<h3 id="configure-계산된-열에-html-허용">Configure-계산된 열에 html 허용</h3>
-
-<p><a href="http://blog.ray1.net/2008/01/enabling-html-andor-images-in.html">http://blog.ray1.net/2008/01/enabling-html-andor-images-in.html</a></p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>notepad C:<span class="se">\P</span>rogram Files<span class="se">\C</span>ommon Files<span class="se">\M</span>icrosoft Shared<span class="se">\w</span>eb server extensions<span class="se">\1</span>2<span class="se">\T</span>EMPLATE<span class="se">\X</span>MLFLDTYPES.XML
-</code></pre>
-</div>
-
-<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- XMLFLDTYPES.XML --&gt;</span>
-<span class="nt">&lt;RenderPattern</span> <span class="na">Name=</span><span class="s">"DisplatPattern"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;Default&gt;</span> <span class="nt">&lt;Column</span> <span class="na">HTMLEncode=</span><span class="s">"TRUE"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Column/&gt;</span>
-</code></pre>
-</div>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>iisreset
-</code></pre>
-</div>
-
-<h3 id="install-ifilter60">Install-iFilter6.0</h3>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>ifilter.exe
-</code></pre>
-</div>
-
-<p>IISAdmin -&gt; Server 중지</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>c:<span class="se">\P</span>rogram files<span class="se">\a</span>dobe<span class="se">\p</span>df ifilter 6.0
-<span class="gp">\&gt; </span>regsvr32.exe pdffilt.dll
-</code></pre>
-</div>
-
-<p>Server Reboot 후, Search Server 전체 크롤링</p>
 
       </div>
 
       <footer class="box-tags">
         <span><i class="material-icons">label</i> Tags:</span>
         
-          <a href="/tags#se">
-            se
+          <a href="/tags#개발자">
+            개발자
           </a>
           , 
         
-          <a href="/tags#wss">
-            wss
+          <a href="/tags#Laravel">
+            Laravel
           </a>
           
         
@@ -354,25 +260,22 @@ NET USE z: /DELETE
       <ul class="pager">
         
         <li class="previous">
-          <a href="/imported/contradiction-of-our-life/">
+          <a href="/learn-n-think/software-craftsmanship-by-sandro-mancuso/">
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>
             <span class="pager-title-sm">Older</span>
             <span class="pager-title">
-              우리 삶의 모순
+              소프트웨어 장인 by 산드로 만쿠소
             </span>
           </a>
         </li>
         
 
         
-        <li class="next">
-          <a href="/imported/thought-on-ancestor-memorial-service/">
-            <span class="pager-title">
-              제사의 의미
-            </span>
-            <span class="pager-title-sm">Newer</span>
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>

@@ -29,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
 
 [관찰자(Observer) 패턴](https://github.com/appkr/pattern/tree/master/Behavioral/Observer2)은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, "밥 다되면 불러줘~"라고 미리 말해두고, 밥이 다 되면 알려주는 거죠. 
 
-"관찰자를 등록하고 사건이 발생하면 등록된 관찰자에들에게 알려준다"는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 `$observables` 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 `save()`와 같은 퍼블릭 함수가 작동할 때, 자신의 `fireModelEvent('created')` 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 `created($this)`를 호출하는 식으로 작동합니다.
+"관찰자를 등록하고 사건이 발생하면 등록된 관찰자들에게 알려준다"는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 `$observables` 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 `save()`와 같은 퍼블릭 함수가 작동할 때, 자신의 `fireModelEvent('created')` 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 `created($this)`를 호출하는 식으로 작동합니다.
 
 <!--more-->
 <div class="spacer">• • •</div>

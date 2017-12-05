@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="MVPMinimum Viable Product로 개발한 서비스는 시장성 및 사업성이 검증되면 버리고 다시 짜야 합니다. MVP는 “더럽지만, 신속하게, 작동하는 서비스를 확보한다”는게 가치이기 때문입니다. 사업 모델이 검증되면, 투자를 받고 사람을 뽑아서 오랫동안 유지할 코드 베이..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="클린코드와 리팩토링"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="클린코드와 리팩토링">
+  <meta itemprop="description" content="MVPMinimum Viable Product로 개발한 서비스는 시장성 및 사업성이 검증되면 버리고 다시 짜야 합니다. MVP는 “더럽지만, 신속하게, 작동하는 서비스를 확보한다”는게 가치이기 때문입니다. 사업 모델이 검증되면, 투자를 받고 사람을 뽑아서 오랫동안 유지할 코드 베이...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="클린코드와 리팩토링" />
+  <meta name="twitter:description" content="MVPMinimum Viable Product로 개발한 서비스는 시장성 및 사업성이 검증되면 버리고 다시 짜야 합니다. MVP는 “더럽지만, 신속하게, 작동하는 서비스를 확보한다”는게 가치이기 때문입니다. 사업 모델이 검증되면, 투자를 받고 사람을 뽑아서 오랫동안 유지할 코드 베이..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/clean-code-and-refactoring/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>클린코드와 리팩토링 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li>
+          <a href="/">Blog</a>
+        </li>
+        <li>
+          <a href="/profile/">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">클린코드와 리팩토링</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/clean-code-and-refactoring/&title=클린코드와 리팩토링" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/clean-code-and-refactoring/&title=클린코드와 리팩토링&text=클린코드와 리팩토링" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/clean-code-and-refactoring/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-12-06
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/clean-code-and-refactoring/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>MVP<sub>Minimum Viable Product</sub></strong>로 개발한 서비스는 시장성 및 사업성이 검증되면 버리고 다시 짜야 합니다. MVP는 <strong>“더럽지만, 신속하게, 작동하는 서비스를 확보한다”</strong>는게 가치이기 때문입니다. 사업 모델이 검증되면, 투자를 받고 사람을 뽑아서 오랫동안 유지할 코드 베이스, 성장을 이끌어 낼 수 있는 코드 베이스를 확보해야 합니다. 대부분의 스타트업들이 이 타이밍을 놓치고 있고, 제가 속한 회사도 예외는 아닙니다.</p>
+
+<p>본문의 예제를 보기전에 예제 코드가 쓰이는 사업 이해를 위해 간단히 설명을 드립니다.</p>
+
+<p>(회사의 공식 입장이 아닌, 직원으로서 나름의 생각입니다) 우리 회사는 현재 <strong>“이륜차 네트워크를 이용한 근거리 배송 대행 서비스”</strong>를 업으로 하고 있으며, 사업 모델(= 서비스 모델 + 비즈니스 모델)은 다음과 같습니다.</p>
+
+<h4 id="서비스-모델">서비스 모델</h4>
+
+<ul>
+  <li>출발지 A 지점에서 도착지 B 지점으로 소형 화물을 이동시킨다.</li>
+  <li>A ~ B간의 거리는 일반적으로 3Km 이내이며,</li>
+  <li>이동 수단으로 이륜차를 이용하고,</li>
+  <li>서비스를 위해 IT 기술을 이용한다.</li>
+  <li>화물 운송은 대체로 40분 이내에 끝난다.</li>
+</ul>
+
+<h4 id="비즈니스-모델">비즈니스 모델</h4>
+
+<ul>
+  <li>화물 운송 니즈가 있는 S 화주에게 배송 대행 수수료를 받아, 실제로 물건을 이동시키는 K 기사에게 비용을 지불하고 마진을 챙긴다.</li>
+  <li>배송 건수에 따라 S 화주로 부터 월 단위 시스템 사용료도 받는다.</li>
+</ul>
+
+<p>본문에 사용한 예제는 화주 S로 부터 배송 대행 요청을 받아, K 기사 네트워크를 보유하고 배송을 수행하는 시스템에 위임하는 코드입니다. 공개를 위해 이름을 약간 바꾸긴 했지만, 실제 상용 서비스에 사용하는 코드입니다. 하나의 배송 대행 요청에 대해 웹/앱 인스턴스에서 큐 메시지로 전송하기 위해 한 번, 큐 워커 인스턴스에서 메시지를 핸들링 하기 위해 한번, 총 두 번 사용됩니다(= 비동기 처리). 현재 우리 회사의 사업 규모로 볼 때 컴퓨터(서버)가 이 코드를 하루에 10만번 정도 읽고 실행합니다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>여기서 질문!</p>
+
+<p>그렇다면 개발자는 이 코드를 몇 번이나 읽을까요? 성공적인 서비스에서 유지보수가 되어야 하는 코드는 개발자와 개발자를 거치면서 만 번 정도 읽힌다고 합니다. 컴퓨터가 이해할 수 있는 코드는 작동하기만 한다면 아무렇게나 짜도 됩니다. 그런데, 사람이 읽어야 하는 코드는, 그것도 서비스 유지보수를 위해 수 천번 이상을 읽어야 하는 코드는 어떻게 짜야 할까요?</p>
+
+<p>클린코드(엉클밥), 리팩토링(마틴파울러)의 책을 완벽히 이해하지도 못했고, 이해했다고 해도 모든 내용을 실천하지는 못합니다. 지금 MVP를 짜고 있나요? 그렇지 않다면, 몇 달 뒤의 자기 자신과 이 코드를 읽게 될 동료/후배 개발자들을 위해 좀 더 깔끔한 코드를 짜면 좋겠습니다. 디자인 원칙과 모범 사례를 지킨 코드는 버그와 사이드 이펙트를 현저히 줄여주고, 생산성을 월등히 끌어올려줍니다.</p>
+
+<p>이 글을 읽는 분 중에 Before 코드를 쓰신 선배님이 있을 수 있습니다. 비록 유지보수가 편리한 코드로 바꾸는 타이밍을 놓치긴했지만(이건 경영진과 매니저의 잘못), MVP를 만들어 주셔서 제가 월급을 받으며 일할 수 있기에 존경과 감사의 마음을 글로나마 전달합니다. 해서 Before 코드에 대한 설명은 달지 않겠습니다.</p>
+
+<p>이제 예제를 볼까요?</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="before">Before</h2>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2016-05-24 ~ 2016-11-28, 10 커밋, 4 명의 커미터
+</span><span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="o">...</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">OrderCreationJob</span>
+<span class="p">{</span>
+    <span class="sd">/**
+     * @var Creator
+     */</span>
+    <span class="k">private</span> <span class="nv">$orderCreator</span><span class="p">;</span>
+    <span class="sd">/**
+     * @var DeliveryOrderMapRepository
+     */</span>
+    <span class="k">private</span> <span class="nv">$repository</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$timerStopSeconds</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$timerStartSeconds</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
+        <span class="nx">Creator</span> <span class="nv">$orderCreator</span><span class="p">,</span>
+        <span class="nx">DeliveryOrderMapRepository</span> <span class="nv">$repository</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">orderCreator</span> <span class="o">=</span> <span class="nv">$orderCreator</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span> <span class="o">=</span> <span class="nv">$repository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fire</span><span class="p">(</span><span class="nx">QueueJob</span> <span class="nv">$job</span><span class="p">,</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/**
+         * @var Delivery $delivery
+         */</span>
+        <span class="nv">$deliveryId</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">'delivery_id'</span><span class="p">];</span>
+        <span class="nv">$creator</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">orderCreator</span><span class="p">;</span>
+
+        <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] ** Started for Delivery [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2">]"</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">existsNonNullMap</span><span class="p">(</span><span class="nv">$deliveryId</span><span class="p">))</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$job</span><span class="o">-&gt;</span><span class="na">attempts</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] ** FAILED and GIVING UP for Delivery [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2">]"</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nv">$delivery</span> <span class="o">=</span> <span class="nx">Delivery</span><span class="o">::</span><span class="na">findOrFail</span><span class="p">(</span><span class="nv">$deliveryId</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$delivery</span><span class="o">-&gt;</span><span class="na">deliveryTrackingStatus</span><span class="o">-&gt;</span><span class="na">tracking_status</span> <span class="o">!==</span> <span class="nx">DeliveryStatus</span><span class="o">::</span><span class="na">SUBMITTED</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+                    <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] ** Delivery Tracking Status Modified for Delivery [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2">] Not Creating  Order"</span><span class="p">);</span>
+                    <span class="k">return</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] **** Creating  2.0 Order for Delivery [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2">]"</span><span class="p">);</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">startTimer</span><span class="p">();</span>
+                <span class="nv">$orderDto</span> <span class="o">=</span> <span class="nv">$creator</span><span class="o">-&gt;</span><span class="na">createOrder</span><span class="p">(</span><span class="nv">$delivery</span><span class="p">);</span>
+                <span class="nv">$time</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">stopTimer</span><span class="p">();</span>
+                <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] **** Created  2.0 Order [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="nv">$orderDto</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()}]</span><span class="o">.</span> <span class="nx">Took</span> <span class="p">{</span><span class="nv">$time</span><span class="si">}</span><span class="s2"> seconds."</span><span class="p">);</span>
+                <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] ** Already created for Delivery [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2">]"</span><span class="p">);</span>
+            <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">startTimer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStartSeconds</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">stopTimer</span><span class="p">()</span> <span class="o">:</span> <span class="nx">float</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStopSeconds</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStopSeconds</span> <span class="o">-</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStartSeconds</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="after">After</h2>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2017-11-28
+</span>
+<span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="o">...</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">OrderCreationJob</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">ALLOWED_NUMBER_OF_RETRY</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="nv">$orderCreator</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$deliveryOrderMapRepository</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$deliveryRetriever</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
+        <span class="nx">OrderCreator</span> <span class="nv">$orderCreator</span><span class="p">,</span>
+        <span class="nx">DeliveryOrderMapRepository</span> <span class="nv">$deliveryOrderMapRepository</span><span class="p">,</span>
+        <span class="nx">DeliveryRetriever</span> <span class="nv">$deliveryRetriever</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">orderCreator</span> <span class="o">=</span> <span class="nv">$orderCreator</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deliveryOrderMapRepository</span> <span class="o">=</span> <span class="nv">$deliveryOrderMapRepository</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deliveryRetriever</span> <span class="o">=</span> <span class="nv">$deliveryRetriever</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">fire</span><span class="p">(</span><span class="nx">QueueJob</span> <span class="nv">$job</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$deliveryId</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">'delivery_id'</span><span class="p">];</span>
+        <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$deliveryId</span><span class="p">,</span>
+        <span class="p">];</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="s1">'오더 생성 잡 처리를 시작합니다.'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkIfAlreadyCreated</span><span class="p">(</span><span class="nv">$deliveryId</span><span class="p">);</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkIfAllowedRetryCountReached</span><span class="p">(</span><span class="nv">$job</span><span class="p">,</span> <span class="nv">$deliveryId</span><span class="p">);</span>
+            <span class="nv">$delivery</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deliveryRetriever</span><span class="o">-&gt;</span><span class="na">retrieveById</span><span class="p">(</span><span class="nv">$deliveryId</span><span class="p">);</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkIfDeliveryStatusAlreadyChanged</span><span class="p">(</span><span class="nv">$delivery</span><span class="p">);</span>
+            <span class="nv">$orderDto</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createOrder</span><span class="p">(</span><span class="nv">$delivery</span><span class="p">);</span>
+            <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">OrderAlreadyCreatedException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getArgs</span><span class="p">());</span>
+            <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">DeliveryStatusAlreadyChangedException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getArgs</span><span class="p">());</span>
+            <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">OrderCreationFailedException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s1">'error'</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getArgs</span><span class="p">());</span>
+            <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+            <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="s1">'오더 생성 잡 처리를 마칩니다.'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfAlreadyCreated</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$deliveryId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deliveryOrderMapRepository</span><span class="o">-&gt;</span><span class="na">existsNonNullMap</span><span class="p">(</span><span class="nv">$deliveryId</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">OrderAlreadyCreatedException</span><span class="p">([</span>
+                <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$deliveryId</span><span class="p">,</span>
+            <span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfAllowedRetryCountReached</span><span class="p">(</span><span class="nx">QueueJob</span> <span class="nv">$job</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$deliveryId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$job</span><span class="o">-&gt;</span><span class="na">attempts</span><span class="p">()</span> <span class="o">&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">ALLOWED_NUMBER_OF_RETRY</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">OrderCreationFailedException</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$deliveryId</span><span class="p">,</span>
+                <span class="s1">'retryCount'</span> <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">ALLOWED_NUMBER_OF_RETRY</span><span class="p">,</span>
+            <span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfDeliveryStatusAlreadyChanged</span><span class="p">(</span><span class="nx">Delivery</span> <span class="nv">$delivery</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$deliveryTrackingStatus</span> <span class="o">=</span> <span class="nv">$delivery</span><span class="o">-&gt;</span><span class="na">deliveryTrackingStatus</span><span class="o">-&gt;</span><span class="na">tracking_status</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$deliveryTrackingStatus</span> <span class="o">!==</span> <span class="nx">DeliveryStatus</span><span class="o">::</span><span class="na">SUBMITTED</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">DeliveryStatusAlreadyChangedException</span><span class="p">([</span>
+                <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$delivery</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+                <span class="s1">'deliveryTrackingStatus'</span> <span class="o">=&gt;</span> <span class="nv">$deliveryTrackingStatus</span>
+            <span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">createOrder</span><span class="p">(</span><span class="nx">Delivery</span> <span class="nv">$delivery</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="s1">'오더를 생성합니다.'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$delivery</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+        <span class="p">]);</span>
+
+        <span class="nv">$startTime</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nv">$orderDto</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">orderCreator</span><span class="o">-&gt;</span><span class="na">createOrder</span><span class="p">(</span><span class="nv">$delivery</span><span class="p">);</span>
+        <span class="nv">$elapsedTimeInSeconds</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">-</span> <span class="nv">$startTime</span><span class="p">;</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="s1">'오더를 생성했습니다.'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$delivery</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+            <span class="s1">'orderId'</span> <span class="o">=&gt;</span> <span class="nv">$orderDto</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">(),</span>
+            <span class="s1">'elapsedTimeInSeconds'</span> <span class="o">=&gt;</span> <span class="nv">$elapsedTimeInSeconds</span><span class="p">,</span>
+        <span class="p">]);</span>
+
+        <span class="k">return</span> <span class="nv">$orderDto</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">logProgress</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$level</span> <span class="o">=</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="nx">Log</span><span class="o">::</span><span class="na">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="s2">"[OrderCreationJob] </span><span class="si">{</span><span class="nv">$message</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#개발자">
+            개발자
+          </a>
+          , 
+        
+          <a href="/tags#CleanCode">
+            CleanCode
+          </a>
+          , 
+        
+          <a href="/tags#Refactoring">
+            Refactoring
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/investigating-laravel-model-events/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              라라벨 엘로퀀트 모델 이벤트 고찰
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section class="box" id="search">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
+        <ul id="q-results"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">77</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">56</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#cheatsheet">
+          Cheatsheet
+          <span class="badge">1</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CleanCode">
+        CleanCode
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#DDD">
+        DDD
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Database">
+        Database
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 130%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OOP">
+        OOP
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Refactoring">
+        Refactoring
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#UML">
+        UML
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 282%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#데이터베이스">
+        데이터베이스
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#아키텍처">
+        아키텍처
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로세스">
+        프로세스
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
+          <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
+          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-09-23</small>
+          <a href="/learn-n-think/software-craftsmanship-by-sandro-mancuso/">소프트웨어 장인 by 산드로 만쿠소</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="http://appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2017 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

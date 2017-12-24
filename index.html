@@ -86,6 +86,89 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-12-24
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              , 
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><img src="/images/2017-12-24-img-01_swagger-logo.png" style="width:200px" /></p>
+
+<div class="text-center">
+  <p class="text-muted">PHP 기반 API 서버 프로젝트에 스웨거(Swagger)를 적용할 수 있을까?</p>
+  <p class="lead"><strong>예, 적용할 수 있습니다. 예제를 짜서 검증했습니다.</strong></p>
+</div>
+
+<div class="spacer">• • •</div>
+
+<p>이 포스트를 쓰기 위한 예제를 진행하면서 스웨거가 해결하고자 했던 문제점을 좀 더 깊이 있게 생각해보는 계기가 되었습니다. 이 시리즈에서는 다음 내용을 다루려고 합니다.</p>
+
+<ol>
+  <li>스웨거란 무엇이며, 왜, 언제 쓰는가?</li>
+  <li>PHP 기반 API 서버 프로젝트에 스웨거를 어떻게 적용해야 하는가?</li>
+</ol>
+
+<div class="spacer">• • •</div>
+
+<p>네이버 국어사전에 따르면 <strong>찍새</strong>와 <strong>딱새</strong>를 이렇게 정의하고 있습니다.</p>
+
+<ul>
+  <li><strong><a href="http://krdic.naver.com/detail.nhn?docid=36508000">찍새</a></strong> 닦을 구두를 모아서 구두닦이에게 가져다주는 일만 하는 사람을 속되게 이르는 말.</li>
+  <li><strong><a href="http://krdic.naver.com/detail.nhn?docid=11120600">딱새</a></strong> 은어로, ‘구두닦이’를 이르는 말.</li>
+</ul>
+
+<p>예~ 구두닦이 서비스를 말하는 겁니다. 주제와 전혀 다른 구두닦이 서비스를 언급한 이유는, 제가 속한 회사의 서비스가 이런 식으로 역할 분담이 되어 있기 때문입니다. 상점으로부터 배송 대행 요청을 접수 받는 서비스와(이하 <strong>프라임</strong>), 기사님들에게 배송 대행 업무를 나누어 주고, 배정 받은 기사님이 물건을 보내고자하는 상점으로 가서 물건을 픽업하고 목적지까지 배송하고 상품가액과 수수료를 결재 받는 서비스(이하 <strong>부릉</strong>)로 구성되어 있습니다. 아무리 구두닦이 장인들이 모여 있더라도 구두를 찍어 오지 못하면 서비스는 쪼그라들겁니다. 반면에, 영업의 신들이 구두를 아무리 잘 찍어와도 구두를 깨끗이 닦지 못하면 손님은 다시 찾아오지 않을 겁니다. 결국 <strong>둘 간에 강한 결합이 존재하며, 서로 선순환을 일으켜야 한다</strong>는 사실을 알 수 있습니다.</p>
+
+<p>참고로 <strong>프라임</strong> 서비스는 라라벨 서버, 닷넷 및 Android 클라이언트로 구성되어 있습니다. <strong>부릉</strong> 서비스는 스프링 서버, 닷넷 및 Android 클라이언트로 구성되어 있습니다. 두 서비스를 전부 관리하는 관리도구는 자바스크립트 SPA <sub class="text-muted">SINGLE PAGE APPLICATION</sub>로 구성되어 있습니다.</p>
+
+<p>이 포스트와 관련해서 <strong>중요한 사실은 프라임도 부릉에게는 일개 클라이언트라는 점</strong>입니다. 부릉은 멀티 클라이언트 플랫폼에 대응하기 위해 스웨거 API 스펙을 관리하고 있고, 프라임은 부릉이 노출하고 있는 API를 사용하기 위해서 스웨거 스펙으로 자동 생성한 PHP 클라이언트 라이브러리를 컴포저로 땡겨서 <code class="highlighter-rouge">vendor</code>에 꽂아서 사용합니다. 저는 프라임 서버 개발자입니다. 지난 일년간을 스웨거 스펙의 소비자이기만 하다가, 최근에 갑자기 <em>‘PHP로 짠 서버 프로젝트가 스웨거 API의 생산자가 될 수 있을까?’</em>라는 생각이 들기 시작했습니다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
         </h2>
         <p class="box-meta">
@@ -348,73 +431,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/agile-manifesto/">애자일 선언서 이해하기</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-08-20
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/agile-manifesto/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><img src="/images/2017-08-20-agile-01.jpg" alt="" /></p>
-
-<p class="text-center"><small class="text-muted">그림출처: http://forintus.com/tag/agile-manifesto/</small></p>
-
-<div class="text-center">
-  <p><strong><small>Manifesto for Agile Software Development</small></strong></p>
-  <p><small>We are uncovering better ways of developing software by doing it and helping others do it.</small></p>
-  <p><small>Through this work we have come to value:</small></p>
-  <p>&nbsp;</p>
-  <p class="lead">INDIVIDUALS AND INTERACTIONS <small>over</small> PROCESSES AND TOOLS</p>
-  <p class="lead">WORKING SOFTWARE <small>over</small> COMPREHENSIVE DOCUMENTATION</p>
-  <p class="lead">CUSTOMER COLLABORATION <small>over</small> CONTRACT NEGOTIATION</p>
-  <p class="lead">RESPONDING TO CHANGE <small>over</small> FOLLOWING A PLAN</p>
-  <p>&nbsp;</p>
-  <p>That is, while there is value in the items on the right, we value items on the left more.</p>
-  <p>&nbsp;</p>
-  <p><small>Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning, Jim Highsmith, Andrew Hunt, Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor, Ken Schwaber, Jeff Sutherland, Dave Thomas</small></p>
-  <p>&nbsp;</p>
-  <p><small>©2001, the above authors</small></p>
-  <p><small>this declaration may be freely copied in any form, but only in its entirely through this notice.</small></p>
-</div>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/agile-manifesto/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -471,13 +487,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">77</span>
+          <span class="badge">78</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">56</span>
+          <span class="badge">57</span>
         </a>
       </li>
       <li>
@@ -517,7 +533,7 @@
       </a>
     </span>
     
-    <span style="font-size: 102%">
+    <span style="font-size: 106%">
       <a href="/tags#API">
         API
       </a>
@@ -619,7 +635,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -646,6 +662,12 @@
     <span style="font-size: 94%">
       <a href="/tags#Ruby">
         Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Swagger">
+        Swagger
       </a>
     </span>
     
@@ -1149,6 +1171,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
+          <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
         </h4>
@@ -1158,13 +1187,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
           <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-09-23</small>
-          <a href="/learn-n-think/software-craftsmanship-by-sandro-mancuso/">소프트웨어 장인 by 산드로 만쿠소</a>
         </h4>
       </li>
       

@@ -164,8 +164,8 @@
 
 <p>Thrift 클라이언트가 IDL에서 정의한 API를 호출하는 경우를 상정하고, Outside-In으로 설명하는 것이 더 쉬울 것 같다. 아래 통합 테스트는 Thrift 클라이언트를 만들고 같은 프로젝트 디렉터리에 있는 API 서버를 호출한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php</span>
+
 <span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
@@ -179,8 +179,8 @@
  */</span>
 <span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <span class="p">{</span>
-    <span class="c1">// 테스트 중에 생성된 데이터를 테스트가 끝나면 롤백해주는 라라벨의 내장 Trait다.  
-</span>    <span class="k">use</span> <span class="nx">DatabaseTransactions</span><span class="p">;</span>
+    <span class="c1">// 테스트 중에 생성된 데이터를 테스트가 끝나면 롤백해주는 라라벨의 내장 Trait다.  </span>
+    <span class="k">use</span> <span class="nx">DatabaseTransactions</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
     <span class="p">{</span>
@@ -196,9 +196,9 @@
 
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceClient</span><span class="p">(</span><span class="nv">$protocol</span><span class="p">);</span>
 
-        <span class="c1">// 테스트를 위해 레코드 20개를 만든다.
-</span>        <span class="c1">// testAll, testFind, testStore 등 테스트 메서드가 세 개이므로 총 세 번 호출된다.
-</span>        <span class="nx">factory</span><span class="p">(</span><span class="nx">EloquentPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+        <span class="c1">// 테스트를 위해 레코드 20개를 만든다.</span>
+        <span class="c1">// testAll, testFind, testStore 등 테스트 메서드가 세 개이므로 총 세 번 호출된다.</span>
+        <span class="nx">factory</span><span class="p">(</span><span class="nx">EloquentPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
     <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">testAll</span><span class="p">()</span>
@@ -214,9 +214,9 @@
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$response</span><span class="p">))</span> <span class="p">{</span>
-            <span class="c1">// Lorem이란 텍스트를 가진 레코드가 없을 수도 있어, if 절에 넣었다.
-</span>            <span class="c1">// 응답으로 받은 컬렉션의 요소가 ThriftPost 객체인지 검사한다(IDL에 그렇게 정의했음).
-</span>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">ThriftPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$response</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="c1">// Lorem이란 텍스트를 가진 레코드가 없을 수도 있어, if 절에 넣었다.</span>
+            <span class="c1">// 응답으로 받은 컬렉션의 요소가 ThriftPost 객체인지 검사한다(IDL에 그렇게 정의했음).</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">ThriftPost</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$response</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
@@ -243,15 +243,14 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="2-서비스-수정">2. 서비스 수정</h2>
 
 <p>1부에서는 클라이언트가 넘긴 <code class="highlighter-rouge">QueryFilter</code>를 이용해서 검색을 수행하거나, 정렬하는 로직을 구현하지 않았다. 본 포스트의 주제와는 크게 관련은 없지만, Thrift IDL에서 정의한 <code class="highlighter-rouge">struct</code>를 사용하는 법을 엿볼 수 있다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Services/PostService.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Services/PostService.php</span>
+
 <span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
@@ -266,14 +265,14 @@
     <span class="p">{</span>
         <span class="nv">$builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EloquentPost</span><span class="p">;</span>
 
-        <span class="c1">// $qf 변수는 QueryFilter 객체다.
-</span>        <span class="c1">// $qf 변수는 라라벨에서 쓰던 Request 객체라고 생각하면 되는데,
-</span>        <span class="c1">// Thrift에서는 클라이언트가 IDL에 정의한 객체(struct)를 넘기므로
-</span>        <span class="c1">// 서버에서 $qf-&gt;keyword처럼 객체 액세스를 할 수 있다.
-</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">keyword</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 고급 DB를 사용한다면 Full text BOOLEAN MATCH를 사용할 수 있을 것이다.
-</span>            <span class="c1">// 여기서는 간략히 QueryFilter를 사용하는 컨셉만 소개한다.
-</span>            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'like'</span><span class="p">,</span> <span class="s2">"%</span><span class="si">{</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">keyword</span><span class="si">}</span><span class="s2">%"</span><span class="p">);</span>
+        <span class="c1">// $qf 변수는 QueryFilter 객체다.</span>
+        <span class="c1">// $qf 변수는 라라벨에서 쓰던 Request 객체라고 생각하면 되는데,</span>
+        <span class="c1">// Thrift에서는 클라이언트가 IDL에 정의한 객체(struct)를 넘기므로</span>
+        <span class="c1">// 서버에서 $qf-&gt;keyword처럼 객체 액세스를 할 수 있다.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">keyword</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 고급 DB를 사용한다면 Full text BOOLEAN MATCH를 사용할 수 있을 것이다.</span>
+            <span class="c1">// 여기서는 간략히 QueryFilter를 사용하는 컨셉만 소개한다.</span>
+            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'like'</span><span class="p">,</span> <span class="s2">"%</span><span class="si">{</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">keyword</span><span class="si">}</span><span class="s2">%"</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="nv">$posts</span> <span class="o">=</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">sortBy</span><span class="p">,</span> <span class="nv">$qf</span><span class="o">-&gt;</span><span class="na">sortDirection</span><span class="p">)</span>
@@ -288,16 +287,15 @@
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">// 1부와 동일 ...
-</span>    <span class="p">}</span>
+        <span class="c1">// 1부와 동일 ...</span>
+    <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">store</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="nv">$content</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">// 1부와 동일 ...
-</span>    <span class="p">}</span>
+        <span class="c1">// 1부와 동일 ...</span>
+    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3-미들웨어와-책임-연쇄-패턴">3. 미들웨어와 책임 연쇄 패턴</h2>
 
@@ -313,8 +311,8 @@
 
 <p>글로 설명하기 너무 힘들다, 즉 설명할 수 없다는 것은 필자도 잘 모른다는 의미이기도 하다ㅜㅜ. 코드에 인라인 주석을 참고한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/PostsController
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/PostsController</span>
+
 <span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">App\Services\PostService</span><span class="p">;</span>
@@ -329,29 +327,28 @@
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nv">$format</span> <span class="o">=</span> <span class="s1">'json'</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">// 그림에서 본 것처럼 Thrift 요청은 바깥쪽에 있는 FooMiddleware를 먼저 거치게 된다.
-</span>        <span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FooMiddleware</span><span class="p">(</span>
+        <span class="c1">// 그림에서 본 것처럼 Thrift 요청은 바깥쪽에 있는 FooMiddleware를 먼저 거치게 된다.</span>
+        <span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FooMiddleware</span><span class="p">(</span>
             <span class="k">new</span> <span class="nx">BarMiddleware</span>
         <span class="p">);</span>
 
         <span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostService</span><span class="p">();</span>
-        <span class="c1">// PostService를 앞서 만든 미들웨어로 싸서 ThriftServiceHandler를 만들었다. 
-</span>        <span class="nv">$handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThriftServiceHandler</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$middleware</span><span class="p">);</span>
-        <span class="c1">// 이제 Thrift 컴파일러가 만들어준 프로세서에 미들웨어로 여러겹 포장한 서비스를 넘겨서 처리를 위임한다.
-</span>        <span class="nv">$processor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceProcessor</span><span class="p">(</span><span class="nv">$handler</span><span class="p">);</span>
+        <span class="c1">// PostService를 앞서 만든 미들웨어로 싸서 ThriftServiceHandler를 만들었다. </span>
+        <span class="nv">$handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThriftServiceHandler</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$middleware</span><span class="p">);</span>
+        <span class="c1">// 이제 Thrift 컴파일러가 만들어준 프로세서에 미들웨어로 여러겹 포장한 서비스를 넘겨서 처리를 위임한다.</span>
+        <span class="nv">$processor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceProcessor</span><span class="p">(</span><span class="nv">$handler</span><span class="p">);</span>
 
         <span class="k">return</span> <span class="nx">ThriftResponse</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="nv">$format</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="32-서비스-핸들러-만들기">3.2. 서비스 핸들러 만들기</h3>
 
 <p>서비스를 미들웨어로 감싸 줄 <code class="highlighter-rouge">ThriftServiceHandler</code>를 만들 차례다. 핸들러의 개념을 이해하기 어려운데 미들웨어가 있으면 미들웨어를 구동시키고, 없으면 서비스를 바로 호출해 주는 녀석이다. 진짜 서비스가 아니지만 자신이 서비스인 양 행세해서, 프로세서가 서비스로 간주하고 호출하는 녀석이다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftServiceHandler.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftServiceHandler.php</span>
+
 <span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
 
 <span class="sd">/**
@@ -366,33 +363,32 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span> <span class="o">=</span> <span class="nv">$middleware</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="c1">// 가령 클라이언트가 all API를 호출했다면, PostServiceProcessor가 PostService::all()
-</span>    <span class="c1">// 메서드를 호출할 때 클라이언트가 제시한 인자인 QueryParameter 객체와, offset 0, limit 10을
-</span>    <span class="c1">// 넘겨준다. 그런데, 앞 절에서 PostServiceProcessor에 넘겨 준 것은 PostService가 아니라
-</span>    <span class="c1">// 이 서비스를 미들웨어로 몇 꺼풀 싸 놓은 ThriftServiceHandler를 넘겼다.
-</span>    <span class="c1">// ThriftServiceHandler에는 all 메서드가 없다. 일치하는 메서드가 없으므로 __call 메서드가 호출된다. 
-</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">__call</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
+    <span class="c1">// 가령 클라이언트가 all API를 호출했다면, PostServiceProcessor가 PostService::all()</span>
+    <span class="c1">// 메서드를 호출할 때 클라이언트가 제시한 인자인 QueryParameter 객체와, offset 0, limit 10을</span>
+    <span class="c1">// 넘겨준다. 그런데, 앞 절에서 PostServiceProcessor에 넘겨 준 것은 PostService가 아니라</span>
+    <span class="c1">// 이 서비스를 미들웨어로 몇 꺼풀 싸 놓은 ThriftServiceHandler를 넘겼다.</span>
+    <span class="c1">// ThriftServiceHandler에는 all 메서드가 없다. 일치하는 메서드가 없으므로 __call 메서드가 호출된다. </span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__call</span><span class="p">(</span><span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">// 생성자를 통해 초기화한 미들웨어가 있으면 이 로직을 수행한다.
-</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 등록된 미들웨어의 handle 메서드를 호출한다. 1절의 테스트를 가정하면,
-</span>            <span class="c1">// 이 때 PostService 객체, all, [QueryFilter 객체, 0, 10] 등을 인자로 넘기게 된다.
-</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+        <span class="c1">// 생성자를 통해 초기화한 미들웨어가 있으면 이 로직을 수행한다.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 등록된 미들웨어의 handle 메서드를 호출한다. 1절의 테스트를 가정하면,</span>
+            <span class="c1">// 이 때 PostService 객체, all, [QueryFilter 객체, 0, 10] 등을 인자로 넘기게 된다.</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">// 등록된 미들웨어가 없으면 클라이언트가 전달한 인자로 PostService::all 메서드를 바로 호출한다. 
-</span>        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">([</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$arguments</span><span class="p">);</span>
+        <span class="c1">// 등록된 미들웨어가 없으면 클라이언트가 전달한 인자로 PostService::all 메서드를 바로 호출한다. </span>
+        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">([</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$arguments</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="33-미들웨어-만들기">3.3. 미들웨어 만들기</h3>
 
 <p><code class="highlighter-rouge">PostService</code>를 감쌌던 <code class="highlighter-rouge">FooMiddleware</code>를 만들어 보자(<code class="highlighter-rouge">BarMiddleware</code>는 생략한다). 역시 인라인으로 주석을 달았다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/FooMiddleware.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/FooMiddleware.php</span>
+
 <span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\ErrorCode</span><span class="p">;</span>
@@ -402,29 +398,29 @@
 
 <span class="k">class</span> <span class="nc">FooMiddleware</span> <span class="k">extends</span> <span class="nx">ThriftMiddleware</span>
 <span class="p">{</span>
-    <span class="c1">// ThriftServiceHandler::__call에서 이 메서드를 호출했다. 
-</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
+    <span class="c1">// ThriftServiceHandler::__call에서 이 메서드를 호출했다. </span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">try</span> <span class="p">{</span>
-            <span class="c1">// 컨셉만 보여 주기 위해서 로그에 메시지를 쓰는 것으로 대신한다.
-</span>            <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'handling thrift request'</span><span class="p">,</span> <span class="p">[</span><span class="nb">func_get_args</span><span class="p">(),</span> <span class="nx">__METHOD__</span><span class="p">]);</span>
+            <span class="c1">// 컨셉만 보여 주기 위해서 로그에 메시지를 쓰는 것으로 대신한다.</span>
+            <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'handling thrift request'</span><span class="p">,</span> <span class="p">[</span><span class="nb">func_get_args</span><span class="p">(),</span> <span class="nx">__METHOD__</span><span class="p">]);</span>
 
-            <span class="c1">// 책임 연쇄 패턴에서 가장 중요한 부분이다. next 메서드는 다음 절에서 살펴본다.
-</span>            <span class="c1">// 우리 예제에서 next는 BarMiddleware다.
-</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">next</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+            <span class="c1">// 책임 연쇄 패턴에서 가장 중요한 부분이다. next 메서드는 다음 절에서 살펴본다.</span>
+            <span class="c1">// 우리 예제에서 next는 BarMiddleware다.</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">next</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">SystemException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 추가적인 예외 처리를 여기서 한다.
-</span>            <span class="c1">// SystemException은 Thrift IDL에 정의한 struct므로 클라이언트와 연결된 프로토콜을 통해
-</span>            <span class="c1">// 안전하게 전달된다. 클라이언트 측에서도 SystemException으로 역 직렬화되어 바로 사용할 수 있다.
-</span>            <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
+            <span class="c1">// 추가적인 예외 처리를 여기서 한다.</span>
+            <span class="c1">// SystemException은 Thrift IDL에 정의한 struct므로 클라이언트와 연결된 프로토콜을 통해</span>
+            <span class="c1">// 안전하게 전달된다. 클라이언트 측에서도 SystemException으로 역 직렬화되어 바로 사용할 수 있다.</span>
+            <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">UserException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// SystemException 및 UserException을 제외한 라라벨의 일반적인 예외를 핸들링한다.
-</span>            <span class="c1">// 이 예제에서는 로그에 디버그 메시지를 쓴다. Thrift가 없는 라라벨 프로젝트라면
-</span>            <span class="c1">// app/Exceptions/Handler.php의 전역 예외 처리기가 예외를 소비했을 것이다.
-</span>            <span class="c1">// 라라벨의 Handler::report 메서드를 대신하는 역할을 한다.
-</span>            <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span>
+            <span class="c1">// SystemException 및 UserException을 제외한 라라벨의 일반적인 예외를 핸들링한다.</span>
+            <span class="c1">// 이 예제에서는 로그에 디버그 메시지를 쓴다. Thrift가 없는 라라벨 프로젝트라면</span>
+            <span class="c1">// app/Exceptions/Handler.php의 전역 예외 처리기가 예외를 소비했을 것이다.</span>
+            <span class="c1">// 라라벨의 Handler::report 메서드를 대신하는 역할을 한다.</span>
+            <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span>
                 <span class="s2">"%s </span><span class="se">\n\n</span><span class="s2">%s </span><span class="se">\n</span><span class="s2">%s:%d </span><span class="se">\n\n</span><span class="s2">%s"</span><span class="p">,</span>
                 <span class="nb">get_class</span><span class="p">(</span><span class="nv">$e</span><span class="p">),</span>
                 <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
@@ -433,24 +429,23 @@
                 <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getTraceAsString</span><span class="p">()</span>
             <span class="p">));</span>
 
-            <span class="c1">// Thrift 클라이언트가 이해할 수 있는 SystemException으로 변경하여 클라이언트에게 돌려준다.
-</span>            <span class="c1">// 라라벨의 Handler::render 메서드를 대신하는 역할을 한다.
-</span>            <span class="k">throw</span> <span class="k">new</span> <span class="nx">SystemException</span><span class="p">([</span>
+            <span class="c1">// Thrift 클라이언트가 이해할 수 있는 SystemException으로 변경하여 클라이언트에게 돌려준다.</span>
+            <span class="c1">// 라라벨의 Handler::render 메서드를 대신하는 역할을 한다.</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">SystemException</span><span class="p">([</span>
                 <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="nx">ErrorCode</span><span class="o">::</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="p">,</span>
                 <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">()</span>
             <span class="p">]);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="34-추상-미들웨어">3.4. 추상 미들웨어</h3>
 
 <p>앞 절의 인라인 주석에서 책임 연쇄 패턴에 가장 중요한 메서드가 <code class="highlighter-rouge">next()</code>라고 말한 바 있다. 이 절에서는 이 <code class="highlighter-rouge">next()</code> 메서드의 작동 원리를 파헤쳐본다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftMiddleware.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftMiddleware.php</span>
+
 <span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
 
 <span class="k">abstract</span> <span class="k">class</span> <span class="nc">ThriftMiddleware</span>
@@ -459,11 +454,11 @@
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">ThriftMiddleware</span> <span class="nv">$successor</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">// 3.1.절에서 new FooMiddleware(new BarMiddleware)처럼
-</span>        <span class="c1">// 미들웨어 생성자에 다른 미들웨어를 넣은 것을 기억할 것이다. 바로 이 부분이다.
-</span>        <span class="c1">// $successor는 이번 미들웨어를 통과하고 나면, 그 다음에 통과해야 할 미들웨어다.
-</span>        <span class="c1">// 이제 FooMiddleware의 $successor는 BarMiddleware다.
-</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span> <span class="o">=</span> <span class="nv">$successor</span><span class="p">;</span>
+        <span class="c1">// 3.1.절에서 new FooMiddleware(new BarMiddleware)처럼</span>
+        <span class="c1">// 미들웨어 생성자에 다른 미들웨어를 넣은 것을 기억할 것이다. 바로 이 부분이다.</span>
+        <span class="c1">// $successor는 이번 미들웨어를 통과하고 나면, 그 다음에 통과해야 할 미들웨어다.</span>
+        <span class="c1">// 이제 FooMiddleware의 $successor는 BarMiddleware다.</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span> <span class="o">=</span> <span class="nv">$successor</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
@@ -471,39 +466,36 @@
     <span class="k">public</span> <span class="k">function</span> <span class="nf">next</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 구체 미들웨어 클래스의 handle 메서드에서 항상 next 메서드를 호출했던 것을 기억할 것이다.
-</span>            <span class="c1">// FooMiddleware는 BarMiddleware라는 $successor를 가지고 있으므로
-</span>            <span class="c1">// BarMiddlware::handle 메서드가 호출될 것이다.
-</span>            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+            <span class="c1">// 구체 미들웨어 클래스의 handle 메서드에서 항상 next 메서드를 호출했던 것을 기억할 것이다.</span>
+            <span class="c1">// FooMiddleware는 BarMiddleware라는 $successor를 가지고 있으므로</span>
+            <span class="c1">// BarMiddlware::handle 메서드가 호출될 것이다.</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">successor</span><span class="o">-&gt;</span><span class="na">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">// 반면 BarMiddlware는 $succesor가 없으므로 아래 구문이 호출된다.
-</span>        <span class="c1">// 이 예제에서는 PostService::all 메서드가 호출되는 것이다.
-</span>        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">([</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$arguments</span><span class="p">);</span>
+        <span class="c1">// 반면 BarMiddlware는 $succesor가 없으므로 아래 구문이 호출된다.</span>
+        <span class="c1">// 이 예제에서는 PostService::all 메서드가 호출되는 것이다.</span>
+        <span class="k">return</span> <span class="nb">call_user_func_array</span><span class="p">([</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$arguments</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="4-테스트">4. 테스트</h2>
 
 <p>테스트를 위해 로컬 서버를 기동하고, <code class="highlighter-rouge">phpunit</code> 테스트를 실행한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/thrift-example-project <span class="nv">$ </span>php artisan serve
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/thrift-example-project <span class="nv">$ </span>php artisan serve
 <span class="c"># Laravel development server started on http://localhost:8000/</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>~/thrift-example-project $ vendor/bin/phpunit
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/thrift-example-project $ vendor/bin/phpunit
 # PHPUnit 5.6.2 by Sebastian Bergmann and contributors.
 # ...
 # OK (3 tests, 5 assertions)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>다음 로그를 보면 <code class="highlighter-rouge">FooMiddleware</code> 및 <code class="highlighter-rouge">BarMiddlware</code>에서 Thrift 요청을 처리한 흔적을 볼 수 있다. <code class="highlighter-rouge">all</code>, <code class="highlighter-rouge">find</code>, <code class="highlighter-rouge">store</code> 총 세 개의 API를 테스트 했으므로 총 여섯 개의 로그가 찍혔다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
 
 <span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"all"</span>,[<span class="s2">"[object] (Appkr</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">Post</span><span class="se">\\</span><span class="s2">QueryFilter: {</span><span class="se">\"</span><span class="s2">keyword</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Lorem</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortBy</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortDirection</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">desc</span><span class="se">\"</span><span class="s2">})"</span>,0,10]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">FooMiddleware::handle"</span><span class="o">]</span> 
 <span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"all"</span>,[<span class="s2">"[object] (Appkr</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">Post</span><span class="se">\\</span><span class="s2">QueryFilter: {</span><span class="se">\"</span><span class="s2">keyword</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Lorem</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortBy</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">sortDirection</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">desc</span><span class="se">\"</span><span class="s2">})"</span>,0,10]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">BarMiddleware::handle"</span><span class="o">]</span> 
@@ -511,17 +503,16 @@
 <span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"find"</span>,[1]],<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">BarMiddleware::handle"</span><span class="o">]</span> 
 <span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"store"</span>,[<span class="s2">"foo"</span>,<span class="s2">"Lorem content"</span><span class="o">]]</span>,<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">FooMiddleware::handle"</span><span class="o">]</span> 
 <span class="o">[</span>2016-12-10 14:59:53] local.INFO: handling thrift request <span class="o">[[</span><span class="s2">"[object] (App</span><span class="se">\\</span><span class="s2">Services</span><span class="se">\\</span><span class="s2">PostService: {})"</span>,<span class="s2">"store"</span>,[<span class="s2">"foo"</span>,<span class="s2">"Lorem content"</span><span class="o">]]</span>,<span class="s2">"App</span><span class="se">\\</span><span class="s2">Thrift</span><span class="se">\\</span><span class="s2">BarMiddleware::handle"</span><span class="o">]</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">FooMiddlware</code>가 예외를 잘 소비하는 지 확인하기 위해서 통합 테스트를 다음과 같이 수정하고 테스트했다. 100번 아이디를 가진 레코드는 없어서 라라벨에서 <code class="highlighter-rouge">ModelNotFoundException</code>이 나야하고, <code class="highlighter-rouge">FooMiddleware</code>에 의해서 Thrift 클라이언트에게 <code class="highlighter-rouge">SystemException</code>으로 전달되어야 한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php</span>
+
 <span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <span class="p">{</span>
-    <span class="c1">// ...
-</span>    
+    <span class="c1">// ...</span>
+    
     <span class="k">public</span> <span class="k">function</span> <span class="nf">testFind</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
@@ -532,17 +523,15 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="c1">// ...
-</span><span class="p">}</span>
-</code></pre>
-</div>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>아래 그림에서 <code class="highlighter-rouge">Appkr\Thrift\Errors\SystemException: No query results for model [App\Post] 100</code>처럼 예외 객체가 클라이언트에게 정확하게 전달된 것을 확인할 수 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># PHPUnit에서 특정 테스트 메서드만 필터링해서 실행하고 싶을 때 --filter 옵션을 사용한다.</span>
-~/thrift-example-project <span class="nv">$ </span>vendor/bin/phpunit --filter testFind
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># PHPUnit에서 특정 테스트 메서드만 필터링해서 실행하고 싶을 때 --filter 옵션을 사용한다.</span>
+~/thrift-example-project <span class="nv">$ </span>vendor/bin/phpunit <span class="nt">--filter</span> testFind
+</code></pre></div></div>
 
 <p><a href="/images/2016-12-10-img-01.png"><img src="/images/2016-12-10-img-01.png" alt="ModelNotFoundException" /></a></p>
 
@@ -683,7 +672,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1221,7 +1210,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1266,6 +1255,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1355,6 +1350,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1364,13 +1366,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1423,7 +1418,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

@@ -156,8 +156,8 @@
 
 <p>다음 PHP 예제 코드는 예외 클래스의 기본적인 사용법을 담고 있다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php</span>
+
 <span class="sd">/**
  * 개발자가 직접 소비하지 않은 예외를 처리하기 위한 전역 예외 처리기.
  */</span>
@@ -214,38 +214,33 @@
 <span class="p">}</span>
 
 <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'마지막 문장입니다.'</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>PHP에서 예외를 던질 때는 <code class="highlighter-rouge">throw</code> 키워드를 사용하고, 그 다음에 던질 예외 클래스의 객체를 제공하면 된다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="k">throw</span> <span class="k">new</span> <span class="nx">FooException</span><span class="p">(</span><span class="s1">'메시지'</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>예외 클래스의 프로토타입(생성자의 인자)은 다음과 같다. 대괄호는 배열 문법이 아니고, 선택사항(optional)이란 뜻이다. 즉 생성자에 아무런 인자를 안 넣어도 된다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Exception::__construct <span class="o">([</span> string <span class="nv">$message</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">[</span>, int <span class="nv">$code</span> <span class="o">=</span> 0 <span class="o">[</span>, Throwable <span class="nv">$previous</span> <span class="o">=</span> NULL <span class="o">]]]</span> <span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exception::__construct <span class="o">([</span> string <span class="nv">$message</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">[</span>, int <span class="nv">$code</span> <span class="o">=</span> 0 <span class="o">[</span>, Throwable <span class="nv">$previous</span> <span class="o">=</span> NULL <span class="o">]]]</span> <span class="o">)</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">Exception</code>은 PHP의 SPL(Standard PHP Library, PHP 바이너리에 내장)이 제공하는 최상위 예외 클래스다. 우리 예제 코드에서 사용한 <code class="highlighter-rouge">InvalidArgumentException</code>과 <code class="highlighter-rouge">Exception</code>과의 상속 관계는 다음과 같다. 살짝 스포일링하자면, SPL 또는 프레임워크가 제공하는 예외 클래스를 상속하여 우리만의 커스컴 예외 클래스를 만들 수 있다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>InvalidArgumentException -&gt; LogicException -&gt; Exception
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>InvalidArgumentException -&gt; LogicException -&gt; Exception
+</code></pre></div></div>
 
 <h2 id="1-정상-실행">1. 정상 실행</h2>
 
 <p>이 코드의 실행 결과는 다음과 같다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:33:
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:33:
 string<span class="o">(</span>38<span class="o">)</span> <span class="s2">"함수가 받은 인자는 1입니다."</span>
 
 ~/working-with-exceptions/exceptions.php:51:
@@ -253,8 +248,7 @@ string<span class="o">(</span>54<span class="o">)</span> <span class="s2">"Final
 
 ~/working-with-exceptions/exceptions.php:54:
 string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마지막 문장입니다."</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">foo()</code> 함수를 <code class="highlighter-rouge">try {}</code> 블록 안에서 호출하고 있다.</li>
@@ -267,27 +261,25 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 
 <p>예외 상황을 만들어 보자.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php
-</span>
-<span class="c1">// ...
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php</span>
+
+<span class="c1">// ...</span>
+
 <span class="k">try</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ...
-</span><span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
 
-<span class="c1">// ...
-</span></code></pre>
-</div>
+<span class="c1">// ...</span>
+</code></pre></div></div>
 
 <p>수정한 코드의 실행 결과는 다음과 같다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:42:
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:42:
 string<span class="o">(</span>43<span class="o">)</span> <span class="s2">"입력한 인자가 정수가 아닙니다."</span>
 
 ~/working-with-exceptions/exceptions.php:42:
@@ -301,17 +293,17 @@ int<span class="o">(</span>25<span class="o">)</span>
 
 ~/working-with-exceptions/exceptions.php:42:
 array<span class="o">(</span>1<span class="o">)</span> <span class="o">{</span>
-  <span class="o">[</span>0] <span class="o">=</span>&gt;
+  <span class="o">[</span>0] <span class="o">=&gt;</span>
   array<span class="o">(</span>4<span class="o">)</span> <span class="o">{</span>
-    <span class="s1">'file'</span> <span class="o">=</span>&gt;
+    <span class="s1">'file'</span> <span class="o">=&gt;</span>
     string<span class="o">(</span>37<span class="o">)</span> <span class="s2">"~/working-with-exceptions/exceptions.php"</span>
-    <span class="s1">'line'</span> <span class="o">=</span>&gt;
+    <span class="s1">'line'</span> <span class="o">=&gt;</span>
     int<span class="o">(</span>33<span class="o">)</span>
-    <span class="s1">'function'</span> <span class="o">=</span>&gt;
+    <span class="s1">'function'</span> <span class="o">=&gt;</span>
     string<span class="o">(</span>3<span class="o">)</span> <span class="s2">"foo"</span>
-    <span class="s1">'args'</span> <span class="o">=</span>&gt;
+    <span class="s1">'args'</span> <span class="o">=&gt;</span>
     array<span class="o">(</span>1<span class="o">)</span> <span class="o">{</span>
-      <span class="o">[</span>0] <span class="o">=</span>&gt;
+      <span class="o">[</span>0] <span class="o">=&gt;</span>
       string<span class="o">(</span>6<span class="o">)</span> <span class="s2">"string"</span>
     <span class="o">}</span>
   <span class="o">}</span>
@@ -332,8 +324,7 @@ string<span class="o">(</span>88<span class="o">)</span> <span class="s2">"예�
 
 ~/working-with-exceptions/exceptions.php:10:
 string<span class="o">(</span>24<span class="o">)</span> <span class="s2">"InvalidArgumentException"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li><code class="highlighter-rouge">foo()</code> 함수는 문자열 <code class="highlighter-rouge">'string'</code>을 인자로 받았으므로, <code class="highlighter-rouge">if (is_int($arg) === false) {...}</code> 부분에 걸려 <code class="highlighter-rouge">InvalidArgumentException</code>을 던진다. 프로그램의 실행 제어 측면에서 <code class="highlighter-rouge">throw</code> 키워드는 해당 블록에서 <code class="highlighter-rouge">throw</code> 다음 문장을 실행하지 않는다는 점에서 <code class="highlighter-rouge">return</code>과 같다.</li>
@@ -353,10 +344,10 @@ string<span class="o">(</span>24<span class="o">)</span> <span class="s2">"Inval
 
 <p>우리 예제에서는 <code class="highlighter-rouge">foo()</code> 함수를 실행할 때 <code class="highlighter-rouge">InvalidArgumentException</code>만 발생하지만, 실제로는 <code class="highlighter-rouge">try</code> 블록 안쪽의 코드를 실행하는 동안 다양한 예외가 발생할 수 있다. 이 때 <code class="highlighter-rouge">catch</code> 블록에 딱 정확한 예외 이름을 타입 힌트로 제공해서 예외 처리 로직을 분기할 수 있다. 예제 코드를 다음과 같이 수정했다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php
-</span>
-<span class="c1">// ...
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php</span>
+
+<span class="c1">// ...</span>
+
 <span class="k">try</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">InvalidArgumentException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
@@ -367,30 +358,27 @@ string<span class="o">(</span>24<span class="o">)</span> <span class="s2">"Inval
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'세번째 catch 블록'</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="c1">// ...
-</span></code></pre>
-</div>
+<span class="c1">// ...</span>
+</code></pre></div></div>
 
 <p>실행하면 다음 결과를 볼 수 있다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:36:
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:36:
 string<span class="o">(</span>22<span class="o">)</span> <span class="s2">"첫번째 catch 블록"</span>
 
 ~/working-with-exceptions/exceptions.php:64:
 string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마지막 문장입니다."</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">catch</code>에서 잡는 예외의 순서는 중요하다. 예제를 보자.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php
-</span>
-<span class="c1">// ...
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php</span>
+
+<span class="c1">// ...</span>
+
 <span class="k">try</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
@@ -399,29 +387,26 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'우리가 기대하던 내용'</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="c1">// ...
-</span></code></pre>
-</div>
+<span class="c1">// ...</span>
+</code></pre></div></div>
 
 <p>실행 결과는 이렇다. 항상 구체적인 예외, 즉 자식 예외에서 부모 예외 순으로 잡아야 한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php exceptions.php
+</code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:36:
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions/exceptions.php:36:
 string<span class="o">(</span>30<span class="o">)</span> <span class="s2">"엉뚱한 예외 처리 로직"</span>
 
 ~/working-with-exceptions/exceptions.php:65:
 string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마지막 문장입니다."</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="4-결론">4. 결론</h2>
 
 <p>예외를 처리하지 않는 경우를 상상해 보자. <code class="highlighter-rouge">foo()</code> 함수에 타입 힌트를 써서 예외 상황을 만들었다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$arg</span><span class="p">)</span>
 <span class="p">{</span>
@@ -429,12 +414,11 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 <span class="p">}</span>
 
 <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>이 코드의 실행 결과는 다음과 같다. 전역 예외 처리기 또는 에러 처리가가 없으므로, PHP 런타임이 치명적 오류(Fatal error)를 내 뱉고 있는 상황이다. 운영 중인 웹 사이트에서 이런 메시지가 나온 적이 있는가? 그런데, 이 상황을 몇 시간째 모르고 있었던 경우는 없는가? 아찔하다~</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>PHP Fatal error:  Uncaught TypeError: Argument 1 passed to foo<span class="o">()</span> must be of the <span class="nb">type </span>integer, string given, called <span class="k">in</span> ~/working-with-exceptions/exceptions.php on line 31 and defined <span class="k">in</span> ~/working-with-exceptions/exceptions.php:22
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHP Fatal error:  Uncaught TypeError: Argument 1 passed to foo<span class="o">()</span> must be of the <span class="nb">type </span>integer, string given, called <span class="k">in</span> ~/working-with-exceptions/exceptions.php on line 31 and defined <span class="k">in</span> ~/working-with-exceptions/exceptions.php:22
 Stack trace:
 <span class="c">#0 ~/working-with-exceptions/exceptions.php(31): foo('string')</span>
 <span class="c">#1 {main}</span>
@@ -443,8 +427,7 @@ Stack trace:
 Call Stack:
     0.0002     355912   1. <span class="o">{</span>main<span class="o">}()</span> ~/working-with-exceptions/exceptions.php:0
     0.0002     355912   2. foo<span class="o">()</span> ~/working-with-exceptions/exceptions.php:31
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>다음 편에서는 라라벨 프레임워크를 이용해서 커스텀 예외 클래스를 만들고 프로그램 실행 흐름을 안전하게 제어하는 방법을 살펴 보기로 하자.</p>
 
@@ -553,7 +536,7 @@ Call Stack:
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1091,7 +1074,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1136,6 +1119,12 @@ Call Stack:
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1225,6 +1214,13 @@ Call Stack:
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1234,13 +1230,6 @@ Call Stack:
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1293,7 +1282,7 @@ Call Stack:
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

@@ -5,9 +5,67 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 26 Dec 2017 15:35:49 +0900</pubDate>
-    <lastBuildDate>Tue, 26 Dec 2017 15:35:49 +0900</lastBuildDate>
-    <generator>Jekyll v3.5.1</generator>
+    <pubDate>Sat, 14 Apr 2018 17:24:48 +0900</pubDate>
+    <lastBuildDate>Sat, 14 Apr 2018 17:24:48 +0900</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>이진수와 십진수</title>
+        <description>&lt;p&gt;중학교 때 배운 후, 잊어 버리고, 매번 필요할 때마다 찾아 보는 것이 진법(進法)이다. 요즘은 교과 과정이 없어졌다고 하지만, 자녀들이 물어볼 때를 대비해 기록해 놓는다. 또, 개발자로서 이진법을 잘 이해하지 못하고 있는 나 자신이 부끄럽기도해서 필요할 때마다 꺼내볼 수 있도록 치트시트를 만들어 두는 거다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;십진수-to-이진수-decimal-to-binary&quot;&gt;십진수 to 이진수 (decimal to binary)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주어진 십진수를 2로 계속 나누어 몫을 기록한다. 나누어 지지 않는 나머지 1은 버린다.&lt;/li&gt;
+  &lt;li&gt;몫의 끝자리 수가 짝수이면 0, 홀수이면 1로 표시한다.&lt;/li&gt;
+  &lt;li&gt;뒤에서 앞으로 0과 1을 조합한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;684, 342, 171, 85, 42, 21, 10, 5, 2, 1
+  0,   0,   1,  1,  0,  1,  0, 1, 0, 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;십진수 684는 이진수로 1010101100 이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; bin&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;684&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;'0b1010101100'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;이진수-to-십진수-binary-to-decimal&quot;&gt;이진수 to 십진수 (binary to decimal)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이진수의 자릿수를 구한다. 자릿수는 0부터 시작한다.&lt;/li&gt;
+  &lt;li&gt;이진수의 값이 1일때만, 2에 자릿수만큼 제곱근한다.&lt;/li&gt;
+  &lt;li&gt;전체를 더한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;자릿수 9 8 7 6 5 4 3 2 1 0
+이진수 1 0 1 0 1 0 1 1 0 0
+
+2^9 + 2^7 + 2^5 + 2^3 + 2^2 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 684 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; int&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0b1010101100&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+684
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sat, 14 Apr 2018 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/cheatsheet/binary-decimal-conversion/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/cheatsheet/binary-decimal-conversion/</guid>
+        
+        <category>수학</category>
+        
+        <category>개발자</category>
+        
+        
+        <category>cheatsheet</category>
+        
+      </item>
     
       <item>
         <title>PHP 프로젝트에 Swagger 적용 #1</title>
@@ -67,13 +125,12 @@
 
 &lt;p&gt;스웨거 스펙을 기반으로 서버 또는 클라이언트 SDK(=~ 라이브러리 + 문서 등)를 만들어 줍니다. 즉, 스펙만 있으면 서버 또는 클라이언트 코드를 뚝딱 만들고, 복붙 또는 의존성 관리자로 끼워 넣어서 서비스를 빠르게 개발 할 수 있도록 도와줍니다. 이 도구가 지원하는 플랫폼 목록은 아래와 같습니다. 목록에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;lumen&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php-symfony&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php-silex&lt;/code&gt; 찾으셨나요?&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swagger-codegen version
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swagger-codegen version
 &lt;span class=&quot;c&quot;&gt;# 2.3.0-SNAPSHOT&lt;/span&gt;
 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swagger-codegen langs
 &lt;span class=&quot;c&quot;&gt;# 모르는 플랫폼은 생략&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# Available languages: [..., akka-scala, android, apache2, bash, csharp, clojure, csharp-dotnet2, dart, elixir, eiffel, erlang-client, erlang-server, python-flask, go, go-server, groovy, haskell-http-client, haskell, jmeter, java, java-play-framework, javascript, javascript-closure-angular, kotlin, lua, lumen, nodejs-server, perl, php, php-symfony, powershell, python, qt5cpp, rails5, ruby, rust, rust-server, scala, scala-lagom-server, php-silex, sinatra, slim, spring, html, swagger, swagger-yaml, swift4, swift3, swift, tizen, typescript-angular, typescript-angularjs, typescript-fetch, typescript-jquery, typescript-node, ...]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;14-postman-등-서드파티-도구&quot;&gt;1.4. Postman 등 서드파티 도구&lt;/h3&gt;
 
@@ -104,17 +161,16 @@
 
 &lt;p&gt;현재 최신 버전은 2.3.0 입니다. OSX에서는 홈브루를 이용해서 쉽게 설치할 수 있습니다. 아래는 PHP 클라이언트 SDK를 생성하는 명령의 예입니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/sdk-project &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swagger-codegen &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;generate
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/sdk-project &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swagger-codegen &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;generate
 ~/sdk-project &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swagger-codegen generate &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    --lang php &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    --input-spec http://localhost/docs/swagger.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    --output . 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+    &lt;span class=&quot;nt&quot;&gt;--lang&lt;/span&gt; php &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--input-spec&lt;/span&gt; http://localhost/docs/swagger.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--output&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;아래와 같은 SDK를 생성해줍니다. API 클라이언트(Guzzle Wrapper), 모델 클래스, 테스트 보일러플레이트, 마크다운으로 된 API 문서 등이 포함되어 있습니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/sdk-project &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tree .
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/sdk-project &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tree &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
 ├── README.md
 ├── composer.json
 ├── docs                          &lt;span class=&quot;c&quot;&gt;# 마크다운으로 된 API 문서&lt;/span&gt;
@@ -138,8 +194,7 @@
     └── Model
 
 9 directories, 63 files
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;일반적으로 서버 개발자의 역할은 스웨거 스펙을 제공하는 일까지 입니다. 해서 보통 API 서버 프로젝트에 Swagger UI 프로젝트도 같이 구동해서 UI 및 스펙 JSON을 서비스 합니다. 공개된 스웨거 스펙을 이용해서 자신의 프로젝트에서 사용할 언어별 SDK를 생성하고 관리하는 일은 클라이언트 개발자의 역할입니다.&lt;/p&gt;
 
@@ -151,28 +206,27 @@
 
 &lt;p&gt;PHP에서 API 클라이언트를 개발한다면 보통 Guzzle을 이용해서 API 엔드포인트로 HTTP 요청을 보내고 응답을 받아서 처리하는 식으로 프로그래밍할 겁니다. 스웨거가 생성한 클라이언트 코드는 Guzzle를 한번 더 감싸놓은 형태로서, 저수준 REST 호출이 아닌, PHP 함수 호출로 API를 소비할 수 있도록 해 줍니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/swagger-api-client-poc/blob/master/tests/AuthApiTest.php#L57
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthApiTest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SwaggerPocApiTester&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/swagger-api-client-poc/blob/master/tests/AuthApiTest.php#L57&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthApiTest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SwaggerPocApiTester&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testMe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;nv&quot;&gt;$authorizationString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAuthString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
         
-        &lt;span class=&quot;c1&quot;&gt;// 전통적으로 많이 쓰던
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// GuzzleClient::get('auth/me', [
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;//     'Authorization' =&amp;gt; &quot;Bearer {$authorizationString}&quot;
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// ]); 이 아니라,
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// AuthApi::me(string $authorizationString): UserDto;
-&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// 라는 시그니처의 함수를 호출했습니다.
-&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$me&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAuthApi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$authorizationString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 전통적으로 많이 쓰던&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// GuzzleClient::get('auth/me', [&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//     'Authorization' =&amp;gt; &quot;Bearer {$authorizationString}&quot;&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ]); 이 아니라,&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// &lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// AuthApi::me(string $authorizationString): UserDto;&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 라는 시그니처의 함수를 호출했습니다.&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$me&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAuthApi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$authorizationString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         
         &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertInstanceOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;UserDto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;스크롤이 많이 내려가서, PHP 기반 API 서버 프로젝트에 스웨거를 적용하는 예제 프로젝트에 대한 설명은 다음 포스트에 이어가도록 하겠습니다.&lt;/p&gt;
 
@@ -262,8 +316,8 @@
 
 &lt;h2 id=&quot;before&quot;&gt;Before&lt;/h2&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2016-05-24 ~ 2016-11-28, 10 커밋, 4 명의 커미터
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Jobs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2016-05-24 ~ 2016-11-28, 10 커밋, 4 명의 커미터&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Jobs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -315,7 +369,7 @@
                 &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startTimer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
                 &lt;span class=&quot;nv&quot;&gt;$orderDto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$creator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createOrder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$delivery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
                 &lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stopTimer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;nx&quot;&gt;\Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;[OrderCreationJob] **** Created  2.0 Order [ID:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$deliveryId&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -&amp;gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$orderDto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()}]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Took&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; seconds.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;\Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;[OrderCreationJob] **** Created  2.0 Order [ID:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$deliveryId&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -&amp;gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$orderDto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;]. Took &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$time&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; seconds.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
                 &lt;span class=&quot;nv&quot;&gt;$job&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
             &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -336,13 +390,12 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;timerStopSeconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;timerStartSeconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;after&quot;&gt;After&lt;/h2&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2017-11-28
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2017-11-28&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Jobs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -451,8 +504,7 @@
         &lt;span class=&quot;nx&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$level&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[OrderCreationJob] &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Wed, 06 Dec 2017 00:00:00 +0900</pubDate>
         <link>http://blog.appkr.kr/work-n-play/clean-code-and-refactoring/</link>
@@ -475,8 +527,8 @@
 
 &lt;p&gt;이벤트를 잡기 위한 리스너 클로저는 아래와 같습니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventServiceProvider&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ServiceProvider&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -486,8 +538,7 @@
         &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/appkr/pattern/tree/master/Behavioral/Observer2&quot;&gt;관찰자(Observer) 패턴&lt;/a&gt;은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, “밥 다되면 불러줘~”라고 미리 말해두고, 밥이 다 되면 알려주는 거죠.&lt;/p&gt;
 
@@ -502,11 +553,11 @@
 
 &lt;p&gt;따라서, &lt;code class=&quot;highlighter-rouge&quot;&gt;saving&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;creating&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;created&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;saved&lt;/code&gt; 순서로 이벤트가 발생합니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;users&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saving: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
@@ -514,61 +565,58 @@
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: insert into &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;title&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;stock&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;price&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;description&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;created_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; values &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?, ?, ?, ?, ?, ?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TEST TITLE&quot;&lt;/span&gt;,10,1000,&lt;span class=&quot;s2&quot;&gt;&quot;TEST DESCRIPTION&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;2017-10-22 10:21:53&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;2017-10-22 10:21:53&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.created: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saved: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;2-update&quot;&gt;2. Update&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;saving&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;updating&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;updated&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;saved&lt;/code&gt; 순.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;users&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null limit 1 &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;update &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null limit 1 &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;update &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saving: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.updating: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: update &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;title&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;description&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;version&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;새 상품 (상품명 수정됨)&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,2,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: update &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;title&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;description&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;version&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;새 상품 (상품명 수정됨)&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,2,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.updated: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.saved: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;3-delete&quot;&gt;3. Delete&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;deleting&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;deleted&lt;/code&gt; 순.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;12&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;12&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\R&lt;/span&gt;eview
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;product_id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.booted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;ser
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;users&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;email&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? limit 1 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@foo.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; from &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; where 0 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1 and &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;reviews&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;.&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; is null
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.deleting: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: update &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,12]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: update &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;products&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;deleted_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;updated_at&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? where &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;,12]
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...] local.INFO: eloquent.deleted: Myshop&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\M&lt;/span&gt;odel&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;roduct
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 22 Oct 2017 00:00:00 +0900</pubDate>
         <link>http://blog.appkr.kr/work-n-play/investigating-laravel-model-events/</link>
@@ -799,13 +847,13 @@
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;strong&gt;개발자도 문서를 잘 써야 한다.&lt;/strong&gt; 필자는 코드 만큼이나 문서도 중요시 한다. 정확히는 “문서를 통한 의사소통”을 중요시 한다. 내 생각/설계를 다른 이에게 전달을 위해서다. 전체 코드를 디코드하는 비용과 문서를 이해하는 비용 중 어떤 것이 더 비용/시간 효율적일까? 라고 생각해보라. 또는 문서에 써놓은 예제 코드 몇 줄의 효용성을 생각해보라. 개발자가 쓴 문서는 그 문서를 읽는 3개월 뒤의 자신 또는 팀 동료가 고마워해야 한다. 그래서 개발자의 문서는 주절주절보다는 다이어그램이 좋다. 게다가 전세계 모든 개발자가 이해할 수 있는 표준 UML이면 더 좋을테다.&amp;nbsp;&lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;개발자도 문서를 잘 써야 한다.&lt;/strong&gt; 필자는 코드 만큼이나 문서도 중요시 한다. 정확히는 “문서를 통한 의사소통”을 중요시 한다. 내 생각/설계를 다른 이에게 전달을 위해서다. 전체 코드를 디코드하는 비용과 문서를 이해하는 비용 중 어떤 것이 더 비용/시간 효율적일까? 라고 생각해보라. 또는 문서에 써놓은 예제 코드 몇 줄의 효용성을 생각해보라. 개발자가 쓴 문서는 그 문서를 읽는 3개월 뒤의 자신 또는 팀 동료가 고마워해야 한다. 그래서 개발자의 문서는 주절주절보다는 다이어그램이 좋다. 게다가 전세계 모든 개발자가 이해할 수 있는 표준 UML이면 더 좋을테다. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;&lt;strong&gt;MVP를 Base Code로 사용하지 말라.&lt;/strong&gt; 버리고 다시 만들어야 한다. MVP는 설계가 더럽지만 빨리 만드는 것이 목표이고, 실제 비즈니스할 서비스는 현재 시점에서 오버하지 않는 수준으로 설계 원칙을 지켜서 만들어야 한다.&amp;nbsp;&lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;MVP를 Base Code로 사용하지 말라.&lt;/strong&gt; 버리고 다시 만들어야 한다. MVP는 설계가 더럽지만 빨리 만드는 것이 목표이고, 실제 비즈니스할 서비스는 현재 시점에서 오버하지 않는 수준으로 설계 원칙을 지켜서 만들어야 한다. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;&lt;strong&gt;상위 요구사항이 명확하면, 개발자는 하위 작업 목록을 식별할 수 있다.&lt;/strong&gt; 개발자는 각 하위 작업에 소요될 시간을 가늠할 수 있고, 전체 개발 기간을 계산할 수 있다. 그런데, 어떤 이유에서든 간에 개발자가 하위 작업 목록을 식별할 수 없는 상태에서 “이거 얼마냐 걸려?”라고 묻지 말아야 한다&lt;small class=&quot;text-muted&quot;&gt;엉클 밥도 그런 류의 질문을 거세게 비난했다&lt;/small&gt;. 요구사항이 구체화되지 전까지, 누구도 미래의 예측하는 마법의 수정 구슬을 가지고 있지 않으므로, 개발 기간은 Unknown Unknown이다. 개발 기간이 산정되지 않았다고 일을 시작하지 못하는 것은 아니다. 다만, 요구사항이 어렴풋한 상태에서 산출한 개발 기간은 바뀔 수 있다는 것을 서로가 이해해 주면 된다.&amp;nbsp;&lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;상위 요구사항이 명확하면, 개발자는 하위 작업 목록을 식별할 수 있다.&lt;/strong&gt; 개발자는 각 하위 작업에 소요될 시간을 가늠할 수 있고, 전체 개발 기간을 계산할 수 있다. 그런데, 어떤 이유에서든 간에 개발자가 하위 작업 목록을 식별할 수 없는 상태에서 “이거 얼마냐 걸려?”라고 묻지 말아야 한다&lt;small class=&quot;text-muted&quot;&gt;엉클 밥도 그런 류의 질문을 거세게 비난했다&lt;/small&gt;. 요구사항이 구체화되지 전까지, 누구도 미래의 예측하는 마법의 수정 구슬을 가지고 있지 않으므로, 개발 기간은 Unknown Unknown이다. 개발 기간이 산정되지 않았다고 일을 시작하지 못하는 것은 아니다. 다만, 요구사항이 어렴풋한 상태에서 산출한 개발 기간은 바뀔 수 있다는 것을 서로가 이해해 주면 된다. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -902,7 +950,7 @@
 
 &lt;p&gt;테스트 테이블 생성&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lock_test&lt;/span&gt; 
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lock_test&lt;/span&gt; 
 &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CHARACTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;utf8&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLLATE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;utf8_unicode_ci&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
@@ -911,76 +959,64 @@
 &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ENGINE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INNODB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;messages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;1-읽기-잠금의-동작-특성&quot;&gt;1. 읽기 잠금의 동작 특성&lt;/h2&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;READ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;READ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PROCESSLIST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- 다른 프로세스(=~커넥션=~세션)에서 실행&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- 다른 프로세스(=~커넥션=~세션)에서 실행&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WRITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스에서 테이블 전체에 대해 읽기 잠금을 걸었으므로, &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스는 무한 뺑글이.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PROCESSLIST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- &quot;Waiting for table metadata lock&quot; &amp;lt;= mysql2 프로세스의 상태&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PROCESSLIST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- &quot;Waiting for table metadata lock&quot; &amp;lt;= mysql2 프로세스의 상태&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt;이 테이블 잠금을 푸는 순간 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스는 뺑글이 사라지고, 쓰기 잠금 얻어감.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스가 테이블에 대해 쓰기 잠금을 얻어 갔으므로, &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스는 무한 뺑글이.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- 무한 뺑글이 돌던 SELECT 쿼리 취소 후&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- 무한 뺑글이 돌던 SELECT 쿼리 취소 후&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;OPEN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lock_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- 1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스가 잠금을 가지고 있으므로 다른 프로세스에서 잠금 해제 불가.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;READ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스가 읽기 잠금을 걸었으므로, &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스에서도 읽기는 가능하지만, 쓰기를 시도하면 무한 뺑글이.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'BAR'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Table 'messages' was locked with a READ lock and can't be updated&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'BAR'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Table 'messages' was locked with a READ lock and can't be updated&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;읽기 잠금을 건 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스도 쓰기 불가능을 마찬가지임.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;테이블에 걸린 모든 잠금이 풀렸으므로, 뺑글이를 돌던 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt;의 뺑글이는 사라지고 &lt;code class=&quot;highlighter-rouge&quot;&gt;INSERT&lt;/code&gt; 쿼리가 작동함.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;INSERT&lt;/code&gt;한 레코드 확인 가능.&lt;/p&gt;
 
@@ -999,27 +1035,23 @@
 
 &lt;h2 id=&quot;2-쓰기-잠금의-동작-특성&quot;&gt;2. 쓰기 잠금의 동작 특성&lt;/h2&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WRITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WRITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'BAZ'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스에서는 무한 뺑글이.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;RENAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Can't execute the given command because you have active locked tables or an active transaction&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;RENAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Can't execute the given command because you have active locked tables or an active transaction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;WRITE&lt;/code&gt; 잠금을 가진 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스지만, 테이블 이름을 변경하는 등의 DDL은 불가능함.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNLOCK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;테이블에 걸린 모든 잠금이 풀렸으므로, 뺑글이를 돌던 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt;의 뺑글이는 사라지고 &lt;code class=&quot;highlighter-rouge&quot;&gt;SELECT&lt;/code&gt; 쿼리가 작동함.&lt;/p&gt;
 
@@ -1034,43 +1066,37 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SELECT ... LOCK IN SHARE MODE&lt;/code&gt; for READ, &lt;code class=&quot;highlighter-rouge&quot;&gt;SELECT ... FOR UPDATE&lt;/code&gt; for UPDATE and DELETE.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LOCK&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHARE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;MODE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- Query ok.&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COMMIT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;-- Lock wait timeout exceeded; try restarting transaction&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스에서 1번 Row를 잠궜지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스에서 읽기는 가능. 반면, 쓰기 동작을 하려하면 50초 동안 뺑글이를 돌다가 쿼리 실패함. 50초에 대한 힌트는 아래 쿼리에서 찾을 수 있음.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VARIABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VARIABLE_NAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;%innodb_lock%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- innodb_lock_wait_timeout: 50&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VARIABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VARIABLE_NAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;%innodb_lock%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- innodb_lock_wait_timeout: 50&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COMMIT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- ...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mysql2&lt;/code&gt; 프로세스에서 뺑글이가 돌고 있는 상태에서 쨉싸게 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql1&lt;/code&gt; 프로세스에서 같은 Row 1번을 지움.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
 &lt;span class=&quot;n&quot;&gt;mysql1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COMMIT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;-- No errors; 1 row affected&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;한편 mysql2 프로세스에서는… 데드락이 발생함.&lt;/p&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- [ERROR in query 2] Deadlock found when trying to get lock; try restarting transaction&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- [ERROR in query 2] Deadlock found when trying to get lock; try restarting transaction&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SHOW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ENGINE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INNODB&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;STATUS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;31-결론&quot;&gt;3.1. 결론&lt;/h3&gt;
 
@@ -1082,8 +1108,8 @@
 
 &lt;h2 id=&quot;4-라라벨에서-트랜잭션과-잠금&quot;&gt;4. 라라벨에서 트랜잭션과 잠금&lt;/h2&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Infrastructure/Eloquent/EloquentProductRepository.php#L22-L25
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Infrastructure/Eloquent/EloquentProductRepository.php#L22-L25&lt;/span&gt;
+
 &lt;span class=&quot;nx&quot;&gt;DB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;beginTransaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1095,12 +1121,11 @@
     &lt;span class=&quot;nx&quot;&gt;DB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rollBack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
 
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- http://minsql.com/mysql/information_schema-innodb_xxx-%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-lock-%EC%A0%95%EB%B3%B4-%ED%99%95%EC%9D%B8/&lt;/span&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;-- http://minsql.com/mysql/information_schema-innodb_xxx-%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-lock-%EC%A0%95%EB%B3%B4-%ED%99%95%EC%9D%B8/&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connection_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
@@ -1138,8 +1163,7 @@
    &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;trx_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ilw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requesting_trx_id&lt;/span&gt;
    &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lock_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ilw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blocking_lock_id&lt;/span&gt;
    &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lock_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ilw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requested_lock_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 04 Aug 2017 00:00:00 +0900</pubDate>
         <link>http://blog.appkr.kr/cheatsheet/understanding-mysql-db-lock/</link>
@@ -1203,20 +1227,19 @@
 
 &lt;p&gt;우리의 코드는 프레임워크 개발팀을 믿고 신뢰하며 프레임워크나 ORM의 함수를 사용합니다. 그러나, 그들은 우리에게 자신의 코드를 변경하지 않는다고 어떤 약속도 하지 않았습니다. 결합도가 높은 코드 예제를 볼까요?&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Product.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Product.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\Illuminate\Database\Eloquent\Model&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// ...  
-&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getProductImageAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$productImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...  &lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getProductImageAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$productImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;public_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;images/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$productImage&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Pure 해야 할 도메인 모델이 엘로퀀트라는 큰 덩어리는 상속하고 있습니다. 상속은 아주 강한 결합입니다. 또 이 코드는 &lt;code class=&quot;highlighter-rouge&quot;&gt;public_path()&lt;/code&gt;라는 라라벨 전역 함수에 의존합니다. 문제는 여기에 그치지 않고, 도메인 서비스나 애플리케이션 서비스에서도 &lt;code class=&quot;highlighter-rouge&quot;&gt;app()&lt;/code&gt; 전역 함수나 &lt;code class=&quot;highlighter-rouge&quot;&gt;DB&lt;/code&gt;와 같은 라라벨 파사드에 의존하고 있을 겁니다. 지금도 이렇게 짜고 있지 않나요? “아니오” 라고 대답했다면, 둘 중 하나입니다. 거짓말을 하고 있거나, 개발자가 아니거나…&lt;/p&gt;
 
@@ -1294,8 +1317,8 @@
 
 &lt;p&gt;이 예제는 특별하게도 커맨드 버스를 이용하므로, 컨트롤러 코드에서 커맨드를 만들고, 커맨드 버스를 이용해서 생성된 커맨드를 전달하고, 커맨드 핸들러가 커맨드를 처리할 커맨드 핸들러(=~&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;)를 찾아서 &lt;code class=&quot;highlighter-rouge&quot;&gt;run()&lt;/code&gt; 메서드를 실행하고 컨트롤러 쪽으로 실행 결과를 반환해 줍니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Tests/CreateTripTest.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Tests/CreateTripTest.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\Tests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
@@ -1312,8 +1335,7 @@
         &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertInstanceOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'...'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;32-request-model&quot;&gt;3.2. Request Model&lt;/h3&gt;
 
@@ -1321,8 +1343,8 @@
 
 &lt;p&gt;DTO 보다 커맨드 시스템이 더 나은 점은 1) 커맨드 이름만으로 의도가 확실히 드러난다는 점, 2) 웹, 콘솔 등 다양한 애플리케이션(=~적용 방식, 입출력 장치)에서 재사용할 수 있다는 점, 3) 테스트가 편하다는 점 등을 들 수 있습니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Command/CreateTripCommand.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Command/CreateTripCommand.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\Command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
@@ -1340,10 +1362,9 @@
         &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     
-    &lt;span class=&quot;c1&quot;&gt;// ...
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;33-interactor&quot;&gt;3.3. Interactor&lt;/h3&gt;
 
@@ -1351,8 +1372,8 @@
 
 &lt;p&gt;코드를 살펴보면, 유효한 커맨드인지 검사를 수행하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;createWithFirstRoute()&lt;/code&gt; 함수를 호출해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Trip&lt;/code&gt; 이라는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;를 만듭니다. 그리고, 생성자를 통해서 주입 받은 &lt;code class=&quot;highlighter-rouge&quot;&gt;TripRepository&lt;/code&gt; 인터페이스의 &lt;code class=&quot;highlighter-rouge&quot;&gt;add()&lt;/code&gt; 함수를 호출함으로써 생성된 엔티티를 영속화시킵니다. 뒤에서 다시 보겠지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;TripRepository&lt;/code&gt;는 2절의 그림에서 본 경계 안 쪽에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Entity Gateway&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/UseCase/CreateTripUseCase.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/UseCase/CreateTripUseCase.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\UseCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
@@ -1379,8 +1400,7 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;34-entity&quot;&gt;3.4. Entity&lt;/h3&gt;
 
@@ -1390,8 +1410,8 @@
 
 &lt;p&gt;또 하나 지적하고 싶은 점은 PHP의 한계 중에 하나인 메서드 오버로딩(overloading)입니다. 오버로딩을 할 수 없기 때문에 생성자를 Private로 선언하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;createWithFirstRoute()&lt;/code&gt;라는 정적 팩토리 메서드를 제공하고 있습니다. 오버로딩이 지원되었다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;__construct(TripIdentity $identity)&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;__construct(TripIdentity $identity, $name)&lt;/code&gt;처럼 생성자를 여러 개 만들었겠지요?&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Entity/Trip.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Entity/Trip.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Domain\Entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
@@ -1412,17 +1432,16 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;c1&quot;&gt;// ...
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;35-entity-gateway&quot;&gt;3.5. Entity Gateway&lt;/h3&gt;
 
 &lt;p&gt;3.4. 절에서 호출했던 그 인터페이스입니다. 특이한 점은 &lt;code class=&quot;highlighter-rouge&quot;&gt;save()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;add()&lt;/code&gt;라는 함수명을 쓰고 있습니다. 현재까지의 전체 구현이 PHP의 네이티브 배열을 랩핑한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Collection&lt;/code&gt;을 데이터 저장소로 사용하고 있어서이며, 영속성을 위한 저장 장치에 앱이 의존하지 않는다는 것을 한번 더 강조하는 네이밍입니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Contract/TripRepository.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Contract/TripRepository.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Domain\Contract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
@@ -1432,15 +1451,14 @@
     &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TripIdentity&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Trip&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;36-response-model&quot;&gt;3.6. Response Model&lt;/h3&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Response&lt;/code&gt; 모델에 데이터를 담아서 경계 바깥 쪽으로 내보냅니다.&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Response/Response.php
-&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Response/Response.php&lt;/span&gt;
+
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\Response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Response&lt;/span&gt;
@@ -1454,8 +1472,7 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;37-all-together&quot;&gt;3.7. All Together&lt;/h3&gt;
 
@@ -1467,7 +1484,7 @@
 
 &lt;p&gt;다음 코드와 같이 컨트롤러에서 몇 줄만 쓰면 될 것을 복잡한 보일러 플레이트를 양산하면서 이렇게 짜고 있을까요?&lt;/p&gt;
 
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Http\Controllers&lt;/span&gt;
 
@@ -1479,8 +1496,7 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Trip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; 
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;강한 결합도(소프트웨어의 제 2가치 위반)로 발생하는 비용은 보일러 플레이트를 쓰는 비용보다 더 크기 때문입니다. 의존성이 없다는 것은 독립적으로 개발할 수 있다는 의미입니다. 독립적으로 개발할 수 있다는 것은 독립적으로 컴파일(패키징)할 수 있다는 의미입니다. 독립적으로 컴파일할 수 있다는 것은 독립적으로 배포할 수 있다는 의미입니다.&lt;/p&gt;
 
@@ -1503,293 +1519,6 @@
         <category>개발자</category>
         
         <category>아키텍처</category>
-        
-        
-        <category>learn-n-think</category>
-        
-      </item>
-    
-      <item>
-        <title>불변 밸류와 불변 엔티티</title>
-        <description>&lt;p&gt;&lt;strong&gt;상수는 변하지 않는 값&lt;/strong&gt;, &lt;strong&gt;변수는 변하는 값&lt;/strong&gt;이라고 배웠습니다. 객체에서도 마치 상수처럼 &lt;strong&gt;한 번 생성된 이후에 상태를 변경할 수 없는 객체를 불변(Immutable) 객체&lt;/strong&gt;라고 합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-불변성에-대한-개념-익히기&quot;&gt;1. 불변성에 대한 개념 익히기&lt;/h2&gt;
-
-&lt;p&gt;아래 예제를 살펴 볼까요?&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;위 코드의 실행 결과는 &lt;code class=&quot;highlighter-rouge&quot;&gt;int(1)&lt;/code&gt;입니다. 변수 &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt;에 변수 &lt;code class=&quot;highlighter-rouge&quot;&gt;$a&lt;/code&gt;의 값을 할당한 후, &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt;에 새로운 값 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;을 할당했습니다. 당연히 &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt;에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;이 담겨 있고, &lt;code class=&quot;highlighter-rouge&quot;&gt;$a&lt;/code&gt;에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;이 담겨 있을 겁니다. 아주 쉽죠?&lt;/p&gt;
-
-&lt;p&gt;그런데, 객체 컨텍스트에서도 이 규칙이 그대로 적용될까요? 클래스는 변수와 함수로 구성된 템플릿이며, 객체란 그 템플릿에 필요한 값을 채워서 완성한 실체입니다. 여튼 위의 예제와 똑같이 동작해야 하지않을까요?&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;stdClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Bar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// class stdClass#696 (1) {
-//   public $name =&amp;gt;
-//   string(3) &quot;Bar&quot;
-// }
-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// class stdClass#696 (1) {
-//   public $name =&amp;gt;
-//   string(3) &quot;Bar&quot;
-// }
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;변수 &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt;에 &lt;code class=&quot;highlighter-rouge&quot;&gt;$a&lt;/code&gt;에 담긴 객체를 그대로 할당한 후, &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt;의 &lt;code class=&quot;highlighter-rouge&quot;&gt;$name&lt;/code&gt; 속성을 변경했습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;$b::name&lt;/code&gt; 속성 값만 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Bar&quot;&lt;/code&gt;로 바뀔 것이라 생각했지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;$a::name&lt;/code&gt; 속성 값도 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Bar&quot;&lt;/code&gt;로 변경되어버렸습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;var_dump()&lt;/code&gt;로 출력된 결과물에 객체 번호를 보면 힌트를 얻을 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;$a&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt; 모두 &lt;code class=&quot;highlighter-rouge&quot;&gt;#696&lt;/code&gt;으로 같습니다. 즉, 객체 &lt;code class=&quot;highlighter-rouge&quot;&gt;$b&lt;/code&gt;는 객체 &lt;code class=&quot;highlighter-rouge&quot;&gt;$a&lt;/code&gt;의 메모리 번지를 그냥 참조하고 있다고 볼 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;해결법은 의외로 간단합니다. 복제하는거죠. &lt;code class=&quot;highlighter-rouge&quot;&gt;clone&lt;/code&gt; 키워드와 객체 번호가 &lt;code class=&quot;highlighter-rouge&quot;&gt;#696&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;#697&lt;/code&gt;로 서로 다름을 확인해주세요.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;stdClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Foo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;clone&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Bar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// class stdClass#697 (1) {
-//   public $name =&amp;gt;
-//   string(3) &quot;Bar&quot;
-// }
-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// class stdClass#696 (1) {
-//   public $name =&amp;gt;
-//   string(3) &quot;Foo&quot;
-// }
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;2-불변-밸류&quot;&gt;2. 불변 밸류&lt;/h2&gt;
-
-&lt;h3 id=&quot;21-carbon&quot;&gt;2.1. Carbon&lt;/h3&gt;
-
-&lt;p&gt;라라벨 프로젝트에서 가장 쉽게 만날 수 있는 밸류 객체(Value Object, 값 객체)는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 입니다. 엘로퀀트 모델을 만들면 기본적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;created_at&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;updated_at&lt;/code&gt;이란 속성이 추가되고, 이 속성에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 객체가 할당됩니다.&lt;/p&gt;
-
-&lt;p&gt;객체의 이점을 얻기 위해서 보통 원시 타입(&lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;float&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;array&lt;/code&gt;)을 밸류 객체로 바꿔서 사용하는데, 예를 들면, &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt; 타입의 블로그 포스트 제목을 &lt;code class=&quot;highlighter-rouge&quot;&gt;Title&lt;/code&gt; 객체를 만들어 사용하는 것 같은 것이죠. 예제가 현실적이지는 않지만, 앞서 말한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt;을 이용함으로써 다음과 같은 편리함이 더해집니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;php artisan tinker
-&lt;span class=&quot;c&quot;&gt;# Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$article&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Article::first&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$article&lt;/span&gt;-&amp;gt;created_at &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$article&lt;/span&gt;-&amp;gt;created_at-&amp;gt;addDays&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$article&lt;/span&gt;-&amp;gt;save&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;그런데 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt;은 불변 밸류가 아닙니다.&lt;/strong&gt; 아래 예제는 무시무시합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;php artisan tinker
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Carbon&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;arbon::now&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; Carbon\Carbon {#663&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      +&quot;date&quot;: &quot;2017-06-04 03:00:22.272655&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#    }&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt;-&amp;gt;addMonths&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; Carbon\Carbon {#663&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      +&quot;date&quot;: &quot;2017-07-04 03:00:22.272655&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#    }&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; Carbon\Carbon {#663&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#      +&quot;date&quot;: &quot;2017-07-04 03:00:22.272655&quot;,&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#    }&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$now&lt;/code&gt;라는 변수를 여러 곳에서 참조한다고 가정해보죠. 어떤 로직에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수에 &lt;code class=&quot;highlighter-rouge&quot;&gt;addMonths()&lt;/code&gt; API를 호출했다고 가정하죠. 그러면 그 뒤에 &lt;code class=&quot;highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수를 참조하는 로직은 전부 한 달 뒤의 날짜 값을 사용하게 되는 겁니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt;의 특성을 모르는 개발자가 이와 같이 코드를 짰을 때, &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt;의 특성에 대해 이해하고 있는 다른 개발자가 이 버그를 잡을 수 있을까요?&lt;/p&gt;
-
-&lt;p&gt;아참 해결방법은 &lt;code class=&quot;highlighter-rouge&quot;&gt;clone&lt;/code&gt; 키워드를 이용하는 것입니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;php artisan tinker
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Carbon&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;arbon::now&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$oneMonthFromNow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;clone &lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-&amp;gt;addMonths&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;22-money&quot;&gt;2.2. Money&lt;/h3&gt;
-
-&lt;p&gt;불변 객체는 한 번 생성된 이후에 상태를 변경할 수 없는 객체입니다. 아래 &lt;code class=&quot;highlighter-rouge&quot;&gt;Money&lt;/code&gt; 클래스 예제를 살펴보면, &lt;code class=&quot;highlighter-rouge&quot;&gt;add()&lt;/code&gt; 메서드는 다른 &lt;code class=&quot;highlighter-rouge&quot;&gt;Money&lt;/code&gt; 객체를 인자로 받고, &lt;code class=&quot;highlighter-rouge&quot;&gt;$value&lt;/code&gt; 속성의 상태를 변경하는 것이 아니라, 완전 새로운 &lt;code class=&quot;highlighter-rouge&quot;&gt;Money&lt;/code&gt; 객체를 반환합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Common/Model/Money.php
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Money&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Money&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Money&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$other&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Money&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;get_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;__CLASS__&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$other&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;아래 팅커 출력 결과에서 객체의 번호가 &lt;code class=&quot;highlighter-rouge&quot;&gt;#683&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;#692&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;#694&lt;/code&gt;로 모두 다름에 주목해야 합니다. 매번 다른 객체가 생성된다는 뜻이죠~&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;php artisan tinker
-&lt;span class=&quot;c&quot;&gt;# Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$baseSalary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; new Money&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; Money {#683}&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$overtimeAllowance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; new Money&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; Money {#692}&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$baseSalary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$overtimeAllowance&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; false&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$baseSalary&lt;/span&gt;-&amp;gt;isEqualTo&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$overtimeAllowance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; true&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$totalSalary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$baseSalary&lt;/span&gt;-&amp;gt;add&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$overtimeAllowance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; Money {#694}&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$totalSalary&lt;/span&gt;-&amp;gt;getAmount&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
-&lt;span class=&quot;c&quot;&gt;# =&amp;gt; 200&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;밸류 객체는 객체의 속성 값이 모두 같다면 “같다”라고 할 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; 객체를 예로 들어 볼까요? 공교롭게도 어떤 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;가 저와 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;$name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;$age&lt;/code&gt;를 가지고 있다고 가정해보죠? 그럼 두 &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;는 같을까요? 당연히 다르죠? 그런데, 2017-06-04 라는 값을 가진 &lt;code class=&quot;highlighter-rouge&quot;&gt;Date&lt;/code&gt; 객체를 가정해보죠. 다른 &lt;code class=&quot;highlighter-rouge&quot;&gt;Date&lt;/code&gt; 객체가 똑같이 2017-06-04라는 값을 가지고 있다면 둘은 같은걸까요? 예. 예로 든 &lt;code class=&quot;highlighter-rouge&quot;&gt;Date&lt;/code&gt;는 밸류이고, &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;는 엔티티입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-불변-엔티티&quot;&gt;3. 불변 엔티티&lt;/h2&gt;
-
-&lt;p&gt;도메인 모델은 앤티티(Entity)와 밸류(Value, 값 객체)로 구분됩니다. 모델, 엔티티, 밸류, … 어려운 용어라 생각되지만, 따지고보면 결국은 클래스입니다. 앞서 클래스는 변수와 함수의 집합이라 했는데, 좀 더 구체적으로 말하면 다음과 같이 표현할 수 있습니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;클래스란 Private 변수들과 그 Private 변수들을 사용하는 Public 함수들의 집합이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;엔티티는 고유 식별자를 가지고 있습니다. 엔티티는 생성된 후 식별자를 제외한 상태가 변경될 수 있습니다. “상태”라 표현한 것이 결국 클래스의 Private 변수들의 값이며, 이 Private 변수에는 다른 엔티티, 밸류 객체, 원시 타입 값들이 담기게 됩니다. 엔티티를 사용하는 클라이언트 클래스에서 엔티티의 Public 함수(API)를 호출하여 엔티티의 상태를 변경하겠죠~&lt;/p&gt;
-
-&lt;p&gt;밸류는 식별자가 없습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt;처럼 상태가 변경될 수도 있지만, 앞서 살펴본 대로 불변 객체를 사용하는 것이 더 나은 설계라고 알려져 있습니다. 앞서 살펴본 &lt;code class=&quot;highlighter-rouge&quot;&gt;Money&lt;/code&gt; 밸류처럼 말이죠. 밸류 객체 역시, 해당 밸류를 상태로 사용하는 엔티티가 대상 밸류에 포함된 Public API를 호출함으로써 엔티티 자신의 상태를 변경할 겁니다.&lt;/p&gt;
-
-&lt;p&gt;객체로 생성되어 메모리에 살아 있는 동안 상태를 변경하고, 데이터베이스에 저장함으로써 다시 꺼내서 재생할 때까지 냉동 수면을 하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;그런데 불변 엔티티란 무엇일까요? 웹에서 정확한 정의를 찾지 못했습니다만, 앞서 살펴본 내용을 응용해보면, 최초 한번 생성후 상태가 변하지 않는 엔티티가 아닐까요? Private 변수에 담긴 값을 전혀 변경할 수 없고, 데이터베이스에서 삭제하기 전까지 돌부처 같이 처음 만든 상태를 그대로 유지하는 녀석이 아닐까요?&lt;/p&gt;
-
-&lt;h3 id=&quot;31-필요성&quot;&gt;3.1. 필요성&lt;/h3&gt;
-
-&lt;p&gt;지난 번 회사 프로젝트를 하면서 불변 엔티티의 필요성을 느꼈습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;생성 시점의 정보를 참조해서 계산한 값으로 채워진 모델일 때 (e.g. 청구서)&lt;/li&gt;
-  &lt;li&gt;그리고 한 번 생성된 후, 상태가 변경된다면 변경 이력을 추적해야 할 때&lt;/li&gt;
-  &lt;li&gt;시간이 지남에 따라 변경될 수 있는 값을 생성 시점의 값으로 고정시키고자 할 때 (e.g. 청구서 발행 시점의 피청구자 정보)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;32-리서치&quot;&gt;3.2. 리서치&lt;/h3&gt;
-
-&lt;p&gt;조사 결과 세 가지 정도의 구현 방식으로 정리됐습니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;321-상태-테이블과-변경-내역-저장-테이블-분리&quot;&gt;3.2.1. 상태 테이블과 변경 내역 저장 테이블 분리&lt;/h4&gt;
-
-&lt;p&gt;최종 상태를 저장하는 메인 테이블과 변경 이력을 기록하는 테이블을 별도로 구성하는 방식입니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Table: bills
-+-------------------------------+
-| 1 Bill &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;User#1 &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;2017-06 |
-+-------------------------------+
-| 2 Bill &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;User#2 &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;2017-06 |
-+-------------------------------+
-
-UPDATE bills SET base_charge &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 100 WHERE id &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1;
-
-Tables:bill_history
-+-------------------------------+
-| History &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;bill_id#1 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   |
-+-------------------------------+
-| History &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;bill_id#1 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   |
-+-------------------------------+
-
-INSERT INTO bill_history &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;bill_id, changed, changed_by, changed_at, ...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
-VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1, &lt;span class=&quot;s2&quot;&gt;&quot;{original:{base_charge:90}, changed:{base_charge:100}}&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;Foo&quot;&lt;/span&gt;, NOW&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;, ...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;322-하나의-엔티티에-대해-여러-레코드를-기록&quot;&gt;3.2.2. 하나의 엔티티에 대해 여러 레코드를 기록&lt;/h4&gt;
-
-&lt;p&gt;3.2.1의 두 개 테이블을 하나로 합쳐서 상태를 저장하는 방식입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;UPDATE&lt;/code&gt; 쿼리는 없고, 오직 &lt;code class=&quot;highlighter-rouge&quot;&gt;INSERT&lt;/code&gt;만 허용합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Table: bills
-+-------------------------------+
-| Last state of Bill#1          |
-+-------------------------------+
-| Past state of Bill#1          |
-+-------------------------------+
-| Last state of Bill#2          |
-+-------------------------------+
-SELECT &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; FROM bills WHERE entity_id &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1 ORDER BY version DESC LIMIT 1;
-
-INSERT INTO bills &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;entity_id, version, subscriber_id, term, base_charge, 
-    valud_added_charge, discount_amout, fulfilled, last_modified_by, ...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1, 2, 1, &lt;span class=&quot;s2&quot;&gt;&quot;2017-06&quot;&lt;/span&gt;, 100, 100, 50, &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;Foo&quot;&lt;/span&gt;, ...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;323-이벤트-소싱&quot;&gt;3.2.3. 이벤트 소싱&lt;/h4&gt;
-
-&lt;p&gt;이벤트를 데이터 소스로 사용하는 디자인 패턴입니다. 이벤트 데이터를 스택에 쌓아 놓고, 이벤트 리플레이를 통해 현재 상태를 계산해 냅니다. 핵심 함수와 전체 개념은 아래와 같습니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-scala highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;decide&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListEvent&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;replay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initialState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://blog.leifbattermann.de/wp-content/uploads/2017/04/event-sourcing.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;웹에서 만난 전문가들도 이벤트 소싱의 이점을 충분히 누릴 수 있는 도메인에만 도입할 것을 권장합니다. 포스트 끝에 참고 자료들을 기록해 두었습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;33-예제-프로젝트&quot;&gt;3.3. 예제 프로젝트&lt;/h3&gt;
-
-&lt;p&gt;매월 주기적으로 핸드폰 청구서를 발행하는 예제를 통해서 불변 엔티티를 구현해 보고자 합니다. 데이터를 자주 변경하는 도메인이 아니므로 3.2.2 방식으로 구현하려고 합니다.&lt;/p&gt;
-
-&lt;p&gt;틈틈이 작업 중인 저장소입니다. &lt;a href=&quot;https://github.com/appkr/immutable-entity-poc&quot;&gt;https://github.com/appkr/immutable-entity-poc&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;읽어보면-좋을만한-자료들&quot;&gt;읽어보면 좋을만한 자료들&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ocramius.github.io/doctrine-best-practices&quot;&gt;doctrine-best-practices&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://ziobrando.blogspot.kr/2010/06/about-entities-aggregates-and-data.html&quot;&gt;About Entities, Aggregates and Data Duplication.&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.ntaso.com/why-i-dont-use-value-objects-in-laravel-anymore/&quot;&gt;Why I Don’t Use Value Objects in Laravel Anymore&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.ntaso.com/value-objects-laravel-eloquent/&quot;&gt;Value Objects in Laravel 5 with Eloquent Done Right&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/madvirus/event-source&quot;&gt;이벤트 소싱 학습 내용 공유 by 최범균&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.leifbattermann.de/2017/04/21/12-things-you-should-know-about-event-sourcing/&quot;&gt;12 Things You Should Know About Event Sourcing&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://msdn.microsoft.com/magazine/mt422577&quot;&gt;Cutting Edge - Event Sourcing for the Common Application&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.aliencube.org/ko/2015/11/12/building-applications-on-cloud-with-event-sourcing-pattern-and-cqrs-pattern/&quot;&gt;이벤트 소싱 패턴과 CQRS 패턴을 적용해서 클라우드상에서 유연하게 앱 개발하기&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/nWidart/Laravel-broadway&quot;&gt;Laravel adapter for Broadway.&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 04 Jun 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/immutable-object-and-immutalbe-entity/</guid>
-        
-        <category>개발자</category>
         
         
         <category>learn-n-think</category>

@@ -153,12 +153,12 @@
 
 <p>홈브루로 설치한다. 맥포트, wget/curl로 설치한다면 <a href="https://github.com/nvie/gitflow/wiki/Mac-OS-X">이 위키 문서</a>를 참고한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew install git-flow
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>git-flow
 
-<span class="gp">$ </span>git flow version
+<span class="nv">$ </span>git flow version
 <span class="c"># 0.4.1</span>
 
-<span class="gp">$ </span>git flow
+<span class="nv">$ </span>git flow
 <span class="c"># usage: git flow &lt;subcommand&gt;</span>
 <span class="c"># </span>
 <span class="c"># Available subcommands are:</span>
@@ -170,8 +170,7 @@
 <span class="c">#    version   Shows version information.</span>
 <span class="c"># </span>
 <span class="c"># Try 'git flow &lt;subcommand&gt; help' for details.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">feature</code>, <code class="highlighter-rouge">release</code>, <code class="highlighter-rouge">hotfix</code>, <code class="highlighter-rouge">support</code> 등의 하위 명령이 있다.</p>
 
@@ -179,7 +178,7 @@
 
 <p>데모 프로젝트를 만들고, Git 및 Git Flow를 초기화한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git init gitflow-demo <span class="o">&amp;&amp;</span> <span class="nb">cd </span>gitflow-demo
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git init gitflow-demo <span class="o">&amp;&amp;</span> <span class="nb">cd </span>gitflow-demo
 
 ~/gitflow-demo<span class="o">(</span>branch:master<span class="o">)</span> <span class="nv">$ </span>git flow init
 <span class="c"># No branches exist yet. Base branches must be created now.</span>
@@ -192,22 +191,20 @@
 <span class="c"># Hotfix branches? [hotfix/]</span>
 <span class="c"># Support branches? [support/]</span>
 <span class="c"># Version tag prefix? []</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Git Flow 초기화 과정에서 <code class="highlighter-rouge">master</code>와 <code class="highlighter-rouge">develop</code> 브랜치를 자동으로 만들어 준다. 그리고, <code class="highlighter-rouge">feature</code>, <code class="highlighter-rouge">release</code>, <code class="highlighter-rouge">hotfix</code>로 사용할 브랜치의 접두어 정보를 미리 설정한다. 초기화 과정을 마치면, 자동으로 <code class="highlighter-rouge">develop</code> 브랜치로 체크아웃된다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git branch
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git branch
 <span class="c"># * develop</span>
 <span class="c">#   master</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3-feature-개발">3. Feature 개발</h2>
 
 <p>모든 작업은 <code class="highlighter-rouge">develop</code> 브랜치에서 시작한다. <code class="highlighter-rouge">feature start 이름</code>으로 시작하고, <code class="highlighter-rouge">feature finish 이름</code>으로 끝난다. 다른 하위 명령도 모두 마찬가지다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow feature start awesome
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow feature start awesome
 <span class="c"># Switched to a new branch 'feature/awesome'</span>
 <span class="c"># </span>
 <span class="c"># Summary of actions:</span>
@@ -217,25 +214,22 @@
 <span class="c"># Now, start committing on your feature. When done, use:</span>
 <span class="c"># </span>
 <span class="c">#      git flow feature finish awesome</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>자세히 보면, <code class="highlighter-rouge">develop</code> 브랜치에서 <code class="highlighter-rouge">feature/awesome</code> 브랜치를 땄고, 새로 만든 브랜치로 이동했다. 이제 Feature를 개발하고, 평상시 처럼 커밋하면 된다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:feature/awesome<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'...'</span>
-~/gitflow-demo<span class="o">(</span>branch:feature/awesome<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'feature finished'</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:feature/awesome<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'...'</span>
+~/gitflow-demo<span class="o">(</span>branch:feature/awesome<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'feature finished'</span>
+</code></pre></div></div>
 
 <p>계획했던 개발이 끝나면, Git Flow로 Feature 개발을 끝낸다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo(branch:feature/awesome) $ git flow feature finish awesome
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo(branch:feature/awesome) $ git flow feature finish awesome
 # Summary of actions:
 # - The feature branch 'feature/awesome' was merged into 'develop'
 # - Feature branch 'feature/awesome' has been removed
 # - You are now on branch 'develop'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Git Flow가 자동으로 <code class="highlighter-rouge">feature/awesome</code> 브랜치를 <code class="highlighter-rouge">develop</code> 브랜치에 머지하고, 필요 없는 브랜치는 삭제했다.</p>
 
@@ -243,7 +237,7 @@
 
 <p>릴리스도 <code class="highlighter-rouge">develop</code> 브랜치에서 시작한다. 최종 결과는 <code class="highlighter-rouge">master</code> 브랜치에 적용된다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow release start 0.0.1
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow release start 0.0.1
 <span class="c"># Switched to a new branch 'release/0.0.1'</span>
 <span class="c"># </span>
 <span class="c"># Summary of actions:</span>
@@ -256,21 +250,18 @@
 <span class="c"># - When done, run:</span>
 <span class="c"># </span>
 <span class="c">#      git flow release finish '0.0.1'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Git Flow가 <code class="highlighter-rouge">develop</code> 브랜치에서 <code class="highlighter-rouge">release/0.0.1</code> 브랜치를 땄다. 이제 코드에 수정할 부분들을 수정하면 된다. 버전 번호가 하드코드도 되어 있다면 수정하고, README.md 등에 설치/사용법들을 업데이트하는 작업이 될 것이다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'...'</span>
-~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'release ready'</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'...'</span>
+~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'release ready'</span>
+</code></pre></div></div>
 
 <p>이제 Git Flow로 릴리스 작업을 끝낸다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git flow release finish 0.0.1
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:release/0.0.1<span class="o">)</span> <span class="nv">$ </span>git flow release finish 0.0.1
+</code></pre></div></div>
 
 <p>에디터가 총 세 번 뜬다.</p>
 
@@ -282,20 +273,19 @@
 
 <p>최종 메시지는 다음과 같다. <code class="highlighter-rouge">origin</code>의 변경사항도 가져온다는 점을 눈여겨봐야 한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Summary of actions:</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Summary of actions:</span>
 <span class="c"># - Latest objects have been fetched from 'origin'</span>
 <span class="c"># - Release branch has been merged into 'master'</span>
 <span class="c"># - The release was tagged 'v0.0.1'</span>
 <span class="c"># - Release branch has been back-merged into 'develop'</span>
 <span class="c"># - Release branch 'release/0.0.1' has been deleted</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="5-핫-픽스">5. 핫 픽스</h2>
 
 <p>Feature 개발과 다를 바 없다. 다만, 핫 픽스는 릴리스에 바로 반영된다는 점이 다르다. 다시 말하면, Feature 개발과 릴리스를 합쳐 놓은 동작이다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow hotfix start hotfix1
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="nv">$ </span>git flow hotfix start hotfix1
 <span class="c"># Switched to a new branch 'hotfix/hotfix1'</span>
 <span class="c"># </span>
 <span class="c"># Summary of actions:</span>
@@ -308,29 +298,25 @@
 <span class="c"># - When done, run:</span>
 <span class="c"># </span>
 <span class="c">#      git flow hotfix finish 'hotfix1'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'...'</span>
-~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git commit -am <span class="s1">'hotfix done'</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'...'</span>
+~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'hotfix done'</span>
+</code></pre></div></div>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git flow hotfix finish hotfix1
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/gitflow-demo<span class="o">(</span>branch:hotfix/hotfix1<span class="o">)</span> <span class="nv">$ </span>git flow hotfix finish hotfix1
+</code></pre></div></div>
 
 <p>역시 에디터가 세 번 뜬다. 최종 메시지는 다음과 같다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># Summary of actions:</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Summary of actions:</span>
 <span class="c"># - Latest objects have been fetched from 'origin'</span>
 <span class="c"># - Hotfix branch has been merged into 'master'</span>
 <span class="c"># - The hotfix was tagged 'hotfix1'</span>
 <span class="c"># - Hotfix branch has been back-merged into 'develop'</span>
 <span class="c"># - Hotfix branch 'hotfix/hotfix1' has been deleted</span>
 ~/gitflow-demo<span class="o">(</span>branch:develop<span class="o">)</span> <span class="err">$</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>모든 과정이 끝나면 자동으로 <code class="highlighter-rouge">develop</code> 브랜치로 돌아 온다.</p>
 
@@ -443,7 +429,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -981,7 +967,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1026,6 +1012,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1115,6 +1107,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1124,13 +1123,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1183,7 +1175,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

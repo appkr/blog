@@ -196,15 +196,14 @@
 
 <p>로컬 셸에서 ECR 서비스에 로그인합니다. 도커 허브나 <a href="https://docs.docker.com/registry/">도커 레지스트리</a>에 로그인하는 방법과 같습니다. 굉장히 긴 비밀번호가 달린 명령문을 콘솔에 출력하는데 그대로 복사해서 붙여 넣고 로그인합니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/any <span class="nv">$ </span>aws ecr get-login --region ap-northeast-1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/any <span class="nv">$ </span>aws ecr get-login <span class="nt">--region</span> ap-northeast-1
 
-~/any <span class="nv">$ </span>docker login -u AWS -p &lt;LONG_PASS_STRING&gt; -e none https://628988759087.dkr.ecr.ap-northeast-1.amazonaws.com
-</code></pre>
-</div>
+~/any <span class="nv">$ </span>docker login <span class="nt">-u</span> AWS <span class="nt">-p</span> &lt;LONG_PASS_STRING&gt; <span class="nt">-e</span> none https://628988759087.dkr.ecr.ap-northeast-1.amazonaws.com
+</code></pre></div></div>
 
 <p>이제 ECR 레지스트리 URL을 포함한 네임스페이스를 달아 태깅하고, 태깅된 이미지를 ECR에 푸쉬합니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/any <span class="nv">$ </span>docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/any <span class="nv">$ </span>docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
 
 ~/any <span class="nv">$ </span>docker images
 <span class="c"># REPOSITORY                                                       TAG       IMAGE ID         CREATED           SIZE</span>
@@ -215,8 +214,7 @@
 <span class="c"># The push refers to a repository [628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop]</span>
 <span class="c"># ...</span>
 <span class="c"># latest: digest: sha256:b8d0e4d0ab86db7436943573b11d06bdac34deb3d874423005670dfd47a39908 size: 5331</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="23-step-3-create-a-task-definition">2.3. Step 3: Create a task definition</h3>
 
@@ -289,9 +287,8 @@
 
 <p>아직 트래픽을 많이 만들지 못해서 오토 스케일링은 경험하지 못했습니다. 오토 스케일링을 설정한 후, 다음 스크립트를 여러 개의 셸에서 실행해서 서버에 부하를 주었지만 좀 처럼 CPU 로드가 올라가진 않더라구요ㅜ.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/any <span class="nv">$ </span><span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>curl http://ec2contai-ecselast-1lgfqkql0okbd-452428627.ap-northeast-1.elb.amazonaws.com:80<span class="se">\;</span> sleep 1; <span class="k">done</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/any <span class="nv">$ </span><span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do </span>curl http://ec2contai-ecselast-1lgfqkql0okbd-452428627.ap-northeast-1.elb.amazonaws.com:80<span class="se">\;</span> <span class="nb">sleep </span>1<span class="p">;</span> <span class="k">done</span>
+</code></pre></div></div>
 
 <p>어쨌든 Elastic Beanstalk처럼 인스턴스를 처음부터 만들고, 서버 인프라를 구성하고, 환경변수를 추가하고, 애플리케이션 코드를 복제해야 하는 것과 달리, 도커는 애플리케이션까지 포함된 이미지를 ECR에서 받아 실행만 하는 것으므로, (로컬 환경의 경험으로 부터 유추해 보아) 대략 수 초 내에 새 컨테이너를 띄울 수 있을 것입니다.</p>
 
@@ -315,13 +312,12 @@
 
 <p>이제 로컬 개발 환경에서 애플리케이션 코드가 변경되면, <code class="highlighter-rouge">docker build</code> -&gt; <code class="highlighter-rouge">docker tag</code> -&gt; <code class="highlighter-rouge">docker push</code> 명령만으로 변경된 애플리케이션을 AWS ECS 클러스터에 배포할 수 있습니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/deploy-laravel-with-ecs-and-ecr <span class="nv">$ </span>docker build --tag appkr/myshop .
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/deploy-laravel-with-ecs-and-ecr <span class="nv">$ </span>docker build <span class="nt">--tag</span> appkr/myshop <span class="nb">.</span>
 
 ~/any <span class="nv">$ </span>docker tag appkr/myshop:latest 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
 
 ~/any <span class="nv">$ </span>docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>이상의 과정을 Jenkins등 CI/CD 도구에 걸어 놓으면, 코드 변경 -&gt; <code class="highlighter-rouge">git push</code> -&gt; Test by CI tool -&gt; Deploy by CD tool 등으로 애플리케이션 개발 및 수정 이후의 모든 과정을 완전 자동화할 수 있을 겁니다. 도커, CI/CD를 통한 테스트 및 배포 자동화는 배포에 대한 개발자의 두려움을 없애 줍니다.</p>
 
@@ -439,7 +435,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -977,7 +973,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1022,6 +1018,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1111,6 +1113,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1120,13 +1129,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1179,7 +1181,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

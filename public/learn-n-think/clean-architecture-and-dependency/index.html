@@ -186,20 +186,19 @@
 
 <p>우리의 코드는 프레임워크 개발팀을 믿고 신뢰하며 프레임워크나 ORM의 함수를 사용합니다. 그러나, 그들은 우리에게 자신의 코드를 변경하지 않는다고 어떤 약속도 하지 않았습니다. 결합도가 높은 코드 예제를 볼까요?</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Product.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Product.php</span>
+
 <span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">\Illuminate\Database\Eloquent\Model</span>
 <span class="p">{</span>
-    <span class="c1">// ...  
-</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProductImageAttribute</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$productImage</span><span class="p">)</span>
+    <span class="c1">// ...  </span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProductImageAttribute</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$productImage</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="nx">public_path</span><span class="p">(</span><span class="s2">"images/</span><span class="si">{</span><span class="nv">$productImage</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Pure 해야 할 도메인 모델이 엘로퀀트라는 큰 덩어리는 상속하고 있습니다. 상속은 아주 강한 결합입니다. 또 이 코드는 <code class="highlighter-rouge">public_path()</code>라는 라라벨 전역 함수에 의존합니다. 문제는 여기에 그치지 않고, 도메인 서비스나 애플리케이션 서비스에서도 <code class="highlighter-rouge">app()</code> 전역 함수나 <code class="highlighter-rouge">DB</code>와 같은 라라벨 파사드에 의존하고 있을 겁니다. 지금도 이렇게 짜고 있지 않나요? “아니오” 라고 대답했다면, 둘 중 하나입니다. 거짓말을 하고 있거나, 개발자가 아니거나…</p>
 
@@ -277,8 +276,8 @@
 
 <p>이 예제는 특별하게도 커맨드 버스를 이용하므로, 컨트롤러 코드에서 커맨드를 만들고, 커맨드 버스를 이용해서 생성된 커맨드를 전달하고, 커맨드 핸들러가 커맨드를 처리할 커맨드 핸들러(=~<code class="highlighter-rouge">Interactor</code>)를 찾아서 <code class="highlighter-rouge">run()</code> 메서드를 실행하고 컨트롤러 쪽으로 실행 결과를 반환해 줍니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Tests/CreateTripTest.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Tests/CreateTripTest.php</span>
+
 <span class="k">namespace</span> <span class="nx">Leopro\TripPlanner\Application\Tests</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span>
@@ -295,8 +294,7 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="s1">'...'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="32-request-model">3.2. Request Model</h3>
 
@@ -304,8 +302,8 @@
 
 <p>DTO 보다 커맨드 시스템이 더 나은 점은 1) 커맨드 이름만으로 의도가 확실히 드러난다는 점, 2) 웹, 콘솔 등 다양한 애플리케이션(=~적용 방식, 입출력 장치)에서 재사용할 수 있다는 점, 3) 테스트가 편하다는 점 등을 들 수 있습니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Command/CreateTripCommand.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Command/CreateTripCommand.php</span>
+
 <span class="k">namespace</span> <span class="nx">Leopro\TripPlanner\Application\Command</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span>
@@ -323,10 +321,9 @@
         <span class="p">]);</span>
     <span class="p">}</span>
     
-    <span class="c1">// ...
-</span><span class="p">}</span> 
-</code></pre>
-</div>
+    <span class="c1">// ...</span>
+<span class="p">}</span> 
+</code></pre></div></div>
 
 <h3 id="33-interactor">3.3. Interactor</h3>
 
@@ -334,8 +331,8 @@
 
 <p>코드를 살펴보면, 유효한 커맨드인지 검사를 수행하고, <code class="highlighter-rouge">createWithFirstRoute()</code> 함수를 호출해서 <code class="highlighter-rouge">Trip</code> 이라는 <code class="highlighter-rouge">Entity</code>를 만듭니다. 그리고, 생성자를 통해서 주입 받은 <code class="highlighter-rouge">TripRepository</code> 인터페이스의 <code class="highlighter-rouge">add()</code> 함수를 호출함으로써 생성된 엔티티를 영속화시킵니다. 뒤에서 다시 보겠지만, <code class="highlighter-rouge">TripRepository</code>는 2절의 그림에서 본 경계 안 쪽에 있는 <code class="highlighter-rouge">&lt;&lt;I&gt;&gt;Entity Gateway</code>입니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/UseCase/CreateTripUseCase.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/UseCase/CreateTripUseCase.php</span>
+
 <span class="k">namespace</span> <span class="nx">Leopro\TripPlanner\Application\UseCase</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span>
@@ -362,8 +359,7 @@
         <span class="k">return</span> <span class="nv">$trip</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="34-entity">3.4. Entity</h3>
 
@@ -373,8 +369,8 @@
 
 <p>또 하나 지적하고 싶은 점은 PHP의 한계 중에 하나인 메서드 오버로딩(overloading)입니다. 오버로딩을 할 수 없기 때문에 생성자를 Private로 선언하고, <code class="highlighter-rouge">createWithFirstRoute()</code>라는 정적 팩토리 메서드를 제공하고 있습니다. 오버로딩이 지원되었다면, <code class="highlighter-rouge">__construct(TripIdentity $identity)</code>, <code class="highlighter-rouge">__construct(TripIdentity $identity, $name)</code>처럼 생성자를 여러 개 만들었겠지요?</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Entity/Trip.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Entity/Trip.php</span>
+
 <span class="k">namespace</span> <span class="nx">Leopro\TripPlanner\Domain\Entity</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span>
@@ -395,17 +391,16 @@
         <span class="k">return</span> <span class="nv">$trip</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// ...
-</span><span class="p">}</span> 
-</code></pre>
-</div>
+    <span class="c1">// ...</span>
+<span class="p">}</span> 
+</code></pre></div></div>
 
 <h3 id="35-entity-gateway">3.5. Entity Gateway</h3>
 
 <p>3.4. 절에서 호출했던 그 인터페이스입니다. 특이한 점은 <code class="highlighter-rouge">save()</code>, <code class="highlighter-rouge">persist()</code> 대신 <code class="highlighter-rouge">add()</code>라는 함수명을 쓰고 있습니다. 현재까지의 전체 구현이 PHP의 네이티브 배열을 랩핑한 <code class="highlighter-rouge">Collection</code>을 데이터 저장소로 사용하고 있어서이며, 영속성을 위한 저장 장치에 앱이 의존하지 않는다는 것을 한번 더 강조하는 네이밍입니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Contract/TripRepository.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Contract/TripRepository.php</span>
+
 <span class="k">namespace</span> <span class="nx">Leopro\TripPlanner\Domain\Contract</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span>
@@ -415,15 +410,14 @@
     <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nx">TripIdentity</span> <span class="nv">$identity</span><span class="p">);</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">Trip</span> <span class="nv">$trip</span><span class="p">);</span>
 <span class="p">}</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="36-response-model">3.6. Response Model</h3>
 
 <p><code class="highlighter-rouge">Interactor</code>는 <code class="highlighter-rouge">Response</code> 모델에 데이터를 담아서 경계 바깥 쪽으로 내보냅니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Response/Response.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Response/Response.php</span>
+
 <span class="k">namespace</span> <span class="nx">Leopro\TripPlanner\Application\Response</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Response</span>
@@ -437,8 +431,7 @@
         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="37-all-together">3.7. All Together</h3>
 
@@ -450,7 +443,7 @@
 
 <p>다음 코드와 같이 컨트롤러에서 몇 줄만 쓰면 될 것을 복잡한 보일러 플레이트를 양산하면서 이렇게 짜고 있을까요?</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Http\Controllers</span>
 
@@ -462,8 +455,7 @@
         <span class="k">return</span> <span class="nx">Trip</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">());</span> 
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>강한 결합도(소프트웨어의 제 2가치 위반)로 발생하는 비용은 보일러 플레이트를 쓰는 비용보다 더 크기 때문입니다. 의존성이 없다는 것은 독립적으로 개발할 수 있다는 의미입니다. 독립적으로 개발할 수 있다는 것은 독립적으로 컴파일(패키징)할 수 있다는 의미입니다. 독립적으로 컴파일할 수 있다는 것은 독립적으로 배포할 수 있다는 의미입니다.</p>
 
@@ -584,7 +576,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1122,7 +1114,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1167,6 +1159,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1256,6 +1254,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1265,13 +1270,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1324,7 +1322,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

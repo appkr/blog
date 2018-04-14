@@ -184,7 +184,7 @@
 
 <p>아래는 이 강좌의 최종 코드이다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="nv">$conn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="s1">'root'</span><span class="p">,</span> <span class="s1">'111111'</span><span class="p">,</span> <span class="s1">'opentutorials'</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="nv">$conn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="s1">'root'</span><span class="p">,</span> <span class="s1">'111111'</span><span class="p">,</span> <span class="s1">'opentutorials'</span><span class="p">);</span> <span class="cp">?&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
@@ -199,29 +199,28 @@
 <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"SELECT id, title FROM topic"</span><span class="p">;</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="nv">$sql</span><span class="p">);</span>
 <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$result</span><span class="p">))</span> <span class="p">{</span>
-  <span class="k">print</span><span class="p">(</span><span class="s2">"&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">index.php?id=</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]}</span><span class="nx">\</span><span class="s2">"&gt;</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]}</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;&lt;/</span><span class="nx">li</span><span class="o">&gt;</span><span class="s2">");
-}
-?&gt;
-&lt;/ol&gt;
-&lt;div id="</span><span class="nx">article</span><span class="s2">"&gt;
-  &lt;input type="</span><span class="nx">button</span><span class="s2">" value="</span><span class="nx">white</span><span class="s2">" onclick="</span><span class="nx">document</span><span class="o">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'target'</span><span class="p">)</span><span class="o">.</span><span class="nx">className</span><span class="o">=</span><span class="s1">'white'</span><span class="s2">"&gt;
-  &lt;input type="</span><span class="nx">button</span><span class="s2">" value="</span><span class="nx">black</span><span class="s2">" onclick="</span><span class="nx">document</span><span class="o">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'target'</span><span class="p">)</span><span class="o">.</span><span class="nx">className</span><span class="o">=</span><span class="s1">'black'</span><span class="s2">"&gt;
-&lt;?php
-if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
-  print("</span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="o">!!!!&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span><span class="s2">");
-} else {
-  </span><span class="nv">$sql</span><span class="s2"> = "</span><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">topic</span> <span class="nx">WHERE</span> <span class="nx">id</span><span class="o">=</span><span class="p">{</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]}</span><span class="s2">";
-  </span><span class="nv">$result</span><span class="s2"> = mysqli_query(</span><span class="nv">$conn</span><span class="s2">, </span><span class="nv">$sql</span><span class="s2">);
-  </span><span class="nv">$row</span><span class="s2"> = mysqli_fetch_assoc(</span><span class="nv">$result</span><span class="s2">);
-  print("</span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]}</span><span class="o">&lt;/</span><span class="nx">h2</span><span class="o">&gt;</span><span class="s2">");
-  print(</span><span class="nv">$row['description']</span><span class="s2">);
-}
-?&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</span></code></pre>
-</div>
+  <span class="k">print</span><span class="p">(</span><span class="s2">"&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">index.php?id=</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="se">\"</span><span class="s2">&gt;</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/a&gt;&lt;/li&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"article"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"white"</span> <span class="na">onclick=</span><span class="s">"document.getElementById('target').className='white'"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"black"</span> <span class="na">onclick=</span><span class="s">"document.getElementById('target').className='black'"</span><span class="nt">&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]))</span> <span class="p">{</span>
+  <span class="k">print</span><span class="p">(</span><span class="s2">"&lt;h2&gt;Welcome!!!!&lt;/h2&gt;"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"SELECT * FROM topic WHERE id=</span><span class="si">{</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+  <span class="nv">$result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="nv">$sql</span><span class="p">);</span>
+  <span class="nv">$row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+  <span class="k">print</span><span class="p">(</span><span class="s2">"&lt;h2&gt;</span><span class="si">{</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/h2&gt;"</span><span class="p">);</span>
+  <span class="k">print</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'description'</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
 
 <p>웹 개발을 전업으로 하는 프로 개발자들이 이 코드를 본다면, 목적, 배경, 과정에 대한 이해 없이 결과만 보고 바로 코드의 품질을 비난할 것이다. 이 강좌는 <strong>“무엇인가를 하는 법”</strong> 을 가르쳐 주는 것이 목적이다. 배운 내용을 기반으로 <strong>“무엇인가를 잘 하는 법”</strong> 은 스스로 해야 한다.</p>
 
@@ -336,7 +335,7 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -874,7 +873,7 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -919,6 +918,12 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1008,6 +1013,13 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1017,13 +1029,6 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1076,7 +1081,7 @@ if (empty(</span><span class="nv">$_GET['id']</span><span class="s2">)) {
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

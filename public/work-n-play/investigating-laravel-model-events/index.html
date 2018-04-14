@@ -143,8 +143,8 @@
 
 <p>이벤트를 잡기 위한 리스너 클로저는 아래와 같습니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php</span>
+
 <span class="k">class</span> <span class="nc">EventServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
@@ -154,8 +154,7 @@
         <span class="p">});</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="https://github.com/appkr/pattern/tree/master/Behavioral/Observer2">관찰자(Observer) 패턴</a>은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, “밥 다되면 불러줘~”라고 미리 말해두고, 밥이 다 되면 알려주는 거죠.</p>
 
@@ -170,11 +169,11 @@
 
 <p>따라서, <code class="highlighter-rouge">saving</code> -&gt; <code class="highlighter-rouge">creating</code> -&gt; <code class="highlighter-rouge">created</code> -&gt; <code class="highlighter-rouge">saved</code> 순서로 이벤트가 발생합니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42</span>
 
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>users<span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span><span class="nb">users</span><span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.saving: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
@@ -182,61 +181,58 @@
 <span class="o">[</span>...] local.INFO: insert into <span class="sb">`</span>products<span class="sb">`</span> <span class="o">(</span><span class="sb">`</span>title<span class="sb">`</span>, <span class="sb">`</span>stock<span class="sb">`</span>, <span class="sb">`</span>price<span class="sb">`</span>, <span class="sb">`</span>description<span class="sb">`</span>, <span class="sb">`</span>updated_at<span class="sb">`</span>, <span class="sb">`</span>created_at<span class="sb">`</span><span class="o">)</span> values <span class="o">(</span>?, ?, ?, ?, ?, ?<span class="o">)</span> <span class="o">[</span><span class="s2">"TEST TITLE"</span>,10,1000,<span class="s2">"TEST DESCRIPTION"</span>,<span class="s2">"2017-10-22 10:21:53"</span>,<span class="s2">"2017-10-22 10:21:53"</span><span class="o">]</span>
 <span class="o">[</span>...] local.INFO: eloquent.created: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.saved: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
 <span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="2-update">2. Update</h2>
 
 <p><code class="highlighter-rouge">saving</code> -&gt; <code class="highlighter-rouge">updating</code> -&gt; <code class="highlighter-rouge">updated</code> -&gt; <code class="highlighter-rouge">saved</code> 순.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59</span>
 
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>users<span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span><span class="nb">users</span><span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? and <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null limit 1 <span class="k">for </span>update <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? and <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null limit 1 <span class="k">for </span>update <span class="o">[</span>12]
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
 <span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
 <span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
 <span class="o">[</span>...] local.INFO: eloquent.saving: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.updating: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-<span class="o">[</span>...] local.INFO: update <span class="sb">`</span>products<span class="sb">`</span> <span class="nb">set</span> <span class="sb">`</span>title<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>description<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>version<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>updated_at<span class="sb">`</span> <span class="o">=</span> ? where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? <span class="o">[</span><span class="s2">"새 상품 (상품명 수정됨)"</span>,<span class="s2">"..."</span>,2,<span class="s2">"..."</span>,12]
+<span class="o">[</span>...] local.INFO: update <span class="sb">`</span>products<span class="sb">`</span> <span class="nb">set</span> <span class="sb">`</span>title<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>description<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>version<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>updated_at<span class="sb">`</span> <span class="o">=</span> ? where <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? <span class="o">[</span><span class="s2">"새 상품 (상품명 수정됨)"</span>,<span class="s2">"..."</span>,2,<span class="s2">"..."</span>,12]
 <span class="o">[</span>...] local.INFO: eloquent.updated: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.saved: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span>12]
 <span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3-delete">3. Delete</h2>
 
 <p><code class="highlighter-rouge">deleting</code> -&gt; <code class="highlighter-rouge">deleted</code> 순.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96</span>
 
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? and <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null limit 1 <span class="o">[</span><span class="s2">"12"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>products<span class="sb">`</span> where <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? and <span class="sb">`</span>products<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null limit 1 <span class="o">[</span><span class="s2">"12"</span><span class="o">]</span>
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\R</span>eview
 <span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>product_id<span class="sb">`</span> <span class="k">in</span> <span class="o">(</span>?<span class="o">)</span> and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null <span class="o">[</span>12]
 <span class="o">[</span>...] local.INFO: eloquent.booting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
 <span class="o">[</span>...] local.INFO: eloquent.booted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\U</span>ser
-<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>users<span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
+<span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span><span class="nb">users</span><span class="sb">`</span> where <span class="sb">`</span>email<span class="sb">`</span> <span class="o">=</span> ? limit 1 <span class="o">[</span><span class="s2">"admin@foo.com"</span><span class="o">]</span>
 <span class="o">[</span>...] local.INFO: <span class="k">select</span> <span class="k">*</span> from <span class="sb">`</span>reviews<span class="sb">`</span> where 0 <span class="o">=</span> 1 and <span class="sb">`</span>reviews<span class="sb">`</span>.<span class="sb">`</span>deleted_at<span class="sb">`</span> is null
 <span class="o">[</span>...] local.INFO: eloquent.deleting: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-<span class="o">[</span>...] local.INFO: update <span class="sb">`</span>products<span class="sb">`</span> <span class="nb">set</span> <span class="sb">`</span>deleted_at<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>updated_at<span class="sb">`</span> <span class="o">=</span> ? where <span class="sb">`</span>id<span class="sb">`</span> <span class="o">=</span> ? <span class="o">[</span><span class="s2">"..."</span>,<span class="s2">"..."</span>,12]
+<span class="o">[</span>...] local.INFO: update <span class="sb">`</span>products<span class="sb">`</span> <span class="nb">set</span> <span class="sb">`</span>deleted_at<span class="sb">`</span> <span class="o">=</span> ?, <span class="sb">`</span>updated_at<span class="sb">`</span> <span class="o">=</span> ? where <span class="sb">`</span><span class="nb">id</span><span class="sb">`</span> <span class="o">=</span> ? <span class="o">[</span><span class="s2">"..."</span>,<span class="s2">"..."</span>,12]
 <span class="o">[</span>...] local.INFO: eloquent.deleted: Myshop<span class="se">\D</span>omain<span class="se">\M</span>odel<span class="se">\P</span>roduct
-</code></pre>
-</div>
+</code></pre></div></div>
 
       </div>
 
@@ -343,7 +339,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -881,7 +877,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -926,6 +922,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1015,6 +1017,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1024,13 +1033,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1083,7 +1085,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

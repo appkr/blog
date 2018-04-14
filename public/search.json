@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "이진수와 십진수",
+    "category" : "cheatsheet",
+    "tags"     : "수학, 개발자",
+    "url"      : "/cheatsheet/binary-decimal-conversion/",
+    "date"     : "2018-04-14"
+  },
+  
+  {
     "title"    : "PHP 프로젝트에 Swagger 적용 #1",
     "category" : "work-n-play, learn-n-think",
     "tags"     : "Swagger, API, PHP",

@@ -152,7 +152,7 @@
 
 <p>테스트 테이블 생성</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">lock_test</span> 
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">lock_test</span> 
 <span class="k">DEFAULT</span> <span class="n">CHARACTER</span> <span class="k">SET</span> <span class="o">=</span> <span class="n">utf8</span> <span class="k">DEFAULT</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="n">utf8_unicode_ci</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">messages</span> <span class="p">(</span>
@@ -161,76 +161,64 @@
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">INNODB</span><span class="p">;</span>
 
 <span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="k">WHERE</span> <span class="n">NAME</span> <span class="o">=</span> <span class="nv">"messages"</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="1-읽기-잠금의-동작-특성">1. 읽기 잠금의 동작 특성</h2>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">LOCK</span> <span class="n">TABLES</span> <span class="n">messages</span> <span class="k">READ</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">LOCK</span> <span class="n">TABLES</span> <span class="n">messages</span> <span class="k">READ</span><span class="p">;</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="n">PROCESSLIST</span><span class="p">;</span> <span class="c1">-- Query ok</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="c1">-- 다른 프로세스(=~커넥션=~세션)에서 실행</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 다른 프로세스(=~커넥션=~세션)에서 실행</span>
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">LOCK</span> <span class="n">TABLES</span> <span class="n">messages</span> <span class="k">WRITE</span><span class="p">;</span> <span class="c1">-- ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql1</code> 프로세스에서 테이블 전체에 대해 읽기 잠금을 걸었으므로, <code class="highlighter-rouge">mysql2</code> 프로세스는 무한 뺑글이.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="n">PROCESSLIST</span><span class="p">;</span> <span class="c1">-- "Waiting for table metadata lock" &lt;= mysql2 프로세스의 상태</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="n">PROCESSLIST</span><span class="p">;</span> <span class="c1">-- "Waiting for table metadata lock" &lt;= mysql2 프로세스의 상태</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql1</code>이 테이블 잠금을 푸는 순간 <code class="highlighter-rouge">mysql2</code> 프로세스는 뺑글이 사라지고, 쓰기 잠금 얻어감.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- ...</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- ...</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql2</code> 프로세스가 테이블에 대해 쓰기 잠금을 얻어 갔으므로, <code class="highlighter-rouge">mysql1</code> 프로세스는 무한 뺑글이.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="c1">-- 무한 뺑글이 돌던 SELECT 쿼리 취소 후</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 무한 뺑글이 돌던 SELECT 쿼리 취소 후</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="k">OPEN</span> <span class="n">TABLES</span> <span class="k">FROM</span> <span class="n">lock_test</span><span class="p">;</span> <span class="c1">-- 1</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql2</code> 프로세스가 잠금을 가지고 있으므로 다른 프로세스에서 잠금 해제 불가.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+</code></pre></div></div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">LOCK</span> <span class="n">TABLES</span> <span class="n">messages</span> <span class="k">READ</span><span class="p">;</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">messages</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'FOO'</span><span class="p">);</span> <span class="c1">-- ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql1</code> 프로세스가 읽기 잠금을 걸었으므로, <code class="highlighter-rouge">mysql2</code> 프로세스에서도 읽기는 가능하지만, 쓰기를 시도하면 무한 뺑글이.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">messages</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'BAR'</span><span class="p">);</span> <span class="c1">-- Table 'messages' was locked with a READ lock and can't be updated</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">messages</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'BAR'</span><span class="p">);</span> <span class="c1">-- Table 'messages' was locked with a READ lock and can't be updated</span>
+</code></pre></div></div>
 
 <p>읽기 잠금을 건 <code class="highlighter-rouge">mysql1</code> 프로세스도 쓰기 불가능을 마찬가지임.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>테이블에 걸린 모든 잠금이 풀렸으므로, 뺑글이를 돌던 <code class="highlighter-rouge">mysql2</code>의 뺑글이는 사라지고 <code class="highlighter-rouge">INSERT</code> 쿼리가 작동함.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql2</code> 프로세스에서 <code class="highlighter-rouge">INSERT</code>한 레코드 확인 가능.</p>
 
@@ -249,27 +237,23 @@
 
 <h2 id="2-쓰기-잠금의-동작-특성">2. 쓰기 잠금의 동작 특성</h2>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">LOCK</span> <span class="n">TABLES</span> <span class="n">messages</span> <span class="k">WRITE</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">LOCK</span> <span class="n">TABLES</span> <span class="n">messages</span> <span class="k">WRITE</span><span class="p">;</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">messages</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'BAZ'</span><span class="p">);</span>
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- ...</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span><span class="p">;</span> <span class="c1">-- ...</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql2</code> 프로세스에서는 무한 뺑글이.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">RENAME</span> <span class="k">TABLE</span> <span class="n">messages</span> <span class="k">TO</span> <span class="n">new_messages</span><span class="p">;</span> <span class="c1">-- Can't execute the given command because you have active locked tables or an active transaction</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">RENAME</span> <span class="k">TABLE</span> <span class="n">messages</span> <span class="k">TO</span> <span class="n">new_messages</span><span class="p">;</span> <span class="c1">-- Can't execute the given command because you have active locked tables or an active transaction</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">WRITE</code> 잠금을 가진 <code class="highlighter-rouge">mysql1</code> 프로세스지만, 테이블 이름을 변경하는 등의 DDL은 불가능함.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>테이블에 걸린 모든 잠금이 풀렸으므로, 뺑글이를 돌던 <code class="highlighter-rouge">mysql2</code>의 뺑글이는 사라지고 <code class="highlighter-rouge">SELECT</code> 쿼리가 작동함.</p>
 
@@ -284,43 +268,37 @@
 
 <p><code class="highlighter-rouge">SELECT ... LOCK IN SHARE MODE</code> for READ, <code class="highlighter-rouge">SELECT ... FOR UPDATE</code> for UPDATE and DELETE.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span> 
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span> 
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">LOCK</span> <span class="k">IN</span> <span class="k">SHARE</span> <span class="k">MODE</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">-- Query ok.</span>
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span> 
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">COMMIT</span><span class="p">;</span> <span class="c1">-- ...</span>
 <span class="c1">-- Lock wait timeout exceeded; try restarting transaction</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql1</code> 프로세스에서 1번 Row를 잠궜지만, <code class="highlighter-rouge">mysql2</code> 프로세스에서 읽기는 가능. 반면, 쓰기 동작을 하려하면 50초 동안 뺑글이를 돌다가 쿼리 실패함. 50초에 대한 힌트는 아래 쿼리에서 찾을 수 있음.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">WHERE</span> <span class="n">VARIABLE_NAME</span> <span class="k">LIKE</span> <span class="nv">"%innodb_lock%"</span><span class="p">;</span> <span class="c1">-- innodb_lock_wait_timeout: 50</span>
-</code></pre>
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">WHERE</span> <span class="n">VARIABLE_NAME</span> <span class="k">LIKE</span> <span class="nv">"%innodb_lock%"</span><span class="p">;</span> <span class="c1">-- innodb_lock_wait_timeout: 50</span>
+</code></pre></div></div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">COMMIT</span><span class="p">;</span> <span class="c1">-- ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">mysql2</code> 프로세스에서 뺑글이가 돌고 있는 상태에서 쨉싸게 <code class="highlighter-rouge">mysql1</code> 프로세스에서 같은 Row 1번을 지움.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">messages</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
 <span class="n">mysql1</span><span class="o">&gt;</span> <span class="k">COMMIT</span><span class="p">;</span> <span class="c1">-- No errors; 1 row affected</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>한편 mysql2 프로세스에서는… 데드락이 발생함.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="c1">-- [ERROR in query 2] Deadlock found when trying to get lock; try restarting transaction</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- [ERROR in query 2] Deadlock found when trying to get lock; try restarting transaction</span>
 <span class="n">mysql2</span><span class="o">&gt;</span> <span class="k">SHOW</span> <span class="n">ENGINE</span> <span class="n">INNODB</span> <span class="n">STATUS</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="31-결론">3.1. 결론</h3>
 
@@ -332,8 +310,8 @@
 
 <h2 id="4-라라벨에서-트랜잭션과-잠금">4. 라라벨에서 트랜잭션과 잠금</h2>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Infrastructure/Eloquent/EloquentProductRepository.php#L22-L25
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Infrastructure/Eloquent/EloquentProductRepository.php#L22-L25</span>
+
 <span class="nx">DB</span><span class="o">::</span><span class="na">beginTransaction</span><span class="p">();</span>
 
 <span class="k">try</span> <span class="p">{</span>
@@ -345,12 +323,11 @@
     <span class="nx">DB</span><span class="o">::</span><span class="na">rollBack</span><span class="p">();</span>
     <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <div class="spacer">• • •</div>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="c1">-- http://minsql.com/mysql/information_schema-innodb_xxx-%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-lock-%EC%A0%95%EB%B3%B4-%ED%99%95%EC%9D%B8/</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- http://minsql.com/mysql/information_schema-innodb_xxx-%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-lock-%EC%A0%95%EB%B3%B4-%ED%99%95%EC%9D%B8/</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">connection_id</span><span class="p">();</span>
 
@@ -388,8 +365,7 @@
    <span class="k">AND</span> <span class="n">w</span><span class="p">.</span><span class="n">trx_id</span> <span class="o">=</span> <span class="n">ilw</span><span class="p">.</span><span class="n">requesting_trx_id</span>
    <span class="k">AND</span> <span class="n">bl</span><span class="p">.</span><span class="n">lock_id</span> <span class="o">=</span> <span class="n">ilw</span><span class="p">.</span><span class="n">blocking_lock_id</span>
    <span class="k">AND</span> <span class="n">wl</span><span class="p">.</span><span class="n">lock_id</span> <span class="o">=</span> <span class="n">ilw</span><span class="p">.</span><span class="n">requested_lock_id</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
       </div>
 
@@ -496,7 +472,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1034,7 +1010,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1079,6 +1055,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1168,6 +1150,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1177,13 +1166,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1236,7 +1218,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

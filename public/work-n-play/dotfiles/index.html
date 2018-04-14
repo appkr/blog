@@ -167,20 +167,18 @@
 
 <p>맥을 개발용 컴퓨터로 사용하면서 Homebrew를 아직도 사용하지 않는다면… GG. 지금이라도 늦지 않았다. Homebrew 바이너리 설치는 아래 한 줄을 복사해서, 콘솔에 붙여 넣는 것으로 끝이다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>/usr/bin/ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+</code></pre></div></div>
 
 <h3 id="11-뭘-할-수-있을까">1.1. 뭘 할 수 있을까?</h3>
 
 <p>예를 들어, PHP7과 확장모듈을 <strong>쉽게</strong> 설치할 수 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew search php7
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew search php7
 <span class="c"># homebrew/php/php70    ...    homebrew/php/php70-xdebug</span>
 
-<span class="gp">$ </span>brew install homebrew/php/php70 homebrew/php/php70-xdebug
-</code></pre>
-</div>
+<span class="nv">$ </span>brew <span class="nb">install </span>homebrew/php/php70 homebrew/php/php70-xdebug
+</code></pre></div></div>
 
 <p>다른 명령들도 살펴 보자.</p>
 
@@ -243,10 +241,9 @@
 
 <p>한 가지 단점이라면, 설치할 패키지의 버전을 지정할 수 없다는 점이다. 현재 설치한 패키지의 버전을 고정하고, 더 이상 업데이트하지 않는 방법이 있긴 하다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew pin php70    <span class="c"># 버전 고정</span>
-<span class="gp">$ </span>brew unpin php70  <span class="c"># 버전 고정 해제</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew pin php70    <span class="c"># 버전 고정</span>
+<span class="nv">$ </span>brew unpin php70  <span class="c"># 버전 고정 해제</span>
+</code></pre></div></div>
 
 <p>버전을 고정할 패키지가 PHP와 같은 프로그래밍 언어라면, 하나로 고정하기보다는 다른 대안을 찾아 보라. <code class="highlighter-rouge">caskrook/versions</code> Tap이나, <code class="highlighter-rouge">homebrew/php/phpenv</code>와 같은 도구를 사용하는 것이 더 낫다. 개발 환경 전체를 고정하려면, Docker 컨테이너나 Vagrant 박스를 사용하는 것이 좋다.</p>
 
@@ -260,61 +257,55 @@
 
 <p>맥에서 MySQL을 시작하려면 다음과 같이 해야 한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</code></pre></div></div>
 
 <p>웨에에엑~~ 이걸 외우라고? Ubuntu를 사용해 본 사람이라면, 이 이상하고 긴 명령이 정말 마음에 들지 않을 것이다. 물론 별칭(alias)를 만들 수도 있겠지만, 더 쉬운 방법이 있다. Services Tap을 설치하는 것이다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew tap homebrew/services
-<span class="gp">$ </span>brew services start mysql
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap homebrew/services
+<span class="nv">$ </span>brew services start mysql
 
 <span class="c"># 설치한 전체 서비스를 재시작하고 싶을 때는</span>
-<span class="gp">$ </span>brew services restart --all
-</code></pre>
-</div>
+<span class="nv">$ </span>brew services restart <span class="nt">--all</span>
+</code></pre></div></div>
 
 <p>Ubuntu와는 순서가 다르니 유의한다(<code class="highlighter-rouge">$ sudo service mysql start</code>). <code class="highlighter-rouge">start|stop|restart</code> 명령을 모두 쓸 수 있다.</p>
 
 <p>서비스 목록은 <code class="highlighter-rouge">list</code> 명령으로 확인한다. 계속 써 보면 알겠지만, Homebrew의 명령들은 일관성이 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew services list
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew services list
 <span class="c"># Name    Status  User  Plist</span>
 <span class="c"># mysql   started appkr /Users/appkr/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="122-caskroom">1.2.2. Caskroom</h4>
 
 <p>Caskroom 하위의 Tap을 이용하면, IntelliJ와 같은 애플리케이션이나 Source Code Pro와 같은 폰트를 <strong>‘콘솔’</strong>로 설치할 수 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew tap caskroom/cask
-<span class="gp">$ </span>brew tap caskroom/fonts
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap caskroom/cask
+<span class="nv">$ </span>brew tap caskroom/fonts
+</code></pre></div></div>
 
 <p>Services Tap과 마찬가지로 Cask Tap도 Homebrew의 명령 체계를 그대로 이용한다. IntelliJ를 설치할 수 있는 지 먼저 확인하고, 설치해 보자.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew cask search intellij
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew cask search intellij
 <span class="c"># ==&gt; Exact match</span>
 <span class="c"># intellij-idea</span>
 <span class="c"># ==&gt; Partial matches</span>
 <span class="c"># intellij-idea-ce	  intellij-idea-ce-eap	    intellij-idea-eap</span>
 
-<span class="gp">$ </span>brew cask install intellij-idea
-</code></pre>
-</div>
+<span class="nv">$ </span>brew cask <span class="nb">install </span>intellij-idea
+</code></pre></div></div>
 
 <p>폰트도 설치하자.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew cask search /font-source/
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew cask search /font-source/
 <span class="c"># ==&gt; Regexp matches</span>
 <span class="c"># font-source-code-pro	  font-source-han-sans	    font-source-serif-pro</span>
 <span class="c"># font-source-han-code-jp	  font-source-sans-pro</span>
 
-<span class="gp">$ </span>brew cask install font-source-code-pro
-</code></pre>
-</div>
+<span class="nv">$ </span>brew cask <span class="nb">install </span>font-source-code-pro
+</code></pre></div></div>
 
 <h2 id="2-homebrew-bundler">2. Homebrew Bundler</h2>
 
@@ -326,19 +317,17 @@
 
 <p>먼저 Homebrew Bundler를 설치한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew tap homebrew/bundle
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap homebrew/bundle
+</code></pre></div></div>
 
 <p>그간에 Homebrew를 이용해서 맥을 관리해 왔다면, 다음 명령으로 쉽게 <code class="highlighter-rouge">Brewfile</code>을 만들 수 있다. 기존의 <code class="highlighter-rouge">Brewfile</code>을 덮어 쓰려면 <code class="highlighter-rouge">--force</code> 옵션을 준다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew bundle dump <span class="o">[</span>--force]
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew bundle dump <span class="o">[</span><span class="nt">--force</span><span class="o">]</span>
+</code></pre></div></div>
 
 <p>그간에 Homebrew와 Cask를 이용하지 않았다면, <code class="highlighter-rouge">Brewfile</code> 파일을 직접 만들고, 패키지(애플리케이션/바이너리) 목록을 작성한다. <code class="highlighter-rouge">$ brew list</code>, <code class="highlighter-rouge">$ brew cask list</code> 명령과 <code class="highlighter-rouge">/Applications</code> 디렉터리를 열어 맥에 설치된 패키지를 확인해서 하나씩 써 준다. 애플리케이션 중에서는 Cask Tap으로 설치할 수 없고 꼭 앱 스토어를 이용해야만 하는 녀석들이 있는데, 기억력을 보조하기 위해 별도의 파일에 목록화해 놓고 dotfiles에 넣어서 관리하면 좋다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># dotfiles/Brewfile</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># dotfiles/Brewfile</span>
 
 <span class="c"># Taps</span>
 tap <span class="s1">'caskroom/cask'</span>
@@ -359,33 +348,29 @@ brew <span class="s1">'git'</span>
 cask <span class="s1">'intellij-idea'</span>
 cask <span class="s1">'iterm2'</span>
 <span class="c"># ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>설치 옵션을 지정하거나, 서비스를 재시작할 수도 있는데, <a href="https://github.com/Homebrew/homebrew-bundle">공식문서</a>를 참고한다.</p>
 
 <p>그리고 Homebrew를 통해 설치할 수 있는 패키지의 설치 옵션은 다음 명령으로 확인한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew options php70
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew options php70
 <span class="c"># --with-cgi   Enable building of the CGI executable (implies --without-fpm)</span>
 <span class="c"># --with-debug Compile with debugging symbols</span>
 <span class="c"># ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="22-homebrew-bundler-실행하기">2.2. Homebrew Bundler 실행하기</h3>
 
 <p>다음 명령 한 줄로 <code class="highlighter-rouge">Brewfile</code>에 정의한 패키지들을 한 방에 설치할 수 있다. <code class="highlighter-rouge">Brewfile</code>이 다른 경로에 있다면 <code class="highlighter-rouge">--file=$HOME/dotfiles/Brewfile</code>처럼 경로를 지정할 수 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew bundle <span class="o">[</span>--file<span class="o">=</span>&lt;path&gt;]
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew bundle <span class="o">[</span><span class="nt">--file</span><span class="o">=</span>&lt;path&gt;]
+</code></pre></div></div>
 
 <p>현재 설치된 패키지들이 최신 상태인지 확인하려면 다음 명령을 이용한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew bundle check <span class="o">[</span>--file<span class="o">=</span>&lt;path&gt;]
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew bundle check <span class="o">[</span><span class="nt">--file</span><span class="o">=</span>&lt;path&gt;]
+</code></pre></div></div>
 
 <h2 id="3-mackup">3. Mackup</h2>
 
@@ -397,13 +382,12 @@ cask <span class="s1">'iterm2'</span>
 
 <p>Mackup도 Homebrew로 설치한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew install mackup
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>mackup
+</code></pre></div></div>
 
 <p>기본값을 그대로 쓴다면 환경 설정은 필요 없다. 필자는 Dropbox 대신 Google Drive를 사용하고, 백업하고 싶은 파일들이 몇가지 더 있어서 <code class="highlighter-rouge">.mackup.cfg</code> 환경 설정 파일을 만들었다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># dotfiles/.mackup.cfg</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># dotfiles/.mackup.cfg</span>
 
 <span class="o">[</span>storage]
 <span class="nv">engine</span><span class="o">=</span>google_drive
@@ -412,22 +396,19 @@ cask <span class="s1">'iterm2'</span>
 .homestead
 .valet
 <span class="c"># ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="32-백업과-복원">3.2. 백업과 복원</h3>
 
 <p>백업을 실행하기 전에 Google Drive(또는 Dropbox, iCloud)를 사용할 수 있는 상태여야 한다. 설치가 끝나면 Google Drive를 열어 로그인을 하고, 동기화할 디렉터리까지 지정해 주어야 한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew cask install google-drive
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew cask <span class="nb">install </span>google-drive
+</code></pre></div></div>
 
 <p>백업은 간단하다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mackup backup
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mackup backup
+</code></pre></div></div>
 
 <p>디렉터리 목록을 확인해 보면 다음 그림과 같다.</p>
 
@@ -435,17 +416,15 @@ cask <span class="s1">'iterm2'</span>
 
 <p>복원도 간단하다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mackup restore
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mackup restore
+</code></pre></div></div>
 
 <h2 id="4-osx">4. .osx</h2>
 
 <p>Mac OS의 여러 가지 설정은 명령 줄에서도 할 수 있다. <code class="highlighter-rouge">.osx</code> 파일은 이런 Mac OS 환경 설정을 모아서 담아 놓은 파일이다. 가령 휴지통 비우기할 때 정말로 삭제할 지를 묻는 대화상자등을 나오지 않게 하는 설정 말이다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>defaults write com.apple.finder WarnOnEmptyTrash -bool <span class="nb">false</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>defaults write com.apple.finder WarnOnEmptyTrash <span class="nt">-bool</span> <span class="nb">false</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">.osx</code> 파일의 내용은 <a href="https://github.com/mathiasbynens/dotfiles/blob/master/.osx">Mathias Bynen의 dotfiles</a>를 참고했다.</p>
 
@@ -459,76 +438,67 @@ cask <span class="s1">'iterm2'</span>
 
 <p>Mac OS를 처음 설치했다고 가정하고, 앞서 살펴본 모든 과정을 자동화해서, 빠르게 작업 환경을 구축하는 <code class="highlighter-rouge">dotfiles/bootstrap.sh</code> 스크립트를 만들어 보자. 코드 -&gt; 설명 순으로 작성했다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 
-<span class="k">if </span><span class="nb">test</span> ! <span class="k">$(</span>which brew<span class="k">)</span>; <span class="k">then
-  </span>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<span class="k">if </span><span class="nb">test</span> <span class="o">!</span> <span class="k">$(</span>which brew<span class="k">)</span><span class="p">;</span> <span class="k">then
+  </span>ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 <span class="k">fi</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">#!</code>(‘쉬뱅’이라 읽음)으로 이 스크립트를 실행할 바이너리를 지정한다. 시스템에 Homebrew가 없으면 설치한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>brew update
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew update
 brew tap homebrew/bundle
-brew bundle --file<span class="o">=</span><span class="nv">$HOME</span>/dotfiles/Brewfile
+brew bundle <span class="nt">--file</span><span class="o">=</span><span class="nv">$HOME</span>/dotfiles/Brewfile
 brew cleanup
 brew cask cleanup
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">Brewfile</code>을 읽어서 지정한 패키지를 설치한다. 설치가 끝난 후, 디스크 절약을 위해 로컬 캐시를 전부 삭제했다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">[</span> ! -f <span class="nv">$HOME</span>/.gitconfig <span class="o">]</span> <span class="o">&amp;&amp;</span> ln -nfs <span class="nv">$HOME</span>/dotfiles/.gitconfig <span class="nv">$HOME</span>/.gitconfig
-<span class="o">[</span> ! -f <span class="nv">$HOME</span>/.gitignore_global <span class="o">]</span> <span class="o">&amp;&amp;</span> ln -nfs <span class="nv">$HOME</span>/dotfiles/.gitignore_global <span class="nv">$HOME</span>/.gitignore_global
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="nv">$HOME</span>/.gitconfig <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">ln</span> <span class="nt">-nfs</span> <span class="nv">$HOME</span>/dotfiles/.gitconfig <span class="nv">$HOME</span>/.gitconfig
+<span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="nv">$HOME</span>/.gitignore_global <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">ln</span> <span class="nt">-nfs</span> <span class="nv">$HOME</span>/dotfiles/.gitignore_global <span class="nv">$HOME</span>/.gitignore_global
+</code></pre></div></div>
 
 <p>홈 디렉터리에 <code class="highlighter-rouge">.gitconfig</code>, <code class="highlighter-rouge">.gitignore_global</code> 파일이 없으면, <code class="highlighter-rouge">dotfiles</code> 하위에 있는 파일을 홈 디렉터리로 링크한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>chsh -s <span class="k">$(</span>which zsh<span class="k">)</span>
-sh -c <span class="s2">"</span><span class="k">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">"</span>
-<span class="o">[</span> ! -f <span class="nv">$HOME</span>/.zshrc <span class="o">]</span> <span class="o">&amp;&amp;</span> ln -nfs <span class="nv">$HOME</span>/dotfiles/.zshrc <span class="nv">$HOME</span>/.zshrc
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chsh <span class="nt">-s</span> <span class="k">$(</span>which zsh<span class="k">)</span>
+sh <span class="nt">-c</span> <span class="s2">"</span><span class="k">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh <span class="nt">-O</span> -<span class="k">)</span><span class="s2">"</span>
+<span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="nv">$HOME</span>/.zshrc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">ln</span> <span class="nt">-nfs</span> <span class="nv">$HOME</span>/dotfiles/.zshrc <span class="nv">$HOME</span>/.zshrc
 <span class="nb">source</span> <span class="nv">$HOME</span>/.zshrc
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>기본으로 실행할 쉘을 Zsh으로 변경한다. Oh-my-zsh를 설치하고, 홈 디렉터리에 <code class="highlighter-rouge">.zshrc</code> 파일을 링크하고, 실행한다. Zsh와 Oh-my-zsh의 관계는 프로그래밍 언어와 프레임워크의 관계로 비유할 수 있다.</p>
 
 <p><strong><code class="highlighter-rouge">참고</code></strong> 필자는 Bash(Bourne Again Shell)보다 Zsh를 더 선호한다. <code class="highlighter-rouge">.zshrc</code>는 <code class="highlighter-rouge">.bash_profile</code>과 같은 일을 담당한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="o">[</span> ! -f <span class="nv">$HOME</span>/.mackup.cfg <span class="o">]</span> <span class="o">&amp;&amp;</span> ln -nfs <span class="nv">$HOME</span>/dotfiles/.mackup.cfg <span class="nv">$HOME</span>/.mackup.cfg
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="nv">$HOME</span>/.mackup.cfg <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">ln</span> <span class="nt">-nfs</span> <span class="nv">$HOME</span>/dotfiles/.mackup.cfg <span class="nv">$HOME</span>/.mackup.cfg
+</code></pre></div></div>
 
 <p>Mackup 환경 설정 파일(<code class="highlighter-rouge">.mackup.cfg</code>)파일을 홈 디렉터리에 링크한다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>/usr/local/bin/composer global require laravel/installer laravel/envoy laravel/valet tightenco/jigsaw
-<span class="nv">$HOME</span>/.composer/vendor/bin/valet install
-git clone git@github.com:laravel/homestead.git <span class="nv">$HOME</span>/Homestead
-<span class="o">[</span> <span class="k">$(</span>basename <span class="k">$(</span><span class="nb">pwd</span><span class="k">))</span> <span class="o">==</span> <span class="s2">"Homestead"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$HOME</span>/Homestead
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/bin/composer global require laravel/installer laravel/envoy laravel/valet tightenco/jigsaw
+<span class="nv">$HOME</span>/.composer/vendor/bin/valet <span class="nb">install
+</span>git clone git@github.com:laravel/homestead.git <span class="nv">$HOME</span>/Homestead
+<span class="o">[</span> <span class="k">$(</span><span class="nb">basename</span> <span class="k">$(</span><span class="nb">pwd</span><span class="k">))</span> <span class="o">==</span> <span class="s2">"Homestead"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$HOME</span>/Homestead
 vagrant box add laravel/homestead
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>[OPTIONAL] PHP 개발 환경을 셋팅했다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>npm install gulp-cli gulp yo http-server --global --save
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>gulp-cli gulp yo http-server <span class="nt">--global</span> <span class="nt">--save</span>
+</code></pre></div></div>
 
 <p>[OPTIONAL] Node 글로벌 패키지를 설치했다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>gem install rails
-gem install jekyll
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>rails
+gem <span class="nb">install </span>jekyll
+</code></pre></div></div>
 
 <p>[OPTIONAL] 글로벌 Ruby Gem을 설치했다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="nb">source</span> <span class="nv">$HOME</span>/dotfiles/.osx
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> <span class="nv">$HOME</span>/dotfiles/.osx
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">.osx</code> 파일을 실행한다.</p>
 
@@ -536,7 +506,7 @@ gem install jekyll
 
 <p>다음과 같은 디렉터리 구조로 만들어 봤다. <code class="highlighter-rouge">.alias</code>, <code class="highlighter-rouge">.export</code>, <code class="highlighter-rouge">.extra</code>, <code class="highlighter-rouge">.functions</code>, <code class="highlighter-rouge">.path</code> 등의 파일은 <code class="highlighter-rouge">.zshrc</code>가 로드하도록 구성되어 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># ~/dotfiles</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ~/dotfiles</span>
 
 ~/dotfiles
 ├── bin                 <span class="c"># 쉘 스크립트 저장소 (e.g. subl 등)</span>
@@ -554,15 +524,13 @@ gem install jekyll
 ├── Brewfile            <span class="c"># Homebrew Bundler용 레지스트리 파일</span>
 ├── bootstrap.sh        <span class="c"># 메인 스크립트</span>
 └── manual_install_applications <span class="c"># 수동 설치해야 할 애플리케이션 목록</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>준비가 되었다면, Git 저장소로 만들고 원격 저장소에 동기화해 둔다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/dotfiles <span class="nv">$ </span>git init
-~/dotfiles <span class="nv">$ </span>git add . <span class="o">&amp;&amp;</span> git commit -m <span class="s1">'YOUR MESSAGE'</span> <span class="o">&amp;&amp;</span> git push origin master
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/dotfiles <span class="nv">$ </span>git init
+~/dotfiles <span class="nv">$ </span>git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s1">'YOUR MESSAGE'</span> <span class="o">&amp;&amp;</span> git push origin master
+</code></pre></div></div>
 
 <h3 id="53-복원-프로세스">5.3. 복원 프로세스</h3>
 
@@ -575,45 +543,40 @@ gem install jekyll
   <li>
     <p>설치가 끝나면 Xcode 라이선스에 동의하고, Command Line Tool을 설치해야 한다.</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo xcodebuild -license <span class="c"># 콘솔에서 라이선스 동의하기</span>
-<span class="gp">$ </span>xcode-select --install   <span class="c"># Command Line Tool 설치</span>
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>xcodebuild <span class="nt">-license</span> <span class="c"># 콘솔에서 라이선스 동의하기</span>
+<span class="nv">$ </span>xcode-select <span class="nt">--install</span>   <span class="c"># Command Line Tool 설치</span>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>SSH Key 설치</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>cp SUPER_SAFE_DIRECTORY/.ssh/<span class="k">*</span> ~/.ssh
-<span class="gp">$ </span>chmod -R 600 ~/.ssh
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp </span>SUPER_SAFE_DIRECTORY/.ssh/<span class="k">*</span> ~/.ssh
+<span class="nv">$ </span><span class="nb">chmod</span> <span class="nt">-R</span> 600 ~/.ssh
+</code></pre></div>    </div>
   </li>
   <li>
     <p>dotfiles 설치 및 실행</p>
 
     <p>실행하기 전에 <code class="highlighter-rouge">/etc/shells</code> 파일을 열어 파일 끝에 Zsh을 추가해 둔다.</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># etc/shells</span>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># etc/shells</span>
 
 /usr/local/bin/zsh
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>각자의 dotfiles를 클론하고 부트스트랩 스크립트를 실행한다.</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git clone git@github.com:GITHUB_USER_NAME/dotfiles.git
-<span class="gp">$ </span>dotfiles/bootstrap.sh
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone git@github.com:GITHUB_USER_NAME/dotfiles.git
+<span class="nv">$ </span>dotfiles/bootstrap.sh
+</code></pre></div>    </div>
 
     <p>재부팅이 필요할 수 있다.</p>
   </li>
   <li>
     <p>Mackup으로 복원한다.</p>
 
-    <div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mackup restore
-</code></pre>
-    </div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mackup restore
+</code></pre></div>    </div>
   </li>
   <li>
     <p>맥을 재부팅 해 준다.</p>
@@ -742,7 +705,7 @@ gem install jekyll
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1280,7 +1243,7 @@ gem install jekyll
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1325,6 +1288,12 @@ gem install jekyll
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1414,6 +1383,13 @@ gem install jekyll
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1423,13 +1399,6 @@ gem install jekyll
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1482,7 +1451,7 @@ gem install jekyll
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

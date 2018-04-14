@@ -158,8 +158,8 @@
 
 <p>새로 만든 라라벨 프로젝트의 라우팅 정의 파일을 이용해서 로그를 써 봤다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php</span>
+
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello Monolog"</span><span class="p">;</span>
     <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">];</span>
@@ -175,12 +175,11 @@
     
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>그리고, 로그 파일을 확인해 보면 다음과 같은 로그가 기록된 것을 확인할 수 있다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
 
 <span class="o">[</span>2016-12-03 06:58:34] local.EMERGENCY: Hello Monolog <span class="o">{</span><span class="s2">"foo"</span>:<span class="s2">"bar"</span><span class="o">}</span> 
 <span class="o">[</span>2016-12-03 06:58:34] local.ALERT: Hello Monolog  
@@ -190,8 +189,7 @@
 <span class="o">[</span>2016-12-03 06:58:34] local.NOTICE: Hello Monolog  
 <span class="o">[</span>2016-12-03 06:58:34] local.INFO: Hello Monolog  
 <span class="o">[</span>2016-12-03 06:58:34] local.DEBUG: Hello Monolog  
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="2-monolog-살펴-보기">2. Monolog 살펴 보기</h2>
 
@@ -206,7 +204,7 @@
 
 <p>로 구성되어 있다. 각각의 역할과 예는 아래 블럭에 인라인 주석으로 표시했다.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>tree vendor/monolog/monolog/src/Monolog
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>tree vendor/monolog/monolog/src/Monolog
 <span class="c"># vendor/monolog/monolog/src/Monolog</span>
 <span class="c"># ├── ErrorHandler.php            # Monolog를 전역 예외 처리기로 등록할 때 편리한 헬퍼</span>
 <span class="c"># ├── Logger.php                  # PSR-3 LoggerInterface를 구현한 구체 클래스</span>
@@ -227,8 +225,7 @@
 <span class="c">#     └── GitProcessor.php        # 로그에 Git 브랜치와 커밋 해시를 추가한다.</span>
 <span class="c">#</span>
 <span class="c"># 7 directories, 88 files</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="3-elastic-search를-이용한-로그-핸들링">3. Elastic Search를 이용한 로그 핸들링</h2>
 
@@ -245,10 +242,9 @@
 
 <p>아래 설치법은 맥 OS X 기준인데, 다른 운영체제도 <a href="https://www.docker.com/">Docker 홈페이지</a>를 방문해서 Docker 패키지를 다운로드 받으면 된다. Docker 패키지는 가벼운 리눅스 커널과 유틸리티의 모음이라고 이해하면 된다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew tap caskroom/cask
-<span class="gp">$ </span>brew cask install docker --appdir<span class="o">=</span>/Application
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap caskroom/cask
+<span class="nv">$ </span>brew cask <span class="nb">install </span>docker <span class="nt">--appdir</span><span class="o">=</span>/Application
+</code></pre></div></div>
 
 <p><strong><code class="highlighter-rouge">Note</code>`</strong> Docker 데몬은 관리자 권한을 요구하므로, 설치 후 최초 한번 실행해서 운영체제 로그인 정보를 입력하여 권한을 부여해야한다.</p>
 
@@ -256,16 +252,16 @@
 
 <p>Docker를 쓰는 이유는 환경 격리다. 호스트 운영체제가 윈도우든 맥이든 Docker 이미지는 같은 리눅스 커널 위에서 작동하므로 호스트 운영체제의 영향을 받지 않는다. 게다가 운영체제에 맞춘 복잡한 컴파일 과정을 거치지 않아도 된다. 그냥 아래 명령어들을 복사해서 콘솔에 붙여넣기만 하면 된다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># 도커 컨테이너와 호스트 머신이 공유할 폴더를 만든다.</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 도커 컨테이너와 호스트 머신이 공유할 폴더를 만든다.</span>
 <span class="c"># 호스트 머신이란 로컬 컴퓨터를 말한다. </span>
 <span class="c"># Docker 이미지는 서버의 스냅샷이고 이를 실행한 상태를 컨테이너라 한다(정확한 표현은 아니다.)</span>
-~/monolog-scratchpad <span class="nv">$ </span>mkdir esdata
+~/monolog-scratchpad <span class="nv">$ </span><span class="nb">mkdir </span>esdata
 
 <span class="c"># 이미지를 다운로드 받고 실행한다.</span>
-~/monolog-scratchpad <span class="nv">$ </span>docker run -d <span class="se">\</span>
-    --name es50 <span class="se">\</span>
-    -v <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/esdata:/usr/share/elasticsearch/data <span class="se">\</span>
-    -p 9200:9200 <span class="se">\</span>
+~/monolog-scratchpad <span class="nv">$ </span>docker run <span class="nt">-d</span> <span class="se">\</span>
+    <span class="nt">--name</span> es50 <span class="se">\</span>
+    <span class="nt">-v</span> <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/esdata:/usr/share/elasticsearch/data <span class="se">\</span>
+    <span class="nt">-p</span> 9200:9200 <span class="se">\</span>
     elasticsearch
 <span class="c"># Unable to find image 'elasticsearch:latest' locally</span>
 <span class="c"># ...</span>
@@ -277,8 +273,7 @@
 ~/monolog-scratchpad <span class="nv">$ </span>docker ps
 <span class="c"># CONTAINER ID        IMAGE            COMMAND    CREATED    STATUS    PORTS    NAMES</span>
 <span class="c"># a88d12860180        elasticsearch    ...        ...        ...       9200/tcp es50</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>브라우저에서 <code class="highlighter-rouge">http://localhost:9200</code>을 방문해서 방금 Docker 컨테이너로 구동한 Elastic Search가 잘 작동하나 확인해 보자.</p>
 
@@ -288,22 +283,20 @@
 
 <p>앞서 Elastic Search는 REST API를 제공한다고 했다. REST API를 소비하는 PHP 클라이언트를 설치한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>composer require elasticsearch/elasticsearch
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>composer require elasticsearch/elasticsearch
+</code></pre></div></div>
 
 <p>라우트 정의 파일로 설치한 Elastic Search 라이브러리가 작동하지는 확인한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php 
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php </span>
+
 <span class="k">use</span> <span class="nx">Elasticsearch\ClientBuilder</span><span class="p">;</span>
 
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$esClient</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
     <span class="nx">dd</span><span class="p">(</span><span class="nv">$esClient</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="/images/2016-12-03-img-02.png"><img src="/images/2016-12-03-img-02.png" alt="Elastic Search Client" /></a></p>
 
@@ -313,14 +306,13 @@
 
 <p>라라벨 <a href="https://laravel.com/docs/5.3/errors#configuration">공식 문서</a>에서는 <code class="highlighter-rouge">bootstrap/app.php</code>에서 등록하는 방법을 설명하고 있다. 좀 더 고급지고, 다른 프로젝트에서 재활용할 수 있도록 별도 서비스 프로바이더로 만들어 봤다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>php artisan make:provider CustomLogProvider
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>php artisan make:provider CustomLogProvider
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">boot()</code> 메서드에서 <code class="highlighter-rouge">ESHandler</code> 인스턴스를 만들고 포매터와 프로세서를 추가한 후, <code class="highlighter-rouge">Monolog</code> 인스턴스에 추가한다. 몇 가지 예제를 더 추가했는데 인라인 주석을 달아 두었다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php</span>
+
 <span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">App\LogHandlers\ESHandler</span><span class="p">;</span>
@@ -333,47 +325,46 @@
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="c1">// 라라벨이 부팅하면서 서비스 컨테이너에 이미 등록해놓은 Monolog 인스턴스를 가져온다.
-</span>        <span class="nv">$monolog</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="p">[</span><span class="s1">'log'</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getMonolog</span><span class="p">();</span>
+        <span class="c1">// 라라벨이 부팅하면서 서비스 컨테이너에 이미 등록해놓은 Monolog 인스턴스를 가져온다.</span>
+        <span class="nv">$monolog</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="p">[</span><span class="s1">'log'</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getMonolog</span><span class="p">();</span>
         
-        <span class="c1">// Elastic Search REST 클라이언트 인스턴스를 만든다.
-</span>        <span class="nv">$esClient</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+        <span class="c1">// Elastic Search REST 클라이언트 인스턴스를 만든다.</span>
+        <span class="nv">$esClient</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
         
-        <span class="c1">// Monolog에 추가할 Elastic Search 핸들러 인스턴스를 만든다.
-</span>        <span class="nv">$esHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ESHandler</span><span class="p">(</span><span class="nv">$esClient</span><span class="p">);</span>
+        <span class="c1">// Monolog에 추가할 Elastic Search 핸들러 인스턴스를 만든다.</span>
+        <span class="nv">$esHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ESHandler</span><span class="p">(</span><span class="nv">$esClient</span><span class="p">);</span>
         
-        <span class="c1">// NormalizerFormatter는 라이브러리에 내장되어 있다.
-</span>        <span class="c1">// Monolog 메서드의 인자인 $message, $context 값을 정규화한다.
-</span>        <span class="c1">// 정규화란 데이터 타입을 판단하고 적졀한 형태로 가공하는 것을 말한다.
-</span>        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">setFormatter</span><span class="p">(</span><span class="k">new</span> <span class="nx">NormalizerFormatter</span><span class="p">(</span><span class="s1">'Y-m-d\TH:i:s.uP'</span><span class="p">));</span>
+        <span class="c1">// NormalizerFormatter는 라이브러리에 내장되어 있다.</span>
+        <span class="c1">// Monolog 메서드의 인자인 $message, $context 값을 정규화한다.</span>
+        <span class="c1">// 정규화란 데이터 타입을 판단하고 적졀한 형태로 가공하는 것을 말한다.</span>
+        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">setFormatter</span><span class="p">(</span><span class="k">new</span> <span class="nx">NormalizerFormatter</span><span class="p">(</span><span class="s1">'Y-m-d\TH:i:s.uP'</span><span class="p">));</span>
         
-        <span class="c1">// WebProcessor는 HTTP 요청에서 url, ip, http_method, referrer 등의 
-</span>        <span class="c1">// 값을 추출하고 로그 메시지에 추가하는 일을 한다.
-</span>        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">pushProcessor</span><span class="p">(</span><span class="k">new</span> <span class="nx">WebProcessor</span><span class="p">);</span>
+        <span class="c1">// WebProcessor는 HTTP 요청에서 url, ip, http_method, referrer 등의 </span>
+        <span class="c1">// 값을 추출하고 로그 메시지에 추가하는 일을 한다.</span>
+        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">pushProcessor</span><span class="p">(</span><span class="k">new</span> <span class="nx">WebProcessor</span><span class="p">);</span>
         
-        <span class="c1">// Monolog 라이브러리에 기본 포함된 프로세서가 아닌 정말 정말 커스컴 프로세서를 추가해서
-</span>        <span class="c1">// 로깅할 데이터를 더 추가한다. 여기서는 애플리케이션 이름, 버전, HTTP 요청을 구분할 수 있는 Hash 값을 추가했다.
-</span>        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">pushProcessor</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="k">array</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Monolog 라이브러리에 기본 포함된 프로세서가 아닌 정말 정말 커스컴 프로세서를 추가해서</span>
+        <span class="c1">// 로깅할 데이터를 더 추가한다. 여기서는 애플리케이션 이름, 버전, HTTP 요청을 구분할 수 있는 Hash 값을 추가했다.</span>
+        <span class="nv">$esHandler</span><span class="o">-&gt;</span><span class="na">pushProcessor</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="k">array</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
             <span class="nv">$record</span><span class="p">[</span><span class="s1">'extra'</span><span class="p">][</span><span class="s1">'app_name'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">'app.name'</span><span class="p">);</span>
             <span class="nv">$record</span><span class="p">[</span><span class="s1">'extra'</span><span class="p">][</span><span class="s1">'app_version'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'APP_VERSION'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
             <span class="nv">$record</span><span class="p">[</span><span class="s1">'extra'</span><span class="p">][</span><span class="s1">'fingerprint'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">request</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fingerprint</span><span class="p">();</span>
             <span class="k">return</span> <span class="nv">$record</span><span class="p">;</span>
         <span class="p">});</span>
         
-        <span class="c1">// Elastic Search 핸들러를 Monolog에 추가했다.
-</span>        <span class="c1">// Monolog는 핸들러를 쌓아 두었다가, 하나씩 순차적으로 실행한다.
-</span>        <span class="c1">// 즉, 라라벨이 기본으로 생성한 StreamHanlder(파일 로그)를 실행하고, 방금 만든 ESHandler도 실행한다.
-</span>        <span class="c1">// 이미 생성된 인스턴스의 속성을 변경하는 것이므로 return할 필요 없다.
-</span>        <span class="nv">$monolog</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="nv">$esHandler</span><span class="p">);</span>
+        <span class="c1">// Elastic Search 핸들러를 Monolog에 추가했다.</span>
+        <span class="c1">// Monolog는 핸들러를 쌓아 두었다가, 하나씩 순차적으로 실행한다.</span>
+        <span class="c1">// 즉, 라라벨이 기본으로 생성한 StreamHanlder(파일 로그)를 실행하고, 방금 만든 ESHandler도 실행한다.</span>
+        <span class="c1">// 이미 생성된 인스턴스의 속성을 변경하는 것이므로 return할 필요 없다.</span>
+        <span class="nv">$monolog</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="nv">$esHandler</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>이제 <code class="highlighter-rouge">ESHandler</code>를 만들 차례인데, Elastic Search API 문서를 참고해야 한다. 다음 코드 블록에서 <code class="highlighter-rouge">write</code> 메서드는 부모 클래스에서 구현을 강제한 메서드이며, 메서드 본문은 Elastic Search PHP 클라이언트의 사용법을 참고한 것이다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/LogHandlers/ESHandler.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/LogHandlers/ESHandler.php</span>
+
 <span class="k">namespace</span> <span class="nx">App\LogHandlers</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">Elasticsearch\Client</span> <span class="k">as</span> <span class="nx">ESClient</span><span class="p">;</span>
@@ -409,29 +400,27 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">esClient</span><span class="o">-&gt;</span><span class="na">bulk</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="34-서비스-프로바이더-등록-및-테스트">3.4. 서비스 프로바이더 등록 및 테스트</h3>
 
 <p>라라벨 프로젝트에서 서비스 프로바이더를 등록하는 일반적인 방법이다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// config/app.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// config/app.php</span>
+
 <span class="k">return</span> <span class="p">[</span>
-    <span class="c1">// ...
-</span>    <span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="c1">// ...
-</span>        <span class="nx">App\Providers\CustomLogProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+    <span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="c1">// ...</span>
+        <span class="nx">App\Providers\CustomLogProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
     <span class="p">]</span>
 <span class="p">]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>라우트 정의 파일에서 로그 쓰는 부분을 좀 더 단순히 고쳤다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// web/routes.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// web/routes.php</span>
+
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello Monolog"</span><span class="p">;</span>
     <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">];</span>
@@ -439,8 +428,7 @@
     
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>아래 그림은 <code class="highlighter-rouge">http://localhost:9200/monolog/Laravel/_search?size=100&amp;sort=datetime:desc</code>로 요청했을 때의 출력 결과다.</p>
 
@@ -448,29 +436,27 @@
 
 <p>라라벨의 로그 저장소(파일)에도 잘 기록되었나 확인해 보자.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
 
 <span class="o">[</span>2016-12-03 10:36:35] local.DEBUG: Hello Monolog <span class="o">{</span><span class="s2">"foo"</span>:<span class="s2">"bar"</span><span class="o">}</span> 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="4-결론">4. 결론</h2>
 
 <p><strong>Monolog는 PHP 커뮤니티 규칙을 따르는 로거</strong>로서, 핸들러, 포매터, 프로세서 등의 기능을 이용해서, 애플리케이션 로깅의 자유도와 확장성을 제공한다. 본문에서 봤다시피 <strong>핸들러를 계속 스태킹(stacking)하여 여러 가지 방법으로 로그를 처리</strong>할 수 있다. 가령 이 글의 예제처럼 파일에도 쓰고, Elastic Search에도 쓰고, 덧붙여서 <code class="highlighter-rouge">stdout</code> 또는 <code class="highlighter-rouge">stderr</code>로도 출력하고 싶다면 <code class="highlighter-rouge">ErrorLogHandler</code>를 추가하면 된다. 아래처럼 말이다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php</span>
+
 <span class="k">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="c1">// ...
-</span>        <span class="nv">$errorLogHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Monolog\Handler\ErrorLogHandler</span><span class="p">();</span>
+        <span class="c1">// ...</span>
+        <span class="nv">$errorLogHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Monolog\Handler\ErrorLogHandler</span><span class="p">();</span>
         <span class="nv">$monolog</span><span class="o">-&gt;</span><span class="na">pushHandler</span><span class="p">(</span><span class="nv">$errorLogHandler</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong><code class="highlighter-rouge">Note</code></strong> Docker 컨테이너를 중지하려면 <code class="highlighter-rouge">docker stop es50</code> 명령을 수행한다. <code class="highlighter-rouge">docker rm es50</code> 명령으로 이미 만든 컨테이너를 완전히 삭제하지 않았다면 다음 번 실행할 때는 <code class="highlighter-rouge">docker start es50</code> 명령으로 간단히 시작할 수 있다. Elastic Search는 꽤 무거운 서비스라 부팅하는데 10초 정도 걸릴 수 있다.</p>
 
@@ -479,13 +465,13 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>라라벨 https://laravel.com&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>라라벨 https://laravel.com <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>Elastic Search https://www.elastic.co/kr/&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>Elastic Search https://www.elastic.co/kr/ <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>Docker https://www.docker.com/&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+      <p>Docker https://www.docker.com/ <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -600,7 +586,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1138,7 +1124,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1183,6 +1169,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1272,6 +1264,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1281,13 +1280,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1340,7 +1332,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

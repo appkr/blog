@@ -170,10 +170,9 @@
 
 <p>Jekyll 설치와 프로젝트 생성 방법은 간단한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install jekyll
-<span class="gp">$ </span>jekyll new blog
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gem <span class="nb">install </span>jekyll
+<span class="nv">$ </span>jekyll new blog
+</code></pre></div></div>
 
 <h3 id="how-to-write-a-post">How to Write a Post</h3>
 
@@ -189,19 +188,18 @@
   </li>
 </ul>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
-<span class="s">layout</span><span class="pi">:</span> <span class="s">post</span>
-<span class="s">title</span><span class="pi">:</span>  <span class="s">Welcome to Jekyll!</span>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s">Welcome to Jekyll!</span>
 <span class="nn">---</span>
 <span class="ge">*Lorem ipsum*</span> dolor sit amet, consectetur adipisicing elit.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="liquid-template-engine">Liquid Template Engine</h3>
 
-<p>Jekyll 은 <a href="https://github.com/Shopify/liquid/wiki">Liquid Template Engine</a> 을 이용한다. 사용법은 다른 Template Engine 과 거의 유사하다. Liquid 는 제어/반복/할당 등은 <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> 를 이용하고, 변수 Interpolation 은 <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> 를 이용한다.</p>
+<p>Jekyll 은 <a href="https://github.com/Shopify/liquid/wiki">Liquid Template Engine</a> 을 이용한다. 사용법은 다른 Template Engine 과 거의 유사하다. Liquid 는 제어/반복/할당 등은 <code class="highlighter-rouge">{% %}</code> 를 이용하고, 변수 Interpolation 은 <code class="highlighter-rouge">{{ }}</code> 를 이용한다.</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/index.html --&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/index.html --&gt;</span>
 ---
 layout: default
 ---
@@ -216,8 +214,7 @@ layout: default
     <span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;/article&gt;</span>
 {% endfor %}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="블로그에서-어떤-기능을-제공할-것인가">블로그에서 어떤 기능을 제공할 것인가?</h2>
 
@@ -253,7 +250,7 @@ layout: default
 
 <p>아래 처럼 디렉토리 구조를 잡았다. 일반적인 Jekyll 프로젝트 구조 대비 달라진 점은, <code class="highlighter-rouge">_assets</code> 디렉토리에 뷰 제어 관련 리소스를 전부 몰어 넣어 놓은 점과, Jekyll Build 결과물을 <code class="highlighter-rouge">_sites</code> 가 아닌 <code class="highlighter-rouge">public</code> 디렉토리에 담는다는 점 정도 이다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>.
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
 ├── _assets                           <span class="c"># Housing for Images, JS, CSS</span>
 │   ├── images                        <span class="c"># Images used in posts</span>
 │   ├── scripts                       <span class="c"># Javascripts (my JS)</span>
@@ -287,36 +284,35 @@ layout: default
 ├── index.html                        <span class="c"># 대문 페이지</span>
 ├── package.json                      <span class="c"># Node package definition</span>
 └── search.json                       <span class="c"># Posts 검색을 위한 인덱스 (For simple-jekyll-search)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>아래는 이 Jekyll 프로젝트의 글로벌 설정이다.</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/_config.yml</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/_config.yml</span>
 
 <span class="c1"># Plugins</span>
-<span class="s">gems</span><span class="pi">:</span>
+<span class="na">gems</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">jekyll-paginate</span>
   <span class="pi">-</span> <span class="s">jekyll-sitemap</span>
   <span class="pi">-</span> <span class="s">jekyll-feed</span>
 
 <span class="c1"># Site settings</span>
-<span class="s">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Appkr.memo(new</span><span class="nv"> </span><span class="s">Life)"</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Appkr.memo(new</span><span class="nv"> </span><span class="s">Life)"</span>
 
-<span class="s">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr's</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">day-to-day</span><span class="nv"> </span><span class="s">life</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">thoughts."</span>
-<span class="s">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># the subpath of your site, e.g. /blog</span>
-<span class="s">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://blog.appkr.kr"</span> <span class="c1"># the base hostname &amp; protocol for your site</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr's</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">day-to-day</span><span class="nv"> </span><span class="s">life</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">thoughts."</span>
+<span class="na">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># the subpath of your site, e.g. /blog</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://blog.appkr.kr"</span> <span class="c1"># the base hostname &amp; protocol for your site</span>
 
-<span class="s">excerpt_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
+<span class="na">excerpt_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
 
 <span class="c1"># Contacts</span>
-<span class="s">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr"</span>
-<span class="s">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">juwonkim@me.com"</span>
-<span class="s">github</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/appkr"</span>
-<span class="s">facebook</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://www.facebook.com/juwonkimatmedotcom"</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr"</span>
+<span class="na">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">juwonkim@me.com"</span>
+<span class="na">github</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://github.com/appkr"</span>
+<span class="na">facebook</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://www.facebook.com/juwonkimatmedotcom"</span>
 
 <span class="c1"># Build settings</span>
-<span class="s">exclude</span><span class="pi">:</span>
+<span class="na">exclude</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">lib</span>
   <span class="pi">-</span> <span class="s">Gemfile</span>
   <span class="pi">-</span> <span class="s">Gemfile.lock</span>
@@ -324,13 +320,13 @@ layout: default
   <span class="pi">-</span> <span class="s">bower.json</span>
   <span class="pi">-</span> <span class="s">gulpfile.babel.js</span>
   <span class="pi">-</span> <span class="s">package.json</span>
-<span class="s">permalink</span><span class="pi">:</span> <span class="s">/:categories/:slug/</span>
-<span class="s">lsi</span><span class="pi">:</span> <span class="s">false</span> <span class="c1"># if set to true generate related posts</span>
+<span class="na">permalink</span><span class="pi">:</span> <span class="s">/:categories/:slug/</span>
+<span class="na">lsi</span><span class="pi">:</span> <span class="no">false</span> <span class="c1"># if set to true generate related posts</span>
 
 <span class="c1"># Conversion</span>
-<span class="s">markdown</span><span class="pi">:</span> <span class="s">redcarpet</span>
-<span class="s">redcarpet</span><span class="pi">:</span>
-  <span class="s">extensions</span><span class="pi">:</span>
+<span class="na">markdown</span><span class="pi">:</span> <span class="s">redcarpet</span>
+<span class="na">redcarpet</span><span class="pi">:</span>
+  <span class="na">extensions</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="s">smart</span>
     <span class="pi">-</span> <span class="s">fenced_code_blocks</span>
     <span class="pi">-</span> <span class="s">autolink</span>
@@ -341,14 +337,13 @@ layout: default
     <span class="pi">-</span> <span class="s">highlight</span>
     <span class="pi">-</span> <span class="s">quote</span>
     <span class="pi">-</span> <span class="s">footnote_ref</span>
-  <span class="s">highlighter</span><span class="pi">:</span> <span class="s">pygments</span>
+  <span class="na">highlighter</span><span class="pi">:</span> <span class="s">pygments</span>
 
 <span class="c1"># Outputting</span>
-<span class="s">paginate</span><span class="pi">:</span> <span class="s">5</span>
-<span class="s">paginate_path</span><span class="pi">:</span> <span class="s">/page:num/</span>
-<span class="s">destination</span><span class="pi">:</span> <span class="s">public</span>
-</code></pre>
-</div>
+<span class="na">paginate</span><span class="pi">:</span> <span class="s">5</span>
+<span class="na">paginate_path</span><span class="pi">:</span> <span class="s">/page:num/</span>
+<span class="na">destination</span><span class="pi">:</span> <span class="s">public</span>
+</code></pre></div></div>
 
 <p>프로젝트 구조와 기본 설정이 준비 되었으니, 로컬 데이터베이스로 가져온 워드프레스 포스트들을 Jekyll 형식으로 변경해야 한다.</p>
 
@@ -356,15 +351,14 @@ layout: default
 
 <p>데이터 마이그레이션을 위해 아래 Ruby 스크립트를 작성하였다. 이 스크립트에서 주목할만한 부분은 워드프레스 <code class="highlighter-rouge">wp_posts.post_content</code> 컬럼에 기록된 HTML 형식의 포스트 본문을 <a href="https://github.com/cousine/downmark_it"><code class="highlighter-rouge">DownmarkIt</code></a> 라이브러리를 이용하여 다시 Markdown 형식으로 변경하는 부분이다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>wget https://raw.githubusercontent.com/cousine/downmark_it/master/downmark_it.rb -O lib/downmark_it.rb
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget https://raw.githubusercontent.com/cousine/downmark_it/master/downmark_it.rb <span class="nt">-O</span> lib/downmark_it.rb
 <span class="c"># downmark_it.rb 는 hpricot 라이브러리에 의존하므로 설치한다. </span>
-<span class="gp">$ </span>gem install hpricot
-</code></pre>
-</div>
+<span class="nv">$ </span>gem <span class="nb">install </span>hpricot
+</code></pre></div></div>
 
 <p>아래는 변환 스크립트 전체 소스이다. 이 스크립트의 역할은 로컬 데이터베이스 테이블에서 워드프레스에서 생성된 데이터를 가져온 후, Jekyll 형식에 맞는 내용으로 변경한 후 <code class="highlighter-rouge">Y-m-d-title.md</code> 파일에 저장하는 것이다.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/lib/wordpress.rb</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/lib/wordpress.rb</span>
 <span class="c1"># Inspired from vitobotta's script</span>
 <span class="c1"># @see https://gist.github.com/vitobotta/888709</span>
 
@@ -439,12 +433,11 @@ layout: default
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>잘 되기를 기도하면서, Run…</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">$ </span>ruby -r <span class="s1">'./lib/wordpress'</span> -e <span class="s1">'WordPress::import("wordpress", "homestead", "secret", "wp", "localhost", 3306)'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ $ </span>ruby <span class="nt">-r</span> <span class="s1">'./lib/wordpress'</span> <span class="nt">-e</span> <span class="s1">'WordPress::import("wordpress", "homestead", "secret", "wp", "localhost", 3306)'</span>
 <span class="c"># where:</span>
 <span class="c">#  "wordpress" is database name</span>
 <span class="c">#  "homestead" is the database username</span>
@@ -452,8 +445,7 @@ layout: default
 <span class="c">#  "wp" is the table prefix (default "wp")</span>
 <span class="c">#  "localhost" is the database host (default "localhost")</span>
 <span class="c">#  3306 is the mysql server's tcp port (default 3306)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>한번에 됐을까? 절대 그런 일은 일어나지 않는다. 어쨌든, 워드프레스에서 Jekyll 포스트 형태로 모두 변경되었다. 완벽한 변환이란 없다, 수 작업은 필수~</p>
 
@@ -568,7 +560,7 @@ layout: default
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1106,7 +1098,7 @@ layout: default
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1151,6 +1143,12 @@ layout: default
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1240,6 +1238,13 @@ layout: default
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1249,13 +1254,6 @@ layout: default
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1308,7 +1306,7 @@ layout: default
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

@@ -181,8 +181,8 @@
 
 <h2 id="before">Before</h2>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2016-05-24 ~ 2016-11-28, 10 커밋, 4 명의 커미터
-</span><span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2016-05-24 ~ 2016-11-28, 10 커밋, 4 명의 커미터</span>
+<span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span><span class="p">;</span>
 
@@ -234,7 +234,7 @@
                 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">startTimer</span><span class="p">();</span>
                 <span class="nv">$orderDto</span> <span class="o">=</span> <span class="nv">$creator</span><span class="o">-&gt;</span><span class="na">createOrder</span><span class="p">(</span><span class="nv">$delivery</span><span class="p">);</span>
                 <span class="nv">$time</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">stopTimer</span><span class="p">();</span>
-                <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] **** Created  2.0 Order [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="nv">$orderDto</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()}]</span><span class="o">.</span> <span class="nx">Took</span> <span class="p">{</span><span class="nv">$time</span><span class="si">}</span><span class="s2"> seconds."</span><span class="p">);</span>
+                <span class="nx">\Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s2">"[OrderCreationJob] **** Created  2.0 Order [ID:</span><span class="si">{</span><span class="nv">$deliveryId</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="nv">$orderDto</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()</span><span class="si">}</span><span class="s2">]. Took </span><span class="si">{</span><span class="nv">$time</span><span class="si">}</span><span class="s2"> seconds."</span><span class="p">);</span>
                 <span class="nv">$job</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
             <span class="p">}</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -255,13 +255,12 @@
         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStopSeconds</span> <span class="o">-</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStartSeconds</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="after">After</h2>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2017-11-28
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2017-11-28</span>
+
 <span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="o">...</span><span class="p">;</span>
@@ -370,8 +369,7 @@
         <span class="nx">Log</span><span class="o">::</span><span class="na">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="s2">"[OrderCreationJob] </span><span class="si">{</span><span class="nv">$message</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
       </div>
 
@@ -483,7 +481,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1021,7 +1019,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1066,6 +1064,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1155,6 +1159,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1164,13 +1175,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1223,7 +1227,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

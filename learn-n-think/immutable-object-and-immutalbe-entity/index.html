@@ -145,60 +145,57 @@
 
 <p>아래 예제를 살펴 볼까요?</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>위 코드의 실행 결과는 <code class="highlighter-rouge">int(1)</code>입니다. 변수 <code class="highlighter-rouge">$b</code>에 변수 <code class="highlighter-rouge">$a</code>의 값을 할당한 후, <code class="highlighter-rouge">$b</code>에 새로운 값 <code class="highlighter-rouge">3</code>을 할당했습니다. 당연히 <code class="highlighter-rouge">$b</code>에는 <code class="highlighter-rouge">3</code>이 담겨 있고, <code class="highlighter-rouge">$a</code>에는 <code class="highlighter-rouge">1</code>이 담겨 있을 겁니다. 아주 쉽죠?</p>
 
 <p>그런데, 객체 컨텍스트에서도 이 규칙이 그대로 적용될까요? 클래스는 변수와 함수로 구성된 템플릿이며, 객체란 그 템플릿에 필요한 값을 채워서 완성한 실체입니다. 여튼 위의 예제와 똑같이 동작해야 하지않을까요?</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">;</span>
 <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
 <span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>
-<span class="c1">// class stdClass#696 (1) {
-//   public $name =&gt;
-//   string(3) "Bar"
-// }
-</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
-<span class="c1">// class stdClass#696 (1) {
-//   public $name =&gt;
-//   string(3) "Bar"
-// }
-</span></code></pre>
-</div>
+<span class="c1">// class stdClass#696 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Bar"</span>
+<span class="c1">// }</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="c1">// class stdClass#696 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Bar"</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
 
 <p>변수 <code class="highlighter-rouge">$b</code>에 <code class="highlighter-rouge">$a</code>에 담긴 객체를 그대로 할당한 후, <code class="highlighter-rouge">$b</code>의 <code class="highlighter-rouge">$name</code> 속성을 변경했습니다. <code class="highlighter-rouge">$b::name</code> 속성 값만 <code class="highlighter-rouge">"Bar"</code>로 바뀔 것이라 생각했지만, <code class="highlighter-rouge">$a::name</code> 속성 값도 <code class="highlighter-rouge">"Bar"</code>로 변경되어버렸습니다. <code class="highlighter-rouge">var_dump()</code>로 출력된 결과물에 객체 번호를 보면 힌트를 얻을 수 있습니다. <code class="highlighter-rouge">$a</code>와 <code class="highlighter-rouge">$b</code> 모두 <code class="highlighter-rouge">#696</code>으로 같습니다. 즉, 객체 <code class="highlighter-rouge">$b</code>는 객체 <code class="highlighter-rouge">$a</code>의 메모리 번지를 그냥 참조하고 있다고 볼 수 있습니다.</p>
 
 <p>해결법은 의외로 간단합니다. 복제하는거죠. <code class="highlighter-rouge">clone</code> 키워드와 객체 번호가 <code class="highlighter-rouge">#696</code>, <code class="highlighter-rouge">#697</code>로 서로 다름을 확인해주세요.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">;</span>
 <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$a</span><span class="p">;</span>
 <span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>
-<span class="c1">// class stdClass#697 (1) {
-//   public $name =&gt;
-//   string(3) "Bar"
-// }
-</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
-<span class="c1">// class stdClass#696 (1) {
-//   public $name =&gt;
-//   string(3) "Foo"
-// }
-</span></code></pre>
-</div>
+<span class="c1">// class stdClass#697 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Bar"</span>
+<span class="c1">// }</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="c1">// class stdClass#696 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Foo"</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -211,48 +208,45 @@
 
 <p>객체의 이점을 얻기 위해서 보통 원시 타입(<code class="highlighter-rouge">string</code>, <code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">float</code>, <code class="highlighter-rouge">array</code>)을 밸류 객체로 바꿔서 사용하는데, 예를 들면, <code class="highlighter-rouge">string</code> 타입의 블로그 포스트 제목을 <code class="highlighter-rouge">Title</code> 객체를 만들어 사용하는 것 같은 것이죠. 예제가 현실적이지는 않지만, 앞서 말한 <code class="highlighter-rouge">Carbon</code>을 이용함으로써 다음과 같은 편리함이 더해집니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$article</span> <span class="o">=</span> Article::first<span class="o">()</span>;
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$article</span>-&gt;created_at <span class="o">=</span> <span class="nv">$article</span>-&gt;created_at-&gt;addDays<span class="o">(</span>5<span class="o">)</span>;
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$article</span>-&gt;save<span class="o">()</span>;
-</code></pre>
-</div>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$article</span> <span class="o">=</span> Article::first<span class="o">()</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$article</span>-&gt;created_at <span class="o">=</span> <span class="nv">$article</span>-&gt;created_at-&gt;addDays<span class="o">(</span>5<span class="o">)</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$article</span>-&gt;save<span class="o">()</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p><strong>그런데 <code class="highlighter-rouge">Carbon</code>은 불변 밸류가 아닙니다.</strong> 아래 예제는 무시무시합니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span>;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span><span class="p">;</span>
 <span class="c"># =&gt; Carbon\Carbon {#663</span>
 <span class="c">#      +"date": "2017-06-04 03:00:22.272655",</span>
 <span class="c">#    }</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span>-&gt;addMonths<span class="o">(</span>1<span class="o">)</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$now</span>-&gt;addMonths<span class="o">(</span>1<span class="o">)</span><span class="p">;</span>
 <span class="c"># =&gt; Carbon\Carbon {#663</span>
 <span class="c">#      +"date": "2017-07-04 03:00:22.272655",</span>
 <span class="c">#    }</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$now</span><span class="p">;</span>
 <span class="c"># =&gt; Carbon\Carbon {#663</span>
 <span class="c">#      +"date": "2017-07-04 03:00:22.272655",</span>
 <span class="c">#    }</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">$now</code>라는 변수를 여러 곳에서 참조한다고 가정해보죠. 어떤 로직에서 <code class="highlighter-rouge">$now</code> 변수에 <code class="highlighter-rouge">addMonths()</code> API를 호출했다고 가정하죠. 그러면 그 뒤에 <code class="highlighter-rouge">$now</code> 변수를 참조하는 로직은 전부 한 달 뒤의 날짜 값을 사용하게 되는 겁니다. <code class="highlighter-rouge">Carbon</code>의 특성을 모르는 개발자가 이와 같이 코드를 짰을 때, <code class="highlighter-rouge">Carbon</code>의 특성에 대해 이해하고 있는 다른 개발자가 이 버그를 잡을 수 있을까요?</p>
 
 <p>아참 해결방법은 <code class="highlighter-rouge">clone</code> 키워드를 이용하는 것입니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span>;
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$oneMonthFromNow</span> <span class="o">=</span> <span class="o">(</span>clone <span class="nv">$now</span><span class="o">)</span>-&gt;addMonths<span class="o">(</span>1<span class="o">)</span>;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span><span class="p">;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$oneMonthFromNow</span> <span class="o">=</span> <span class="o">(</span>clone <span class="nv">$now</span><span class="o">)</span>-&gt;addMonths<span class="o">(</span>1<span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h3 id="22-money">2.2. Money</h3>
 
 <p>불변 객체는 한 번 생성된 이후에 상태를 변경할 수 없는 객체입니다. 아래 <code class="highlighter-rouge">Money</code> 클래스 예제를 살펴보면, <code class="highlighter-rouge">add()</code> 메서드는 다른 <code class="highlighter-rouge">Money</code> 객체를 인자로 받고, <code class="highlighter-rouge">$value</code> 속성의 상태를 변경하는 것이 아니라, 완전 새로운 <code class="highlighter-rouge">Money</code> 객체를 반환합니다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Common/Model/Money.php
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Common/Model/Money.php</span>
+
 <span class="k">class</span> <span class="nc">Money</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
@@ -278,27 +272,25 @@
             <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">===</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="na">getAmount</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>아래 팅커 출력 결과에서 객체의 번호가 <code class="highlighter-rouge">#683</code>, <code class="highlighter-rouge">#692</code>, <code class="highlighter-rouge">#694</code>로 모두 다름에 주목해야 합니다. 매번 다른 객체가 생성된다는 뜻이죠~</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>php artisan tinker
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$baseSalary</span> <span class="o">=</span> new Money<span class="o">(</span>100<span class="o">)</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$baseSalary</span> <span class="o">=</span> new Money<span class="o">(</span>100<span class="o">)</span><span class="p">;</span>
 <span class="c"># =&gt; Money {#683}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$overtimeAllowance</span> <span class="o">=</span> new Money<span class="o">(</span>100<span class="o">)</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$overtimeAllowance</span> <span class="o">=</span> new Money<span class="o">(</span>100<span class="o">)</span><span class="p">;</span>
 <span class="c"># =&gt; Money {#692}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$baseSalary</span> <span class="o">===</span> <span class="nv">$overtimeAllowance</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$baseSalary</span> <span class="o">===</span> <span class="nv">$overtimeAllowance</span><span class="p">;</span>
 <span class="c"># =&gt; false</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$baseSalary</span>-&gt;isEqualTo<span class="o">(</span><span class="nv">$overtimeAllowance</span><span class="o">)</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$baseSalary</span>-&gt;isEqualTo<span class="o">(</span><span class="nv">$overtimeAllowance</span><span class="o">)</span><span class="p">;</span>
 <span class="c"># =&gt; true</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$totalSalary</span> <span class="o">=</span> <span class="nv">$baseSalary</span>-&gt;add<span class="o">(</span><span class="nv">$overtimeAllowance</span><span class="o">)</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$totalSalary</span> <span class="o">=</span> <span class="nv">$baseSalary</span>-&gt;add<span class="o">(</span><span class="nv">$overtimeAllowance</span><span class="o">)</span><span class="p">;</span>
 <span class="c"># =&gt; Money {#694}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nv">$totalSalary</span>-&gt;getAmount<span class="o">()</span>;
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$totalSalary</span>-&gt;getAmount<span class="o">()</span><span class="p">;</span>
 <span class="c"># =&gt; 200</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>밸류 객체는 객체의 속성 값이 모두 같다면 “같다”라고 할 수 있습니다. <code class="highlighter-rouge">User</code> 객체를 예로 들어 볼까요? 공교롭게도 어떤 <code class="highlighter-rouge">User</code>가 저와 같은 <code class="highlighter-rouge">$name</code>, <code class="highlighter-rouge">$age</code>를 가지고 있다고 가정해보죠? 그럼 두 <code class="highlighter-rouge">User</code>는 같을까요? 당연히 다르죠? 그런데, 2017-06-04 라는 값을 가진 <code class="highlighter-rouge">Date</code> 객체를 가정해보죠. 다른 <code class="highlighter-rouge">Date</code> 객체가 똑같이 2017-06-04라는 값을 가지고 있다면 둘은 같은걸까요? 예. 예로 든 <code class="highlighter-rouge">Date</code>는 밸류이고, <code class="highlighter-rouge">User</code>는 엔티티입니다.</p>
 
@@ -336,14 +328,14 @@
 
 <p>최종 상태를 저장하는 메인 테이블과 변경 이력을 기록하는 테이블을 별도로 구성하는 방식입니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Table: bills
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Table: bills
 +-------------------------------+
 | 1 Bill <span class="k">for </span>User#1 <span class="k">for </span>2017-06 |
 +-------------------------------+
 | 2 Bill <span class="k">for </span>User#2 <span class="k">for </span>2017-06 |
 +-------------------------------+
 
-UPDATE bills SET base_charge <span class="o">=</span> 100 WHERE id <span class="o">=</span> 1;
+UPDATE bills SET base_charge <span class="o">=</span> 100 WHERE <span class="nb">id</span> <span class="o">=</span> 1<span class="p">;</span>
 
 Tables:bill_history
 +-------------------------------+
@@ -353,15 +345,14 @@ Tables:bill_history
 +-------------------------------+
 
 INSERT INTO bill_history <span class="o">(</span>bill_id, changed, changed_by, changed_at, ...<span class="o">)</span> 
-VALUES <span class="o">(</span>1, <span class="s2">"{original:{base_charge:90}, changed:{base_charge:100}}"</span>, <span class="s2">"Foo"</span>, NOW<span class="o">()</span>, ...<span class="o">)</span>;
-</code></pre>
-</div>
+VALUES <span class="o">(</span>1, <span class="s2">"{original:{base_charge:90}, changed:{base_charge:100}}"</span>, <span class="s2">"Foo"</span>, NOW<span class="o">()</span>, ...<span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h4 id="322-하나의-엔티티에-대해-여러-레코드를-기록">3.2.2. 하나의 엔티티에 대해 여러 레코드를 기록</h4>
 
 <p>3.2.1의 두 개 테이블을 하나로 합쳐서 상태를 저장하는 방식입니다. <code class="highlighter-rouge">UPDATE</code> 쿼리는 없고, 오직 <code class="highlighter-rouge">INSERT</code>만 허용합니다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>Table: bills
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Table: bills
 +-------------------------------+
 | Last state of Bill#1          |
 +-------------------------------+
@@ -369,23 +360,21 @@ VALUES <span class="o">(</span>1, <span class="s2">"{original:{base_charge:90}, 
 +-------------------------------+
 | Last state of Bill#2          |
 +-------------------------------+
-SELECT <span class="k">*</span> FROM bills WHERE entity_id <span class="o">=</span> 1 ORDER BY version DESC LIMIT 1;
+SELECT <span class="k">*</span> FROM bills WHERE entity_id <span class="o">=</span> 1 ORDER BY version DESC LIMIT 1<span class="p">;</span>
 
 INSERT INTO bills <span class="o">(</span>entity_id, version, subscriber_id, term, base_charge, 
     valud_added_charge, discount_amout, fulfilled, last_modified_by, ...<span class="o">)</span>
-VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 100, 50, <span class="nb">false</span>, <span class="s2">"Foo"</span>, ...<span class="o">)</span>;
-</code></pre>
-</div>
+VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 100, 50, <span class="nb">false</span>, <span class="s2">"Foo"</span>, ...<span class="o">)</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h4 id="323-이벤트-소싱">3.2.3. 이벤트 소싱</h4>
 
 <p>이벤트를 데이터 소스로 사용하는 디자인 패턴입니다. 이벤트 데이터를 스택에 쌓아 놓고, 이벤트 리플레이를 통해 현재 상태를 계산해 냅니다. 핵심 함수와 전체 개념은 아래와 같습니다.</p>
 
-<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="n">decide</span><span class="o">(</span><span class="n">command</span><span class="o">,</span> <span class="n">state</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">ListEvent</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">decide</span><span class="o">(</span><span class="n">command</span><span class="o">,</span> <span class="n">state</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">ListEvent</span>
 <span class="n">apply</span><span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">event</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">state</span>
 <span class="n">replay</span><span class="o">(</span><span class="n">initialState</span><span class="o">,</span> <span class="nc">ListEvent</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">version</span><span class="o">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="http://blog.leifbattermann.de/wp-content/uploads/2017/04/event-sourcing.svg" alt="" /></p>
 
@@ -513,7 +502,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1051,7 +1040,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1096,6 +1085,12 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1185,6 +1180,13 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1194,13 +1196,6 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1253,7 +1248,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

@@ -160,8 +160,8 @@
 
 <p>오래된 zip 파일을 풀었다. (난 대학 시절에 만든 리포트를 포함한 모든 자료를 아직도 보관하고 있다.) 아래는 <code class="highlighter-rouge">cgic</code> 라이브러리를 이용하여 html 폼 입력을 파싱하여 화면에 뿌리는 코드이다.</p>
 
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="c1">// write.c
-</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// write.c</span>
+
 <span class="cp">#include "cgic.h"
 #define MAX_LEN 255
 </span>
@@ -240,14 +240,12 @@
     <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/body&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/html&gt;"</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>C 는 굉장히 견고한 언어이지만, 내가 하려는 웹 개발에서는 너무나도 불편함이 많았다. <code class="highlighter-rouge">printf()</code> 함수를 이용하여 HTML 코드를 한 줄씩 stdout 으로 출력하는 방법만이 C 에서 웹 서버로 무엇인가를 전달하는 유일한 방법이었다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>gcc write.c cgic.c -o write.cgi
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> gcc write.c cgic.c <span class="nt">-o</span> write.cgi
+</code></pre></div></div>
 
 <p>또, 이렇게 개발된 코드는 컴파일해서 서버에 올려야 했다. 컴파일 언어의 특성상 코드 수정 -&gt; 확인의 순회 과정의 불편함으로 인해 생산성이 떨어지는 문제도 있었다.</p>
 
@@ -255,7 +253,7 @@
 
 <p>해서, 웹 프로그래머들은 Perl 언어로 자연히 눈을 돌리게되었다. Perl 은 HEREDOC 문법과 String Interpolation 을 이용해서 C 의 불편함을 해소해 주었다. 하지만, Url 및 Form 데이터 파싱을 위해 너무 많은 노력을 들여야 했고, 작은 실수 하나에도 아주 민감하게 동작하는 녀석이었다.</p>
 
-<div class="language-perl highlighter-rouge"><pre class="highlight"><code><span class="c1"># member.cgi</span>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># member.cgi</span>
 <span class="c1"># @see http://happycgi.com/4570</span>
 
 <span class="c1"># ...</span>
@@ -326,7 +324,7 @@
           <span class="p">}</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
           <span class="p">(</span><span class="nv">$dump</span><span class="p">,</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/\r\n/</span><span class="p">,</span><span class="nv">$value</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-          <span class="k">if</span> <span class="p">(</span><span class="nb">grep</span><span class="p">(</span><span class="sr">/^$name$/</span><span class="p">,</span> <span class="nb">keys</span><span class="p">(</span><span class="nv">%CGI</span><span class="p">)))</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nb">grep</span><span class="p">(</span><span class="sr">/^$name$/</span><span class="p">,</span> <span class="nb">keys</span><span class="p">(</span><span class="o">%</span><span class="nv">CGI</span><span class="p">)))</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
               <span class="nb">push</span><span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}},</span> <span class="nv">$value</span><span class="p">);</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -372,8 +370,7 @@ Content-type: text/html
   $gConfPreBody
 EOT
 </span><span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>잠깐 Perl 과 PHP 3 가 혼재하던 시기가 있었으나, 2000 년 접어 들면서 Perl 을 이용한 웹 프로그래밍은 PHP 쪽으로 완전히 넘어갔던 것으로 기억한다. PHP 4 가 출시되었기 때문이다.</p>
 
@@ -385,7 +382,7 @@ EOT
 
 <p>소속된 대학원 홈페이지를 비롯해 꽤 여러 프로젝트를 PHP 로 했던 것 같다. 개발자의 삶을 살기로 결심하고 다시 돌아 오기 전에, 마지막으로 웹 개발 프로젝트를 진행한 것이 2003 년 이었던 것으로 기억하고, 그 전에 꽤 몇 년동안 PHP 를 사용한 것 같다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!--imceo.com/template/header/header/classic/search.php--&gt;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--imceo.com/template/header/header/classic/search.php--&gt;</span>
 
 <span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">"780"</span> <span class="na">border=</span><span class="s">"0"</span> <span class="na">cellspacing=</span><span class="s">"1"</span> <span class="na">cellpadding=</span><span class="s">"0"</span> <span class="na">bgcolor=</span><span class="s">"#D9D1C4"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;FORM</span> <span class="na">ACTION=</span><span class="s">'./biz.php'</span> <span class="na">METHOD=</span><span class="s">POST</span><span class="nt">&gt;</span>
@@ -455,8 +452,7 @@ EOT
     <span class="nt">&lt;/tr&gt;</span>
   <span class="nt">&lt;/FORM&gt;</span>
 <span class="nt">&lt;/table&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>뷰 코드와 DB 쿼리를 포함한 비즈니스로직이 막 뒤죽박죽이다. 지금 보면 완전 웃기지만, 당시에는 다 저렇게 짰다.</p>
 
@@ -583,7 +579,7 @@ EOT
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1121,7 +1117,7 @@ EOT
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1166,6 +1162,12 @@ EOT
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1255,6 +1257,13 @@ EOT
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1264,13 +1273,6 @@ EOT
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1323,7 +1325,7 @@ EOT
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

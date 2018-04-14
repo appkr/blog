@@ -156,7 +156,7 @@
 
 <p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>jekyll serve
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll serve
 <span class="c"># Configuration file: /.../blog/_config.yml</span>
 <span class="c">#             Source: /.../blog</span>
 <span class="c">#        Destination: public</span>
@@ -167,8 +167,7 @@
 <span class="c"># Configuration file: /.../blog/_config.yml</span>
 <span class="c">#     Server address: http://127.0.0.1:4000/</span>
 <span class="c">#   Server running... press ctrl-c to stop.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="/images/2016-02-12-img-01.png"><img src="/images/2016-02-12-img-01.png" alt="Preview with Jekyll built-in web server" /></a></p>
 
@@ -182,60 +181,58 @@
 
 <p>Gulp 스크립트 구동에 필요한 의존성 패키지들은 <code class="highlighter-rouge">package.json</code> 에 정의되어 있는데… 좀 많긴하다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s2">"{}"</span> &gt; package.json
-<span class="gp">$ </span>npm install --save-dev babel-core babel-preset-es2015 browser-sync del gulp gulp-autoprefixer gulp-babel gulp-clean gulp-concat gulp-if gulp-imagemin gulp-load-plugins gulp-minify-css gulp-newer gulp-sass gulp-size gulp-sourcemaps gulp-subtree gulp-uglify run-sequence
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"{}"</span> <span class="o">&gt;</span> package.json
+<span class="nv">$ </span>npm <span class="nb">install</span> <span class="nt">--save-dev</span> babel-core babel-preset-es2015 browser-sync del gulp gulp-autoprefixer gulp-babel gulp-clean gulp-concat gulp-if gulp-imagemin gulp-load-plugins gulp-minify-css gulp-newer gulp-sass gulp-size gulp-sourcemaps gulp-subtree gulp-uglify run-sequence
+</code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/package.json</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/package.json</span>
 
 <span class="p">{</span>
-  <span class="s2">"devDependencies"</span><span class="err">:</span> <span class="p">{</span>
-    <span class="s2">"babel-core"</span><span class="err">:</span> <span class="s2">"^6.0.15"</span><span class="p">,</span>
-    <span class="s2">"babel-preset-es2015"</span><span class="err">:</span> <span class="s2">"^6.0.15"</span><span class="p">,</span>
-    <span class="s2">"browser-sync"</span><span class="err">:</span> <span class="s2">"^2.9.0"</span><span class="p">,</span>
-    <span class="s2">"del"</span><span class="err">:</span> <span class="s2">"^2.0.2"</span><span class="p">,</span>
-    <span class="s2">"gulp"</span><span class="err">:</span> <span class="s2">"^3.9.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-autoprefixer"</span><span class="err">:</span> <span class="s2">"^3.1.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-babel"</span><span class="err">:</span> <span class="s2">"^6.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-clean"</span><span class="err">:</span> <span class="s2">"^0.3.1"</span><span class="p">,</span>
-    <span class="s2">"gulp-concat"</span><span class="err">:</span> <span class="s2">"^2.5.2"</span><span class="p">,</span>
-    <span class="s2">"gulp-if"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-imagemin"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-load-plugins"</span><span class="err">:</span> <span class="s2">"^1.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-minify-css"</span><span class="err">:</span> <span class="s2">"^1.1.6"</span><span class="p">,</span>
-    <span class="s2">"gulp-newer"</span><span class="err">:</span> <span class="s2">"^1.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-sass"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-size"</span><span class="err">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-sourcemaps"</span><span class="err">:</span> <span class="s2">"^1.3.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-subtree"</span><span class="err">:</span> <span class="s2">"^0.1.0"</span><span class="p">,</span>
-    <span class="s2">"gulp-uglify"</span><span class="err">:</span> <span class="s2">"^1.0.1"</span><span class="p">,</span>
-    <span class="s2">"run-sequence"</span><span class="err">:</span> <span class="s2">"^1.0.1"</span>
+  <span class="s2">"devDependencies"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"babel-core"</span><span class="p">:</span> <span class="s2">"^6.0.15"</span><span class="p">,</span>
+    <span class="s2">"babel-preset-es2015"</span><span class="p">:</span> <span class="s2">"^6.0.15"</span><span class="p">,</span>
+    <span class="s2">"browser-sync"</span><span class="p">:</span> <span class="s2">"^2.9.0"</span><span class="p">,</span>
+    <span class="s2">"del"</span><span class="p">:</span> <span class="s2">"^2.0.2"</span><span class="p">,</span>
+    <span class="s2">"gulp"</span><span class="p">:</span> <span class="s2">"^3.9.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-autoprefixer"</span><span class="p">:</span> <span class="s2">"^3.1.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-babel"</span><span class="p">:</span> <span class="s2">"^6.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-clean"</span><span class="p">:</span> <span class="s2">"^0.3.1"</span><span class="p">,</span>
+    <span class="s2">"gulp-concat"</span><span class="p">:</span> <span class="s2">"^2.5.2"</span><span class="p">,</span>
+    <span class="s2">"gulp-if"</span><span class="p">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-imagemin"</span><span class="p">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-load-plugins"</span><span class="p">:</span> <span class="s2">"^1.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-minify-css"</span><span class="p">:</span> <span class="s2">"^1.1.6"</span><span class="p">,</span>
+    <span class="s2">"gulp-newer"</span><span class="p">:</span> <span class="s2">"^1.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-sass"</span><span class="p">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-size"</span><span class="p">:</span> <span class="s2">"^2.0.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-sourcemaps"</span><span class="p">:</span> <span class="s2">"^1.3.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-subtree"</span><span class="p">:</span> <span class="s2">"^0.1.0"</span><span class="p">,</span>
+    <span class="s2">"gulp-uglify"</span><span class="p">:</span> <span class="s2">"^1.0.1"</span><span class="p">,</span>
+    <span class="s2">"run-sequence"</span><span class="p">:</span> <span class="s2">"^1.0.1"</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="gulpfilebabeljs">Gulpfile.babel.js</h2>
 
 <p>아래는 전체 스크립트이다. 특징은 <a href="https://browsersync.io/">BrowserSync</a> 이용한다는 점과, <a href="https://babeljs.io/docs/learn-es2015/">ES2015</a> 사용한다는 점 등을 들 수 있다.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/gulpfile.babel.js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/gulpfile.babel.js</span>
 <span class="c1">// Referenced from Google Web Starter Kit</span>
 <span class="c1">// @see https://github.com/google/web-starter-kit</span>
 
 <span class="s1">'use strict'</span><span class="p">;</span>
 
-<span class="kr">import</span> <span class="nx">cp</span> <span class="nx">from</span> <span class="s1">'child_process'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">gulp</span> <span class="nx">from</span> <span class="s1">'gulp'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">del</span> <span class="nx">from</span> <span class="s1">'del'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">runSequence</span> <span class="nx">from</span> <span class="s1">'run-sequence'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">browserSync</span> <span class="nx">from</span> <span class="s1">'browser-sync'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">gulpLoadPlugins</span> <span class="nx">from</span> <span class="s1">'gulp-load-plugins'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">pkg</span> <span class="nx">from</span> <span class="s1">'./package.json'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">cp</span> <span class="k">from</span> <span class="s1">'child_process'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">gulp</span> <span class="k">from</span> <span class="s1">'gulp'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">del</span> <span class="k">from</span> <span class="s1">'del'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">runSequence</span> <span class="k">from</span> <span class="s1">'run-sequence'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">browserSync</span> <span class="k">from</span> <span class="s1">'browser-sync'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">gulpLoadPlugins</span> <span class="k">from</span> <span class="s1">'gulp-load-plugins'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">pkg</span> <span class="k">from</span> <span class="s1">'./package.json'</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">gulpLoadPlugins</span><span class="p">();</span>
-<span class="kr">const</span> <span class="nx">reload</span> <span class="o">=</span> <span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">gulpLoadPlugins</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">reload</span> <span class="o">=</span> <span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">;</span>
 
 <span class="cm">/**
  * Task 'clean' : Clean output directory
@@ -263,7 +260,7 @@
  * Task 'styles' : Compile and automatically prefix stylesheets
  */</span>
 <span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'styles'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">AUTOPREFIXER_BROWSERS</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="kd">const</span> <span class="nx">AUTOPREFIXER_BROWSERS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'ie &gt;= 10'</span><span class="p">,</span>
     <span class="s1">'ie_mob &gt;= 10'</span><span class="p">,</span>
     <span class="s1">'ff &gt;= 30'</span><span class="p">,</span>
@@ -344,14 +341,12 @@
   <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'public'</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">subtree</span><span class="p">());</span>
   <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'git'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'checkout'</span><span class="p">,</span> <span class="s1">'.gitignore'</span><span class="p">],</span> <span class="p">{</span> <span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span> <span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="how-to-run">How to Run</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp <span class="o">{</span>taskName<span class="o">}</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp <span class="o">{</span>taskName<span class="o">}</span>
+</code></pre></div></div>
 
 <h2 id="tasks">Tasks</h2>
 
@@ -359,25 +354,22 @@
 
 <p>빌드 과정에서 생성된 임시 디렉토리 (<code class="highlighter-rouge">.tmp</code>) 와 빌드 결과를 담는 디렉토리 (<code class="highlighter-rouge">public</code>) 등을 삭제하고 초기화하는 작업을 수행한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp clean
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp clean
+</code></pre></div></div>
 
 <h3 id="jekyll">jekyll</h3>
 
 <p><code class="highlighter-rouge">$ jekyll build</code> 를 수행한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp jekyll
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp jekyll
+</code></pre></div></div>
 
 <h3 id="images">images</h3>
 
 <p><code class="highlighter-rouge">_assets/images</code> 디렉토리에 담긴 이미지를 최적화하여 <code class="highlighter-rouge">images</code> 디렉토리로 출판한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp images
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp images
+</code></pre></div></div>
 
 <h3 id="styles">styles</h3>
 
@@ -393,9 +385,8 @@
 
 <p>한 후, <code class="highlighter-rouge">styles</code> 디렉토리로 출판한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp styles
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp styles
+</code></pre></div></div>
 
 <h3 id="scripts">scripts</h3>
 
@@ -410,17 +401,15 @@
 
 <p>한 후, <code class="highlighter-rouge">scripts</code> 디렉토리에 출판한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp scripts
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp scripts
+</code></pre></div></div>
 
 <h3 id="serve">serve</h3>
 
 <p><code class="highlighter-rouge">images</code>, <code class="highlighter-rouge">styles</code>, <code class="highlighter-rouge">scripts</code>, <code class="highlighter-rouge">jekyll</code> Task 를 순차적으로 수행한 후, <code class="highlighter-rouge">http://localhost:3000</code> 웹 서버를 띄우고 BrowserSync 를 구동시킨다. BrowserSync 구동 이후, <code class="highlighter-rouge">_assets</code> 디렉토리 하위의 Stylesheets, Javascripts, Image 및 <code class="highlighter-rouge">.html</code>, <code class="highlighter-rouge">.md</code> 파일의 변경을 감시한다. 파일 변경이 있으면, 현재 <code class="highlighter-rouge">http://localhost:3000</code> 이 열려있는 모든 브라우저를 리프레시 한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp serve
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp serve
+</code></pre></div></div>
 
 <p><a href="/images/2016-02-12-img-02.png"><img src="/images/2016-02-12-img-02.png" alt="gulp serve" /></a></p>
 
@@ -436,17 +425,15 @@
 
 <p><code class="highlighter-rouge">images</code>, <code class="highlighter-rouge">styles</code>, <code class="highlighter-rouge">scripts</code>, <code class="highlighter-rouge">jekyll</code> 빌드 작업만 수행하고, 웹 서버 구동, BrowserSync 구동, 파일 감시는 하지 않는다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp
+</code></pre></div></div>
 
 <h3 id="deploy">deploy</h3>
 
 <p>현재 프로젝트를 <code class="highlighter-rouge">gh-pages</code> 브랜치로 checkout 한 후, <a href="https://pages.github.com/">Github Page</a> 에 배포한다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gulp deploy
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp deploy
+</code></pre></div></div>
 
 <div class="spacer">• • •</div>
 
@@ -557,7 +544,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1095,7 +1082,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1140,6 +1127,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1229,6 +1222,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1238,13 +1238,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1297,7 +1290,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

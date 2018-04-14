@@ -210,10 +210,9 @@
 
 <p>p134. 애그리거트 루트를 로딩하면 루트에 속한 모든 객체가 완전한 상태여야 한다.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// product는 완전한 하나여야 한다.</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// product는 완전한 하나여야 한다.</span>
 <span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="n">productRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>p137. 애그리거트가 완전해야 하는 이유는 두 가지 정도로 생각해 볼 수 있다. 첫 번째 이유는 상태를 변경하는 기능을 실행할 때 애그리거트 상태가 완전해야 하고, 두 번째 이유는 표현 영역에서 애그리거트의 상태 정보를 보여줄 때 필요하기 때문이다.</p>
 
@@ -233,7 +232,7 @@
 
 <p>p171. 응용 서비스는 주로 도메인 객체 간의 흐름을 제어하기 때문에 다음과 같이 단순한 형태를 갖는다. <strong>응용 서비스가 이것보다 복잡하다면 응용 서비스에 도메인 로직의 일부를 구현하고 있을 가능성이 높다</strong>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Result</span> <span class="nf">doSomeFunc</span><span class="o">(</span><span class="n">SomeReq</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Result</span> <span class="nf">doSomeFunc</span><span class="o">(</span><span class="n">SomeReq</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// 1. 리포지터리에서 애그리거트를 구한다.</span>
     <span class="n">SomeAgg</span> <span class="n">aaa</span> <span class="o">=</span> <span class="n">someAggRepository</span><span class="o">.</span><span class="na">findByid</span><span class="o">(</span><span class="n">req</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
     <span class="n">checkNull</span><span class="o">(</span><span class="n">agg</span><span class="o">);</span>
@@ -244,10 +243,9 @@
     <span class="c1">// 3. 결과를 리턴한다.</span>
     <span class="k">return</span> <span class="nf">createSuccessResult</span><span class="o">(</span><span class="n">agg</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Result</span> <span class="nf">doSomeCreation</span><span class="o">(</span><span class="n">CreateSomeReq</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Result</span> <span class="nf">doSomeCreation</span><span class="o">(</span><span class="n">CreateSomeReq</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// 1. 데이터 중복 등 데이터가 유효한지 검사한다.</span>
     <span class="n">checkValid</span><span class="o">(</span><span class="n">req</span><span class="o">);</span>
     
@@ -260,8 +258,7 @@
     <span class="c1">// 4. 결과를 리턴한다.</span>
     <span class="k">return</span> <span class="nf">createSuccessResult</span><span class="o">(</span><span class="n">newAgg</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>p172. 도메인 객체 간의 실행 흐름을 제어하는 것과 더불어 응용 서비스의 주된 역할 중 하나는 트랜잭션 처리이다. 응용 서비스는 도메인의 상태 변경을 트랜잭션으로 처리해야 한다.</p>
 
@@ -285,11 +282,10 @@
 
 <p>p219. 비선점 잠금(Optimistic Lock) 방식은 잠금을 해서 동시에 접근하는 것을 막는 대신 변경한 데이터를 실제 DBMS에 반영하는 시점에 변경 가능 여부를 확인하는 방식이다.</p>
 
-<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">aggtable</span> 
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">aggtable</span> 
 <span class="k">SET</span> <span class="k">version</span> <span class="o">=</span> <span class="k">version</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">colx</span> <span class="o">=</span> <span class="o">?</span><span class="p">,</span> <span class="n">coly</span> <span class="o">=</span> <span class="o">?</span>
 <span class="k">WHERE</span> <span class="n">aggid</span> <span class="o">=</span> <span class="o">?</span> <span class="k">AND</span> <span class="k">version</span> <span class="o">=</span> <span class="err">현재버전</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>p221. 비선점 잠금을 위한 쿼리를 실행할 때 쿼리 실행 결과로 수정된 행의 개수가 0이면 이미 누군가 앞서 데이터를 수정한 것이다.</p>
 
@@ -345,7 +341,7 @@
 
 <hr />
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>├── application
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── application
 │   └── service
 ├── common
 │   ├── events
@@ -360,8 +356,7 @@
 │   └── external
 └── ui
     └── controller
-</code></pre>
-</div>
+</code></pre></div></div>
 
       </div>
 
@@ -468,7 +463,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -1006,7 +1001,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1051,6 +1046,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1140,6 +1141,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1149,13 +1157,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1208,7 +1209,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

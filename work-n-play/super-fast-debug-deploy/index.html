@@ -167,10 +167,10 @@
 
 <p>아래는 라라벨 프로젝트의 전역 예외처리기에 정의된 버그 리포트 부분이다. 프로덕션 환경일 때만, <code class="highlighter-rouge">\App\Reporters\ErrorReport::send()</code> 를 이용해서 <code class="highlighter-rouge">Exception $e</code>를 리포팅한다.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/Handler.php
-</span>
-<span class="c1">// ...
-</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/Handler.php</span>
+
+<span class="c1">// ...</span>
+
 <span class="k">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">report</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
@@ -184,13 +184,12 @@
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">// Custom exception rendering logic ...
-</span>
+        <span class="c1">// Custom exception rendering logic ...</span>
+
         <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$e</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="debugging">Debugging</h2>
 
@@ -200,19 +199,17 @@
 
 <p>코드 수정과 테스트가 끝나면 그 다음은 완전 기계적인 프로세스다. 수정된 코드를 버전관리시스템에 반영하고, 깃허브에 올리는 일이다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git add .
-<span class="gp">$ </span>git commit -m <span class="s1">'fix bug of BadMethodCall @PasswordController'</span>
-<span class="gp">$ </span>git push
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'fix bug of BadMethodCall @PasswordController'</span>
+<span class="nv">$ </span>git push
+</code></pre></div></div>
 
 <h2 id="code-deploy">Code Deploy</h2>
 
 <p>로컬컴퓨터에서 아래 콘솔 명령 한줄이면 배포 끝! 내 프로젝트가 의존하는 패키지를 내려받아 설치하는 것까지 포함해서, 프로덕션 서버에 코드 배포 과정은 길어도 2분 정도다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>envoy run release
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>envoy run release
+</code></pre></div></div>
 
 <p><a href="/images/2016-03-03-img-03.png"><img src="/images/2016-03-03-img-03.png" alt="envoy 코드 배포" /></a></p>
 
@@ -254,13 +251,13 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>라라벨_ PHP 프로그래밍언어로 개발된 웹 프레임워크이다.&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>라라벨_ PHP 프로그래밍언어로 개발된 웹 프레임워크이다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>phpStorm_ PHP 프로그래밍을 돕는 통합개발환경(IDE). 이 녀석을 코드편집기라고 부르면, 개발사인 JetBrains에서 육두문자를 날리며 욕할지도 모른다^^. phpStorm은 유료 소프트웨어 인데, 난 운 좋게 (오픈소스기여자에게만 부여되는) 라이센스를 얻어 무료로 사용한다. 이렇게 홍보로 고마움에 대한 보답 인사를 드린다.&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>phpStorm_ PHP 프로그래밍을 돕는 통합개발환경(IDE). 이 녀석을 코드편집기라고 부르면, 개발사인 JetBrains에서 육두문자를 날리며 욕할지도 모른다^^. phpStorm은 유료 소프트웨어 인데, 난 운 좋게 (오픈소스기여자에게만 부여되는) 라이센스를 얻어 무료로 사용한다. 이렇게 홍보로 고마움에 대한 보답 인사를 드린다. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>엔보이_ 라라벨이 제공하는 SSH 작업 실행 도구이다. 프레임워크나 언어에 무관하게 사용할 수 있는 독립적인 애플리케이션이다.&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+      <p>엔보이_ 라라벨이 제공하는 SSH 작업 실행 도구이다. 프레임워크나 언어에 무관하게 사용할 수 있는 독립적인 애플리케이션이다. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -370,7 +367,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -908,7 +905,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -953,6 +950,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1042,6 +1045,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1051,13 +1061,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1110,7 +1113,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

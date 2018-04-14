@@ -161,10 +161,9 @@
 
 <h3 id="4-콘솔을-띄워-sdk에-미리-정의되어-있는-target-device-를-확인한다">4. 콘솔을 띄워, SDK에 미리 정의되어 있는 Target Device 를 확인한다.</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span><span class="nb">cd </span>path_to_your_android_sdktools
-<span class="gp">\&gt; </span>path_to_your_android_sdktoolsandroid list targets
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> <span class="nb">cd </span>path_to_your_android_sdktools
+<span class="se">\&gt;</span> path_to_your_android_sdktoolsandroid list targets
+</code></pre></div></div>
 
 <p>4 개의 Device 가 있는 것이 확인되었고, 하드웨어 구성, Android Version, Google API 포함 여부가 서로 다르다. (Emulator 는 QEMU Platform Simulator 기반으로 작성되었으며, x86 CPU 를 ARM v5 로 Emulation 해 준다.)</p>
 
@@ -172,20 +171,18 @@
 
 <h3 id="5-avdandroid-virtual-device를-생성한다">5. AVD(Android Virtual Device)를 생성한다.</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>android create avd -n donut -c 2048M -t 1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> android create avd <span class="nt">-n</span> donut <span class="nt">-c</span> 2048M <span class="nt">-t</span> 1
 <span class="c"># `-n donut`: donut 라는 이름의 avd를 생성한다.</span>
 <span class="c"># `-c 2048M`: 2048MB의 Smartcard 가상 이미지를 생성한다. 이후에 모든 컨텐츠는 여기에 담게 된다.</span>
 <span class="c"># `-t 1`: f에서 확인한 미리 정의된 Target Device 중 1번 Device를 생성한다.</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>한번 생성된 AVD 는 삭제하지 않는 이상 다시 만들 필요없다. AVD는 <code class="highlighter-rouge">c:\document and settings\UserName.Android</code> 아래에 생성된다.</p>
 
 <p>또는, GUI를 이용할 수도 있다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>android
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> android
+</code></pre></div></div>
 
 <p>GUI 메뉴에서 Virtual Devices &gt; New…</p>
 
@@ -195,17 +192,15 @@
 
 <p>Emulator 부팅에는 수분의 시간이 걸린다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>emulator -avd donut &lt;/div&gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> emulator <span class="nt">-avd</span> donut &lt;/div&gt;
+</code></pre></div></div>
 
 <p>[그림 유실]</p>
 
 <p><code class="highlighter-rouge">adb</code> (Android Debug Bridge)를 이용하여 로그를 확인할 수도 있다.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>adb logcat
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> adb logcat
+</code></pre></div></div>
 
 <h3 id="7-sd-card가-정상적으로-mount-되었는지-확인한다">7. SD Card가 정상적으로 Mount 되었는지 확인한다.</h3>
 
@@ -219,18 +214,16 @@
   <li>
     <p>방법 # 1 <code class="highlighter-rouge">adb</code> 를 이용하는 방법</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>adb push d:0.jpg /sdcard
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> adb push d:0.jpg /sdcard
 <span class="c"># d:0.jpg : Local Contents 의 경로 및 파일 명</span>
 <span class="c"># /sdcard/ : Remote SDCard 에 동일한 파일명으로 복사</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>방법 # 2 <code class="highlighter-rouge">ddms</code> (Dalvik Debug Monitor) 를 이용하는 방법</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>ddms
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> ddms
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -252,12 +245,11 @@
 
 <h3 id="12-각-명령의-도움말은--help-스위치를-사용한다">12. 각 명령의 도움말은 -help 스위치를 사용한다.</h3>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">\&gt; </span>android -help
-<span class="gp">\&gt; </span>emulator -hlep
-<span class="gp">\&gt; </span>adb -help
-<span class="gp">\&gt; </span>ddms -help
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> android <span class="nt">-help</span>
+<span class="se">\&gt;</span> emulator <span class="nt">-hlep</span>
+<span class="se">\&gt;</span> adb <span class="nt">-help</span>
+<span class="se">\&gt;</span> ddms <span class="nt">-help</span>
+</code></pre></div></div>
 
 <p><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android Developer Site 의 도움말</a> 을 더 참고하자.</p>
 
@@ -366,7 +358,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -904,7 +896,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -949,6 +941,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -1038,6 +1036,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -1047,13 +1052,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1106,7 +1104,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

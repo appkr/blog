@@ -154,7 +154,7 @@
 
 <h2 id="1-promise">1. Promise</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="err">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="err">성공콜백</span><span class="p">,</span> <span class="err">실패콜백</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="err">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="err">성공콜백</span><span class="p">,</span> <span class="err">실패콜백</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'철수 작업자가 할당되었습니다.'</span><span class="p">);</span>
   
   <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -167,8 +167,7 @@
 <span class="err">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="err">작업이름</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'"'</span> <span class="o">+</span> <span class="err">작업이름</span> <span class="o">+</span> <span class="s1">'" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.'</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">철수</code>는 <code class="highlighter-rouge">Promise</code> 클래스의 인스턴스다. <code class="highlighter-rouge">Promise</code> 클래스는 <code class="highlighter-rouge">then()</code> API를 가지고 있고, 함수를 인자로 받는다. 인자로 받은 함수는 다시 성공 또는 실패했을 때 실행할 콜백을 인자로 받는다.</p>
 
@@ -178,7 +177,7 @@
 
 <p>똑같은 코드를 ES6로 쓰면,</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="err">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="err">성공콜백</span><span class="p">,</span> <span class="err">실패콜백</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="err">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="err">성공콜백</span><span class="p">,</span> <span class="err">실패콜백</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'철수 작업자가 할당되었습니다.'</span><span class="p">);</span>
   
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -189,10 +188,9 @@
 <span class="p">});</span>
 
 <span class="err">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
-  <span class="err">작업이름</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="s2">"${작업이름}"</span> <span class="err">작업이</span> <span class="err">성공하면</span> <span class="err">철수에게</span> <span class="err">실행해</span> <span class="err">달라고</span> <span class="err">부탁한</span> <span class="err">로직입니다</span><span class="p">.</span> <span class="err">이</span> <span class="err">메시지가</span> <span class="err">표시된다면</span> <span class="err">철수가</span> <span class="err">로직을</span> <span class="err">실행한</span> <span class="err">것입니다</span><span class="p">.</span><span class="err">`</span><span class="p">)</span>
+  <span class="err">작업이름</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`"</span><span class="p">${</span><span class="err">작업이름</span><span class="p">}</span><span class="s2">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.`</span><span class="p">)</span>
 <span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>오늘도 Coffee 스크립트를 많이 사용하는 프레임워크 모임에 다녀왔는데, 이제 Coffee를 쓸 이유가 없다. ES6가 Coffee의 문법을 거의 대부분 채택하고 있기 때문이다. 그림에서 보다시피 최신 브라우저에서는 ES6 -&gt; ES5 컴파일하지 않고도 최신 문법이 작동한다<small>(내 최신 브라우저에서 작동한다고, 다른 이의 브라우저에서 작동한다고 보장할 수 없으므로 아직은 컴파일해야 한다)</small>. <code class="highlighter-rouge">Prototype</code>등 익숙치 않은 개념은 이제 <code class="highlighter-rouge">class</code>, <code class="highlighter-rouge">constructor</code>, <code class="highlighter-rouge">static</code> 등 다른 언어에서 항상 쓰던 문법으로 교체되었다.</p>
 
@@ -309,7 +307,7 @@
       <li>
         <a href="/categories#cheatsheet">
           Cheatsheet
-          <span class="badge">1</span>
+          <span class="badge">2</span>
         </a>
       </li>
       <li>
@@ -847,7 +845,7 @@
       </a>
     </span>
     
-    <span style="font-size: 282%">
+    <span style="font-size: 286%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -892,6 +890,12 @@
     <span style="font-size: 94%">
       <a href="/tags#소프트웨어공학">
         소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
       </a>
     </span>
     
@@ -981,6 +985,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
+          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
         </h4>
@@ -990,13 +1001,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
           <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-10-22</small>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h4>
       </li>
       
@@ -1049,7 +1053,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2017 •
+    &copy; 2008~2018 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

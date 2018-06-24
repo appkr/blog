@@ -39,6 +39,8 @@ exclude:
   - package.json
   - publish.sh
   - public
+  - yarn.lock
+
 permalink: /:categories/:slug/
 lsi: false
 

@@ -316,12 +316,22 @@ var truncate = function(str, len) {
 };
 
 /* Compile template out of the given data */
-var compile = function(layoutTemplate, facebookUserFeedCollection) {
+var compile = function(template, collection) {
   var markup = '';
 
-  $.each(facebookUserFeedCollection, function(index, item) {
-    markup += layoutTemplate
-      .replace(/{\s?id\s?}/ig, item.id.split('_')[1])
+  $.each(collection, function(index, item) {
+    if (/_/g.test(item.id)) {
+      item.id = item.id.split('_')[1];
+    }
+    if (undefined === item.created_time && undefined !== item.created_at) {
+      item.created_time = item.created_at;
+    }
+    if (undefined === item.message && undefined !== item.description) {
+      item.message = item.description;
+    }
+
+    markup += template
+      .replace(/{\s?id\s?}/ig, item.id)
       .replace(/{\s?message\s?}/ig, truncate(item.message || item.story))
       .replace(/{\s?created_time\s?}/ig, moment(item.created_time, moment.ISO_8601).fromNow());
   });
@@ -331,30 +341,45 @@ var compile = function(layoutTemplate, facebookUserFeedCollection) {
 
 /* Activate 3rd Party Services */
 
-/* Facebook Recent UserFeeds */
+/* Render Facebook Recent UserFeeds */
 window.fbAsyncInit = function() {
   var facebookAppId = '681208622021192';
   var facebookFeedContainer = $('ul#facebook-feed');
   var facebookFeedTemplate = $.trim($('#facebook-feed-template').html());
 
-  FB.init({appId: facebookAppId, status: true, xfbml: false, cookie: true, version: 'v2.5'});
+  FB.init({appId: facebookAppId, autoLogAppEvents: true, xfbml: true, version: 'v3.0'});
 
-  FB.api('10201312246964363/posts', 'GET', {limit: 3, access_token: a65bbdd5e332c9def690b9165b64abfc}, function(response) {
+  FB.api('me/posts', 'GET', {limit: 3, access_token: a65bbdd5e332c9def690b9165b64abfc}, function(response) {
     if (! response || response.error || ! response.data.length) {
       facebookFeedContainer.html('<li>Some error :(</li>');
     }
-
     facebookFeedContainer.append(compile(facebookFeedTemplate, response.data));
   });
 };
 
-(function(d, s, id) {
+/* Render Gists List */
+(function() {
+  var gistListContainer = $('ul#gist-list');
+  var gistListTemplate = $.trim($('#gist-list-template').html());
+
+  $.ajax({
+    url: 'https://api.github.com/users/appkr/gists?per_page=3',
+    type: 'GET',
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
+    }
+  }).done(function(response) {
+    gistListContainer.append(compile(gistListTemplate, response));
+  }).fail(function(xhr, status) {
+    gistListContainer.html('<li>Some error :(</li>');
+  });
+})();
+
+(function(d, s, id){
   var js, fjs = d.getElementsByTagName(s)[0];
-
   if (d.getElementById(id)) {return;}
-
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js";
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 

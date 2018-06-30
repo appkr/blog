@@ -5,9 +5,39 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 24 Jun 2018 23:01:39 +0900</pubDate>
-    <lastBuildDate>Sun, 24 Jun 2018 23:01:39 +0900</lastBuildDate>
+    <pubDate>Mon, 02 Jul 2018 22:50:50 +0900</pubDate>
+    <lastBuildDate>Mon, 02 Jul 2018 22:50:50 +0900</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>PHP Log Tracking with ELK &amp; Filebeat part#2</title>
+        <description>&lt;p&gt;이 슬라이드는 Modern PHP User Group 2018년 7월 정기 모임 발표 자료입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2018-06-30-img-01.png&quot; alt=&quot;PHP Log Tracking with ELK &amp;amp; Filebeat part#2&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+    &lt;a href=&quot;https://docs.google.com/presentation/d/1q3RWOF_EOHosMkefP9Uu5DJXcXP6gBE1atit7-pI8ts/edit?usp=sharing&quot;&gt;
+      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
+      브라우저에서 슬라이드 열기
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 30 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/php-filebeat-elk-log-tracking/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/php-filebeat-elk-log-tracking/</guid>
+        
+        <category>개발자</category>
+        
+        <category>ELK</category>
+        
+        <category>Log</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>이진수와 십진수</title>
@@ -1175,353 +1205,6 @@
         
         
         <category>cheatsheet</category>
-        
-      </item>
-    
-      <item>
-        <title>아키텍처와 의존성</title>
-        <description>&lt;p&gt;이 글은 그간 내가 짠 코드에 대한 반성이며, 앞으로 더 잘 만들겠다는 약속이며, 이런 실수를 하지 말라는 계몽이기도합니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;割鷄焉用牛刀(할계언용우도)
-닭 잡는 데 어찌 소 잡는 칼을 쓰겠는가?&lt;/p&gt;
-
-  &lt;footer&gt;&lt;cite&gt;논어(論語) &quot;양화(陽貨)&quot;편&lt;/cite&gt;&lt;/footer&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;오해를 하실까봐 미리 쉴드를 칩니다. 제가 좋아하고 자주 인용하는 말입니다.&lt;/p&gt;
-
-&lt;p&gt;그런데 바꾸어 생각해보면, 소잡는데 닭 잡는 칼을 쓰는 것도 바보 같은 짓입니다. 일회성으로 사용할 소프트웨어을 개발할 때는 모든 설계 원칙을 지킬 필요 없습니다만, 계속 유지 보수해야 하는 대형 서비스를 개발할 때는 소 잡는 칼을 써야지요.&lt;/p&gt;
-
-&lt;p&gt;지난 몇 개월간 저의 포커스는 &lt;strong&gt;읽기 쉬운 코드&lt;/strong&gt;였습니다. &lt;em&gt;“팀에 처음 합류한 신입이 코드를 이해하고 바로 프로젝트에 투입할 수 있는가?”&lt;/em&gt; 라는 관점이죠.&lt;/p&gt;
-
-&lt;div class=&quot;panel panel-default&quot;&gt;
-  &lt;div class=&quot;panel-body&quot;&gt;
-    &lt;p class=&quot;lead&quot;&gt;컴퓨터가 인식 가능한 코드는 바보라도 작성할 수 있지만, 인간이 이해할 수 있는 코드는 실력 있는 프로그래머만 작성할 수 있다.&lt;/p&gt;
-    &lt;small class=&quot;text-muted&quot;&gt;- 마틴파울러 &quot;리팩토링&quot;&lt;/small&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;저는 2016년 12월 부터 라라벨 5.2로 개발한 메쉬프라임이라는 서비스 개발에 참여하고 있습니다. 이 서비스는 오픈한 지 대략 1년 됐고 현재는 매일 2만 트랜잭션 정도가 발생하고, 이 트랜잭션에는 네다섯 개 정도의 테이블이 연결되어 있어서, 대략 10만 레코드가 생성됩니다. 오늘 기준으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 총 3,495 커밋이 있고, 추가된 코드는 대략 42만 라인입니다. 결코 작은 서비스가 아니죠?&lt;/p&gt;
-
-&lt;p&gt;팀 합류 초기에 폭풍같이 몰아치던 기능 추가 프로젝트가 어느 정도 마무리되어, 한 숨 돌리면서, 몇 주전에 라라벨 프레임워크 버전 업을 시도한 적이 있습니다. 운영 서버에 적용할 의도는 아니었지만, 곧 5.5 LTS가 나오니 5.3 -&amp;gt; 5.4까지 마이그레이션 해보자는 취지였지요. 공식 매뉴얼에서 말하는 마이그레이션 가이드를 따라 5.3 마이그레이션을 수행했습니다. 랜딩 페이지가 나오고 로그인도 잘 됐습니다만, API 엔드포인트를 하나씩 호출해 보고 문제점들을 하나씩 잡아가는 과정에서 마이그레이션이 불가하다는 점을 깨닫고 뒤로 물러섰습니다.&lt;/p&gt;
-
-&lt;p&gt;왜 그랬을까요? 바로 이 글에서 쓰고자 하는 &lt;strong&gt;1) 커플링된 코드&lt;/strong&gt;와 &lt;strong&gt;2) 아키텍처&lt;/strong&gt; 때문이었습니다. 본문에 나오는 코드는 메쉬프라임과 무관함을 밝힙니다.&lt;/p&gt;
-
-&lt;p&gt;이제 나는 &lt;strong&gt;읽기 쉬울 뿐만 아니라 유지 보수가 편리한 코드&lt;/strong&gt;를 개발할 것을 약속합니다.&lt;/p&gt;
-
-&lt;div class=&quot;panel panel-default&quot;&gt;
-  &lt;div class=&quot;panel-body&quot;&gt;
-    &lt;p class=&quot;lead&quot;&gt;프로그램이 지닌 가치는 두 종류다. 하나는 &lt;strong&gt;1) 현재의 기능이라는 가치&lt;/strong&gt;이고, 또 하나는 &lt;strong&gt;2) 미래의 기능이라는 가치&lt;/strong&gt;다. 프로그래밍할 때 개발자는 주로 그 프로그램에 현재 무슨 기능을 넣을지에 전념한다. 버그를 수정하든 새 기능을 추가하든, 그것은 프로그램의 성능을 높임으로써 현재 기능의 가치를 높이는 일이다.&lt;/p&gt;
-    &lt;p class=&quot;lead&quot;&gt;프로그램의 현재 기능은 그저 일부에 불과하다는 사실을 깨우치지 않으면 개발자로서 오래 가지 못한다. 오늘 일을 오늘 할 수 있어도 내일 일을 내일 할 능력이 없다면 개발자로서 싪패하게 된다. 오늘 해야 할 일은 알아도 내일 일은 알 수 없는 것이 당연하다. 이런 일, 저런 일, 또는 어쩌면 생각지도 못한 일을 하게 될 수도 있다.&lt;/p&gt;
-    &lt;small class=&quot;text-muted&quot;&gt;- 켄트 벡&lt;/small&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;1-강한-결합&quot;&gt;1. 강한 결합&lt;/h2&gt;
-
-&lt;p&gt;어떤 모듈 A가 다른 모듈 B에 “의존”한다는 것은 A가 B의 변수(데이터) 또는 함수(데이터는 변경하는 로직)를 사용하고 있거나, A의 함수에서 B를 파라미터로 받거나 B를 생성하거나, A의 함수에서 B 모듈을 반환하는 등의 모든 행위를 포함합니다. 즉, 모듈 B의 데이터 구조 또는 함수가 변경되면, 모듈 A도 영향을 받는다고 해석할 수 있습니다. 극단적인 경우에는 멀쩡하던 모듈 B의 함수 또는 모듈 자체가 다음 버전에 갑자기 사라질 수도 있겠죠?&lt;/p&gt;
-
-&lt;p&gt;우리의 코드는 프레임워크 개발팀을 믿고 신뢰하며 프레임워크나 ORM의 함수를 사용합니다. 그러나, 그들은 우리에게 자신의 코드를 변경하지 않는다고 어떤 약속도 하지 않았습니다. 결합도가 높은 코드 예제를 볼까요?&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Product.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\Illuminate\Database\Eloquent\Model&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// ...  &lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getProductImageAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$productImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;public_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;images/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$productImage&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Pure 해야 할 도메인 모델이 엘로퀀트라는 큰 덩어리는 상속하고 있습니다. 상속은 아주 강한 결합입니다. 또 이 코드는 &lt;code class=&quot;highlighter-rouge&quot;&gt;public_path()&lt;/code&gt;라는 라라벨 전역 함수에 의존합니다. 문제는 여기에 그치지 않고, 도메인 서비스나 애플리케이션 서비스에서도 &lt;code class=&quot;highlighter-rouge&quot;&gt;app()&lt;/code&gt; 전역 함수나 &lt;code class=&quot;highlighter-rouge&quot;&gt;DB&lt;/code&gt;와 같은 라라벨 파사드에 의존하고 있을 겁니다. 지금도 이렇게 짜고 있지 않나요? “아니오” 라고 대답했다면, 둘 중 하나입니다. 거짓말을 하고 있거나, 개발자가 아니거나…&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;참고&lt;/code&gt;&lt;/strong&gt; “의존성”에 대해 깃허브 저장소에 예제 코드와 함께 정리하고 있습니다. &lt;a href=&quot;https://github.com/appkr/pattern/tree/master/dependency&quot;&gt;https://github.com/appkr/pattern/tree/master/dependency&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2-클린-아키텍처&quot;&gt;2. 클린 아키텍처&lt;/h2&gt;
-
-&lt;p&gt;아래 엉클 밥의 비디오에는 나오지는 않는데, 이 분은 OO(객체지향)를 이렇게 정의하셨습니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;OO란 Low level detail로 부터 High level policy를 보호하는 것이다.&lt;/p&gt;
-
-  &lt;footer&gt;&lt;cite&gt;로버트 C. 마틴&lt;/cite&gt;&lt;/footer&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이게 어떻게 가능할까요? 아래 비디오에서는 경계(&lt;code class=&quot;highlighter-rouge&quot;&gt;||&lt;/code&gt;, 두 줄로 표시합니다)라고 답하고 있습니다. 쉽게 말하면 인터페이스입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=o_TH-Y78tt4&amp;amp;t=10m45s&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/o_TH-Y78tt4/0.jpg&quot; alt=&quot;The Principles of Clean Architecture by Uncle Bob Martin&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;중요 내용만 요약했습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;High Level 폴더 구조를 보고 Ruby on Rails 앱인줄 바로 알았다.
-    &lt;ul&gt;
-      &lt;li&gt;웹은 입출력 장치(==딜리버리 메커니즘)인데, 왜 이 앱이 하고자 하는 바를 폴더 구조에서 알 수 없는가?&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;주&lt;/code&gt;&lt;/strong&gt; RoR 폴더 구조를 벤치마크한 라라벨도 마찬가지입니다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;아키텍처는 해결하고자 하는 문제에 관한 의도를 표현해야한다.
-    &lt;ul&gt;
-      &lt;li&gt;아키텍처는 스프링, MySQL과 같은 툴이 아니다.&lt;/li&gt;
-      &lt;li&gt;의도는 유스케이스(Use Case)를 통해서 드러난다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Interactor는 애플리케이션에 종속적인 비즈니스 룰을 다룬다.
-    &lt;ul&gt;
-      &lt;li&gt;Domain은 애플리케이션과 무관한 비즈니스 룰을 다룬다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;주&lt;/code&gt;&lt;/strong&gt; 애플리케이션은 웹 시스템에 적용, 모바일 앱에 적용 등을 말할 때의 “적용”의 의미. 앱과 혼동하지 말것.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;앱과 무관한 웹 시스템, 데이터베이스등의 입출력 장치들은 경계(&lt;code class=&quot;highlighter-rouge&quot;&gt;||&lt;/code&gt;)를 통해서 소스 코드의 의존성을 역전시켜야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;비즈니스 룰 보다 UI가 더 자주 변경된다. UI의 변경 때문에 비즈니스 률이 영향받지 않아야 한다.&lt;/li&gt;
-      &lt;li&gt;데이터베이스도 마찬가지로 디테일에 해당한다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;주&lt;/code&gt;&lt;/strong&gt; 화살표의 방향에 주의하라고 여러번 말씀하심&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프레임워크는 편리함을 선사하지만, 그에 따른 대가를 치러야 하는 시점이 찾아 온다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;비디오에 나온 그림을 전부 종합하면 아래 그림 및 설명과 같습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2017-07-09-img-01.png&quot; alt=&quot;&quot; /&gt;
-&lt;small class=&quot;text-muted&quot;&gt;그림 출처: http://hugo.ferreira.cc/architecture-the-lost-years/&lt;/small&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;small class=&quot;text-muted&quot;&gt;(실선 두 개로 표시된)&lt;/small&gt; 경계 왼쪽에는 우리가 흔히 아는 &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;Controller&lt;/code&gt;가 있습니다. 아래 쪽에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;DataBase(=~Persistence Engine)&lt;/code&gt;가 있습니다.&lt;/li&gt;
-  &lt;li&gt;컨트롤러는 사용자의 요청을 받아 &lt;code class=&quot;highlighter-rouge&quot;&gt;Request Model(DTO, Command)&lt;/code&gt;을 만들어서 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Boundary&lt;/code&gt;의 함수를 호출할 때 인자로 담아서 경계 안쪽으로 전달합니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor(=~Service Object)&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Boundary&lt;/code&gt;를 구현하고 있고, &lt;code class=&quot;highlighter-rouge&quot;&gt;Controller&lt;/code&gt;에서 넘겨준 &lt;code class=&quot;highlighter-rouge&quot;&gt;Request Model&lt;/code&gt;을 사용해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;의 함수를 호출합니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;는 요청을 수행하기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;Entity Gateway(=~&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Repository)&lt;/code&gt;의 함수를 호출해서 저장된 상태를 불러 오기도 하고, 변경된 상태를 저장하기도 합니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Entity Gateway Impl&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Entity Gateway&lt;/code&gt;를 구현하고 있으며, 데이터베이스 API(SQL, ORM) 또는 File, Collection 등의 함수를 이용해서 조회 및 저장 작업을 수행합니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;는 요청을 처리한 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Boundary&lt;/code&gt;의 함수를 호출할 때 인자로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Response Model&lt;/code&gt;을 만들어 경계 바깥 쪽으로 전달합니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Presentor&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Boundary&lt;/code&gt;를 구현하고 있으며, &lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;가 전달한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Response Model&lt;/code&gt;을 가공하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;View Model&lt;/code&gt;의 데이터를 채워줍니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3-모범-사례&quot;&gt;3. 모범 사례&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/leopro/trip-planner&quot;&gt;Trip Planner&lt;/a&gt;라는 예제 프로젝트입니다. 커맨드와 유스케이스를 이용하고 있습니다. 아쉽게도 라라벨은 아니고, &lt;a href=&quot;http://symfony.com/&quot;&gt;심포니(Symfony)&lt;/a&gt;와 &lt;a href=&quot;http://www.doctrine-project.org/&quot;&gt;독트린(Doctrine)&lt;/a&gt;을 사용하네요.&lt;/p&gt;
-
-&lt;h3 id=&quot;31-controller&quot;&gt;3.1. Controller&lt;/h3&gt;
-
-&lt;p&gt;컨트롤러에서 아래와 같은 코드를 이용해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;CreateTripCommand(=~Request Model)&lt;/code&gt;를 만들어서 &lt;code class=&quot;highlighter-rouge&quot;&gt;UseCase::run()(=~&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Boundary)&lt;/code&gt;을 호출합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;new CreateTripCommand('my trip')&lt;/code&gt; 부분을 실제 Http 컨트롤러에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;new CreateTripCommand($request-&amp;gt;get('trip_name')&lt;/code&gt;처럼 사용할 겁니다. 그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;new CreateTripUseCase($tripRepository)&lt;/code&gt; 구문은 IoC 또는 의존성 주입을 사용할 것이므로 생략될 것입니다.&lt;/p&gt;
-
-&lt;p&gt;이 예제는 특별하게도 커맨드 버스를 이용하므로, 컨트롤러 코드에서 커맨드를 만들고, 커맨드 버스를 이용해서 생성된 커맨드를 전달하고, 커맨드 핸들러가 커맨드를 처리할 커맨드 핸들러(=~&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;)를 찾아서 &lt;code class=&quot;highlighter-rouge&quot;&gt;run()&lt;/code&gt; 메서드를 실행하고 컨트롤러 쪽으로 실행 결과를 반환해 줍니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Tests/CreateTripTest.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\Tests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CreateTripTest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\PHPUnit_Framework_TestCase&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testCreateTrip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$tripRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMockBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'...'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CreateTripCommand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'my trip'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$useCase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CreateTripUseCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$tripRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$useCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertInstanceOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'...'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;32-request-model&quot;&gt;3.2. Request Model&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CreateTripCommand&lt;/code&gt;라는 Request Model 입니다. 커맨드를 사용하므로 커맨드 버스나 핸들러와 같은 복잡한 개념이 나오는데, 커맨드의 근본은 DTO(Data Transfer Object)를 사용하는 것과 마찬가지로 로직이 없는 순수 데이터 구조체입니다.&lt;/p&gt;
-
-&lt;p&gt;DTO 보다 커맨드 시스템이 더 나은 점은 1) 커맨드 이름만으로 의도가 확실히 드러난다는 점, 2) 웹, 콘솔 등 다양한 애플리케이션(=~적용 방식, 입출력 장치)에서 재사용할 수 있다는 점, 3) 테스트가 편하다는 점 등을 들 수 있습니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Command/CreateTripCommand.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\Command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CreateTripCommand&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Command&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ArrayCollection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
-          &lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;33-interactor&quot;&gt;3.3. Interactor&lt;/h3&gt;
-
-&lt;p&gt;이 예제에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;UseCase&lt;/code&gt;가 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Boundary&lt;/code&gt;이고, 이를 구현한 &lt;code class=&quot;highlighter-rouge&quot;&gt;CreateTripUseCase&lt;/code&gt;가 &lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;입니다. DTO를 사용하는 전통적인 구현이라면, &lt;code class=&quot;highlighter-rouge&quot;&gt;CreateTripService&lt;/code&gt;와 같은 이름으로 지었을 겁니다.&lt;/p&gt;
-
-&lt;p&gt;코드를 살펴보면, 유효한 커맨드인지 검사를 수행하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;createWithFirstRoute()&lt;/code&gt; 함수를 호출해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Trip&lt;/code&gt; 이라는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;를 만듭니다. 그리고, 생성자를 통해서 주입 받은 &lt;code class=&quot;highlighter-rouge&quot;&gt;TripRepository&lt;/code&gt; 인터페이스의 &lt;code class=&quot;highlighter-rouge&quot;&gt;add()&lt;/code&gt; 함수를 호출함으로써 생성된 엔티티를 영속화시킵니다. 뒤에서 다시 보겠지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;TripRepository&lt;/code&gt;는 2절의 그림에서 본 경계 안 쪽에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt;Entity Gateway&lt;/code&gt;입니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/UseCase/CreateTripUseCase.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\UseCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CreateTripUseCase&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractUseCase&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UseCase&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$tripRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TripRepository&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$tripRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getManagedCommand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Command&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;exceptionIfCommandNotManaged&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Trip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createWithFirstRoute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TripIdentity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;uniqid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()),&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tripRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;34-entity&quot;&gt;3.4. Entity&lt;/h3&gt;
-
-&lt;p&gt;3.3. 절에서 호출한 &lt;code class=&quot;highlighter-rouge&quot;&gt;createWithFirstRoute&lt;/code&gt; 함수가 &lt;code class=&quot;highlighter-rouge&quot;&gt;Trip&lt;/code&gt; 모델의 상태를 변경합니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 주목할 점은 데이터베이스와의 결합도를 낮추기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;TripIdentity&lt;/code&gt; 타입의 식별자를 사용한다는 점입니다. 데이터베이스에 의존하는 구현에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;INSERT INTO ...&lt;/code&gt; 하기 전에는 엔티티의 식별자를 알 수 없고, 메모리 안에서 불완전한 상태로 살아있게 되는 문제가 있습니다.&lt;/p&gt;
-
-&lt;p&gt;또 하나 지적하고 싶은 점은 PHP의 한계 중에 하나인 메서드 오버로딩(overloading)입니다. 오버로딩을 할 수 없기 때문에 생성자를 Private로 선언하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;createWithFirstRoute()&lt;/code&gt;라는 정적 팩토리 메서드를 제공하고 있습니다. 오버로딩이 지원되었다면, &lt;code class=&quot;highlighter-rouge&quot;&gt;__construct(TripIdentity $identity)&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;__construct(TripIdentity $identity, $name)&lt;/code&gt;처럼 생성자를 여러 개 만들었겠지요?&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Entity/Trip.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Domain\Entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Trip&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TripIdentity&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createWithFirstRoute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TripIdentity&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;35-entity-gateway&quot;&gt;3.5. Entity Gateway&lt;/h3&gt;
-
-&lt;p&gt;3.4. 절에서 호출했던 그 인터페이스입니다. 특이한 점은 &lt;code class=&quot;highlighter-rouge&quot;&gt;save()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;add()&lt;/code&gt;라는 함수명을 쓰고 있습니다. 현재까지의 전체 구현이 PHP의 네이티브 배열을 랩핑한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Collection&lt;/code&gt;을 데이터 저장소로 사용하고 있어서이며, 영속성을 위한 저장 장치에 앱이 의존하지 않는다는 것을 한번 더 강조하는 네이밍입니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Domain/Contract/TripRepository.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Domain\Contract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TripRepository&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TripIdentity&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$identity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Trip&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$trip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;36-response-model&quot;&gt;3.6. Response Model&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Interactor&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Response&lt;/code&gt; 모델에 데이터를 담아서 경계 바깥 쪽으로 내보냅니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// https://github.com/leopro/trip-planner/blob/master/src/Leopro/TripPlanner/Application/Response/Response.php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Leopro\TripPlanner\Application\Response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Response&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getContent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;37-all-together&quot;&gt;3.7. All Together&lt;/h3&gt;
-
-&lt;p&gt;아래 UML을 엉클 밥의 그림에 겹쳐보면… 소름이 돋습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2017-07-09-img-02.png&quot; alt=&quot;Trip Planner&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;38-why&quot;&gt;3.8. Why?&lt;/h3&gt;
-
-&lt;p&gt;다음 코드와 같이 컨트롤러에서 몇 줄만 쓰면 될 것을 복잡한 보일러 플레이트를 양산하면서 이렇게 짜고 있을까요?&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App\Http\Controllers&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TripController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Request&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Trip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; 
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;강한 결합도(소프트웨어의 제 2가치 위반)로 발생하는 비용은 보일러 플레이트를 쓰는 비용보다 더 크기 때문입니다. 의존성이 없다는 것은 독립적으로 개발할 수 있다는 의미입니다. 독립적으로 개발할 수 있다는 것은 독립적으로 컴파일(패키징)할 수 있다는 의미입니다. 독립적으로 컴파일할 수 있다는 것은 독립적으로 배포할 수 있다는 의미입니다.&lt;/p&gt;
-
-&lt;p&gt;업종마다 서비스마다 다를 수 있으니 오해마시기 바랍니다. 가령 여러 고객의 요구사항을 빠르게 찍어 내야 하는 웹 에이전시나, 한 달짜리 마케팅 캠페인용 서비스라면 바로 위의 코드와 같이 짠다고 해도 누가 뭐라 하겠습니까?&lt;/p&gt;
-
-&lt;p&gt;Ruby On Rails 커뮤니티에서도 DHH가 직접 나서서 똑같은 주제로 논쟁을 하고 있습니다. &lt;a href=&quot;https://gist.github.com/dhh/4849a20d2ba89b34b201&quot;&gt;https://gist.github.com/dhh/4849a20d2ba89b34b201&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;4-앞으로-할-일&quot;&gt;4. 앞으로 할 일&lt;/h2&gt;
-
-&lt;p&gt;이 글에서 소개한 “커맨드 버스”와 지난 포스트에서 소개한 “&lt;small&gt;(의사, Pseudo)&lt;/small&gt; 이벤트 소싱”은 라라벨에도 내장되어 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Job&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;Notification&lt;/code&gt;이 바로 그것들인데요. 또 프레임워크에 의존하는 코드를 생산할까봐 조심스럽습니다. 컴포저로 설치한 3rd Party 컴포넌트도 전부 마찬가지 아니냐고 반문할 수 있습니다. 예! 맞습니다. 피하려면 라이브러리에서 제공하는 객체를 의존성 주입으로 사용하거나, IoC(서비스 컨테이너)를 이용해서 주입하거나, 앱 경계 안쪽에 인터페이스를 만들고 라이브러리를 &lt;a href=&quot;https://en.wikipedia.org/wiki/Adapter_pattern&quot;&gt;Adapter&lt;/a&gt; 또는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Decorator_pattern&quot;&gt;Decorator&lt;/a&gt; 패턴으로 한번 랩핑해서 사용하는 방법이 있습니다.&lt;/p&gt;
-
-&lt;p&gt;지난 포스트 이후, 설계에 관한 고민을 하며 여기저기 기웃댔지만, 아직 라라벨의 의존성을 완전히 걷어낸 오픈 소스, 예제 프로젝트, 또는 방법을 설명하는 블로그 포스트는 찾지 못했습니다. 우선 라라벨 프로젝트에서 엘로퀀트를 완전히 경계 밖으로 내보내고 도메인 엔티티를 POPO(Plain Old PHP Object)로 만드는 방법을 연구할 겁니다. 이게 된다면, 엉클 밥이 말씀하신 프레임워크에 의존하지 않는, 또는 본문의 Trip Planner 예제처럼 HTTP와 같은 입출력 장치에 완전히 격리되어 작동하는 앱을 얻을 수 있을 겁니다. POPO를 이용함으로 그냥 공짜로 얻는 이점은 서두에 언급한 누구나 읽을 수 있는 코드입니다. 라라벨 매직이 전부 빠졌기 때문이죠.&lt;/p&gt;
-
-&lt;p&gt;지난 번 불변 엔티티도 깃허브 리포만 파 놓고 설계에 대한 고민들을 하다가 손을 못 대고 있었습니다. 확보된 코드는 도메인 주도 설계, 커맨드 주도 아키텍처, 이벤트소싱 &amp;amp; CQRS 등 새로운 아키텍처를 실험하기 위한 베이스로 사용할 예정입니다. 이번에도 조언 환영합니다.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 09 Jul 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/clean-architecture-and-dependency/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/clean-architecture-and-dependency/</guid>
-        
-        <category>개발자</category>
-        
-        <category>아키텍처</category>
-        
-        
-        <category>learn-n-think</category>
         
       </item>
     

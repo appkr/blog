@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "PHP Log Tracking with ELK &amp; Filebeat part#2",
+    "category" : "work-n-play",
+    "tags"     : "개발자, ELK, Log",
+    "url"      : "/work-n-play/php-filebeat-elk-log-tracking/",
+    "date"     : "2018-06-30"
+  },
+  
+  {
     "title"    : "이진수와 십진수",
     "category" : "cheatsheet",
     "tags"     : "수학, 개발자",

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일에 코드 리팩토링 내용을 반영하여 변경되었습니다.FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스다. 과거 GCM(Go..."/>
+  <meta name="description" content="이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일, 2018년 7월 2일에 코드 리팩토링 내용을 반영하여 변경되었습니다.FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비..."/>
   <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
   <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
 
@@ -20,7 +20,7 @@
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content="모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부">
-  <meta itemprop="description" content="이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일에 코드 리팩토링 내용을 반영하여 변경되었습니다.FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스다. 과거 GCM(Go...">
+  <meta itemprop="description" content="이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일, 2018년 7월 2일에 코드 리팩토링 내용을 반영하여 변경되었습니다.FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비...">
   <meta itemprop="image" content="http://blog.appkr.kr/images/images/2016-12-24-img-01.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content="모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부" />
-  <meta name="twitter:description" content="이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일에 코드 리팩토링 내용을 반영하여 변경되었습니다.FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스다. 과거 GCM(Go..." />
+  <meta name="twitter:description" content="이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일, 2018년 7월 2일에 코드 리팩토링 내용을 반영하여 변경되었습니다.FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비..." />
   <meta name="twitter:image" content="http://blog.appkr.kr/images/images/2016-12-24-img-01.png" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
@@ -140,7 +140,7 @@
 
       <div class="box-body">
         <blockquote>
-  <p>이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일에 코드 리팩토링 내용을 반영하여 변경되었습니다.</p>
+  <p>이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일, 2018년 7월 2일에 코드 리팩토링 내용을 반영하여 변경되었습니다.</p>
 </blockquote>
 
 <p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
@@ -222,19 +222,15 @@
     <span class="nv">$optionBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OptionsBuilder</span><span class="p">();</span>
     <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">setTimeToLive</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">20</span><span class="p">);</span>
 
-    <span class="nv">$notificationBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadNotificationBuilder</span><span class="p">(</span><span class="s1">'알림 제목'</span><span class="p">);</span>
-    <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">setBody</span><span class="p">(</span><span class="s1">'알림 본문'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setSound</span><span class="p">(</span><span class="s1">'default'</span><span class="p">);</span>
-
     <span class="nv">$dataBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadDataBuilder</span><span class="p">();</span>
     <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">([</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">]);</span>
 
     <span class="nv">$option</span> <span class="o">=</span> <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
-    <span class="nv">$notification</span> <span class="o">=</span> <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
-    <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+    <span class="nv">$message</span> <span class="o">=</span> <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
 
     <span class="nv">$token</span> <span class="o">=</span> <span class="s1">'eI..b0:APA...FJx'</span><span class="p">;</span>
 
-    <span class="nv">$downstreamResponse</span> <span class="o">=</span> <span class="nx">app</span><span class="p">(</span><span class="s1">'fcm.sender'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">sendTo</span><span class="p">(</span><span class="nv">$token</span><span class="p">,</span> <span class="nv">$option</span><span class="p">,</span> <span class="nv">$notification</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="nv">$downstreamResponse</span> <span class="o">=</span> <span class="nx">app</span><span class="p">(</span><span class="s1">'fcm.sender'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">sendTo</span><span class="p">(</span><span class="nv">$token</span><span class="p">,</span> <span class="nv">$option</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nv">$message</span><span class="p">);</span>
 
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'numberSuccess'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">numberSuccess</span><span class="p">());</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'numberFailure'</span><span class="p">,</span> <span class="nv">$downstreamResponse</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">());</span>
@@ -366,314 +362,266 @@ array <span class="o">(</span><span class="nv">size</span><span class="o">=</spa
 <span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">App\Device</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">DB</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Exception</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">LaravelFCM\Message\OptionsBuilder</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">LaravelFCM\Message\PayloadDataBuilder</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">LaravelFCM\Message\PayloadNotificationBuilder</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">LaravelFCM\Response\DownstreamResponse</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">LaravelFCM\Sender\FCMSender</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Log</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Psr\Log\LoggerInterface</span><span class="p">;</span>
 
-<span class="sd">/**
- * Class FCMHandler
- * @package App\Services
- */</span>
 <span class="k">class</span> <span class="nc">FCMHandler</span>
 <span class="p">{</span>
-    <span class="sd">/** @var array FCM을 수신한 registration_id 목록 */</span>
-    <span class="k">private</span> <span class="nv">$to</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">const</span> <span class="no">DEFAULT_TTL_IN_SECOND</span> <span class="o">=</span> <span class="mi">1800</span><span class="p">;</span> <span class="c1">// 30분</span>
 
-    <span class="sd">/** @var array FCM 데이터 메시지 본문 */</span>
-    <span class="k">private</span> <span class="nv">$data</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">private</span> <span class="nv">$fcmSender</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$logger</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$receivers</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">private</span> <span class="nv">$message</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">private</span> <span class="nv">$retryInterval</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// milli seconds</span>
+    <span class="k">private</span> <span class="nv">$maxTries</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$tries</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="sd">/** @var string FCM 알림 제목 */</span>
-    <span class="k">private</span> <span class="nv">$title</span><span class="p">;</span>
-
-    <span class="sd">/** @var string FCM 알림 본문 */</span>
-    <span class="k">private</span> <span class="nv">$body</span><span class="p">;</span>
-
-    <span class="sd">/** @var array 전송 실패시 재시도 간격 */</span>
-    <span class="k">private</span> <span class="nv">$retryIntervals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
-
-    <span class="sd">/** @var int 전송 실패시 재시도 카운트 */</span>
-    <span class="k">private</span> <span class="nv">$retryIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="sd">/** @var \LaravelFCM\Sender\FCMSender */</span>
-    <span class="k">protected</span> <span class="nv">$fcm</span><span class="p">;</span>
-
-    <span class="sd">/**
-     * 전송이 실패해서 여러 번 재전송할 때를 대비해 한 번 만든 메시지 인스턴스를 캐시하는 저장소.
-     *
-     * @var array
-     *  [
-     *      'optionBuilder' =&gt; \LaravelFCM\Message\Options,
-     *      'notificationBuilder' =&gt; \LaravelFCM\Message\PayloadNotification,
-     *      'dataBuilder' =&gt; \LaravelFCM\Message\PayloadData
-     *  ]
-     */</span>
-    <span class="k">private</span> <span class="nv">$cache</span> <span class="o">=</span> <span class="p">[];</span>
-
-    <span class="sd">/**
-     * 푸쉬 메시지를 보낼 단말기의 registration_id 목록을 설정한다.
-     *
-     * @param array $to
-     * @return $this
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">to</span><span class="p">(</span><span class="k">array</span> <span class="nv">$to</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">FCMSender</span> <span class="nv">$fcmSender</span><span class="p">,</span> <span class="nx">LoggerInterface</span> <span class="nv">$logger</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span> <span class="o">=</span> <span class="nv">$to</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fcmSender</span> <span class="o">=</span> <span class="nv">$fcmSender</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span> <span class="o">=</span> <span class="nv">$logger</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * 푸쉬 메시지로 보낼 데이터 본문을 설정한다.
-     *
-     * @param array $data
-     * @return $this
+     * 수신자를 설정한다.
+     * 
+     * @param array $receivers
      */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">data</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setReceivers</span><span class="p">(</span><span class="k">array</span> <span class="nv">$receivers</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span> <span class="o">=</span> <span class="nb">array_unique</span><span class="p">(</span><span class="nv">$receivers</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * 푸쉬 메시지로 보낼 알림 제목과 본문을 설정한다.
-     *
-     * @param string $title
-     * @param string $body
-     * @return $this
+     * 메시지를 설정한다.
+     * 
+     * @param array $message
      */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">notification</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$title</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$body</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setMessage</span><span class="p">(</span><span class="k">array</span> <span class="nv">$message</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$title</span><span class="p">;</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">body</span> <span class="o">=</span> <span class="nv">$body</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span> <span class="o">=</span> <span class="nv">$message</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * 메시지 전송 실패시 재시도 간격과 회수를 설정한다.
-     *
-     * @param array[int] $intervals
-     * @return $this
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">retryIntervals</span><span class="p">(</span><span class="k">array</span> <span class="nv">$intervals</span> <span class="o">=</span> <span class="p">[])</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$intervals</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryIntervals</span> <span class="o">=</span> <span class="nv">$intervals</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="sd">/**
-     * 푸쉬 메시지 전송을 라이브러리에 위임하고, 전송 결과를 처리한다.
-     *
+     * FCM 메시지를 전송한다.
+     * 
      * @param int $sleep
-     * @return DownstreamResponse
+     * @return DownstreamResponse|null
      * @throws Exception
      */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">send</span><span class="p">(</span><span class="nv">$sleep</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">sendMessage</span><span class="p">(</span><span class="nv">$sleep</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nb">sleep</span><span class="p">(</span><span class="nv">$sleep</span><span class="p">);</span>
-
-        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fire</span><span class="p">();</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberModification</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 메시지는 성공적으로 전달됐다.</span>
-            <span class="c1">// 단말기 공장 초기화 등의 이유로 구글 FCM Server에 등록된 registration_id가 바꼈다.</span>
-            <span class="nv">$tokens</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensModify</span><span class="p">();</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">updateDevices</span><span class="p">(</span><span class="nv">$tokens</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$sleep</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">usleep</span><span class="p">(</span><span class="nv">$sleep</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToDelete</span><span class="p">())</span> <span class="p">{</span>
-                <span class="c1">// 해당 registration_id를 가진 단말기가 구글 FCM 서비스에 등록되어 있지 않다.</span>
-                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deleteDevices</span><span class="p">(</span><span class="nv">$tokens</span><span class="p">);</span>
-            <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isReadyToSend</span><span class="p">();</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToRetry</span><span class="p">())</span> <span class="p">{</span>
-                <span class="c1">// 구글 FCM Server가 5xx 응답을 반환했다.</span>
-                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="nv">$tokens</span><span class="p">);</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fcmSender</span><span class="o">-&gt;</span><span class="na">sendTo</span><span class="p">(</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">,</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getDeliveryOption</span><span class="p">(),</span>
+                <span class="kc">null</span><span class="p">,</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getPayloadData</span><span class="p">()</span>
+            <span class="p">);</span>
 
-                <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryIntervals</span><span class="p">[</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryIndex</span><span class="p">]))</span> <span class="p">{</span>
-                    <span class="c1">// 메시지 전송에 실패했다.</span>
-                    <span class="c1">// static::$retryIntervals에 설정된 간격으로 재시도한다.</span>
-                    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span>
-                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryIntervals</span><span class="p">[</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryIndex</span><span class="o">++</span><span class="p">]</span>
-                    <span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
+            <span class="c1">// Note. Http Exception이 아니면, Fcm Server는 에러 메시지를 담은 응답을 반환합니다.</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logRequestAndResponse</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">updatePushServiceIdsIfAny</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">handleDeliveryFailureIfAny</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">RequestException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">'FCM 메시지를 전송하지 못했습니다.'</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getResponse</span><span class="p">()</span> <span class="o">?</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getResponse</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()</span> <span class="o">:</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
+            <span class="p">]);</span>
+            <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * 푸쉬 메시지를 전송합니다.
-     *
-     * @return DownstreamResponse
+     * 수신자와 메시지가 설정되었는 지 검사한다.
+     * 
+     * @throws Exception
      */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">fire</span><span class="p">()</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">isReadyToSend</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="c1">// 라이브러리가 제공한 LaravelFCM\FCMServiceProvider를 열어 보면</span>
-        <span class="c1">// 라라벨의 서비스 컨테이너에 인스턴스를 등록할 때의 키를 알 수 있다..</span>
-        <span class="c1">// 'fcm.sender'라는 키를 사용하고 있어서, app() 헬퍼를 이용해서 등록된 인스턴스를 가져왔다.</span>
-        <span class="c1">// 마치 $container = ['key' =&gt; new stdClass]에서 $container['key']를</span>
-        <span class="c1">// 사용해서 할당된 stdClass 인스턴스를 얻어 오는 것과 같은 개념이다.</span>
-        <span class="sd">/** @var FCMSender $fcmSender */</span>
-        <span class="nv">$fcmSender</span> <span class="o">=</span> <span class="nx">app</span><span class="p">(</span><span class="s1">'fcm.sender'</span><span class="p">);</span>
-        <span class="nv">$notification</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">)</span>
-            <span class="o">?</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildNotification</span><span class="p">()</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="nv">$fcmSender</span><span class="o">-&gt;</span><span class="na">sendTo</span><span class="p">(</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTo</span><span class="p">(),</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildOption</span><span class="p">(),</span>
-            <span class="nv">$notification</span><span class="p">,</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildPayload</span><span class="p">()</span>
-        <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">'수신자를 제출하지 않았습니다.'</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">'메시지를 제출하지 않았습니다.'</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * 중복 수신자를 제거한 수신자 목록을 반환한다.
-     *
-     * @return array
-     */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getTo</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">array_unique</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="sd">/**
-     * 푸쉬 메시지 전송 옵션을 설정한다.
-     *
+     * 메시지 전송 옵션을 구한다.
+     * 
      * @return \LaravelFCM\Message\Options
      */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildOption</span><span class="p">()</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getDeliveryOption</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">'optionBuilder'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">))</span> <span class="p">{</span>
-            <span class="c1">// 캐시 되어 있으면 캐시를 사용한다.</span>
-            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'optionBuilder'</span><span class="p">];</span>
-        <span class="p">}</span>
-
         <span class="nv">$optionBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OptionsBuilder</span><span class="p">();</span>
-        
-        <span class="c1">// 필요한 옵션을 더 줄 수 있다.</span>
-        <span class="c1">// $optionBuilder-&gt;setCollapseKey('collapse_key');</span>
-        <span class="c1">// $optionBuilder-&gt;setDelayWhileIdle(true);</span>
-        <span class="c1">// $optionBuilder-&gt;setTimeToLive(60*2);</span>
-        <span class="c1">// $optionBuilder-&gt;setDryRun(false);</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'optionBuilder'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+        <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">setTimeToLive</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_TTL_IN_SECOND</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$optionBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * (단말기의 Notification Center에 표시될) 알림 제목과 본문을 설정한다..
-     *
-     * @return \LaravelFCM\Message\PayloadNotification
-     */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildNotification</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">'notificationBuilder'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'notificationBuilder'</span><span class="p">];</span>
-        <span class="p">}</span>
-
-        <span class="nv">$notificationBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadNotificationBuilder</span><span class="p">();</span>
-        <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">setTitle</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setBody</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setSound</span><span class="p">(</span><span class="s1">'default'</span><span class="p">);</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'notificationBuilder'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$notificationBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="sd">/**
-     * 메시지 본문을 설정한다.
-     *
+     * 메시지를 랩핑한 객체를 구한다.
+     * 
      * @return \LaravelFCM\Message\PayloadData
      */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildPayload</span><span class="p">()</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getPayloadData</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">'dataBuilder'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'dataBuilder'</span><span class="p">];</span>
-        <span class="p">}</span>
-
-        <span class="nv">$dataBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadDataBuilder</span><span class="p">();</span>
-        <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">);</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">[</span><span class="s1">'dataBuilder'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$dataBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+        <span class="nv">$payloadDataBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PayloadDataBuilder</span><span class="p">();</span>
+        <span class="nv">$payloadDataBuilder</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$payloadDataBuilder</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
     <span class="p">}</span>
 
     <span class="sd">/**
-     * 변경된 단말기의 토큰을 DB에 기록한다.
-     *
-     * @param array[$oldKey =&gt; $newKey] $tokens
-     * @return bool
-     */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">updateDevices</span><span class="p">(</span><span class="k">array</span> <span class="nv">$tokens</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="k">as</span> <span class="nv">$old</span> <span class="o">=&gt;</span> <span class="nv">$new</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">wherePushServiceId</span><span class="p">(</span><span class="nv">$old</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">firstOrFail</span><span class="p">();</span>
-            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">push_service_id</span> <span class="o">=</span> <span class="nv">$new</span><span class="p">;</span>
-            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="sd">/**
-     * 유효하지 않은 단말기 토큰을 DB에서 삭제한다.
-     *
-     * @param array[$token] $tokens
-     * @return bool
-     */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">deleteDevices</span><span class="p">(</span><span class="k">array</span> <span class="nv">$tokens</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tokens</span> <span class="k">as</span> <span class="nv">$token</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">wherePushServiceId</span><span class="p">(</span><span class="nv">$token</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">firstOrFail</span><span class="p">();</span>
-            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="sd">/**
-     * 로그를 남긴.
-     *
+     * FCM 메시지 전송 요청과 응답을 로그로 남긴다.
+     * 
      * @param DownstreamResponse $response
      */</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">log</span><span class="p">(</span><span class="nx">DownstreamResponse</span> <span class="nv">$response</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">logRequestAndResponse</span><span class="p">(</span><span class="nx">DownstreamResponse</span> <span class="nv">$response</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$logMessage</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span>
-            <span class="s2">"FCM broadcast (%dth try) send to %d devices success %d, fail %d, number of modified token %d."</span><span class="p">,</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryIndex</span><span class="p">,</span>
-            <span class="nb">count</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTo</span><span class="p">()),</span>
-            <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberSuccess</span><span class="p">(),</span>
-            <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">(),</span>
-            <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberModification</span><span class="p">()</span>
-        <span class="p">);</span>
+        <span class="nv">$tries</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">tries</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?:</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nv">$logMessage</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s2">"FCM 메시지 전송 %d번째 시도, 성공 %d건, 실패 %d건."</span><span class="p">,</span>
+            <span class="nv">$tries</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">),</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberSuccess</span><span class="p">(),</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">());</span>
 
-        <span class="nv">$rawRequest</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">([</span>
-            <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTo</span><span class="p">(),</span>
-            <span class="s1">'notification'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">,</span>
-                <span class="s1">'body'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">,</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span><span class="nv">$logMessage</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">'request'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">,</span>
+                <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">,</span>
             <span class="p">],</span>
-            <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">,</span>
-        <span class="p">],</span> <span class="nx">JSON_UNESCAPED_SLASHES</span> <span class="o">|</span> <span class="nx">JSON_UNESCAPED_UNICODE</span> <span class="o">|</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+            <span class="s1">'response'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'hasMissingPushServiceId'</span> <span class="o">=&gt;</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">hasMissingToken</span><span class="p">(),</span>
+                <span class="s1">'pushServiceIdsToModify'</span> <span class="o">=&gt;</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToModify</span><span class="p">(),</span>
+                <span class="s1">'pushServiceIdsWithError'</span> <span class="o">=&gt;</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensWithError</span><span class="p">(),</span>
+                <span class="s1">'pushServiceIdsToDelete'</span> <span class="o">=&gt;</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToDelete</span><span class="p">(),</span>
+                <span class="s1">'pushServiceIdsToRetry'</span> <span class="o">=&gt;</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToRetry</span><span class="p">(),</span>
+            <span class="p">],</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
 
-        <span class="nv">$rawResponse</span> <span class="o">=</span> <span class="nb">var_export</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="sd">/**
+     * 변경된 토큰을 DB에 기록한다.
+     * 
+     * @param DownstreamResponse $response
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">updatePushServiceIdsIfAny</span><span class="p">(</span><span class="nx">DownstreamResponse</span> <span class="nv">$response</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberModification</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$logMessage</span> <span class="o">.</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nv">$rawRequest</span> <span class="o">.</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nv">$rawResponse</span><span class="p">);</span>
+        <span class="c1">// [ old_push_service_id =&gt; new_push_service_id ]</span>
+        <span class="nv">$pushServiceIdsToModify</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToModify</span><span class="p">();</span>
+
+        <span class="c1">// 메시지는 성공적으로 전달되었습니다.</span>
+        <span class="c1">// 단말기 공장 초기화 등의 이유로 구글 FCM Server에 등록된 registration_id가 바뀌었습니다.</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">'FCM 메시지 전송 중: push_service_id를 Google과 동기화하고 있습니다.'</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">'push_service_id_to_modify'</span> <span class="o">=&gt;</span> <span class="nv">$pushServiceIdsToModify</span>
+        <span class="p">]);</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$pushServiceIdsToModify</span> <span class="k">as</span> <span class="nv">$oldPushServiceId</span> <span class="o">=&gt;</span> <span class="nv">$newPushServiceId</span><span class="p">)</span> <span class="p">{</span>
+            <span class="sd">/** @var Device $device */</span>
+            <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">,</span> <span class="nv">$oldPushServiceId</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="kc">null</span> <span class="o">===</span> <span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="nx">DB</span><span class="o">::</span><span class="na">transaction</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$device</span><span class="p">,</span> <span class="nv">$newPushServiceId</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">push_service_id</span> <span class="o">=</span> <span class="nv">$newPushServiceId</span><span class="p">;</span>
+                    <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">'FCM 메시지 전송 중: push_service_id를 동기화하지 못했습니다.'</span><span class="p">,</span> <span class="p">[</span>
+                    <span class="s1">'device_id'</span> <span class="o">=&gt;</span> <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+                    <span class="s1">'old_push_service_id'</span> <span class="o">=&gt;</span> <span class="nv">$oldPushServiceId</span><span class="p">,</span>
+                    <span class="s1">'new_push_service_id'</span> <span class="o">=&gt;</span> <span class="nv">$newPushServiceId</span><span class="p">,</span>
+                <span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * Fcm 전송 실패를 처리한다.
+     * 
+     * @param DownstreamResponse $response
+     * @throws Exception
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">handleDeliveryFailureIfAny</span><span class="p">(</span><span class="nx">DownstreamResponse</span> <span class="nv">$response</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">numberFailure</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$pushServiceIdsToDelete</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToDelete</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToDelete</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// 해당 registration_id를 가진 단말기가 구글 FCM 서비스에 등록되어 있지 않습니다.</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">'FCM 메시지 전송 중: 유효하지 않은 push_service_id를 가진 레코드를 삭제합니다.'</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">'push_service_ids_to_delete'</span> <span class="o">=&gt;</span> <span class="nv">$pushServiceIdsToDelete</span><span class="p">,</span>
+            <span class="p">]);</span>
+
+            <span class="k">foreach</span> <span class="p">(</span><span class="nv">$pushServiceIdsToDelete</span> <span class="k">as</span> <span class="nv">$pushServiceIdToDelete</span><span class="p">)</span> <span class="p">{</span>
+                <span class="sd">/** @var Device $device */</span>
+                <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">,</span> <span class="nv">$pushServiceIdToDelete</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="kc">null</span> <span class="o">===</span> <span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="nx">DB</span><span class="o">::</span><span class="na">transaction</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+                    <span class="p">});</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">'FCM 메시지 전송 중: 유효하지 않은 push_service_id를 가진 레코드를 삭제하지 못했습니다.'</span><span class="p">,</span> <span class="p">[</span>
+                        <span class="s1">'device_id'</span> <span class="o">=&gt;</span> <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+                        <span class="s1">'push_service_id_to_delete'</span> <span class="o">=&gt;</span> <span class="nv">$pushServiceIdToDelete</span>
+                    <span class="p">]);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nv">$pushServiceIdsToRetry</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToRetry</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToRetry</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span> <span class="o">=</span> <span class="nv">$pushServiceIdsToRetry</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">tries</span> <span class="o">&gt;=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">maxTries</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 재시도 했지만 메시지 전송에 실패했습니다.</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">'FCM 메시지를 전송하지 못했습니다.'</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s2">"FCM 메시지 전송 중: 다음 push_service_id에 대해 재 전송 시도합니다."</span><span class="p">,</span> <span class="p">[</span>
+                <span class="s1">'push_service_ids_to_retry'</span> <span class="o">=&gt;</span> <span class="nv">$pushServiceIdsToRetry</span><span class="p">,</span>
+            <span class="p">]);</span>
+
+            <span class="c1">// 최대 3회, 1회는 기본값, 다음 루프는 2회, 3회까지 실행됨.</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">tries</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">actualRetryCount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="c1">// (최초 1회 200밀리초 뒤 실행, 2회 400밀리초 뒤, 3회 800밀리초 뒤) -&gt; 프로세스가 총 1.4초동안 실행됨.</span>
+            <span class="c1">// @see https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=ko#error-codes</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryInterval</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryInterval</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sendMessage</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">retryInterval</span><span class="p">);</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>우리의 <code class="highlighter-rouge">FCMHandler</code> 클래스가 노출하는 API는 딱 네 개다.</p>
+<p>우리의 <code class="highlighter-rouge">FCMHandler</code> 클래스가 노출하는 API는 세 개다.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">to(array $to)</code> 메서드는 수신자를 지정한다.</li>
-  <li><code class="highlighter-rouge">data(array $data)</code> 메서드는 전송할 데이터를 설정한다.</li>
-  <li><code class="highlighter-rouge">notification(string $title, string $body)</code> 메서드는 알림 데이터를 설정한다.</li>
-  <li><code class="highlighter-rouge">send()</code> 메시지를 전송한다. 이 메서드는 FCM 서버로부터 <code class="highlighter-rouge">Unavailable</code> 응답을 받았다면, 1, 2, 4초 간격으로 <code class="highlighter-rouge">send()</code> 메서드 자신을 다시 호출하여 메시지 전송을 재시도하는 등의 일을 한다.</li>
+  <li><code class="highlighter-rouge">setReceivers(array $receivers)</code> 메서드는 수신자를 지정한다.</li>
+  <li><code class="highlighter-rouge">setMessage(array $message)</code> 메서드는 전송할 데이터를 설정한다.</li>
+  <li><code class="highlighter-rouge">sendMessage()</code> 메시지를 전송한다. 이 메서드는 FCM 서버로부터 <code class="highlighter-rouge">Unavailable</code> 응답을 받았다면, 200 밀리초, 400 밀리초, 800 밀리초 간격으로 <code class="highlighter-rouge">sendMessage()</code> 메서드 자신을 다시 호출하여 메시지 전송을 재시도하는 등의 일을 한다.</li>
 </ul>
 
 <h2 id="4-fcm-보내기-구현">4. FCM 보내기 구현</h2>
@@ -682,25 +630,21 @@ array <span class="o">(</span><span class="nv">size</span><span class="o">=</spa
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
 
-<span class="c1">// ...</span>
-
 <span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">App\Services\FCMHandler</span><span class="p">;</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'fcm'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">FCMHandler</span> <span class="nv">$fcm</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'fcm'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">FCMHandler</span> <span class="nv">$fcmHandler</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 푸쉬 메시지를 수신할 단말기의 토큰 목록을 추출한다.</span>
     <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">();</span>
-    <span class="nv">$to</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pluck</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+    <span class="nv">$receivers</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">pluck</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$to</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$receivers</span><span class="p">))</span> <span class="p">{</span>
         <span class="c1">// 보낼 내용이 마땅치 않아 로그인한 사용자 모델을 푸쉬 메시지 본몬으로 ㅡㅡ;. </span>
-        <span class="nv">$message</span> <span class="o">=</span> <span class="nb">array_merge</span><span class="p">(</span>
-            <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">(),</span>
-            <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">]</span>
-        <span class="p">);</span>
-
+        <span class="nv">$message</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
         <span class="c1">// FCMHandler 덕분에 코드는 이렇게 한 줄로 간결해졌다.</span>
-        <span class="nv">$fcm</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(</span><span class="nv">$to</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+        <span class="nv">$fcmHandler</span><span class="o">-&gt;</span><span class="na">setReceivers</span><span class="p">(</span><span class="nv">$receivers</span><span class="p">);</span>
+        <span class="nv">$fcmHandler</span><span class="o">-&gt;</span><span class="na">setMessage</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+        <span class="nv">$famHandler</span><span class="o">-&gt;</span><span class="na">sendMessage</span><span class="p">();</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">([</span>
@@ -727,12 +671,9 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
     <span class="s2">"to"</span>: <span class="o">[</span>
         <span class="s2">"eIrjxWASTb0:APA91bF8mv9AdXMAxQ0ALcvFJ4zvfzLxDs7LmGXrKB4btklQKuhcD94KTJV7tCghnxSQMAsShTjzjWHfWDC1aXe_JAQO0Ao4nuFEfpQI0QaUyX7Mh0aFm1RLVDhcP7nAArzaxF6jBFJx"</span>
     <span class="o">]</span>,
-    <span class="s2">"notification"</span>: <span class="o">{</span>
-        <span class="s2">"title"</span>: null,
-        <span class="s2">"body"</span>: null
-    <span class="o">}</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
-        <span class="s2">"foo"</span>: <span class="s2">"bar"</span>
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"name"</span>: <span class="s2">"김고객"</span>
     <span class="o">}</span>
 <span class="o">}</span>
 LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamResponse::__set_state<span class="o">(</span>array<span class="o">(</span>
@@ -881,7 +822,7 @@ LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamRe
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">57</span>
+          <span class="badge">58</span>
         </a>
       </li>
       <li>
@@ -970,6 +911,12 @@ LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamRe
     </span>
     
     <span style="font-size: 94%">
+      <a href="/tags#ELK">
+        ELK
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
       <a href="/tags#Generator">
         Generator
       </a>
@@ -1002,6 +949,12 @@ LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamRe
     <span style="font-size: 130%">
       <a href="/tags#Laravel">
         Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Log">
+        Log
       </a>
     </span>
     
@@ -1425,7 +1378,7 @@ LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamRe
       </a>
     </span>
     
-    <span style="font-size: 286%">
+    <span style="font-size: 290%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1565,6 +1518,13 @@ LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamRe
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-06-30</small>
+          <a href="/work-n-play/php-filebeat-elk-log-tracking/">PHP Log Tracking with ELK & Filebeat part#2</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-04-14</small>
           <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
         </h4>
@@ -1574,13 +1534,6 @@ LaravelFCM<span class="se">\R</span>esponse<span class="se">\D</span>ownstreamRe
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2017-12-24</small>
           <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2017-12-06</small>
-          <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
         </h4>
       </li>
       

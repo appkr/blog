@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "라라벨 ApplicationContext 컨테이너 구현",
+    "category" : "work-n-play",
+    "tags"     : "Laravel, 개발자",
+    "url"      : "/work-n-play/application-context-container/",
+    "date"     : "2018-07-09"
+  },
+  
+  {
     "title"    : "PHP Log Tracking with ELK &amp; Filebeat part#2",
     "category" : "work-n-play",
     "tags"     : "개발자, ELK, Log",

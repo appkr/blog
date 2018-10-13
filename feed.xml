@@ -5,9 +5,151 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 14 Jul 2018 11:20:25 +0900</pubDate>
-    <lastBuildDate>Sat, 14 Jul 2018 11:20:25 +0900</lastBuildDate>
+    <pubDate>Sun, 14 Oct 2018 13:39:23 +0900</pubDate>
+    <lastBuildDate>Sun, 14 Oct 2018 13:39:23 +0900</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Linux &quot;top&quot; cheatsheet</title>
+        <description>&lt;p&gt;보통 개발용 컴퓨터에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;htop&lt;/code&gt;처럼 좀 더 편리한 프로세스 모니터 도구를 사용하지만, 운영 서버에는 서비스에 불필요한 바이너리는 설치하지 않는게 좋죠. 해서, 특히 서비스 장애와 같이 급박한 상황에 운영 서버에 SSH in 해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;을 이용하려면 바보가 된 느낌을 종종 받습니다.&lt;/p&gt;
+
+&lt;p&gt;이 포스트에서는 바닐라 리눅스 환경에서 사용 빈도가 높은 &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt; 사용법만 정리해봤습니다. 우분투 16.04를 사용했는데요, &lt;del&gt;CentOS도 같을 거라 생각합니다&lt;/del&gt; CentOS는 조금 다릅니다, 댓글로 남깁니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/issue
+&lt;span class=&quot;c&quot;&gt;# Ubuntu 16.04.3 LTS \n \l&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;top
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;전체-요약&quot;&gt;전체 요약&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Help
+    &lt;ul&gt;
+      &lt;li&gt;&lt;kbd&gt;h&lt;/kbd&gt;: 도움말&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Display
+    &lt;ul&gt;
+      &lt;li&gt;&lt;kbd&gt;Z&lt;/kbd&gt;: 칼라 설정&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;t&lt;/kbd&gt;: CPU 통계 뷰 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;m&lt;/kbd&gt;: 메모리 통계 뷰 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;0&lt;/kbd&gt;: Zero value(0) 뷰 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;b&lt;/kbd&gt;: 하이라이트 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;x&lt;/kbd&gt;: 활성 필드 표시 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;y&lt;/kbd&gt;: 활성 프로세스 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;c&lt;/kbd&gt;: 커맨드 상세 표시 토글&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;V&lt;/kbd&gt;: 프로세스간 부모/자식 관계 표시&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Action
+    &lt;ul&gt;
+      &lt;li&gt;&lt;kbd&gt;W&lt;/kbd&gt;: 설정 저장&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;k&lt;/kbd&gt;: 프로세스 중단하기&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Navigation &amp;amp; Sorting (default: desc)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;kbd&gt;&amp;lt;&lt;/kbd&gt;, &lt;kbd&gt;&amp;gt;&lt;/kbd&gt;: 활성 필드 네비게이션&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;N&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;PID&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;M&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%MEM&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;P&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%CPU&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;T&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;TIME+&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Search &amp;amp; Filter
+    &lt;ul&gt;
+      &lt;li&gt;&lt;kbd&gt;L&lt;/kbd&gt;: 검색&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;o&lt;/kbd&gt;: 필터, e.g. COMMAND=apache, !COMMAND=apache, %MEM&amp;gt;0.1, ..&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;u&lt;/kbd&gt;: 사용자 이름으로 필터&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;O&lt;/kbd&gt;: 현재 적용된 필터&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;=&lt;/kbd&gt;: 필터 해제&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;p&gt;각 키 스트로크에 &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt; 화면이 어떻게 반응하는지 Asciinema로 찍었습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;help&quot;&gt;Help&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;kbd&gt;h&lt;/kbd&gt;: 도움말
+&lt;script src=&quot;https://asciinema.org/a/206306.js&quot; id=&quot;asciicast-206306&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;display&quot;&gt;Display&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;kbd&gt;Z&lt;/kbd&gt;: 칼라 설정
+&lt;script src=&quot;https://asciinema.org/a/206329.js&quot; id=&quot;asciicast-206329&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;t&lt;/kbd&gt;: CPU 통계 뷰 토글
+&lt;script src=&quot;https://asciinema.org/a/206311.js&quot; id=&quot;asciicast-206311&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;m&lt;/kbd&gt;: 메모리 통계 뷰 토글
+&lt;script src=&quot;https://asciinema.org/a/206312.js&quot; id=&quot;asciicast-206312&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;0&lt;/kbd&gt;: Zero value(0) 뷰 토글
+&lt;script src=&quot;https://asciinema.org/a/206313.js&quot; id=&quot;asciicast-206313&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;b&lt;/kbd&gt;: 하이라이트 토글
+&lt;script src=&quot;https://asciinema.org/a/206314.js&quot; id=&quot;asciicast-206314&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;x&lt;/kbd&gt;: 활성 필드 표시 토글
+&lt;script src=&quot;https://asciinema.org/a/206315.js&quot; id=&quot;asciicast-206315&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;y&lt;/kbd&gt;: 활성 프로세스 토글
+&lt;script src=&quot;https://asciinema.org/a/206316.js&quot; id=&quot;asciicast-206316&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;c&lt;/kbd&gt;: 커맨드 상세 표시 토글
+&lt;script src=&quot;https://asciinema.org/a/206317.js&quot; id=&quot;asciicast-206317&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;V&lt;/kbd&gt;: 프로세스간 부모/자식 관계 표시
+&lt;script src=&quot;https://asciinema.org/a/206318.js&quot; id=&quot;asciicast-206318&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;action&quot;&gt;Action&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;kbd&gt;W&lt;/kbd&gt;: 설정 저장&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;k&lt;/kbd&gt;: 프로세스 중단하기
+&lt;script src=&quot;https://asciinema.org/a/206319.js&quot; id=&quot;asciicast-206319&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;navigation--sorting-default-desc&quot;&gt;Navigation &amp;amp; Sorting (default: desc)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;kbd&gt;&amp;lt;&lt;/kbd&gt;, &lt;kbd&gt;&amp;gt;&lt;/kbd&gt;: 활성 필드 네비게이션
+&lt;script src=&quot;https://asciinema.org/a/206320.js&quot; id=&quot;asciicast-206320&quot; async=&quot;&quot;&gt;&lt;/script&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;kbd&gt;N&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;PID&lt;/code&gt; 필드를 활성으로 변경
+&lt;!--206321--&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;M&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%MEM&lt;/code&gt; 필드를 활성으로 변경
+&lt;!--206322--&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;P&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%CPU&lt;/code&gt; 필드를 활성으로 변경
+&lt;!--206323--&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;kbd&gt;T&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;TIME+&lt;/code&gt; 필드를 활성으로 변경
+&lt;!--206324--&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;search--filter&quot;&gt;Search &amp;amp; Filter&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;kbd&gt;L&lt;/kbd&gt;: 검색
+&lt;script src=&quot;https://asciinema.org/a/206325.js&quot; id=&quot;asciicast-206325&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;o&lt;/kbd&gt;: 필터, e.g. COMMAND=apache, !COMMAND=apache, %MEM&amp;gt;0.1, ..
+&lt;script src=&quot;https://asciinema.org/a/206326.js&quot; id=&quot;asciicast-206326&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;u&lt;/kbd&gt;: 사용자 이름으로 필터
+&lt;script src=&quot;https://asciinema.org/a/206327.js&quot; id=&quot;asciicast-206327&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;O&lt;/kbd&gt;: 현재 적용된 필터
+&lt;script src=&quot;https://asciinema.org/a/206328.js&quot; id=&quot;asciicast-206328&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;kbd&gt;=&lt;/kbd&gt;: 필터 해제&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 13 Oct 2018 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/cheatsheet/linux-top-cheatsheet/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/cheatsheet/linux-top-cheatsheet/</guid>
+        
+        <category>DevOps</category>
+        
+        <category>Linux</category>
+        
+        
+        <category>cheatsheet</category>
+        
+      </item>
     
       <item>
         <title>라라벨 ApplicationContext 컨테이너 구현</title>
@@ -1197,70 +1339,6 @@
         <pubDate>Sun, 20 Aug 2017 00:00:00 +0900</pubDate>
         <link>http://blog.appkr.kr/learn-n-think/agile-manifesto/</link>
         <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/agile-manifesto/</guid>
-        
-        <category>개발자</category>
-        
-        <category>프로세스</category>
-        
-        
-        <category>learn-n-think</category>
-        
-      </item>
-    
-      <item>
-        <title>코드 비용에 대한 2016년의 메모</title>
-        <description>&lt;p&gt;책상을 정리하다가 “라라벨 빨간책”이라 알려진 책을 집필하며 2016년 초에 쓴 메모 중 일부를 찾았다.&lt;/p&gt;
-
-&lt;p&gt;실무 개발자로 일하지 않던 시절 피상적으로만 생각하던 내용들이 지금은 피부에 와 닿는다. 이 포스트의 본문은 최근 나 또는 내가 속한 팀이 처한 상황에 거의 흡사하게 오버랩핑되는 2016년 메모의 일부분이다. 내 기억이 맞다면, 누군가의 영상 강의를 보고 메모한 것이다.&lt;/p&gt;
-
-&lt;p&gt;이 시대의 스승(엉클 밥, 파울러 옹 등)들이 언급한 소프트웨어 개발자로서 코드를 대하는 자세, 즉 소프트웨어의 제 2가치와 제 1가치에 대해 다시 한번 되새겨본다.&lt;/p&gt;
-
-&lt;p&gt;개발해서 남에게 납품하는 소프트웨어는 굳이 이럴 필요까진 없다고 생각한다. 그러나, 자신의 서비스를 위해 소프트웨어를 개발한다면, 개발자가 코드를 완전히 소유할 수 있는 시간과 비용을 인정해 줘야 한다.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;cost-of-codeprogram&quot;&gt;Cost of Code(=~Program)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Cost of introduction (최초 개발 비용, 모두가 합의한 비용)&lt;/li&gt;
-  &lt;li&gt;Cost of change (수정 비용, 사업적 필요에 의해 발생할 수 밖에 없는 비용)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Cost of ownership&lt;/strong&gt; (소유 비용, &lt;strong&gt;Time and effort it takes to maintain the owned application logic to support its ongoing change&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;That’s why some engineers try to increase the cost of introduction in an attempt to affect the cost of change curve.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;ownership-of-code&quot;&gt;Ownership of Code.&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Own only the logic you need to change (계속 유지보수할 코드만 소유).&lt;/li&gt;
-  &lt;li&gt;Write only the logic you need to own (완전히 소유할 코드만 작성).&lt;/li&gt;
-  &lt;li&gt;Own everything you write (작성한 것은 완전히 소유).&lt;/li&gt;
-  &lt;li&gt;Try not to write anything that you will not own (소유&lt;small class=&quot;text-muted&quot;&gt;유지보수&lt;/small&gt;하지 않을 코드는 쓰지 말것).&lt;/li&gt;
-  &lt;li&gt;Reuse everything else (나머지&lt;small class=&quot;text-muted&quot;&gt;이미 발명된 바퀴&lt;/small&gt;는 전부 재사용).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;code-process&quot;&gt;Code Process&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Document the needs (요구사항 문서화).&lt;/li&gt;
-  &lt;li&gt;Experiment with tools available (선행 기술 조사).&lt;/li&gt;
-  &lt;li&gt;Document changes and constraints (변경 필요 요구사항과 한계점 판단).&lt;/li&gt;
-  &lt;li&gt;Stabilize. Claim ownership when the thing grows outside of tool boundary (소유할 것과 하지 않을 것을 구분해서 개발).&lt;/li&gt;
-  &lt;li&gt;Isolate religiously (경계를 명확히).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-l5book-memo-9.jpg&quot;&gt;&lt;img src=&quot;/images/2016-l5book-memo-9.jpg&quot; alt=&quot;Memo Page 9&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2016-l5book-memo-10.jpg&quot;&gt;&lt;img src=&quot;/images/2016-l5book-memo-10.jpg&quot; alt=&quot;Memo Page 10&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://drive.google.com/file/d/0Bx8_tW_C70eNc2F4SC1tdzRabHM/view?usp=sharing&quot;&gt;Memo Captured(pdf)&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 12 Aug 2017 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/learn-n-think/memo-in-early-2016/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/memo-in-early-2016/</guid>
         
         <category>개발자</category>
         

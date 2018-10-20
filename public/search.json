@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "SQL Injection 방어",
+    "category" : "learn-n-think",
+    "tags"     : "Database, Security",
+    "url"      : "/learn-n-think/short-parable-on-sql-injection/",
+    "date"     : "2018-10-20"
+  },
+  
+  {
     "title"    : "Linux &quot;top&quot; cheatsheet",
     "category" : "cheatsheet",
     "tags"     : "DevOps, Linux",

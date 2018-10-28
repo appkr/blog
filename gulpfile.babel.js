@@ -76,7 +76,7 @@ gulp.task('scripts', () =>
   gulp.src([
     '_assets/vendor/fastclick/lib/fastclick.js',
     '_assets/vendor/jquery/dist/jquery.js',
-    '_assets/vendor/simple-jekyll-search/dest/jekyll-search.js',
+    '_assets/vendor/simple-jekyll-search/dest/simple-jekyll-search.min.js',
     '_assets/vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
     '_assets/vendor/bootstrap-material-design/scripts/material.js',
     '_assets/vendor/bootstrap-material-design/scripts/ripples.js',

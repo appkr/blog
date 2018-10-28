@@ -75,6 +75,17 @@
           <a href="/profile/">Profile</a>
         </li>
       </ul>
+
+      <div id="search_header" class="visible-xs">
+        <div class="box-body">
+          <form action="#">
+            <div class="form-group">
+              <input class="form-control input-lg" type="text" id="q_header" placeholder="Search...">
+              <ul id="q_header_res"></ul>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -257,12 +268,12 @@
   </section>
 
   <aside id="sidebar" class="col-md-3">
-    <section class="box" id="search">
+    <section id="search_sidebar" class="box hidden-xs">
   <div class="box-body">
     <form action="#">
       <div class="form-group">
-        <input class="form-control input-lg" type="text" id="q" placeholder="Search...">
-        <ul id="q-results"></ul>
+        <input class="form-control input-lg" type="text" id="q_sidebar" placeholder="Search...">
+        <ul id="q_sidebar_res"></ul>
       </div>
     </form>
   </div>

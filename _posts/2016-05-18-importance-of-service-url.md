@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - 'URL Rewriting'
-image: http://blog.appkr.kr/images/2016-05-18-img-01.png
+image: //blog.appkr.kr/images/2016-05-18-img-01.png
 ---
 
 웹 서비스를 하다 보면 마이그레이션을 해야 할 때가 반드시 찾아 온다. 트래픽 양이 변해서 더 큰 또는 작은 서버로 이전한다거나, 다른 프로그래밍 언어 또는 다른 프레임워크로 갈아타야 한다거나..
@@ -18,9 +18,9 @@ image: http://blog.appkr.kr/images/2016-05-18-img-01.png
 ---|---
 `/lessons/01-welcome.md`|`/lessons/01-welcome.html`
 
-[Jigsaw](http://jigsaw.tighten.co/)라고 하는 정적 사이트 빌더를 이용했는데, 로컬 컴퓨터에서 마크다운으로 작성한 강좌를 정적 HTML 파일로 전부 트랜스파일한 다음, Github Page에 올리는 방식이다. [Jekyll](http://jekyllrb.com/)을 이용한 이 블로그와 빌드 도구만 다를 뿐 똑같은 방식이다.
+[Jigsaw](//jigsaw.tighten.co/)라고 하는 정적 사이트 빌더를 이용했는데, 로컬 컴퓨터에서 마크다운으로 작성한 강좌를 정적 HTML 파일로 전부 트랜스파일한 다음, Github Page에 올리는 방식이다. [Jekyll](//jekyllrb.com/)을 이용한 이 블로그와 빌드 도구만 다를 뿐 똑같은 방식이다.
 
-AWS 라이브 데모를 닫은 지 2주일 정도됐다. 사용자가 구글 검색 엔진을 통해 들어온다면, 기존의 URL은 당연히 열리지 않는 황당한 경험을 하게 된다. 구글로부터 최근에 404 응답이 많아졌다는 메일을 받았지만, 아무 생각없이 그냥 무시했었다. 커뮤니티에서 같이 활동을 하는 [김종운](https://www.facebook.com/profile.php?id=100001411952158)님과 어제 대화를 나누기 전까지는 말이다. 
+AWS 라이브 데모를 닫은 지 2주일 정도됐다. 사용자가 구글 검색 엔진을 통해 들어온다면, 기존의 URL은 당연히 열리지 않는 황당한 경험을 하게 된다. 구글로부터 최근에 404 응답이 많아졌다는 메일을 받았지만, 아무 생각없이 그냥 무시했었다. 커뮤니티에서 같이 활동을 하는 [김종운](//www.facebook.com/profile.php?id=100001411952158)님과 어제 대화를 나누기 전까지는 말이다. 
 
 > URL이 바꼈던데, 그간에 쌓아 놓은 구글 검색 순위가 아깝지 않으세요?
 >

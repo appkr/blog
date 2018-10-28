@@ -229,7 +229,7 @@ $ bower install moment --save-dev
 
 <div class="spacer">• • •</div>
 
-[^1]: [Disqus](https://disqus.com/) 는 댓글 서비스 이다. Jekyll 은 모든 면에서 내가 원하는 것들을 충족해 주었지만, 가장 아쉬운 점 중에 하나가 블로그 포스트에 대한 댓글이었다. 댓글의 특성상 블로그 방문자와 계속 인터랙션해야 하기 때문에 댓글을 저장할 백엔드가 반드시 필요한데... 이 때 선택할 수 있는 옵션이 Disqus 와 같은 외부 댓글 서비스이다. 유사 서비스로는 [Livere-국산](https://www.livere.com/), [Chak-국산](http://chak.it/) 등이 있다.
+[^1]: [Disqus](https://disqus.com/) 는 댓글 서비스 이다. Jekyll 은 모든 면에서 내가 원하는 것들을 충족해 주었지만, 가장 아쉬운 점 중에 하나가 블로그 포스트에 대한 댓글이었다. 댓글의 특성상 블로그 방문자와 계속 인터랙션해야 하기 때문에 댓글을 저장할 백엔드가 반드시 필요한데... 이 때 선택할 수 있는 옵션이 Disqus 와 같은 외부 댓글 서비스이다. 유사 서비스로는 [Livere-국산](https://www.livere.com/), [Chak-국산](//chak.it/) 등이 있다.
 
-[^2]: Javascript Template Engine 으로는 [Handlebars](http://handlebarsjs.com/)가 전통적 강자이다. [EJS](http://ejs.co/) 도 꽤 쓰이는 것 같다. 관련해서 [SitePoint 에서 훌륭한 아티클](http://www.sitepoint.com/overview-javascript-templating-engines/)을 썼다. 
+[^2]: Javascript Template Engine 으로는 [Handlebars](//handlebarsjs.com/)가 전통적 강자이다. [EJS](http://ejs.co/) 도 꽤 쓰이는 것 같다. 관련해서 [SitePoint 에서 훌륭한 아티클](http://www.sitepoint.com/overview-javascript-templating-engines/)을 썼다. 
 

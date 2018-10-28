@@ -252,7 +252,7 @@ apply(state, event) => state
 replay(initialState, ListEvent) => (state, version)
 ```
 
-![](http://blog.leifbattermann.de/wp-content/uploads/2017/04/event-sourcing.svg)
+![](//blog.leifbattermann.de/wp-content/uploads/2017/04/event-sourcing.svg)
 
 웹에서 만난 전문가들도 이벤트 소싱의 이점을 충분히 누릴 수 있는 도메인에만 도입할 것을 권장합니다. 포스트 끝에 참고 자료들을 기록해 두었습니다.
 
@@ -267,11 +267,11 @@ replay(initialState, ListEvent) => (state, version)
 ## 읽어보면 좋을만한 자료들
 
 - [doctrine-best-practices](https://ocramius.github.io/doctrine-best-practices)
-- [About Entities, Aggregates and Data Duplication.](http://ziobrando.blogspot.kr/2010/06/about-entities-aggregates-and-data.html)
-- [Why I Don’t Use Value Objects in Laravel Anymore](http://www.ntaso.com/why-i-dont-use-value-objects-in-laravel-anymore/)
-- [Value Objects in Laravel 5 with Eloquent Done Right](http://www.ntaso.com/value-objects-laravel-eloquent/)
+- [About Entities, Aggregates and Data Duplication.](//ziobrando.blogspot.kr/2010/06/about-entities-aggregates-and-data.html)
+- [Why I Don’t Use Value Objects in Laravel Anymore](//www.ntaso.com/why-i-dont-use-value-objects-in-laravel-anymore/)
+- [Value Objects in Laravel 5 with Eloquent Done Right](//www.ntaso.com/value-objects-laravel-eloquent/)
 - [이벤트 소싱 학습 내용 공유 by 최범균](https://www.slideshare.net/madvirus/event-source)
-- [12 Things You Should Know About Event Sourcing](http://blog.leifbattermann.de/2017/04/21/12-things-you-should-know-about-event-sourcing/)
+- [12 Things You Should Know About Event Sourcing](//blog.leifbattermann.de/2017/04/21/12-things-you-should-know-about-event-sourcing/)
 - [Cutting Edge - Event Sourcing for the Common Application](https://msdn.microsoft.com/magazine/mt422577)
-- [이벤트 소싱 패턴과 CQRS 패턴을 적용해서 클라우드상에서 유연하게 앱 개발하기](http://blog.aliencube.org/ko/2015/11/12/building-applications-on-cloud-with-event-sourcing-pattern-and-cqrs-pattern/)
+- [이벤트 소싱 패턴과 CQRS 패턴을 적용해서 클라우드상에서 유연하게 앱 개발하기](//blog.aliencube.org/ko/2015/11/12/building-applications-on-cloud-with-event-sourcing-pattern-and-cqrs-pattern/)
 - [Laravel adapter for Broadway.](https://github.com/nWidart/Laravel-broadway)

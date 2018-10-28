@@ -7,10 +7,10 @@ categories:
 tags:
 - 개발자
 - Ruby
-image: http://blog.appkr.kr/images/2016-08-21-img-01.png
+image: //blog.appkr.kr/images/2016-08-21-img-01.png
 ---
 
-이 슬라이드는 RoRLab에서 주최하는 ["AGIAN2011 Workshop"](http://rorlab.org/schedules/1)의 후기 발표 자료 입니다.
+이 슬라이드는 RoRLab에서 주최하는 ["AGIAN2011 Workshop"](//rorlab.org/schedules/1)의 후기 발표 자료 입니다.
 
 ![RoRLab 워크숍 후기](/images/2016-08-21-img-01.png)
 

@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - Docker
-image: http://blog.appkr.kr/images/2016-07-11-img-01.png
+image: //blog.appkr.kr/images/2016-07-11-img-01.png
 ---
 
 같이 운동하는 동호회 형님(IoT 플랫폼 개발사 임원)을 통해서 '도커'라는 단어를 처음 접했던 것으로 기억한다(2015년). 당시엔 VM 프로비저닝을 위해 Vagrant를 사용하고 있었고, 도커는 VM/Vagrant보다 좀 더 가벼운 가상 개발 환경이란 느낌으로 다가왔다. 곧 AWS에서 도커를 지원한다는 소식을 접했고, 도커 자체적으로도 Swarm이란 컨테이너 배포 툴 프로젝트를 공개함으로써, 운영 환경에 바로 쓸 수 있는 도구로 재인식됐다. IoT, 마이크로 프레임워크, 마이크로 서비스 등 시대적 흐름과도 잘 부합하는 도구라 생각한다.
@@ -27,7 +27,7 @@ image: http://blog.appkr.kr/images/2016-07-11-img-01.png
  
 ## 1. 도커 툴체인 설치
 
-[홈브루-The missing package manager for OS X](http://brew.sh/)는 Mac OS 필수 바이너리다. 없다면 링크를 눌러 설치한다.
+[홈브루-The missing package manager for OS X](//brew.sh/)는 Mac OS 필수 바이너리다. 없다면 링크를 눌러 설치한다.
 
 ```sh
 # Cask는 Mac Os용 애플리케이션을 설치하기 위한 홈브루 탭(사설 저장소)이다.
@@ -270,7 +270,7 @@ root@dca220f5e753:/var/www/laravel# exit
 
 ### 6.2. 개발 환경 구성
 
-맥에서 [Sequel Pro](http://www.sequelpro.com/)(MySQL GUI)로 도커에서 구동하는 `mysql` 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.
+맥에서 [Sequel Pro](//www.sequelpro.com/)(MySQL GUI)로 도커에서 구동하는 `mysql` 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.
 
 - Host: `quickstart.app` 또는 `192.168.99.100`
 - Username: `homestead`
@@ -279,7 +279,7 @@ root@dca220f5e753:/var/www/laravel# exit
 
 [![Sequel Pro](/images/2016-07-11-img-02.png)](/images/2016-07-11-img-02.png)
 
-맥에서 [Redis Desktop Manager](http://www.redisdesktop.com/)로 도커에서 구동하는 'redis' 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.
+맥에서 [Redis Desktop Manager](//www.redisdesktop.com/)로 도커에서 구동하는 'redis' 컨테이너의 서비스에 접속하려면 다음 정보를 이용한다.
 
 [![Redis Desktop Manager](/images/2016-07-11-img-03.png)](/images/2016-07-11-img-03.png)
 

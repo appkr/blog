@@ -8,7 +8,7 @@ categories:
 tags:
 - 개발자
 - Jekyll
-image: http://s6.postimg.org/ejkibz8o1/01_header.png
+image: //s6.postimg.org/ejkibz8o1/01_header.png
 ---
 Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 
@@ -22,9 +22,9 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 
 <div class="spacer">• • •</div>
 
-연초에 블로그 이전을 생각하며 여기 저기 눈팅하던 중 디자인 ([themeforest-Globals](http://themeforest.net/item/globals-material-universal-psd-template/11932290)) 하나가 눈에 들어왔다. 내용과 품질에 비해서 너무 저렴한 가격 $12. 지르지 않을 이유가 없었다.
+연초에 블로그 이전을 생각하며 여기 저기 눈팅하던 중 디자인 ([themeforest-Globals](//themeforest.net/item/globals-material-universal-psd-template/11932290)) 하나가 눈에 들어왔다. 내용과 품질에 비해서 너무 저렴한 가격 $12. 지르지 않을 이유가 없었다.
 
-[![themeforest-Globals](http://s6.postimg.org/ejkibz8o1/01_header.png)](http://s6.postimg.org/ejkibz8o1/01_header.png)
+[![themeforest-Globals](//s6.postimg.org/ejkibz8o1/01_header.png)](//s6.postimg.org/ejkibz8o1/01_header.png)
 
 <div class="spacer"></div>
 
@@ -103,7 +103,7 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 
 ## Bower
 
-3rd Party Front-end 패키지 관리를 위해 [Bower](http://bower.io/) 를 계속 이용해 왔다. 이 프로젝트에서 사용할 Assets 을 정의할 `bower.json` 과 Bower 설정을 저장할 `.bowerrc` 파일을 만들었다. 
+3rd Party Front-end 패키지 관리를 위해 [Bower](//bower.io/) 를 계속 이용해 왔다. 이 프로젝트에서 사용할 Assets 을 정의할 `bower.json` 과 Bower 설정을 저장할 `.bowerrc` 파일을 만들었다. 
 
 ```bash
 $ bower init
@@ -156,7 +156,7 @@ body {
 
 ### 덧 
 
-Jekyll 은 Fenced Code Block 의 스타일링을 기본 지원한다. 이 프로젝트에서는 Jekyll 의 기본 값인 `Rouge` 를 이용하지 않고, 일부러 [`Pygments`](http://pygments.org/) 를 이용하였다. `Pygments` 는 Python 으로 작성된 Syntax Highlighter 로, `Rouge` 보다 [더 많은 언어의 문법](http://pygments.org/languages/)을 지원하기 때문이다.
+Jekyll 은 Fenced Code Block 의 스타일링을 기본 지원한다. 이 프로젝트에서는 Jekyll 의 기본 값인 `Rouge` 를 이용하지 않고, 일부러 [`Pygments`](//pygments.org/) 를 이용하였다. `Pygments` 는 Python 으로 작성된 Syntax Highlighter 로, `Rouge` 보다 [더 많은 언어의 문법](//pygments.org/languages/)을 지원하기 때문이다.
 
 ```bash
 $ pip install Pygments
@@ -232,7 +232,7 @@ SimpleJekyllSearch({
 
 ### Lightbox
 
-이미지를 클릭/터치했을 때 [Modal](http://getbootstrap.com/javascript/#modals) 로 보여 주는 기능이다. [스타일](https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L590)은 약간만 수정해 주면 나머지는 Bootstrap 제공 스타일이 거의 그대로 사용된다. 기능 활성화를 위해 아래 Javascript 를 작성하였다.
+이미지를 클릭/터치했을 때 [Modal](//getbootstrap.com/javascript/#modals) 로 보여 주는 기능이다. [스타일](https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L590)은 약간만 수정해 주면 나머지는 Bootstrap 제공 스타일이 거의 그대로 사용된다. 기능 활성화를 위해 아래 Javascript 를 작성하였다.
 
 ```javascript
 // https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L67

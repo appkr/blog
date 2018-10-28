@@ -32,7 +32,7 @@ tags:
 
 5.  강좌 사전, 사후 Q&A를 위해 **질문지**를 이용합니다. 
 
-    질문은 양식[^3]에 쓰면 되고, 답변은 목록[^4]을 열어서 확인하시면 됩니다. 이 강좌의 범위를 벗어난 PHP 프로그래밍 및 라라벨에 관한 일반적인 질문은 [Laravel Korea Community 포럼](https://laravel.kr/forum)에 남겨 주세요. 질문지 양식에 코드를 쓸 때는 [http://laravel.io/bin](http://laravel.io/bin)에 코드를 붙여 넣고 코드의 주소(URL)를 인용해 주세요.
+    질문은 양식[^3]에 쓰면 되고, 답변은 목록[^4]을 열어서 확인하시면 됩니다. 이 강좌의 범위를 벗어난 PHP 프로그래밍 및 라라벨에 관한 일반적인 질문은 [Laravel Korea Community 포럼](https://laravel.kr/forum)에 남겨 주세요. 질문지 양식에 코드를 쓸 때는 [//laravel.io/bin](http://laravel.io/bin)에 코드를 붙여 넣고 코드의 주소(URL)를 인용해 주세요.
 
 <div class="spacer"></div>
 

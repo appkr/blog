@@ -14,7 +14,7 @@ tags:
 
 [JDK](https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u16-oth-JPR@CDS-CDS_Developer) 를 다운로드하여 설치한다.
 
-또는, [JRE <sup>Java Runtime Environment</sup>](http://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jre-6u16-windows-i586.exe?BundledLineItemUUID=moFIBe.oaqEAAAEkk.UxdJ2G&OrderID=R1dIBe.onL8AAAEkiOUxdJ2G&ProductID=VP1IBe.nzvkAAAEiap9pOuDb&FileName=/jre-6u16-windows-i586.exe) 만 설치할 수도 있다. JDK Version 이 맞지 않으면, Emulator 가 정상적으로 실행되지 않는다.
+또는, [JRE <sup>Java Runtime Environment</sup>](//cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jre-6u16-windows-i586.exe?BundledLineItemUUID=moFIBe.oaqEAAAEkk.UxdJ2G&OrderID=R1dIBe.onL8AAAEkiOUxdJ2G&ProductID=VP1IBe.nzvkAAAEiap9pOuDb&FileName=/jre-6u16-windows-i586.exe) 만 설치할 수도 있다. JDK Version 이 맞지 않으면, Emulator 가 정상적으로 실행되지 않는다.
  
 <!--more-->
 <div class="spacer">• • •</div>
@@ -29,7 +29,7 @@ tags:
 
 ### 3. SDK 다운로드
 
-[SDK](http://developer.android.com/sdk/download.html?v=android-sdk_r3-windows.zip) 를 다운로드하고, 적절한 위치에 압축을 해제 한다.
+[SDK](//developer.android.com/sdk/download.html?v=android-sdk_r3-windows.zip) 를 다운로드하고, 적절한 위치에 압축을 해제 한다.
 
 ### 4. 콘솔을 띄워, SDK에 미리 정의되어 있는 Target Device 를 확인한다.
 
@@ -126,4 +126,4 @@ Landscape/Portrait 모드로 토글은 Ctrl + F11.
 \> ddms -help
 ```
 
-[Android Developer Site 의 도움말](http://developer.android.com/guide/developing/tools/emulator.html) 을 더 참고하자.
+[Android Developer Site 의 도움말](//developer.android.com/guide/developing/tools/emulator.html) 을 더 참고하자.

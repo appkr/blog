@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - Git
-image: http://blog.appkr.kr/images/2016-06-20-img-01.png
+image: //blog.appkr.kr/images/2016-06-20-img-01.png
 ---
 
 이 문서는 Atlassian社에서 쓴 'Getting Git Right' 튜토리얼 중 ['Comparing Workflows'](https://www.atlassian.com/git/tutorials/comparing-workflows)라는 글을 한글로 번역한 것이다. 이 글에서는 총 네 개의 워크플로우를 소개한다.
@@ -236,7 +236,7 @@ Feature Branch Workflow의 핵심 컨셉은 기능별 브랜치를 만들어서 
 
 팀 구성원이 풀 리퀘스트를 수용(또는 합의)하면, 그 이후의 작업 절차는 Centralized Workflow와 거의 같다. 먼저 로컬 `master`가 최신 상태인지 확인한 후, 기능 개발 브랜치를 `master` 브랜치에 병합하고, 중앙 저장소의 `master` 브랜치로 푸시하면 된다.
 
-풀 리퀘스트는 [Bitbucket Cloud](http://bitbucket.org)이나 [Bitbucket Server](http://www.atlassian.com/stash)을 이용하면 편리하다.
+풀 리퀘스트는 [Bitbucket Cloud](//bitbucket.org)이나 [Bitbucket Server](//www.atlassian.com/stash)을 이용하면 편리하다.
 
 <small>역주) Atlassian이 작성한 글이라 빗버킷을 제안하는데, 깃허브도 똑같은 기능을 제공한다.</small>
 
@@ -331,7 +331,7 @@ Bitbucket의 기능 브랜치를 요리 조리 시험해 보고 있다면, [Usin
 
 ![Gitflow Workflow](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/01.svg)
 
-이번 절에 소개하는 Gitflow Workflow는 [nvie.com](http://nvie.com/)의 빈센트 드리센(Vincent Driessen)이 제안한 것이다.
+이번 절에 소개하는 Gitflow Workflow는 [nvie.com](//nvie.com/)의 빈센트 드리센(Vincent Driessen)이 제안한 것이다.
 
 Gitflow Workflow는 코드 릴리스를 중심으로 좀 더 엄격한 브랜칭 모델을 제시한다. Feature Branch Workflow보다 복잡하긴하지만, 대형 프로젝트에도 적용할 수 있는 강건한 작업 절차다.
 
@@ -660,8 +660,8 @@ $ git pull upstream master
 
 #### 원문의 라이선스
 
-Except where otherwise noted, all content is licensed under a [Creative Commons Attribution 2.5 Australia License](http://creativecommons.org/licenses/by/2.5/au/).
+Except where otherwise noted, all content is licensed under a [Creative Commons Attribution 2.5 Australia License](//creativecommons.org/licenses/by/2.5/au/).
 
 #### 번역문의 라이선스
 
-[Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)를 따른다.
+[Creative Commons Attribution 4.0 International License](//creativecommons.org/licenses/by/4.0/)를 따른다.

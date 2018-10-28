@@ -8,7 +8,7 @@ tags:
   - 개발자
   - Laravel
   - PHP
-image: http://blog.appkr.kr/images/images/2016-12-24-img-01.png
+image: //blog.appkr.kr/images/images/2016-12-24-img-01.png
 ---
 
 > 이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일, 2018년 7월 2일에 코드 리팩토링 내용을 반영하여 변경되었습니다.

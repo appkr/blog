@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - 아키텍처
-image: http://blog.appkr.kr/images/2017-07-09-img-01.png
+image: //blog.appkr.kr/images/2017-07-09-img-01.png
 ---
 
 이 글은 그간 내가 짠 코드에 대한 반성이며, 앞으로 더 잘 만들겠다는 약속이며, 이런 실수를 하지 말라는 계몽이기도합니다. 
@@ -84,7 +84,7 @@ Pure 해야 할 도메인 모델이 엘로퀀트라는 큰 덩어리는 상속�
 
 이게 어떻게 가능할까요? 아래 비디오에서는 경계(`||`, 두 줄로 표시합니다)라고 답하고 있습니다. 쉽게 말하면 인터페이스입니다. 
 
-[![The Principles of Clean Architecture by Uncle Bob Martin](http://img.youtube.com/vi/o_TH-Y78tt4/0.jpg)](https://www.youtube.com/watch?v=o_TH-Y78tt4&t=10m45s)
+[![The Principles of Clean Architecture by Uncle Bob Martin](//img.youtube.com/vi/o_TH-Y78tt4/0.jpg)](https://www.youtube.com/watch?v=o_TH-Y78tt4&t=10m45s)
 
 중요 내용만 요약했습니다.
 
@@ -106,7 +106,7 @@ Pure 해야 할 도메인 모델이 엘로퀀트라는 큰 덩어리는 상속�
 비디오에 나온 그림을 전부 종합하면 아래 그림 및 설명과 같습니다.
 
 ![](/images/2017-07-09-img-01.png)
-<small class="text-muted">그림 출처: http://hugo.ferreira.cc/architecture-the-lost-years/</small>
+<small class="text-muted">그림 출처: //hugo.ferreira.cc/architecture-the-lost-years/</small>
 
 - <small class="text-muted">(실선 두 개로 표시된)</small> 경계 왼쪽에는 우리가 흔히 아는 `View`와 `Controller`가 있습니다. 아래 쪽에는 `DataBase(=~Persistence Engine)`가 있습니다.
 - 컨트롤러는 사용자의 요청을 받아 `Request Model(DTO, Command)`을 만들어서 `<<I>>Boundary`의 함수를 호출할 때 인자로 담아서 경계 안쪽으로 전달합니다.
@@ -118,7 +118,7 @@ Pure 해야 할 도메인 모델이 엘로퀀트라는 큰 덩어리는 상속�
 
 ## 3. 모범 사례
 
-[Trip Planner](https://github.com/leopro/trip-planner)라는 예제 프로젝트입니다. 커맨드와 유스케이스를 이용하고 있습니다. 아쉽게도 라라벨은 아니고, [심포니(Symfony)](http://symfony.com/)와 [독트린(Doctrine)](http://www.doctrine-project.org/)을 사용하네요. 
+[Trip Planner](https://github.com/leopro/trip-planner)라는 예제 프로젝트입니다. 커맨드와 유스케이스를 이용하고 있습니다. 아쉽게도 라라벨은 아니고, [심포니(Symfony)](//symfony.com/)와 [독트린(Doctrine)](//www.doctrine-project.org/)을 사용하네요. 
 
 ### 3.1. Controller
 

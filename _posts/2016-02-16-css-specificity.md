@@ -13,11 +13,11 @@ speci.., specifif..., speficyfyf..., specificificfy... what?
 
 ## CSS Specificity
 
-[*|spesɪ|fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. [블로그 플랫폼 이전 3 - Publishing](http://blog.appkr.kr/work-n-play/블로그-플랫폼-이전-3-publishing/#삽질) 포스트에서 twbs 클래스들을 오버라이드하는 과정에서 잘못 이해한 것을, 실험을 통해 배우고 고쳐서 정리해 놓는다. 
+[*|spesɪ|fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. [블로그 플랫폼 이전 3 - Publishing](//blog.appkr.kr/work-n-play/블로그-플랫폼-이전-3-publishing/#삽질) 포스트에서 twbs 클래스들을 오버라이드하는 과정에서 잘못 이해한 것을, 실험을 통해 배우고 고쳐서 정리해 놓는다. 
 
 ## Test
 
-이번 주는 [생활코딩 작심5일](http://onoffmix.com/event/61685) 수업에 자원봉사자로 참여하고 있다. 오늘 수업에서 CSS 얘기를 듣다가 문득 궁금증이 생겼다. 
+이번 주는 [생활코딩 작심5일](//onoffmix.com/event/61685) 수업에 자원봉사자로 참여하고 있다. 오늘 수업에서 CSS 얘기를 듣다가 문득 궁금증이 생겼다. 
 
 내가 기존에 알고 있던 지식은 
 
@@ -104,7 +104,7 @@ $ open http://localhost:8000
 
 ### What's wrong? What's correct?
 
-CSS 적용 우선순위는 개발팀들이 거의 *de facto* 로 생각하고 프로젝트들에 적용하고 있는 [Semantic Versioning](http://semver.org/lang/ko/) 에 비유할 수 있다. `0.1.0` 과 `0.0.12` 의 차이 같은 것이다. `0.1.0` 이 더 최신 버전이라 채택되고, 특별한 이유가 없다면 `0.0.12` 는 무시되는 것 처럼..
+CSS 적용 우선순위는 개발팀들이 거의 *de facto* 로 생각하고 프로젝트들에 적용하고 있는 [Semantic Versioning](//semver.org/lang/ko/) 에 비유할 수 있다. `0.1.0` 과 `0.0.12` 의 차이 같은 것이다. `0.1.0` 이 더 최신 버전이라 채택되고, 특별한 이유가 없다면 `0.0.12` 는 무시되는 것 처럼..
 
 오늘 작심5일 강의에서 알게된 아티클 --[CSS: Specificity Wars](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)-- 과 Sync 를 위해, CSS 에서는 Dot(`.`) 대신, Comma(`,`) 구분자를 이용해서 다시 계산해 본다.
 

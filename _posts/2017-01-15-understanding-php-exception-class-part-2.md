@@ -8,7 +8,7 @@ tags:
   - 개발자
   - PHP
   - Laravel
-image: http://blog.appkr.kr/images/2017-01-15-img-01.png
+image: //blog.appkr.kr/images/2017-01-15-img-01.png
 ---
 
 [지난 1부](/work-n-play/understanding-php-exception-class/)에서는 예외의 기본적인 개념과 사용법, 그리고 프레임워크 없이 PHP 프로젝트를 할 때 사용할 수 있는 몇 가지 테크닉을 살펴봤다.

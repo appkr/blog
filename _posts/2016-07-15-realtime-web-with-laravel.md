@@ -8,7 +8,7 @@ tags:
 - 개발자
 - Laravel
 - Websocket
-image: http://blog.appkr.kr/images/2016-07-15-img-01.png
+image: //blog.appkr.kr/images/2016-07-15-img-01.png
 ---
 
 **'[휙~](https://github.com/appkr/whik)'** 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 `pusher`, `redis`, `log` 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 **'휙~'**하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 **'휙~'**하고 메시지를 전파한다. 
@@ -437,8 +437,8 @@ Route::get('pub', function () {
 
 ---
 
-[^1]: [Vue.js](http://vuejs.org/)_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, [깃허브 트렌딩에 계속 노미네이트](https://github.com/trending?since=monthly)되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다.
+[^1]: [Vue.js](//vuejs.org/)_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, [깃허브 트렌딩에 계속 노미네이트](https://github.com/trending?since=monthly)되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다.
 
 [^2]: PubSub_ [https://en.wikipedia.org/wiki/Publish-subscribe_pattern](https://en.wikipedia.org/wiki/Publish-subscribe_pattern)
 
-[^3]: Socket.io에서 제공하는 채팅 예제 프로젝트_ [http://socket.io/get-started/chat/](http://socket.io/get-started/chat/)
+[^3]: Socket.io에서 제공하는 채팅 예제 프로젝트_ [socket.io/get-started/chat/](//socket.io/get-started/chat/)

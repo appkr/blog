@@ -8,7 +8,7 @@ categories:
 tags:
 - 개발자
 - Jekyll
-image: http://blog.appkr.kr/images/2016-02-10-img-01.png
+image: //blog.appkr.kr/images/2016-02-10-img-01.png
 ---
 Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 
@@ -22,7 +22,7 @@ Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총
 
 <div class="spacer">• • •</div>
 
-[Jekyll[dƷékəl,dƷí:k-,줴클]](http://jekyllrb.com/docs/home/#so-what-is-jekyll-exactly) 은 Ruby 언어로 개발된 정적 (Static) 페이지를 생성 도구 이다. Jekyll 은 로컬 컴퓨터에서 HTML 또는 Markdown 으로 작성한 글을 미리 정적 페이지로 컴파일 하는 일을 한다. 컴파일 된 결과물을 웹 서버의 Document Root 로 복사하는 것만으로 서비스가 가능하다. 더구나, 정적 페이지는 동적 페이지 대비 응답 속도가 더 빠르다는 장점이 있다. 즉, Jekyll 은 서버에 백엔드 플랫폼/프레임웍 없이도 고급스러운 웹 서비스를 만들 수 있는 도구이다.
+[Jekyll[dƷékəl,dƷí:k-,줴클]](//jekyllrb.com/docs/home/#so-what-is-jekyll-exactly) 은 Ruby 언어로 개발된 정적 (Static) 페이지를 생성 도구 이다. Jekyll 은 로컬 컴퓨터에서 HTML 또는 Markdown 으로 작성한 글을 미리 정적 페이지로 컴파일 하는 일을 한다. 컴파일 된 결과물을 웹 서버의 Document Root 로 복사하는 것만으로 서비스가 가능하다. 더구나, 정적 페이지는 동적 페이지 대비 응답 속도가 더 빠르다는 장점이 있다. 즉, Jekyll 은 서버에 백엔드 플랫폼/프레임웍 없이도 고급스러운 웹 서비스를 만들 수 있는 도구이다.
 
 <!--more-->
 

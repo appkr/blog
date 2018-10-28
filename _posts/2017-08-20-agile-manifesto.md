@@ -7,12 +7,12 @@ categories:
 tags:
 - 개발자
 - 프로세스
-image: http://blog.appkr.kr/images/2017-08-20-agile-01.jpg
+image: //blog.appkr.kr/images/2017-08-20-agile-01.jpg
 ---
 
 ![](/images/2017-08-20-agile-01.jpg)
 
-<p class="text-center"><small class="text-muted">그림출처: http://forintus.com/tag/agile-manifesto/</small></p>
+<p class="text-center"><small class="text-muted">그림출처: //forintus.com/tag/agile-manifesto/</small></p>
 
 <div class="text-center">
   <p><strong><small>Manifesto for Agile Software Development</small></strong></p>

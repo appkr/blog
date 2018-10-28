@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - PHP
-image: http://blog.appkr.kr/images/2016-12-04-img-01.png
+image: //blog.appkr.kr/images/2016-12-04-img-01.png
 ---
 
 최근에 회사 일로 검색 서비스를 개발했다. 검색 엔진으로는 Elastic Search를 사용했고, 매일 최한시(off-peak time)에 한 번씩 운영 데이터베이스에서 검색, 필터링, 정렬, Aggregation 등에 필요한 컬럼만 골라 인덱싱하도록 설계했다. 그리고, 재고 수량과 같이 실시간 업데이트가 필요한 값 들은 다른 서비스에서 SNS 메시지 또는 메시지 큐를 이용해서 전달하고, 전달 받은 값을 인덱싱에 반영하도록 구현했다.
@@ -28,7 +28,7 @@ Elastic Search는 사용법이 복잡하긴 하지만, 인덱싱된 필드 값�
 
 테스트의 대상은 아래 클래스의 `sortByStoreStatusAndCanBuyNow()` 메서드다. 여러 단계를 거치긴 하지만, Public으로 선언한 `query()` 메서드의 의해서 호출된다. 인라인으로 간략한 설명을 달아 두었다. 
 
-참고로 **네임스페이스에 나온 [`Bootake`는 내가 속한 회사에서 하는 서비스](http://bootake.com) 중 하나**다. 이번에 구현한 코드는 아직 서비스에 반영되진 않았다.
+참고로 **네임스페이스에 나온 [`Bootake`는 내가 속한 회사에서 하는 서비스](//bootake.com) 중 하나**다. 이번에 구현한 코드는 아직 서비스에 반영되진 않았다.
 
 ```php
 <?php // core/Infrastructure/Queries/CvsProduct.php

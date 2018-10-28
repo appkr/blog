@@ -7,14 +7,14 @@ categories:
 tags:
   - 개발자
   - Docker
-image: http://img.youtube.com/vi/zBqjh61QcB4/0.jpg
+image: //img.youtube.com/vi/zBqjh61QcB4/0.jpg
 ---
 
 **AWS ECS(EC2 Container Service)**는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. **AWS ECR(Container Registry)**은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.
 
 아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).
 
-[![Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS](http://img.youtube.com/vi/zBqjh61QcB4/0.jpg)](https://www.youtube.com/watch?v=zBqjh61QcB4)
+[![Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS](//img.youtube.com/vi/zBqjh61QcB4/0.jpg)](//www.youtube.com/watch?v=zBqjh61QcB4)
 
 AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다<small>(협찬 좀...)</small>.
 

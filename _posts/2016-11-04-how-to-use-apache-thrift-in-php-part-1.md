@@ -9,7 +9,7 @@ tags:
 - RPC
 - "Apache Thrift"
 - PHP
-image: http://blog.appkr.kr/images/2016-11-04-img-01.png
+image: //blog.appkr.kr/images/2016-11-04-img-01.png
 ---
 
 RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다. 
@@ -54,7 +54,7 @@ Apache Thrift 외에도 선택지는 더 있다.
     -   페이스북, 에버노트, LastFM 등에서 사용
     
 -   기타
-    -   **[Apache AVRO](https://avro.apache.org/)**, **[GRPC](http://www.grpc.io/)** 외
+    -   **[Apache AVRO](//avro.apache.org/)**, **[GRPC](//www.grpc.io/)** 외
 
 ## 3. 워크플로우
 

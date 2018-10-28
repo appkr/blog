@@ -26,4 +26,4 @@ Android 에서 기본으로 제공하는 A/V Codec 들이다. 물론, S/W Codec 
 
 ## 참고자료
 
-- [http://developer.android.com/guide/appendix/media-formats.html](http://developer.android.com/guide/appendix/media-formats.html)
+- [developer.android.com/guide/appendix/media-formats.html](//developer.android.com/guide/appendix/media-formats.html)

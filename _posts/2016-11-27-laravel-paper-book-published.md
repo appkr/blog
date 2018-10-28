@@ -8,14 +8,14 @@ tags:
 - 개발자
 - Laravel
 - PHP
-image: http://cfile2.uf.tistory.com/image/261326505829771C18CBB0
+image: //cfile2.uf.tistory.com/image/261326505829771C18CBB0
 ---
 
 제가 집필한 책이 어제 출간되었습니다. **웹 프로그래밍**을 다룹니다. 웹 프로그래밍을 위한 도구로는 **PHP 언어로 작성된 라라벨 프레임워크**를 사용합니다.
 
 2016년 초에 완성하고 깃허브에 공개한 **[무료 온라인 강의](https://github.com/appkr/l5essential)를 토대로 제이펍 출판사에 계신 프로페셔널들의 도움을 받아 비문을 고치고 부족한 설명을 보충**하였습니다. 게다가 생활 코딩 오프라인 수업에 조교로 자원 봉사(5회?), 8시간 또는 14시간 짜리 라라벨 입문 강의(각 4회씩 총 8회) 등을 통해 입문자와 예비 독자들을 만나며, 여러분들이 어려워하거나 실수하기 쉬운 내용을 캐치하고 책의 내용과 구성에 반영했습니다.
 
-[![라라벨로 배우는 실전 PHP 웹 프로그래밍](http://cfile2.uf.tistory.com/image/261326505829771C18CBB0)](http://cfile2.uf.tistory.com/image/261326505829771C18CBB0)
+[![라라벨로 배우는 실전 PHP 웹 프로그래밍](//cfile2.uf.tistory.com/image/261326505829771C18CBB0)](//cfile2.uf.tistory.com/image/261326505829771C18CBB0)
 
 #### 프로그래밍을 생짜 처음 하신다고요? 
 
@@ -25,12 +25,12 @@ image: http://cfile2.uf.tistory.com/image/261326505829771C18CBB0
  
 이 책으로 시작하시는 당신은 행운아입니다.
 
-이 곳에서 구매할 수 있습니다. [교보문고](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791185890623), [반디앤루니스](http://www.bandinlunis.com/front/product/detailProduct.do?prodId=4011008), [알라딘](http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=96495117), [yes24](http://www.yes24.com/24/goods/33320248), [인터파크](http://book.interpark.com/product/BookDisplay.do?_method=detail&sc.shopNo=0000400000&sc.prdNo=261904099)
+이 곳에서 구매할 수 있습니다. [교보문고](//www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791185890623), [반디앤루니스](//www.bandinlunis.com/front/product/detailProduct.do?prodId=4011008), [알라딘](//www.aladin.co.kr/shop/wproduct.aspx?ItemId=96495117), [yes24](//www.yes24.com/24/goods/33320248), [인터파크](//book.interpark.com/product/BookDisplay.do?_method=detail&sc.shopNo=0000400000&sc.prdNo=261904099)
 
 > 개발자들은 코드를 보면 코드를 짠 사람의 실력과 성격을 어느 정도 가늠할 수 있다는 얘기를 들었습니다. 마찬가지로, 저희들은 원고를 보고 지은이의 내공과 성격을 어느 정도 유추하곤 합니다. 김주원 님의 원고를 처음 받았을 때의 느낌은 '참 꼼꼼하면서 정갈한 분이시겠구나'였습니다. 책 전체의 뼈대와 같은 차례도 탄탄하고, 글을 풀어가는 느낌도 군더더기가 없어서 좋았습니다. 물론, 원고를 받고 책이 나오기까지 많은 분의 도움으로 수정 및 보완 작업을 거치긴 했지만요.
-> <footer>제이펍 블로그 포스트 중에서 (http://jpub.tistory.com/622)</footer>
+> <footer>제이펍 블로그 포스트 중에서 (//jpub.tistory.com/622)</footer>
 
-**`안내`** 매월 첫째 주 수요일에 열리는 [모던퍼그](http://www.modernpug.org/) 정기 모임에 책을 들고 참여하시면 저자 싸인해 드리겠습니다.
+**`안내`** 매월 첫째 주 수요일에 열리는 [모던퍼그](//www.modernpug.org/) 정기 모임에 책을 들고 참여하시면 저자 싸인해 드리겠습니다.
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -67,7 +67,7 @@ PHP는 20년이 넘는 역사를 가지고 있습니다. 현존하는 모든 컴
 2. 테스트와 유지보수가 불가한 난잡한 프레임워크(워드프레스)
 3. 현업 개발자나 웹 에이전시들의 나쁜 코딩 습관
 
-때문에 PHP는 개발자들로부터 많은 비난을 받아왔습니다. ['PHP:잘못된 디자인의 프랙탈'](http://noraesae.github.io/PHP-a-fractal-of-bad-design-kr/) 문서를 보면 PHP를 암덩어리라고 느낄지도 모릅니다.
+때문에 PHP는 개발자들로부터 많은 비난을 받아왔습니다. ['PHP:잘못된 디자인의 프랙탈'](//noraesae.github.io/PHP-a-fractal-of-bad-design-kr/) 문서를 보면 PHP를 암덩어리라고 느낄지도 모릅니다.
 
 [![PHP 성능](/images/2016-11-27-img-02.png)](/images/2016-11-27-img-02.png)
 
@@ -84,6 +84,6 @@ PHP는 20년이 넘는 역사를 가지고 있습니다. 현존하는 모든 컴
 --- 
 
 [^1]: https://github-ranking.com/repositories, Vue.js 7위(놀라워라~), 레일즈 10위, 익스프레스 31위, 장고 53위
-[^2]: http://www.tiobe.com/tiobe-index/
+[^2]: [www.tiobe.com/tiobe-index](//www.tiobe.com/tiobe-index)
 [^3]: https://w3techs.com/technologies/overview/programming_language/all
-[^4]: http://benchmarksgame.alioth.debian.org/, 테이블 헤더의 spectral-norm 등은 테스트 벡터 이름, secs는 실행 시간, KB/gz는 소스코드 크기, cpu는 CPU 사용 시간, 측정 값은 모두 4회 테스트한 결과의 평균치
+[^4]: [benchmarksgame.alioth.debian.org](//benchmarksgame.alioth.debian.org), 테이블 헤더의 spectral-norm 등은 테스트 벡터 이름, secs는 실행 시간, KB/gz는 소스코드 크기, cpu는 CPU 사용 시간, 측정 값은 모두 4회 테스트한 결과의 평균치

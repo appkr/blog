@@ -8,7 +8,7 @@ tags:
   - 개발자
   - PHP
   - Database
-image: http://blog.appkr.kr/images/2017-02-11-img-02.png
+image: //blog.appkr.kr/images/2017-02-11-img-02.png
 ---
 
 많은 양의 데이터를 체계적으로 저장하기 위해 데이터베이스를 사용합니다. 필요할 때마다 빠르게 꺼내 보거나, 수정하고, 불필요해지면 삭제하기도 합니다. 이처럼 데이터베이스는 수 많은 레코드셋에서 원하는 레코드만 빠르게 추출해 낼 수 있는데, **내부에서 어떻게 작동하는 지는 완전 블랙박스**죠?
@@ -318,7 +318,7 @@ GET /join.php
 
 ### 3.5. `binary` 시나리오
 
-실험 목적과는 좀 거리가 있지만, 좀 더 지능적인 풀스캔 전략을 보여주기 위해 수록했습니다. 바이너리 검색에 대한 자세한 내용은 [Algorithm Visualizer 프로젝트](http://algo-visualizer.jasonpark.me/#path=search/binary_search/recursive)를 참고해주세요.
+실험 목적과는 좀 거리가 있지만, 좀 더 지능적인 풀스캔 전략을 보여주기 위해 수록했습니다. 바이너리 검색에 대한 자세한 내용은 [Algorithm Visualizer 프로젝트](//algo-visualizer.jasonpark.me/#path=search/binary_search/recursive)를 참고해주세요.
 
 ```php
 <?php // scenario/binary.php
@@ -407,4 +407,4 @@ SQL|시나리오|3회 평균 처리 시간(ms)
 
 <div class="spacer">• • •</div>
 
-스택오버플로에 올라온 ['mysql 5.0 indexes - Unique vs Non Unique'](http://stackoverflow.com/a/389824/7511247)라는 질답의 좌표를 남기며 마칩니다. 링크의 내용을 요약하면 성능은 ~~Primary > Unique > Index > Non-indexed~~ Primary > Unique & Non-Unique-Index > Non-indexed 순이란 이야기입니다.
+스택오버플로에 올라온 ['mysql 5.0 indexes - Unique vs Non Unique'](//stackoverflow.com/a/389824/7511247)라는 질답의 좌표를 남기며 마칩니다. 링크의 내용을 요약하면 성능은 ~~Primary > Unique > Index > Non-indexed~~ Primary > Unique & Non-Unique-Index > Non-indexed 순이란 이야기입니다.

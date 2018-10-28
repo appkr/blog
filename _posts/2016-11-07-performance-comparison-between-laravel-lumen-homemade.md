@@ -9,12 +9,12 @@ tags:
 - Laravel
 - Lumen
 - PHP
-image: http://blog.appkr.kr/images/2016-11-07-img-01.png
+image: blog.appkr.kr/images/2016-11-07-img-01.png
 ---
 
 라라벨과 루멘, PHP 날코딩간의 성능 비교를 해 보신 분들이 없는 것 같아 직접 해 봤다. **결론은 뻔하지만, PHP 날코딩이 가장 빠르고, 메모리 사용량도 적다. 프레임워크를 써야 이유는 다른 곳에 있으니, 이 실험 결과만 보고 오해나 곡해하지 마시기 바란다.**
 
-**`주의`** 이 실험은 다른 PHP 프레임워크 또는 다른 플랫폼의 프레임워크와 라라벨 또는 루멘의 성능을 비교하기 위한 것이 아니다(다른 PHP 프레임워크와의 비교는 ["How Lumen Is Benchmarked"](http://taylorotwell.com/how-lumen-is-benchmarked/)를 참고하라). **이 실험은 라라벨과 루멘의 기본적인 속도와 필요 리소스를 측정해 봄으로써, PHP 날코딩의 성능과 프레임워크가 제공하는 이점 간의 트레이드오프(trade-off)에 대한 의사 결정 포인트를 제공하기 위한 목적으로 수행하였다.**
+**`주의`** 이 실험은 다른 PHP 프레임워크 또는 다른 플랫폼의 프레임워크와 라라벨 또는 루멘의 성능을 비교하기 위한 것이 아니다(다른 PHP 프레임워크와의 비교는 ["How Lumen Is Benchmarked"](//taylorotwell.com/how-lumen-is-benchmarked/)를 참고하라). **이 실험은 라라벨과 루멘의 기본적인 속도와 필요 리소스를 측정해 봄으로써, PHP 날코딩의 성능과 프레임워크가 제공하는 이점 간의 트레이드오프(trade-off)에 대한 의사 결정 포인트를 제공하기 위한 목적으로 수행하였다.**
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -69,7 +69,7 @@ Route::get('/', function () {
 });
 ```
 
-`performance()` 함수는 이렇게 생겼다. 할당된 메모리 양이 아니라, 사용한 메모리 양으로 측정했다([`memory_get_usage()`](http://php.net/manual/en/function.memory-get-usage.php)).
+`performance()` 함수는 이렇게 생겼다. 할당된 메모리 양이 아니라, 사용한 메모리 양으로 측정했다([`memory_get_usage()`](//php.net/manual/en/function.memory-get-usage.php)).
 
 ```php
 <?php // app/helpers.php

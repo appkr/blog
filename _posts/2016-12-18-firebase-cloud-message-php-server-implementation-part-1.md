@@ -8,7 +8,7 @@ tags:
   - 개발자
   - Laravel
   - PHP
-image: http://blog.appkr.kr/images/images/2016-12-18-img-01.png
+image: //blog.appkr.kr/images/images/2016-12-18-img-01.png
 ---
 
 **FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스**다. 과거 GCM(Google Cloud Message)이 진화한 것이다.

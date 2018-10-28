@@ -7,11 +7,11 @@ categories:
 tags:
 - 개발자
 - 프로세스
-image: http://image.yes24.com/momo/TopCate582/MidCate002/58112706.jpg
+image: //image.yes24.com/momo/TopCate582/MidCate002/58112706.jpg
 ---
 
 <div class="text-center">
-  <img src="http://image.yes24.com/momo/TopCate582/MidCate002/58112706.jpg" style="width:300px"/>
+  <img src="//image.yes24.com/momo/TopCate582/MidCate002/58112706.jpg" style="width:300px"/>
 </div>
 
 [p.316] 나는 일을 선택하기 전에 아래와 같은 질문들을 스스로에게 던졌다.

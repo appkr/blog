@@ -8,7 +8,7 @@ tags:
 - 개발자
 - ELK
 - Log
-image: http://blog.appkr.kr/images/2018-06-30-img-01.png
+image: //blog.appkr.kr/images/2018-06-30-img-01.png
 ---
 
 이 슬라이드는 Modern PHP User Group 2018년 7월 정기 모임 발표 자료입니다.

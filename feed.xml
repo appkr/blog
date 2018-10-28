@@ -5,8 +5,8 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Oct 2018 16:08:57 +0900</pubDate>
-    <lastBuildDate>Sun, 28 Oct 2018 16:08:57 +0900</lastBuildDate>
+    <pubDate>Sun, 28 Oct 2018 16:40:59 +0900</pubDate>
+    <lastBuildDate>Sun, 28 Oct 2018 16:40:59 +0900</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -535,7 +535,7 @@
       &lt;p&gt;&lt;a href=&quot;/learn-n-think/clean-architecture-and-dependency/#2-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98&quot;&gt;클린 아키텍처&lt;/a&gt;에 대한 포스트를 읽어보세요. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;http://javacan.tistory.com/entry/ThreadLocalUsage&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadLocal&lt;/code&gt;에 관한 최범균님의 블로그 포스트&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;//javacan.tistory.com/entry/ThreadLocalUsage&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadLocal&lt;/code&gt;에 관한 최범균님의 블로그 포스트&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -664,8 +664,8 @@
 &lt;p&gt;네이버 국어사전에 따르면 &lt;strong&gt;찍새&lt;/strong&gt;와 &lt;strong&gt;딱새&lt;/strong&gt;를 이렇게 정의하고 있습니다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://krdic.naver.com/detail.nhn?docid=36508000&quot;&gt;찍새&lt;/a&gt;&lt;/strong&gt; 닦을 구두를 모아서 구두닦이에게 가져다주는 일만 하는 사람을 속되게 이르는 말.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://krdic.naver.com/detail.nhn?docid=11120600&quot;&gt;딱새&lt;/a&gt;&lt;/strong&gt; 은어로, ‘구두닦이’를 이르는 말.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;//krdic.naver.com/detail.nhn?docid=36508000&quot;&gt;찍새&lt;/a&gt;&lt;/strong&gt; 닦을 구두를 모아서 구두닦이에게 가져다주는 일만 하는 사람을 속되게 이르는 말.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;//krdic.naver.com/detail.nhn?docid=11120600&quot;&gt;딱새&lt;/a&gt;&lt;/strong&gt; 은어로, ‘구두닦이’를 이르는 말.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;예~ 구두닦이 서비스를 말하는 겁니다. 주제와 전혀 다른 구두닦이 서비스를 언급한 이유는, 제가 속한 회사의 서비스가 이런 식으로 역할 분담이 되어 있기 때문입니다. 상점으로부터 배송 대행 요청을 접수 받는 서비스와(이하 &lt;strong&gt;프라임&lt;/strong&gt;), 기사님들에게 배송 대행 업무를 나누어 주고, 배정 받은 기사님이 물건을 보내고자하는 상점으로 가서 물건을 픽업하고 목적지까지 배송하고 상품가액과 수수료를 결재 받는 서비스(이하 &lt;strong&gt;부릉&lt;/strong&gt;)로 구성되어 있습니다. 아무리 구두닦이 장인들이 모여 있더라도 구두를 찍어 오지 못하면 서비스는 쪼그라들겁니다. 반면에, 영업의 신들이 구두를 아무리 잘 찍어와도 구두를 깨끗이 닦지 못하면 손님은 다시 찾아오지 않을 겁니다. 결국 &lt;strong&gt;둘 간에 강한 결합이 존재하며, 서로 선순환을 일으켜야 한다&lt;/strong&gt;는 사실을 알 수 있습니다.&lt;/p&gt;
@@ -1208,7 +1208,7 @@
       <item>
         <title>소프트웨어 장인 by 산드로 만쿠소</title>
         <description>&lt;div class=&quot;text-center&quot;&gt;
-  &lt;img src=&quot;http://image.yes24.com/momo/TopCate582/MidCate002/58112706.jpg&quot; style=&quot;width:300px&quot; /&gt;
+  &lt;img src=&quot;//image.yes24.com/momo/TopCate582/MidCate002/58112706.jpg&quot; style=&quot;width:300px&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;[p.316] 나는 일을 선택하기 전에 아래와 같은 질문들을 스스로에게 던졌다.&lt;/p&gt;

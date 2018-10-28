@@ -183,7 +183,7 @@
     var searchInput = $('#q_header');
 
     /* Initialize Jekyll Search */
-    SimpleJekyllSearch({
+    var sjsHeader = SimpleJekyllSearch({
       searchInput: document.getElementById('q_header'),
       resultsContainer: document.getElementById('q_header_res'),
       json: '/search.json',
@@ -245,7 +245,7 @@
     var searchInput = $('#q_sidebar');
 
     /* Initialize Jekyll Search */
-    SimpleJekyllSearch({
+    var sjsSidebar = SimpleJekyllSearch({
       searchInput: document.getElementById('q_sidebar'),
       resultsContainer: document.getElementById('q_sidebar_res'),
       json: '/search.json',
@@ -410,13 +410,18 @@ window.fbAsyncInit = function() {
   var facebookFeedContainer = $('ul#facebook-feed');
   var facebookFeedTemplate = $.trim($('#facebook-feed-template').html());
 
-  FB.init({appId: facebookAppId, autoLogAppEvents: true, xfbml: true, version: 'v3.0'});
+  FB.init({appId: facebookAppId, autoLogAppEvents: true, xfbml: true, version: 'v3.2'});
 
   FB.api('me/posts', 'GET', {limit: 3, access_token: a65bbdd5e332c9def690b9165b64abfc}, function(response) {
     if (! response || response.error || ! response.data.length) {
       facebookFeedContainer.html('<li>Some error :(</li>');
     }
-    facebookFeedContainer.append(compile(facebookFeedTemplate, response.data));
+
+    var filtered = response.data.filter(function (item) {
+      return item.message !== undefined;
+    });
+
+    facebookFeedContainer.append(compile(facebookFeedTemplate, filtered));
   });
 };
 

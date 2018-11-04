@@ -97,6 +97,61 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/learn-n-think/php-object-copy/">PHP 객체의 복제 특성</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2018-11-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/php-object-copy/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>PHP 객체를 다른 변수에 할당(대입)하면, 객체 자체가 메모리 복제되어 새로운 변수에 할당되는 것이 아니라, 원본 객체가 담긴 메모리 번지만 참조됩니다(Like Pointer in C language).</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$foo</code>와 <code class="highlighter-rouge">$foo2</code>은 <code class="highlighter-rouge">Foo</code> 클래스의 인스턴스가 담긴, 같은 메모리 번지를 가리킵니다.</li>
+  <li><code class="highlighter-rouge">$foo3</code>는 <code class="highlighter-rouge">$foo</code> 인스턴스로 부터 복제했으므로, 복제 시점의 <code class="highlighter-rouge">$foo</code>의 상태를 그대로 가져오지만, 서로 다른 객체입니다.</li>
+  <li><code class="highlighter-rouge">$foo4</code>는 <code class="highlighter-rouge">Foo</code> 클래스의 새로운 인스턴스이므로, 당연히 <code class="highlighter-rouge">$foo</code>, <code class="highlighter-rouge">$foo2</code>, <code class="highlighter-rouge">$foo3</code>와 다른 객체입니다.</li>
+</ul>
+
+<p><img src="/images/2018-11-04-img-01.png" alt="" /></p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/php-object-copy/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/short-parable-on-sql-injection/">SQL Injection 방어</a>
         </h2>
         <p class="box-meta">
@@ -438,53 +493,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/cheatsheet/binary-decimal-conversion/">이진수와 십진수</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2018-04-14
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#cheatsheet">
-                
-                    Cheatsheet
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/cheatsheet/binary-decimal-conversion/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>중학교 때 배운 후, 잊어 버리고, 매번 필요할 때마다 찾아 보는 것이 진법(進法)이다. 요즘은 교과 과정이 없어졌다고 하지만, 자녀들이 물어볼 때를 대비해 기록해 놓는다. 또, 개발자로서 이진법을 잘 이해하지 못하고 있는 나 자신이 부끄럽기도해서 필요할 때마다 꺼내볼 수 있도록 치트시트를 만들어 두는 거다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/cheatsheet/binary-decimal-conversion/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -541,7 +549,7 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">79</span>
+          <span class="badge">80</span>
         </a>
       </li>
       <li>
@@ -713,7 +721,7 @@
       </a>
     </span>
     
-    <span style="font-size: 142%">
+    <span style="font-size: 146%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1261,6 +1269,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-11-04</small>
+          <a href="/learn-n-think/php-object-copy/">PHP 객체의 복제 특성</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-10-20</small>
           <a href="/learn-n-think/short-parable-on-sql-injection/">SQL Injection 방어</a>
         </h4>
@@ -1270,13 +1285,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-10-13</small>
           <a href="/cheatsheet/linux-top-cheatsheet/">Linux "top" cheatsheet</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2018-07-09</small>
-          <a href="/work-n-play/application-context-container/">라라벨 ApplicationContext 컨테이너 구현</a>
         </h4>
       </li>
       

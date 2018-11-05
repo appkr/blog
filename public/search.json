@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "Vim cheatsheet",
+    "category" : "cheatsheet",
+    "tags"     : "생산성",
+    "url"      : "/cheatsheet/vim-cheatsheet/",
+    "date"     : "2018-11-05"
+  },
+  
+  {
     "title"    : "PHP 객체의 복제 특성",
     "category" : "learn-n-think",
     "tags"     : "PHP",

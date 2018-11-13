@@ -338,15 +338,18 @@
       </div>
 
       <div class="box-body">
-        <blockquote>
-  <p>이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월 24일, 2018년 7월 2일에 코드 리팩토링 내용을 반영하여 변경되었습니다.</p>
-</blockquote>
+        <div class="panel panel-default">
+  <div class="panel-body">
+    <p class="lead">이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월, 2018년 7월, 2018년 11월 총 세차례에 걸쳐 완전히 다시 썼으며, 예제 코드 또한 변경되었습니다.</p> 
+    <p class="lead">최종 리팩토링의 가장 큰 변경은 기존에 사용하던 `brozot/laravel-fcm` 패키지를 완전히 버리고, `Guzzle`로 직접 구현했다는 점입니다.</p>
+  </div>
+</div>
 
 <p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
 
 <p><img src="https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png" alt="Firebase Logo" /></p>
 
-<p>지난 <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">1부</a>에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 FCM 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다.</p>
+<p>지난 <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">1부</a>에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 Fcm 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다.</p>
 
 
       </div>

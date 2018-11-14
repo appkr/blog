@@ -402,11 +402,11 @@ return [
 ```
 
 - 우선 `handleDeliveryFailureIfAny()` 함수를 두가지 일을 한다. 이렇게 구현된 이유는 뒤에 설명할 Fcm 서버의 응답 스펙과 관련이 있다. 두 가지 일이란; 
-- 362~372: 첫째 디바이스 리포지토리에게 유효하지 않는 push_service_id 삭제 지시를 한다. 
-- 374~396: 둘째, 재전송이 필요한 push_service_id 들에 대해 2번 더 전송 시도한다. 
-- 381~382: 지금까지 `$retriedCount` 변수에는 `0`이 담겨 있었고, 이 라인에서 `1`을 더했다.
-- 383~385: [Exponential Backoff](https://en.wikipedia.org/wiki/Exponential_backoff) 구현이다. 방금 실패했으면 재시도해도 실패할 가능성이 있으므로, 재시도 주기를 점진적으로 늘려가며 재시도하는 로직이다.
-- 394~395: 수신자(`$receivers`) 변수를 실패한 push_service_id[]로 덮어 쓰고, `sendMessage()` API를 다시 호출한다. 또 실패하면 이 함수에 들어오게 되고, `$retriedCount`, `$retryIntervalInUs` 등의 제어 변수들이 조정되고, 또 재시도하게 될 것이다.
+- 141~151: 첫째 디바이스 리포지토리에게 유효하지 않는 push_service_id 삭제 지시를 한다. 
+- 153~175: 둘째, 재전송이 필요한 push_service_id 들에 대해 2번 더 전송 시도한다. 
+- 160~161: 지금까지 `$retriedCount` 변수에는 `0`이 담겨 있었고, 이 라인에서 `1`을 더했다.
+- 162~164: [Exponential Backoff](https://en.wikipedia.org/wiki/Exponential_backoff) 구현이다. 방금 실패했으면 재시도해도 실패할 가능성이 있으므로, 재시도 주기를 점진적으로 늘려가며 재시도하는 로직이다.
+- 173~174: 수신자(`$receivers`) 변수를 실패한 push_service_id[]로 덮어 쓰고, `sendMessage()` API를 다시 호출한다. 또 실패하면 이 함수에 들어오게 되고, `$retriedCount`, `$retryIntervalInUs` 등의 제어 변수들이 조정되고, 또 재시도하게 될 것이다.
 
 ```php
 178     private function isInitialRequest()
@@ -483,11 +483,27 @@ Route::post('fcm_test', function (App\Services\FcmHandler $fcmHandler) {
     
     return new Illuminate\Http\JsonResponse(null, 200);
 });
-``` 
+```
+
+`$user->getPushServiceIds()`는 모델에 정의한 헬퍼 함수이며, 다음과 같다.
+
+```php
+<?php // app/User.php
+
+class User extends Authenticatable
+{
+    // ...
+
+    public function getPushServiceIds()
+    {
+        return $this->devices->pluck('push_service_id')->all();
+    }
+}
+```
 
 ## 8. 푸쉬 메시지 요청에 대한 Fcm 서버 응답의 이해
 
-`DownstreamResponse` 클래스를 이해하려면, [Fcm 문서](https://firebase.google.com/docs/cloud-messaging/server#response)에 명시된 Fcm 서버의 응답 메시지를 이해해야 한다. 다음은 총 6개의 단말기에 푸쉬 메시지를 보냈을 때 Fcm 서버의 응답 예제이다. 
+`DownstreamResponse` 클래스를 이해하려면, [Fcm 문서](https://firebase.google.com/docs/cloud-messaging/server#response)에 명시된 Fcm 서버의 응답 메시지를 이해해야 하는데... 아래는 총 6개의 단말기에 푸쉬 메시지를 보냈을 때 Fcm 서버의 응답 예제이다. 이 예제를 통해서 Fcm 응답 스펙을 이해할 수 있다. 
 
 ```json
 { 

@@ -31,6 +31,8 @@ image: //blog.appkr.kr/images/images/2016-12-24-img-01.png
 
 [![](/images/2016-12-24-img-00.png)](/images/2016-12-24-img-00.png)
 
+<small>그림 원본: https://docs.google.com/presentation/d/11kNXkxA0kXoO-ayQHFa2yCOAIch4CEofXgf013aywFM/edit?usp=sharing</small>
+
 각 클래스의 역할은 아래와 같다.
 
 #### FcmServiceProvider
@@ -500,6 +502,8 @@ class User extends Authenticatable
     }
 }
 ```
+
+> 본문에 언급되지 않은 코드는 [예제 프로젝트의 풀 리퀘스트](https://github.com/appkr/fcm-scratchpad/pull/2/files)에서 확인할 수 있다.
 
 ## 8. 푸쉬 메시지 요청에 대한 Fcm 서버 응답의 이해
 

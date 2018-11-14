@@ -14,7 +14,7 @@ image: //blog.appkr.kr/images/images/2016-12-24-img-01.png
 <div class="panel panel-default">
   <div class="panel-body">
     <p class="lead">이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월, 2018년 7월, 2018년 11월 총 세차례에 걸쳐 완전히 다시 썼으며, 예제 코드 또한 변경되었습니다.</p> 
-    <p class="lead">최종 리팩토링의 가장 큰 변경은 기존에 사용하던 `brozot/laravel-fcm` 패키지를 완전히 버리고, `Guzzle`로 직접 구현했다는 점입니다.</p>
+    <p class="lead">최종 리팩토링의 가장 큰 변경은 기존에 사용하던 <code class="highlighter-rouge">brozot/laravel-fcm</code> 패키지를 완전히 버리고, <code class="highlighter-rouge">Guzzle</code>로 직접 구현했다는 점입니다.</p>
   </div>
 </div>
 
@@ -22,7 +22,7 @@ image: //blog.appkr.kr/images/images/2016-12-24-img-01.png
 
 ![Firebase Logo](https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png)
 
-지난 [1부](/work-n-play/firebase-cloud-message-php-server-implementation-part-1/)에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 Fcm 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다. 
+[지난 1부](/work-n-play/firebase-cloud-message-php-server-implementation-part-1/)에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 Fcm 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다. 
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -518,10 +518,8 @@ Route::post('fcm_test', function (App\Services\FcmHandler $fcmHandler) {
 &nbsp;|`tokensToRetry()`|애플리케이션 서버에서 재 전송해야 하는 토큰의 목록|1
 &nbsp;|`tokensWithError()`|에러가 난 이유 목록|&nbsp;
 
-[![Postman](/images/2016-12-24-img-02.png)](/images/2016-12-24-img-02.png)
 
-
-## 5. 결론
+## 9. 결론
 
 2부에 걸친 포스트를 통해 모바일 단말기에 Firebase Cloud Message를 보내기 위한 PHP 애플리케이션 서버를 구현하는 방법을 다루었다. 3부를 쓸 기회가 있다면 빠진 퍼즐 조각인 모바일 앱 부분을 소개할 예정이다.
 
@@ -529,7 +527,9 @@ Route::post('fcm_test', function (App\Services\FcmHandler $fcmHandler) {
 
 <div class="spacer">• • •</div>
 
-이번 포스트의 예제 프로젝트는 [https://github.com/appkr/fcm-scratchpad](https://github.com/appkr/fcm-scratchpad)에 공개되어 있다. 이 포스트에서 사용한 포스트맨 콜렉션은 [https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/fcm-scratchpad.postman_collection.json](https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/fcm-scratchpad.postman_collection.json)에서 받을 수 있다.
+이번 포스트의 **예제 프로젝트는 [https://github.com/appkr/fcm-scratchpad](https://github.com/appkr/fcm-scratchpad)에 공개**되어 있다. 
+
+**포스트맨 콜렉션은 [https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/fcm-scratchpad.postman_collection.json](https://raw.githubusercontent.com/appkr/fcm-scratchpad/master/docs/fcm-scratchpad.postman_collection.json)**에서 받을 수 있다.
 
 ## 덧.
 

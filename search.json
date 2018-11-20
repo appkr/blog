@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "One to Many 조인에서 Many 쪽 최종 레코드만 조회하기",
+    "category" : "work-n-play",
+    "tags"     : "Database",
+    "url"      : "/work-n-play/query-last-record-in-one-to-many-relation/",
+    "date"     : "2018-11-20"
+  },
+  
+  {
     "title"    : "Vim cheatsheet",
     "category" : "cheatsheet",
     "tags"     : "생산성",

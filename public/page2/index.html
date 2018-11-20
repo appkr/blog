@@ -97,6 +97,74 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/application-context-container/">라라벨 ApplicationContext 컨테이너 구현</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2018-07-09
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/application-context-container/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>사전에서 context(컨텍스트)를 찾아보면 어떤 사건이 발생했을 때의 주변 상황 정도로 설명하고 있습니다. 컴퓨터 소프트웨어에서도 컨텍스트 스위칭, 로그 컨텍스트, 애플리케이션 컨텍스트 등 컨텍스트라는 단어를 많이 사용합니다.</p>
+
+<p>라라벨은 IoC를 위한 Service Container<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>가 있으며, 여기에 어떤 데이터 타입이든 바인딩할 수 있고, 애플리케이션 실행 중에 아래처럼 꺼내 쓸 수 있습니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$container</span> <span class="o">=</span> <span class="nx">app</span><span class="p">();</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="s1">'bar'</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">);</span> <span class="c1">// 'bar'</span>
+</code></pre></div></div>
+
+<p>그런데, 아래와 같은 문제가 있죠<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. 작은 애플리케이션에서는 이렇게 쓴다고 전혀 문제없지만, 애플리케이션이 커지면 결국 개발자에게 큰 부담으로 다가옵니다.</p>
+
+<p><a href="/images/2018-07-09-img-01.png"><img src="/images/2018-07-09-img-01.png" alt="Strong Dependency" /></a></p>
+
+<p>이번 포스트에서는 라라벨 애플리케이션에서 애플리케이션 실행 시점의 주변 상황을 담아 놓고 필요할 때 꺼내 쓰기 위한 데이터 컨테이너를 구현했던 썰을 풀어보려합니다. <code class="highlighter-rouge">ApplicationContext</code>라 이름 지었고 Java 언어의 <code class="highlighter-rouge">ThreadLocal</code><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>과 비슷한 역할을 한다고 보면 됩니다. 주로 아래와 같은 상황에 유용하게 사용되기를 바라며 만들었어요.</p>
+
+<ul>
+  <li>프레임워크 영역(=main)의 데이터를 코어 영역(=app)으로 전달할 때</li>
+  <li>로깅 및 감사</li>
+  <li>프로세스간 컨텍스트 릴레이 등등 (e.g. Api -&gt; Queue, App -&gt; External, …)</li>
+</ul>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/application-context-container/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/php-filebeat-elk-log-tracking/">PHP Log Tracking with ELK & Filebeat part#2</a>
         </h2>
         <p class="box-meta">
@@ -359,72 +427,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-10-22
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/investigating-laravel-model-events/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>라라벨 엘로퀀트에서 발생하는 모델 이벤트를 실험한 결과 입니다. <a href="https://github.com/appkr/db-lock-poc">선점 잠금과 비선점 잠금 실험을 위한 프로젝트</a>에 이벤트 리스너를 등록하고 엘로퀀트 모델을 DB에 저장하고, 변경한 후 DB에 저장하고, 삭제할 때 어떤 이벤트가 발생하는지 살펴 봤습니다.</p>
-
-<p>이벤트를 잡기 위한 리스너 클로저는 아래와 같습니다.</p>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php</span>
-
-<span class="k">class</span> <span class="nc">EventServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nx">Event</span><span class="o">::</span><span class="na">listen</span><span class="p">(</span><span class="s1">'eloquent.*'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><a href="https://github.com/appkr/pattern/tree/master/Behavioral/Observer2">관찰자(Observer) 패턴</a>은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, “밥 다되면 불러줘~”라고 미리 말해두고, 밥이 다 되면 알려주는 거죠.</p>
-
-<p>“관찰자를 등록하고 사건이 발생하면 등록된 관찰자들에게 알려준다”는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 <code class="highlighter-rouge">$observables</code> 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 <code class="highlighter-rouge">save()</code>와 같은 퍼블릭 함수가 작동할 때, 자신의 <code class="highlighter-rouge">fireModelEvent('created')</code> 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 <code class="highlighter-rouge">created($this)</code>를 호출하는 식으로 작동합니다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/investigating-laravel-model-events/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -487,7 +489,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">59</span>
+          <span class="badge">60</span>
         </a>
       </li>
       <li>
@@ -557,7 +559,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 102%">
       <a href="/tags#Database">
         Database
       </a>
@@ -1201,6 +1203,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-11-20</small>
+          <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-11-05</small>
           <a href="/cheatsheet/vim-cheatsheet/">Vim cheatsheet</a>
         </h4>
@@ -1210,13 +1219,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-11-04</small>
           <a href="/learn-n-think/php-object-copy/">PHP 객체의 복제 특성</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2018-10-20</small>
-          <a href="/learn-n-think/short-parable-on-sql-injection/">SQL Injection 방어</a>
         </h4>
       </li>
       

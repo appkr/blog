@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="고객 목록에 고객별 최근 주문 1건에 대한 요약 정보를 보여주세요.라는 요구사항이 있습니다.“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.+------------+           0..* +------------+|  Customer  | &lt;&gt;-------..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="One to Many 조인에서 Many 쪽 최종 레코드만 조회하기"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content=""/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="One to Many 조인에서 Many 쪽 최종 레코드만 조회하기">
+  <meta itemprop="description" content="고객 목록에 고객별 최근 주문 1건에 대한 요약 정보를 보여주세요.라는 요구사항이 있습니다.“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.+------------+           0..* +------------+|  Customer  | &lt;&gt;-------...">
+  <meta itemprop="image" content="">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="One to Many 조인에서 Many 쪽 최종 레코드만 조회하기" />
+  <meta name="twitter:description" content="고객 목록에 고객별 최근 주문 1건에 대한 요약 정보를 보여주세요.라는 요구사항이 있습니다.“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.+------------+           0..* +------------+|  Customer  | &lt;&gt;-------..." />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/query-last-record-in-one-to-many-relation/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>One to Many 조인에서 Many 쪽 최종 레코드만 조회하기 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li>
+          <a href="/">Blog</a>
+        </li>
+        <li>
+          <a href="/profile/">Profile</a>
+        </li>
+      </ul>
+
+      <div id="search_header" class="visible-xs">
+        <div class="box-body">
+          <form action="#">
+            <div class="form-group">
+              <input class="form-control input-lg" type="text" id="q_header" placeholder="Search...">
+              <ul id="q_header_res"></ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/query-last-record-in-one-to-many-relation/&title=One to Many 조인에서 Many 쪽 최종 레코드만 조회하기" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/query-last-record-in-one-to-many-relation/&title=One to Many 조인에서 Many 쪽 최종 레코드만 조회하기&text=One to Many 조인에서 Many 쪽 최종 레코드만 조회하기" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/query-last-record-in-one-to-many-relation/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2018-11-20
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/query-last-record-in-one-to-many-relation/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <blockquote>
+  <p>고객 목록에 고객별 최근 주문 1건에 대한 요약 정보를 보여주세요.</p>
+</blockquote>
+
+<p>라는 요구사항이 있습니다.</p>
+
+<p>“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------------+           0..* +------------+
+|  Customer  | &lt;&gt;-----------&gt; |   Order    |
++------------+                +------------+
+</code></pre></div></div>
+
+<p>애플리케이션 레이어에서 구현한다면, ORM을 통해 구한 <code class="highlighter-rouge">Collection&lt;Customer&gt;</code>을 순회하면서, <code class="highlighter-rouge">Customer</code>객체의 멤버 필드인 <code class="highlighter-rouge">Collection&lt;Order&gt;</code>를 대상으로 최근 Order 객체만 필터링했거나, 적절한 순서로 정렬하여 뽑아 쓰기 쉽도록 했을겁니다. 요런 느낌으로요(검증 안된 Pseudo Code 입니다).</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Service Layer</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">listCustomers</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$customers</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Customer</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$sorted</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">sortByDesc</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">values</span><span class="p">();</span>
+        <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">setRelation</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">,</span> <span class="nv">$sorted</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$customer</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Controller/View 등</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$customers</span> <span class="k">as</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$lastOrder</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+    <span class="nv">$lastOrder</span><span class="o">-&gt;</span><span class="na">order_number</span><span class="p">;</span> <span class="c1">// 최근 주문 번호   </span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제점들이 눈에 띕니다.</p>
+
+<ul>
+  <li>시간복잡도는 O(m x n)입니다.</li>
+  <li>CPU와 메모리를 혹사시킵니다.</li>
+  <li><code class="highlighter-rouge">Customer.orders: Collection&lt;Order&gt;</code>를 미리 로드하지 않았다면, N + 1 문제가 발생합니다.</li>
+  <li>이 외에도 제가 보지 못한 문제점들이 더 있을 겁니다…</li>
+</ul>
+
+<p>읽기 전용 쿼리이므로 ORM을 쓰지 않아도 됩니다. 싸고, 빠르고, 안전하게 SQL만으로 뽑아내는 방법을 찾아봤습니다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="1-테이블-스키마">1. 테이블 스키마</h2>
+
+<p>간결함을 위해 주변 테이블과 정규화등은 모듀 생략합니다(e.g. <code class="highlighter-rouge">order_lines</code>, <code class="highlighter-rouge">products</code>, …).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------------+                +------------+
+|  customers | -|----------o&lt; |   orders   |
++------------+                +------------+
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">customers</span> <span class="p">(</span>
+  <span class="n">customer_id</span> <span class="n">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="n">name</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+  <span class="n">zipcode</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+  <span class="n">phonenumber</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">13</span><span class="p">),</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">customers</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">zipcode</span><span class="p">,</span> <span class="n">phonenumber</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="s1">'이덕승'</span><span class="p">,</span> <span class="s1">'34603'</span><span class="p">,</span> <span class="s1">'01012345678'</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">'임희일'</span><span class="p">,</span> <span class="s1">'06035'</span><span class="p">,</span> <span class="s1">'01011112222'</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">'신초아'</span><span class="p">,</span> <span class="s1">'06611'</span><span class="p">,</span> <span class="s1">'01043218765'</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">orders</span> <span class="p">(</span>
+  <span class="n">order_number</span> <span class="n">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="n">customer_id</span> <span class="n">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span><span class="p">,</span>
+  <span class="n">order_total</span> <span class="n">int</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span>
+  <span class="n">created_at</span> <span class="n">datetime</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">order_number</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="n">orders_customer_id_foreign</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">customer_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">customers</span> <span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">orders</span> <span class="p">(</span><span class="n">customer_id</span><span class="p">,</span> <span class="n">order_total</span><span class="p">,</span> <span class="n">created_at</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="nv">"2018-01-01 12:00:00"</span><span class="p">),</span>
+       <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="nv">"2018-08-25 13:00:00"</span><span class="p">),</span>
+       <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">"2018-11-20 14:00:00"</span><span class="p">),</span>
+       <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">"2018-05-05 09:00:00"</span><span class="p">),</span>
+       <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">"2018-10-01 10:00:00"</span><span class="p">),</span>
+<span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="2-고객과-주문-테이블-left-조인">2. 고객과 주문 테이블 LEFT 조인</h2>
+
+<p>고객번호 1번 “이덕승” 고객의 주문 3건과, 고객번호 3번 “신초아” 고객의 주문 2건, 한번도 주문한 적이 없는 고객번호 2번 “임희일” 고객의 NULL을 포함해 총 6건의 결과가 출력됩니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="k">AS</span> <span class="n">cid</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o1n</span>
+<span class="k">FROM</span> <span class="n">customers</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o1</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o1</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="p">;</span> <span class="c1">-- No errors; 6 rows affected</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cid o1n
+1   1
+1   2
+1   3
+2   NULL
+3   4
+3   5
+</code></pre></div></div>
+
+<p>참고로, 한번이라도 주문한 고객의 고객별…과 같은 요구사항이었다면, LEFT JOIN 대신 INNER JOIN을 이용했을테고, 5건의 결과가 출력됐을 겁니다.</p>
+
+<h2 id="3-고객과-주문-테이블-left-조인">3. 고객과 주문 테이블 LEFT 조인</h2>
+
+<p>조인은 두 테이블을 조인해 중간 결과 집합을 만든 후, 이 결과 집합과 다음 테이블을 조인하는 식으로 동작한다고 알고 있습니다. 2절의 선행 조인에서 만들어진 결과 집합의 각 로우와 주문 테이블 o2를 한번 더 LEFT 조인합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="k">AS</span> <span class="n">cid</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o1n</span><span class="p">,</span>
+    <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o2n</span>
+<span class="k">FROM</span> <span class="n">customers</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o1</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o1</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o2</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o2</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="p">;</span> <span class="c1">-- No errors; 14 rows affected</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cid o1n o2n
+1   1   1
+1   1   2
+1   1   3
+1   2   1
+1   2   2
+1   2   3
+1   3   1
+1   3   2
+1   3   3
+2   NULLNULL
+3   4   4
+3   4   5
+3   5   4
+3   5   5
+</code></pre></div></div>
+
+<ul>
+  <li>선행 결과 집합의 {cid:1, o1n:1} 로우와 조인되는 주문 테이블 o2의 로우는 customer_id가 1인 로우 3개입니다.</li>
+  <li>선행 결과 집합의 {cid:1, o1n:2} 로우와 조인되는 주문 테이블 o2의 로우는 customer_id가 1인 로우 3개입니다.</li>
+  <li>선행 결과 집합의 {cid:1, o1n:3} 로우와 조인되는 주문 테이블 o2의 로우는 customer_id가 1인 로우 3개입니다.</li>
+  <li>선행 결과 집합의 {cid:2, o1n:NULL} 로우와 조인되는 주문 테이블 o2의 로우는 없습니다.</li>
+  <li>선행 결과 집합의 {cid:3, o1n:4} 로우와 조인되는 주문 테이블 o2의 로우는 customer_id가 3인 로우 2개입니다.</li>
+  <li>선행 결과 집합의 {cid:3, o1n:5} 로우와 조인되는 주문 테이블 o2의 로우는 customer_id가 3인 로우 2개입니다.</li>
+</ul>
+
+<p>왜 결과가 14행이 나왔는지 이해되셨죠?</p>
+
+<h2 id="4-left-조인-조건-추가">4. LEFT 조인 조건 추가</h2>
+
+<p>왼쪽 또는 오른쪽 어느 쪽이든 무관하지만, 여기서는 왼쪽(선행 결과 집합) 테이블의 레코드를 버리도록 하겠습니다. 버리는 조건은 “나한테 가위바위보 진 사람 전부 앉아!”와 비슷합니다. 왼쪽이 오른쪽보다 작은 주문번호를 가졌다면 버리는 겁니다.</p>
+
+<p>주문번호가 더 크다면 더 최근에 주문한 건이며, 같은 고객을 대상으로 주문번호가 가장 큰 녀석을 골라내는 과정이라 이해할 수 있습니다. 버린다고 표현했지만, 엄밀히 말하면 LEFT JOIN의 조건식을 충족하지 못하는 것입니다.</p>
+
+<p>그런데 LEFT JOIN이므로 2절에서 도출한 선행 결과 집합은 그대로 유지해야 합니다. {cid:1, o1n:3} 및 {cid:3, o1n:5} 로우는 충족하는 오른쪽 값이 없네요. 그럼에도 선행 결과 집합 유지를 위해 NULL이라고 표현하고 있습니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cid o1n o2n
+1   1   1   <span class="o">(</span>1 &lt; 1<span class="o">)</span> 버림
+1   1   2   <span class="o">(</span>1 &lt; 2<span class="o">)</span> 남김
+1   1   3   <span class="o">(</span>1 &lt; 3<span class="o">)</span> 남김
+1   2   1   <span class="o">(</span>2 &lt; 1<span class="o">)</span> 버림
+1   2   2   <span class="o">(</span>2 &lt; 2<span class="o">)</span> 버림
+1   2   3   <span class="o">(</span>2 &lt; 3<span class="o">)</span> 남김
+1   3   1   <span class="o">(</span>3 &lt; 1<span class="o">)</span> 버림
+1   3   2   <span class="o">(</span>3 &lt; 2<span class="o">)</span> 버림
+1   3   3   <span class="o">(</span>3 &lt; 3<span class="o">)</span> 버림
+3   4   4   <span class="o">(</span>4 &lt; 4<span class="o">)</span> 버림
+3   4   5   <span class="o">(</span>4 &lt; 5<span class="o">)</span> 남김
+3   5   4   <span class="o">(</span>5 &lt; 4<span class="o">)</span> 버림
+3   5   5   <span class="o">(</span>5 &lt; 5<span class="o">)</span> 버림
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="k">AS</span> <span class="n">cid</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o1n</span><span class="p">,</span>
+    <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o2n</span>
+<span class="k">FROM</span> <span class="n">customers</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o1</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o1</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o2</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o2</span><span class="p">.</span><span class="n">customer_id</span>
+    <span class="k">AND</span> <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="o">&lt;</span> <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span>
+<span class="p">;</span> <span class="c1">-- No errors; 7 rows affected</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cid</span> <span class="n">o1n</span> <span class="n">o2n</span>
+<span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">2</span>
+<span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">3</span>
+<span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>
+<span class="mi">1</span>   <span class="mi">3</span>   <span class="k">NULL</span>
+<span class="mi">2</span>   <span class="n">NULLNULL</span>
+<span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>
+<span class="mi">3</span>   <span class="mi">5</span>   <span class="k">NULL</span>
+</code></pre></div></div>
+
+<p>이해를 돕기 위해 (사실은 제가 이해하기 위해) 3절과 4절을 구분 동작으로 표현했지만, 실제로는 연속 동작으로 진행됩니다.</p>
+
+<h2 id="5-where-조건절-추가">5. WHERE 조건절 추가</h2>
+
+<p>부등 조인 조건의 결과가 없다는 것은 가장 큰 값이란 의미입니다. 따라서 o2 테이블 쪽에 NULL을 품고 있는 로우가 고객별 최근 주문입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="k">AS</span> <span class="n">cid</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o1n</span><span class="p">,</span>
+    <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="n">o2n</span>
+<span class="k">FROM</span> <span class="n">customers</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o1</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o1</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o2</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o2</span><span class="p">.</span><span class="n">customer_id</span>
+    <span class="k">AND</span> <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="o">&lt;</span> <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span>
+<span class="k">WHERE</span> <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span> <span class="k">IS</span> <span class="k">NULL</span>   
+<span class="p">;</span> <span class="c1">-- No errors; 2 rows affected</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cid o1n o2n
+1   3   NULL
+2   NULLNULL
+3   5   NULL
+</code></pre></div></div>
+
+<h2 id="6-최종-쿼리">6. 최종 쿼리</h2>
+
+<p>고객 목록에 최근 주문 요약을 표현하기 위한 최종 쿼리입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="k">AS</span> <span class="nv">"고객번호"</span><span class="p">,</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="nv">"고객명"</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="k">AS</span> <span class="nv">"주문번호"</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">order_total</span> <span class="k">AS</span> <span class="nv">"주문금액"</span><span class="p">,</span>
+    <span class="n">o1</span><span class="p">.</span><span class="n">created_at</span> <span class="k">AS</span> <span class="nv">"주문일시"</span>
+<span class="k">FROM</span> <span class="n">customers</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o1</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o1</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">AS</span> <span class="n">o2</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">o2</span><span class="p">.</span><span class="n">customer_id</span>
+    <span class="k">AND</span> <span class="n">o1</span><span class="p">.</span><span class="n">order_number</span> <span class="o">&lt;</span> <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span>
+<span class="k">WHERE</span> <span class="n">o2</span><span class="p">.</span><span class="n">order_number</span> <span class="k">IS</span> <span class="k">NULL</span>   
+<span class="p">;</span> <span class="c1">-- No errors; 2 rows affected</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>고객번호  고객명  주문번호  주문금액  주문일시
+1       이덕승  3       200    2018-11-20 14:00:00
+3       신초아  5       100    2018-10-01 10:00:00
+2       임희일  NULL    NULL   NULL
+</code></pre></div></div>
+
+<h2 id="7-애플리케이션에서-어떻게-사용해요">7. 애플리케이션에서 어떻게 사용해요?</h2>
+
+<p>대략 이런 모습일겁니다(검증 안된 Pseudo Code 입니다).</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Service Layer</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">queryCustomersWithRecentOrderSummary</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$builder</span> <span class="o">=</span> <span class="nx">Customer</span><span class="o">::</span><span class="na">query</span><span class="p">();</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">leftJoin</span><span class="p">(</span><span class="s1">'orders AS o1'</span><span class="p">,</span> <span class="s1">'customers.customer_id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'o1.customer_id'</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">leftJoin</span><span class="p">(</span><span class="s1">'orders AS o2'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$join</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$join</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'customers.customer_id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'o2.customer_id'</span><span class="p">);</span>
+        <span class="nv">$join</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'o2.order_number'</span><span class="p">,</span> <span class="s1">'&lt;'</span><span class="p">,</span> <span class="s1">'o1.order_number'</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">whereNull</span><span class="p">(</span><span class="s1">'o2.order_number'</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">'customers.*'</span><span class="p">,</span> <span class="s1">'o1.*'</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이상 쿼리는 MySQL에서만 검증했습니다. 제가 DB 전문가가 아니므로, 본문에 사용한 용어들이 정확하지 않을 수 있습니다.</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#Database">
+            Database
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/cheatsheet/vim-cheatsheet/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              Vim cheatsheet
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section id="search_sidebar" class="box hidden-xs">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q_sidebar" placeholder="Search...">
+        <ul id="q_sidebar_res"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">80</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">60</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#cheatsheet">
+          Cheatsheet
+          <span class="badge">4</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CleanCode">
+        CleanCode
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#DDD">
+        DDD
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Database">
+        Database
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#DevOps">
+        DevOps
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ELK">
+        ELK
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 134%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Linux">
+        Linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Log">
+        Log
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OOP">
+        OOP
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Refactoring">
+        Refactoring
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Security">
+        Security
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Swagger">
+        Swagger
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#UML">
+        UML
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 294%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#데이터베이스">
+        데이터베이스
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#아키텍처">
+        아키텍처
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로세스">
+        프로세스
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-11-20</small>
+          <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-11-05</small>
+          <a href="/cheatsheet/vim-cheatsheet/">Vim cheatsheet</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-11-04</small>
+          <a href="/learn-n-think/php-object-copy/">PHP 객체의 복제 특성</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="//appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="gist-lists">
+  <div class="box-header">
+    <h3>Github Gist</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="gist-list">
+      <script id="gist-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://gist.github.com/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2018 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

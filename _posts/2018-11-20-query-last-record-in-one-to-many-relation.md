@@ -280,7 +280,7 @@ public function queryCustomersWithRecentOrderSummary()
     $builder->leftJoin('orders AS o1', 'customers.customer_id', '=', 'o1.customer_id');
     $builder->leftJoin('orders AS o2', function ($join) {
         $join->on('customers.customer_id', '=', 'o2.customer_id');
-        $join->on('o2.order_number', '<', 'o1.order_number');
+        $join->on('o1.order_number', '<', 'o2.order_number');
     });
     $builder->whereNull('o2.order_number');
     $builder->select(['customers.*', 'o1.*']);

@@ -97,6 +97,88 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/clean-code-and-refactoring/">클린코드와 리팩토링</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-12-06
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/clean-code-and-refactoring/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>MVP<sub>Minimum Viable Product</sub></strong>로 개발한 서비스는 시장성 및 사업성이 검증되면 버리고 다시 짜야 합니다. MVP는 <strong>“더럽지만, 신속하게, 작동하는 서비스를 확보한다”</strong>는게 가치이기 때문입니다. 사업 모델이 검증되면, 투자를 받고 사람을 뽑아서 오랫동안 유지할 코드 베이스, 성장을 이끌어 낼 수 있는 코드 베이스를 확보해야 합니다. 대부분의 스타트업들이 이 타이밍을 놓치고 있고, 제가 속한 회사도 예외는 아닙니다.</p>
+
+<p>본문의 예제를 보기전에 예제 코드가 쓰이는 사업 이해를 위해 간단히 설명을 드립니다.</p>
+
+<p>(회사의 공식 입장이 아닌, 직원으로서 나름의 생각입니다) 우리 회사는 현재 <strong>“이륜차 네트워크를 이용한 근거리 배송 대행 서비스”</strong>를 업으로 하고 있으며, 사업 모델(= 서비스 모델 + 비즈니스 모델)은 다음과 같습니다.</p>
+
+<h4 id="서비스-모델">서비스 모델</h4>
+
+<ul>
+  <li>출발지 A 지점에서 도착지 B 지점으로 소형 화물을 이동시킨다.</li>
+  <li>A ~ B간의 거리는 일반적으로 3Km 이내이며,</li>
+  <li>이동 수단으로 이륜차를 이용하고,</li>
+  <li>서비스를 위해 IT 기술을 이용한다.</li>
+  <li>화물 운송은 대체로 40분 이내에 끝난다.</li>
+</ul>
+
+<h4 id="비즈니스-모델">비즈니스 모델</h4>
+
+<ul>
+  <li>화물 운송 니즈가 있는 S 화주에게 배송 대행 수수료를 받아, 실제로 물건을 이동시키는 K 기사에게 비용을 지불하고 마진을 챙긴다.</li>
+  <li>배송 건수에 따라 S 화주로 부터 월 단위 시스템 사용료도 받는다.</li>
+</ul>
+
+<p>본문에 사용한 예제는 화주 S로 부터 배송 대행 요청을 받아, K 기사 네트워크를 보유하고 배송을 수행하는 시스템에 위임하는 코드입니다. 공개를 위해 이름을 약간 바꾸긴 했지만, 실제 상용 서비스에 사용하는 코드입니다. 하나의 배송 대행 요청에 대해 웹/앱 인스턴스에서 큐 메시지로 전송하기 위해 한 번, 큐 워커 인스턴스에서 메시지를 핸들링 하기 위해 한번, 총 두 번 사용됩니다(= 비동기 처리). 현재 우리 회사의 사업 규모로 볼 때 컴퓨터(서버)가 이 코드를 하루에 10만번 정도 읽고 실행합니다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>여기서 질문!</p>
+
+<p>그렇다면 개발자는 이 코드를 몇 번이나 읽을까요? 성공적인 서비스에서 유지보수가 되어야 하는 코드는 개발자와 개발자를 거치면서 만 번 정도 읽힌다고 합니다. 컴퓨터가 이해할 수 있는 코드는 작동하기만 한다면 아무렇게나 짜도 됩니다. 그런데, 사람이 읽어야 하는 코드는, 그것도 서비스 유지보수를 위해 수 천번 이상을 읽어야 하는 코드는 어떻게 짜야 할까요?</p>
+
+<p>클린코드(엉클밥), 리팩토링(마틴파울러)의 책을 완벽히 이해하지도 못했고, 이해했다고 해도 모든 내용을 실천하지는 못합니다. 지금 MVP를 짜고 있나요? 그렇지 않다면, 몇 달 뒤의 자기 자신과 이 코드를 읽게 될 동료/후배 개발자들을 위해 좀 더 깔끔한 코드를 짜면 좋겠습니다. 디자인 원칙과 모범 사례를 지킨 코드는 버그와 사이드 이펙트를 현저히 줄여주고, 생산성을 월등히 끌어올려줍니다.</p>
+
+<p>이 글을 읽는 분 중에 Before 코드를 쓰신 선배님이 있을 수 있습니다. 비록 유지보수가 편리한 코드로 바꾸는 타이밍을 놓치긴했지만(이건 경영진과 매니저의 잘못), MVP를 만들어 주셔서 제가 월급을 받으며 일할 수 있기에 존경과 감사의 마음을 글로나마 전달합니다. 해서 Before 코드에 대한 설명은 달지 않겠습니다.</p>
+
+<p>이제 예제를 볼까요?</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/clean-code-and-refactoring/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/investigating-laravel-model-events/">라라벨 엘로퀀트 모델 이벤트 고찰</a>
         </h2>
         <p class="box-meta">
@@ -343,59 +425,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/memo-in-early-2016/">코드 비용에 대한 2016년의 메모</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-08-12
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/memo-in-early-2016/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>책상을 정리하다가 “라라벨 빨간책”이라 알려진 책을 집필하며 2016년 초에 쓴 메모 중 일부를 찾았다.</p>
-
-<p>실무 개발자로 일하지 않던 시절 피상적으로만 생각하던 내용들이 지금은 피부에 와 닿는다. 이 포스트의 본문은 최근 나 또는 내가 속한 팀이 처한 상황에 거의 흡사하게 오버랩핑되는 2016년 메모의 일부분이다. 내 기억이 맞다면, 누군가의 영상 강의를 보고 메모한 것이다.</p>
-
-<p>이 시대의 스승(엉클 밥, 파울러 옹 등)들이 언급한 소프트웨어 개발자로서 코드를 대하는 자세, 즉 소프트웨어의 제 2가치와 제 1가치에 대해 다시 한번 되새겨본다.</p>
-
-<p>개발해서 남에게 납품하는 소프트웨어는 굳이 이럴 필요까진 없다고 생각한다. 그러나, 자신의 서비스를 위해 소프트웨어를 개발한다면, 개발자가 코드를 완전히 소유할 수 있는 시간과 비용을 인정해 줘야 한다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/memo-in-early-2016/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -458,7 +487,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">60</span>
+          <span class="badge">61</span>
         </a>
       </li>
       <li>
@@ -522,7 +551,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#DDD">
         DDD
       </a>
@@ -588,7 +617,7 @@
       </a>
     </span>
     
-    <span style="font-size: 134%">
+    <span style="font-size: 138%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -612,7 +641,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#OOP">
         OOP
       </a>
@@ -1172,6 +1201,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2019-02-06</small>
+          <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent/">라라벨의 엘로퀀트 ORM에서 값 객체 사용하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-11-20</small>
           <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
         </h4>
@@ -1181,13 +1217,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-11-05</small>
           <a href="/cheatsheet/vim-cheatsheet/">Vim cheatsheet</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2018-11-04</small>
-          <a href="/learn-n-think/php-object-copy/">PHP 객체의 복제 특성</a>
         </h4>
       </li>
       

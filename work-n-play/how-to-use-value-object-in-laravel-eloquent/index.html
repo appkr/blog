@@ -160,14 +160,17 @@
 
 <p>먼저 이 포스트에서 사용할 용어를 설명하겠습니다.</p>
 
-<p><strong>모델</strong>
-현실 세계의 복잡한 물체 또는 사상을 목적에 적합하도록 핵심만 간소화한 것. x:1 비행기 프라모델은 실물을 본따 만든 모형입니다. 웹 서비스를 개발하는 컨텍스트에서 모델은 비즈니스에 참여하는 여러 실체의 본질적인 특징만 뽑아 추상화한 것입니다. e.g. 고객 모델</p>
+<p><strong>모델</strong></p>
 
-<p><strong>엔티티와 값 객체</strong>
-모델은 다시 1) “엔티티”와 2) “값 객체”로 분류할 수 있습니다. 고객#1과 고객#2는 고유한 식별자로 구분지을 수 있으므로 엔티티라 하는 반면, 고객의 주소는 전체 값으로만 서로 같고 다름을 식별할 수 있으므로 값 객체라 합니다. 값 객체는 밸류 오브젝트, 또는 줄여서 밸류라고 부르기도 합니다. e.g. 고객 1번과 고객 2번은 식별자에 의해 서로 다른 모델. 고객 1번과 2번은 가족인데, 이들의 주소 ‘서울특별시 강남구 삼성동 162-17’과 ‘서울특별시 강남구 삼성동 162-17’은 전체 문자열이 같으므로 같은 주소임.</p>
+<p>현실 세계의 복잡한 물체 또는 사상을 목적에 적합하도록 핵심만 간소화한 것. x:1 비행기 프라모델은 실물을 본따 만든 모형입니다. 웹 서비스를 개발하는 컨텍스트에서 모델은 비즈니스에 참여하는 여러 실체의 본질적인 특징만 뽑아 추상화한 것입니다. e.g. 고객 모델</p>
 
-<p><strong>원시 타입과 박스 타입</strong>
-PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 원시 타입(Primitive Type)이라 합니다. 64bit 환경에서는 int라 쓰지만 4byte가 아니라 8bytes 즉 2^64 메모리 공간을 차지하고, float도 double과 같은 표현 범위를 가집니다(see http://php.net/manual/en/language.types.php). 
+<p><strong>엔티티와 값 객체</strong></p>
+
+<p>모델은 다시 1) “엔티티”와 2) “값 객체”로 분류할 수 있습니다. 고객#1과 고객#2는 고유한 식별자로 구분지을 수 있으므로 엔티티라 하는 반면, 고객의 주소는 전체 값으로만 서로 같고 다름을 식별할 수 있으므로 값 객체라 합니다. 값 객체는 밸류 오브젝트, 또는 줄여서 밸류라고 부르기도 합니다. e.g. 고객 1번과 고객 2번은 식별자에 의해 서로 다른 모델. 고객 1번과 2번은 가족인데, 이들의 주소 ‘서울특별시 강남구 삼성동 162-17’과 ‘서울특별시 강남구 삼성동 162-17’은 전체 문자열이 같으므로 같은 주소임.</p>
+
+<p><strong>원시 타입과 박스 타입</strong></p>
+
+<p>PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 원시 타입(Primitive Type)이라 합니다. 64bit 환경에서는 int라 쓰지만 4byte가 아니라 8bytes 즉 2^64 메모리 공간을 차지하고, float도 double과 같은 표현 범위를 가집니다(see http://php.net/manual/en/language.types.php). 
 여튼, 아래 예처럼 고객을 의미할 때 <code class="highlighter-rouge">customer:string</code>처럼 원시타입으로 표현하기 보다는 <code class="highlighter-rouge">customer:Customer</code>로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$c</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
@@ -182,7 +185,7 @@ PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 �
 
 <h2 id="0-예제를-위한-뼈대-코드-준비">0. 예제를 위한 뼈대 코드 준비</h2>
 
-<p>새 라라벨 프로젝트를 만듭니다. <code class="highlighter-rouge">laravel</code> 명령어를 쓸 수 없다면, <a href="https://laravel.com/docs/5.7#installing-laravel">매뉴얼</a>을 참고해서 Laravel Installer를 설치합니다.</p>
+<p>새 라라벨 프로젝트를 만듭니다. <code class="highlighter-rouge">laravel</code> 명령어를 쓸 수 없다면, <a href="https://laravel.com/docs/5.7#installing-laravel">라라벨 매뉴얼</a>을 참고해서 Laravel Installer를 설치합니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>laravel new eloquent-value-object
 <span class="nv">$ </span><span class="nb">cd </span>eloquent-value-object
@@ -193,11 +196,11 @@ PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 �
 
 <p><code class="highlighter-rouge">.env</code>파일에서 <code class="highlighter-rouge">DB_DATABASE</code> 값은 <code class="highlighter-rouge">eloquent_value_object</code>로 변경했습니다. 설정한대로 데이터베이스와 사용자를 만듭니다.</p>
 
-<pre><code class="language-mysql">mysql&gt; CREATE DATABASE eloquent_value_object DEFAULT CHARACTER SET = utf8 DEFAULT COLLATE = utf8_unicode_ci;
-mysql&gt; CREATE USER "homestead"@"%" IDENTIFIED BY "secret";
-mysql&gt; GRANT All PRIVILEGES ON eloquent_value_object.* TO "homestead"@"%";
-mysql&gt; FLUSH PRIVILEGES;
-</code></pre>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">eloquent_value_object</span> <span class="k">DEFAULT</span> <span class="n">CHARACTER</span> <span class="k">SET</span> <span class="o">=</span> <span class="n">utf8</span> <span class="k">DEFAULT</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="n">utf8_unicode_ci</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="nv">"homestead"</span><span class="o">@</span><span class="nv">"%"</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="nv">"secret"</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">All</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="n">eloquent_value_object</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="nv">"homestead"</span><span class="o">@</span><span class="nv">"%"</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">artisan</code> CLI로 모델, 스키마 마이그레이션, 모델 팩토리 뼈대 코드를 만듭니다.</p>
 
@@ -275,8 +278,8 @@ mysql&gt; FLUSH PRIVILEGES;
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan migrate
 <span class="c">#Migration table created successfully.</span>
-<span class="nv">$Migrating</span>: 2019_02_07_000000_create_customers_table
-<span class="nv">$Migrated</span>:  2019_02_07_000000_create_customers_table
+<span class="c">#Migrating: 2019_02_07_000000_create_customers_table</span>
+<span class="c">#Migrated:  2019_02_07_000000_create_customers_table</span>
 </code></pre></div></div>
 
 <h3 id="12-엔티티와-값-객체">1.2. 엔티티와 값 객체</h3>
@@ -572,7 +575,7 @@ mysql&gt; FLUSH PRIVILEGES;
 
 <h3 id="13-optional-모델-팩토리">1.3. [Optional] 모델 팩토리</h3>
 
-<p>테스트를 편의를 위해 모델 팩토리를 만들었습니다.</p>
+<p>테스트 편의를 위해 모델 팩토리를 만들었습니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerFactory.php</span>
 
@@ -604,7 +607,7 @@ mysql&gt; FLUSH PRIVILEGES;
 
 <h3 id="14-테스트">1.4. 테스트</h3>
 
-<p>테스트 클래스나, 컨트롤러를 만들지 않았으므로, 팅커 콘솔을 이용해서 기본 기능을 테스트해봅니다.</p>
+<p>테스트 클래스나 컨트롤러를 만들지 않았으므로, 팅커 콘솔을 이용해서 엔티티와 값 객체가 잘 작동하는지 테스트해봅니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># 엔티티 생성 및 영속화</span>
@@ -728,11 +731,11 @@ mysql&gt; FLUSH PRIVILEGES;
 <!--more-->
 <div class="spacer">• • •</div>
 
-<p>포스트가 너무 길어져서 여기서 끊고, 다음 포스트에서 이어서 쓰겠습니다. 혹시 포스트를 못 쓰더라도 예제 코드는 꼭 작성할겁니다.</p>
+<p>포스트가 너무 길어져서 여기서 끊고, 다음 포스트에서 이어서 쓰겠습니다. 혹시 포스트를 못 쓰더라도 예제 코드는 꼭 작성하겠습니다.</p>
 
 <ul>
-  <li>저장소: https://github.com/appkr/eloquent-value-object</li>
-  <li>변경자와 접근자 브랜치: https://github.com/appkr/eloquent-value-object/tree/attr-accessor-mutator</li>
+  <li>저장소: <a href="https://github.com/appkr/eloquent-value-object">https://github.com/appkr/eloquent-value-object</a></li>
+  <li>변경자와 접근자 브랜치: <a href="https://github.com/appkr/eloquent-value-object/tree/attr-accessor-mutator">https://github.com/appkr/eloquent-value-object/tree/attr-accessor-mutator</a></li>
 </ul>
 
 <p>각 설계 방식의 특징을 미리 정리해봅니다.</p>

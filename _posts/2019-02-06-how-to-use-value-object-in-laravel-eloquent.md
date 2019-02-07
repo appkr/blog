@@ -19,12 +19,15 @@ tags:
 먼저 이 포스트에서 사용할 용어를 설명하겠습니다.
 
 **모델**
+
 현실 세계의 복잡한 물체 또는 사상을 목적에 적합하도록 핵심만 간소화한 것. x:1 비행기 프라모델은 실물을 본따 만든 모형입니다. 웹 서비스를 개발하는 컨텍스트에서 모델은 비즈니스에 참여하는 여러 실체의 본질적인 특징만 뽑아 추상화한 것입니다. e.g. 고객 모델
 
 **엔티티와 값 객체**
+
 모델은 다시 1) "엔티티"와 2) "값 객체"로 분류할 수 있습니다. 고객#1과 고객#2는 고유한 식별자로 구분지을 수 있으므로 엔티티라 하는 반면, 고객의 주소는 전체 값으로만 서로 같고 다름을 식별할 수 있으므로 값 객체라 합니다. 값 객체는 밸류 오브젝트, 또는 줄여서 밸류라고 부르기도 합니다. e.g. 고객 1번과 고객 2번은 식별자에 의해 서로 다른 모델. 고객 1번과 2번은 가족인데, 이들의 주소 '서울특별시 강남구 삼성동 162-17'과 '서울특별시 강남구 삼성동 162-17'은 전체 문자열이 같으므로 같은 주소임.
 
 **원시 타입과 박스 타입**
+
 PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 원시 타입(Primitive Type)이라 합니다. 64bit 환경에서는 int라 쓰지만 4byte가 아니라 8bytes 즉 2^64 메모리 공간을 차지하고, float도 double과 같은 표현 범위를 가집니다(see http://php.net/manual/en/language.types.php). 
 여튼, 아래 예처럼 고객을 의미할 때 `customer:string`처럼 원시타입으로 표현하기 보다는 `customer:Customer`로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.
 
@@ -41,7 +44,7 @@ $c = new Customer('홍길동');
 
 ## 0. 예제를 위한 뼈대 코드 준비
 
-새 라라벨 프로젝트를 만듭니다. `laravel` 명령어를 쓸 수 없다면, [매뉴얼](https://laravel.com/docs/5.7#installing-laravel)을 참고해서 Laravel Installer를 설치합니다.
+새 라라벨 프로젝트를 만듭니다. `laravel` 명령어를 쓸 수 없다면, [라라벨 매뉴얼](https://laravel.com/docs/5.7#installing-laravel)을 참고해서 Laravel Installer를 설치합니다.
 
 ```bash
 $ laravel new eloquent-value-object
@@ -53,7 +56,7 @@ $ cp .env.example .env
 
 `.env`파일에서 `DB_DATABASE` 값은 `eloquent_value_object`로 변경했습니다. 설정한대로 데이터베이스와 사용자를 만듭니다.
 
-```mysql
+```sql
 mysql> CREATE DATABASE eloquent_value_object DEFAULT CHARACTER SET = utf8 DEFAULT COLLATE = utf8_unicode_ci;
 mysql> CREATE USER "homestead"@"%" IDENTIFIED BY "secret";
 mysql> GRANT All PRIVILEGES ON eloquent_value_object.* TO "homestead"@"%";
@@ -140,8 +143,8 @@ class CreateCustomersTable extends Migration
 ```bash
 $ php artisan migrate
 #Migration table created successfully.
-$Migrating: 2019_02_07_000000_create_customers_table
-$Migrated:  2019_02_07_000000_create_customers_table
+#Migrating: 2019_02_07_000000_create_customers_table
+#Migrated:  2019_02_07_000000_create_customers_table
 ```
 
 ### 1.2. 엔티티와 값 객체
@@ -441,7 +444,7 @@ class RoadAddress
 
 ### 1.3. [Optional] 모델 팩토리
 
-테스트를 편의를 위해 모델 팩토리를 만들었습니다.
+테스트 편의를 위해 모델 팩토리를 만들었습니다.
 
 ```php
 <?php // database/factories/CustomerFactory.php
@@ -474,7 +477,7 @@ $factory->define(App\Customer::class, function (Faker $faker) {
 
 ### 1.4. 테스트
 
-테스트 클래스나, 컨트롤러를 만들지 않았으므로, 팅커 콘솔을 이용해서 기본 기능을 테스트해봅니다.
+테스트 클래스나 컨트롤러를 만들지 않았으므로, 팅커 콘솔을 이용해서 엔티티와 값 객체가 잘 작동하는지 테스트해봅니다.
 
 ```bash
 $ php artisan tinker
@@ -600,10 +603,10 @@ SELECT * FROM customers;
 <!--more-->
 <div class="spacer">• • •</div>
 
-포스트가 너무 길어져서 여기서 끊고, 다음 포스트에서 이어서 쓰겠습니다. 혹시 포스트를 못 쓰더라도 예제 코드는 꼭 작성할겁니다.
+포스트가 너무 길어져서 여기서 끊고, 다음 포스트에서 이어서 쓰겠습니다. 혹시 포스트를 못 쓰더라도 예제 코드는 꼭 작성하겠습니다.
 
-- 저장소: https://github.com/appkr/eloquent-value-object
-- 변경자와 접근자 브랜치: https://github.com/appkr/eloquent-value-object/tree/attr-accessor-mutator
+- 저장소: [https://github.com/appkr/eloquent-value-object](https://github.com/appkr/eloquent-value-object)
+- 변경자와 접근자 브랜치: [https://github.com/appkr/eloquent-value-object/tree/attr-accessor-mutator](https://github.com/appkr/eloquent-value-object/tree/attr-accessor-mutator)
 
 각 설계 방식의 특징을 미리 정리해봅니다.
 

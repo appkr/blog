@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "라라벨의 엘로퀀트 ORM에서 값 객체 사용하기",
+    "category" : "work-n-play",
+    "tags"     : "Laravel, OOP, DDD",
+    "url"      : "/work-n-play/how-to-use-value-object-in-laravel-eloquent/",
+    "date"     : "2019-02-06"
+  },
+  
+  {
     "title"    : "One to Many 조인에서 Many 쪽 최종 레코드만 조회하기",
     "category" : "work-n-play",
     "tags"     : "Database",

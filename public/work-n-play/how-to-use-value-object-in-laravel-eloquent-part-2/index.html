@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+  <meta name="description" content="지난 포스트에 이어서, 이번 포스트에서 두번째 세번째 방법을 설명합니다.  변경자와 접근자(Attribute Mutator &amp; Accessor)를 이용하는 방법  LOB(Large Object)를 이용하는 방법  참조(외래키)를 이용하는 방법본문 들어가기 전에 잠깐 딴 얘기..."/>
+  <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
+  <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
+
+  <meta name="msapplication-tap-highlight" content="no"/>
+
+  <!-- Facebook Meta -->
+  <meta property="og:title" content="라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:author" content="appkr (juwonkim@me.com)"/>
+  <meta property="og:image" content="//blog.appkr.kr/images/2019-02-08-img-01.png"/>
+
+  <!-- Google+ Meta -->
+  <meta itemprop="name" content="라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부">
+  <meta itemprop="description" content="지난 포스트에 이어서, 이번 포스트에서 두번째 세번째 방법을 설명합니다.  변경자와 접근자(Attribute Mutator &amp; Accessor)를 이용하는 방법  LOB(Large Object)를 이용하는 방법  참조(외래키)를 이용하는 방법본문 들어가기 전에 잠깐 딴 얘기...">
+  <meta itemprop="image" content="//blog.appkr.kr/images/2019-02-08-img-01.png">
+  <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@appkrs" />
+  <meta name="twitter:title" content="라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부" />
+  <meta name="twitter:description" content="지난 포스트에 이어서, 이번 포스트에서 두번째 세번째 방법을 설명합니다.  변경자와 접근자(Attribute Mutator &amp; Accessor)를 이용하는 방법  LOB(Large Object)를 이용하는 방법  참조(외래키)를 이용하는 방법본문 들어가기 전에 잠깐 딴 얘기..." />
+  <meta name="twitter:image" content="//blog.appkr.kr/images/2019-02-08-img-01.png" />
+  <meta name="twitter:domain" content="blog.appkr.kr">
+
+  <!-- Mobile and Rss -->
+  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <title>라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부 | Appkr.memo(new Life)</title>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body id="app">
+
+  <nav class="navbar navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        Appkr.memo(new Life)
+      </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav navbar-right text-center">
+        <li>
+          <a href="/">Blog</a>
+        </li>
+        <li>
+          <a href="/profile/">Profile</a>
+        </li>
+      </ul>
+
+      <div id="search_header" class="visible-xs">
+        <div class="box-body">
+          <form action="#">
+            <div class="form-group">
+              <input class="form-control input-lg" type="text" id="q_header" placeholder="Search...">
+              <ul id="q_header_res"></ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container">
+  <section id="main" class="col-md-9 minimal">
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <span class="title">라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부</span>
+          <span class="action dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+              <i class="material-icons">share</i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/&title=라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부" id="sns-facebook">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/&title=라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부&text=라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부" id="sns-twitter">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/" id="sns-google">
+                  Google+
+                </a>
+              </li>
+            </ul>
+          </span>
+        </h2>
+
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2019-02-08
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent/">지난 포스트</a>에 이어서, 이번 포스트에서 두번째 세번째 방법을 설명합니다.</p>
+
+<ol>
+  <li>변경자와 접근자(Attribute Mutator &amp; Accessor)를 이용하는 방법</li>
+  <li>LOB(Large Object)를 이용하는 방법</li>
+  <li>참조(외래키)를 이용하는 방법</li>
+</ol>
+
+<p><a href="/images/2019-02-08-img-01.png"><img src="/images/2019-02-08-img-01.png" alt="ORM Basic" /></a></p>
+
+<p>본문 들어가기 전에 잠깐 딴 얘기할게요.</p>
+
+<p>객체는 어느 순간 소멸됩니다. PHP는 프로세스가 종료되면 메모리 자원을 운영체제에 반환하면서 소멸되겠죠, 또는 가비지 콜렉션에 의해서든지요. 다른 프로세스에서 직전에 사용하던 객체의 상태를 이어서 사용하기 위해서 영속화라는 과정이 필요합니다. 대부분의 애플리케이션이 영속화의 도구로 DB를 사용하죠.</p>
+
+<p>그런데 말입니다. 객체와 DB는 데이터를 다루는 방식이 완전히 다릅니다. 그래서 그림에서 보듯이 객체와 DB간의 차이점을 해결해주는 것이 ORM입니다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="2-lob를-이용하는-방법">2. LOB를 이용하는 방법</h2>
+
+<p>객체를 <code class="highlighter-rouge">serialize()</code> 함수 또는 <code class="highlighter-rouge">json_encode()</code>로 직렬화하고, 다시 역직렬화해서 객체로 재생할 수 있으면, 직렬화된 문자 덩어리를 LOB라 부릅니다. LOB는 컴퓨터가 읽기 편한 BLOB(Binary Large Object)와 사람이 읽을 수 있는 CLOB(Character Large Object)로 나눌 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">serialize()</code> 함수로 직렬화해서 DB에 저장한 데이터는 PHP에서만 꺼내서 쓸 수 있는 반면, <code class="highlighter-rouge">json_encode()</code>로 직렬화하면 어떤 컴퓨터 언어에서든 꺼내서 쓸 수 있습니다. 즉 PHP 직렬화는 데이터가 PHP 프로그래밍 언어에 종속되는 결과를 초래하므로 신중하게 생각하고 결정해야 합니다.</p>
+
+<p>1절에서 객체의 필드를 DB 컬럼에 일대일로 맵핑한 반면, LOB를 이용한 방법은 아래 그림처럼 객체를 DB 컬럼 하나에 맵핑하는 방법입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+--------------------+
+| class Customer     |
++--------------------+
+| - name: string     |
+| - address: Address |
++--------------------+
+
++--------------------+
+| table customers    |
++--------------------+
+| - <span class="nb">id</span>: int          |
+| - name: varchar    |
+| - address: json    |
++--------------------+
+</code></pre></div></div>
+
+<h3 id="21-스키마-마이그레이션">2.1. 스키마 마이그레이션</h3>
+
+<p>1절에서 주소 객체의 필드를 DB 컬럼으로 쭈욱 늘어 놓지 않고, 하나의 컬럼에 넣음으로서 스키마는 한결 간편해졌습니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000000_create_customers_table.php</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'고객 이름'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="s1">'address'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'고객 주소'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan migrate
+<span class="c">#Migrating: 2019_02_07_000000_create_customers_table</span>
+<span class="c">#Migrated:  2019_02_07_000000_create_customers_table</span>
+</code></pre></div></div>
+
+<h3 id="22-엔티티와-값-객체-그리고-팩토리">2.2. 엔티티와 값 객체, 그리고 팩토리</h3>
+
+<p>1절에서 만든 주소 객체를 그대로 사용하고, <code class="highlighter-rouge">Customer</code> 모델만 조금 고쳤습니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout attr-accessor-mutator <span class="nt">--</span> app/Address.php app/JibunAddress.php app/RoadAddress.php app/Customer.php database/factories/CustomerFactory.php
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">setAddressAttribute()</code> 변경자에서 <code class="highlighter-rouge">customers.address:json</code> 컬럼에 저장하기 위해 JSON으로 직렬화하는 부분을 주목해주세요.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Customer.php</span>
+
+<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="sd">/**
+ * App\Customer
+ *
+ * @property int $id
+ * @property string $name 고객 이름
+ * @property Address $address 고객 주소
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @mixin \Eloquent
+ */</span>
+<span class="k">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAddressAttribute</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$address</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">AddressFactory</span><span class="o">::</span><span class="na">createFromJson</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setAddressAttribute</span><span class="p">(</span><span class="nx">Address</span> <span class="nv">$address</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">attributes</span><span class="p">[</span><span class="s1">'address'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$address</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>PHP 직렬화를 선택했다면 변경자에서 <code class="highlighter-rouge">json_encode()</code> 대신 <code class="highlighter-rouge">serialize()</code>로 직렬화해서 저장하고 <code class="highlighter-rouge">unserizlize()</code>로 꺼내서 바로 PHP 객체로 재생할 수 있습니다. 앞서 언급한 플랫폼 의존성을 피하고자 JSON 형식을 선택했고, DB에서 꺼내 쓸 때는 JSON을 객체로 재생해줘야 합니다. 이 역할을 <code class="highlighter-rouge">AddressFactory</code>클래스가 담당합니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/AddressFactory.php</span>
+
+<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AddressFactory</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">createFromJson</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$json</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$u</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+
+        <span class="nv">$j</span> <span class="o">=</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">jibunAddress</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nv">$jibunAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JibunAddress</span><span class="p">(</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">adminDongName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">legalDongName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">legalRiName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">isMountain</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">jibunNumber</span> <span class="o">??</span> <span class="kc">null</span>
+        <span class="p">);</span>
+
+        <span class="nv">$r</span> <span class="o">=</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">roadAddress</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nv">$roadAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RoadAddress</span><span class="p">(</span>
+            <span class="nv">$r</span><span class="o">-&gt;</span><span class="na">roadName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$r</span><span class="o">-&gt;</span><span class="na">isBasement</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$r</span><span class="o">-&gt;</span><span class="na">buildingNumber</span> <span class="o">??</span> <span class="kc">null</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Address</span><span class="p">(</span>
+            <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">siDo</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">siGunGu</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$jibunAddress</span><span class="p">,</span>
+            <span class="nv">$roadAddress</span><span class="p">,</span>
+            <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">detailAddress</span> <span class="o">??</span> <span class="kc">null</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Address</code>, <code class="highlighter-rouge">JibunAddress</code>, <code class="highlighter-rouge">RoadAddress</code>의 필드 이름이 변경되거나, 추가, 삭제된 경우를 상상해보죠. 재생을 위한 설계도가 되는 클래스가 변경된 상태에서 다시 객체로 생성할 수 있을까요? JSON으로 직렬화했다면 가능합니다. PHP로 직렬화했다면 불가능합니다.</p>
+
+<h3 id="23-optional-모델-팩토리">2.3. [Optional] 모델 팩토리</h3>
+
+<p>1절에서 만든 것을 그대로 사용합니다.</p>
+
+<h3 id="24-테스트">2.4. 테스트</h3>
+
+<p>아래 코드에서 <code class="highlighter-rouge">Customer.address</code> 필드에 JSON이 그대로 담겨있는게 보입니다. 엘로퀀트는 활성 레코드 패턴이라 모델 자체가 DB라 볼 수 있고, DB에서 읽은 컬럼의 값을 객체의 필드에 그냥 담아 놓은 것이라 보시면 됩니다.</p>
+
+<p>접근자를 호출했을 때 비로소 <code class="highlighter-rouge">Address</code> 객체로 바뀝니다. 접근자를 호출하는 방법은 접근자 함수를 직접 불러도 되지만, <code class="highlighter-rouge">$c1-&gt;address</code> 처럼 필드에 접근하면 호출됩니다. 아래 코드에서 접근자에서 <code class="highlighter-rouge">AddressFactory</code>를 이용해서 <code class="highlighter-rouge">App\Address {#2958}</code>로 재생한 것을 볼 수 있습니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
+<span class="c"># 엔티티 생성 및 영속화</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span> <span class="o">=</span> factory<span class="o">(</span>App<span class="se">\C</span>ustomer::class<span class="o">)</span>-&gt;create<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> App<span class="se">\C</span>ustomer <span class="o">{</span><span class="c">#2963</span>
+     name: <span class="s2">"Ms. Yadira Beatty III"</span>,
+     address: <span class="s2">"{"</span>siDo<span class="s2">":"</span><span class="se">\u</span>c11c<span class="se">\u</span>c6b8<span class="se">\u</span>d2b9<span class="se">\u</span>bcc4<span class="se">\u</span>c2dc<span class="s2">","</span>siGuGu<span class="s2">":"</span><span class="se">\u</span>ac15<span class="se">\u</span>b0a8<span class="se">\u</span>ad6c<span class="s2">","</span>jibunAddress<span class="s2">":{"</span>adminDongName<span class="s2">":"</span><span class="se">\u</span>c0bc<span class="se">\u</span>c1311<span class="se">\u</span>b3d9<span class="s2">","</span>legalDongName<span class="s2">":"</span><span class="se">\u</span>c0bc<span class="se">\u</span>c131<span class="se">\u</span>b3d9<span class="s2">","</span>legalRiName<span class="s2">":null,"</span>isMountain<span class="s2">":false,"</span>jibunNumber<span class="s2">":"</span>162-17<span class="s2">"},"</span>roadAddress<span class="s2">":{"</span>roadName<span class="s2">":"</span><span class="se">\u</span>bd09<span class="se">\u</span>c740<span class="se">\u</span>c0ac<span class="se">\u</span>b85c112<span class="se">\u</span>ae38<span class="s2">","</span>isBasement<span class="s2">":false,"</span>buildingNumber<span class="s2">":"</span>6<span class="s2">"},"</span>detailAddress<span class="s2">":"</span><span class="se">\u</span>c775<span class="se">\u</span>c131<span class="se">\u</span>be4c<span class="se">\u</span>b529 5<span class="se">\u</span>ce35 <span class="se">\u</span>ba54<span class="se">\u</span>c26c<span class="se">\u</span>cf54<span class="se">\u</span>b9ac<span class="se">\u</span>c544<span class="s2">"}"</span>,
+     updated_at: <span class="s2">"2019-02-07 15:07:49"</span>,
+     created_at: <span class="s2">"2019-02-07 15:07:49"</span>,
+     <span class="nb">id</span>: 1,
+   <span class="o">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c2</span> <span class="o">=</span> factory<span class="o">(</span>App<span class="se">\C</span>ustomer::class<span class="o">)</span>-&gt;create<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> App<span class="se">\C</span>ustomer <span class="o">{</span><span class="c">#2969</span>
+     name: <span class="s2">"Pattie Crist PhD"</span>,
+     address: <span class="s2">"{"</span>siDo<span class="s2">":"</span><span class="se">\u</span>c11c<span class="se">\u</span>c6b8<span class="se">\u</span>d2b9<span class="se">\u</span>bcc4<span class="se">\u</span>c2dc<span class="s2">","</span>siGuGu<span class="s2">":"</span><span class="se">\u</span>ac15<span class="se">\u</span>b0a8<span class="se">\u</span>ad6c<span class="s2">","</span>jibunAddress<span class="s2">":{"</span>adminDongName<span class="s2">":"</span><span class="se">\u</span>c0bc<span class="se">\u</span>c1311<span class="se">\u</span>b3d9<span class="s2">","</span>legalDongName<span class="s2">":"</span><span class="se">\u</span>c0bc<span class="se">\u</span>c131<span class="se">\u</span>b3d9<span class="s2">","</span>legalRiName<span class="s2">":null,"</span>isMountain<span class="s2">":false,"</span>jibunNumber<span class="s2">":"</span>162-17<span class="s2">"},"</span>roadAddress<span class="s2">":{"</span>roadName<span class="s2">":"</span><span class="se">\u</span>bd09<span class="se">\u</span>c740<span class="se">\u</span>c0ac<span class="se">\u</span>b85c112<span class="se">\u</span>ae38<span class="s2">","</span>isBasement<span class="s2">":false,"</span>buildingNumber<span class="s2">":"</span>6<span class="s2">"},"</span>detailAddress<span class="s2">":"</span><span class="se">\u</span>c775<span class="se">\u</span>c131<span class="se">\u</span>be4c<span class="se">\u</span>b529 5<span class="se">\u</span>ce35 <span class="se">\u</span>ba54<span class="se">\u</span>c26c<span class="se">\u</span>cf54<span class="se">\u</span>b9ac<span class="se">\u</span>c544<span class="s2">"}"</span>,
+     updated_at: <span class="s2">"2019-02-07 15:07:54"</span>,
+     created_at: <span class="s2">"2019-02-07 15:07:54"</span>,
+     <span class="nb">id</span>: 2,
+   <span class="o">}</span>
+
+<span class="c"># 엔티티 및 값 객체의 필드 접근</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address<span class="p">;</span>
+<span class="o">=&gt;</span> App<span class="se">\A</span>ddress <span class="o">{</span><span class="c">#2958}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;getSiDo<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="s2">"서울특별시"</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;getJibunAddress<span class="o">()</span>-&gt;getJibunNumber<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="s2">"162-17"</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;toArray<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="o">[</span>
+     <span class="s2">"siDo"</span> <span class="o">=&gt;</span> <span class="s2">"서울특별시"</span>,
+     <span class="s2">"siGuGu"</span> <span class="o">=&gt;</span> null,
+     <span class="s2">"jibunAddress"</span> <span class="o">=&gt;</span> <span class="o">[</span>
+       <span class="s2">"adminDongName"</span> <span class="o">=&gt;</span> <span class="s2">"삼성1동"</span>,
+       <span class="s2">"legalDongName"</span> <span class="o">=&gt;</span> <span class="s2">"삼성동"</span>,
+       <span class="s2">"legalRiName"</span> <span class="o">=&gt;</span> null,
+       <span class="s2">"isMountain"</span> <span class="o">=&gt;</span> <span class="nb">false</span>,
+       <span class="s2">"jibunNumber"</span> <span class="o">=&gt;</span> <span class="s2">"162-17"</span>,
+     <span class="o">]</span>,
+     <span class="s2">"roadAddress"</span> <span class="o">=&gt;</span> <span class="o">[</span>
+       <span class="s2">"roadName"</span> <span class="o">=&gt;</span> <span class="s2">"봉은사로112길"</span>,
+       <span class="s2">"isBasement"</span> <span class="o">=&gt;</span> <span class="nb">false</span>,
+       <span class="s2">"buildingNumber"</span> <span class="o">=&gt;</span> <span class="s2">"6"</span>,
+     <span class="o">]</span>,
+     <span class="s2">"detailAddress"</span> <span class="o">=&gt;</span> <span class="s2">"익성빌딩 5층 메쉬코리아"</span>,
+   <span class="o">]</span>
+
+<span class="c"># 값 객체의 동등 비교</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;isEqualTo<span class="o">(</span><span class="nv">$c2</span>-&gt;address<span class="o">)</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="nb">true</span>
+
+<span class="c"># 값 객체를 이용한 콜렉션 필터링</span>
+<span class="o">&gt;&gt;&gt;</span> App<span class="se">\C</span>ustomer::get<span class="o">()</span>-&gt;filter<span class="o">(</span><span class="k">function</span> <span class="o">(</span>App<span class="se">\C</span>ustomer <span class="nv">$c</span><span class="o">)</span> <span class="o">{</span>
+...     <span class="k">return</span> <span class="nv">$c</span>-&gt;address-&gt;getSiDo<span class="o">()</span> <span class="o">===</span> <span class="s1">'서울특별시'</span><span class="p">;</span>
+... <span class="o">})</span>-&gt;toArray<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="o">[</span>
+     <span class="o">[</span>
+       <span class="s2">"id"</span> <span class="o">=&gt;</span> 1,
+       <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Ms. Yadira Beatty III"</span>,
+       <span class="s2">"address"</span> <span class="o">=&gt;</span> App<span class="se">\A</span>ddress <span class="o">{</span><span class="c">#2977},</span>
+       <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:07:49"</span>,
+       <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:07:49"</span>,
+     <span class="o">]</span>,
+     <span class="o">[</span>
+       <span class="s2">"id"</span> <span class="o">=&gt;</span> 2,
+       <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Pattie Crist PhD"</span>,
+       <span class="s2">"address"</span> <span class="o">=&gt;</span> App<span class="se">\A</span>ddress <span class="o">{</span><span class="c">#2961},</span>
+       <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:07:54"</span>,
+       <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:07:54"</span>,
+     <span class="o">]</span>,
+   <span class="o">]</span>
+</code></pre></div></div>
+
+<p>쿼리도 해 볼까요?</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="cm">/*
+{
+    "data":
+    [
+        {
+            "id": 1,
+            "name": "Ms. Yadira Beatty III",
+            "address": "{\"siDo\": \"서울특별시\", \"siGuGu\": \"강남구\", \"roadAddress\": {\"roadName\": \"봉은사로112길\", \"isBasement\": false, \"buildingNumber\": \"6\"}, \"jibunAddress\": {\"isMountain\": false, \"jibunNumber\": \"162-17\", \"legalRiName\": null, \"adminDongName\": \"삼성1동\", \"legalDongName\": \"삼성동\"}, \"detailAddress\": \"익성빌딩 5층 메쉬코리아\"}",
+            "created_at": "2019-02-07 15:07:49",
+            "updated_at": "2019-02-07 15:07:49"
+        },
+        {
+            "id": 2,
+            "name": "Pattie Crist PhD",
+            "address": "{\"siDo\": \"서울특별시\", \"siGuGu\": \"강남구\", \"roadAddress\": {\"roadName\": \"봉은사로112길\", \"isBasement\": false, \"buildingNumber\": \"6\"}, \"jibunAddress\": {\"isMountain\": false, \"jibunNumber\": \"162-17\", \"legalRiName\": null, \"adminDongName\": \"삼성1동\", \"legalDongName\": \"삼성동\"}, \"detailAddress\": \"익성빌딩 5층 메쉬코리아\"}",
+            "created_at": "2019-02-07 15:07:54",
+            "updated_at": "2019-02-07 15:07:54"
+        }
+    ]
+}
+*/</span>
+</code></pre></div></div>
+
+<p>1편에서 언급했다시피 컬럼이 쪼개져 있지 않아서, 쿼리하기는 불편합니다. JSON 컬럼으로 선언했다면 아주 불가능하지는 않지만요…</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="n">id</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="nv">"$.siDo"</span><span class="p">)</span> <span class="k">as</span> <span class="n">SI_DO_NAME</span>
+<span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+
+<span class="cm">/*
+id  name    SI_DO_NAME
+1   Ms. Yadira Beatty III   "서울특별시"
+2   Pattie Crist PhD    "서울특별시"
+*/</span>
+</code></pre></div></div>
+
+<h2 id="3-참조를-이용하는-방법">3. 참조를 이용하는 방법</h2>
+
+<p><code class="highlighter-rouge">customers</code> 테이블과 <code class="highlighter-rouge">customer_addresses</code> 테이블로 나누고, 각각의 엘로퀀트 모델을 만든 후, <code class="highlighter-rouge">HasOne</code>/<code class="highlighter-rouge">BelongsTo</code> 관계로 연결하는 방법입니다. 데이터 중심적인 설계를 하면 이런 결과가 나오는데, 객체 지향스럽지 않아서 권장하지 않습니다.</p>
+
+<p>이는 엘로퀀트ORM의 한계이며, 독트린ORM을 사용하면 엔티티의 속성을 여러 테이블에 나누어 영속화하는 것이 가능합니다(see <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/tutorials/embeddables.html">https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/tutorials/embeddables.html</a>).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+--------------------+
+| class Customer     |
++--------------------+
+| - name: string     |
+| - address: CustomerAddress 
++--------------------+
+
++--------------------+
+| table customers    |
++--------------------+
+| - <span class="nb">id</span>: int          |
+| - name: varchar    |
++--------------------+
+
++--------------------+
+| table customer_addresses
++--------------------+
+| - <span class="nb">id</span>: int          |
+| - customer_id: int |
+| - addr_si_do_name: varchar
+| - addr_si_gun_gu_name: varchar
+| - ...              |
+| - addr_detail: varchar
++--------------------+
+</code></pre></div></div>
+
+<p>UML &amp; ERD에 맞게 모델, 스키마 마이그레이션, 모델 팩토리를 만듭니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan make:model CustomerAddress <span class="nt">--migration</span> <span class="nt">--factory</span>
+<span class="c">#Model created successfully.</span>
+<span class="c">#Factory created successfully.</span>
+<span class="c">#Created Migration: 2019_02_07_000200_create_customer_addresses_table</span>
+</code></pre></div></div>
+
+<h3 id="31-스키마-마이그레이션">3.1. 스키마 마이그레이션</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000100_create_customers_table.php</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'name'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000200_create_customer_addresses_table.php</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateCustomerAddressesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'customer_addresses'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedInteger</span><span class="p">(</span><span class="s1">'customer_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_si_do_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'시도'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_si_gun_gu_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'시군구'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_admin_dong_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'행정동'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_legal_dong_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'법정동'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_legal_ri_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'법정리'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">boolean</span><span class="p">(</span><span class="s1">'addr_is_mountain'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'산 여부 (0:대지, 1:산)'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_jibun_number'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'지번'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_road_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'도로명'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedTinyInteger</span><span class="p">(</span><span class="s1">'addr_is_basement'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'지하 여부 (0:지상, 1:지하, 2:공중)'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_building_number'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'건물번호'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_detail'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'상세주소 (건물명 등)'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">'customer_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'customer_addresses'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan migrate
+<span class="c">#Migrating: 2019_02_07_000100_create_customers_table</span>
+<span class="c">#Migrated:  2019_02_07_000100_create_customers_table</span>
+<span class="c">#Migrating: 2019_02_07_000200_create_customer_addresses_table</span>
+<span class="c">#Migrated:  2019_02_07_000200_create_customer_addresses_table</span>
+</code></pre></div></div>
+
+<h3 id="32-엔티티">3.2. 엔티티</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Customer.php</span>
+
+<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="sd">/**
+ * App\Customer
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\CustomerAddress $address
+ * @mixin \Eloquent
+ */</span>
+<span class="k">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">address</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hasOne</span><span class="p">(</span><span class="nx">CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">'customer_id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/CustomerAddress.php</span>
+
+<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="sd">/**
+ * App\CustomerAddress
+ *
+ * @property int $id
+ * @property int $customer_id
+ * @property string $addr_si_do_name 시도
+ * @property string|null $addr_si_gun_gu_name 시군구
+ * @property string|null $addr_admin_dong_name 행정동
+ * @property string|null $addr_legal_dong_name 법정동
+ * @property string|null $addr_legal_ri_name 법정리
+ * @property int $addr_is_mountain 산 여부 (0:대지, 1:산)
+ * @property string|null $addr_jibun_number 지번
+ * @property string|null $addr_road_name 도로명
+ * @property int $addr_is_basement 지하 여부 (0:지상, 1:지하, 2:공중)
+ * @property string|null $addr_building_number 건물번호
+ * @property string|null $addr_detail 상세주소 (건물명 등)
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Customer $customer
+ * @mixin \Eloquent
+ */</span>
+<span class="k">class</span> <span class="nc">CustomerAddress</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">customer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsTo</span><span class="p">(</span><span class="nx">Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">'customer_id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="33-optional-모델-팩토리">3.3. [Optional] 모델 팩토리</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerAddressFactory.php</span>
+
+<span class="k">use</span> <span class="nx">Faker\Generator</span> <span class="k">as</span> <span class="nx">Faker</span><span class="p">;</span>
+
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">'addr_si_do_name'</span> <span class="o">=&gt;</span> <span class="s1">'서울특별시'</span><span class="p">,</span>
+        <span class="s1">'addr_si_gun_gu_name'</span> <span class="o">=&gt;</span> <span class="s1">'강남구'</span><span class="p">,</span>
+        <span class="s1">'addr_admin_dong_name'</span> <span class="o">=&gt;</span> <span class="s1">'삼성1동'</span><span class="p">,</span>
+        <span class="s1">'addr_legal_dong_name'</span> <span class="o">=&gt;</span> <span class="s1">'삼성동'</span><span class="p">,</span>
+        <span class="s1">'addr_legal_ri_name'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s1">'addr_is_mountain'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s1">'addr_jibun_number'</span> <span class="o">=&gt;</span> <span class="s1">'162-17'</span><span class="p">,</span>
+        <span class="s1">'addr_road_name'</span> <span class="o">=&gt;</span> <span class="s1">'봉은사로12길'</span><span class="p">,</span>
+        <span class="s1">'addr_is_basement'</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">'addr_building_number'</span> <span class="o">=&gt;</span> <span class="s1">'6'</span><span class="p">,</span>
+        <span class="s1">'addr_detail'</span> <span class="o">=&gt;</span> <span class="s1">'익성빌딩 5층 메쉬코리아'</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerFactory.php</span>
+
+<span class="k">use</span> <span class="nx">Faker\Generator</span> <span class="k">as</span> <span class="nx">Faker</span><span class="p">;</span>
+
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">});</span>
+
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">afterCreating</span><span class="p">(</span><span class="nx">App\Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">App\Customer</span> <span class="nv">$customer</span><span class="p">,</span> <span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nx">factory</span><span class="p">(</span><span class="nx">App\CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">());</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="34-테스트">3.4. 테스트</h3>
+
+<p><code class="highlighter-rouge">CustomerAddress</code> 모델은 기본 키(<code class="highlighter-rouge">id</code>)가 있어서 값 객체인지 엔티티인지 모호합니다. 당연히 <code class="highlighter-rouge">$c1-&gt;address</code> 와 <code class="highlighter-rouge">$c2-&gt;address</code>는 서로 다른 메모리 공간을 사용하고 객체의 식별자 해시도 완전히 다릅니다(물론 앞 절에서 처럼 동등 비교 함수를 구현하면 됩니다).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
+<span class="c"># 엔티티 생성 및 영속화</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span> <span class="o">=</span> factory<span class="o">(</span>App<span class="se">\C</span>ustomer::class<span class="o">)</span>-&gt;create<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> App<span class="se">\C</span>ustomer <span class="o">{</span><span class="c">#2963</span>
+     name: <span class="s2">"Susanna Effertz"</span>,
+     updated_at: <span class="s2">"2019-02-07 15:32:16"</span>,
+     created_at: <span class="s2">"2019-02-07 15:32:16"</span>,
+     <span class="nb">id</span>: 1,
+   <span class="o">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c2</span> <span class="o">=</span> factory<span class="o">(</span>App<span class="se">\C</span>ustomer::class<span class="o">)</span>-&gt;create<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> App<span class="se">\C</span>ustomer <span class="o">{</span><span class="c">#2971</span>
+     name: <span class="s2">"Pink Gorczany MD"</span>,
+     updated_at: <span class="s2">"2019-02-07 15:32:38"</span>,
+     created_at: <span class="s2">"2019-02-07 15:32:38"</span>,
+     <span class="nb">id</span>: 2,
+   <span class="o">}</span>
+
+<span class="c"># 엔티티 및 값 객체의 필드 접근</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address<span class="p">;</span>
+<span class="o">=&gt;</span> App<span class="se">\C</span>ustomerAddress <span class="o">{</span><span class="c">#2961</span>
+     <span class="nb">id</span>: 1,
+     customer_id: 1,
+     addr_si_do_name: <span class="s2">"서울특별시"</span>,
+     addr_si_gun_gu_name: <span class="s2">"강남구"</span>,
+     addr_admin_dong_name: <span class="s2">"삼성1동"</span>,
+     addr_legal_dong_name: <span class="s2">"삼성동"</span>,
+     addr_legal_ri_name: null,
+     addr_is_mountain: 0,
+     addr_jibun_number: <span class="s2">"162-17"</span>,
+     addr_road_name: <span class="s2">"봉은사로12길"</span>,
+     addr_is_basement: 0,
+     addr_building_number: <span class="s2">"6"</span>,
+     addr_detail: <span class="s2">"익성빌딩 5층 메쉬코리아"</span>,
+     created_at: <span class="s2">"2019-02-07 15:32:16"</span>,
+     updated_at: <span class="s2">"2019-02-07 15:32:16"</span>,
+   <span class="o">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;addr_si_do_name<span class="p">;</span>
+<span class="o">=&gt;</span> <span class="s2">"서울특별시"</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;addr_jibun_number<span class="p">;</span>
+<span class="o">=&gt;</span> <span class="s2">"162-17"</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;toArray<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="o">[</span>
+     <span class="s2">"id"</span> <span class="o">=&gt;</span> 1,
+     <span class="s2">"customer_id"</span> <span class="o">=&gt;</span> 1,
+     <span class="s2">"addr_si_do_name"</span> <span class="o">=&gt;</span> <span class="s2">"서울특별시"</span>,
+     <span class="s2">"addr_si_gun_gu_name"</span> <span class="o">=&gt;</span> <span class="s2">"강남구"</span>,
+     <span class="s2">"addr_admin_dong_name"</span> <span class="o">=&gt;</span> <span class="s2">"삼성1동"</span>,
+     <span class="s2">"addr_legal_dong_name"</span> <span class="o">=&gt;</span> <span class="s2">"삼성동"</span>,
+     <span class="s2">"addr_legal_ri_name"</span> <span class="o">=&gt;</span> null,
+     <span class="s2">"addr_is_mountain"</span> <span class="o">=&gt;</span> 0,
+     <span class="s2">"addr_jibun_number"</span> <span class="o">=&gt;</span> <span class="s2">"162-17"</span>,
+     <span class="s2">"addr_road_name"</span> <span class="o">=&gt;</span> <span class="s2">"봉은사로12길"</span>,
+     <span class="s2">"addr_is_basement"</span> <span class="o">=&gt;</span> 0,
+     <span class="s2">"addr_building_number"</span> <span class="o">=&gt;</span> <span class="s2">"6"</span>,
+     <span class="s2">"addr_detail"</span> <span class="o">=&gt;</span> <span class="s2">"익성빌딩 5층 메쉬코리아"</span>,
+     <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:16"</span>,
+     <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:16"</span>,
+   <span class="o">]</span>
+
+<span class="c"># 값 객체의 동등 비교</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address <span class="o">==</span> <span class="nv">$c2</span>-&gt;address<span class="p">;</span>
+<span class="o">=&gt;</span> <span class="nb">false</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nv">$c1</span>-&gt;address-&gt;is<span class="o">(</span><span class="nv">$c2</span>-&gt;address<span class="o">)</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="nb">false</span>
+
+<span class="c"># 값 객체를 이용한 콜렉션 필터링</span>
+<span class="o">&gt;&gt;&gt;</span> App<span class="se">\C</span>ustomer::with<span class="o">(</span><span class="s1">'address'</span><span class="o">)</span>-&gt;get<span class="o">()</span>-&gt;filter<span class="o">(</span><span class="k">function</span> <span class="o">(</span>App<span class="se">\C</span>ustomer <span class="nv">$c</span><span class="o">)</span> <span class="o">{</span>
+...     <span class="k">return</span> <span class="nv">$c</span>-&gt;address-&gt;addr_si_do_name <span class="o">===</span> <span class="s1">'서울특별시'</span><span class="p">;</span>
+... <span class="o">})</span>-&gt;toArray<span class="o">()</span><span class="p">;</span>
+<span class="o">=&gt;</span> <span class="o">[</span>
+     <span class="o">[</span>
+       <span class="s2">"id"</span> <span class="o">=&gt;</span> 1,
+       <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Susanna Effertz"</span>,
+       <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:16"</span>,
+       <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:16"</span>,
+       <span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="o">[</span>
+         <span class="s2">"id"</span> <span class="o">=&gt;</span> 1,
+         <span class="s2">"customer_id"</span> <span class="o">=&gt;</span> 1,
+         <span class="s2">"addr_si_do_name"</span> <span class="o">=&gt;</span> <span class="s2">"서울특별시"</span>,
+         <span class="s2">"addr_si_gun_gu_name"</span> <span class="o">=&gt;</span> <span class="s2">"강남구"</span>,
+         <span class="s2">"addr_admin_dong_name"</span> <span class="o">=&gt;</span> <span class="s2">"삼성1동"</span>,
+         <span class="s2">"addr_legal_dong_name"</span> <span class="o">=&gt;</span> <span class="s2">"삼성동"</span>,
+         <span class="s2">"addr_legal_ri_name"</span> <span class="o">=&gt;</span> null,
+         <span class="s2">"addr_is_mountain"</span> <span class="o">=&gt;</span> 0,
+         <span class="s2">"addr_jibun_number"</span> <span class="o">=&gt;</span> <span class="s2">"162-17"</span>,
+         <span class="s2">"addr_road_name"</span> <span class="o">=&gt;</span> <span class="s2">"봉은사로12길"</span>,
+         <span class="s2">"addr_is_basement"</span> <span class="o">=&gt;</span> 0,
+         <span class="s2">"addr_building_number"</span> <span class="o">=&gt;</span> <span class="s2">"6"</span>,
+         <span class="s2">"addr_detail"</span> <span class="o">=&gt;</span> <span class="s2">"익성빌딩 5층 메쉬코리아"</span>,
+         <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:16"</span>,
+         <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:16"</span>,
+       <span class="o">]</span>,
+     <span class="o">]</span>,
+     <span class="o">[</span>
+       <span class="s2">"id"</span> <span class="o">=&gt;</span> 2,
+       <span class="s2">"name"</span> <span class="o">=&gt;</span> <span class="s2">"Pink Gorczany MD"</span>,
+       <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:38"</span>,
+       <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:38"</span>,
+       <span class="s2">"address"</span> <span class="o">=&gt;</span> <span class="o">[</span>
+         <span class="s2">"id"</span> <span class="o">=&gt;</span> 2,
+         <span class="s2">"customer_id"</span> <span class="o">=&gt;</span> 2,
+         <span class="s2">"addr_si_do_name"</span> <span class="o">=&gt;</span> <span class="s2">"서울특별시"</span>,
+         <span class="s2">"addr_si_gun_gu_name"</span> <span class="o">=&gt;</span> <span class="s2">"강남구"</span>,
+         <span class="s2">"addr_admin_dong_name"</span> <span class="o">=&gt;</span> <span class="s2">"삼성1동"</span>,
+         <span class="s2">"addr_legal_dong_name"</span> <span class="o">=&gt;</span> <span class="s2">"삼성동"</span>,
+         <span class="s2">"addr_legal_ri_name"</span> <span class="o">=&gt;</span> null,
+         <span class="s2">"addr_is_mountain"</span> <span class="o">=&gt;</span> 0,
+         <span class="s2">"addr_jibun_number"</span> <span class="o">=&gt;</span> <span class="s2">"162-17"</span>,
+         <span class="s2">"addr_road_name"</span> <span class="o">=&gt;</span> <span class="s2">"봉은사로12길"</span>,
+         <span class="s2">"addr_is_basement"</span> <span class="o">=&gt;</span> 0,
+         <span class="s2">"addr_building_number"</span> <span class="o">=&gt;</span> <span class="s2">"6"</span>,
+         <span class="s2">"addr_detail"</span> <span class="o">=&gt;</span> <span class="s2">"익성빌딩 5층 메쉬코리아"</span>,
+         <span class="s2">"created_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:38"</span>,
+         <span class="s2">"updated_at"</span> <span class="o">=&gt;</span> <span class="s2">"2019-02-07 15:32:38"</span>,
+       <span class="o">]</span>,
+     <span class="o">]</span>,
+   <span class="o">]</span>
+</code></pre></div></div>
+
+<p>테이블이 쪼개져 있으니, 조인 쿼리를 하면 되겠네요.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
+<span class="k">FROM</span> <span class="n">customers</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">customer_addresses</span> <span class="k">AS</span> <span class="n">a</span>
+    <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+
+<span class="cm">/*
+{
+    "data":
+    [
+        {
+            "id": 1,
+            "name": "Susanna Effertz",
+            "created_at": "2019-02-07 15:32:16",
+            "updated_at": "2019-02-07 15:32:16",
+            "id": 1,
+            "customer_id": 1,
+            "addr_si_do_name": "서울특별시",
+            "addr_si_gun_gu_name": "강남구",
+            "addr_admin_dong_name": "삼성1동",
+            "addr_legal_dong_name": "삼성동",
+            "addr_legal_ri_name": null,
+            "addr_is_mountain": 0,
+            "addr_jibun_number": "162-17",
+            "addr_road_name": "봉은사로12길",
+            "addr_is_basement": 0,
+            "addr_building_number": "6",
+            "addr_detail": "익성빌딩 5층 메쉬코리아",
+            "created_at": "2019-02-07 15:32:16",
+            "updated_at": "2019-02-07 15:32:16"
+        },
+        {
+            "id": 2,
+            "name": "Pink Gorczany MD",
+            "created_at": "2019-02-07 15:32:38",
+            "updated_at": "2019-02-07 15:32:38",
+            "id": 2,
+            "customer_id": 2,
+            "addr_si_do_name": "서울특별시",
+            "addr_si_gun_gu_name": "강남구",
+            "addr_admin_dong_name": "삼성1동",
+            "addr_legal_dong_name": "삼성동",
+            "addr_legal_ri_name": null,
+            "addr_is_mountain": 0,
+            "addr_jibun_number": "162-17",
+            "addr_road_name": "봉은사로12길",
+            "addr_is_basement": 0,
+            "addr_building_number": "6",
+            "addr_detail": "익성빌딩 5층 메쉬코리아",
+            "created_at": "2019-02-07 15:32:38",
+            "updated_at": "2019-02-07 15:32:38"
+        }
+    ]
+}
+*/</span>
+</code></pre></div></div>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<p>제가 아는 방법만 나열했을 뿐, 더 많은 방법들이 있을 겁니다. 설계 의사 결정은 각자의 몫입니다.</p>
+
+<p>질문 하나 던져볼까요? 어느날 새로운 비즈니스 요구사항이 들어왔습니다. “고객은 주소를 하나 이상 가질 수 있다” 어떻게 설계하시겠습니까?</p>
+
+      </div>
+
+      <footer class="box-tags">
+        <span><i class="material-icons">label</i> Tags:</span>
+        
+          <a href="/tags#Laravel">
+            Laravel
+          </a>
+          , 
+        
+          <a href="/tags#OOP">
+            OOP
+          </a>
+          , 
+        
+          <a href="/tags#DDD">
+            DDD
+          </a>
+          
+        
+      </footer>
+    </article>
+
+    <nav id="pagination">
+      <ul class="pager">
+        
+        <li class="previous">
+          <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent/">
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_before</i>
+            </span>
+            <span class="pager-title-sm">Older</span>
+            <span class="pager-title">
+              라라벨의 엘로퀀트 ORM에서 값...
+            </span>
+          </a>
+        </li>
+        
+
+        
+        <li class="next disabled">
+          <a href="#">
+            <span>Newer</span>
+            <span aria-hidden="true">
+              <i class="material-icons">navigate_next</i>
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    <div class="comments" style="margin-bottom: 30px;">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//appkr.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+  </section>
+
+  <aside id="sidebar" class="col-md-3">
+    <section id="search_sidebar" class="box hidden-xs">
+  <div class="box-body">
+    <form action="#">
+      <div class="form-group">
+        <input class="form-control input-lg" type="text" id="q_sidebar" placeholder="Search...">
+        <ul id="q_sidebar_res"></ul>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="box" id="categories">
+  <div class="box-header">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      <li>
+        <a href="/categories#around-me">
+          Around Me
+          <span class="badge">25</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#learn-n-think">
+          Learn & Think
+          <span class="badge">80</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#work-n-play">
+          Work & Play
+          <span class="badge">62</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#cheatsheet">
+          Cheatsheet
+          <span class="badge">4</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#imported">
+          Imported
+          <span class="badge">3</span>
+        </a>
+      </li>
+      <li>
+        <a href="/categories#uncategorized">
+          Uncategorized
+          <span class="badge">2</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="tags">
+  <div class="box-header">
+    <h3>Tags</h3>
+  </div>
+
+  <div class="box-body tags">
+    <div class="tags">
+    
+    
+    <span style="font-size: 98%">
+      <a href="/tags#3d">
+        3d
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#API">
+        API
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Apache Thrift">
+        Apache Thrift
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CSS">
+        CSS
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#CleanCode">
+        CleanCode
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#DDD">
+        DDD
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Database">
+        Database
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#DevOps">
+        DevOps
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Docker">
+        Docker
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Dotfiles">
+        Dotfiles
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ELK">
+        ELK
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Generator">
+        Generator
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#Git">
+        Git
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#JWT">
+        JWT
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Javascript">
+        Javascript
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#Jekyll">
+        Jekyll
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#Laravel">
+        Laravel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Linux">
+        Linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Log">
+        Log
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Lumen">
+        Lumen
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#OOP">
+        OOP
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#OS X">
+        OS X
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#PHP">
+        PHP
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#RESTful">
+        RESTful
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#RPC">
+        RPC
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Refactoring">
+        Refactoring
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Ruby">
+        Ruby
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Security">
+        Security
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Swagger">
+        Swagger
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#UML">
+        UML
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#URL Rewriting">
+        URL Rewriting
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#Web">
+        Web
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#Websocket">
+        Websocket
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#adobe">
+        adobe
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amazon">
+        amazon
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#amd">
+        amd
+      </a>
+    </span>
+    
+    <span style="font-size: 142%">
+      <a href="/tags#android">
+        android
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#apple">
+        apple
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ar">
+        ar
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#architecture">
+        architecture
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#arm">
+        arm
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bada">
+        bada
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bluetooth">
+        bluetooth
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#bus">
+        bus
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#cdp">
+        cdp
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#chrome">
+        chrome
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cloud">
+        cloud
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#codec">
+        codec
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#connectivity">
+        connectivity
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#cpu">
+        cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ebook">
+        ebook
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#emulator">
+        emulator
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#flash">
+        flash
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#framework">
+        framework
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#gms">
+        gms
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#google">
+        google
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#gtd">
+        gtd
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#intel">
+        intel
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ios">
+        ios
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#iphone">
+        iphone
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#java">
+        java
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#lbs">
+        lbs
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#limo">
+        limo
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#linux">
+        linux
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mcu">
+        mcu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#memory">
+        memory
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#microsoft">
+        microsoft
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#mobile">
+        mobile
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#opencore">
+        opencore
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengl">
+        opengl
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#opengles">
+        opengles
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#opensource">
+        opensource
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#openvg">
+        openvg
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#platform">
+        platform
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pnd">
+        pnd
+      </a>
+    </span>
+    
+    <span style="font-size: 106%">
+      <a href="/tags#presentation">
+        presentation
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#pvcore">
+        pvcore
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#se">
+        se
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#sns">
+        sns
+      </a>
+    </span>
+    
+    <span style="font-size: 114%">
+      <a href="/tags#soc">
+        soc
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#symbian">
+        symbian
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tech">
+        tech
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#ted">
+        ted
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#tedx">
+        tedx
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#windowsmobile">
+        windowsmobile
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#wss">
+        wss
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#x86">
+        x86
+      </a>
+    </span>
+    
+    <span style="font-size: 110%">
+      <a href="/tags#史記">
+        史記
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#孟子">
+        孟子
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#孫子兵法">
+        孫子兵法
+      </a>
+    </span>
+    
+    <span style="font-size: 294%">
+      <a href="/tags#개발자">
+        개발자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#경력개발">
+        경력개발
+      </a>
+    </span>
+    
+    <span style="font-size: 138%">
+      <a href="/tags#기업철학">
+        기업철학
+      </a>
+    </span>
+    
+    <span style="font-size: 174%">
+      <a href="/tags#기획자">
+        기획자
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#데이터베이스">
+        데이터베이스
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#리더쉽">
+        리더쉽
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#생산성">
+        생산성
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#소프트웨어공학">
+        소프트웨어공학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#수학">
+        수학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#아키텍처">
+        아키텍처
+      </a>
+    </span>
+    
+    <span style="font-size: 210%">
+      <a href="/tags#인생철학">
+        인생철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#자녀교육">
+        자녀교육
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#전략">
+        전략
+      </a>
+    </span>
+    
+    <span style="font-size: 146%">
+      <a href="/tags#조직관리">
+        조직관리
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#조직문화">
+        조직문화
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#조직행동">
+        조직행동
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#철학">
+        철학
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#취미">
+        취미
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#특기">
+        특기
+      </a>
+    </span>
+    
+    <span style="font-size: 102%">
+      <a href="/tags#프로세스">
+        프로세스
+      </a>
+    </span>
+    
+    <span style="font-size: 98%">
+      <a href="/tags#프로젝트관리">
+        프로젝트관리
+      </a>
+    </span>
+    
+    </div>
+  </div>
+</section>
+
+<section class="box" id="recent-posts">
+  <div class="box-header">
+    <h3>Recent Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2019-02-08</small>
+          <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/">라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2019-02-06</small>
+          <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent/">라라벨의 엘로퀀트 ORM에서 값 객체 사용하기</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2018-11-20</small>
+          <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
+        </h4>
+      </li>
+      
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="recent-comments">
+  <div class="box-header">
+    <h3>Recent Comments</h3>
+  </div>
+
+  <div class="box-body dsq-widget">
+    <script type="text/javascript" src="//appkr.disqus.com/recent_comments_widget.js?num_items=5&hide_mods=0&hide_avatars=0&avatar_size=32&excerpt_length=100"></script>
+  </div>
+</section>
+
+<section class="box" id="recent-feeds">
+  <div class="box-header">
+    <h3>Facebook Posts</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="facebook-feed">
+      <script id="facebook-feed-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://www.facebook.com/juwonkimatmedotcom/posts/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+<section class="box" id="gist-lists">
+  <div class="box-header">
+    <h3>Github Gist</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="gist-list">
+      <script id="gist-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://gist.github.com/{ id }">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
+  </aside>
+</div>
+
+
+  <footer id="site-footer">
+  <h4>
+    <a href="/">
+      Appkr.memo(new Life)
+    </a>
+  </h4>
+  <p>
+    &copy; 2008~2019 •
+    Built with <a href="http://jekyllrb.com/">Jekyll</a> •
+    Hosted by <a href="https://pages.github.com/">Github</a> •
+    <a href="/feed.xml">Rss</a>
+  </p>
+</footer>
+
+
+  <div id="back-to-top">
+    <a href="#" title="Scroll to Top">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+
+  <script src="/scripts/main.min.js"></script>
+</body>
+
+</html>

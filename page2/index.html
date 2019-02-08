@@ -97,6 +97,127 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/learn-n-think/short-parable-on-sql-injection/">SQL Injection 방어</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2018-10-20
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/short-parable-on-sql-injection/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="Exploit of a mom" />
+<small>그림출처: <a href="https://xkcd.com/327/">Exploits of a Mom</a></small></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#1 (학교) 여기 학교인데요. 전화 드린 이유는, 학교에 컴퓨터 문제가 좀 있어서요.
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#2 (엄마) 우리 애가 사고쳤나요?
+     (학교) 예... 일종의...
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#3 (학교) 그런데, 정말로 아들 이름을 "Robert'); DROP TABLE students;--" 로 지으신게 맞나요?
+      (엄마) 예 맞아요. 그래서 집에서는 우리 애를 "리틀 바비 테이블"이라고 불러요.
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#4 (학교) ;;; 기뻐하실 지 모르겠지만, 학생 테이블의 레코드 전체를 잃어 버렸어요.
+      (엄마) 적어도 이번 사건 덕분에 DB에 입력할 값을 잘 필터링 해야 한다는 사실 정도는 배우셨겠군요~
+</code></pre></div></div>
+
+<div class="spacer">• • •</div>
+
+<p>프레임웍을 쓰면 쉽게 안전성을 확보할 수 있는데요. 그럼에도 불구하고, 아래 코드의 <code class="highlighter-rouge">queryStoresByParams()</code> 함수처럼 Raw 쿼리를 써야 할 때가 있죠. 이 때 SQL Injection을 당하지 않도록 주의해야 합니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 회사 코드에서 일부 발췌</span>
+
+<span class="k">class</span> <span class="nc">StoreRetriever</span>
+<span class="p">{</span>
+    <span class="c1">// 라라벨 프레임웍이 제공하는 엘로퀀트 ORM과 쿼리 빌더를 이용하는 경우</span>
+    <span class="c1">// PDO와 Prepared Statement를 이용하므로 SQL Injection은 자동 방어됨</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">retrieveStoresByParams</span><span class="p">(</span><span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$eagerLoads</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="nv">$builder</span> <span class="o">=</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span>
+            <span class="o">?</span> <span class="nx">Store</span><span class="o">::</span><span class="na">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">)</span>
+            <span class="o">:</span> <span class="nx">Store</span><span class="o">::</span><span class="na">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applySearchParams</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applyOrderBy</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getSize</span><span class="p">(),</span> <span class="p">[</span><span class="s1">'*'</span><span class="p">],</span> <span class="s1">'page'</span><span class="p">,</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getPage</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Raw 쿼리를 쓸 때 사용자로부터 받은 문자열을 직접 쿼리에 끼워 넣으면 SQL Injection에 무방비 상태가 됨</span>
+    <span class="c1">// e.g. $query[] = "and stores.created_at &gt;= {$from}";</span>
+    <span class="c1">//</span>
+    <span class="c1">// 여기서 Raw 쿼리를 왜 썼는가? "성능". 소위 말하는 "Query Model"</span>
+    <span class="c1">// PHP7 with Xdebug on Docker, 테이블 조인 5개 &amp; 12,000 레코드 조회시 API 응답 시간</span>
+    <span class="c1">// 	 - retrieveStoresByParams(): around N sec </span>
+    <span class="c1">//   - queryStoresByParams(): under N/10 sec</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">queryStoresByParams</span><span class="p">(</span><span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'stores.*'</span><span class="p">])</span>
+    <span class="p">{</span>
+        <span class="nv">$columnString</span> <span class="o">=</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">);</span>
+        <span class="nv">$query</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"select </span><span class="si">{</span><span class="nv">$columnString</span><span class="si">}</span><span class="s2"> from stores"</span><span class="p">;</span>
+        <span class="nv">$bindings</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="nv">$query</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"where 1 = 1"</span><span class="p">;</span>
+
+        <span class="nv">$from</span> <span class="o">=</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getFrom</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$from</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$query</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"and stores.created_at &gt;= :from"</span><span class="p">;</span>
+            <span class="nv">$bindings</span><span class="p">[</span><span class="s1">'from'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$from</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ...</span>
+
+        <span class="k">return</span> <span class="nx">\DB</span><span class="o">::</span><span class="na">select</span><span class="p">(</span><span class="nb">implode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$query</span><span class="p">),</span> <span class="nv">$bindings</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">applySearchParams</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$from</span> <span class="o">=</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getFrom</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$from</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'stores.created_at'</span><span class="p">,</span> <span class="s1">'&gt;='</span><span class="p">,</span> <span class="nv">$from</span><span class="p">);</span>
+        <span class="p">}</span>
+    
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">applyOrderBy</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getOrderBy</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$order</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="nv">$order</span><span class="p">[</span><span class="s1">'sortKey'</span><span class="p">],</span> <span class="nv">$order</span><span class="p">[</span><span class="s1">'sortDirection'</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+      </div>
+
+      <footer class="box-footer">
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/cheatsheet/linux-top-cheatsheet/">Linux "top" cheatsheet</a>
         </h2>
         <p class="box-meta">
@@ -364,89 +485,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">PHP 프로젝트에 Swagger 적용 #1</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-12-24
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              , 
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><img src="/images/2017-12-24-img-01_swagger-logo.png" style="width:200px" /></p>
-
-<div class="text-center">
-  <p class="text-muted">PHP 기반 API 서버 프로젝트에 스웨거(Swagger)를 적용할 수 있을까?</p>
-  <p class="lead"><strong>예, 적용할 수 있습니다. 예제를 짜서 검증했습니다.</strong></p>
-</div>
-
-<div class="spacer">• • •</div>
-
-<p>이 포스트를 쓰기 위한 예제를 진행하면서 스웨거가 해결하고자 했던 문제점을 좀 더 깊이 있게 생각해보는 계기가 되었습니다. 이 시리즈에서는 다음 내용을 다루려고 합니다.</p>
-
-<ol>
-  <li>스웨거란 무엇이며, 왜, 언제 쓰는가?</li>
-  <li>PHP 기반 API 서버 프로젝트에 스웨거를 어떻게 적용해야 하는가?</li>
-</ol>
-
-<div class="spacer">• • •</div>
-
-<p>네이버 국어사전에 따르면 <strong>찍새</strong>와 <strong>딱새</strong>를 이렇게 정의하고 있습니다.</p>
-
-<ul>
-  <li><strong><a href="//krdic.naver.com/detail.nhn?docid=36508000">찍새</a></strong> 닦을 구두를 모아서 구두닦이에게 가져다주는 일만 하는 사람을 속되게 이르는 말.</li>
-  <li><strong><a href="//krdic.naver.com/detail.nhn?docid=11120600">딱새</a></strong> 은어로, ‘구두닦이’를 이르는 말.</li>
-</ul>
-
-<p>예~ 구두닦이 서비스를 말하는 겁니다. 주제와 전혀 다른 구두닦이 서비스를 언급한 이유는, 제가 속한 회사의 서비스가 이런 식으로 역할 분담이 되어 있기 때문입니다. 상점으로부터 배송 대행 요청을 접수 받는 서비스와(이하 <strong>프라임</strong>), 기사님들에게 배송 대행 업무를 나누어 주고, 배정 받은 기사님이 물건을 보내고자하는 상점으로 가서 물건을 픽업하고 목적지까지 배송하고 상품가액과 수수료를 결재 받는 서비스(이하 <strong>부릉</strong>)로 구성되어 있습니다. 아무리 구두닦이 장인들이 모여 있더라도 구두를 찍어 오지 못하면 서비스는 쪼그라들겁니다. 반면에, 영업의 신들이 구두를 아무리 잘 찍어와도 구두를 깨끗이 닦지 못하면 손님은 다시 찾아오지 않을 겁니다. 결국 <strong>둘 간에 강한 결합이 존재하며, 서로 선순환을 일으켜야 한다</strong>는 사실을 알 수 있습니다.</p>
-
-<p>참고로 <strong>프라임</strong> 서비스는 라라벨 서버, 닷넷 및 Android 클라이언트로 구성되어 있습니다. <strong>부릉</strong> 서비스는 스프링 서버, 닷넷 및 Android 클라이언트로 구성되어 있습니다. 두 서비스를 전부 관리하는 관리도구는 자바스크립트 SPA <sub class="text-muted">SINGLE PAGE APPLICATION</sub>로 구성되어 있습니다.</p>
-
-<p>이 포스트와 관련해서 <strong>중요한 사실은 프라임도 부릉에게는 일개 클라이언트라는 점</strong>입니다. 부릉은 멀티 클라이언트 플랫폼에 대응하기 위해 스웨거 API 스펙을 관리하고 있고, 프라임은 부릉이 노출하고 있는 API를 사용하기 위해서 스웨거 스펙으로 자동 생성한 PHP 클라이언트 라이브러리를 컴포저로 땡겨서 <code class="highlighter-rouge">vendor</code>에 꽂아서 사용합니다. 저는 프라임 서버 개발자입니다. 지난 일년간을 스웨거 스펙의 소비자이기만 하다가, 최근에 갑자기 <em>‘PHP로 짠 서버 프로젝트가 스웨거 API의 생산자가 될 수 있을까?’</em>라는 생각이 들기 시작했습니다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/learn-n-think/serving-swagger-api-in-php-project/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -509,7 +547,7 @@
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">61</span>
+          <span class="badge">62</span>
         </a>
       </li>
       <li>
@@ -573,7 +611,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 102%">
       <a href="/tags#DDD">
         DDD
       </a>
@@ -639,7 +677,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -663,7 +701,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 102%">
       <a href="/tags#OOP">
         OOP
       </a>
@@ -1223,6 +1261,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2019-02-08</small>
+          <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/">라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-02-06</small>
           <a href="/work-n-play/how-to-use-value-object-in-laravel-eloquent/">라라벨의 엘로퀀트 ORM에서 값 객체 사용하기</a>
         </h4>
@@ -1232,13 +1277,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2018-11-20</small>
           <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2018-11-05</small>
-          <a href="/cheatsheet/vim-cheatsheet/">Vim cheatsheet</a>
         </h4>
       </li>
       

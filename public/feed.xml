@@ -5,9 +5,40 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 08 Feb 2019 11:56:14 +0900</pubDate>
-    <lastBuildDate>Fri, 08 Feb 2019 11:56:14 +0900</lastBuildDate>
-    <generator>Jekyll v3.7.3</generator>
+    <pubDate>Sat, 02 Mar 2019 23:49:39 +0900</pubDate>
+    <lastBuildDate>Sat, 02 Mar 2019 23:49:39 +0900</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>appkr.dev로 이전합니다</title>
+        <description>&lt;p&gt;3월 중에 blog.appkr.dev 도메인으로 이전할 예정입니다.&lt;/p&gt;
+
+&lt;p&gt;블로그 플랫폼으로 &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;를 이용하는데, 기존 blog.appkr.kr에서 301 또는 308 응답을 제공할 방법을 찾을 수 없어서 검색엔진, SNS 등을 통해 들어왔다면 빈 페이지를 만날 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;이전을 위해 변경해야 할 것들이 있습니다.&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Google Analytics &lt;a href=&quot;https://analytics.google.com/analytics/web/#/home&quot;&gt;https://analytics.google.com/analytics/web/#/home&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Google Search Console &lt;a href=&quot;https://www.google.com/webmasters/verification/home?pli=1&quot;&gt;https://www.google.com/webmasters/verification/home?pli=1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Naver 웹마스터도구 &lt;a href=&quot;https://webmastertool.naver.com/&quot;&gt;https://webmastertool.naver.com/&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Facebook API &lt;a href=&quot;https://developers.facebook.com/apps/681208622021192/dashboard/&quot;&gt;https://developers.facebook.com/apps/681208622021192/dashboard/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;구 도메인에 남아 있는 서비스들의 이전 여부도 결정해야 합니다.&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;&lt;a href=&quot;http://geo.appkr.kr&quot;&gt;http://geo.appkr.kr&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;&lt;a href=&quot;http://l5.appkr.kr&quot;&gt;http://l5.appkr.kr&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 02 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/work-n-play/dot-dev-tld/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/dot-dev-tld/</guid>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부</title>
@@ -2268,64 +2299,6 @@ id  name    SI_DO_NAME
         
         
         <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>이진수와 십진수</title>
-        <description>&lt;p&gt;중학교 때 배운 후, 잊어 버리고, 매번 필요할 때마다 찾아 보는 것이 진법(進法)이다. 요즘은 교과 과정이 없어졌다고 하지만, 자녀들이 물어볼 때를 대비해 기록해 놓는다. 또, 개발자로서 이진법을 잘 이해하지 못하고 있는 나 자신이 부끄럽기도해서 필요할 때마다 꺼내볼 수 있도록 치트시트를 만들어 두는 거다.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;h2 id=&quot;십진수-to-이진수-decimal-to-binary&quot;&gt;십진수 to 이진수 (decimal to binary)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주어진 십진수를 2로 계속 나누어 몫을 기록한다. 나누어 지지 않는 나머지 1은 버린다.&lt;/li&gt;
-  &lt;li&gt;몫의 끝자리 수가 짝수이면 0, 홀수이면 1로 표시한다.&lt;/li&gt;
-  &lt;li&gt;뒤에서 앞으로 0과 1을 조합한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;684, 342, 171, 85, 42, 21, 10, 5, 2, 1
-  0,   0,   1,  1,  0,  1,  0, 1, 0, 1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;십진수 684는 이진수로 1010101100 이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; bin&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;684&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;s1&quot;&gt;'0b1010101100'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;이진수-to-십진수-binary-to-decimal&quot;&gt;이진수 to 십진수 (binary to decimal)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;이진수의 자릿수를 구한다. 자릿수는 0부터 시작한다.&lt;/li&gt;
-  &lt;li&gt;이진수의 값이 1일때만, 2에 자릿수만큼 제곱근한다.&lt;/li&gt;
-  &lt;li&gt;전체를 더한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;자릿수 9 8 7 6 5 4 3 2 1 0
-이진수 1 0 1 0 1 0 1 1 0 0
-
-2^9 + 2^7 + 2^5 + 2^3 + 2^2 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 684 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; int&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0b1010101100&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-684
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Sat, 14 Apr 2018 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/cheatsheet/binary-decimal-conversion/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/cheatsheet/binary-decimal-conversion/</guid>
-        
-        <category>수학</category>
-        
-        <category>개발자</category>
-        
-        
-        <category>cheatsheet</category>
         
       </item>
     

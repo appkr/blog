@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "appkr.dev로 이전합니다",
+    "category" : "work-n-play",
+    "tags"     : "",
+    "url"      : "/work-n-play/dot-dev-tld/",
+    "date"     : "2019-03-02"
+  },
+  
+  {
     "title"    : "라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부",
     "category" : "work-n-play",
     "tags"     : "Laravel, OOP, DDD",

@@ -5,31 +5,33 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 02 Mar 2019 23:49:39 +0900</pubDate>
-    <lastBuildDate>Sat, 02 Mar 2019 23:49:39 +0900</lastBuildDate>
+    <pubDate>Sat, 02 Mar 2019 23:54:33 +0900</pubDate>
+    <lastBuildDate>Sat, 02 Mar 2019 23:54:33 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
         <title>appkr.dev로 이전합니다</title>
         <description>&lt;p&gt;3월 중에 blog.appkr.dev 도메인으로 이전할 예정입니다.&lt;/p&gt;
 
-&lt;p&gt;블로그 플랫폼으로 &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;를 이용하는데, 기존 blog.appkr.kr에서 301 또는 308 응답을 제공할 방법을 찾을 수 없어서 검색엔진, SNS 등을 통해 들어왔다면 빈 페이지를 만날 수 있습니다.&lt;/p&gt;
+&lt;p&gt;블로그 플랫폼으로 &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;를 이용하는데, 기존 blog.appkr.kr에서 301 또는 308 응답을 제공할 방법을 찾을 수 없어서, 이전 후엔 검색엔진, SNS 등을 통해 들어왔다면 빈 페이지를 만날 수 있습니다.&lt;/p&gt;
 
 &lt;p&gt;이전을 위해 변경해야 할 것들이 있습니다.&lt;/p&gt;
 
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Google Analytics &lt;a href=&quot;https://analytics.google.com/analytics/web/#/home&quot;&gt;https://analytics.google.com/analytics/web/#/home&lt;/a&gt;&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Google Search Console &lt;a href=&quot;https://www.google.com/webmasters/verification/home?pli=1&quot;&gt;https://www.google.com/webmasters/verification/home?pli=1&lt;/a&gt;&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Naver 웹마스터도구 &lt;a href=&quot;https://webmastertool.naver.com/&quot;&gt;https://webmastertool.naver.com/&lt;/a&gt;&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Facebook API &lt;a href=&quot;https://developers.facebook.com/apps/681208622021192/dashboard/&quot;&gt;https://developers.facebook.com/apps/681208622021192/dashboard/&lt;/a&gt;&lt;/li&gt;
+&lt;ul&gt;
+  &lt;li&gt;Google Analytics &lt;a href=&quot;https://analytics.google.com/analytics/web/#/home&quot;&gt;https://analytics.google.com/analytics/web/#/home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Google Search Console &lt;a href=&quot;https://www.google.com/webmasters/verification/home?pli=1&quot;&gt;https://www.google.com/webmasters/verification/home?pli=1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Naver 웹마스터도구 &lt;a href=&quot;https://webmastertool.naver.com/&quot;&gt;https://webmastertool.naver.com/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Facebook API &lt;a href=&quot;https://developers.facebook.com/apps/681208622021192/dashboard/&quot;&gt;https://developers.facebook.com/apps/681208622021192/dashboard/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;구 도메인에 남아 있는 서비스들의 이전 여부도 결정해야 합니다.&lt;/p&gt;
 
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;&lt;a href=&quot;http://geo.appkr.kr&quot;&gt;http://geo.appkr.kr&lt;/a&gt;&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;&lt;a href=&quot;http://l5.appkr.kr&quot;&gt;http://l5.appkr.kr&lt;/a&gt;&lt;/li&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://geo.appkr.kr&quot;&gt;http://geo.appkr.kr&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://l5.appkr.kr&quot;&gt;http://l5.appkr.kr&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;곧 새 도메인에서 뵐게요.&lt;/p&gt;
 </description>
         <pubDate>Sat, 02 Mar 2019 00:00:00 +0900</pubDate>
         <link>http://blog.appkr.kr/work-n-play/dot-dev-tld/</link>

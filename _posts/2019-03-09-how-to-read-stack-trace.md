@@ -9,7 +9,7 @@ tags:
 image: https://i.stack.imgur.com/HOY4C.png
 ---
 
-이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요([위키피디아](https://en.wikipedia.org/wiki/Stack_trace)) 
+이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요([위키피디아](https://en.wikipedia.org/wiki/Stack_trace)). 
 
 [![메모리 다이어그램](https://i.stack.imgur.com/HOY4C.png)](https://i.stack.imgur.com/HOY4C.png)
 
@@ -228,7 +228,7 @@ Stack trace:
 - 사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 `NOTICE` 레벨의 예외.
 - 블랙리스트 여부를 검사하고 예외를 던진 위치는 `/var/www/html/vendor/tymon/jwt-auth/src/Manager.php` 파일의 109 줄.
 - 예외가 발생시킨 함수는 `Tymon\JWTAuth\Manager::decode()`이며, 이 함수를 `/var/www/html/vendor/tymon/jwt-auth/src/JWT.php` 200 줄에서 호출.
-- `My\Domain\Auth\Exceptions\UnauthorizedTokenException` 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 "Invalid token, please sign in again"라는 JSON 예외 응답을 받았을 것.
+- `My\Domain\Auth\Exceptions\UnauthorizedTokenException` 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 "Invalid token, please sign in again"라는 메시지를 담은 JSON 예외 응답을 받았을 것.
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -295,7 +295,7 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
 10 end
 11
 12 def baz()
-13     raise RuntimeError.new('사용자 정의 예외가 발생했습니다')
+13     raise RuntimeError.new('런타임 예외가 발생했습니다')
 14     p '이 라인은 출력되지 않습니다'
 15 end
 16 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(위키피디아)그림출처: https:/..."/>
+  <meta name="description" content="이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(위키피디아).그림출처: https:..."/>
   <meta name="google-site-verification" content="ToXKBimREnz49pDNot4b-N9ZJgYcKXPPsHsjhg4Zzuc" />
   <meta name="naver-site-verification" content="7cebcc8e5493169f5401870d9ce57f48d18491cd"/>
 
@@ -20,7 +20,7 @@
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content="스택 트레이스 읽는 법">
-  <meta itemprop="description" content="이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(위키피디아)그림출처: https:/...">
+  <meta itemprop="description" content="이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(위키피디아).그림출처: https:...">
   <meta itemprop="image" content="https://i.stack.imgur.com/HOY4C.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content="스택 트레이스 읽는 법" />
-  <meta name="twitter:description" content="이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(위키피디아)그림출처: https:/..." />
+  <meta name="twitter:description" content="이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(위키피디아).그림출처: https:..." />
   <meta name="twitter:image" content="https://i.stack.imgur.com/HOY4C.png" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
@@ -150,7 +150,7 @@
       </div>
 
       <div class="box-body">
-        <p>이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(<a href="https://en.wikipedia.org/wiki/Stack_trace">위키피디아</a>)</p>
+        <p>이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(<a href="https://en.wikipedia.org/wiki/Stack_trace">위키피디아</a>).</p>
 
 <p><a href="https://i.stack.imgur.com/HOY4C.png"><img src="https://i.stack.imgur.com/HOY4C.png" alt="메모리 다이어그램" /></a></p>
 
@@ -366,7 +366,7 @@ Stack trace:
   <li>사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 <code class="highlighter-rouge">NOTICE</code> 레벨의 예외.</li>
   <li>블랙리스트 여부를 검사하고 예외를 던진 위치는 <code class="highlighter-rouge">/var/www/html/vendor/tymon/jwt-auth/src/Manager.php</code> 파일의 109 줄.</li>
   <li>예외가 발생시킨 함수는 <code class="highlighter-rouge">Tymon\JWTAuth\Manager::decode()</code>이며, 이 함수를 <code class="highlighter-rouge">/var/www/html/vendor/tymon/jwt-auth/src/JWT.php</code> 200 줄에서 호출.</li>
-  <li><code class="highlighter-rouge">My\Domain\Auth\Exceptions\UnauthorizedTokenException</code> 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 JSON 예외 응답을 받았을 것.</li>
+  <li><code class="highlighter-rouge">My\Domain\Auth\Exceptions\UnauthorizedTokenException</code> 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 메시지를 담은 JSON 예외 응답을 받았을 것.</li>
 </ul>
 
 <!--more-->
@@ -431,7 +431,7 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
 <span class="mi">10</span> <span class="k">end</span>
 <span class="mi">11</span>
 <span class="mi">12</span> <span class="k">def</span> <span class="nf">baz</span><span class="p">()</span>
-<span class="mi">13</span>     <span class="k">raise</span> <span class="no">RuntimeError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">)</span>
+<span class="mi">13</span>     <span class="k">raise</span> <span class="no">RuntimeError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">)</span>
 <span class="mi">14</span>     <span class="nb">p</span> <span class="s1">'이 라인은 출력되지 않습니다'</span>
 <span class="mi">15</span> <span class="k">end</span>
 <span class="mi">16</span> 

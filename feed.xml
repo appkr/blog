@@ -5,9 +5,325 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 02 Mar 2019 23:54:33 +0900</pubDate>
-    <lastBuildDate>Sat, 02 Mar 2019 23:54:33 +0900</lastBuildDate>
+    <pubDate>Sun, 10 Mar 2019 00:54:07 +0900</pubDate>
+    <lastBuildDate>Sun, 10 Mar 2019 00:54:07 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>스택 트레이스 읽는 법</title>
+        <description>&lt;p&gt;이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(&lt;a href=&quot;https://en.wikipedia.org/wiki/Stack_trace&quot;&gt;위키피디아&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://i.stack.imgur.com/HOY4C.png&quot;&gt;&lt;img src=&quot;https://i.stack.imgur.com/HOY4C.png&quot; alt=&quot;메모리 다이어그램&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;그림출처: https://i.stack.imgur.com/HOY4C.png&lt;/small&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;1-실행-흐름&quot;&gt;1 실행 흐름&lt;/h2&gt;
+
+&lt;p&gt;사전에서 프로그램을 찾아 보면, “진행 계획이나 순서, 또는 그 목록”이라 나옵니다. 연주회, 연극등의 편성표를 프로그램이라 하지요. 즉 순서대로 실행되는 일련의 작업 목록을 프로그램이라고 부릅니다.&lt;/p&gt;
+
+&lt;p&gt;그럼, 일반적으로 컴퓨터 프로그램은 어떻게 실행되지는지 살펴볼까요?&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1  &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;      &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;실행 결과는 이렇습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php main.php
+1
+2
+3
+4
+5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;foo()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
+  &lt;li&gt;6번 줄에서 “1”을 출력합니다.&lt;/li&gt;
+  &lt;li&gt;7번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;bar()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
+  &lt;li&gt;12번 줄에서 “2”를 출력합니다.&lt;/li&gt;
+  &lt;li&gt;13번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
+  &lt;li&gt;18번 줄에서 “3”을 출력합니다.&lt;/li&gt;
+  &lt;li&gt;14번 줄에서 “4”를 출력합니다.&lt;/li&gt;
+  &lt;li&gt;8번 줄에서 “5”를 출력합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;어렵지 않죠?&lt;/p&gt;
+
+&lt;h2 id=&quot;2-예외-상황&quot;&gt;2 예외 상황&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수에서 예외를 만들고 결과를 살펴보겠습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1  &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;  
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;      &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'런타임 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'이 라인은 출력되지 않습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php exception.php
+PHP Fatal error:  Uncaught RuntimeException: 런타임 예외가 발생했습니다 &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/exception.php:14
+Stack trace:
+&lt;span class=&quot;c&quot;&gt;#0 /Users/appkr/workspace/stack-trace/php/exception.php(10): baz()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#1 /Users/appkr/workspace/stack-trace/php/exception.php(6): bar()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#2 /Users/appkr/workspace/stack-trace/php/exception.php(3): foo()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#3 {main}&lt;/span&gt;
+  thrown &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/exception.php on line 14
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;스택 트레이스를 하나씩 뜯어 보겠습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;첫 줄을 통해 &lt;code class=&quot;highlighter-rouge&quot;&gt;/Users/appkr/workspace/stack-trace/php/exception.php&lt;/code&gt; 파일의 14번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeException&lt;/code&gt;이 발생했고, 메시지는 &lt;code class=&quot;highlighter-rouge&quot;&gt;런타임 예외가 발생했습니다&lt;/code&gt;라는 사실을 알 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;첫 줄에서 문제의 원인을 알 수 있다면 아래 내용은 읽을 필요가 없습니다.&lt;/li&gt;
+  &lt;li&gt;총 4 개의 스택 프레임이 잡혔는데, 시간 역순으로 기록되어 있습니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#2 exception.php&lt;/code&gt; 3번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;foo()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#1 exception.php&lt;/code&gt; 6번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;bar()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#0 exception.php&lt;/code&gt; 10번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;어떤가요, 1절에서 본 내용과 전혀 다르지 않죠?&lt;/p&gt;
+
+&lt;h2 id=&quot;3-사용자-정의-예외-및-처리&quot;&gt;3 사용자 정의 예외 및 처리&lt;/h2&gt;
+
+&lt;p&gt;시스템에서 제공하는 예외를 그대로 사용하기 보다는, 비즈니스에서 사용하는 보편 언어를 사용하여 의미를 담은 예외를 정의하여 던지는 것이 더 좋은 구현이라고 알려져있습니다. 아래 예제처럼요.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1  &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;  
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;      &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'사용자 정의 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomException&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;     &lt;span class=&quot;nx&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'런타임 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'이 라인은 출력되지 않습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php custom_exception.php
+PHP Fatal error:  Uncaught CustomException: 사용자 정의 예외가 발생했습니다 &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/custom_exception.php:6
+Stack trace:
+&lt;span class=&quot;c&quot;&gt;#0 {main}&lt;/span&gt;
+  thrown &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/custom_exception.php on line 6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그런데 위 스택 트레이스는 문제를 일으킨 근본 원인(Root Cause)이 무엇인지 보이지 않는다는 문제가 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; 블록에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;CustomException&lt;/code&gt;을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1  &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;      &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'사용자 정의 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 생략&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php handle_exception.php
+PHP Fatal error:  Uncaught RuntimeException: 런타임 예외가 발생했습니다 &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/handle_exception.php:20
+Stack trace:
+&lt;span class=&quot;c&quot;&gt;#0 /Users/appkr/workspace/stack-trace/php/handle_exception.php(16): baz()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#1 /Users/appkr/workspace/stack-trace/php/handle_exception.php(12): bar()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#2 /Users/appkr/workspace/stack-trace/php/handle_exception.php(4): foo()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#3 {main}&lt;/span&gt;
+
+Next CustomException: 사용자 정의 예외가 발생했습니다 &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/handle_exception.php:6
+Stack trace:
+&lt;span class=&quot;c&quot;&gt;#0 {main}&lt;/span&gt;
+  thrown &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /Users/appkr/workspace/stack-trace/php/handle_exception.php on line 6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4-현실-세계&quot;&gt;4 현실 세계&lt;/h2&gt;
+
+&lt;p&gt;현실 세계의 코드는 예제처럼 간단하지는 않습니다. 그럼에도 불구하고 다음 두 가지만 기억하면 디버깅할 때 도움이 됩니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;첫 줄&lt;/strong&gt;을 잘 보라.&lt;/li&gt;
+  &lt;li&gt;첫 줄에서 힌트를 찾을 수 없을 때는, 전체 스택 트레이스를 따라가면서 &lt;strong&gt;내가 짠 코드&lt;/strong&gt;에서 원인을 찾아라.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;현실 세계의 예제를 한번 볼까요? 라라벨 프레임워크를 사용하는 프로젝트에서 사용자 인증을 위해 JWT 발급했는데, 사용자가 블랙리스트에 등록된 JWT를 제출한 케이스입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| &lt;span class=&quot;nt&quot;&gt;---------------------------------------&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; |
+| GET /protected_resource                  |
+| Authorization: Bearer ey..OE             |
+|                                          |
+| &amp;lt;&lt;span class=&quot;nt&quot;&gt;---------------------------------------&lt;/span&gt; |
+| 401 Unauthorized                         |
+| &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;                                        |
+|   &lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;UnauthorizedTokenException&quot;&lt;/span&gt;, |
+|   &lt;span class=&quot;s2&quot;&gt;&quot;message&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;Invalid token, please ..&quot;&lt;/span&gt;  |
+| &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;                                        |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /var/www/html/storage/logs/laravel.log&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2019-03-09 23:10:02] local.NOTICE: Tymon&lt;span class=&quot;se&quot;&gt;\J&lt;/span&gt;WTAuth&lt;span class=&quot;se&quot;&gt;\E&lt;/span&gt;xceptions&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;okenBlacklistedException: The token has been blacklisted &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /var/www/html/vendor/tymon/jwt-auth/src/Manager.php:109
+Stack trace:
+&lt;span class=&quot;c&quot;&gt;#0 /var/www/html/vendor/tymon/jwt-auth/src/JWT.php(200): Tymon\JWTAuth\Manager-&amp;gt;decode(Object(Tymon\JWTAuth\Token))&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#1 /var/www/html/vendor/tymon/jwt-auth/src/JWTAuth.php(64): Tymon\JWTAuth\JWT-&amp;gt;getPayload()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#2 /var/www/html/app/Http/Middleware/JWTAuthenticate.php(61): Tymon\JWTAuth\JWTAuth-&amp;gt;authenticate()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#3 /var/www/html/app/Http/Middleware/JWTAuthenticate.php(26): App\Http\Middleware\JWTAuthenticate-&amp;gt;authenticate(Object(Illuminate\Http\Request))&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#4 [internal function]: App\Http\Middleware\JWTAuthenticate-&amp;gt;handle(Object(Illuminate\Http\Request), Object(Closure))&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#...&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#51 {main}&lt;/span&gt;
+
+Next My&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;omain&lt;span class=&quot;se&quot;&gt;\A&lt;/span&gt;uth&lt;span class=&quot;se&quot;&gt;\E&lt;/span&gt;xceptions&lt;span class=&quot;se&quot;&gt;\U&lt;/span&gt;nauthorizedTokenException: Invalid token, please sign &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;again &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /var/www/html/app/Http/Middleware/JWTAuthenticate.php:66
+Stack trace:
+&lt;span class=&quot;c&quot;&gt;#0 /var/www/html/app/Http/Middleware/JWTAuthenticate.php(26): App\Http\Middleware\JWTAuthenticate-&amp;gt;authenticate(Object(Illuminate\Http\Request))&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#...&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#48 {main}  {&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;app_version&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;UNKNOWN&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;instance_id&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;acb25dd1a048&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;transaction_id&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;766ffefe-ac00-47ef-bc68-4cd7553decea&quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&quot;trace_number&quot;&lt;/span&gt;: 0
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;다음의 정보를 얻을 수 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 &lt;code class=&quot;highlighter-rouge&quot;&gt;NOTICE&lt;/code&gt; 레벨의 예외.&lt;/li&gt;
+  &lt;li&gt;블랙리스트 여부를 검사하고 예외를 던진 위치는 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/Manager.php&lt;/code&gt; 파일의 109 줄.&lt;/li&gt;
+  &lt;li&gt;예외가 발생시킨 함수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tymon\JWTAuth\Manager::decode()&lt;/code&gt;이며, 이 함수를 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/JWT.php&lt;/code&gt; 200 줄에서 호출.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;My\Domain\Auth\Exceptions\UnauthorizedTokenException&lt;/code&gt; 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 JSON 예외 응답을 받았을 것.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;h2 id=&quot;5-다른-프로그래밍-언어&quot;&gt;5 다른 프로그래밍 언어&lt;/h2&gt;
+
+&lt;h3 id=&quot;51-java&quot;&gt;5.1 Java&lt;/h3&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomException&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CustomException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Throwable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;          &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;previous&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;      &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;런타임 예외가 발생했습니다&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// System.out.println(&quot;이 라인은 컴파일 오류를 일으킵니다&quot;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RuntimeException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CustomException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;사용자 정의 예외가 발생했습니다&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;javac main.java &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; java main
+Exception &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;thread &lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt; CustomException: 사용자 정의 예외가 발생했습니다
+    at main.main&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main.java:25&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
+    at main.baz&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main.java:17&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    at main.bar&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main.java:13&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    at main.foo&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main.java:9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    at main.main&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main.java:23&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;예외의 근본원인을 &lt;code class=&quot;highlighter-rouge&quot;&gt;Caused by:&lt;/code&gt; 로 표시하는 부분을 제외하면 거의 똑같습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;52-ruby&quot;&gt;5.2 Ruby&lt;/h3&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RuntimeError&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RuntimeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'사용자 정의 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'이 라인은 출력되지 않습니다'&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;    
+&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; 
+&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CustomError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'사용자 정의 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby main.rb
+Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+  	3: from main.rb:18:in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&amp;lt;main&amp;gt;&lt;span class=&quot;s1&quot;&gt;'
+  	2: from main.rb:5:in `foo'&lt;/span&gt;
+  	1: from main.rb:9:in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;bar&lt;span class=&quot;s1&quot;&gt;'
+main.rb:13:in `baz'&lt;/span&gt;: 런타임 예외가 발생했습니다 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RuntimeError&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  	1: from main.rb:17:in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&amp;lt;main&amp;gt;&lt;span class=&quot;s1&quot;&gt;'
+main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 예외가 발생했습니다 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CustomError&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;크게 다르지 않습니다. 다만 시간 역순이 아니라 시간순으로 표현하고 있으며, 예외 메시지를 중간에 찍어 주고 있습니다.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://blog.appkr.kr/learn-n-think/how-to-read-stack-trace/</link>
+        <guid isPermaLink="true">http://blog.appkr.kr/learn-n-think/how-to-read-stack-trace/</guid>
+        
+        <category>Programming</category>
+        
+        
+        <category>learn-n-think</category>
+        
+      </item>
     
       <item>
         <title>appkr.dev로 이전합니다</title>
@@ -2268,36 +2584,6 @@ id  name    SI_DO_NAME
         <category>Laravel</category>
         
         <category>개발자</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>PHP Log Tracking with ELK &amp; Filebeat part#2</title>
-        <description>&lt;p&gt;이 슬라이드는 Modern PHP User Group 2018년 7월 정기 모임 발표 자료입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2018-06-30-img-01.png&quot; alt=&quot;PHP Log Tracking with ELK &amp;amp; Filebeat part#2&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;
-  &lt;div class=&quot;panel-body text-center&quot;&gt;
-    &lt;a href=&quot;https://docs.google.com/presentation/d/1q3RWOF_EOHosMkefP9Uu5DJXcXP6gBE1atit7-pI8ts/edit?usp=sharing&quot;&gt;
-      &lt;i class=&quot;material-icons&quot;&gt;open_in_browser&lt;/i&gt;
-      브라우저에서 슬라이드 열기
-    &lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 30 Jun 2018 00:00:00 +0900</pubDate>
-        <link>http://blog.appkr.kr/work-n-play/php-filebeat-elk-log-tracking/</link>
-        <guid isPermaLink="true">http://blog.appkr.kr/work-n-play/php-filebeat-elk-log-tracking/</guid>
-        
-        <category>개발자</category>
-        
-        <category>ELK</category>
-        
-        <category>Log</category>
         
         
         <category>work-n-play</category>

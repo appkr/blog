@@ -5,13 +5,13 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>http://blog.appkr.kr/</link>
     <atom:link href="http://blog.appkr.kr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 10 Mar 2019 00:54:07 +0900</pubDate>
-    <lastBuildDate>Sun, 10 Mar 2019 00:54:07 +0900</lastBuildDate>
+    <pubDate>Sun, 10 Mar 2019 01:01:47 +0900</pubDate>
+    <lastBuildDate>Sun, 10 Mar 2019 01:01:47 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
         <title>스택 트레이스 읽는 법</title>
-        <description>&lt;p&gt;이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(&lt;a href=&quot;https://en.wikipedia.org/wiki/Stack_trace&quot;&gt;위키피디아&lt;/a&gt;)&lt;/p&gt;
+        <description>&lt;p&gt;이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(&lt;a href=&quot;https://en.wikipedia.org/wiki/Stack_trace&quot;&gt;위키피디아&lt;/a&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://i.stack.imgur.com/HOY4C.png&quot;&gt;&lt;img src=&quot;https://i.stack.imgur.com/HOY4C.png&quot; alt=&quot;메모리 다이어그램&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -227,7 +227,7 @@ Stack trace:
   &lt;li&gt;사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 &lt;code class=&quot;highlighter-rouge&quot;&gt;NOTICE&lt;/code&gt; 레벨의 예외.&lt;/li&gt;
   &lt;li&gt;블랙리스트 여부를 검사하고 예외를 던진 위치는 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/Manager.php&lt;/code&gt; 파일의 109 줄.&lt;/li&gt;
   &lt;li&gt;예외가 발생시킨 함수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tymon\JWTAuth\Manager::decode()&lt;/code&gt;이며, 이 함수를 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/JWT.php&lt;/code&gt; 200 줄에서 호출.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;My\Domain\Auth\Exceptions\UnauthorizedTokenException&lt;/code&gt; 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 JSON 예외 응답을 받았을 것.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;My\Domain\Auth\Exceptions\UnauthorizedTokenException&lt;/code&gt; 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 메시지를 담은 JSON 예외 응답을 받았을 것.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!--more--&gt;
@@ -292,7 +292,7 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
 &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;
 &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RuntimeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'사용자 정의 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RuntimeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'런타임 예외가 발생했습니다'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'이 라인은 출력되지 않습니다'&lt;/span&gt;
 &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt; 

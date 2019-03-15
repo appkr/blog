@@ -165,25 +165,25 @@
 
 <p>그럼, 일반적으로 컴퓨터 프로그램은 어떻게 실행되지는지 살펴볼까요?</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1  <span class="cp">&lt;?php</span>
-<span class="mi">2</span> 
-<span class="mi">3</span>  <span class="nx">foo</span><span class="p">();</span>
-<span class="mi">4</span> 
-<span class="mi">5</span>  <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">6</span>      <span class="k">echo</span> <span class="s1">'1'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-<span class="mi">7</span>      <span class="nx">bar</span><span class="p">();</span>
-<span class="mi">8</span>      <span class="k">echo</span> <span class="s1">'5'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-<span class="mi">9</span>  <span class="p">}</span>
-<span class="mi">10</span>
-<span class="mi">11</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">12</span>     <span class="k">echo</span> <span class="s1">'2'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-<span class="mi">13</span>     <span class="nx">baz</span><span class="p">();</span>
-<span class="mi">14</span>     <span class="k">echo</span> <span class="s1">'4'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-<span class="mi">15</span> <span class="p">}</span>
-<span class="mi">16</span> 
-<span class="mi">17</span> <span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">18</span>     <span class="k">echo</span> <span class="s1">'3'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
-<span class="mi">19</span> <span class="p">}</span>
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">echo</span> <span class="s1">'1'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="nx">bar</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="s1">'5'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">echo</span> <span class="s1">'2'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="nx">baz</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="s1">'4'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">echo</span> <span class="s1">'3'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>실행 결과는 이렇습니다.</p>
@@ -213,22 +213,22 @@
 
 <p><code class="highlighter-rouge">baz()</code> 함수에서 예외를 만들고 결과를 살펴보겠습니다.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1  <span class="cp">&lt;?php</span>
-<span class="mi">2</span>  
-<span class="mi">3</span>  <span class="nx">foo</span><span class="p">();</span>
-<span class="mi">4</span>
-<span class="mi">5</span>  <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">6</span>      <span class="nx">bar</span><span class="p">();</span>
-<span class="mi">7</span>  <span class="p">}</span>
-<span class="mi">8</span>
-<span class="mi">9</span>  <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">10</span>     <span class="nx">baz</span><span class="p">();</span>
-<span class="mi">11</span> <span class="p">}</span>
-<span class="mi">12</span>
-<span class="mi">13</span> <span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">14</span>     <span class="k">throw</span> <span class="k">new</span> <span class="nx">RuntimeException</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">);</span>
-<span class="mi">15</span>     <span class="k">echo</span> <span class="s1">'이 라인은 출력되지 않습니다'</span><span class="p">;</span> 
-<span class="mi">16</span> <span class="p">}</span>
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="nx">baz</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">RuntimeException</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="s1">'이 라인은 출력되지 않습니다'</span><span class="p">;</span> 
+<span class="p">}</span>
 </code></pre></div></div>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php exception.php
@@ -258,28 +258,28 @@ Stack trace:
 
 <p>시스템에서 제공하는 예외를 그대로 사용하기 보다는, 비즈니스에서 사용하는 보편 언어를 사용하여 의미를 담은 예외를 정의하여 던지는 것이 더 좋은 구현이라고 알려져있습니다. 아래 예제처럼요.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1  <span class="cp">&lt;?php</span>
-<span class="mi">2</span>  
-<span class="mi">3</span>  <span class="k">try</span> <span class="p">{</span>
-<span class="mi">4</span>      <span class="nx">foo</span><span class="p">();</span>
-<span class="mi">5</span>  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">RuntimeException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-<span class="mi">6</span>      <span class="k">throw</span> <span class="k">new</span> <span class="nx">CustomException</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">);</span>
-<span class="mi">7</span>  <span class="p">}</span>
-<span class="mi">8</span>
-<span class="mi">9</span>  <span class="k">class</span> <span class="nc">CustomException</span> <span class="k">extends</span> <span class="nx">RuntimeException</span> <span class="p">{}</span>
-<span class="mi">10</span>
-<span class="mi">11</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">12</span>     <span class="nx">bar</span><span class="p">();</span>
-<span class="mi">13</span> <span class="p">}</span>
-<span class="mi">14</span>
-<span class="mi">15</span> <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">16</span>     <span class="nx">baz</span><span class="p">();</span>
-<span class="mi">17</span> <span class="p">}</span>
-<span class="mi">18</span>
-<span class="mi">19</span> <span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
-<span class="mi">20</span>     <span class="k">throw</span> <span class="k">new</span> <span class="nx">RuntimeException</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">);</span>
-<span class="mi">21</span>     <span class="k">echo</span> <span class="s1">'이 라인은 출력되지 않습니다'</span><span class="p">;</span> 
-<span class="mi">22</span> <span class="p">}</span>
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nx">foo</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">RuntimeException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">CustomException</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">CustomException</span> <span class="k">extends</span> <span class="nx">RuntimeException</span> <span class="p">{}</span>
+
+<span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="nx">baz</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">RuntimeException</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="s1">'이 라인은 출력되지 않습니다'</span><span class="p">;</span> 
+<span class="p">}</span>
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php custom_exception.php
 PHP Fatal error:  Uncaught CustomException: 사용자 정의 예외가 발생했습니다 <span class="k">in</span> /Users/appkr/workspace/stack-trace/php/custom_exception.php:6
@@ -292,14 +292,14 @@ Stack trace:
 
 <p><code class="highlighter-rouge">catch</code> 블록에서 <code class="highlighter-rouge">CustomException</code>을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1  <span class="cp">&lt;?php</span>
-<span class="mi">2</span>
-<span class="mi">3</span>  <span class="k">try</span> <span class="p">{</span>
-<span class="mi">4</span>      <span class="nx">foo</span><span class="p">();</span>
-<span class="mi">5</span>  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">RuntimeException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-<span class="mi">6</span>      <span class="k">throw</span> <span class="k">new</span> <span class="nx">CustomException</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nv">$e</span><span class="p">);</span>
-<span class="mi">7</span>  <span class="p">}</span>
-<span class="mi">8</span>  <span class="c1">// 생략</span>
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nx">foo</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">RuntimeException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">CustomException</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nv">$e</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 생략</span>
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php handle_exception.php
 PHP Fatal error:  Uncaught RuntimeException: 런타임 예외가 발생했습니다 <span class="k">in</span> /Users/appkr/workspace/stack-trace/php/handle_exception.php:20
@@ -376,34 +376,34 @@ Stack trace:
 
 <h3 id="51-java">5.1 Java</h3>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span>  <span class="kd">class</span> <span class="nc">CustomException</span> <span class="kd">extends</span> <span class="n">RuntimeException</span> <span class="o">{</span>
-<span class="mi">2</span>      <span class="kd">public</span> <span class="nf">CustomException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">previous</span><span class="o">)</span> <span class="o">{</span>
-<span class="mi">3</span>          <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">previous</span><span class="o">);</span>
-<span class="mi">4</span>      <span class="o">}</span>
-<span class="mi">5</span>  <span class="o">}</span>
-<span class="mi">6</span> 
-<span class="mi">7</span>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">main</span> <span class="o">{</span>
-<span class="mi">8</span>      <span class="kd">static</span> <span class="kt">void</span> <span class="nf">foo</span><span class="o">()</span> <span class="o">{</span>
-<span class="mi">9</span>          <span class="n">bar</span><span class="o">();</span>
-<span class="mi">10</span>     <span class="o">}</span>
-<span class="mi">11</span>
-<span class="mi">12</span>     <span class="kd">static</span> <span class="kt">void</span> <span class="nf">bar</span><span class="o">()</span> <span class="o">{</span>
-<span class="mi">13</span>         <span class="n">baz</span><span class="o">();</span>
-<span class="mi">14</span>     <span class="o">}</span>
-<span class="mi">15</span>
-<span class="mi">16</span>     <span class="kd">static</span> <span class="kt">void</span> <span class="nf">baz</span><span class="o">()</span> <span class="o">{</span>
-<span class="mi">17</span>         <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">"런타임 예외가 발생했습니다"</span><span class="o">);</span>
-<span class="mi">18</span>         <span class="c1">// System.out.println("이 라인은 컴파일 오류를 일으킵니다");</span>
-<span class="mi">19</span>     <span class="o">}</span>
-<span class="mi">20</span> 
-<span class="mi">21</span>     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-<span class="mi">22</span>         <span class="k">try</span> <span class="o">{</span>
-<span class="mi">23</span>             <span class="n">foo</span><span class="o">();</span>
-<span class="mi">24</span>         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-<span class="mi">25</span>             <span class="k">throw</span> <span class="k">new</span> <span class="n">CustomException</span><span class="o">(</span><span class="s">"사용자 정의 예외가 발생했습니다"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-<span class="mi">26</span>         <span class="o">}</span>
-<span class="mi">27</span>     <span class="o">}</span>
-<span class="mi">28</span> <span class="o">}</span>
+<div class="language-java linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomException</span> <span class="kd">extends</span> <span class="n">RuntimeException</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">CustomException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">previous</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">previous</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">main</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">foo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">bar</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">bar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">baz</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">baz</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"런타임 예외가 발생했습니다"</span><span class="o">);</span>
+        <span class="c1">// System.out.println("이 라인은 컴파일 오류를 일으킵니다");</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">foo</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">CustomException</span><span class="o">(</span><span class="s">"사용자 정의 예외가 발생했습니다"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>javac main.java <span class="o">&amp;&amp;</span> java main
 Exception <span class="k">in </span>thread <span class="s2">"main"</span> CustomException: 사용자 정의 예외가 발생했습니다
@@ -419,27 +419,27 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
 
 <h3 id="52-ruby">5.2 Ruby</h3>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span>  <span class="k">class</span> <span class="nc">CustomError</span> <span class="o">&lt;</span> <span class="no">RuntimeError</span>
-<span class="mi">2</span>  <span class="k">end</span>
-<span class="mi">3</span> 
-<span class="mi">4</span>  <span class="k">def</span> <span class="nf">foo</span><span class="p">()</span>
-<span class="mi">5</span>      <span class="n">bar</span><span class="p">()</span>
-<span class="mi">6</span>  <span class="k">end</span>
-<span class="mi">7</span>
-<span class="mi">8</span>  <span class="k">def</span> <span class="nf">bar</span><span class="p">()</span>
-<span class="mi">9</span>      <span class="n">baz</span><span class="p">()</span>
-<span class="mi">10</span> <span class="k">end</span>
-<span class="mi">11</span>
-<span class="mi">12</span> <span class="k">def</span> <span class="nf">baz</span><span class="p">()</span>
-<span class="mi">13</span>     <span class="k">raise</span> <span class="no">RuntimeError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">)</span>
-<span class="mi">14</span>     <span class="nb">p</span> <span class="s1">'이 라인은 출력되지 않습니다'</span>
-<span class="mi">15</span> <span class="k">end</span>
-<span class="mi">16</span> 
-<span class="mi">17</span> <span class="k">begin</span>
-<span class="mi">18</span>     <span class="n">foo</span><span class="p">()</span>    
-<span class="mi">19</span> <span class="k">rescue</span> 
-<span class="mi">20</span>     <span class="k">raise</span> <span class="no">CustomError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">)</span>
-<span class="mi">21</span> <span class="k">end</span>
+<div class="language-ruby linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomError</span> <span class="o">&lt;</span> <span class="no">RuntimeError</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">()</span>
+    <span class="n">bar</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">bar</span><span class="p">()</span>
+    <span class="n">baz</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">baz</span><span class="p">()</span>
+    <span class="k">raise</span> <span class="no">RuntimeError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'런타임 예외가 발생했습니다'</span><span class="p">)</span>
+    <span class="nb">p</span> <span class="s1">'이 라인은 출력되지 않습니다'</span>
+<span class="k">end</span>
+
+<span class="k">begin</span>
+    <span class="n">foo</span><span class="p">()</span>    
+<span class="k">rescue</span> 
+    <span class="k">raise</span> <span class="no">CustomError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">)</span>
+<span class="k">end</span>
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ruby main.rb
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:

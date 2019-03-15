@@ -24,26 +24,27 @@ image: https://i.stack.imgur.com/HOY4C.png
 
 그럼, 일반적으로 컴퓨터 프로그램은 어떻게 실행되지는지 살펴볼까요?
 
+{:.linenos}
 ```php
-1  <?php
-2 
-3  foo();
-4 
-5  function foo() { 
-6      echo '1', PHP_EOL;
-7      bar();
-8      echo '5', PHP_EOL;
-9  }
-10
-11 function bar() { 
-12     echo '2', PHP_EOL;
-13     baz();
-14     echo '4', PHP_EOL;
-15 }
-16 
-17 function baz() { 
-18     echo '3', PHP_EOL;
-19 }
+<?php
+
+foo();
+
+function foo() { 
+    echo '1', PHP_EOL;
+    bar();
+    echo '5', PHP_EOL;
+}
+
+function bar() { 
+    echo '2', PHP_EOL;
+    baz();
+    echo '4', PHP_EOL;
+}
+
+function baz() { 
+    echo '3', PHP_EOL;
+}
 ```
 
 실행 결과는 이렇습니다.
@@ -72,23 +73,24 @@ $ php main.php
 
 `baz()` 함수에서 예외를 만들고 결과를 살펴보겠습니다.
 
+{:.linenos}
 ```php
-1  <?php
-2  
-3  foo();
-4
-5  function foo() { 
-6      bar();
-7  }
-8
-9  function bar() { 
-10     baz();
-11 }
-12
-13 function baz() { 
-14     throw new RuntimeException('런타임 예외가 발생했습니다');
-15     echo '이 라인은 출력되지 않습니다'; 
-16 }
+<?php
+
+foo();
+
+function foo() { 
+    bar();
+}
+
+function bar() { 
+    baz();
+}
+
+function baz() { 
+    throw new RuntimeException('런타임 예외가 발생했습니다');
+    echo '이 라인은 출력되지 않습니다'; 
+}
 ```
 
 ```bash
@@ -117,29 +119,30 @@ Stack trace:
 
 시스템에서 제공하는 예외를 그대로 사용하기 보다는, 비즈니스에서 사용하는 보편 언어를 사용하여 의미를 담은 예외를 정의하여 던지는 것이 더 좋은 구현이라고 알려져있습니다. 아래 예제처럼요.
 
+{:.linenos}
 ```php
-1  <?php
-2  
-3  try {
-4      foo();
-5  } catch (RuntimeException $e) {
-6      throw new CustomException('사용자 정의 예외가 발생했습니다');
-7  }
-8
-9  class CustomException extends RuntimeException {}
-10
-11 function foo() { 
-12     bar();
-13 }
-14
-15 function bar() { 
-16     baz();
-17 }
-18
-19 function baz() { 
-20     throw new RuntimeException('런타임 예외가 발생했습니다');
-21     echo '이 라인은 출력되지 않습니다'; 
-22 }
+<?php
+
+try {
+    foo();
+} catch (RuntimeException $e) {
+    throw new CustomException('사용자 정의 예외가 발생했습니다');
+}
+
+class CustomException extends RuntimeException {}
+
+function foo() { 
+    bar();
+}
+
+function bar() { 
+    baz();
+}
+
+function baz() { 
+    throw new RuntimeException('런타임 예외가 발생했습니다');
+    echo '이 라인은 출력되지 않습니다'; 
+}
 ```
 ```bash
 $ php custom_exception.php
@@ -153,15 +156,16 @@ Stack trace:
 
 `catch` 블록에서 `CustomException`을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.
 
+{:.linenos}
 ```php
-1  <?php
-2
-3  try {
-4      foo();
-5  } catch (RuntimeException $e) {
-6      throw new CustomException('사용자 정의 예외가 발생했습니다', null, $e);
-7  }
-8  // 생략
+<?php
+
+try {
+    foo();
+} catch (RuntimeException $e) {
+    throw new CustomException('사용자 정의 예외가 발생했습니다', null, $e);
+}
+// 생략
 ```
 ```bash
 $ php handle_exception.php
@@ -237,35 +241,36 @@ Stack trace:
 
 ### 5.1 Java
 
+{:.linenos}
 ```java
-1  class CustomException extends RuntimeException {
-2      public CustomException(String message, Throwable previous) {
-3          super(message, previous);
-4      }
-5  }
-6 
-7  public class main {
-8      static void foo() {
-9          bar();
-10     }
-11
-12     static void bar() {
-13         baz();
-14     }
-15
-16     static void baz() {
-17         throw new RuntimeException("런타임 예외가 발생했습니다");
-18         // System.out.println("이 라인은 컴파일 오류를 일으킵니다");
-19     }
-20 
-21     public static void main(String[] args) {
-22         try {
-23             foo();
-24         } catch (RuntimeException e) {
-25             throw new CustomException("사용자 정의 예외가 발생했습니다", e);
-26         }
-27     }
-28 }
+class CustomException extends RuntimeException {
+    public CustomException(String message, Throwable previous) {
+        super(message, previous);
+    }
+}
+
+public class main {
+    static void foo() {
+        bar();
+    }
+
+    static void bar() {
+        baz();
+    }
+
+    static void baz() {
+        throw new RuntimeException("런타임 예외가 발생했습니다");
+        // System.out.println("이 라인은 컴파일 오류를 일으킵니다");
+    }
+
+    public static void main(String[] args) {
+        try {
+            foo();
+        } catch (RuntimeException e) {
+            throw new CustomException("사용자 정의 예외가 발생했습니다", e);
+        }
+    }
+}
 ```
 ```bash
 $ javac main.java && java main
@@ -282,28 +287,29 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
 
 ### 5.2 Ruby
 
+{:.linenos}
 ```ruby
-1  class CustomError < RuntimeError
-2  end
-3 
-4  def foo()
-5      bar()
-6  end
-7
-8  def bar()
-9      baz()
-10 end
-11
-12 def baz()
-13     raise RuntimeError.new('런타임 예외가 발생했습니다')
-14     p '이 라인은 출력되지 않습니다'
-15 end
-16 
-17 begin
-18     foo()    
-19 rescue 
-20     raise CustomError.new('사용자 정의 예외가 발생했습니다')
-21 end
+class CustomError < RuntimeError
+end
+
+def foo()
+    bar()
+end
+
+def bar()
+    baz()
+end
+
+def baz()
+    raise RuntimeError.new('런타임 예외가 발생했습니다')
+    p '이 라인은 출력되지 않습니다'
+end
+
+begin
+    foo()    
+rescue 
+    raise CustomError.new('사용자 정의 예외가 발생했습니다')
+end
 ```
 ```bash
 $ ruby main.rb

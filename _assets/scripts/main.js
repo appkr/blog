@@ -158,7 +158,7 @@
     };
 
     try {
-      var blocks = document.querySelectorAll('.linenos>pre>code');
+      var blocks = document.querySelectorAll('.linenos pre>code');
 
       for (var i in blocks) {
         if (blocks.hasOwnProperty(i)) {

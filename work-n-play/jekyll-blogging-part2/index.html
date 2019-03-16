@@ -16,12 +16,12 @@
   <meta property="og:title" content="블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
-  <meta property="og:image" content="//blog.appkr.kr/images/2016-02-10-img-01.png"/>
+  <meta property="og:image" content="//blog.appkr.dev/images/2016-02-10-img-01.png"/>
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content="블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll">
   <meta itemprop="description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &...">
-  <meta itemprop="image" content="//blog.appkr.kr/images/2016-02-10-img-01.png">
+  <meta itemprop="image" content="//blog.appkr.dev/images/2016-02-10-img-01.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
@@ -29,12 +29,12 @@
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content="블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" />
   <meta name="twitter:description" content="Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.  개발자로서의 새로운 삶  Goodbye Wordpress, Hello Jekyll  Publishing  Build Automation with Gulp  Disqus &..." />
-  <meta name="twitter:image" content="//blog.appkr.kr/images/2016-02-10-img-01.png" />
+  <meta name="twitter:image" content="//blog.appkr.dev/images/2016-02-10-img-01.png" />
   <meta name="twitter:domain" content="blog.appkr.kr">
 
   <!-- Mobile and Rss -->
-  <link rel="canonical" href="http://blog.appkr.kr/work-n-play/jekyll-blogging-part2/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="http://blog.appkr.kr/feed.xml"/>
+  <link rel="canonical" href="//blog.appkr.dev/work-n-play/jekyll-blogging-part2/"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Life)" href="//blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -103,17 +103,17 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.appkr.kr/work-n-play/jekyll-blogging-part2/&title=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" id="sns-facebook">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=//blog.appkr.dev/work-n-play/jekyll-blogging-part2/&title=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" id="sns-facebook">
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="http://twitter.com/share?url=http://blog.appkr.kr/work-n-play/jekyll-blogging-part2/&title=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll&text=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" id="sns-twitter">
+                <a href="http://twitter.com/share?url=//blog.appkr.dev/work-n-play/jekyll-blogging-part2/&title=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll&text=블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll" id="sns-twitter">
                   Twitter
                 </a>
               </li>
               <li>
-                <a href="https://plus.google.com/share?url=http://blog.appkr.kr/work-n-play/jekyll-blogging-part2/" id="sns-google">
+                <a href="https://plus.google.com/share?url=//blog.appkr.dev/work-n-play/jekyll-blogging-part2/" id="sns-google">
                   Google+
                 </a>
               </li>
@@ -289,7 +289,7 @@ layout: default
 ├── .gitignore
 ├── _config.yml                       <span class="c"># Jekyll 설정</span>
 ├── bower.json                        <span class="c"># Bower package definition</span>
-├── CNAME                             <span class="c"># blog.appkr.kr 도메인을 쓰기 위한 도메인 별칭 설정 파일</span>
+├── CNAME                             <span class="c"># blog.appkr.dev 도메인을 쓰기 위한 도메인 별칭 설정 파일</span>
 ├── feed.xml                          <span class="c"># Rss 피드 페이지</span>
 ├── gulpfile.babel.js                 <span class="c"># Gulp build 자동화 스크립트</span>
 ├── index.html                        <span class="c"># 대문 페이지</span>
@@ -312,7 +312,7 @@ layout: default
 
 <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">appkr's</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">day-to-day</span><span class="nv"> </span><span class="s">life</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">thoughts."</span>
 <span class="na">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># the subpath of your site, e.g. /blog</span>
-<span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://blog.appkr.kr"</span> <span class="c1"># the base hostname &amp; protocol for your site</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://blog.appkr.dev"</span> <span class="c1"># the base hostname &amp; protocol for your site</span>
 
 <span class="na">excerpt_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
 

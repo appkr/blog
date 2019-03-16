@@ -8,7 +8,7 @@ tags:
 - Facebook
 - Streaming
 - 개발자
-image: http://blog.appkr.kr/images/2016-07-21-img-06.png
+image: http://blog.appkr.dev/images/2016-07-21-img-06.png
 ---
 
 최근 페이스북에 추가된 훌륭한 기능 중에 하나가 '라이브'다. 그런데 모바일 페이스북에서만 가능하고, 데스크탑의 브라우저를 통해 접속한 페이스북에서는 불가능한다. 이 포스트에서는 데스크탑 스크린을 페이스북을 통해 라이브 스트리밍하는 방법을 다룬다. 라이브 코딩 등의 목적으로 활용하면 좋을 듯 하다.
@@ -42,7 +42,7 @@ $ brew cask install obs --appdir=/Applications
 
 #### 1.2.1. 개발자가 아니라면
 
-1.2.2. 절은 그냥 무시하라. 이 블로그에 만들어 놓은 [Facebook Live Streaming Starter](http://blog.appkr.kr/live/)에서 <kbd>Create Live Stream To Facebook</kbd> 버튼을 이용하면 된다.
+1.2.2. 절은 그냥 무시하라. 이 블로그에 만들어 놓은 [Facebook Live Streaming Starter](http://blog.appkr.dev/live/)에서 <kbd>Create Live Stream To Facebook</kbd> 버튼을 이용하면 된다.
 
 #### 1.2.2. 개발자라면
 

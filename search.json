@@ -9,6 +9,14 @@
   },
   
   {
+    "title"    : "Running PHP Service on AWS ElasticBeanstalk",
+    "category" : "work-n-play",
+    "tags"     : "AWS, DevOps",
+    "url"      : "/work-n-play/running-php-service-on-aws-elasticbeanstalk/",
+    "date"     : "2019-03-06"
+  },
+  
+  {
     "title"    : "appkr.dev로 이전합니다",
     "category" : "work-n-play",
     "tags"     : "",

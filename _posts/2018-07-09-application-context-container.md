@@ -7,7 +7,7 @@ categories:
 tags:
 - Laravel
 - 개발자
-image: //blog.appkr.kr/images/2018-07-09-img-01.png
+image: //blog.appkr.dev/images/2018-07-09-img-01.png
 ---
 
 사전에서 context(컨텍스트)를 찾아보면 어떤 사건이 발생했을 때의 주변 상황 정도로 설명하고 있습니다. 컴퓨터 소프트웨어에서도 컨텍스트 스위칭, 로그 컨텍스트, 애플리케이션 컨텍스트 등 컨텍스트라는 단어를 많이 사용합니다.

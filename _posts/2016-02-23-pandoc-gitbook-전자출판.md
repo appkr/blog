@@ -6,7 +6,7 @@ categories:
 - work-n-play
 tags:
 - 개발자
-image: //blog.appkr.kr/images/2016-02-23-img-02.png
+image: //blog.appkr.dev/images/2016-02-23-img-02.png
 ---
 
 Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.
@@ -86,7 +86,7 @@ This note demonstrates some of what [Markdown][1] is capable of doing.
 - Yet another item
 - And there's more...
 
-[^1]: Another Item_ http://blog.appkr.kr 
+[^1]: Another Item_ http://blog.appkr.dev 
 ```
 
 `README.md` 와 `SUMMARY.md` 2개의 파일은 Gitbook Mandatory 이므로 꼭 만들어 주어야 한다. (프로젝트 루트에 만든다.)

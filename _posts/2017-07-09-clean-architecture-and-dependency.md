@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - 아키텍처
-image: //blog.appkr.kr/images/2017-07-09-img-01.png
+image: //blog.appkr.dev/images/2017-07-09-img-01.png
 ---
 
 이 글은 그간 내가 짠 코드에 대한 반성이며, 앞으로 더 잘 만들겠다는 약속이며, 이런 실수를 하지 말라는 계몽이기도합니다. 

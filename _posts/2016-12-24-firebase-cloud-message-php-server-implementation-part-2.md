@@ -8,7 +8,7 @@ tags:
   - 개발자
   - Laravel
   - PHP
-image: //blog.appkr.kr/images/images/2016-12-24-img-01.png
+image: //blog.appkr.dev/images/images/2016-12-24-img-01.png
 ---
 
 <div class="panel panel-default">

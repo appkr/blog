@@ -8,7 +8,7 @@ categories:
 tags:
 - 개발자
 - Jekyll
-image: //blog.appkr.kr/images/2016-02-10-img-01.png
+image: //blog.appkr.dev/images/2016-02-10-img-01.png
 ---
 Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.
 
@@ -144,7 +144,7 @@ layout: default
 ├── .gitignore
 ├── _config.yml                       # Jekyll 설정
 ├── bower.json                        # Bower package definition
-├── CNAME                             # blog.appkr.kr 도메인을 쓰기 위한 도메인 별칭 설정 파일
+├── CNAME                             # blog.appkr.dev 도메인을 쓰기 위한 도메인 별칭 설정 파일
 ├── feed.xml                          # Rss 피드 페이지
 ├── gulpfile.babel.js                 # Gulp build 자동화 스크립트
 ├── index.html                        # 대문 페이지
@@ -168,7 +168,7 @@ title: "Appkr.memo(new Life)"
 
 description: "appkr's blog to record day-to-day life & thoughts."
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.appkr.kr" # the base hostname & protocol for your site
+url: "http://blog.appkr.dev" # the base hostname & protocol for your site
 
 excerpt_separator: <!--more-->
 

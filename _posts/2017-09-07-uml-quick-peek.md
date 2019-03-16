@@ -8,7 +8,7 @@ tags:
 - 개발자
 - UML
 - OOP
-image: //blog.appkr.kr/images/2017-09-07-img-01.png
+image: //blog.appkr.dev/images/2017-09-07-img-01.png
 ---
 
 이 슬라이드는 Modern PHP User Group 2017년 9월 정기 모임 (벼락치기 땜빵) 발표 자료입니다.

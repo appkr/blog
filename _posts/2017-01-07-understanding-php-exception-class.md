@@ -207,8 +207,8 @@ string(24) "InvalidArgumentException"
 -   `foo()` 함수는 문자열 `'string'`을 인자로 받았으므로, `if (is_int($arg) === false) {...}` 부분에 걸려 `InvalidArgumentException`을 던진다. 프로그램의 실행 제어 측면에서 `throw` 키워드는 해당 블록에서 `throw` 다음 문장을 실행하지 않는다는 점에서 `return`과 같다.
 -   `foo()` 함수에서 던진 예외는 `catch (Throwable $e) {...}`에서 잡는다. 예외를 잡을 때는 잡을 예외 별로 `catch` 블록을 쓸 수 있다. 우리 예제에서는 `Throwable`이란 녀석을 전부 잡겠다고 선언하고 있는데, 이는 PHP 7이상의 기능으로 모든 예외와 모든 오류를 전부 잡겠다는 의미다.
 -   우리의 `catch` 블록에서는 잡은 예외 객체가 제공하는 다양한 메서드를 보여주고 있다. 즉, 이 예외 메서드들을 이용하여 로깅을 하거나 슬랙을 보내는 등의 예외 처리를 할 수 있다. 해당 내용은 다음 포스트를 참고 하시기 바란다. 
-    -   [Monolog를 이용한 애플리케이션 로깅](//blog.appkr.kr/work-n-play/php-application-logging-to-elasticsearch-using-monolog/)
-    -   [엄청나게 빠른 버그 감지, 디버그, 코드 배포](//blog.appkr.kr/work-n-play/super-fast-debug-deploy/)
+    -   [Monolog를 이용한 애플리케이션 로깅](/work-n-play/php-application-logging-to-elasticsearch-using-monolog/)
+    -   [엄청나게 빠른 버그 감지, 디버그, 코드 배포](/work-n-play/super-fast-debug-deploy/)
 -   예외 처리를 끝내고 다시 예외를 던질 수도 있는데, 이때는 `try {...} catch {...}` 블록 밖으로 예외를 던지는 것이고, 이 녀석을 다시 잡는 부분이 없으므로, 코드 시작 부분에 등록한 전역 예외 처리기(`exception_handler()`) 함수가 작동한다. 전역 예외 처리기에서 `getPrevious()` 메서드를 이용해서 예외 발생의 선후 관계를 확인할 수 있다는 점을 유심히 봐두기 바란다. 실무에서 디버깅할 때 엄청난 도움이 될 수 있다.
 -   `finally {}` 블록 안의 내용은 예외가 발생하든 하지 않든 무조건 실행된다.
 -   `catch` 블록에서 예외를 다시 던졌으므로, 그 이하의 내용, 즉 마지막 문장은 실행되지 않는다.

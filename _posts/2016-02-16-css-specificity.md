@@ -13,7 +13,7 @@ speci.., specifif..., speficyfyf..., specificificfy... what?
 
 ## CSS Specificity
 
-[*|spesɪ|fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. [블로그 플랫폼 이전 3 - Publishing](//blog.appkr.kr/work-n-play/블로그-플랫폼-이전-3-publishing/#삽질) 포스트에서 twbs 클래스들을 오버라이드하는 과정에서 잘못 이해한 것을, 실험을 통해 배우고 고쳐서 정리해 놓는다. 
+[*|spesɪ|fɪsəti*, 스페시피서티, CSS 적용 우선 순위]. [블로그 플랫폼 이전 3 - Publishing](//blog.appkr.dev/work-n-play/블로그-플랫폼-이전-3-publishing/#삽질) 포스트에서 twbs 클래스들을 오버라이드하는 과정에서 잘못 이해한 것을, 실험을 통해 배우고 고쳐서 정리해 놓는다. 
 
 ## Test
 

@@ -7,7 +7,7 @@ categories:
 tags:
 - 개발자
 - 프로세스
-image: //blog.appkr.kr/images/2017-08-20-agile-01.jpg
+image: //blog.appkr.dev/images/2017-08-20-agile-01.jpg
 ---
 
 ![](/images/2017-08-20-agile-01.jpg)

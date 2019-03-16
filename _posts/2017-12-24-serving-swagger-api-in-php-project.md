@@ -9,7 +9,7 @@ tags:
 - Swagger
 - API
 - PHP
-image: //blog.appkr.kr/images/2017-12-24-img-01_swagger-logo.png
+image: //blog.appkr.dev/images/2017-12-24-img-01_swagger-logo.png
 ---
 
 <img src="/images/2017-12-24-img-01_swagger-logo.png" style="width:200px">

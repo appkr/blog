@@ -8,7 +8,7 @@ tags:
 - Laravel
 - OOP
 - DDD
-image: //blog.appkr.kr/images/2019-02-08-img-01.png
+image: //blog.appkr.dev/images/2019-02-08-img-01.png
 ---
 
 [지난 포스트](/work-n-play/how-to-use-value-object-in-laravel-eloquent/)에 이어서, 이번 포스트에서 두번째 세번째 방법을 설명합니다.

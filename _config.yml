@@ -14,7 +14,7 @@ title: "Appkr.memo(new Life)"
 
 description: "appkr's blog to record day-to-day life & thoughts."
 baseurl: ""
-url: "//blog.appkr.dev"
+url: "https://blog.appkr.dev"
 
 excerpt_separator: <!--more-->
 

@@ -1,1 +1,1 @@
-Sitemap: //blog.appkr.dev/sitemap.xml
+Sitemap: https://blog.appkr.dev/sitemap.xml

@@ -16,14 +16,13 @@
         gapi.client.init({
             apiKey: 'AIzaSyDMAkSX2jglP4hjSJDbYd2JrrjIGAnQoaM',
             discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-            clientId: '275095003584-tb8oogauosjkvp9cebpis0qemr22mkr8.apps.googleusercontent.com',
-            scope: 'https://www.googleapis.com/auth/youtube',
         }).then(function() {
-            return gapi.client.youtube.liveBroadcasts.list({
-                part: 'id%2Csnippet',
-                broadcastType: 'all',
-                mine: true,
-                fields: 'items(contentDetails%2Cid%2Csnippet)'
+            return gapi.client.youtube.search.list({
+                part: 'id,snippet',
+                channelId: 'UC6dl9UkHuEWtD1QZUnvCiEw',
+                maxResults: 3,
+                order: 'date',
+                fields: 'items(id/videoId,snippet(publishedAt,title))'
             });
         }).then(function(response) {
             console.log(response.result);

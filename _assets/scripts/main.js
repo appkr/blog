@@ -386,12 +386,6 @@ var compile = function(template, collection) {
     if (/_/g.test(item.id)) {
       item.id = item.id.split('_')[1];
     }
-    if (undefined === item.created_time && undefined !== item.created_at) {
-      item.created_time = item.created_at;
-    }
-    if (undefined === item.message && undefined !== item.description) {
-      item.message = item.description;
-    }
 
     markup += template
       .replace(/{\s?id\s?}/ig, item.id)
@@ -425,6 +419,30 @@ window.fbAsyncInit = function() {
   });
 };
 
+/* Render Youtube Video List */
+(function() {
+  var youtubeListContainer = $('ul#youtube-list');
+  var youtubeListTemplate = $.trim($('#youtube-list-template').html());
+
+  $.ajax({
+    url: 'https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&channelId=UC6dl9UkHuEWtD1QZUnvCiEw&maxResults=3&order=date&fields=items(id%2FvideoId%2Csnippet(publishedAt%2Ctitle))&key=AIzaSyDMAkSX2jglP4hjSJDbYd2JrrjIGAnQoaM',
+    type: 'GET'
+  }).done(function(response) {
+    var collection = [];
+    $.each(response.items, function(index, item) {
+      collection.push({
+        id: item.id.videoId,
+        message: item.snippet.title,
+        created_time: item.snippet.publishedAt
+      });
+    });
+
+    youtubeListContainer.append(compile(youtubeListTemplate, collection));
+  }).fail(function(xhr, status) {
+    youtubeListContainer.html('<li>Some error :(</li>');
+  });
+})();
+
 /* Render Gists List */
 (function() {
   var gistListContainer = $('ul#gist-list');
@@ -437,7 +455,16 @@ window.fbAsyncInit = function() {
       xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
     }
   }).done(function(response) {
-    gistListContainer.append(compile(gistListTemplate, response));
+    var collection = [];
+    $.each(response, function(index, item) {
+      collection.push({
+        id: item.id,
+        message: item.description,
+        created_time: item.created_at
+      });
+    });
+
+    gistListContainer.append(compile(gistListTemplate, collection));
   }).fail(function(xhr, status) {
     gistListContainer.html('<li>Some error :(</li>');
   });

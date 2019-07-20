@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "근황",
+    "category" : "work-n-play",
+    "tags"     : "",
+    "url"      : "/work-n-play/youtube/",
+    "date"     : "2019-07-21"
+  },
+  
+  {
     "title"    : "스택 트레이스 읽는 법",
     "category" : "learn-n-think",
     "tags"     : "Programming",

@@ -5,9 +5,22 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Jul 2019 01:55:18 +0900</pubDate>
-    <lastBuildDate>Sun, 21 Jul 2019 01:55:18 +0900</lastBuildDate>
+    <pubDate>Sun, 21 Jul 2019 02:07:51 +0900</pubDate>
+    <lastBuildDate>Sun, 21 Jul 2019 02:07:51 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>근황</title>
+        <description>&lt;p&gt;유튜브로 라이브 코딩 방송을 하면서부터 블로그는 소홀해졌습니다. 블로그에 &lt;strong&gt;Youtube Video&lt;/strong&gt; 라는 사이드바 콤포넌트를 붙이려고 오랜만에 블로그 코드를 열었다가 몇 글자 끄적여 봅니다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 21 Jul 2019 00:00:00 +0900</pubDate>
+        <link>https://blog.appkr.dev/work-n-play/youtube/</link>
+        <guid isPermaLink="true">https://blog.appkr.dev/work-n-play/youtube/</guid>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>스택 트레이스 읽는 법</title>
@@ -2167,148 +2180,6 @@ id  name    SI_DO_NAME
         
         
         <category>learn-n-think</category>
-        
-      </item>
-    
-      <item>
-        <title>Linux &quot;top&quot; cheatsheet</title>
-        <description>&lt;p&gt;보통 개발용 컴퓨터에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;htop&lt;/code&gt;처럼 좀 더 편리한 프로세스 모니터 도구를 사용하지만, 운영 서버에는 서비스에 불필요한 바이너리는 설치하지 않는게 좋죠. 해서, 특히 서비스 장애와 같이 급박한 상황에 운영 서버에 SSH in 해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;을 이용하려면 바보가 된 느낌을 종종 받습니다.&lt;/p&gt;
-
-&lt;p&gt;이 포스트에서는 바닐라 리눅스 환경에서 사용 빈도가 높은 &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt; 사용법만 정리해봤습니다. 우분투 16.04를 사용했는데요, &lt;del&gt;CentOS도 같을 거라 생각합니다&lt;/del&gt; CentOS는 조금 다릅니다, 댓글로 남깁니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/issue
-&lt;span class=&quot;c&quot;&gt;# Ubuntu 16.04.3 LTS \n \l&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;top
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;전체-요약&quot;&gt;전체 요약&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Help
-    &lt;ul&gt;
-      &lt;li&gt;&lt;kbd&gt;h&lt;/kbd&gt;: 도움말&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Display
-    &lt;ul&gt;
-      &lt;li&gt;&lt;kbd&gt;Z&lt;/kbd&gt;: 칼라 설정&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;t&lt;/kbd&gt;: CPU 통계 뷰 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;m&lt;/kbd&gt;: 메모리 통계 뷰 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;0&lt;/kbd&gt;: Zero value(0) 뷰 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;b&lt;/kbd&gt;: 하이라이트 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;x&lt;/kbd&gt;: 활성 필드 표시 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;y&lt;/kbd&gt;: 활성 프로세스 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;c&lt;/kbd&gt;: 커맨드 상세 표시 토글&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;V&lt;/kbd&gt;: 프로세스간 부모/자식 관계 표시&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Action
-    &lt;ul&gt;
-      &lt;li&gt;&lt;kbd&gt;W&lt;/kbd&gt;: 설정 저장&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;k&lt;/kbd&gt;: 프로세스 중단하기&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Navigation &amp;amp; Sorting (default: desc)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;kbd&gt;&amp;lt;&lt;/kbd&gt;, &lt;kbd&gt;&amp;gt;&lt;/kbd&gt;: 활성 필드 네비게이션&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;N&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;PID&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;M&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%MEM&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;P&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%CPU&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;T&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;TIME+&lt;/code&gt; 필드를 활성으로 변경&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Search &amp;amp; Filter
-    &lt;ul&gt;
-      &lt;li&gt;&lt;kbd&gt;L&lt;/kbd&gt;: 검색&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;o&lt;/kbd&gt;: 필터, e.g. COMMAND=apache, !COMMAND=apache, %MEM&amp;gt;0.1, ..&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;u&lt;/kbd&gt;: 사용자 이름으로 필터&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;O&lt;/kbd&gt;: 현재 적용된 필터&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;=&lt;/kbd&gt;: 필터 해제&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;p&gt;각 키 스트로크에 &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt; 화면이 어떻게 반응하는지 Asciinema로 찍었습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;help&quot;&gt;Help&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;kbd&gt;h&lt;/kbd&gt;: 도움말
-&lt;script src=&quot;https://asciinema.org/a/206306.js&quot; id=&quot;asciicast-206306&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;display&quot;&gt;Display&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;kbd&gt;Z&lt;/kbd&gt;: 칼라 설정
-&lt;script src=&quot;https://asciinema.org/a/206329.js&quot; id=&quot;asciicast-206329&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;t&lt;/kbd&gt;: CPU 통계 뷰 토글
-&lt;script src=&quot;https://asciinema.org/a/206311.js&quot; id=&quot;asciicast-206311&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;m&lt;/kbd&gt;: 메모리 통계 뷰 토글
-&lt;script src=&quot;https://asciinema.org/a/206312.js&quot; id=&quot;asciicast-206312&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;0&lt;/kbd&gt;: Zero value(0) 뷰 토글
-&lt;script src=&quot;https://asciinema.org/a/206313.js&quot; id=&quot;asciicast-206313&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;b&lt;/kbd&gt;: 하이라이트 토글
-&lt;script src=&quot;https://asciinema.org/a/206314.js&quot; id=&quot;asciicast-206314&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;x&lt;/kbd&gt;: 활성 필드 표시 토글
-&lt;script src=&quot;https://asciinema.org/a/206315.js&quot; id=&quot;asciicast-206315&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;y&lt;/kbd&gt;: 활성 프로세스 토글
-&lt;script src=&quot;https://asciinema.org/a/206316.js&quot; id=&quot;asciicast-206316&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;c&lt;/kbd&gt;: 커맨드 상세 표시 토글
-&lt;script src=&quot;https://asciinema.org/a/206317.js&quot; id=&quot;asciicast-206317&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;V&lt;/kbd&gt;: 프로세스간 부모/자식 관계 표시
-&lt;script src=&quot;https://asciinema.org/a/206318.js&quot; id=&quot;asciicast-206318&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;action&quot;&gt;Action&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;kbd&gt;W&lt;/kbd&gt;: 설정 저장&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;k&lt;/kbd&gt;: 프로세스 중단하기
-&lt;script src=&quot;https://asciinema.org/a/206319.js&quot; id=&quot;asciicast-206319&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;navigation--sorting-default-desc&quot;&gt;Navigation &amp;amp; Sorting (default: desc)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;kbd&gt;&amp;lt;&lt;/kbd&gt;, &lt;kbd&gt;&amp;gt;&lt;/kbd&gt;: 활성 필드 네비게이션
-&lt;script src=&quot;https://asciinema.org/a/206320.js&quot; id=&quot;asciicast-206320&quot; async=&quot;&quot;&gt;&lt;/script&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;kbd&gt;N&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;PID&lt;/code&gt; 필드를 활성으로 변경
-&lt;!--206321--&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;M&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%MEM&lt;/code&gt; 필드를 활성으로 변경
-&lt;!--206322--&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;P&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;%CPU&lt;/code&gt; 필드를 활성으로 변경
-&lt;!--206323--&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;kbd&gt;T&lt;/kbd&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;TIME+&lt;/code&gt; 필드를 활성으로 변경
-&lt;!--206324--&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;search--filter&quot;&gt;Search &amp;amp; Filter&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;kbd&gt;L&lt;/kbd&gt;: 검색
-&lt;script src=&quot;https://asciinema.org/a/206325.js&quot; id=&quot;asciicast-206325&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;o&lt;/kbd&gt;: 필터, e.g. COMMAND=apache, !COMMAND=apache, %MEM&amp;gt;0.1, ..
-&lt;script src=&quot;https://asciinema.org/a/206326.js&quot; id=&quot;asciicast-206326&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;u&lt;/kbd&gt;: 사용자 이름으로 필터
-&lt;script src=&quot;https://asciinema.org/a/206327.js&quot; id=&quot;asciicast-206327&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;O&lt;/kbd&gt;: 현재 적용된 필터
-&lt;script src=&quot;https://asciinema.org/a/206328.js&quot; id=&quot;asciicast-206328&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;kbd&gt;=&lt;/kbd&gt;: 필터 해제&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sat, 13 Oct 2018 00:00:00 +0900</pubDate>
-        <link>https://blog.appkr.dev/cheatsheet/linux-top-cheatsheet/</link>
-        <guid isPermaLink="true">https://blog.appkr.dev/cheatsheet/linux-top-cheatsheet/</guid>
-        
-        <category>DevOps</category>
-        
-        <category>Linux</category>
-        
-        
-        <category>cheatsheet</category>
         
       </item>
     

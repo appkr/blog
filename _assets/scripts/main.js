@@ -425,16 +425,22 @@ window.fbAsyncInit = function() {
   var youtubeListTemplate = $.trim($('#youtube-list-template').html());
 
   $.ajax({
-    url: 'https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&channelId=UC6dl9UkHuEWtD1QZUnvCiEw&maxResults=3&order=date&fields=items(id%2FvideoId%2Csnippet(publishedAt%2Ctitle))&key=AIzaSyDMAkSX2jglP4hjSJDbYd2JrrjIGAnQoaM',
+    url: 'https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&channelId=UC6dl9UkHuEWtD1QZUnvCiEw&maxResults=5&order=date&fields=items(id%2FvideoId%2Csnippet(publishedAt%2Ctitle))&key=AIzaSyDMAkSX2jglP4hjSJDbYd2JrrjIGAnQoaM',
     type: 'GET'
   }).done(function(response) {
     var collection = [];
+    var cnt = 0;
+
     $.each(response.items, function(index, item) {
-      collection.push({
-        id: item.id.videoId,
-        message: item.snippet.title,
-        created_time: item.snippet.publishedAt
-      });
+      // Sometimes id.videoId doesn't exist
+      if (typeof item.id !== 'undefined' && cnt <= 3) {
+        collection.push({
+          id: item.id.videoId || null,
+          message: item.snippet.title,
+          created_time: item.snippet.publishedAt
+        });
+      }
+      cnt++;
     });
 
     youtubeListContainer.append(compile(youtubeListTemplate, collection));

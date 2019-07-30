@@ -28,7 +28,7 @@ image: //blog.appkr.dev/images/2016-06-20-img-01.png
 
 ## 1. Centralized Workflow
 
-![Git Workflows: SVN-style Workflow](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/01.svg)
+![Git Workflows: SVN-style Workflow](https://wac-cdn.atlassian.com/dam/jcr:0869c664-5bc1-4bf2-bef0-12f3814b3187/01.svg?cdnVersion=485)
 
 Git으로 협업 환경을 전환하는 것은 굉장히 어려워 보이지만, 지금 소개하는 Centralized Workflow는 사실 기존의 Subversion(SVN)으로 협업할 때와 크게 다를 바 없다.
 
@@ -44,13 +44,13 @@ Centralized Workflow는 프로젝트의 변경 내용을 추적하기 위해 단
 
 로컬 `master` 브랜치의 변경 내용을 프로젝트의 중앙 저장소에 올리고자할 때는 'push' 명령을 이용한다. `svn commit`과 비슷하지만, 로컬 저장소의 커밋 이력을 중앙 저장소에 그대로 보관한다는 점은 다르다.
 
-![Central and local repositories](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/02.svg)
+![Central and local repositories](https://wac-cdn.atlassian.com/dam/jcr:f03a0fbd-a880-477f-aa32-33340383ce07/02%20(3).svg?cdnVersion=485)
 
 #### 1.1.1. 충돌 처리
 
 항상 중앙 저장소의 커밋이 기준이다. 만약에 로컬 저장소의 변경 내용을 중앙 저장소에 푸시(push)할 때, 푸시하려는 커밋 이력과 중앙 저장소의 커밋 이력이 서로 충돌한다면 Git은 중앙 저장소의 커밋을 보호하기 위해 푸시를 받지 않고 거부한다.
 
-![Managing Conflicts](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/03.svg)
+![Managing Conflicts](https://wac-cdn.atlassian.com/dam/jcr:d06191e3-994e-453a-8ea9-a2e93374e53e/03%20(4).svg?cdnVersion=485)
 
 이 때는 중앙 저장소의 변경 내용을 먼저 로컬 저장소로 가져 와서(fetch), 자신의 변경 내용을 재배열(rebase)해야 한다. 다른 팀원이 이미 변경한 내용에 자신의 변경 내용을 덧 붙이는 것이다.
 
@@ -62,7 +62,7 @@ Centralized Workflow는 프로젝트의 변경 내용을 추적하기 위해 단
 
 #### 1.2.1. 중앙 저장소 생성
 
-![Git Workflows: Initialize Central Bare Repository](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/04.svg)
+![Git Workflows: Initialize Central Bare Repository](https://wac-cdn.atlassian.com/dam/jcr:76bfc199-100a-4ef7-b9cf-86179ea5507c/06%20(2).svg?cdnVersion=485)
 
 철이나 미애 둘 중 누군가는 중앙 저장소를 생성해야 한다. Git 또는 SVN으로 관리하는 기존 프로젝트라면 가져오면 되고, 새로운 프로젝트라면 빈 저장소를 만들면 된다.
 
@@ -76,8 +76,6 @@ $ ssh user@host git init --bare /path/to/repo.git
 
 #### 1.2.2. 중앙 저장소 복제
 
-![Git Workflows: Clone Central Repo](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/05.svg)
-
 모든 팀 구성원이 `git clone` 명령으로 중앙 저장소를 복제해서 로컬 저장소를 만든다.
 
 ```sh
@@ -88,7 +86,7 @@ $ git clone ssh://user@host/path/to/repo.git
 
 #### 1.2.3. 철이의 작업
 
-![Git Workflows: Edit Stage Commit Feature Process](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/06.svg)
+![Git Workflows: Edit Stage Commit Feature Process](https://wac-cdn.atlassian.com/dam/jcr:76bfc199-100a-4ef7-b9cf-86179ea5507c/06%20(2).svg?cdnVersion=485)
 
 철이는 로컬 저장소를 이용해서 자신의 맡은 기능을 개발하고, Git 명령들을 이용해서 변경 내용을 기록한다. 스테이지(stage)라는 개념을 처음 접하게 되는데, 작업 디렉터리 전체가 아니라 딱 변경분만 커밋하기 위해 변경분을 임시로 담아 두는 개념적인 공간이라 이해하자.
 
@@ -102,13 +100,13 @@ $ git commit            # some-file의 변경 내역을 커밋
 
 #### 1.2.4. 미애의 작업
 
-![Git Workflows: Edit Stage Commit Feature](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/07.svg)
+![Git Workflows: Edit Stage Commit Feature](https://wac-cdn.atlassian.com/dam/jcr:a0aa8d1b-11a4-4aa4-a3a9-4f83f9be9a67/07.svg?cdnVersion=485)
 
 미애도 철이처럼 로컬 저장소를 만들고, 자신이 맡은 기능을 개발하고, 스테이징하고 커밋한다.
 
 #### 1.2.5. 철이의 작업 내용 발행
 
-![Git Workflows: Publish Feature](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/08.svg)
+![Git Workflows: Publish Feature](https://wac-cdn.atlassian.com/dam/jcr:6e5dc66d-b041-4013-b321-b1908fecfdbd/08.svg?cdnVersion=485)
 
 철이는 `git push` 명령으로 자신의 로컬 커밋 이력을 중앙 저장소에 올려 다른 팀 구성원과 공유하려한다.
 
@@ -120,7 +118,7 @@ $ git push origin master
 
 #### 1.2.6. 미애의 작업 내용 발행
 
-![Git Workflows: Push Command Error](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/09.svg)
+![Git Workflows: Push Command Error](https://wac-cdn.atlassian.com/dam/jcr:52e2347e-b8e0-49ab-9530-5d1e9129198e/09.svg?cdnVersion=485)
 
 철이가 푸시한 후 미애가 로컬 커밋을 푸시하려하면 어떤 일이 벌어질지 들여다 보자.
 
@@ -142,7 +140,7 @@ $ git push origin master
 
 #### 1.2.7. 미애의 리베이스
 
-![Git Workflows: Git Pull Rebase](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/10.svg)
+![Git Workflows: Git Pull Rebase](https://wac-cdn.atlassian.com/dam/jcr:25edd772-a30a-475a-a6ca-d1055ae61737/10.svg?cdnVersion=485)
 
 미애는 `git pull` 명령으로 중앙 저장소의 변경 이력을 로컬 저장소로 내려 받는다. 이 명령은 중앙 저장소의 최신 이력을 내려 받는 동작과 이를 로컬 이력과 합치는 동작을 한 번에 한다.
 
@@ -152,13 +150,13 @@ $ git pull --rebase origin master
 
 `--rebase` 옵션을 주면 중앙 저장소의 커밋 이력을 미애의 커밋 이력 앞에 끼워 넣는다.
 
-![Rebasing to Master](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/11.svg)
+![Rebasing to Master](https://wac-cdn.atlassian.com/dam/jcr:5165668f-b62d-4417-95e6-fde8ed97ec60/11.svg?cdnVersion=485)
 
 `--rebase` 옵션 없이 쓸 수도 있지만, 불필요한 병합 커밋을 한 번 더해야 하는 번거로움이 있으므로 `--rebase` 옵션을 쓰는 것이 좋다.
 
 #### 1.2.8. 미애의 충돌 해결
 
-![Git Workflows: Rebasing on Commits](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/12.svg)
+![Git Workflows: Rebasing on Commits](https://wac-cdn.atlassian.com/dam/jcr:eaad29a3-6d94-4916-8a2c-3dea71aea4c2/12.svg?cdnVersion=485)
 
 리베이스는 미애의 로컬 커밋을 새로 내려 받은 `master` 브랜치에 하나 하나 대입하고 대조해 가면서 커밋 이력을 재배열한다. 이런 동작 특성때문에 커밋 이력도 깔끔하게 유지할 수 있을 뿐만아니라, 경우에 따라 버그를 발견하기도 한다.
 
@@ -168,7 +166,7 @@ $ git pull --rebase origin master
 # CONFLICT (content): Merge conflict in <some-file>
 ```
 
-![Conflict Resolution](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/13.svg)
+![Conflict Resolution](https://wac-cdn.atlassian.com/dam/jcr:adf8c8e3-4287-4ec1-acf7-2a052d61d03f/13.svg?cdnVersion=485)
 
 이 사례에서 미애는 `git status` 명령으로, *Unmerged paths:* 부분에서 충돌이 발생한 파일을 찾을 수 있다.
 
@@ -198,7 +196,7 @@ $ git rebase --abort
 
 #### 1.2.9. 미애의 작업 내용 재발행
 
-![Git Workflows: Synchronize Central Repo](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/centralized-workflow/14.svg)
+![Git Workflows: Synchronize Central Repo](https://wac-cdn.atlassian.com/dam/jcr:de2dabdd-542f-4f64-9be4-870abff06f60/14.svg?cdnVersion=485)
 
 중앙 저장소의 커밋 이력과 로컬 커밋 이력을 모두 합쳤으므로, 이제 중앙 저장소에 올리기만 하면 된다.
 
@@ -213,8 +211,6 @@ $ git push origin master
 Centralized Workflow를 이용하면서 협업을 좀 더 유연하게 하려면 바로 다음에 소개할 Feature Branch Workflow를 검토해 보기 바란다. 개발할 기능을 개별 브랜치로 분리함으로써, `master` 브랜치에 새로 개발한 기능을 병합하기 전에 충분한 토론을 할 수 있다는 장점이 있다.
 
 ## 2. Feature Branch Workflow
-
-![Feature Branch Workflow](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/01.svg)
 
 현재 팀이 Centralized Workflow에 머물러 있다면, 팀 구성원간에 소통을 활성화하여 협업 성과를 이끌어 내기 위해 Feature Branch Workflow를 도입해보라.
 
@@ -246,7 +242,7 @@ Feature Branch Workflow의 핵심 컨셉은 기능별 브랜치를 만들어서 
 
 #### 2.2.1. 미애의 작업
 
-![New Feature Branch](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/02.svg)
+![New Feature Branch](https://wac-cdn.atlassian.com/dam/jcr:223f5106-2191-4450-8916-e5c80d7d907a/02.svg?cdnVersion=485)
 
 새로운 기능을 개발하기에 앞서 격리된 작업 브랜치를 만들어야 한다.
 
@@ -264,7 +260,7 @@ $ git commit
 
 #### 2.2.2. 미애의 점심 시간
 
-![Git Workflows: Feature Commits](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/03.svg)
+![Git Workflows: Feature Commits](https://wac-cdn.atlassian.com/dam/jcr:e2c88c1b-fb28-46a3-93be-c1c45f86bd1c/03%20(1).svg?cdnVersion=485)
 
 미애는 오전 동안 새로 만든 브랜치에 꽤 여러 번의 커밋을 남겼다. 점심을 먹으러 나가기 전에 그간의 작업 내용을 중앙 저장소에 푸시해 놓기로 했다. 이는 로컬 저장소의 백업 역할을 할 뿐만 아니라, 다른 팀 구성원들이 미애의 작업 내용과 진도를 확인할 수도 있어 좋은 습관이라 할 수 있다.
 
@@ -276,7 +272,7 @@ $ git push -u origin miae-feature
 
 #### 2.2.3. 미애의 기능 개발 완료
 
-![Git Workflows: Pull Request](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/04.svg)
+![Git Workflows: Pull Request](https://wac-cdn.atlassian.com/dam/jcr:d0c471b4-61c8-4005-86bc-904d894e391b/04.svg?cdnVersion=485)
 
 오후에 맡은 기능 개발을 모두 완료했다. <small>(역주: 이 팀은 개발자가 직접 `master`에 병합하지 않고, 풀 리퀘스트를 이용하는 규칙을 가지고 있다.)</small> `master` 브랜치에 병합하기 전에 풀 리퀘스트를 던져서 팀 구성원들에게 작업 완료 사실을 알려야 한다. 물론 그 전에 중앙 저장소에 작업 내용을 올려야 한다.
 
@@ -288,19 +284,19 @@ $ git push
 
 #### 2.2.4. 혁 팀장의 풀 리퀘스트 검토
 
-![Git Workflows: Feature Pull Requests](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/05.svg)
+![Git Workflows: Feature Pull Requests](https://wac-cdn.atlassian.com/dam/jcr:2119c2a3-7dff-43ad-bf98-77672d93242f/05%20(1).svg?cdnVersion=485)
 
 풀 리퀘스트를 확인한 혁 팀장이 `miae-feature` 브랜치를 검토하다가, 공식 저장소에 병합하기 전에 몇 가지 수정이 필요하다고 판단하고, 미애에게 수정 의견을 제시했다.
 
 #### 2.2.5. 미애의 수정 반영
 
-![Git Workflows: Central Repository Push](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/06.svg)
+![Git Workflows: Central Repository Push](https://wac-cdn.atlassian.com/dam/jcr:1c466900-dffa-4912-8764-79943755dbf9/06%20(1).svg?cdnVersion=485)
 
 혁 팀장의 수정 요청 항목을 반영하기 위해서 미애는 기능 개발할 때와 똑같은 작업 절차를 거친다. 수정 요청을 검토하고 코드에 반영해서 로컬 기능 개발 브랜치에 커밋하고 중앙 저장소에 푸시하는 일련의 과정 말이다. 미애가 수정한 내용은 기존 풀 리퀘스트에 전부 표시되고 혁 팀장도 수정 내용에 대해 언제든 새로운 의견을 제시할 수 있다.
 
 #### 2.2.6. 미애가 개발한 기능 병합 완료
 
-![Merging a Feature Branch](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/feature-branch-workflow/07.svg)
+![Merging a Feature Branch](https://wac-cdn.atlassian.com/dam/jcr:09308632-38a3-4637-bba2-af2110629d56/07.svg?cdnVersion=485)
 
 혁 팀장이 마침내 미애의 풀 리퀘스트를 수용하기로 결정했다. 누군가 병합 작업을 해야 한다(병합은 혁 팀장이든 미애든 누구나 할 수 있다).
 
@@ -329,8 +325,6 @@ Bitbucket의 기능 브랜치를 요리 조리 시험해 보고 있다면, [Usin
 
 ## 3. Gitflow Workflow
 
-![Gitflow Workflow](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/01.svg)
-
 이번 절에 소개하는 Gitflow Workflow는 [nvie.com](//nvie.com/)의 빈센트 드리센(Vincent Driessen)이 제안한 것이다.
 
 Gitflow Workflow는 코드 릴리스를 중심으로 좀 더 엄격한 브랜칭 모델을 제시한다. Feature Branch Workflow보다 복잡하긴하지만, 대형 프로젝트에도 적용할 수 있는 강건한 작업 절차다.
@@ -343,7 +337,7 @@ Gitflow Workflow도 팀 구성원간의 협업을 위한 창구로 중앙 저장
 
 `master` 브랜치 뿐만아니라, 이 워크플로우에서는 두 개의 다른 브랜치도 변경 이력을 유지하기 위해 사용한다. `master` 브랜치는 릴리스 이력을 관리하기 위해 사용하고, `develop` 브랜치는 기능 개발을 위한 브랜치들을 병합하기 위해 사용한다. 그래서, `master` 브랜치는 릴리스 태그를 매기기에 아주 적합하다.
 
-![Historical Branches](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/02.svg)
+![Historical Branches](https://wac-cdn.atlassian.com/dam/jcr:2bef0bef-22bc-4485-94b9-a9422f70f11c/02%20(2).svg?cdnVersion=485)
 
 이 워크플로우의 모든 작업 절차들은 `master`와 `develop` 두 개의 브랜치를 대상으로 한다.
 
@@ -351,13 +345,13 @@ Gitflow Workflow도 팀 구성원간의 협업을 위한 창구로 중앙 저장
 
 새로운 기능은 각각의 브랜치에서 개발하고 백업 및 협업을 위해서 중앙 저장소에 푸시한다. 그런데, `master` 브랜치에서 기능 개발을 위한 브랜치를 따는 것이 아니라, `develop` 브랜치에서 딴다. 그리고, 기능 개발이 끝나면 다시 `develop` 브랜치에 작업 내용을 병합한다. 바꾸어 말하면, 기능 개발을 위한 브랜치는 `master` 브랜치와는 어떤 상호 작용도 하지 않는다.
 
-![Feature Branches](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/03.svg)
+![Feature Branches](https://wac-cdn.atlassian.com/dam/jcr:b5259cce-6245-49f2-b89b-9871f9ee3fa4/03%20(2).svg?cdnVersion=485)
 
 Feature Branch Workflow라면 `develop` 브랜치에 개발한 기능을 병합하는 것으로 모든 과정이 끝날테지만, Gitflow Workflow는 아직 할 일이 더 남아 있다.
 
 ### 3.4. 릴리스 브랜치
 
-![Release Branches](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/04.svg)
+![Release Branches](https://wac-cdn.atlassian.com/dam/jcr:a9cea7b7-23c3-41a7-a4e0-affa053d9ea7/04%20(1).svg?cdnVersion=485)
 
 `develop` 브랜치에 릴리스를 할 수 있는 수준만큼 기능이 모이면(또는 정해진 릴리스 일정이 되면), `develop` 브랜치를 기준으로 릴리스를 위한 브랜치를 딴다. 이 브랜치를 만드는 순간부터 릴리스 사이클이 시작되고, 버그 수정, 문서 추가 등 릴리스와 직접적으로 관련된 작업들을 제외하고는 이 브랜치에 새로운 기능을 추가 병합하지 않는다. 릴리스 준비가 완료되면 `master` 브랜치에 병합하고 버전 태그를 부여한다. 그리고, 릴리스를 준비하는 동안 `develop` 브랜치가 변경되었을 수 있으므로 `develop` 브랜치에도 병합한다.
 
@@ -367,7 +361,7 @@ Feature Branch Workflow라면 `develop` 브랜치에 개발한 기능을 병합�
 
 ### 3.5. 유지 보수를 위한 브랜치
 
-![Maintenance Branches](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/05.svg)
+![Maintenance Branches](https://wac-cdn.atlassian.com/dam/jcr:61ccc620-5249-4338-be66-94d563f2843c/05%20(2).svg?cdnVersion=485)
 
 운영 환경에 릴리스한 후 발견된 긴급 패치는 'hotfix' 브랜치를 이용한다. 'hotfix' 브랜치만 `master`에서 바로 딸 수 있다. 패치가 준비되면 `master`와 `develop` 브랜치 양쪽에 병합하고, 새로운 버전 이름으로 태그를 매겨야 한다.
 
@@ -378,8 +372,6 @@ Feature Branch Workflow라면 `develop` 브랜치에 개발한 기능을 병합�
 다음 사례는 한 번의 릴리스 사이클만을 예로 들고 있다. 이미 중앙 저장소는 만들었다고 가정한다.
 
 #### 3.6.1. develop 브랜치 만들기
-
-![Create a Develop Branch](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/06.svg)
 
 먼저 할 일은 `master` 브랜치를 기준으로 `develop` 브랜치를 만드는 것이다. 팀 구성원 중 한 명이 자신의 로컬 저장소에 빈 `develop` 브랜치를 만들고 중앙 저장소로 푸시하면 된다.
 
@@ -399,8 +391,6 @@ $ git checkout -b develop origin/develop
 
 #### 3.6.2. 철이와 미애의 작업
 
-![New Feature Branches](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/07.svg)
-
 이 사례에서는 철이와 미애가 각자 맡은 기능을 개발할 기능 개발 브랜치를 만들고 서로 다른 기능을 개발한다고 가정한다. 다시 한 번 언급하지만, `master`를 베이스로 하지 않고, `develop` 브랜치를 기준으로 기능 개발 브랜치를 따야 한다.
 
 ```sh
@@ -417,8 +407,6 @@ $ git commit
 
 #### 3.6.3. 미애의 작업 완료 처리
 
-![Merging a Feature Branch](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/08.svg)
-
 몇 번의 커밋 끝에, 미애는 맡은 기능 개발을 완료했다. 만약에 팀이 풀 리퀘스트를 하기로 약속했다면, 미애는 자신의 기능 브랜치를 `develop` 브랜치에 병합해 달라고 풀 리퀘스트를 보낼 수 있다. 풀 리퀘스트를 이용하지 않기로 했다면 다음과 같이 직접 `develop` 브랜치에 병합하고 중앙 저장소에 푸시하면 된다.
 
 ```sh
@@ -433,8 +421,6 @@ $ git branch -d some-feature
 
 #### 3.6.4. 미애의 릴리스 준비
 
-![Preparing a Release](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/09.svg)
-
 철이가 여전히 기능 개발에 몰두하고 있는 와중에, 미애는 첫 공식 릴리스를 준비하고 있다. 기능 개발과 마찬가지로 릴리스 과정을 캡슐화할 새로운 브랜치를 만들어야 한다. 이 과정에서 버전 번호를 부여한다.
 
 ```sh
@@ -444,8 +430,6 @@ $ git checkout -b release-0.1 develop
 이 브랜치는 최종 테스트를 하거나, 문서를 수정하는 등 릴리스와 관련된 여러 가지 작업들을 처리하기 위한 격리 공간이다. 미애가 이 브랜치를 만든 이후에 `develop` 브랜치에 병합된 기능은 릴리스 대상에서 제외된다. 이번에 포함되지 않은 기능들은 다음 릴리스에 포함된다.
 
 #### 3.6.5. 미애의 릴리스 완료
-
-![Merging Release into Master](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/10.svg)
 
 릴리스 준비가 끝나면, 릴리스 브랜치를 `master`와 `develop` 브랜치에 병합하고, 릴리스 브랜치는 삭제한다. `develop` 브랜치에도 병합하는 이유는 릴리스를 준비하면서 개발 중인 다른 기능에 영향을 줄 수 있는 작업을 했을 수도 있기 때문이다. 미애의 팀이 코드 리뷰를 하는 규칙을 가지고 있다면, 병합을 요청하는 풀 리퀘스트를 보낼 수도 있다.
 
@@ -469,8 +453,6 @@ $ git push --tags
 Git은 저장소에 어떤 이벤트가 발생할 때 미리 짜 놓은 스크립트를 자동으로 실행할 수 있는 훅(hook) 기능을 가지고 있다. 중앙 저장소의 `master` 브랜치에 푸시하거나 태그를 푸시할 때, 자동으로 공개 릴리스를 빌드하는 훅을 거는 등의 자동화도 가능하다.
 
 #### 3.6.6. 버그 신고
-
-![Maintenance Branch](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/11.svg)
 
 릴리스를 배포한 후에, 미애는 철이와 함께 다음 릴리스를 준비하기 위해 일상으로 돌아갔다. 그런데 사용자가 현재 릴리스에 버그가 있다고 보고해왔다. 버그를 해결 하기 위해 미애(또는 철이)는 작업하던 기능 개발을 잠시 미뤄두고, `master` 브랜치를 기준으로 유지 보수 브랜치를 만들고, 버그를 수정하고 커밋한다. 버그 수정이 끝나면 `master` 브랜치에 바로 병합한다.
 
@@ -503,8 +485,6 @@ $ git branch -d issue-#001
 
 Forking Worflow는 다른 워크플로우와 근본적으로 다르다. 하나의 중앙 저장소를 이용하는 것이 아니라, 개개인마다 서로 다른 원격 저장소를 운영하는 방식이다. 모든 프로젝트 참여자가 개인적인 로컬 저장소와 공개된 원격 저장소, 즉 두 개씩의 Git 저장소를 가지는 방식이다.
 
-![Git Workflows: Forking](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/01.svg)
-
 모든 코드 기여자가 하나의 중앙 저장소에 푸시하는 것이 아니라, 각자 자신의 원격 저장소에 푸시하고, 프로젝트 관리자만 다른 개발자들의 기여분을 공식 저장소에 병합할 수 있다는 점이 가장 큰 특장점이다. 즉, 프로젝트 관리자는 다른 개발자들에게 공식 저장소에 쓸 수 있는 권한을 주지 않고도 다른 개발자의 커밋을 수용할 수 있다.
 
 프로젝트와 직접 관련이 없는 제 3자뿐만아니라, 아주 큰 규모의 분산된 팀에서도 안전하게 협업하기에 좋은 방법이다. 특히, 오픈 소스 프로젝트에서 많이 사용하는 방식이다.
@@ -531,8 +511,6 @@ Git은 기술적으로 공식과 기여자의 복제본을 구분하지 않기 �
 
 #### 4.4.1. 프로젝트 공식 저장소 생성
 
-![Forking Workflow: Shared Repository](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/02.svg)
-
 Git을 이용한 팀 협업의 시작점은 서버에 공식 저장소를 만드는 것으로부터다. 보통 이 저장소가 프로젝트 관리자의 공개 저장소다.
 
 공개 저장소는 다음과 같이 항상 bare 상태로 생성한다.
@@ -548,15 +526,13 @@ Bitbucket은 위 명령을 편리하게 도와주는 GUI 도구를 제공한다.
 
 #### 4.4.2. 프로젝트 공식 저장소 포크
 
-![Forking Workflow: Forking the official repository.](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/03.svg)
+![Forking Workflow: Forking the official repository.](https://wac-cdn.atlassian.com/dam/jcr:642c56e3-ddc6-43ff-ab86-c5cd845afd05/03.svg?cdnVersion=485)
 
 이제 모든 프로젝트 참여자가 공식 저장소를 포크해야 한다. 포크는 서버 측 복제이므로, 서버에 SSH로 로그인한 후 `git clone` 명령을 이용하면 된다. Bitbucket UI에서 클릭 한 번으로 포크할 수 있다.
 
 이 과정을 마치면, 이제 모든 프로젝트 참여자들이 자신들의 서버측 원격 저장소를 하나씩 가지게 된다. 프로젝트 공식 저장소와 마찬가지로 이 저장소들도 bare 저장소다.
 
 #### 4.4.3. 포크한 원격 저장소 복제
-
-![Forking Workflow: Cloning the forked repositories](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/04.svg)
 
 이제 프로젝트 참여자들은 친숙한 `git clone` 명령으로 자신의 원격 저장소를 복제하여 로컬 저장소를 만들 수 있다.
 
@@ -582,8 +558,6 @@ $ git remote add upstream https://user@bitbucket.org/maintainer/repo.git
 
 #### 4.4.4. 기능 개발
 
-![Forking Workflow: Developers work on features](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/05.svg)
-
 복제한 로컬 저장소에서 다른 워크플로우처럼 코드를 수정하고, 브랜치를 따고, 변경 내용을 커밋한다.
 
 ```sh
@@ -602,7 +576,7 @@ $ git pull upstream master
 
 #### 4.4.5. 개발 내용 제출
 
-![Forking Workflow: Developers publish features](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/06.svg)
+![Forking Workflow: Developers publish features](https://wac-cdn.atlassian.com/dam/jcr:0de71551-5c08-4fc4-ab6d-dc8a51bfcc5a/05.svg?cdnVersion=485)
 
 개발한 기능을 공개하려면 다음 두 가지 절차를 거쳐야 한다. 첫째, 자신의 원격 저장소에 변경 내역을 올려서 다른 개발자가 볼 수 있도록 한다. `origin`을 이미 등록해두었으므로 다음 명령만 하면 된다.
 
@@ -615,8 +589,6 @@ $ git push origin feature-branch
 둘째, 프로젝트 관리자에게 자신의 기여분을 공식 코드 베이스에 반영해 달라고 요청해야 한다. Bitbucket의 '풀 리퀘스트' 버튼을 이용하면, 어떤 브랜치를 제출할 지 정할 수 있다. 보통 이번에 추가한 기능 브랜치를 프로젝트 공식 저장소의 `master` 브랜치에 병합해 달라고 요청할 것이다.
 
 #### 4.4.6. 프로젝트 관리자의 기여분 병합
-
-![Forking Workflow: Integrate Features](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/07.svg)
 
 풀 리퀘스트를 받은 프로젝트 관리자는 기여 받은 변경 내용을 공식 코드 베이스에 반영할지 말지를 결정해야 한다. 보통 다음 두 가지 중 하나의 방법을 사용한다.
 
@@ -641,8 +613,6 @@ $ git push origin master
 프로젝트 관리자의 `origin`은 프로젝트 공식 저장소의 공식 코드 베이스이므로 기여자가 제출한 신규 기능은 이제 메인 코드 베이스에 포함되었다.
 
 #### 4.4.7. 다른 개발자들의 프로젝트 공식 저장소 동기화
-
-![Forking Workflow: Synchronize with the official repository](https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/forking-workflow/08.svg)
 
 메인 코드 베이스가 변경되었으므로, 프로젝트 참여하는 모든 개발자가 자신의 로컬 저장소를 동기화해서 최신 상태로 만들어야 한다.
 

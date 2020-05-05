@@ -1,4 +1,5 @@
 .idea
+.jekyll-cache
 .tmp
 _assets/vendor
 node_modules

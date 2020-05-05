@@ -147,7 +147,7 @@
   <li><em>Broadcast_</em> 라라벨의 브로드캐스트 기능을 이용해 본다.</li>
 </ol>
 
-<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
+<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
 
 <p>이 프로젝트는 라라캐스트의 <a href="https://laracasts.com/series/real-time-laravel-with-socket-io">Real-time Laravel with Socket.io</a> 시리즈를 보고, 필자 나름대로 해석하고 적용한 결과물이다.</p>
 
@@ -158,7 +158,7 @@
 
 <p>이 포스트에서는 라라벨, Redis, Socket.io 등 여러 시스템을 사용하는데 비슷한 용어가 계속 등장하기 때문에, 이 포스트를 이해하는데 필요한 용어를 먼저 정리해 본다.</p>
 
-<p>라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.</p>
+<p>라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.</p>
 
 <p>채널은 발신자와 수신자간의 데이터 파이프다. 발신자는 무차별적으로 여러 개의 파이프에 데이터를 흘려보내고, 수신자는 여러 개의 파이프 중 원하는 몇 개의 파이프만 연결하여 데이터를 받는다. 이벤트 시스템 컨텍스트에서는 이벤트 채널(이 포스트 4절의 이벤트 클래스)과 이벤트 데이터라 부르고, PubSub 관점에서는 채널과 메시지라고 부른다. 모두 같은 개념이다.</p>
 
@@ -221,7 +221,7 @@ you:~/workspace <span class="nv">$ </span>php artisan key:generate
 
 <h2 id="2-socketchat">2. SocketChat</h2>
 
-<p>소스 코드의 <code class="highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
+<p>소스 코드의 <code class="highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
 
 <h3 id="21-코드-수정">2.1. 코드 수정</h3>
 
@@ -230,10 +230,10 @@ you:~/workspace <span class="nv">$ </span>php artisan key:generate
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
 
 <span class="c1">// 이렇게 생긴 라인을</span>
-<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'https://whik-appkr.c9users.io:8082'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://whik-appkr.c9users.io:8082</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="c1">// 각자의 접속 주소에 맞게 변경한다. 8082는 그대로 둔다.</span>
-<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'https://your-c9-url:8082'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://your-c9-url:8082</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h3 id="22-실험-준비">2.2. 실험 준비</h3>
@@ -267,14 +267,14 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
 
-<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'https://whik-appkr.c9users.io:8082'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://whik-appkr.c9users.io:8082</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
   <span class="c1">// 중략...</span>
   <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">send</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+      <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat.message</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">});</span>
@@ -286,11 +286,11 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// public/socketchat/index.js</span>
 
-<span class="kd">var</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'socket.io'</span><span class="p">)(</span><span class="nx">server</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">socket.io</span><span class="dl">'</span><span class="p">)(</span><span class="nx">server</span><span class="p">);</span>
 
-<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">connection</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat.message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat.message</span><span class="dl">'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div></div>
@@ -303,7 +303,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
   <span class="na">ready</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'chat.message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat.message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// 콜백 안에서 인자로 받은 message 소비</span>
     <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
   <span class="p">}</span>
@@ -389,10 +389,10 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// socket.js</span>
 
-<span class="kd">var</span> <span class="nx">Redis</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ioredis'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Redis</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ioredis</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">redis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Redis</span><span class="p">();</span>
 
-<span class="nx">redis</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">'whik'</span><span class="p">);</span>
+<span class="nx">redis</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="dl">'</span><span class="s1">whik</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h4 id="343-socketio-메시지-브로드캐스트">3.4.3. Socket.io 메시지 브로드캐스트</h4>
@@ -400,10 +400,10 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 <p>Redis를 통해 Node.js측에서 받은 데이터는 다음과 같은 JSON 구조를 가진다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-  <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"App</span><span class="err">\\</span><span class="s2">Events</span><span class="err">\\</span><span class="s2">NewUserCreated"</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"foo"</span><span class="p">,</span>
-    <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"foo@bar.com"</span>
+  <span class="dl">"</span><span class="s2">event</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">App</span><span class="se">\\</span><span class="s2">Events</span><span class="se">\\</span><span class="s2">NewUserCreated</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">foo</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">foo@bar.com</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -412,9 +412,9 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// socket.js</span>
 
-<span class="nx">redis</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">redis</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">message</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-  <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">channel</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">event</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">channel</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">:</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">message</span><span class="p">.</span><span class="nx">event</span><span class="p">,</span> <span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -433,11 +433,11 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// resources/views/welcome.blade.php</span>
 
-<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="s1">'{{ env('</span><span class="nx">APP_URL</span><span class="s1">') }}'</span> <span class="o">+</span> <span class="s1">':8082'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">(</span><span class="dl">'</span><span class="s1">{{ env(</span><span class="dl">'</span><span class="nx">APP_URL</span><span class="dl">'</span><span class="s1">) }}</span><span class="dl">'</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">:8082</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
   <span class="na">ready</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'whik:App</span><span class="err">\\</span><span class="s1">Events</span><span class="err">\\</span><span class="s1">NewUserCreated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">whik:App</span><span class="se">\\</span><span class="s1">Events</span><span class="se">\\</span><span class="s1">NewUserCreated</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// 콜백 안에서 인자로 받은 data 소비</span>
     <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
   <span class="p">}</span>
@@ -483,14 +483,14 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Events/NewUserCreated.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Events</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Events</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Contracts\Broadcasting\ShouldBroadcast</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Contracts\Broadcasting\ShouldBroadcast</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">NewUserCreated</span> <span class="k">extends</span> <span class="nx">Event</span> <span class="k">implements</span> <span class="nx">ShouldBroadcast</span>
+<span class="kd">class</span> <span class="nc">NewUserCreated</span> <span class="k">extends</span> <span class="nx">Event</span> <span class="k">implements</span> <span class="nx">ShouldBroadcast</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">SerializesModels</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nn">SerializesModels</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="nv">$user</span><span class="p">;</span>
 
@@ -542,16 +542,16 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p><a href="//vuejs.org/">Vue.js</a>_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, <a href="https://github.com/trending?since=monthly">깃허브 트렌딩에 계속 노미네이트</a>되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="//vuejs.org/">Vue.js</a>_제이쿼리를 대체할 수 있는 자바스크립트 라이브러리다. 앵귤러나 엠버처럼 풀 MVC 프레임워크가 아니라, 뷰 모델(DOM)만 건드리는 가벼운 녀석이다. 그럼에도 불구하고, 최신 프레임워크가 지원하는 양방향 데이터 바인딩등을 지원해서 개발 생산성이 높다. 2만개 이상의 스타를 가지고 있고, <a href="https://github.com/trending?since=monthly">깃허브 트렌딩에 계속 노미네이트</a>되는 등, ES6와 더불어 2016년에 꼭 배워야할 자바스크립트 라이브러리다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>PubSub_ <a href="https://en.wikipedia.org/wiki/Publish-subscribe_pattern">https://en.wikipedia.org/wiki/Publish-subscribe_pattern</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>PubSub_ <a href="https://en.wikipedia.org/wiki/Publish-subscribe_pattern">https://en.wikipedia.org/wiki/Publish-subscribe_pattern</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p>Socket.io에서 제공하는 채팅 예제 프로젝트_ <a href="//socket.io/get-started/chat/">socket.io/get-started/chat/</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p>Socket.io에서 제공하는 채팅 예제 프로젝트_ <a href="//socket.io/get-started/chat/">socket.io/get-started/chat/</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -654,13 +654,13 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1258,7 +1258,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1324,7 +1324,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1336,7 +1336,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1386,6 +1386,13 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1395,13 +1402,6 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1502,7 +1502,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

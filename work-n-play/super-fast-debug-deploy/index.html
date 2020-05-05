@@ -138,7 +138,7 @@
 <p>이 포스트는</p>
 
 <ul>
-  <li>라라벨<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 프레임워크의 우수성을 알린다.</li>
+  <li>라라벨<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> 프레임워크의 우수성을 알린다.</li>
   <li>가난한 개발자가 자신의 서비스를 지키는 방법과 몇가지 개발 도구를 소개한다.</li>
 </ul>
 
@@ -166,7 +166,7 @@
 
 <span class="c1">// ...</span>
 
-<span class="k">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
+<span class="kd">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">report</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
     <span class="p">{</span>
@@ -226,11 +226,11 @@
 
 <h3 id="debugging-1">Debugging</h3>
 
-<p>디버깅에서 중요한 것은 첫째, 자신만의 디버깅 프로세스와, 둘째, 좋은 도구이다. 서드파티 콤포넌트의 메서드 이름을 어떻게 기억하겠는가? 다행히 <a href="https://www.jetbrains.com/phpstorm/">phpStorm</a><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>과 같은 도구는 객체나 메서드 이름 위에 커서를 놓고 <kbd>Cmd</kbd> + 클릭으로 메서드로 이동할 수 있다. 해서, 없는 메서드라는 것을 쉽게 확인할 수 있다.</p>
+<p>디버깅에서 중요한 것은 첫째, 자신만의 디버깅 프로세스와, 둘째, 좋은 도구이다. 서드파티 콤포넌트의 메서드 이름을 어떻게 기억하겠는가? 다행히 <a href="https://www.jetbrains.com/phpstorm/">phpStorm</a><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>과 같은 도구는 객체나 메서드 이름 위에 커서를 놓고 <kbd>Cmd</kbd> + 클릭으로 메서드로 이동할 수 있다. 해서, 없는 메서드라는 것을 쉽게 확인할 수 있다.</p>
 
 <h3 id="code-deploy-1">Code Deploy</h3>
 
-<p>엔보이(envoy)<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>와 깃허브(Github)를 이용해서 코드 배포를 자동화하는 방법은 아래 링크들에 설명해 두었다.</p>
+<p>엔보이(envoy)<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>와 깃허브(Github)를 이용해서 코드 배포를 자동화하는 방법은 아래 링크들에 설명해 두었다.</p>
 
 <ul>
   <li><a href="//www.slideshare.net/ssuser7887b3/envoy-56730937">엔보이를 이용한 코드 배포 자동화</a></li>
@@ -243,16 +243,16 @@
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>라라벨_ PHP 프로그래밍언어로 개발된 웹 프레임워크이다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>라라벨_ PHP 프로그래밍언어로 개발된 웹 프레임워크이다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>phpStorm_ PHP 프로그래밍을 돕는 통합개발환경(IDE). 이 녀석을 코드편집기라고 부르면, 개발사인 JetBrains에서 육두문자를 날리며 욕할지도 모른다^^. phpStorm은 유료 소프트웨어 인데, 난 운 좋게 (오픈소스기여자에게만 부여되는) 라이센스를 얻어 무료로 사용한다. 이렇게 홍보로 고마움에 대한 보답 인사를 드린다. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>phpStorm_ PHP 프로그래밍을 돕는 통합개발환경(IDE). 이 녀석을 코드편집기라고 부르면, 개발사인 JetBrains에서 육두문자를 날리며 욕할지도 모른다^^. phpStorm은 유료 소프트웨어 인데, 난 운 좋게 (오픈소스기여자에게만 부여되는) 라이센스를 얻어 무료로 사용한다. 이렇게 홍보로 고마움에 대한 보답 인사를 드린다. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p>엔보이_ 라라벨이 제공하는 SSH 작업 실행 도구이다. 프레임워크나 언어에 무관하게 사용할 수 있는 독립적인 애플리케이션이다. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p>엔보이_ 라라벨이 제공하는 SSH 작업 실행 도구이다. 프레임워크나 언어에 무관하게 사용할 수 있는 독립적인 애플리케이션이다. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -350,13 +350,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -954,7 +954,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1020,7 +1020,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1032,7 +1032,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1082,6 +1082,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1091,13 +1098,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1198,7 +1198,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

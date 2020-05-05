@@ -164,7 +164,7 @@
 
 <h2 id="2-host-vm-만들기">2. Host VM 만들기</h2>
 
-<p>도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다(VMWare등을 사용해도 된다, <code class="highlighter-rouge">docker-machine create --driver vmwarefusion default</code>).</p>
+<p>도커 엔진은 리눅스 운영체제에서만 구동할 수 있다. 이 절에서는 도커 호스트<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>로 사용할 리눅스 VM을 만든다. 버추얼박스가 없다면 설치한다(VMWare등을 사용해도 된다, <code class="highlighter-rouge">docker-machine create --driver vmwarefusion default</code>).</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 홈브루에 Cask 탭을 추가한적이 없다면</span>
 <span class="nv">$ </span>brew tap caskroom/cask
@@ -273,7 +273,7 @@
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/quickstart <span class="nv">$ </span><span class="nb">cd </span>laradock
 
 <span class="c"># VM의 IP를 포함한 환경변수를 현재 셸에 적용한다.</span>
-~/quickstart/laradock <span class="nv">$ </span><span class="nb">eval</span> <span class="k">$(</span>docker-machine <span class="nb">env</span><span class="k">)</span>
+~/quickstart/laradock <span class="nv">$ </span><span class="nb">eval</span> <span class="si">$(</span>docker-machine <span class="nb">env</span><span class="si">)</span>
 
 <span class="c"># lb, web, mysql, redis 컨테이너를 구동한다.</span>
 ~/quickstart/laradock <span class="nv">$ </span>docker-compose up <span class="nt">-d</span> lb web mysql redis 
@@ -436,10 +436,10 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>호스트_ VM을 실행하는 맥을 호스트, VM을 게스트라 한다. 여기서는 맥락상 게스트 컨테이너들의 플랫폼이 되는 VM을 별도의 독립된 리눅스 머신이라 생각하고 도커 호스트라 부르자. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>호스트_ VM을 실행하는 맥을 호스트, VM을 게스트라 한다. 여기서는 맥락상 게스트 컨테이너들의 플랫폼이 되는 VM을 별도의 독립된 리눅스 머신이라 생각하고 도커 호스트라 부르자. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -537,13 +537,13 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1141,7 +1141,7 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1207,7 +1207,7 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1219,7 +1219,7 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1269,6 +1269,13 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1278,13 +1285,6 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1385,7 +1385,7 @@ root@dca220f5e753:/var/www/laravel# <span class="nb">exit</span>
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

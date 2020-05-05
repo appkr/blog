@@ -154,19 +154,19 @@
 <span class="nx">foo</span><span class="p">();</span>
 
 <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
-    <span class="k">echo</span> <span class="s1">'1'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'1'</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
     <span class="nx">bar</span><span class="p">();</span>
-    <span class="k">echo</span> <span class="s1">'5'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'5'</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> 
-    <span class="k">echo</span> <span class="s1">'2'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'2'</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
     <span class="nx">baz</span><span class="p">();</span>
-    <span class="k">echo</span> <span class="s1">'4'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'4'</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">function</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> 
-    <span class="k">echo</span> <span class="s1">'3'</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s1">'3'</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -250,7 +250,7 @@ Stack trace:
     <span class="k">throw</span> <span class="k">new</span> <span class="nx">CustomException</span><span class="p">(</span><span class="s1">'사용자 정의 예외가 발생했습니다'</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">class</span> <span class="nc">CustomException</span> <span class="k">extends</span> <span class="nx">RuntimeException</span> <span class="p">{}</span>
+<span class="kd">class</span> <span class="nc">CustomException</span> <span class="k">extends</span> <span class="nx">RuntimeException</span> <span class="p">{}</span>
 
 <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> 
     <span class="nx">bar</span><span class="p">();</span>
@@ -360,8 +360,8 @@ Stack trace:
 
 <h3 id="51-java">5.1 Java</h3>
 
-<div class="language-java linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomException</span> <span class="kd">extends</span> <span class="n">RuntimeException</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nf">CustomException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">previous</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">CustomException</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="nc">Throwable</span> <span class="n">previous</span><span class="o">)</span> <span class="o">{</span>
         <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="n">previous</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -380,10 +380,10 @@ Stack trace:
         <span class="c1">// System.out.println("이 라인은 컴파일 오류를 일으킵니다");</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">foo</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nf">CustomException</span><span class="o">(</span><span class="s">"사용자 정의 예외가 발생했습니다"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -525,13 +525,13 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1129,7 +1129,7 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1195,7 +1195,7 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1207,7 +1207,7 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1257,6 +1257,13 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1266,13 +1273,6 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1373,7 +1373,7 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

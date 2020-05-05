@@ -142,7 +142,7 @@
 <h2 id="1-예제---es6">1. 예제 - ES6</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">|</span> <span class="kd">function</span> <span class="o">*</span> <span class="nx">numbers</span><span class="p">(){</span>
-<span class="mi">2</span> <span class="o">|</span>   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello Generator!'</span><span class="p">);</span>
+<span class="mi">2</span> <span class="o">|</span>   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Generator!</span><span class="dl">'</span><span class="p">);</span>
 <span class="mi">3</span> <span class="o">|</span>   <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
 <span class="mi">4</span> <span class="o">|</span>   <span class="k">yield</span> <span class="mi">2</span><span class="p">;</span>
 <span class="mi">5</span> <span class="o">|</span> <span class="p">}</span>
@@ -214,9 +214,9 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 <span class="c1">// https://github.com/aws/aws-sdk-php/blob/master/src/functions.php#L49</span>
 
-<span class="k">namespace</span> <span class="nx">Aws</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">Aws</span><span class="p">;</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * Applies a map function $f to each value in a collection.
  *
  * @param mixed    $iterable Iterable sequence of data.
@@ -224,7 +224,7 @@
  *
  * @return \Generator
  */</span>
-<span class="k">function</span> <span class="nf">map</span><span class="p">(</span><span class="nv">$iterable</span><span class="p">,</span> <span class="nx">callable</span> <span class="nv">$f</span><span class="p">)</span>
+<span class="k">function</span> <span class="nf">map</span><span class="p">(</span><span class="nv">$iterable</span><span class="p">,</span> <span class="kt">callable</span> <span class="nv">$f</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">foreach</span> <span class="p">(</span><span class="nv">$iterable</span> <span class="k">as</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">yield</span> <span class="nv">$f</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
@@ -241,7 +241,7 @@
 <span class="p">});</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$generator</span> <span class="k">as</span> <span class="nv">$number</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="nv">$number</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$number</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -340,13 +340,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -944,7 +944,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1010,7 +1010,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1022,7 +1022,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1072,6 +1072,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1081,13 +1088,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1188,7 +1188,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

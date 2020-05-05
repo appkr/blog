@@ -161,21 +161,21 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php</span>
 
-<span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Foundation\Testing\DatabaseTransactions</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Thrift\Transport\THttpClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Post</span> <span class="k">as</span> <span class="n">EloquentPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="n">ThriftPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Testing\DatabaseTransactions</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Thrift\Transport\THttpClient</span><span class="p">;</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * @property \Appkr\Thrift\Post\PostServiceClient client
  */</span>
-<span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="kd">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <span class="p">{</span>
     <span class="c1">// 테스트 중에 생성된 데이터를 테스트가 끝나면 롤백해주는 라라벨의 내장 Trait다.  </span>
-    <span class="k">use</span> <span class="nx">DatabaseTransactions</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nn">DatabaseTransactions</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
     <span class="p">{</span>
@@ -246,15 +246,15 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Services/PostService.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Services</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostField</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Post</span> <span class="k">as</span> <span class="n">EloquentPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="n">ThriftPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostField</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
+<span class="kd">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nx">QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
     <span class="p">{</span>
@@ -308,17 +308,17 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/PostsController</span>
 
-<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">App\Services\PostService</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">App\Thrift\BarMiddleware</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">App\Thrift\FooMiddleware</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">App\Thrift\ThriftResponse</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">App\Thrift\ThriftServiceHandler</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Services\PostService</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Thrift\BarMiddleware</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Thrift\FooMiddleware</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Thrift\ThriftResponse</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Thrift\ThriftServiceHandler</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">Controller</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nv">$format</span> <span class="o">=</span> <span class="s1">'json'</span><span class="p">)</span>
     <span class="p">{</span>
@@ -344,13 +344,13 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftServiceHandler.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Thrift</span><span class="p">;</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * @property service
  * @property \App\Thrift\ThriftMiddleware|null middleware
  */</span>
-<span class="k">class</span> <span class="nc">ThriftServiceHandler</span>
+<span class="kd">class</span> <span class="nc">ThriftServiceHandler</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nx">ThriftMiddleware</span> <span class="nv">$middleware</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
     <span class="p">{</span>
@@ -384,21 +384,21 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/FooMiddleware.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Thrift</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\ErrorCode</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\SystemException</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Errors\UserException</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Log</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Errors\ErrorCode</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Errors\SystemException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Errors\UserException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Log</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">FooMiddleware</span> <span class="k">extends</span> <span class="nx">ThriftMiddleware</span>
+<span class="kd">class</span> <span class="nc">FooMiddleware</span> <span class="k">extends</span> <span class="nx">ThriftMiddleware</span>
 <span class="p">{</span>
     <span class="c1">// ThriftServiceHandler::__call에서 이 메서드를 호출했다. </span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$service</span><span class="p">,</span> <span class="nv">$method</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">try</span> <span class="p">{</span>
             <span class="c1">// 컨셉만 보여 주기 위해서 로그에 메시지를 쓰는 것으로 대신한다.</span>
-            <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'handling thrift request'</span><span class="p">,</span> <span class="p">[</span><span class="nb">func_get_args</span><span class="p">(),</span> <span class="nx">__METHOD__</span><span class="p">]);</span>
+            <span class="nb">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'handling thrift request'</span><span class="p">,</span> <span class="p">[</span><span class="nb">func_get_args</span><span class="p">(),</span> <span class="k">__METHOD__</span><span class="p">]);</span>
 
             <span class="c1">// 책임 연쇄 패턴에서 가장 중요한 부분이다. next 메서드는 다음 절에서 살펴본다.</span>
             <span class="c1">// 우리 예제에서 next는 BarMiddleware다.</span>
@@ -415,7 +415,7 @@
             <span class="c1">// 이 예제에서는 로그에 디버그 메시지를 쓴다. Thrift가 없는 라라벨 프로젝트라면</span>
             <span class="c1">// app/Exceptions/Handler.php의 전역 예외 처리기가 예외를 소비했을 것이다.</span>
             <span class="c1">// 라라벨의 Handler::report 메서드를 대신하는 역할을 한다.</span>
-            <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span>
+            <span class="nb">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span>
                 <span class="s2">"%s </span><span class="se">\n\n</span><span class="s2">%s </span><span class="se">\n</span><span class="s2">%s:%d </span><span class="se">\n\n</span><span class="s2">%s"</span><span class="p">,</span>
                 <span class="nb">get_class</span><span class="p">(</span><span class="nv">$e</span><span class="p">),</span>
                 <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
@@ -441,9 +441,9 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftMiddleware.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Thrift</span><span class="p">;</span>
 
-<span class="k">abstract</span> <span class="k">class</span> <span class="nc">ThriftMiddleware</span>
+<span class="k">abstract</span> <span class="kd">class</span> <span class="nc">ThriftMiddleware</span>
 <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$successor</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
@@ -504,7 +504,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php</span>
 
-<span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="kd">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     
@@ -655,13 +655,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1259,7 +1259,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1325,7 +1325,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1337,7 +1337,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1387,6 +1387,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1396,13 +1403,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1503,7 +1503,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

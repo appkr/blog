@@ -183,11 +183,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000000_create_customers_table.php</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
     <span class="p">{</span>
@@ -222,11 +222,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Customer.php</span>
 
-<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * App\Customer
  *
  * @property int $id
@@ -236,9 +236,9 @@
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @mixin \Eloquent
  */</span>
-<span class="k">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAddressAttribute</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$address</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAddressAttribute</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$address</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="nx">AddressFactory</span><span class="o">::</span><span class="na">createFromJson</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
     <span class="p">}</span>
@@ -254,11 +254,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/AddressFactory.php</span>
 
-<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">AddressFactory</span>
+<span class="kd">class</span> <span class="nc">AddressFactory</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">createFromJson</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$json</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">createFromJson</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$json</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$u</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
 
@@ -460,11 +460,11 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000100_create_customers_table.php</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
     <span class="p">{</span>
@@ -484,11 +484,11 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000200_create_customer_addresses_table.php</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CreateCustomerAddressesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateCustomerAddressesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
     <span class="p">{</span>
@@ -530,11 +530,11 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Customer.php</span>
 
-<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * App\Customer
  *
  * @property int $id
@@ -544,7 +544,7 @@ id  name    SI_DO_NAME
  * @property-read \App\CustomerAddress $address
  * @mixin \Eloquent
  */</span>
-<span class="k">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">address</span><span class="p">()</span>
     <span class="p">{</span>
@@ -555,11 +555,11 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/CustomerAddress.php</span>
 
-<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * App\CustomerAddress
  *
  * @property int $id
@@ -580,7 +580,7 @@ id  name    SI_DO_NAME
  * @property-read \App\Customer $customer
  * @mixin \Eloquent
  */</span>
-<span class="k">class</span> <span class="nc">CustomerAddress</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">CustomerAddress</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">customer</span><span class="p">()</span>
     <span class="p">{</span>
@@ -593,7 +593,7 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerAddressFactory.php</span>
 
-<span class="k">use</span> <span class="nx">Faker\Generator</span> <span class="k">as</span> <span class="nx">Faker</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Faker\Generator</span> <span class="k">as</span> <span class="n">Faker</span><span class="p">;</span>
 
 <span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span>
@@ -614,7 +614,7 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerFactory.php</span>
 
-<span class="k">use</span> <span class="nx">Faker\Generator</span> <span class="k">as</span> <span class="nx">Faker</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Faker\Generator</span> <span class="k">as</span> <span class="n">Faker</span><span class="p">;</span>
 
 <span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span>
@@ -918,13 +918,13 @@ id  name    SI_DO_NAME
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1522,7 +1522,7 @@ id  name    SI_DO_NAME
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1588,7 +1588,7 @@ id  name    SI_DO_NAME
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1600,7 +1600,7 @@ id  name    SI_DO_NAME
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1650,6 +1650,13 @@ id  name    SI_DO_NAME
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1659,13 +1666,6 @@ id  name    SI_DO_NAME
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1766,7 +1766,7 @@ id  name    SI_DO_NAME
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

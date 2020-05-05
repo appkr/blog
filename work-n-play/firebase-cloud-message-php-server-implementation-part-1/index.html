@@ -245,11 +245,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// YYYY_MM_DD_xxxxxx_create_devices_table.php</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CreateDevicesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateDevicesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
     <span class="p">{</span>
@@ -284,11 +284,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/User.php</span>
 
-<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Foundation\Auth\User</span> <span class="k">as</span> <span class="nx">Authenticatable</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Auth\User</span> <span class="k">as</span> <span class="n">Authenticatable</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Authenticatable</span>
+<span class="kd">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Authenticatable</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">devices</span><span class="p">()</span>
@@ -302,11 +302,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Device.php</span>
 
-<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Device</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">Device</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$fillable</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">'device_id'</span><span class="p">,</span>
@@ -324,9 +324,9 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/seeds/DatabaseSeeder.php</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Database\Seeder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Seeder</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">DatabaseSeeder</span> <span class="k">extends</span> <span class="nx">Seeder</span>
+<span class="kd">class</span> <span class="nc">DatabaseSeeder</span> <span class="k">extends</span> <span class="nx">Seeder</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">()</span>
     <span class="p">{</span>
@@ -360,12 +360,12 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/DevicesController.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">App\User</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\User</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">DevicesController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">DevicesController</span> <span class="k">extends</span> <span class="nx">Controller</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">upsert</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
     <span class="p">{</span>
@@ -413,11 +413,11 @@ Content-Type: application/json
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Middleware/AuthenticateOnceWithBasicAuth.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Http\Middleware</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Http\Middleware</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">AuthenticateOnceWithBasicAuth</span>
+<span class="kd">class</span> <span class="nc">AuthenticateOnceWithBasicAuth</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$next</span><span class="p">)</span>
     <span class="p">{</span>
@@ -430,11 +430,11 @@ Content-Type: application/json
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Kernel.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Http</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Http</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Foundation\Http\Kernel</span> <span class="k">as</span> <span class="nx">HttpKernel</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Http\Kernel</span> <span class="k">as</span> <span class="n">HttpKernel</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Kernel</span> <span class="k">extends</span> <span class="nx">HttpKernel</span>
+<span class="kd">class</span> <span class="nc">Kernel</span> <span class="k">extends</span> <span class="nx">HttpKernel</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     <span class="k">protected</span> <span class="nv">$routeMiddleware</span> <span class="o">=</span> <span class="p">[</span>
@@ -449,7 +449,7 @@ Content-Type: application/json
 
 <span class="c1">// ...</span>
 
-<span class="k">class</span> <span class="nc">DevicesController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">DevicesController</span> <span class="k">extends</span> <span class="nx">Controller</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
     <span class="p">{</span>
@@ -589,13 +589,13 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1193,7 +1193,7 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1259,7 +1259,7 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1271,7 +1271,7 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1321,6 +1321,13 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1330,13 +1337,6 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1437,7 +1437,7 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

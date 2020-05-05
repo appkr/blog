@@ -158,17 +158,17 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// core/Infrastructure/Queries/CvsProduct.php</span>
 
-<span class="k">namespace</span> <span class="nx">Search\Infrastructure\Queries</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">Search\Infrastructure\Queries</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Bootake\SearchService\Thrift\Search\Product</span> <span class="k">as</span> <span class="nx">ThriftProduct</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Bootake\SearchService\Thrift\Search\SearchFilter</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Bootake\SearchService\Thrift\Search\Section</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Bootake\SearchService\Thrift\Search\SectionType</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Support\Collection</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Search\Application\OutMappers\ProductMapper</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Search\Domain\Product</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\Product</span> <span class="k">as</span> <span class="n">ThriftProduct</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\SearchFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\Section</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\SectionType</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Collection</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Search\Application\OutMappers\ProductMapper</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Search\Domain\Product</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CvsProduct</span> <span class="k">extends</span> <span class="nx">BaseQuery</span> <span class="k">implements</span> <span class="nx">Queryable</span>
+<span class="kd">class</span> <span class="nc">CvsProduct</span> <span class="k">extends</span> <span class="nx">BaseQuery</span> <span class="k">implements</span> <span class="nx">Queryable</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">model</span><span class="p">()</span>
     <span class="p">{</span>
@@ -177,7 +177,7 @@
         <span class="k">return</span> <span class="k">new</span> <span class="nx">Product</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">query</span><span class="p">(</span><span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$regionId</span><span class="p">,</span> <span class="nv">$offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$limit</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">query</span><span class="p">(</span><span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$regionId</span><span class="p">,</span> <span class="nv">$offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$limit</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// Elastic Search로 부터 받은 검색 결과를 $rawResults에 담았다.</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rawResults</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">search</span><span class="p">(</span>
@@ -202,7 +202,7 @@
         <span class="p">];</span>
     <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildSection</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$payload</span><span class="p">,</span> <span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$regionId</span><span class="p">)</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildSection</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$payload</span><span class="p">,</span> <span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$regionId</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// HTTP 응답으로 반환할 필드만 골라서 맵핑한다.</span>
         <span class="c1">// 이 과정에서 런타임에 계산해야 할 값들을 추가하거나, 데이터를 가공하거나 캐스팅하기도 한다.</span>
@@ -253,13 +253,13 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/TestCase.php</span>
 
-<span class="k">namespace</span> <span class="nx">Test</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">Test</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">TestCase</span> <span class="k">extends</span> <span class="nx">\Laravel\Lumen\Testing\TestCase</span>
+<span class="kd">class</span> <span class="nc">TestCase</span> <span class="k">extends</span> <span class="nx">\Laravel\Lumen\Testing\TestCase</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">createApplication</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="k">require</span> <span class="nx">__DIR__</span><span class="o">.</span><span class="s1">'/../bootstrap/app.php'</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">require</span> <span class="k">__DIR__</span><span class="o">.</span><span class="s1">'/../bootstrap/app.php'</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="k">protected</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getTestableMethod</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
@@ -282,15 +282,15 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/Unit/QueryTest.php</span>
 
-<span class="k">namespace</span> <span class="nx">Test\Unit</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">Test\Unit</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Bootake\SearchService\Thrift\Search\StoreStatus</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Elasticsearch\ClientBuilder</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Search\Infrastructure\Queries\CvsProduct</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\StoreStatus</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Elasticsearch\ClientBuilder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Search\Infrastructure\Queries\CvsProduct</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">QueryTest</span> <span class="k">extends</span> <span class="nx">\Test\TestCase</span>
+<span class="kd">class</span> <span class="nc">QueryTest</span> <span class="k">extends</span> <span class="nx">\Test\TestCase</span>
 <span class="p">{</span>
-    <span class="sd">/** @test */</span>
+    <span class="cd">/** @test */</span>
     <span class="k">function</span> <span class="nf">cvs_products_collection_should_be_sorted_by_its_parent_store_status</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="nv">$productCollection</span> <span class="o">=</span> <span class="nx">collect</span><span class="p">([</span>
@@ -443,13 +443,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1047,7 +1047,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1113,7 +1113,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1125,7 +1125,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1175,6 +1175,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1184,13 +1191,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1291,7 +1291,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

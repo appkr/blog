@@ -150,7 +150,7 @@
 <p>기존 Wordpress to Jekyll 마이그레이션 시리즈에 하나의 포스트를 더 추가한다. 오늘 구현한 따끈한 기능 2가지 이다.</p>
 
 <ul>
-  <li>Disqus<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 최신 댓글 뽑아 오기</li>
+  <li>Disqus<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> 최신 댓글 뽑아 오기</li>
   <li>Facebook 최신 포스트 뽑아 오기</li>
 </ul>
 
@@ -249,24 +249,24 @@
 
 <span class="cm">/* Facebook Recent UserFeeds */</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">fbAsyncInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">facebookAppId</span> <span class="o">=</span> <span class="s1">'{app_id}'</span><span class="p">;</span>
-  <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="s1">'v2.5'</span><span class="p">});</span>
+  <span class="kd">var</span> <span class="nx">facebookAppId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{app_id}</span><span class="dl">'</span><span class="p">;</span>
+  <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">v2.5</span><span class="dl">'</span><span class="p">});</span>
 <span class="p">};</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
   <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"//connect.facebook.net/en_US/sdk.js"</span><span class="p">;</span>
+  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">//connect.facebook.net/en_US/sdk.js</span><span class="dl">"</span><span class="p">;</span>
   <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
-<span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="s1">'script'</span><span class="p">,</span> <span class="s1">'facebook-jssdk'</span><span class="p">));</span>
+<span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">facebook-jssdk</span><span class="dl">'</span><span class="p">));</span>
 </code></pre></div></div>
 
 <p>페이지 로드해서 에러가 안났다. SDK 가 잘 로드되었다는 의미다~</p>
 
 <h3 id="markup">Markup</h3>
 
-<p>표시할 뷰의 내용이 복잡하지도 않을 뿐더러, 3rd Party Template Engine<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> 의존성을 제거하기 위해 Template 컴파일을 직접 구현하기로 했다.</p>
+<p>표시할 뷰의 내용이 복잡하지도 않을 뿐더러, 3rd Party Template Engine<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> 의존성을 제거하기 위해 Template 컴파일을 직접 구현하기로 했다.</p>
 
 <p><code class="highlighter-rouge">ul.facebook-feed</code> 엘리먼트 안쪽에, Template 으로 쓰일 <code class="highlighter-rouge">script#facebook-feed-template</code> 엘리먼트를 위치시켰다. 그리고, Jekyll Liquid 와 충돌을 피하기 위해서 Single Curly Brace (<code class="highlighter-rouge">{}</code>) 를 String Interpolation 기호로 사용하였다. 바인딩할 대상은 <code class="highlighter-rouge">{ message }</code>, <code class="highlighter-rouge">{ id }</code>, <code class="highlighter-rouge">{ created_time }</code> 딱 3 개 뿐이다.</p>
 
@@ -281,12 +281,12 @@
     <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"facebook-feed"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;script </span><span class="na">id=</span><span class="s">"facebook-feed-template"</span> <span class="na">type=</span><span class="s">"text/x-template"</span><span class="nt">&gt;</span>
         <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="nx">span</span> <span class="kd">class</span><span class="o">=</span><span class="s2">"facebook-message"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">span</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">facebook-message</span><span class="dl">"</span><span class="o">&gt;</span>
             <span class="p">{</span> <span class="nx">message</span> <span class="p">}</span>
           <span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
 </span>          <span class="err">·</span>
-          <span class="o">&lt;</span><span class="nx">span</span> <span class="kd">class</span><span class="o">=</span><span class="s2">"facebook-meta"</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">"https://www.facebook.com/juwonkimatmedotcom/posts/{ id }"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">span</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">facebook-meta</span><span class="dl">"</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://www.facebook.com/juwonkimatmedotcom/posts/{ id }</span><span class="dl">"</span><span class="o">&gt;</span>
               <span class="p">{</span> <span class="nx">created_time</span> <span class="p">}</span>
             <span class="o">&lt;</span><span class="sr">/a</span><span class="err">&gt;
 </span>          <span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
@@ -322,16 +322,16 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L291</span>
 
 <span class="nb">window</span><span class="p">.</span><span class="nx">fbAsyncInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">facebookAccessToken</span> <span class="o">=</span>  <span class="s1">'{access_token}'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">facebookAppId</span> <span class="o">=</span> <span class="s1">'{app_id}'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">facebookFeedContainer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'ul#facebook-feed'</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">facebookFeedTemplate</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#facebook-feed-template'</span><span class="p">).</span><span class="nx">html</span><span class="p">());</span>
+  <span class="kd">var</span> <span class="nx">facebookAccessToken</span> <span class="o">=</span>  <span class="dl">'</span><span class="s1">{access_token}</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">facebookAppId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{app_id}</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">facebookFeedContainer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">ul#facebook-feed</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">facebookFeedTemplate</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#facebook-feed-template</span><span class="dl">'</span><span class="p">).</span><span class="nx">html</span><span class="p">());</span>
 
-  <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="s1">'v2.5'</span><span class="p">});</span>
+  <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">v2.5</span><span class="dl">'</span><span class="p">});</span>
 
-  <span class="nx">FB</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'me/posts'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">,</span> <span class="p">{</span><span class="na">limit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">access_token</span><span class="p">:</span> <span class="nx">facebookAccessToken</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">FB</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="dl">'</span><span class="s1">me/posts</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">limit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">access_token</span><span class="p">:</span> <span class="nx">facebookAccessToken</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">response</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">facebookFeedContainer</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="s1">'&lt;li&gt;Some error :(&lt;/li&gt;'</span><span class="p">);</span>
+      <span class="nx">facebookFeedContainer</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;li&gt;Some error :(&lt;/li&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nx">compile</span><span class="p">(</span><span class="nx">facebookFeedTemplate</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
@@ -345,11 +345,11 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L263</span>
 
 <span class="kd">var</span> <span class="nx">compile</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layoutTemplate</span><span class="p">,</span> <span class="nx">facebookUserFeedCollection</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
 
   <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">facebookUserFeedCollection</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">markup</span> <span class="o">+=</span> <span class="nx">layoutTemplate</span>
-      <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">id</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+      <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">id</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">_</span><span class="dl">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
       <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">message</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">truncate</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">story</span><span class="p">))</span>
       <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">created_time</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">created_time</span><span class="p">,</span> <span class="nx">moment</span><span class="p">.</span><span class="nx">ISO_8601</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">());</span>
   <span class="p">});</span>
@@ -361,7 +361,7 @@
   <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">len</span> <span class="o">||</span> <span class="mi">100</span><span class="p">;</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">len</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'...'</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">...</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">str</span><span class="p">;</span>
@@ -377,13 +377,13 @@
 
 <div class="spacer">• • •</div>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p><a href="https://disqus.com/">Disqus</a> 는 댓글 서비스 이다. Jekyll 은 모든 면에서 내가 원하는 것들을 충족해 주었지만, 가장 아쉬운 점 중에 하나가 블로그 포스트에 대한 댓글이었다. 댓글의 특성상 블로그 방문자와 계속 인터랙션해야 하기 때문에 댓글을 저장할 백엔드가 반드시 필요한데… 이 때 선택할 수 있는 옵션이 Disqus 와 같은 외부 댓글 서비스이다. 유사 서비스로는 <a href="https://www.livere.com/">Livere-국산</a>, <a href="//chak.it/">Chak-국산</a> 등이 있다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://disqus.com/">Disqus</a> 는 댓글 서비스 이다. Jekyll 은 모든 면에서 내가 원하는 것들을 충족해 주었지만, 가장 아쉬운 점 중에 하나가 블로그 포스트에 대한 댓글이었다. 댓글의 특성상 블로그 방문자와 계속 인터랙션해야 하기 때문에 댓글을 저장할 백엔드가 반드시 필요한데… 이 때 선택할 수 있는 옵션이 Disqus 와 같은 외부 댓글 서비스이다. 유사 서비스로는 <a href="https://www.livere.com/">Livere-국산</a>, <a href="//chak.it/">Chak-국산</a> 등이 있다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Javascript Template Engine 으로는 <a href="//handlebarsjs.com/">Handlebars</a>가 전통적 강자이다. <a href="http://ejs.co/">EJS</a> 도 꽤 쓰이는 것 같다. 관련해서 <a href="http://www.sitepoint.com/overview-javascript-templating-engines/">SitePoint 에서 훌륭한 아티클</a>을 썼다. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Javascript Template Engine 으로는 <a href="//handlebarsjs.com/">Handlebars</a>가 전통적 강자이다. <a href="http://ejs.co/">EJS</a> 도 꽤 쓰이는 것 같다. 관련해서 <a href="http://www.sitepoint.com/overview-javascript-templating-engines/">SitePoint 에서 훌륭한 아티클</a>을 썼다. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -481,13 +481,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1085,7 +1085,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1151,7 +1151,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1163,7 +1163,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1213,6 +1213,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1222,13 +1229,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1329,7 +1329,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

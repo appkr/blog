@@ -155,13 +155,13 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 회사 코드에서 일부 발췌</span>
 
-<span class="k">class</span> <span class="nc">StoreRetriever</span>
+<span class="kd">class</span> <span class="nc">StoreRetriever</span>
 <span class="p">{</span>
     <span class="c1">// 라라벨 프레임웍이 제공하는 엘로퀀트 ORM과 쿼리 빌더를 이용하는 경우</span>
     <span class="c1">// PDO와 Prepared Statement를 이용하므로 SQL Injection은 자동 방어됨</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">retrieveStoresByParams</span><span class="p">(</span><span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$eagerLoads</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
-        <span class="nv">$builder</span> <span class="o">=</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span>
+        <span class="nv">$builder</span> <span class="o">=</span> <span class="o">!</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span>
             <span class="o">?</span> <span class="nx">Store</span><span class="o">::</span><span class="na">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">)</span>
             <span class="o">:</span> <span class="nx">Store</span><span class="o">::</span><span class="na">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">);</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applySearchParams</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
@@ -308,13 +308,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -912,7 +912,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -978,7 +978,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -990,7 +990,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1040,6 +1040,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1049,13 +1056,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1156,7 +1156,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

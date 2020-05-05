@@ -190,13 +190,13 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// index.php</span>
 
 <span class="c1">// 오토로드</span>
-<span class="k">require</span><span class="p">(</span><span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">);</span>
+<span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">);</span>
 
 <span class="c1">// 허용 메모리 키우고, 테스트 데이터 생성</span>
 <span class="nb">ini_set</span><span class="p">(</span><span class="s1">'memory_limit'</span><span class="p">,</span> <span class="s1">'512M'</span><span class="p">);</span>
-<span class="nv">$teams</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/teams.php'</span><span class="p">);</span>
-<span class="nv">$users</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/users.php'</span><span class="p">);</span>
-<span class="nv">$userIndex</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/index.php'</span><span class="p">);</span>
+<span class="nv">$teams</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/teams.php'</span><span class="p">);</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/users.php'</span><span class="p">);</span>
+<span class="nv">$userIndex</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/index.php'</span><span class="p">);</span>
 
 <span class="c1">// 타이머 시작</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">'START'</span><span class="p">,</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
@@ -218,7 +218,7 @@
 <span class="p">}</span>
 
 <span class="c1">// 테스트 수행</span>
-<span class="nv">$found</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="nx">__DIR__</span> <span class="o">.</span> <span class="s2">"/scenario/</span><span class="si">{</span><span class="nv">$scenario</span><span class="si">}</span><span class="s2">.php"</span><span class="p">);</span>
+<span class="nv">$found</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s2">"/scenario/</span><span class="si">{</span><span class="nv">$scenario</span><span class="si">}</span><span class="s2">.php"</span><span class="p">);</span>
 
 <span class="c1">// 결과 계산</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="p">[</span>
@@ -243,7 +243,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// data/teams.php</span>
 
-<span class="k">use</span> <span class="nx">App\Team</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Team</span><span class="p">;</span>
 
 <span class="k">return</span> <span class="p">[</span>
     <span class="k">new</span> <span class="nx">Team</span><span class="p">([</span>
@@ -269,7 +269,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// data/users.php</span>
 
-<span class="k">use</span> <span class="nx">App\User</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\User</span><span class="p">;</span>
 
 <span class="nv">$faker</span> <span class="o">=</span> <span class="nx">\Faker\Factory</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'ko_KR'</span><span class="p">);</span>
 <span class="nv">$users</span> <span class="o">=</span> <span class="p">[];</span>
@@ -793,13 +793,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1397,7 +1397,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1463,7 +1463,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1475,7 +1475,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1525,6 +1525,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1534,13 +1541,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1641,7 +1641,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

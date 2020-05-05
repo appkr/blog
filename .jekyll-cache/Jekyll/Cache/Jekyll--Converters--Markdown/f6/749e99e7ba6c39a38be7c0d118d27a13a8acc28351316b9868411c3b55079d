@@ -1,0 +1,38 @@
+I"8<p>Full HD Video 를 비압축된 상태로 전송하려면 초당 186Mbps 의 Bandwidth 가 필요하고, 90 분 짜리 영화 한편을 저장했을 경우 1.1 Tbyte 의 용량을 차지한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th style="text-align: right">산술 데이터량</th>
+      <th style="text-align: right">bit</th>
+      <th style="text-align: right">in byte</th>
+      <th style="text-align: right">Resolution consideration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>w1920xh1080</td>
+      <td style="text-align: right">2,073,600</td>
+      <td style="text-align: right">259,200</td>
+      <td style="text-align: right">bits per frame</td>
+      <td style="text-align: right">2073600x24bits</td>
+    </tr>
+    <tr>
+      <td>49,766,400</td>
+      <td style="text-align: right">6,220,800</td>
+      <td style="text-align: right">bitrate @30fps</td>
+      <td style="text-align: right">49766400x30frames</td>
+      <td style="text-align: right">1,492,992,000</td>
+    </tr>
+    <tr>
+      <td>186,624,000</td>
+      <td style="text-align: right">bitrate @90min HD video</td>
+      <td style="text-align: right">1492992000x60secx90min</td>
+      <td style="text-align: right">8,062,156,800,000</td>
+      <td style="text-align: right">1,007,769,600,000</td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

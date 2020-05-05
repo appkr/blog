@@ -1,0 +1,31 @@
+I"W<p>이 포스트에서는 엘로퀀트 모델에서 값 객체(Value Object)를 사용하는 몇 가지 방법을 고객 모델을 예제로 설명합니다.</p>
+
+<ol>
+  <li>변경자와 접근자(Attribute Mutator &amp; Accessor)를 이용하는 방법</li>
+  <li>LOB(Large Object)를 이용하는 방법</li>
+  <li>참조(외래키)를 이용하는 방법</li>
+</ol>
+
+<p>먼저 이 포스트에서 사용할 용어를 설명하겠습니다.</p>
+
+<p><strong>모델</strong></p>
+
+<p>현실 세계의 복잡한 물체 또는 사상을 목적에 적합하도록 핵심만 간소화한 것. x:1 비행기 프라모델은 실물을 본따 만든 모형입니다. 웹 서비스를 개발하는 컨텍스트에서 모델은 비즈니스에 참여하는 여러 실체의 본질적인 특징만 뽑아 추상화한 것입니다. e.g. 고객 모델</p>
+
+<p><strong>엔티티와 값 객체</strong></p>
+
+<p>모델은 다시 1) “엔티티”와 2) “값 객체”로 분류할 수 있습니다. 고객#1과 고객#2는 고유한 식별자로 구분지을 수 있으므로 엔티티라 하는 반면, 고객의 주소는 전체 값으로만 서로 같고 다름을 식별할 수 있으므로 값 객체라 합니다. 값 객체는 밸류 오브젝트, 또는 줄여서 밸류라고 부르기도 합니다. e.g. 고객 1번과 고객 2번은 식별자에 의해 서로 다른 모델. 고객 1번과 2번은 가족인데, 이들의 주소 ‘서울특별시 강남구 삼성동 162-17’과 ‘서울특별시 강남구 삼성동 162-17’은 전체 문자열이 같으므로 같은 주소임.</p>
+
+<p><strong>원시 타입과 박스 타입</strong></p>
+
+<p>PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 원시 타입(Primitive Type)이라 합니다. 64bit 환경에서는 int라 쓰지만 4byte가 아니라 8bytes 즉 2^64 메모리 공간을 차지하고, float도 double과 같은 표현 범위를 가집니다(see http://php.net/manual/en/language.types.php). 
+여튼, 아래 예처럼 고객을 의미할 때 <code class="highlighter-rouge">customer:string</code>처럼 원시타입으로 표현하기 보다는 <code class="highlighter-rouge">customer:Customer</code>로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$c</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+
+<span class="c1">// v.s.</span>
+
+<span class="nv">$c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Customer</span><span class="p">(</span><span class="s1">'홍길동'</span><span class="p">);</span>
+</code></pre></div></div>
+
+:ET

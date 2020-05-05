@@ -1,0 +1,9 @@
+I"�<p>RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다.</p>
+
+<p>REST가 API를 통해 원격 서버에 있는 리소스(모델 또는 데이터)에 대한 상태를 주고 받는다고 생각하는 반면, RPC는 원격 서버의 함수를 호출해서 결과를 얻는다고 생각한다. 그래서 REST에서는 <code class="highlighter-rouge">GET /posts/{id}</code> 또는 <code class="highlighter-rouge">POST /posts</code>와 같이 원격 서버의 리소스에 접근할 수 있는 직접적인 통로를 제공하는 반면, RPC에서는 URL 엔드포인트는 그냥 통로일 뿐 원격 서버와 클라이언트가 공통으로 사용하는 라아브러리를 시용해서 <code class="highlighter-rouge">$client-&gt;find($id)</code>와 같이 통신한다.</p>
+
+<p>이 포스트에서는 PHP 프로젝트에서 Apache Thrift RPC 시스템을 사용하는 방법을 설명한다.</p>
+
+<p><strong><code class="highlighter-rouge">CAVEAT</code></strong> <strong>게시판 서비스를 만드는데 RPC를 쓰지 말라! 속도나 강건함을 얻는 대신 디버깅의 편리함을 포기해야 한다. 클라이언트가 멀티 플랫폼으로 구성되어 있어 서버와 주고 받는 메시지를 엄격하게 규정해야 하고, 외부에 공개하지 않는 API일 때만 고려해 볼 것을 권장한다.</strong></p>
+
+:ET

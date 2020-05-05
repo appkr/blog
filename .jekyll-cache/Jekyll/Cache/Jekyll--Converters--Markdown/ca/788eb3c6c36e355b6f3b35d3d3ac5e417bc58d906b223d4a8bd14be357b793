@@ -1,0 +1,81 @@
+I"S<p>각 응용분야별 Video Codec은 이렇게 진화할 것이다. 주목할 것은… 거의 대부분의 응용분야에서 H.264 를 채택할 전망이란 점.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Requirements</th>
+      <th>CODECs used</th>
+      <th>Roadmap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Security/Surveillance</td>
+      <td>Multiple encoding</td>
+      <td>Motion JPEG, H.263</td>
+      <td>MPEG-4 SP, H.264</td>
+    </tr>
+    <tr>
+      <td>Videophone, Videoconference</td>
+      <td>Low delay, Low bit rates</td>
+      <td>H.261, H.263</td>
+      <td>H.264 BP</td>
+    </tr>
+    <tr>
+      <td>Internet streaming</td>
+      <td>Low bitrate, Multi-format decoders, Rights mgmt.</td>
+      <td>WMV9, Real Video, MPEG-4, (QuickTime, DivX®)</td>
+      <td>H.264 BP</td>
+    </tr>
+    <tr>
+      <td>DVD</td>
+      <td>High quality, random access, low cost</td>
+      <td>MPEG-2 MP</td>
+      <td>H.264, WMV9</td>
+    </tr>
+    <tr>
+      <td>Digital terrestrial TV</td>
+      <td>High quality</td>
+      <td>MPEG-2</td>
+      <td>MPEG-2, H.264, AVS 1.0</td>
+    </tr>
+    <tr>
+      <td>Satellite TV</td>
+      <td>High quality</td>
+      <td>MPEG-2</td>
+      <td>H.264 HP</td>
+    </tr>
+    <tr>
+      <td>Digital video to handset</td>
+      <td>Low power, Low bit rate, Error robustness</td>
+      <td>WMV9, H.264</td>
+      <td>H.264 HP</td>
+    </tr>
+    <tr>
+      <td>Personal video recorders</td>
+      <td>High quality, Low compression, Random access</td>
+      <td>MPEG-2</td>
+      <td>WMV9, H.264</td>
+    </tr>
+    <tr>
+      <td>Digital video camcorders</td>
+      <td>Low power, High quality, Low bit rate</td>
+      <td>DV</td>
+      <td>MPEG-2, MPEG-4</td>
+    </tr>
+    <tr>
+      <td>Mobile streaming</td>
+      <td>Low complexity decoding, Robustness to errors</td>
+      <td>MPEG-4 SP</td>
+      <td>RV, H.264 BP, WMV9, AVS-M</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="참고자료">참고자료</h2>
+
+<ul>
+  <li><a href="http://www.ti.com/litv/pdf/spry088">Video Compression: System Trade-Offs with H.264, VC-1 and other Codecs</a></li>
+</ul>
+:ET

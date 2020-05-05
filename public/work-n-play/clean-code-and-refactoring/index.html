@@ -177,17 +177,17 @@
 <h2 id="before">Before</h2>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2016-05-24 ~ 2016-11-28, 10 커밋, 4 명의 커미터</span>
-<span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Jobs</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="o">...</span><span class="p">;</span>
+<span class="nx">use</span> <span class="o">...</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">OrderCreationJob</span>
+<span class="kd">class</span> <span class="nc">OrderCreationJob</span>
 <span class="p">{</span>
-    <span class="sd">/**
+    <span class="cd">/**
      * @var Creator
      */</span>
     <span class="k">private</span> <span class="nv">$orderCreator</span><span class="p">;</span>
-    <span class="sd">/**
+    <span class="cd">/**
      * @var DeliveryOrderMapRepository
      */</span>
     <span class="k">private</span> <span class="nv">$repository</span><span class="p">;</span>
@@ -204,7 +204,7 @@
 
     <span class="k">public</span> <span class="k">function</span> <span class="nf">fire</span><span class="p">(</span><span class="nx">QueueJob</span> <span class="nv">$job</span><span class="p">,</span> <span class="nv">$data</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="sd">/**
+        <span class="cd">/**
          * @var Delivery $delivery
          */</span>
         <span class="nv">$deliveryId</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">'delivery_id'</span><span class="p">];</span>
@@ -243,7 +243,7 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStartSeconds</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">stopTimer</span><span class="p">()</span> <span class="o">:</span> <span class="nx">float</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">stopTimer</span><span class="p">()</span> <span class="o">:</span> <span class="kt">float</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">timerStopSeconds</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
@@ -256,11 +256,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 2017-11-28</span>
 
-<span class="k">namespace</span> <span class="nx">App\Jobs</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Jobs</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="o">...</span><span class="p">;</span>
+<span class="nx">use</span> <span class="o">...</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">OrderCreationJob</span>
+<span class="kd">class</span> <span class="nc">OrderCreationJob</span>
 <span class="p">{</span>
     <span class="k">const</span> <span class="no">ALLOWED_NUMBER_OF_RETRY</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 
@@ -309,7 +309,7 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="s1">'오더 생성 잡 처리를 마칩니다.'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfAlreadyCreated</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$deliveryId</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfAlreadyCreated</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$deliveryId</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">deliveryOrderMapRepository</span><span class="o">-&gt;</span><span class="na">existsNonNullMap</span><span class="p">(</span><span class="nv">$deliveryId</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">OrderAlreadyCreatedException</span><span class="p">([</span>
@@ -318,12 +318,12 @@
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfAllowedRetryCountReached</span><span class="p">(</span><span class="nx">QueueJob</span> <span class="nv">$job</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$deliveryId</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkIfAllowedRetryCountReached</span><span class="p">(</span><span class="nx">QueueJob</span> <span class="nv">$job</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$deliveryId</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$job</span><span class="o">-&gt;</span><span class="na">attempts</span><span class="p">()</span> <span class="o">&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">ALLOWED_NUMBER_OF_RETRY</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$job</span><span class="o">-&gt;</span><span class="na">attempts</span><span class="p">()</span> <span class="o">&gt;</span> <span class="kt">self</span><span class="o">::</span><span class="na">ALLOWED_NUMBER_OF_RETRY</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">OrderCreationFailedException</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span>
                 <span class="s1">'deliveryId'</span> <span class="o">=&gt;</span> <span class="nv">$deliveryId</span><span class="p">,</span>
-                <span class="s1">'retryCount'</span> <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">ALLOWED_NUMBER_OF_RETRY</span><span class="p">,</span>
+                <span class="s1">'retryCount'</span> <span class="o">=&gt;</span> <span class="kt">self</span><span class="o">::</span><span class="na">ALLOWED_NUMBER_OF_RETRY</span><span class="p">,</span>
             <span class="p">]);</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -359,9 +359,9 @@
         <span class="k">return</span> <span class="nv">$orderDto</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">logProgress</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$level</span> <span class="o">=</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">logProgress</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$message</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$level</span> <span class="o">=</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
-        <span class="nx">Log</span><span class="o">::</span><span class="na">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="s2">"[OrderCreationJob] </span><span class="si">{</span><span class="nv">$message</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+        <span class="nb">Log</span><span class="o">::</span><span class="na">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="s2">"[OrderCreationJob] </span><span class="si">{</span><span class="nv">$message</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -464,13 +464,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1068,7 +1068,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1134,7 +1134,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1146,7 +1146,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1196,6 +1196,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1205,13 +1212,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1312,7 +1312,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

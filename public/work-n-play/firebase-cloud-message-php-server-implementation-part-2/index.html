@@ -212,18 +212,18 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 <span class="cp">&lt;?php</span> <span class="c1">// app/Providers/FcmServiceProvider</span>
  <span class="mi">2</span> 
- <span class="mi">3</span> <span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
+ <span class="mi">3</span> <span class="kn">namespace</span> <span class="nn">App\Providers</span><span class="p">;</span>
  <span class="mi">4</span> 
- <span class="mi">5</span> <span class="k">use</span> <span class="nx">App\Services\EloquentFcmDeviceRepository</span><span class="p">;</span>
- <span class="mi">6</span> <span class="k">use</span> <span class="nx">App\Services\FcmDeviceRepository</span><span class="p">;</span>
- <span class="mi">7</span> <span class="k">use</span> <span class="nx">App\Services\FcmHandler</span><span class="p">;</span>
- <span class="mi">8</span> <span class="k">use</span> <span class="nx">GuzzleHttp\Client</span> <span class="k">as</span> <span class="nx">GuzzleClient</span><span class="p">;</span>
- <span class="mi">9</span> <span class="k">use</span> <span class="nx">Illuminate\Contracts\Config\Repository</span> <span class="k">as</span> <span class="nx">ConfigRepository</span><span class="p">;</span>
-<span class="mi">10</span> <span class="k">use</span> <span class="nx">Illuminate\Contracts\Foundation\Application</span><span class="p">;</span>
-<span class="mi">11</span> <span class="k">use</span> <span class="nx">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
-<span class="mi">12</span> <span class="k">use</span> <span class="nx">Psr\Log\LoggerInterface</span><span class="p">;</span>
+ <span class="mi">5</span> <span class="kn">use</span> <span class="nn">App\Services\EloquentFcmDeviceRepository</span><span class="p">;</span>
+ <span class="mi">6</span> <span class="kn">use</span> <span class="nn">App\Services\FcmDeviceRepository</span><span class="p">;</span>
+ <span class="mi">7</span> <span class="kn">use</span> <span class="nn">App\Services\FcmHandler</span><span class="p">;</span>
+ <span class="mi">8</span> <span class="kn">use</span> <span class="nn">GuzzleHttp\Client</span> <span class="k">as</span> <span class="n">GuzzleClient</span><span class="p">;</span>
+ <span class="mi">9</span> <span class="kn">use</span> <span class="nn">Illuminate\Contracts\Config\Repository</span> <span class="k">as</span> <span class="n">ConfigRepository</span><span class="p">;</span>
+<span class="mi">10</span> <span class="kn">use</span> <span class="nn">Illuminate\Contracts\Foundation\Application</span><span class="p">;</span>
+<span class="mi">11</span> <span class="kn">use</span> <span class="nn">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+<span class="mi">12</span> <span class="kn">use</span> <span class="nn">Psr\Log\LoggerInterface</span><span class="p">;</span>
 <span class="mi">13</span> 
-<span class="mi">14</span> <span class="k">class</span> <span class="nc">FcmServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="mi">14</span> <span class="kd">class</span> <span class="nc">FcmServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
 <span class="mi">15</span> <span class="p">{</span>
 <span class="mi">16</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span>
 <span class="mi">17</span>     <span class="p">{</span>
@@ -273,25 +273,25 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 <span class="cp">&lt;?php</span> <span class="c1">// app/Services/FcmDeviceRepository.php</span>
  <span class="mi">2</span> 
- <span class="mi">3</span> <span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+ <span class="mi">3</span> <span class="kn">namespace</span> <span class="nn">App\Services</span><span class="p">;</span>
  <span class="mi">4</span> 
- <span class="mi">5</span> <span class="k">interface</span> <span class="nx">FcmDeviceRepository</span>
+ <span class="mi">5</span> <span class="kd">interface</span> <span class="nc">FcmDeviceRepository</span>
  <span class="mi">6</span> <span class="p">{</span>
- <span class="mi">7</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">updateFcmDevice</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$oldId</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$newId</span><span class="p">);</span>
- <span class="mi">8</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">deleteFcmDevice</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$deprecatedId</span><span class="p">);</span>
+ <span class="mi">7</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">updateFcmDevice</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$oldId</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$newId</span><span class="p">);</span>
+ <span class="mi">8</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">deleteFcmDevice</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$deprecatedId</span><span class="p">);</span>
  <span class="mi">9</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 <span class="cp">&lt;?php</span> <span class="c1">// app/Services/EloquentFcmDeviceRepository.php</span>
  <span class="mi">2</span> 
- <span class="mi">3</span> <span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+ <span class="mi">3</span> <span class="kn">namespace</span> <span class="nn">App\Services</span><span class="p">;</span>
  <span class="mi">4</span> 
- <span class="mi">5</span> <span class="k">use</span> <span class="nx">App\Device</span><span class="p">;</span>
- <span class="mi">6</span> <span class="k">use</span> <span class="nx">DB</span><span class="p">;</span>
+ <span class="mi">5</span> <span class="kn">use</span> <span class="nn">App\Device</span><span class="p">;</span>
+ <span class="mi">6</span> <span class="kn">use</span> <span class="nn">DB</span><span class="p">;</span>
  <span class="mi">7</span> 
- <span class="mi">8</span> <span class="k">class</span> <span class="nc">EloquentFcmDeviceRepository</span> <span class="k">implements</span> <span class="nx">FcmDeviceRepository</span>
+ <span class="mi">8</span> <span class="kd">class</span> <span class="nc">EloquentFcmDeviceRepository</span> <span class="k">implements</span> <span class="nx">FcmDeviceRepository</span>
  <span class="mi">9</span> <span class="p">{</span>
-<span class="mi">10</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">updateFcmDevice</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$oldId</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$newId</span><span class="p">)</span>
+<span class="mi">10</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">updateFcmDevice</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$oldId</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$newId</span><span class="p">)</span>
 <span class="mi">11</span>     <span class="p">{</span>
 <span class="mi">12</span>         <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">,</span> <span class="nv">$oldId</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
 <span class="mi">13</span>         <span class="k">if</span> <span class="p">(</span><span class="nv">$device</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -300,19 +300,19 @@
 <span class="mi">16</span> 
 <span class="mi">17</span>         <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">push_service_id</span> <span class="o">=</span> <span class="nv">$newId</span><span class="p">;</span>
 <span class="mi">18</span> 
-<span class="mi">19</span>         <span class="nx">DB</span><span class="o">::</span><span class="na">transaction</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">19</span>         <span class="nx">DB</span><span class="o">::</span><span class="na">transaction</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="nx">use</span> <span class="p">(</span><span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
 <span class="mi">20</span>             <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
 <span class="mi">21</span>         <span class="p">});</span>
 <span class="mi">22</span>     <span class="p">}</span>
 <span class="mi">23</span> 
-<span class="mi">24</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">deleteFcmDevice</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$deprecatedId</span><span class="p">)</span>
+<span class="mi">24</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">deleteFcmDevice</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$deprecatedId</span><span class="p">)</span>
 <span class="mi">25</span>     <span class="p">{</span>
 <span class="mi">26</span>         <span class="nv">$device</span> <span class="o">=</span> <span class="nx">Device</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">,</span> <span class="nv">$deprecatedId</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
 <span class="mi">27</span>         <span class="k">if</span> <span class="p">(</span><span class="nv">$device</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 <span class="mi">28</span>             <span class="k">return</span><span class="p">;</span>
 <span class="mi">29</span>         <span class="p">}</span>
 <span class="mi">30</span> 
-<span class="mi">31</span>         <span class="nx">DB</span><span class="o">::</span><span class="na">transaction</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">31</span>         <span class="nx">DB</span><span class="o">::</span><span class="na">transaction</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="nx">use</span> <span class="p">(</span><span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
 <span class="mi">32</span>             <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 <span class="mi">33</span>         <span class="p">});</span>
 <span class="mi">34</span>     <span class="p">}</span>
@@ -330,14 +330,14 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1 <span class="cp">&lt;?php</span> <span class="c1">// app/Services/FcmHandler.php</span>
   <span class="mi">2</span> 
-  <span class="mi">3</span> <span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+  <span class="mi">3</span> <span class="kn">namespace</span> <span class="nn">App\Services</span><span class="p">;</span>
   <span class="mi">4</span> 
-  <span class="mi">5</span> <span class="k">use</span> <span class="nx">Exception</span><span class="p">;</span>
-  <span class="mi">6</span> <span class="k">use</span> <span class="nx">GuzzleHttp\Client</span> <span class="k">as</span> <span class="nx">GuzzleClient</span><span class="p">;</span>
-  <span class="mi">7</span> <span class="k">use</span> <span class="nx">GuzzleHttp\Psr7\Request</span><span class="p">;</span>
-  <span class="mi">8</span> <span class="k">use</span> <span class="nx">Psr\Log\LoggerInterface</span><span class="p">;</span>
+  <span class="mi">5</span> <span class="kn">use</span> <span class="nn">Exception</span><span class="p">;</span>
+  <span class="mi">6</span> <span class="kn">use</span> <span class="nn">GuzzleHttp\Client</span> <span class="k">as</span> <span class="n">GuzzleClient</span><span class="p">;</span>
+  <span class="mi">7</span> <span class="kn">use</span> <span class="nn">GuzzleHttp\Psr7\Request</span><span class="p">;</span>
+  <span class="mi">8</span> <span class="kn">use</span> <span class="nn">Psr\Log\LoggerInterface</span><span class="p">;</span>
   <span class="mi">9</span> 
- <span class="mi">10</span> <span class="k">class</span> <span class="nc">FcmHandler</span>
+ <span class="mi">10</span> <span class="kd">class</span> <span class="nc">FcmHandler</span>
  <span class="mi">11</span> <span class="p">{</span>
  <span class="mi">12</span>     <span class="k">const</span> <span class="no">MAX_TOKEN_PER_REQUEST</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
  <span class="mi">13</span>     <span class="k">const</span> <span class="no">API_ENDPOINT</span> <span class="o">=</span> <span class="s1">'fcm/send'</span><span class="p">;</span>
@@ -384,9 +384,9 @@
  <span class="mi">47</span>         <span class="p">}</span>
  <span class="mi">48</span> 
  <span class="mi">49</span>         <span class="k">try</span> <span class="p">{</span>
- <span class="mi">50</span>             <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">MAX_TOKEN_PER_REQUEST</span><span class="p">)</span> <span class="p">{</span>
+ <span class="mi">50</span>             <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="kt">self</span><span class="o">::</span><span class="na">MAX_TOKEN_PER_REQUEST</span><span class="p">)</span> <span class="p">{</span>
  <span class="mi">51</span>                 <span class="nv">$response</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
- <span class="mi">52</span>                 <span class="k">foreach</span> <span class="p">(</span><span class="nb">array_chunk</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="na">MAX_TOKEN_PER_REQUEST</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$chunk</span><span class="p">)</span> <span class="p">{</span>
+ <span class="mi">52</span>                 <span class="k">foreach</span> <span class="p">(</span><span class="nb">array_chunk</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">receivers</span><span class="p">,</span> <span class="kt">self</span><span class="o">::</span><span class="na">MAX_TOKEN_PER_REQUEST</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$chunk</span><span class="p">)</span> <span class="p">{</span>
  <span class="mi">53</span>                     <span class="nv">$responsePartial</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_sendMessage</span><span class="p">(</span><span class="nv">$chunk</span><span class="p">);</span>
  <span class="mi">54</span>                     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$response</span><span class="p">)</span> <span class="p">{</span>
  <span class="mi">55</span>                         <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$responsePartial</span><span class="p">;</span>
@@ -455,7 +455,7 @@
 <span class="mi">105</span>             <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">,</span>
 <span class="mi">106</span>         <span class="p">]);</span>
 <span class="mi">107</span> 
-<span class="mi">108</span>         <span class="k">return</span> <span class="k">new</span> <span class="nx">Request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="na">API_ENDPOINT</span><span class="p">,</span> <span class="p">[],</span> <span class="nv">$httpBody</span><span class="p">);</span>
+<span class="mi">108</span>         <span class="k">return</span> <span class="k">new</span> <span class="nx">Request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="kt">self</span><span class="o">::</span><span class="na">API_ENDPOINT</span><span class="p">,</span> <span class="p">[],</span> <span class="nv">$httpBody</span><span class="p">);</span>
 <span class="mi">109</span>     <span class="p">}</span>
 </code></pre></div></div>
 
@@ -471,7 +471,7 @@
 <span class="mi">114</span>             <span class="k">return</span><span class="p">;</span>
 <span class="mi">115</span>         <span class="p">}</span>
 <span class="mi">116</span> 
-<span class="mi">117</span>         <span class="sd">/**
+<span class="mi">117</span>         <span class="cd">/**
 118          * @var array $pushServiceIdsToModify {
 119          *     @var string $oldPushServiceId =&gt; string $newPushServiceId
 120          * }
@@ -501,7 +501,7 @@
 <span class="mi">139</span>         <span class="p">}</span>
 <span class="mi">140</span> 
 <span class="mi">141</span>         <span class="nv">$pushServiceIdsToDelete</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToDelete</span><span class="p">();</span>
-<span class="mi">142</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToDelete</span><span class="p">))</span> <span class="p">{</span>
+<span class="mi">142</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToDelete</span><span class="p">))</span> <span class="p">{</span>
 <span class="mi">143</span>             <span class="c1">// 해당 registration_id를 가진 단말기가 구글 Fcm 서비스에 등록되어 있지 않습니다.</span>
 <span class="mi">144</span>             <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logProgress</span><span class="p">(</span><span class="s1">'사용불가한 push_service_id 를 삭제합니다.'</span><span class="p">,</span> <span class="p">[</span>
 <span class="mi">145</span>                 <span class="s1">'push_service_ids_to_delete'</span> <span class="o">=&gt;</span> <span class="nv">$pushServiceIdsToDelete</span>
@@ -513,7 +513,7 @@
 <span class="mi">151</span>         <span class="p">}</span>
 <span class="mi">152</span> 
 <span class="mi">153</span>         <span class="nv">$pushServiceIdsToRetry</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">tokensToRetry</span><span class="p">();</span>
-<span class="mi">154</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToRetry</span><span class="p">))</span> <span class="p">{</span>
+<span class="mi">154</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToRetry</span><span class="p">))</span> <span class="p">{</span>
 <span class="mi">155</span>             <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isFinalRetry</span><span class="p">())</span> <span class="p">{</span>
 <span class="mi">156</span>                 <span class="c1">// 재시도 했지만 메시지 전송에 실패했습니다.</span>
 <span class="mi">157</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">();</span>
@@ -567,7 +567,7 @@
 <span class="mi">195</span>         <span class="p">}</span>
 <span class="mi">196</span>     <span class="p">}</span>
 <span class="mi">197</span> 
-<span class="mi">198</span>     <span class="k">private</span> <span class="k">function</span> <span class="nf">logProgress</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">string</span> <span class="nv">$level</span> <span class="o">=</span> <span class="s1">'debug'</span><span class="p">)</span>
+<span class="mi">198</span>     <span class="k">private</span> <span class="k">function</span> <span class="nf">logProgress</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[],</span> <span class="kt">string</span> <span class="nv">$level</span> <span class="o">=</span> <span class="s1">'debug'</span><span class="p">)</span>
 <span class="mi">199</span>     <span class="p">{</span>
 <span class="mi">200</span>         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="s2">"[FcmHandler] </span><span class="si">{</span><span class="nv">$message</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
 <span class="mi">201</span>     <span class="p">}</span>
@@ -626,7 +626,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/User.php</span>
 
-<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Authenticatable</span>
+<span class="kd">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Authenticatable</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
 
@@ -646,17 +646,17 @@
 <p><code class="highlighter-rouge">DownstreamResponse</code> 클래스를 이해하려면, <a href="https://firebase.google.com/docs/cloud-messaging/server#response">Fcm 문서</a>에 명시된 Fcm 서버의 응답 메시지를 이해해야 하는데… 아래는 총 6개의 단말기에 푸쉬 메시지를 보냈을 때 Fcm 서버의 응답 예제이다. 이 예제를 통해서 Fcm 응답 스펙을 이해할 수 있다.</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> 
-  </span><span class="s2">"multicast_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"failure"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"canonical_ids"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:0408"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unavailable"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InvalidRegistration"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:1516"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:2342"</span><span class="p">,</span><span class="w"> </span><span class="s2">"registration_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NotRegistered"</span><span class="p">}</span><span class="w">
+  </span><span class="nl">"multicast_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"failure"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"canonical_ids"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:0408"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unavailable"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InvalidRegistration"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:1516"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:2342"</span><span class="p">,</span><span class="w"> </span><span class="nl">"registration_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NotRegistered"</span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -834,13 +834,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1438,7 +1438,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1504,7 +1504,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1516,7 +1516,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1566,6 +1566,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1575,13 +1582,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1682,7 +1682,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

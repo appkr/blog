@@ -1,0 +1,128 @@
+I"e<h2 id="challenges-of-making-a-high-performance-mobile-soc-an-ip-perspective">Challenges of Making a High-performance Mobile SoC-An IP Perspective</h2>
+
+<p><em>김진현상무, Samsung</em></p>
+
+<h3 id="a-mobile-device-usages-and-demand-forecast">A. Mobile Device Usages and Demand Forecast</h3>
+
+<h4 id="1-smart-life">1. Smart Life</h4>
+
+<p>인터넷 커넥티비티가 확보된 모바일 디바이스의 보급으로 인해, 언제 어디서든, 실시간으로 사실상 무한대의 정보에 접근할 수 있는 길이 열리게 되었다.</p>
+
+<h4 id="2-processing-performance-trend">2. Processing Performance Trend</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>2008</th>
+      <th>2009</th>
+      <th>2010</th>
+      <th>2011</th>
+      <th>2012</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3D Graphics</td>
+      <td>4M Tri/s</td>
+      <td>10M Tri/s</td>
+      <td>20M Tri/s</td>
+      <td>50M Tri/s</td>
+      <td>200M Tri/s</td>
+    </tr>
+    <tr>
+      <td>CPU</td>
+      <td>ARM11 677MHz</td>
+      <td>Cortex-A8 600MHz</td>
+      <td>Cortex-A8 1GHz</td>
+      <td>Cortex-A9 Dual 1GHz</td>
+      <td>Eagle Dual Core</td>
+    </tr>
+    <tr>
+      <td>Multimedia</td>
+      <td>SD 480p</td>
+      <td>HD 720p</td>
+      <td>HD1080p</td>
+      <td>1080p 3D Vision</td>
+      <td>UHD</td>
+    </tr>
+    <tr>
+      <td>Applications</td>
+      <td>Web Browsing/Social Networking</td>
+      <td> </td>
+      <td>3D Gaming / 3D UI</td>
+      <td> </td>
+      <td>Augmented Reality / 3D Display / Imaging</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="3-process-technology-trend">3. Process Technology Trend</h4>
+<ul>
+  <li>Gate density doubles at each node</li>
+  <li>with more integrated functions and features</li>
+  <li>with higher performance</li>
+  <li>with lower active and static power</li>
+</ul>
+
+<h4 id="4-gate-density-mmm2-65nm--x2--45nm--x2--32nm">4. Gate Density (M/mm^2): 65nm → x2 → 45nm → x2 → 32nm</h4>
+<ul>
+  <li>Relative Performance (Ring Oscillator): 65nm → 23% up → 45nm → 45% up → 32nm</li>
+  <li>Relative Power: 미세화 공정을 한 단계 거칠수록 평균 Active Power/MHz 25% Down, Standby Leakage 50% Down</li>
+</ul>
+
+<h4 id="5-market-outlook-smartphone--tablet-m-units">5. Market Outlook: Smartphone &amp; Tablet (M Units)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>2009</th>
+      <th>2010</th>
+      <th>2011</th>
+      <th>2012</th>
+      <th>2013</th>
+      <th>CAGR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mobile phone</td>
+      <td>1,290</td>
+      <td>1,380</td>
+      <td>1,460</td>
+      <td>1,545</td>
+      <td>1,625</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Smartphone</td>
+      <td>173</td>
+      <td>280</td>
+      <td>405</td>
+      <td>540</td>
+      <td>678</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Smartphone Penetration</td>
+      <td>13%</td>
+      <td>20%</td>
+      <td>28%</td>
+      <td>35%</td>
+      <td>42%</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>0</td>
+      <td>17</td>
+      <td>53</td>
+      <td>78</td>
+      <td>108</td>
+      <td>85%</td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

@@ -1,0 +1,43 @@
+I"�<p>중학교 때 배운 후, 잊어 버리고, 매번 필요할 때마다 찾아 보는 것이 진법(進法)이다. 요즘은 교과 과정이 없어졌다고 하지만, 자녀들이 물어볼 때를 대비해 기록해 놓는다. 또, 개발자로서 이진법을 잘 이해하지 못하고 있는 나 자신이 부끄럽기도해서 필요할 때마다 꺼내볼 수 있도록 치트시트를 만들어 두는 거다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="십진수-to-이진수-decimal-to-binary">십진수 to 이진수 (decimal to binary)</h2>
+
+<ul>
+  <li>주어진 십진수를 2로 계속 나누어 몫을 기록한다. 나누어 지지 않는 나머지 1은 버린다.</li>
+  <li>몫의 끝자리 수가 짝수이면 0, 홀수이면 1로 표시한다.</li>
+  <li>뒤에서 앞으로 0과 1을 조합한다.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>684, 342, 171, 85, 42, 21, 10, 5, 2, 1
+  0,   0,   1,  1,  0,  1,  0, 1, 0, 1
+</code></pre></div></div>
+
+<p>십진수 684는 이진수로 1010101100 이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python
+<span class="o">&gt;&gt;&gt;</span> bin<span class="o">(</span>684<span class="o">)</span>
+<span class="s1">'0b1010101100'</span>
+</code></pre></div></div>
+
+<h2 id="이진수-to-십진수-binary-to-decimal">이진수 to 십진수 (binary to decimal)</h2>
+
+<ul>
+  <li>이진수의 자릿수를 구한다. 자릿수는 0부터 시작한다.</li>
+  <li>이진수의 값이 1일때만, 2에 자릿수만큼 제곱근한다.</li>
+  <li>전체를 더한다.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>자릿수 9 8 7 6 5 4 3 2 1 0
+이진수 1 0 1 0 1 0 1 1 0 0
+
+2^9 + 2^7 + 2^5 + 2^3 + 2^2 <span class="o">=</span> 684 
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python
+<span class="o">&gt;&gt;&gt;</span> int<span class="o">(</span>0b1010101100<span class="o">)</span>
+684
+</code></pre></div></div>
+:ET

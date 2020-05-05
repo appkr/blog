@@ -214,9 +214,9 @@
     <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="sr">/</span><span class="se">([</span><span class="sr">0-9</span><span class="se">]{2,5}</span><span class="sr">-</span><span class="se">[\p</span><span class="sr">L-</span><span class="se">\p</span><span class="sr">N</span><span class="se">\.</span><span class="sr">_-</span><span class="se">]</span><span class="sr">+</span><span class="se">)\.</span><span class="sr">md/gi</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">))</span> <span class="p">{</span>
-      <span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'.md'</span><span class="p">,</span> <span class="s1">'.html'</span><span class="p">);</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'link[rel="canonical"]'</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'href'</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'meta[http-equiv="refresh"]'</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'content'</span><span class="p">,</span> <span class="s1">'0; '</span><span class="o">+</span><span class="nx">url</span><span class="p">);</span>
+      <span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">.md</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.html</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">link[rel="canonical"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">href</span><span class="dl">'</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">meta[http-equiv="refresh"]</span><span class="dl">'</span><span class="p">).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">content</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">0; </span><span class="dl">'</span><span class="o">+</span><span class="nx">url</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
@@ -278,7 +278,7 @@
 
 <h3 id="23-url-rewrite">2.3. URL Rewrite</h3>
 
-<p>라라벨 프레임워크에서 프런트 컨트롤러<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 구현을 위해 사용한 아파치 웹 서버 설정 파일을 통해 URL Rewrite의 문법과 유용성을 살짝 엿보자.</p>
+<p>라라벨 프레임워크에서 프런트 컨트롤러<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> 구현을 위해 사용한 아파치 웹 서버 설정 파일을 통해 URL Rewrite의 문법과 유용성을 살짝 엿보자.</p>
 
 <div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/laravel/laravel/blob/master/public/.htaccess</span>
 
@@ -335,10 +335,10 @@
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>Front Controller_ 웹 애플리케이션의 단일 진입점이다. 가령 클리앙의 예처럼 <code class="highlighter-rouge">foo.php</code>, <code class="highlighter-rouge">bar.php</code>, <code class="highlighter-rouge">...</code>이 아니라, <code class="highlighter-rouge">index.php</code> 단 하나의 진입점을 말한다. HTTP 요청이 이 진입점에 들어 오면, 애플리케이션을 부팅하고 라우팅 테이블에 의해 적절한 처리 로직을 가동하고 응답을 반환한다. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>Front Controller_ 웹 애플리케이션의 단일 진입점이다. 가령 클리앙의 예처럼 <code class="highlighter-rouge">foo.php</code>, <code class="highlighter-rouge">bar.php</code>, <code class="highlighter-rouge">...</code>이 아니라, <code class="highlighter-rouge">index.php</code> 단 하나의 진입점을 말한다. HTTP 요청이 이 진입점에 들어 오면, 애플리케이션을 부팅하고 라우팅 테이블에 의해 적절한 처리 로직을 가동하고 응답을 반환한다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -436,13 +436,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1040,7 +1040,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1106,7 +1106,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1118,7 +1118,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1168,6 +1168,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1177,13 +1184,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1284,7 +1284,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

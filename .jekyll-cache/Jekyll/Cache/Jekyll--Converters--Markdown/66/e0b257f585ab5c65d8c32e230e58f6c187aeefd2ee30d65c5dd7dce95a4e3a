@@ -1,0 +1,68 @@
+I"�	<h2 id="1-정보원">1. 정보원</h2>
+
+<h3 id="1-1-디지털-저장장치">1-1. 디지털 저장장치</h3>
+
+<blockquote>
+  <p>기록은 기억을 지배한다.</p>
+</blockquote>
+
+<p>내가 97 년부터 만들기 시작했던 프로그램의 소스코드를 지금 보면 도무지 뭐가 뭔지 이해할 수가 없다. 학교 때 정리한 전공 노트를 다시 보면 잘 이해할 수가 없다.</p>
+
+<p>업무에서 발생되는, Neural Storage 에 입력되는 정보들은 내가 이해할 수 있는 언어로 디코딩 및 재인코딩 (Transcoding) 하여 Digital Storage 에 구조화 하여 저장하는 것이 좋다. 그리고, 필요할 땐, 언제든지 검색할 수 있어야 한다. 이것은 내 기억력을 보조할 뿐만 아니라, 내 경력을 정리해 놓은 노트가 되며, 과거 경험을 참고해야 할 때 빠르게 복기할 수 있는 좋은 도구가 된다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Depth #1</th>
+      <th>Depth #2</th>
+      <th>Description(Naming)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MyDoc</td>
+      <td> </td>
+      <td>업무상 내가 작성한 문서 (yyyymm_ProjectName)</td>
+    </tr>
+    <tr>
+      <td>MyCompany</td>
+      <td> </td>
+      <td>사내에서 업무 관련해서 받은 문서 (기능별 또는 조직별로 분류)</td>
+    </tr>
+    <tr>
+      <td>Reference</td>
+      <td>ByMarket</td>
+      <td>시장별로 분류된 문서 (ex. mobile, consumer-battery, consumer-nobattery…)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>ByTechnology</td>
+      <td>기술별로 분류된 문서 (ex. graphic, multimedia, power…)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>ByCompany</td>
+      <td>회사별로 분류된 문서 (아래 그림 참조)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>ExpertReports</td>
+      <td>전문 조사기관에서 얻은 자료 (ex. IDC, Gartnet, iSuppli…)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Conferences</td>
+      <td>컨퍼런스, 세미나에서 얻은 자료 (yyyymm_ConferenceName)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[표] 내 폴더 구성</p>
+
+<p>Reference 아래에 쌓인 자료는 이미 내가 한번 Screening 한 자료로, 경험삼 무작위 인터넷 검색보다 훨씬 더 Relevant 할 경우가 많았다.</p>
+
+<p>[그림 유실]</p>
+
+<p>로컬 컴퓨터의 내 문서에 포함된 ByCompany 폴더와 <a href="http://office.microsoft.com/ko-kr/sharepointtechnology/default.aspx?ofcresset=1">Windows Sharepoint Services 3.0</a>에 동기화</p>
+
+:ET

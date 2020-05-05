@@ -1,0 +1,82 @@
+I"	<p>Doom9 이라는 해외 포럼에서 IPTV 전송에 최적화된 Parameter Setting (Test Options) 으로 각 코덱별로 테스트한 영상화질을 나타낸다. 본 자료에 의하면, H.264, VP7, VP6, VC-1, DivX5 순으로 평가되었다. 본 자료에서 제시한 테스트 결과는 필자와는 무관하다.
+ </p>
+<h2 id="test-vector-1-resolution-unknown">Test Vector #1 (resolution unknown)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codec</th>
+      <th>ES Bitrate</th>
+      <th>PSNR</th>
+      <th>SSIM</th>
+      <th>Test Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DivX</td>
+      <td>447 kbps</td>
+      <td>35.5729</td>
+      <td>63.49</td>
+      <td>B-frames, best quality for bitrate, MPEG quantizer</td>
+    </tr>
+    <tr>
+      <td>XviD</td>
+      <td>447 kbps</td>
+      <td>39.6601</td>
+      <td>64.36</td>
+      <td>MPEG quantization, Trellis quantization, Qpel, VHQ for B-frames</td>
+    </tr>
+    <tr>
+      <td>Nero AVC</td>
+      <td>446 kbps</td>
+      <td>40.6388</td>
+      <td>69.53</td>
+      <td>CABAC entropy coding</td>
+    </tr>
+    <tr>
+      <td>x.264</td>
+      <td>447 kbps</td>
+      <td>40.4423</td>
+      <td>68.24</td>
+      <td>CABAC entropy coding</td>
+    </tr>
+    <tr>
+      <td>VP7</td>
+      <td>446 kbps</td>
+      <td>40.5841</td>
+      <td>68.09</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>VP6</td>
+      <td>446 kbps</td>
+      <td>40.2241</td>
+      <td>66.53</td>
+      <td>VP6.2 Heightened Sharpness Profile with all the default settings</td>
+    </tr>
+    <tr>
+      <td>VC-1</td>
+      <td>446 kbps</td>
+      <td>39.5186</td>
+      <td>64.16</td>
+      <td>Maximum keyframe distance which was set to 20 seconds</td>
+    </tr>
+    <tr>
+      <td>RV10</td>
+      <td>447 kbps</td>
+      <td>39.4594</td>
+      <td>62.83</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong><code class="highlighter-rouge">주)</code></strong></p>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/PSNR"><code class="highlighter-rouge">PSNR, Peak Signal-to-Noise Ratio</code></a> 원본 대비 압축된 영상의 화질을 측정하는 단위, 높을 수록 좋음.</li>
+  <li><code class="highlighter-rouge">SSIM</code> 동 자료를 발표한 연구기관에서 정한 주관적 화질 측정 단위, 높을 수록 좋음</li>
+</ul>
+
+:ET

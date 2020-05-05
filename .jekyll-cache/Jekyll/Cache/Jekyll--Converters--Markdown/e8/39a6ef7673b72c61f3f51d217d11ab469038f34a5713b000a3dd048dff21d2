@@ -1,0 +1,36 @@
+I"L	<p>Wordpress 에서 Jekyll 로 마이그레이션 과정에서 배운 내용을 총 5 편의 포스트로 정리해 본다.</p>
+
+<ol>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-1-개발자로서의-새로운-삶">개발자로서의 새로운 삶</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll">Goodbye Wordpress, Hello Jekyll</a></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-3-publishing">Publishing</a></li>
+  <li><em>Build Automation with Gulp</em></li>
+  <li><a href="/work-n-play/블로그-플랫폼-이전-5-disqus-facebook">Disqus &amp; Facebook</a></li>
+</ol>
+
+<p>지난 2 주일 동안 일어난 우여곡절들을 기억을 되살려 최대한 복기해 두었다.</p>
+
+<div class="spacer">• • •</div>
+
+<h2 id="jekyll-serve">Jekyll Serve</h2>
+
+<p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll serve
+<span class="c"># Configuration file: /.../blog/_config.yml</span>
+<span class="c">#             Source: /.../blog</span>
+<span class="c">#        Destination: public</span>
+<span class="c">#  Incremental build: disabled. Enable with --incremental</span>
+<span class="c">#       Generating...</span>
+<span class="c">#                     done in 1.432 seconds.</span>
+<span class="c">#  Auto-regeneration: enabled for '/.../blog'</span>
+<span class="c"># Configuration file: /.../blog/_config.yml</span>
+<span class="c">#     Server address: http://127.0.0.1:4000/</span>
+<span class="c">#   Server running... press ctrl-c to stop.</span>
+</code></pre></div></div>
+
+<p><a href="/images/2016-02-12-img-01.png"><img src="/images/2016-02-12-img-01.png" alt="Preview with Jekyll built-in web server" /></a></p>
+
+<p>그런데 2% 가 부족했다.</p>
+
+:ET

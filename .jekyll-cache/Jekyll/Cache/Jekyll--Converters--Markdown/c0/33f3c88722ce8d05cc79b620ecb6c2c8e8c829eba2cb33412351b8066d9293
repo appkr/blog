@@ -1,0 +1,95 @@
+I"s*<p>제가 집필한 책이 어제 출간되었습니다. <strong>웹 프로그래밍</strong>을 다룹니다. 웹 프로그래밍을 위한 도구로는 <strong>PHP 언어로 작성된 라라벨 프레임워크</strong>를 사용합니다.</p>
+
+<p>2016년 초에 완성하고 깃허브에 공개한 <strong><a href="https://github.com/appkr/l5essential">무료 온라인 강의</a>를 토대로 제이펍 출판사에 계신 프로페셔널들의 도움을 받아 비문을 고치고 부족한 설명을 보충</strong>하였습니다. 게다가 생활 코딩 오프라인 수업에 조교로 자원 봉사(5회?), 8시간 또는 14시간 짜리 라라벨 입문 강의(각 4회씩 총 8회) 등을 통해 입문자와 예비 독자들을 만나며, 여러분들이 어려워하거나 실수하기 쉬운 내용을 캐치하고 책의 내용과 구성에 반영했습니다.</p>
+
+<p><a href="//cfile2.uf.tistory.com/image/261326505829771C18CBB0"><img src="//cfile2.uf.tistory.com/image/261326505829771C18CBB0" alt="라라벨로 배우는 실전 PHP 웹 프로그래밍" /></a></p>
+
+<h4 id="프로그래밍을-생짜-처음-하신다고요">프로그래밍을 생짜 처음 하신다고요?</h4>
+
+<p>생활코딩의 <a href="https://opentutorials.org/course/1688">웹 애플리케이션 만들기</a> 정도만 공부하신 수준이면 이 책을 시작하는데 무리가 없습니다.</p>
+
+<h4 id="임베디드-응용-시스템-프로그래밍을-하시거나하셨는데-필요에-의해-웹-프로그래밍을-하셔야-한다고요">임베디드, 응용, 시스템 프로그래밍을 하시거나/하셨는데, 필요에 의해 웹 프로그래밍을 하셔야 한다고요?</h4>
+
+<p>이 책으로 시작하시는 당신은 행운아입니다.</p>
+
+<p>이 곳에서 구매할 수 있습니다. <a href="//www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&amp;mallGb=KOR&amp;barcode=9791185890623">교보문고</a>, <a href="//www.bandinlunis.com/front/product/detailProduct.do?prodId=4011008">반디앤루니스</a>, <a href="//www.aladin.co.kr/shop/wproduct.aspx?ItemId=96495117">알라딘</a>, <a href="//www.yes24.com/24/goods/33320248">yes24</a>, <a href="//book.interpark.com/product/BookDisplay.do?_method=detail&amp;sc.shopNo=0000400000&amp;sc.prdNo=261904099">인터파크</a></p>
+
+<blockquote>
+  <p>개발자들은 코드를 보면 코드를 짠 사람의 실력과 성격을 어느 정도 가늠할 수 있다는 얘기를 들었습니다. 마찬가지로, 저희들은 원고를 보고 지은이의 내공과 성격을 어느 정도 유추하곤 합니다. 김주원 님의 원고를 처음 받았을 때의 느낌은 ‘참 꼼꼼하면서 정갈한 분이시겠구나’였습니다. 책 전체의 뼈대와 같은 차례도 탄탄하고, 글을 풀어가는 느낌도 군더더기가 없어서 좋았습니다. 물론, 원고를 받고 책이 나오기까지 많은 분의 도움으로 수정 및 보완 작업을 거치긴 했지만요.</p>
+  <footer>제이펍 블로그 포스트 중에서 (//jpub.tistory.com/622)</footer>
+</blockquote>
+
+<p><strong><code class="highlighter-rouge">안내</code></strong> 매월 첫째 주 수요일에 열리는 <a href="//www.modernpug.org/">모던퍼그</a> 정기 모임에 책을 들고 참여하시면 저자 싸인해 드리겠습니다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="1-라라벨이-뭐길래">1. 라라벨이 뭐길래?</h2>
+
+<p><a href="https://laravel.com/"><img src="/images/2016-11-27-img-01.png" alt="라라벨 홈페이지" /></a></p>
+
+<p>온오프믹스 오프라인 강의 모집 공고에 썼던 내용을 그대로 옮겨 왔습니다.</p>
+
+<p><strong>라라벨은 PHP 언어로 만든 풀 스택 웹 프레임워크</strong>입니다. 루비하면 레일즈와 시나트라, 파이썬하면 장고와 플라스크가 대표적인 웹 프레임워크로 자리매김하고 있듯이, 지금은 PHP하면 라라벨로 통할 정도로 인기있는 도구입니다. 태어난 지 5년됐고 현재 최신 버전은 5.3입니다. 지난 5년 동안 16,000개의 이슈와 20,000개의 커밋이 발생했을 정도로 활동이 활발합니다. 오늘 기준으로 깃허브 전체 인기도 41위를 차지하고 있습니다<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>. 국내에서도 라라벨을 채택하는 회사와 프로젝트가 최근에 부쩍 늘고 있습니다.</p>
+
+<h4 id="라라벨을-장착하면">라라벨을 장착하면</h4>
+
+<ul>
+  <li>MVC로 깔끔하게 떨어지는 구조의 서비스를 개발할 수 있습니다.</li>
+  <li>남들은 다 한다는 ‘모던’ 개발 방법론과 서비스 아키텍처가 뭔지에 대해 서서히 눈뜨게 됩니다.</li>
+  <li>객체 지향 프로그래밍의 디자인 패턴, SOLID를 이해하기 시작합니다. 이쯤되면 더 나은 코드에 대한 갈망이 용솟음 칩니다.</li>
+  <li>레벨 업 → 더 좋은 회사 취업, 이직의 자유도 → 이력서에 ‘라라벨’ 한 줄로 러브콜이 쇄도하는 선순환 고리에 들어섭니다.</li>
+  <li>결국은 만렙 웹 개발자가 되고, 다른 언어와 프레임워크를 친구 자취방처럼 넘나들 수 있는 경지에 이릅니다.</li>
+</ul>
+
+<p>한 마디로 라라벨은 모범 웹 개발 방법론의 결정체입니다. 라라벨에서 배운 라우팅, 템플릿, 마이그레이션, ORM, 의존성 관리, 객체 지향 설계등의 지식은 다른 프레임워크를 시작할 때도 그대로 이식할 수 있습니다. 반대로 다른 웹 프레임워크를 해 보신 분이 라라벨을 시작하신다면 이미 절반은 알고 계신거나 마찬가지입니다.</p>
+
+<h2 id="2-php가-뭐길래">2. PHP가 뭐길래?</h2>
+
+<p>PHP는 20년이 넘는 역사를 가지고 있습니다. 현존하는 모든 컴퓨터 언어를 놓고 봤을 때 전세계적으로 7위 정도의 인기를 누리고 있습니다<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+
+<p>스스로를 범용 언어라고 포지셔닝하려하지만, 사실은 태생부터가 <strong>웹을 위한 언어</strong>였습니다(시작은 C로 짠 템플릿 엔진 수준). 책 머리글에 PHP의 간략한 역사를 포함하고 있으니 참고해주세요. 그래서 웹만 이야기하면 PHP의 인기도와 채택율은 완전 달라집니다. 통계에 따르면 전세계 웹 트래픽의 80% 이상을 PHP 언어가 서브하는 것으로 알려져있습니다<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>. 페이스북과 워드프레스의 영향이 크긴하지만 엄청난 수치입니다.</p>
+
+<p>제가 현재 속한 회사도 안정성과 확장성이 필요한 핵심 서비스는 자바나 스칼라를 쓰지만, 고객과 인터페이스가 발생하고 자주 변하는 부분(API 엔드포인트)은 모두 PHP로 처리하고 있습니다. 즉, 웹 브라우저, iOS/Andorid 애플리케이션을 비롯한 웹 클라이언트의 80%가 PHP로 짠 서버에 접속한다는 의미입니다.</p>
+
+<h4 id="그러나">그러나,</h4>
+
+<ol>
+  <li>PHP 문법이나 동작의 비일관성</li>
+  <li>테스트와 유지보수가 불가한 난잡한 프레임워크(워드프레스)</li>
+  <li>현업 개발자나 웹 에이전시들의 나쁜 코딩 습관</li>
+</ol>
+
+<p>때문에 PHP는 개발자들로부터 많은 비난을 받아왔습니다. <a href="//noraesae.github.io/PHP-a-fractal-of-bad-design-kr/">‘PHP:잘못된 디자인의 프랙탈’</a> 문서를 보면 PHP를 암덩어리라고 느낄지도 모릅니다.</p>
+
+<p><a href="/images/2016-11-27-img-02.png"><img src="/images/2016-11-27-img-02.png" alt="PHP 성능" /></a></p>
+
+<p>이런 이유로 한 동안 PHP를 쳐다보지도 않았다면, 지금은 다시 한 번 쳐다보세요. 웹 서비스에서는 다른 언어 대비 엄청난 성능을 보이고<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup>, 비일관성이나 코딩 습관은 PSR(PHP Standard Recommendation, Like JSR)과 라라벨과 같은 프레임워크가 어느 정도 가이드해줍니다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>원고를 탈고하고 책이 출간되는 사이에 라라벨 버전업이 한 번 있었고, 따라서 전체 예제 코드를 새 버전에 맞게 전부 다시 짰습니다. 뿐만아니라 이 책이 세상에 태어나지 못할 수도 있는 여러 가지 위기 상황을 겪었습니다. 그래서 책을 받아 든 순간 만감이 교차했지요.</p>
+
+<p>저는 라라벨이 국내에 확산되고, 그로 인해 자연스럽게 국내 PHP 및 웹 개발 생태계가 발전하기를 기대하며 이 책을 썼습니다. 국내 시장이 작은 이유도 있겠지만, 이번에 책을 쓰면서 출판 생태계를 알고 보니, 저자들이 책을 쓸 동기가 전혀 없겠다는 사실을 깨달았습니다. 사실 초판이 다 팔려도 저자들이 받는 인세는 그들이 들인 시간과 에너지에 비해 정말 작거든요.</p>
+
+<p>우리는 정보 과잉의 시대에 살고 있습니다. 새로운 기술을 배울 수 있는 채널을 너무나도 많습니다. 하지만 웹 검색을 통해서 얻는 것은 단편적인 문제 해결 방법일 뿐입니다. 완전하게 이해하기에는 책보다 더 좋은 채널이 없습니다. 제 자신도 책을 잘 안 사는 편입니다만, 더 많은 잠재 저자들이 자신의 오덕함을 사람들과 나눌 수 있도록 도와 주세요. 앞으로 책을 또 쓰는 무모한 짓은 하지 않으려고 다짐하는데, 옆에서 ‘한 번이 어렵지~’라며 바람을 넣네요. 후후.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>https://github-ranking.com/repositories, Vue.js 7위(놀라워라~), 레일즈 10위, 익스프레스 31위, 장고 53위 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="//www.tiobe.com/tiobe-index">www.tiobe.com/tiobe-index</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>https://w3techs.com/technologies/overview/programming_language/all <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="//benchmarksgame.alioth.debian.org">benchmarksgame.alioth.debian.org</a>, 테이블 헤더의 spectral-norm 등은 테스트 벡터 이름, secs는 실행 시간, KB/gz는 소스코드 크기, cpu는 CPU 사용 시간, 측정 값은 모두 4회 테스트한 결과의 평균치 <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

@@ -1,0 +1,7 @@
+I"{<p>이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(<a href="https://en.wikipedia.org/wiki/Stack_trace">위키피디아</a>).</p>
+
+<p><a href="https://i.stack.imgur.com/HOY4C.png"><img src="https://i.stack.imgur.com/HOY4C.png" alt="메모리 다이어그램" /></a></p>
+
+<p><small>그림출처: https://i.stack.imgur.com/HOY4C.png</small></p>
+
+:ET

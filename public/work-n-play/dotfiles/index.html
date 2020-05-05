@@ -162,7 +162,7 @@
 
 <p>맥을 개발용 컴퓨터로 사용하면서 Homebrew를 아직도 사용하지 않는다면… GG. 지금이라도 늦지 않았다. Homebrew 바이너리 설치는 아래 한 줄을 복사해서, 콘솔에 붙여 넣는 것으로 끝이다.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
 </code></pre></div></div>
 
 <h3 id="11-뭘-할-수-있을까">1.1. 뭘 할 수 있을까?</h3>
@@ -435,8 +435,8 @@ cask <span class="s1">'iterm2'</span>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 
-<span class="k">if </span><span class="nb">test</span> <span class="o">!</span> <span class="k">$(</span>which brew<span class="k">)</span><span class="p">;</span> <span class="k">then
-  </span>ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<span class="k">if </span><span class="nb">test</span> <span class="o">!</span> <span class="si">$(</span>which brew<span class="si">)</span><span class="p">;</span> <span class="k">then
+  </span>ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
 <span class="k">fi</span>
 </code></pre></div></div>
 
@@ -457,8 +457,8 @@ brew cask cleanup
 
 <p>홈 디렉터리에 <code class="highlighter-rouge">.gitconfig</code>, <code class="highlighter-rouge">.gitignore_global</code> 파일이 없으면, <code class="highlighter-rouge">dotfiles</code> 하위에 있는 파일을 홈 디렉터리로 링크한다.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chsh <span class="nt">-s</span> <span class="k">$(</span>which zsh<span class="k">)</span>
-sh <span class="nt">-c</span> <span class="s2">"</span><span class="k">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh <span class="nt">-O</span> -<span class="k">)</span><span class="s2">"</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chsh <span class="nt">-s</span> <span class="si">$(</span>which zsh<span class="si">)</span>
+sh <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh <span class="nt">-O</span> -<span class="si">)</span><span class="s2">"</span>
 <span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="nv">$HOME</span>/.zshrc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">ln</span> <span class="nt">-nfs</span> <span class="nv">$HOME</span>/dotfiles/.zshrc <span class="nv">$HOME</span>/.zshrc
 <span class="nb">source</span> <span class="nv">$HOME</span>/.zshrc
 </code></pre></div></div>
@@ -475,7 +475,7 @@ sh <span class="nt">-c</span> <span class="s2">"</span><span class="k">$(</span>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/bin/composer global require laravel/installer laravel/envoy laravel/valet tightenco/jigsaw
 <span class="nv">$HOME</span>/.composer/vendor/bin/valet <span class="nb">install
 </span>git clone git@github.com:laravel/homestead.git <span class="nv">$HOME</span>/Homestead
-<span class="o">[</span> <span class="k">$(</span><span class="nb">basename</span> <span class="k">$(</span><span class="nb">pwd</span><span class="k">))</span> <span class="o">==</span> <span class="s2">"Homestead"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$HOME</span>/Homestead
+<span class="o">[</span> <span class="si">$(</span><span class="nb">basename</span> <span class="si">$(</span><span class="nb">pwd</span><span class="si">))</span> <span class="o">==</span> <span class="s2">"Homestead"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$HOME</span>/Homestead
 vagrant box add laravel/homestead
 </code></pre></div></div>
 
@@ -688,13 +688,13 @@ gem <span class="nb">install </span>jekyll
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1292,7 +1292,7 @@ gem <span class="nb">install </span>jekyll
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1358,7 +1358,7 @@ gem <span class="nb">install </span>jekyll
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1370,7 +1370,7 @@ gem <span class="nb">install </span>jekyll
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1420,6 +1420,13 @@ gem <span class="nb">install </span>jekyll
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1429,13 +1436,6 @@ gem <span class="nb">install </span>jekyll
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1536,7 +1536,7 @@ gem <span class="nb">install </span>jekyll
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

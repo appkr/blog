@@ -1,0 +1,27 @@
+I"�<h2 id="스마트폰의-연관-산업-구조에-관한-연구">스마트폰의 연관 산업 구조에 관한 연구</h2>
+
+<p><em>이성현, 우송대학교 IT경영학부 교수</em></p>
+
+<h3 id="key-trends-in-4-dimensions">Key Trends in 4 Dimensions</h3>
+
+<ul>
+  <li>Technology (Building blocks): 3G/4G, Connectivity, Newer display, Virtualization</li>
+  <li>Platform: OS, App execution environment, Device/software mgmt, Brower, Security, Analytics, Data communications, Content creation</li>
+  <li>Device: User interface, Device profiles, Application stores, Convergence &amp; connectivity</li>
+  <li>Value shift: Device to service (preload to post sales), New revenue model (ad, subscription), Web be the king of UI, Cross optimization of R&amp;D assets, Open source, Carrier with smarter pipes (Ex. Vodafone360)</li>
+</ul>
+
+<h3 id="what-fuels-android">What fuels Android?</h3>
+
+<ul>
+  <li>Google 이 주도하기 때문에..</li>
+  <li>미들웨어는 Google 이 제공하므로, 제조사는 차별화 포인트에 집중 투자할 수 있음. (윈모의 경우 $10~14의 라이센스 비용을 지불해야 함)</li>
+  <li>실리콘벤더들이 Android 를 위한 하드웨어 레퍼런스를 제공하므로 상당한 개발기간 단축이 가능함.</li>
+  <li>이통사들은 소프트웨어 플랫폼이 단일화됨으로 인해, 호환성에 별로 신경을 쓰지 않고, 고객에게 맞춤화된 UX 를 제공할 수 있음.</li>
+  <li>소프트웨어 아키텍처가 타 플랫폼에 비해 훌륭해서, 상위 App 을 개발하기가 쉬움.</li>
+</ul>
+
+<p><strong><code class="highlighter-rouge">주)</code></strong> 개발자들이 원하는 플랫폼: 개발이 쉬워야 함, 풍부한 API 제공, 개발이 빨라야 함. 기술지원이 좋아야 함.
+<strong><code class="highlighter-rouge">주)</code></strong> 개발자들이 싫어 하는 플랫폼: 개발환경과 Target 사이의 차이점, 빈약한 문서, 표준화되지 않은 땜빵식 APIs</p>
+
+:ET

@@ -1,0 +1,18 @@
+I"@<h2 id="video-codec-support-in-the-flash-engine">Video Codec Support in the Flash Engine</h2>
+
+<ul>
+  <li>Sorenson H.263 (H.263의 Uncomplete Version)</li>
+  <li>Sorenson Spark (Flash Player 6부터 지원)</li>
+  <li>On2 VP6 (Flash Player 8 부터 지원)</li>
+  <li>H.264 (Flash Player 9 부터 지원)</li>
+</ul>
+
+<h2 id="flash-contents-support-at-youtube">Flash Contents Support at YouTube</h2>
+
+<ul>
+  <li>320x240 SorensonSpark Mono mp3</li>
+  <li>864x480 SorensonSpark Stereo AAC (2008년 3월 부터)</li>
+  <li>720p H.264 Stereo AAC (2008년 11월 부터)</li>
+</ul>
+
+:ET

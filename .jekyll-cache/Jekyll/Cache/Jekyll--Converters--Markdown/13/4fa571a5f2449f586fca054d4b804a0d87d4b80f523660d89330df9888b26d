@@ -1,0 +1,291 @@
+I"�z<p>사전에서 context(컨텍스트)를 찾아보면 어떤 사건이 발생했을 때의 주변 상황 정도로 설명하고 있습니다. 컴퓨터 소프트웨어에서도 컨텍스트 스위칭, 로그 컨텍스트, 애플리케이션 컨텍스트 등 컨텍스트라는 단어를 많이 사용합니다.</p>
+
+<p>라라벨은 IoC를 위한 Service Container<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>가 있으며, 여기에 어떤 데이터 타입이든 바인딩할 수 있고, 애플리케이션 실행 중에 아래처럼 꺼내 쓸 수 있습니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$container</span> <span class="o">=</span> <span class="nx">app</span><span class="p">();</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="s1">'bar'</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nv">$container</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">);</span> <span class="c1">// 'bar'</span>
+</code></pre></div></div>
+
+<p>그런데, 아래와 같은 문제가 있죠<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. 작은 애플리케이션에서는 이렇게 쓴다고 전혀 문제없지만, 애플리케이션이 커지면 결국 개발자에게 큰 부담으로 다가옵니다.</p>
+
+<p><a href="/images/2018-07-09-img-01.png"><img src="/images/2018-07-09-img-01.png" alt="Strong Dependency" /></a></p>
+
+<p>이번 포스트에서는 라라벨 애플리케이션에서 애플리케이션 실행 시점의 주변 상황을 담아 놓고 필요할 때 꺼내 쓰기 위한 데이터 컨테이너를 구현했던 썰을 풀어보려합니다. <code class="highlighter-rouge">ApplicationContext</code>라 이름 지었고 Java 언어의 <code class="highlighter-rouge">ThreadLocal</code><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>과 비슷한 역할을 한다고 보면 됩니다. 주로 아래와 같은 상황에 유용하게 사용되기를 바라며 만들었어요.</p>
+
+<ul>
+  <li>프레임워크 영역(=main)의 데이터를 코어 영역(=app)으로 전달할 때</li>
+  <li>로깅 및 감사</li>
+  <li>프로세스간 컨텍스트 릴레이 등등 (e.g. Api -&gt; Queue, App -&gt; External, …)</li>
+</ul>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="1-기능-요구-사항">1. 기능 요구 사항</h2>
+
+<ul>
+  <li>컨텍스트를 소비하는 코어 코드가 프레임워크에서 생성한 <code class="highlighter-rouge">Container</code>, <code class="highlighter-rouge">Application</code>에 의존하지 않도록 한다</li>
+  <li>추가적인 의존성이 없는 클린한 데이터 컨테이너</li>
+  <li>현재 컨텍스트를 다음 프로세스에 전달할 수 있고, 직전 컨텍스트를 현재 컨텍스트에 연결할 수 있다</li>
+  <li>트랜잭션 정보를 담고 있다</li>
+  <li>사용자 정보를 구할 수 있다</li>
+</ul>
+
+<h2 id="2-설계">2. 설계</h2>
+
+<p><a href="/images/2018-07-09-img-02.png"><img src="/images/2018-07-09-img-02.png" alt="ApplicationContext Design" /></a></p>
+
+<h2 id="3-구현">3. 구현</h2>
+
+<p>코드에 주석을 달았으므로 추가적인 설명은 생략합니다.</p>
+
+<h3 id="31-applicationcontextserviceprovider">3.1. <code class="highlighter-rouge">ApplicationContextServiceProvider</code></h3>
+
+<p>라라벨이 부팅할 때, <code class="highlighter-rouge">ApplicationContext</code> 객체를 만들고 <code class="highlighter-rouge">ServiceContainer</code>에 등록해 두는 일을 합니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/ApplicationContextServiceProvider.php</span>
+
+<span class="kn">namespace</span> <span class="nn">App\Providers</span><span class="p">;</span>
+
+<span class="nx">use</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">ApplicationContextServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">singleton</span><span class="p">(</span><span class="nx">ApplicationContext</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Application</span> <span class="nv">$app</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$runningInConsole</span> <span class="o">=</span> <span class="nb">php_sapi_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'cli'</span><span class="p">;</span>
+            <span class="nv">$config</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">ConfigRepository</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">ApplicationContext</span><span class="p">([</span>
+                <span class="s1">'runningInConsole'</span> <span class="o">=&gt;</span> <span class="nv">$runningInConsole</span><span class="p">,</span>
+                <span class="s1">'appEnv'</span> <span class="o">=&gt;</span> <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'app.env'</span><span class="p">,</span> <span class="s1">'UNKNOWN'</span><span class="p">),</span>
+                <span class="s1">'appVersion'</span> <span class="o">=&gt;</span> <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'app.version'</span><span class="p">,</span> <span class="s1">'UNKNOWN'</span><span class="p">),</span>
+                <span class="s1">'transactionId'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTransactionId</span><span class="p">(),</span>
+                <span class="s1">'traceNumber'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTraceNumber</span><span class="p">(),</span>
+                <span class="s1">'user'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getUser</span><span class="p">(),</span>
+                <span class="s1">'clientIp'</span> <span class="o">=&gt;</span> <span class="nv">$runningInConsole</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getClientIp</span><span class="p">()</span>
+            <span class="p">]);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getTransactionId</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="cd">/** @var Request $request */</span>
+        <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">Request</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasHeader</span><span class="p">(</span><span class="nx">XHttpHeader</span><span class="o">::</span><span class="na">REQUEST_ID</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// 클라이언트가 제출한 X-Vendor-Request-Id가 항상 최우선 사용됩니다.</span>
+            <span class="k">return</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">urldecode</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="nx">XHttpHeader</span><span class="o">::</span><span class="na">REQUEST_ID</span><span class="p">)));</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasHeader</span><span class="p">(</span><span class="nx">XHttpHeader</span><span class="o">::</span><span class="na">UNIQUE_ID</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// 웹 서버가 부여한 식별자가 그 다음으로 사용됩니다.</span>
+            <span class="k">return</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">urldecode</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="nx">XHttpHeader</span><span class="o">::</span><span class="na">UNIQUE_ID</span><span class="p">)));</span>
+        <span class="p">}</span>
+        <span class="c1">// 둘 중 아무것도 없으며, 라라벨 애플리케이션에서 발급한 UUID로 폴백합니다.</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="nx">Uuid</span><span class="o">::</span><span class="na">uuid4</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getTraceNumber</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="c1">// 로그를 쓸 때마다 트레이스 넘버를 1씩 증가시켜, 로그를 순서대로 보기 위함힙니다.</span>
+    	<span class="c1">// 컨텍스트를 전달할 때도 현재의 컨텍스트 객체 또는 API 요청 헤더에 달아보내서 순서를 유지할 수 있도록 합니다.</span>
+        <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">Request</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasHeader</span><span class="p">(</span><span class="nx">XHttpHeader</span><span class="o">::</span><span class="na">TRACE_NUMBER</span><span class="p">)</span>
+            <span class="o">?</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nb">trim</span><span class="p">(</span><span class="nb">urldecode</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="nx">XHttpHeader</span><span class="o">::</span><span class="na">TRACE_NUMBER</span><span class="p">)))</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getUser</span><span class="p">(</span><span class="nv">$guardName</span> <span class="o">=</span> <span class="s1">'api'</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">php_sapi_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'cli'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">User</span><span class="o">::</span><span class="na">createDefaultUser</span><span class="p">([</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'CLI'</span><span class="p">,</span>
+                <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'cli@example.com'</span><span class="p">,</span>
+            <span class="p">]);</span>
+        <span class="p">}</span>
+
+        <span class="cd">/** @var Factory $authFactory */</span>
+        <span class="nv">$authFactory</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">Factory</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$guard</span> <span class="o">=</span> <span class="nv">$authFactory</span><span class="o">-&gt;</span><span class="na">guard</span><span class="p">(</span><span class="nv">$guardName</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$guard</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span> <span class="o">?:</span> <span class="nx">User</span><span class="o">::</span><span class="na">createDefaultUser</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getClientIp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="cd">/** @var Request $request */</span>
+        <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">Request</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getClientIp</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="32-applicationcontext">3.2. <code class="highlighter-rouge">ApplicationContext</code></h3>
+
+<p>로직 없이 Getter와 Setter만 있는 DTO(Data Transfer Object), Boundary 객체입니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/ApplicationContext.php</span>
+
+<span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nn">Myshop\Domain\Model\User</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">ApplicationContext</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$dataContainer</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dataContainer</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isRunningInConsole</span><span class="p">()</span><span class="o">:</span> <span class="kt">bool</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'runningInConsole'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAppEnv</span><span class="p">()</span><span class="o">:</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'appEnv'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAppVersion</span><span class="p">()</span><span class="o">:</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'appVersion'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getTransactionId</span><span class="p">()</span><span class="o">:</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'transactionId'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setTransactionId</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$newTransactionId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'transactionId'</span><span class="p">,</span> <span class="nv">$newTransactionId</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getTraceNumber</span><span class="p">()</span><span class="o">:</span> <span class="kt">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">intval</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'traceNumber'</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setTraceNumber</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$newTraceNumber</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'traceNumber'</span><span class="p">,</span> <span class="nv">$newTraceNumber</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">increaseTraceNumber</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'traceNumber'</span><span class="p">,</span> <span class="nb">intval</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'traceNumber'</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">succeedPreviousContext</span><span class="p">(</span><span class="nx">ApplicationContext</span> <span class="nv">$previousContext</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$previousContext</span> <span class="o">===</span> <span class="nv">$this</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'transactionId'</span><span class="p">,</span> <span class="nv">$previousContext</span><span class="o">-&gt;</span><span class="na">getTransactionId</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'traceNumber'</span><span class="p">,</span> <span class="nv">$previousContext</span><span class="o">-&gt;</span><span class="na">getTraceNumber</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="nv">$previousContext</span><span class="o">-&gt;</span><span class="na">getUser</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getUser</span><span class="p">()</span><span class="o">:</span> <span class="nx">User</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'user'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUser</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getClientIp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'clientIp'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helpers</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">()</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">keys</span><span class="p">()</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">values</span><span class="p">()</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$default</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dataContainer</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dataContainer</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$default</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dataContainer</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">has</span><span class="p">(</span><span class="nv">$key</span><span class="p">)</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="33-clientcontextpolicy-a-domain-class-example">3.3. <code class="highlighter-rouge">ClientContextPolicy</code>: A Domain Class Example</h3>
+
+<p>런타임에 <code class="highlighter-rouge">ServiceContainer</code>에 등록했던 <code class="highlighter-rouge">ApplicationContext</code>를 주입받아 사용자의 IP를 체크하는 일을 하는 예제 클래스입니다. 네임스페이스는 프레임워크 영역인 <code class="highlighter-rouge">App</code> 아래에 있지만, “허용한 IP로 접속했을 때만 서비스 사용을 허용한다”라는 도메인 정책을 구현하고 있으므로, 도메인 클래스라 할 수 있습니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Policies/ClientContextPolicy.php</span>
+
+<span class="kn">namespace</span> <span class="nn">App\Policies</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nn">App\ApplicationContext</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Http\Exception\NotAllowedIpException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Myshop\Domain\Model\User</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Symfony\Component\HttpFoundation\IpUtils</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">ClientContextPolicy</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$appContext</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">ApplicationContext</span> <span class="nv">$appContext</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">appContext</span> <span class="o">=</span> <span class="nv">$appContext</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">check</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">appContext</span><span class="o">-&gt;</span><span class="na">getUser</span><span class="p">();</span>
+        <span class="nv">$clientIp</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">appContext</span><span class="o">-&gt;</span><span class="na">getClientIp</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkUserIp</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$clientIp</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkUserIp</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$clientIp</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$allowedIps</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">allowed_ips</span> <span class="o">?:</span> <span class="p">[</span><span class="s1">'*'</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="s1">'*'</span><span class="p">,</span> <span class="nv">$allowedIps</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$accessAllowed</span> <span class="o">=</span> <span class="nx">IpUtils</span><span class="o">::</span><span class="na">checkIp</span><span class="p">(</span><span class="nv">$clientIp</span><span class="p">,</span> <span class="nv">$allowedIps</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$accessAllowed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">NotAllowedIpException</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>깃허브 예제 코드에서는 Sentry, Logging, Exception Handling 등에 <code class="highlighter-rouge">ApplicationContext</code>를 적용하는 부분도 담고 있습니다. 전체 코드는 <a href="https://github.com/appkr/db-lock-poc/pull/23/files">https://github.com/appkr/db-lock-poc/pull/23/files</a> 에서 확인하실 수 있습니다.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://laravel.com/docs/5.6/container">ServiceContainer 공식 문서</a>, <a href="https://gist.github.com/davejamesmiller/bd857d9b0ac895df7604dd2e63b23afe">공식보다 더 나은 문서</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="/learn-n-think/clean-architecture-and-dependency/#2-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98">클린 아키텍처</a>에 대한 포스트를 읽어보세요. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="//javacan.tistory.com/entry/ThreadLocalUsage"><code class="highlighter-rouge">ThreadLocal</code>에 관한 최범균님의 블로그 포스트</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

@@ -1,0 +1,26 @@
+I"/	<p>이 포스트에서는 <strong>PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 <a href="https://github.com/Seldaek/monolog">Monolog</a>의 사용법을 소개</strong>한다. Monolog는 <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md">PSR-3</a> <code class="highlighter-rouge">LoggerInterface</code>를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, <strong>파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리</strong>할 수 있다.</p>
+
+<p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
+
+<ul>
+  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></li>
+  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup></li>
+  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup></li>
+</ul>
+
+<p>이 포스트의 소스 코드는 <a href="https://github.com/appkr/monolog-scratchpad">https://github.com/appkr/monolog-scratchpad</a>에서 받을 수 있다.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>라라벨 https://laravel.com <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Elastic Search https://www.elastic.co/kr/ <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Docker https://www.docker.com/ <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

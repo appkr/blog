@@ -1,0 +1,172 @@
+I":<p>WSS3.0 설치 작업 결과를 정리해 본다. Server 만 준비되면, WSS3.0 과 Search Server Express 는 Microsoft 에서 무료로 다운로드 받을 수 있다. 기업에서의 사용에도 아무런 제약사항이 없다. 개인지성들을 모아 집단지성으로 발전시키기에 정말 좋은 무료 협업 도구이다.</p>
+
+<!--more-->
+
+<p>host name 은 <code class="highlighter-rouge">sbd</code> 라 하자.</p>
+
+<h3 id="install-net-framework">Install-.net Framework</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> dotnetfx35sp1.exe
+</code></pre></div></div>
+
+<h3 id="install-sql-utilities">Install-SQL Utilities</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> sqlcli.msi
+<span class="se">\&gt;</span> SQLServer2005_SQLCMD.msi
+<span class="se">\&gt;</span> SQLServer2005_SSMSEE.msi
+</code></pre></div></div>
+
+<h3 id="install-wss30">Install-WSS3.0</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> sharepoint.exe
+</code></pre></div></div>
+
+<p>약관동의 -&gt; 고급설치 -&gt; 서버유형:독립실행형 -&gt; 데이터위치: <code class="highlighter-rouge">d:\wss_data</code> -&gt; “지금 Sharepoint 제품 및 기술 구성 마법사 실행”</p>
+
+<h3 id="configure-smtp-서버">Configure-SMTP 서버</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMTP Server: xxx.xxx.xxx.xxx
+</code></pre></div></div>
+
+<h3 id="configure-wss-log">Configure-WSS Log</h3>
+
+<p>WSS 중앙관리 -&gt; 작업 -&gt; 진단 로깅 활성화</p>
+
+<h3 id="configure-database-를-c-에서-d-로-이동">Configure-Database 를 <code class="highlighter-rouge">C:\</code> 에서 <code class="highlighter-rouge">D:\</code> 로 이동</h3>
+
+<p>IIS/WSS Service 종료 후, Content Database 이름 확인</p>
+
+<p>중앙관리 -&gt; 응용 프로그램 관리 -&gt; 콘텐츠 데이터베이스: “WSS_Content”</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> <span class="nb">cd </span>C:<span class="se">\P</span>rogram Files<span class="se">\M</span>icrosoft SQL Server<span class="se">\9</span>0<span class="se">\T</span>ools<span class="se">\b</span>inn
+<span class="se">\&gt;</span> sqlcmd <span class="nt">-S</span> <span class="se">\.</span>pipemssql<span class="nv">$microsoft</span><span class="c">##sseesqlquery -E</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'WSS_Content'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\W</span>SS_Content.mdf d:<span class="se">\w</span>ss_db<span class="se">\</span>
+<span class="se">\&gt;</span> copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\W</span>SS_Content_log.ldf d:<span class="se">\w</span>ss_db<span class="se">\</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_attach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="n">WSS_Content</span><span class="s1">', @filename1 = '</span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="n">wss_db</span><span class="err">\</span><span class="n">WSS_Content</span><span class="p">.</span><span class="n">mdf</span><span class="s1">', @filename2 = '</span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="n">wss_db</span><span class="err">\</span><span class="n">WSS_Content_log</span><span class="p">.</span><span class="n">ldf</span><span class="s1">'
+sql&gt; Go
+</span></code></pre></div></div>
+
+<p>나머지 데이터베이스 이름도 확인</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">sysdatabases</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+<span class="o">#</span> <span class="n">SharePoint_Config_2e0e9493</span><span class="o">-</span><span class="n">bccb</span><span class="o">-</span><span class="mi">4</span><span class="n">b66</span><span class="o">-</span><span class="mi">9</span><span class="n">e61</span><span class="o">-</span><span class="n">ea4c2974a310</span>
+<span class="o">#</span> <span class="n">SharePoint_AdminContent_b597bf8d</span><span class="o">-</span><span class="mi">8</span><span class="n">ed5</span><span class="o">-</span><span class="mi">4</span><span class="n">de7</span><span class="o">-</span><span class="mi">86</span><span class="n">dc</span><span class="o">-</span><span class="mi">774</span><span class="n">a919cab5c</span>
+<span class="o">#</span> <span class="n">WSS_Search_SBD</span>
+<span class="o">#</span> <span class="n">WSS_Contents</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">EXEC</span> <span class="n">sp_detach_db</span> <span class="o">@</span><span class="n">dbname</span> <span class="o">=</span> <span class="s1">'WSS_Search_SBD'</span>
+<span class="k">sql</span><span class="o">&gt;</span> <span class="k">Go</span>
+</code></pre></div></div>
+
+<p>파일 복사</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\*</span>.<span class="k">*</span> d:<span class="se">\w</span>ss_db
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310', @filename1 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310.mdf',
+@filename2 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310_log.ldf'
+sql&gt; Go
+sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c',
+@filename1 = 'd:wss_db\SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c.mdf',
+@filename2 = 'd:wss_db\SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c_log.ldf'
+sql&gt; Go
+sql&gt; EXEC sp_attach_db @dbname = 'WSS_Search_SBD', @filename1 = 'd:wss_db\WSS_Search_SBD.mdf', @filename2 = 'd:wss_db\WSS_Search_SBD_log.ldf'
+sql&gt; Go
+</code></pre></div></div>
+
+<p>IIS/WSS 서비스 재 구동 후, SQL Management Studio에서 Database 파일들이 정상적으로 이동되었는 지 확인.</p>
+
+<h3 id="install-search-server-2008-express">Install-Search Server 2008 Express</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> SearchServerExpress.exe
+</code></pre></div></div>
+
+<p>서버유형: 독립실행형 -&gt; Index파일 위치: <code class="highlighter-rouge">d:\sse_index</code></p>
+
+<p>“Sharepoing 제품 및 기술 구성 마법사” -&gt; “Shared Service Provider (SSP): <code class="highlighter-rouge">http://sbd/ssp/admin</code>” -&gt; “SSP Database” -&gt; 데이터베이스 서버: SBDOfficeServers -&gt; 데이터베이스 이름: SharedServices1_DB -&gt; “검색 Database” -&gt; 데이터베이스 이름: <code class="highlighter-rouge">SharedServices1_Search_DB</code> -&gt; “인덱스 서버” -&gt; 인덱스 파일 경로 위치: <code class="highlighter-rouge">d:\sse_index\Office Server\Applications</code></p>
+
+<h3 id="configure-search-server-사이트-만들기">Configure-Search Server 사이트 만들기</h3>
+
+<h3 id="configure-중앙관리">Configure-중앙관리</h3>
+
+<p>작업 -&gt; 진단 로깅 설정 -&gt; 추적 로그 경로: <code class="highlighter-rouge">d:\wss_log</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 일반 설정 -&gt; 기본 표준 시간대 : GMT+9 서울 -&gt; 최대 업로드 크기 : <code class="highlighter-rouge">999MB</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 정책 -&gt; NT AUTHORITY\LOCAL SERVICE: <code class="highlighter-rouge">전체 읽기</code></p>
+
+<h3 id="install-application-template-core">Install-Application Template Core</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> <span class="nb">cd </span>C:Program Files<span class="se">\C</span>ommon Files<span class="se">\m</span>icrosoft shared<span class="se">\W</span>eb Server Extensions12<span class="se">\B</span>IN
+<span class="se">\&gt;</span> Stsadm <span class="nt">-o</span> addsolution <span class="nt">-filename</span> ApplicationTemplateCore.wsp
+<span class="se">\&gt;</span> Stsadm <span class="nt">-o</span> deploysolution <span class="nt">-name</span> ApplicationTemplateCore.wsp <span class="nt">-allowgacdeployment</span> <span class="nt">-immediate</span>
+<span class="se">\&gt;</span> Stsadm <span class="nt">-o</span> copyappbincontent
+<span class="se">\&gt;</span> Stsadm <span class="nt">-o</span> execadmsvcjobs
+</code></pre></div></div>
+
+<h3 id="pdf-icon-표시하기">Pdf icon 표시하기</h3>
+
+<p>Pdf icon 구하기 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions12\TEMPLATE\IMAGES 에 pdf icon 복사 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\TEMPLATE\XMLDOCICON.XML 에 레코드 추가</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- XMLDOCICON.XML --&gt;</span>
+<span class="nt">&lt;Mapping</span> <span class="na">Key=</span><span class="s">"pdf"</span> <span class="na">Value=</span><span class="s">"PDFICON.gif"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> iisreset
+</code></pre></div></div>
+
+<h3 id="configure-작업-예약">Configure-작업 예약</h3>
+
+<p>중앙관리 -&gt; 작업 -&gt; 사용현황분석프로세스 -&gt; 로그파일 위치 : <code class="highlighter-rouge">d:\wss_user_log</code> -&gt; 분석 시간 : <code class="highlighter-rouge">오전 03:00~04:00</code></p>
+
+<p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup.bat -&gt; 매일 오전 05:00</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># wss_backup.bat</span>
+stsadm.exe <span class="nt">-o</span> backup <span class="nt">-directory</span> d:wss_backup <span class="nt">-backupmethod</span> differential
+</code></pre></div></div>
+
+<p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup_network.bat -&gt; 매주 일요일 오전 07:00</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># wss_backup_network.bat</span>
+NET USE z: <span class="se">\x</span>xx.xxx.xxx.xxx<span class="se">\S</span>BDBackup USERPASS /USER:USERNAME@DOMAIN
+xcopy d:<span class="se">\w</span>ss_backup z: /S /Y
+NET USE z: /DELETE
+</code></pre></div></div>
+
+<h3 id="configure-계산된-열에-html-허용">Configure-계산된 열에 html 허용</h3>
+
+<p><a href="http://blog.ray1.net/2008/01/enabling-html-andor-images-in.html">http://blog.ray1.net/2008/01/enabling-html-andor-images-in.html</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> notepad C:<span class="se">\P</span>rogram Files<span class="se">\C</span>ommon Files<span class="se">\M</span>icrosoft Shared<span class="se">\w</span>eb server extensions<span class="se">\1</span>2<span class="se">\T</span>EMPLATE<span class="se">\X</span>MLFLDTYPES.XML
+</code></pre></div></div>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- XMLFLDTYPES.XML --&gt;</span>
+<span class="nt">&lt;RenderPattern</span> <span class="na">Name=</span><span class="s">"DisplatPattern"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Default&gt;</span> <span class="nt">&lt;Column</span> <span class="na">HTMLEncode=</span><span class="s">"TRUE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Column/&gt;</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> iisreset
+</code></pre></div></div>
+
+<h3 id="install-ifilter60">Install-iFilter6.0</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> ifilter.exe
+</code></pre></div></div>
+
+<p>IISAdmin -&gt; Server 중지</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> <span class="nb">cd </span>c:<span class="se">\P</span>rogram files<span class="se">\a</span>dobe<span class="se">\p</span><span class="nb">df </span>ifilter 6.0
+<span class="se">\&gt;</span> regsvr32.exe pdffilt.dll
+</code></pre></div></div>
+
+<p>Server Reboot 후, Search Server 전체 크롤링</p>
+:ET

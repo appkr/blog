@@ -1,0 +1,18 @@
+I"*<p><strong>AWS ECS(EC2 Container Service)</strong>는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. <strong>AWS ECR(Container Registry)</strong>은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.</p>
+
+<p>아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).</p>
+
+<p><a href="//www.youtube.com/watch?v=zBqjh61QcB4"><img src="//img.youtube.com/vi/zBqjh61QcB4/0.jpg" alt="Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS" /></a></p>
+
+<p>AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다<small>(협찬 좀…)</small>.</p>
+
+<ol>
+  <li>이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.</li>
+  <li>Service Discovery나 Container Orchestration등을 위해 <a href="https://kubernetes.io/">쿠버네티스(Kubernetes)</a>와 같이 어려운 도구를 다룰 필요가 없다.</li>
+</ol>
+
+<p>그런데 <strong>아직 서울 지역는 오픈되지 않았습니다.</strong> 빨리 좀 오픈해 주세요~ 갓마존.</p>
+
+<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
+
+:ET

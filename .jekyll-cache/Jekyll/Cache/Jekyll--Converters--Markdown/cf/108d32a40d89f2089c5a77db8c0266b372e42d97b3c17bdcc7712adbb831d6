@@ -1,0 +1,336 @@
+I"t�<p>World Wide Web 의 역사는 오래되지 않았다.</p>
+
+<p>내가 야자를 하던 시절 세상에 처음 소개되었으며, 군을 제대하고 복학을 할 때 즈음 국내에도 막 붐이 일기 시작했었다. 대학을 진학하면서 내가 처음 가진 PC 는 486SX 33MHz 였던 것으로 기억한다. 작전병으로 군생활을 처음 시작했을 때는 전자 타자기에 먹지를 댄 종이를 끼우고 보고서를 작성했고, 곧 MS-DOS 로 운영되는 PC 가 보급되었다. 군 생활 내내 MS-DOS 환경에서 <code class="highlighter-rouge">\&gt;hwp</code> 를 쳐서 실행되는 아래아 한글을 사용했으며, 병장이 되어서야 Windows 95 가 보급되었다.</p>
+
+<p>그 당시의 웹은 모두 Static 페이지들이었다. 방문자의 컨텍스트나 그들의 추가적인 액션에 따라 동적으로 변하는 문서가 아닌, 모든 사용자에게 동일한 화면를 보여준다는 의미이다. 국내에 Dynamic Web 이 태동한 시기는 90 년 대 후반으로 기억되며 그 때 당시의 Dynamic 웹 들은 이렇게 생겼었다.</p>
+
+<p><a href="http://cfs3.tistory.com/upload_control/download.blog?fhandle=YmxvZzU4ODFAZnMzLnRpc3RvcnkuY29tOi9hdHRhY2gvMS8xMDAuanBn"><img src="//cfs3.tistory.com/upload_control/download.blog?fhandle=YmxvZzU4ODFAZnMzLnRpc3RvcnkuY29tOi9hdHRhY2gvMS8xMDAuanBn" alt="90 년대 후반의 Yahoo!" /></a></p>
+
+<!--more-->
+
+<div class="spacer">• • •</div>
+
+<p>처음 웹 개발을 시작하게된 계기는 군 제대 후 복학 전, 학교에서 시행하는 “교내 홈페이지 경진대회” 소식을 접하고 부터였다. 경영학과 2 학년 1학기 휴학하고 군 입대! 게임이나 할 줄 알고, Lotus123, 아래아 한글 정도 할 줄 아는 완전 개발 초보였다. 속해 했던 클래식 기타 동아리의 홈페이지를 만들겠노라고 무작정 덤빈 것이다. 복학 전 3개월을 주경야독으로 개발했고, 결과는 말도 안되게 우수상~</p>
+
+<p><a href="/images/2016-02-19-img-01.png"><img src="/images/2016-02-19-img-01.png" alt="헥사 - 경희대학교 클래식 기타 동아리" /></a></p>
+
+<div class="spacer">• • •</div>
+
+<p>웹 개발에는 입문을 했고, 기업들 홈페이지 알바 뛰면서 번 돈을 모아서, 방학 중에 C 와 Oracle 특강을 들었다. 그 덕에 98년 즈음에 Dynamic Web 을 C 라는 언어로 시작할 수 있었다.</p>
+
+<p>오래된 zip 파일을 풀었다. (난 대학 시절에 만든 리포트를 포함한 모든 자료를 아직도 보관하고 있다.) 아래는 <code class="highlighter-rouge">cgic</code> 라이브러리를 이용하여 html 폼 입력을 파싱하여 화면에 뿌리는 코드이다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// write.c</span>
+
+<span class="cp">#include "cgic.h"
+#define MAX_LEN 255
+</span>
+<span class="kt">int</span> <span class="nf">str_check</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">===</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">cgi_error_message</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cgiHeaderContentType</span><span class="p">(</span><span class="s">"text/plain"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">cgi_main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">],</span> <span class="n">title</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">],</span> <span class="n">doc</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">],</span> <span class="n">email</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">],</span> <span class="n">homepage</span><span class="p">[</span><span class="n">MAX_LEN</span><span class="p">];</span>
+
+    <span class="n">cgiFormString</span><span class="p">(</span><span class="s">"writer"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">MAX_LEN</span><span class="p">);</span>
+    <span class="n">cgiFormString</span><span class="p">(</span><span class="s">"title"</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">MAX_LEN</span><span class="p">);</span>
+    <span class="n">cgiFormString</span><span class="p">(</span><span class="s">"doc"</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">MAX_LEN</span><span class="p">);</span>
+    <span class="n">cgiFormString</span><span class="p">(</span><span class="s">"email"</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">MAX_LEN</span><span class="p">);</span>
+    <span class="n">cgiFormString</span><span class="p">(</span><span class="s">"homepage"</span><span class="p">,</span> <span class="n">homepage</span><span class="p">,</span> <span class="n">MAX_LEN</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">str_check</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">cgi_error_message</span><span class="p">(</span><span class="s">"Please provide you name"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">str_check</span><span class="p">(</span><span class="n">title</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">cgi_error_message</span><span class="p">(</span><span class="s">"Please provide a title"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">str_check</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">cgi_error_message</span><span class="p">(</span><span class="s">"Please provide post contents"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">cgiHeaderContentType</span><span class="p">(</span><span class="s">"text/html"</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;html&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;head&gt;&lt;title&gt;GuestBook&lt;/title&gt;&lt;/head&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;body&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;h2&gt;GuestBook&lt;/h2&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;hr&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;p&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str_check</span><span class="p">(</span><span class="n">email</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;a href=</span><span class="se">\"</span><span class="s">mailto:%s</span><span class="se">\"</span><span class="s">&gt;%s&lt;/a&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">str_check</span><span class="p">(</span><span class="n">homepage</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;small&gt;&lt;a href=</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">&gt;%s&lt;/small&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">homepage</span><span class="p">,</span> <span class="n">homepage</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/p&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;p&gt;What you wrote is:&lt;/p&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;table border=</span><span class="se">\"</span><span class="s">1</span><span class="se">\"</span><span class="s">&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;tr&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;td&gt;&lt;b&gt;Title&lt;/b&gt; : %s&lt;/td&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">title</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/tr&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;tr&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;td&gt;%s&lt;/td&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/tr&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/table&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;p&gt;Your post has been saved !&lt;/p&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/body&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"&lt;/html&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>C 는 굉장히 견고한 언어이지만, 내가 하려는 웹 개발에서는 너무나도 불편함이 많았다. <code class="highlighter-rouge">printf()</code> 함수를 이용하여 HTML 코드를 한 줄씩 stdout 으로 출력하는 방법만이 C 에서 웹 서버로 무엇인가를 전달하는 유일한 방법이었다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> gcc write.c cgic.c <span class="nt">-o</span> write.cgi
+</code></pre></div></div>
+
+<p>또, 이렇게 개발된 코드는 컴파일해서 서버에 올려야 했다. 컴파일 언어의 특성상 코드 수정 -&gt; 확인의 순회 과정의 불편함으로 인해 생산성이 떨어지는 문제도 있었다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>해서, 웹 프로그래머들은 Perl 언어로 자연히 눈을 돌리게되었다. Perl 은 HEREDOC 문법과 String Interpolation 을 이용해서 C 의 불편함을 해소해 주었다. 하지만, Url 및 Form 데이터 파싱을 위해 너무 많은 노력을 들여야 했고, 작은 실수 하나에도 아주 민감하게 동작하는 녀석이었다.</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># member.cgi</span>
+<span class="c1"># @see http://happycgi.com/4570</span>
+
+<span class="c1"># ...</span>
+<span class="k">sub </span><span class="nf">parse_arguments</span> <span class="p">{</span>
+  <span class="nb">local</span><span class="p">(</span><span class="nv">$pair</span><span class="p">,</span> <span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$content_type</span><span class="p">,</span> <span class="nv">$content_length</span><span class="p">,</span> <span class="nv">$buffer</span><span class="p">,</span> <span class="nv">$dump</span><span class="p">,</span> <span class="nv">$boundary</span><span class="p">,</span> <span class="nv">$line</span><span class="p">,</span> <span class="nv">$array_value</span><span class="p">,</span> <span class="nv">$i</span><span class="p">);</span>
+  <span class="nb">local</span><span class="p">(</span><span class="nv">@pairs</span><span class="p">,</span> <span class="nv">@column</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$ENV</span><span class="p">{'</span><span class="s1">QUERY_STRING</span><span class="p">'})</span> <span class="p">{</span>
+    <span class="nv">@pairs</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/&amp;/</span><span class="p">,</span> <span class="nv">$ENV</span><span class="p">{'</span><span class="s1">QUERY_STRING</span><span class="p">'});</span>
+
+    <span class="k">foreach</span> <span class="nv">$pair</span> <span class="p">(</span><span class="nv">@pairs</span><span class="p">)</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/=/</span><span class="p">,</span> <span class="nv">$pair</span><span class="p">);</span>
+
+      <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">tr/+/ /</span><span class="p">;</span>
+      <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s/%([a-fA-F0-9][a-fA-F0-9])/pack("C",hex($1))/</span><span class="nv">eg</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span> <span class="ow">eq</span> <span class="p">'</span><span class="s1">head</span><span class="p">'</span> <span class="o">||</span> <span class="nv">$name</span> <span class="ow">eq</span> <span class="p">'</span><span class="s1">foot</span><span class="p">')</span> <span class="p">{</span>
+        <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s/\n/\\n/g</span> <span class="p">;</span>
+        <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s/\n/\\n/g</span> <span class="p">;</span>
+      <span class="p">}</span> <span class="k">elsif</span> <span class="p">(</span><span class="nv">$name</span> <span class="ow">ne</span> <span class="p">'</span><span class="s1">profile</span><span class="p">')</span> <span class="p">{</span>
+        <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s/\n//g</span> <span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$content_type</span> <span class="o">=</span> <span class="nv">$ENV</span><span class="p">{'</span><span class="s1">CONTENT_TYPE</span><span class="p">'};</span>
+    <span class="nv">$content_length</span> <span class="o">=</span> <span class="nv">$ENV</span><span class="p">{'</span><span class="s1">CONTENT_LENGTH</span><span class="p">'};</span>
+
+    <span class="nb">binmode</span> <span class="bp">STDIN</span><span class="p">;</span>
+    <span class="nb">read</span><span class="p">(</span><span class="bp">STDIN</span><span class="p">,</span><span class="nv">$buffer</span><span class="p">,</span><span class="nv">$content_length</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="o">!</span><span class="nv">$content_type</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nv">$content_type</span> <span class="ow">eq</span> <span class="p">'</span><span class="s1">application/x-www-form-urlencoded</span><span class="p">'))</span> <span class="p">{</span>
+      <span class="nv">@pairs</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/&amp;/</span><span class="p">,</span> <span class="nv">$buffer</span><span class="p">);</span>
+
+      <span class="k">foreach</span> <span class="nv">$pair</span> <span class="p">(</span><span class="nv">@pairs</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/=/</span><span class="p">,</span><span class="nv">$pair</span><span class="p">);</span>
+
+        <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">tr/+/ /</span><span class="p">;</span>
+        <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s/%([a-fA-F0-9][a-fA-F0-9])/pack("C",hex($1))/</span><span class="nv">eg</span><span class="p">;</span>
+        <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s/\n//g</span> <span class="k">unless</span> <span class="p">(</span><span class="nv">$name</span> <span class="ow">eq</span> <span class="p">'</span><span class="s1">body</span><span class="p">');</span>
+
+        <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">elsif</span> <span class="p">(</span><span class="nv">$content_type</span> <span class="o">=~</span> <span class="sr">m#^multipart/form-data#</span><span class="p">)</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nv">$boundary</span> <span class="o">=</span> <span class="nv">$content_type</span><span class="p">)</span> <span class="o">=~</span> <span class="sr">s/^.*boundary=(.*)$/\1/</span><span class="p">;</span>
+      <span class="nv">@pairs</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/--$boundary/</span><span class="p">,</span> <span class="nv">$buffer</span><span class="p">);</span>
+      <span class="nv">@pairs</span> <span class="o">=</span> <span class="nb">splice</span><span class="p">(</span><span class="nv">@pairs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">$#pairs</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+      <span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span> <span class="nv">$pair</span> <span class="p">(</span><span class="nv">@pairs</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="p">(</span><span class="nv">$dump</span><span class="p">,</span><span class="nv">$line</span><span class="p">,</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/\r\n/</span><span class="p">,</span><span class="nv">$pair</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span> <span class="sr">/filename/</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nv">$gRealFile</span><span class="p">[</span><span class="nv">$i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$line</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">next</span> <span class="k">if</span> <span class="nv">$line</span> <span class="o">=~</span> <span class="sr">/filename=\"\"/</span><span class="p">;</span>
+
+        <span class="nv">$line</span> <span class="o">=~</span> <span class="sr">s/^Content-Disposition: form-data; //</span><span class="p">;</span>
+        <span class="p">(</span><span class="nv">@column</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/;\s+/</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+        <span class="p">(</span><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$column</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">=~</span> <span class="sr">s/^name="([^"]+)"$/\1/g</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$#column</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="nv">$value</span> <span class="o">=~</span> <span class="sr">/^Content-Type:/</span><span class="p">)</span>  <span class="p">{</span>
+            <span class="p">(</span><span class="nv">$dump</span><span class="p">,</span><span class="nv">$dump</span><span class="p">,</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/\r\n/</span><span class="p">,</span><span class="nv">$value</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="p">(</span><span class="nv">$dump</span><span class="p">,</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/\r\n/</span><span class="p">,</span><span class="nv">$value</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="p">(</span><span class="nv">$dump</span><span class="p">,</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/\r\n/</span><span class="p">,</span><span class="nv">$value</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nb">grep</span><span class="p">(</span><span class="sr">/^$name$/</span><span class="p">,</span> <span class="nb">keys</span><span class="p">(</span><span class="o">%</span><span class="nv">CGI</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nb">push</span><span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}},</span> <span class="nv">$value</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="nv">$array_value</span> <span class="o">=</span> <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">};</span>
+              <span class="nb">undef</span> <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">};</span>
+              <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$array_value</span><span class="p">;</span>
+              <span class="nb">push</span><span class="p">(</span><span class="nv">@</span><span class="p">{</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}},</span> <span class="nv">$value</span><span class="p">);</span>
+            <span class="p">}</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">next</span> <span class="k">if</span> <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">/^\s*$/</span><span class="p">;</span>
+
+            <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+            <span class="nb">chop</span><span class="p">(</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">});</span>
+            <span class="nb">chop</span><span class="p">(</span><span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">});</span>
+          <span class="p">}</span>
+          <span class="k">next</span><span class="p">;</span>
+        <span class="p">}</span>
+                
+        <span class="nv">$FORM</span><span class="p">{</span><span class="nv">$name</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">print</span> <span class="p">"</span><span class="s2">Invalid content type!</span><span class="se">\n</span><span class="p">";</span>
+      <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">sub </span><span class="nf">print_head</span> <span class="p">{</span>
+  <span class="nv">$ver</span> <span class="o">=</span> <span class="p">"</span><span class="s2"> Ver</span><span class="si">$gCgiVer</span><span class="p">"</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$gMode</span> <span class="ow">eq</span> <span class="p">"</span><span class="s2">admin</span><span class="p">");</span>
+  
+  <span class="c1"># HEREDOC 문법</span>
+  <span class="c1"># $gJavaScript 등은 글로벌 변수에 대한 Interpolation</span>
+  <span class="k">print</span> <span class="s">&lt;&lt;EOT;
+Content-type: text/html
+
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Title&lt;/title&gt;
+  &lt;link rel="stylesheet" href="./ie4css.css"&gt;
+  $gJavaScript
+&lt;/head&gt;
+&lt;body&gt;
+  $gConfPreBody
+EOT
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>잠깐 Perl 과 PHP 3 가 혼재하던 시기가 있었으나, 2000 년 접어 들면서 Perl 을 이용한 웹 프로그래밍은 PHP 쪽으로 완전히 넘어갔던 것으로 기억한다. PHP 4 가 출시되었기 때문이다.</p>
+
+<div class="spacer">• • •</div>
+
+<p>PHP 사용자 수의 급속한 상승은 웹 프로그래밍에서 C 와 Perl 의 불편함 때문으로 생각된다. 1) Template 엔진 처럼 쓸 수 있다는 점과, 2) <code class="highlighter-rouge">$_GET</code>, <code class="highlighter-rouge">$_POST</code> 와 같은 전역 변수를 통해 사용자 입력값을 쉽게 가져올 수 있는 기능은 당시 많은 웹 프로그래머들을 매료시켰다.</p>
+
+<p>PHP 가 인기를 얻게된 또 하나의 이유는 LAMP 스택의 부상을 들 수 있다. 정확히 기억나진 않지만 10 사용자용 윈도우 2000 서버 1 카피의 가격이 당시엔 200 만원이 넘었던 것으로 기억한다. 닷컴 열기와 함께 Linux 를 이용한 호스팅이 활기를 띠면서, 서버에 기본으로 탑재되어 있는 PHP 를 쓰지 않을 이유는 없었을 것이다. 이런 이유로 LAMP 스택이 인터넷 발전에 지대한 영향을 미쳤다고 나는 평가하고 있다.</p>
+
+<p>소속된 대학원 홈페이지를 비롯해 꽤 여러 프로젝트를 PHP 로 했던 것 같다. 개발자의 삶을 살기로 결심하고 다시 돌아 오기 전에, 마지막으로 웹 개발 프로젝트를 진행한 것이 2003 년 이었던 것으로 기억하고, 그 전에 꽤 몇 년동안 PHP 를 사용한 것 같다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--imceo.com/template/header/header/classic/search.php--&gt;</span>
+
+<span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">"780"</span> <span class="na">border=</span><span class="s">"0"</span> <span class="na">cellspacing=</span><span class="s">"1"</span> <span class="na">cellpadding=</span><span class="s">"0"</span> <span class="na">bgcolor=</span><span class="s">"#D9D1C4"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;FORM</span> <span class="na">ACTION=</span><span class="s">'./biz.php'</span> <span class="na">METHOD=</span><span class="s">POST</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;td</span> <span class="na">bgcolor=</span><span class="s">"FEFAEE"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">border=</span><span class="s">"0"</span> <span class="na">cellspacing=</span><span class="s">"0"</span> <span class="na">cellpadding=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;tr&gt;</span> 
+            <span class="nt">&lt;td&gt;</span>
+              <span class="nt">&lt;SELECT</span> <span class="na">NAME=</span><span class="s">cat_num1</span> <span class="na">STYLE=</span><span class="s">'width:110'</span> <span class="na">onchange=</span><span class="s">'javascript:this.form.submit();'</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;OPTION</span> <span class="na">VALUE=</span><span class="s">''</span><span class="nt">&gt;</span>Selece One<span class="nt">&lt;/OPTION&gt;</span>
+                <span class="nt">&lt;OPTION</span> <span class="na">VALUE=</span><span class="s">''</span><span class="nt">&gt;</span>-------------------<span class="nt">&lt;/OPTION&gt;</span>
+<span class="cp">&lt;?</span>
+<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='1' ORDER BY GID DESC"</span><span class="p">;</span>
+<span class="nv">$CATEGORY_DATA</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="nv">$QUERY</span><span class="p">,</span> <span class="nv">$DB_CONNECT</span><span class="p">);</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nv">$CATEGORY_DATA</span> <span class="o">&amp;&amp;</span> <span class="nv">$LIST</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span> <span class="nv">$CATEGORY_DATA</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num1</span><span class="o">==</span><span class="nv">$LIST</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;</span> <span class="nv">$SCAT_NUM1</span> <span class="o">=</span> <span class="nv">$LIST</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">];}</span> 
+  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="o">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST</span><span class="p">[</span><span class="nx">CAT_NAME</span><span class="p">])</span><span class="o">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+              <span class="nt">&lt;/SELECT&gt;</span>
+
+              <span class="nt">&lt;SELECT</span> <span class="na">NAME=</span><span class="s">cat_num2</span> <span class="na">STYLE=</span><span class="s">'width:110'</span> <span class="na">onchange=</span><span class="s">'javascript:this.form.submit();'</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;OPTION</span> <span class="na">VALUE=</span><span class="s">''</span><span class="nt">&gt;</span>-------------------<span class="nt">&lt;/OPTION&gt;</span>
+<span class="cp">&lt;?</span>
+<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='2' AND LEFT(CAT_NUM,3)='"</span><span class="o">.</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$SCAT_NUM1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">"' ORDER BY GID DESC"</span><span class="p">;</span>
+<span class="nv">$CATEGORY_DATA1</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="nv">$QUERY</span><span class="p">,</span> <span class="nv">$DB_CONNECT</span><span class="p">);</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nv">$CATEGORY_DATA1</span> <span class="o">&amp;&amp;</span> <span class="nv">$LIST1</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span> <span class="nv">$CATEGORY_DATA1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST1[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num2</span><span class="o">==</span><span class="nv">$LIST1</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;</span> <span class="nv">$SCAT_NUM2</span> <span class="o">=</span> <span class="nv">$LIST1</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">];}</span> 
+  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="o">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST1</span><span class="p">[</span><span class="nx">CAT_NAME</span><span class="p">])</span><span class="o">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+              <span class="nt">&lt;/SELECT&gt;</span>
+
+              <span class="nt">&lt;SELECT</span> <span class="na">NAME=</span><span class="s">cat_num3</span> <span class="na">STYLE=</span><span class="s">'width:110'</span> <span class="na">onchange=</span><span class="s">'javascript:this.form.submit();'</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;OPTION</span> <span class="na">VALUE=</span><span class="s">''</span><span class="nt">&gt;</span>-------------------<span class="nt">&lt;/OPTION&gt;</span>
+<span class="cp">&lt;?</span>
+<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='3' AND LEFT(CAT_NUM,6)='"</span><span class="o">.</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$SCAT_NUM2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="s2">"' ORDER BY GID DESC"</span><span class="p">;</span>
+<span class="nv">$CATEGORY_DATA2</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="nv">$QUERY</span><span class="p">,</span> <span class="nv">$DB_CONNECT</span><span class="p">);</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nv">$CATEGORY_DATA2</span> <span class="o">&amp;&amp;</span> <span class="nv">$cat_num1</span> <span class="o">&amp;&amp;</span> <span class="nv">$LIST2</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span> <span class="nv">$CATEGORY_DATA2</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST2[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num3</span><span class="o">==</span><span class="nv">$LIST2</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;}</span> 
+  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="o">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST2</span><span class="p">[</span><span class="nx">CAT_NAME</span><span class="p">])</span><span class="o">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+              <span class="nt">&lt;/SELECT&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span> 
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"keyword"</span> <span class="na">size=</span><span class="s">"20"</span> <span class="na">style=</span><span class="s">'border:solid 1 gray;'</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span> 
+              <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;input</span> <span class="na">type=</span><span class="s">image</span> <span class="na">src=</span><span class="s">"./template/header/</span><span class="cp">&lt;?</span><span class="k">echo</span><span class="nv">$Header_Skin</span><span class="p">;</span><span class="cp">?&gt;</span><span class="s">/image/btn_search.gif"</span> <span class="na">width=</span><span class="s">"58"</span> <span class="na">height=</span><span class="s">"20"</span> <span class="na">border=</span><span class="s">0</span><span class="nt">&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span> 
+              <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">'./search.php'</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"./template/header/</span><span class="cp">&lt;?</span><span class="k">echo</span><span class="nv">$Header_Skin</span><span class="p">;</span><span class="cp">?&gt;</span><span class="s">/image/btn_search_m.gif"</span> <span class="na">width=</span><span class="s">"58"</span> <span class="na">height=</span><span class="s">"20"</span> <span class="na">border=</span><span class="s">0</span><span class="nt">&gt;&lt;/a&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span> 
+              <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">'./search.php?query=help'</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"./template/header/</span><span class="cp">&lt;?</span><span class="k">echo</span><span class="nv">$Header_Skin</span><span class="p">;</span><span class="cp">?&gt;</span><span class="s">/image/btn_search_h.gif"</span> <span class="na">width=</span><span class="s">"70"</span> <span class="na">height=</span><span class="s">"20"</span> <span class="na">border=</span><span class="s">0</span><span class="nt">&gt;&lt;/a&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span> 
+              <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;A</span> <span class="na">HREF=</span><span class="s">'#'</span> <span class="na">onclick=</span><span class="s">"javascript:window.external.AddFavorite('http://www.iamceo.com','IamCEO.com')"</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"./template/header/</span><span class="cp">&lt;?</span><span class="k">echo</span><span class="nv">$Header_Skin</span><span class="p">;</span><span class="cp">?&gt;</span><span class="s">/image/add_site.gif"</span> <span class="na">width=</span><span class="s">"98"</span> <span class="na">height=</span><span class="s">"26"</span> <span class="na">border=</span><span class="s">0</span><span class="nt">&gt;&lt;/a&gt;&lt;/div&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/table&gt;</span>
+      <span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/FORM&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+</code></pre></div></div>
+
+<p>뷰 코드와 DB 쿼리를 포함한 비즈니스로직이 막 뒤죽박죽이다. 지금 보면 완전 웃기지만, 당시에는 다 저렇게 짰다.</p>
+
+<blockquote>
+  <p>혹, 이 글을 읽으시는 방문자 중에, “개발 실무”에서 지금도 PHP 코드를 이렇게 짜고 계시다면, 절대 절대 안 됩니다. 12 년 전의 개발 방식 입니다.</p>
+</blockquote>
+
+<div class="spacer">• • •</div>
+
+<p>Ruby (일본 밖에 알려진 것은 2000 년) 가 점점 사용자를 확산해 가던 시기 즈음에 웹 프로그래밍과 관련된 취미 활동을 모두 접고, 생계를 위해 직업 세계에 뛰어 들었다. 10 년의 공백을 가진 후, 다시 돌아온 2012 년 웹 개발 생태계의 모습은 너무나도 달랐다.</p>
+
+<p><a href="/images/2016-02-19-img-02.png"><img src="/images/2016-02-19-img-02.png" alt="Web Programming until 2002" /></a></p>
+
+<p><small>그림 출처 : <a href="https://speakerdeck.com/driesvints/the-laravel-ecosystem?slide=13">The Laravel Ecosystem, by Dries Vints, at Laracon 2015</a></small></p>
+
+<p>우선, Ruby 생태계는 Ruby on Rails (2004) 란 걸출한 웹 프레임웍을 중심으로 성장해 있었고, Github (2005) 란 대형 서비스가 그 중심에 있었다. 듣도 보도 못했던 Python 은 Google/Youtube 의 성공으로 꽤 저변이 확산되어 있었다. PHP 또한 Facebook, Wikipedia 와 같은 대형 서비스를 성공 시키면서 PHP 생태계를 이끌어 가고 있었다. Stack Overflow (2005) 와 Amazon Web Service (2006) 는 개발자들의 생산성을 높임과 동시에, 한편으론 개발자들간의 격차를 더 크게 만들었다. 변화를 추구하는 개발자와 머물러 있으려는 개발자 사이의 격차를 말하는 것이다.</p>
+
+<p><a href="/images/2016-02-19-img-03.png"><img src="/images/2016-02-19-img-03.png" alt="Web Programming in 2015" /></a></p>
+
+<p>나를 더 놀라게 만든것은 웹의 가능성과, 그에 따라 수반될 수 밖에 없는 개발의 복잡도 였다. Ruby on Rails 로 개발 프로젝트를 다시 시작했지만, Ruby 의 문법적인 이질감은 1 년이 지나도 극복되지 않았고, PHP 에 대한 향수로 다시 돌아오게 되었다. 다행히 내 눈에 처음 들어온 것은 라라벨 (Laravel) 프레임웍이었고, 이 때문에 마흔 넘어 내 인생은 조금씩 달라지고 있다.</p>
+:ET

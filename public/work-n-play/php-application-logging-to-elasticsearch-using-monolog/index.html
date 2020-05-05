@@ -139,9 +139,9 @@
 <p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
 
 <ul>
-  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
-  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
-  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></li>
+  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></li>
+  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup></li>
+  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup></li>
 </ul>
 
 <p>이 포스트의 소스 코드는 <a href="https://github.com/appkr/monolog-scratchpad">https://github.com/appkr/monolog-scratchpad</a>에서 받을 수 있다.</p>
@@ -159,14 +159,14 @@
     <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello Monolog"</span><span class="p">;</span>
     <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">];</span>
     
-    <span class="nx">Log</span><span class="o">::</span><span class="na">emergency</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">alert</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">critical</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">notice</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">emergency</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">alert</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">critical</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">notice</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
     
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
 <span class="p">});</span>
@@ -285,7 +285,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php </span>
 
-<span class="k">use</span> <span class="nx">Elasticsearch\ClientBuilder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Elasticsearch\ClientBuilder</span><span class="p">;</span>
 
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$esClient</span> <span class="o">=</span> <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">create</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
@@ -308,15 +308,15 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Providers</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">App\LogHandlers\ESHandler</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Elasticsearch\ClientBuilder</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Monolog\Formatter\NormalizerFormatter</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Monolog\Processor\WebProcessor</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\LogHandlers\ESHandler</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Elasticsearch\ClientBuilder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Monolog\Formatter\NormalizerFormatter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Monolog\Processor\WebProcessor</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="kd">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
     <span class="p">{</span>
@@ -360,13 +360,13 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/LogHandlers/ESHandler.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\LogHandlers</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\LogHandlers</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Elasticsearch\Client</span> <span class="k">as</span> <span class="nx">ESClient</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Monolog\Handler\AbstractProcessingHandler</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Monolog\Logger</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Elasticsearch\Client</span> <span class="k">as</span> <span class="n">ESClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Monolog\Handler\AbstractProcessingHandler</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Monolog\Logger</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">ESHandler</span> <span class="k">extends</span> <span class="nx">AbstractProcessingHandler</span>
+<span class="kd">class</span> <span class="nc">ESHandler</span> <span class="k">extends</span> <span class="nx">AbstractProcessingHandler</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$esClient</span><span class="p">;</span>
 
@@ -419,7 +419,7 @@
 <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello Monolog"</span><span class="p">;</span>
     <span class="nv">$context</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">];</span>
-    <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
+    <span class="nb">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$context</span><span class="p">);</span>
     
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
 <span class="p">});</span>
@@ -442,7 +442,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php</span>
 
-<span class="k">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="kd">class</span> <span class="nc">CustomLogProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
     <span class="p">{</span>
@@ -457,16 +457,16 @@
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>라라벨 https://laravel.com <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>라라벨 https://laravel.com <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Elastic Search https://www.elastic.co/kr/ <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Elastic Search https://www.elastic.co/kr/ <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p>Docker https://www.docker.com/ <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p>Docker https://www.docker.com/ <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -569,13 +569,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1173,7 +1173,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1239,7 +1239,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1251,7 +1251,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1301,6 +1301,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1310,13 +1317,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1417,7 +1417,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

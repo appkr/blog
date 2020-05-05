@@ -86,6 +86,64 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/testing-private-method-in-php/">Private(or Protected) 메서드 테스트 하기 </a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/testing-private-method-in-php/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>최근에 회사 일로 검색 서비스를 개발했다. 검색 엔진으로는 Elastic Search를 사용했고, 매일 최한시(off-peak time)에 한 번씩 운영 데이터베이스에서 검색, 필터링, 정렬, Aggregation 등에 필요한 컬럼만 골라 인덱싱하도록 설계했다. 그리고, 재고 수량과 같이 실시간 업데이트가 필요한 값 들은 다른 서비스에서 SNS 메시지 또는 메시지 큐를 이용해서 전달하고, 전달 받은 값을 인덱싱에 반영하도록 구현했다.</p>
+
+<p>Elastic Search는 사용법이 복잡하긴 하지만, 인덱싱된 필드 값에 따라 내림차순, 오름차순으로 미리 정렬된 결과를 받을 수 있다. 그런데, 아무리 실시간 업데이트를 한다고 해도, 인덱싱된 값만으로 정렬이 불가능한 경우가 있고, 이 경우에는 검색 결과를 받아서 후 처리로 배열을 순회하면서 다시 정렬을 해야 한다. 같은 클래스의 Public 메서드가 정렬 요청을 하므로, 당연히 Protected 메서드로 구현했다.</p>
+
+<p>일반적으로 알려진 <strong>테스트 모범 사례</strong>는 다음과 같다.</p>
+
+<ul>
+  <li><strong>내가 짠 코드만 테스트한다.</strong> 외부에서 가져온 라이브러리를 테스트할 이유는 없다.</li>
+  <li><strong>Public 메서드만 테스트한다.</strong> Private나 Protected 메서드는 Public 메서드가 작동하는데 도움을 주는 메서드들이므로, Public 메서드를 테스트함으로써 자동으로 테스트된다.</li>
+</ul>
+
+<p>후처리 정렬의 정상 작동을 확인해야 할 필요성이 생긴 것이다. 물론 구현한 Protected 메서드의 가시성을 Public으로 변경하면 쉽다. 그런데, 다른 클래스에서 호출하지도 않을 메서드를 Public으로 선언하는 것은 기분이 찜찜하다. 이 포스트에서는 <strong>Private나 Protected로 선언된 메서드를 유닛 테스트하는 방법을 설명</strong>한다. 결론부터 말하면, <strong>PHP의 <code class="highlighter-rouge">Reflection</code> API를 이용</strong>하는 것이다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/testing-private-method-in-php/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/php-application-logging-to-elasticsearch-using-monolog/">Monolog를 이용한 애플리케이션 로깅</a>
         </h2>
         <p class="box-meta">
@@ -121,9 +179,9 @@
 <p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
 
 <ul>
-  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
-  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
-  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></li>
+  <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></li>
+  <li>Elastic Search: 검색에 특화된 데이터베이스. CRUD 및 설정을 위한 REST API를 제공한다.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup></li>
+  <li>Docker: 컨테이너화된 애플리케이션 운영 환경을 관리하는 도구<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup></li>
 </ul>
 
 <p>이 포스트의 소스 코드는 <a href="https://github.com/appkr/monolog-scratchpad">https://github.com/appkr/monolog-scratchpad</a>에서 받을 수 있다.</p>
@@ -310,53 +368,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/understanding-generator/">제너레이터 이해하기</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-10-02
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/understanding-generator/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>제너레이터(generator)는 대용량 데이터를 순회하며 작업할 때 유용한 기능이며, 대부분의 프로그래밍 언어에서 찾아볼 수 있다. 언어만 다를 뿐 개념은 모두 같다. 이 포스트는 자바스크립트 및 PHP 제너레이터에 대한 필자 나름의 이해 방식을 기록한 것이다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/learn-n-think/understanding-generator/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -413,13 +424,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1017,7 +1028,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1083,7 +1094,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1095,7 +1106,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1145,6 +1156,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1154,13 +1172,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1261,7 +1272,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

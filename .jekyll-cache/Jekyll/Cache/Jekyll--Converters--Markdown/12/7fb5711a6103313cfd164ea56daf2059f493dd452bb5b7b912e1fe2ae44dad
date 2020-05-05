@@ -1,0 +1,11 @@
+I"�<p>PHP 객체를 다른 변수에 할당(대입)하면, 객체 자체가 메모리 복제되어 새로운 변수에 할당되는 것이 아니라, 원본 객체가 담긴 메모리 번지만 참조됩니다(Like Pointer in C language).</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$foo</code>와 <code class="highlighter-rouge">$foo2</code>은 <code class="highlighter-rouge">Foo</code> 클래스의 인스턴스가 담긴, 같은 메모리 번지를 가리킵니다.</li>
+  <li><code class="highlighter-rouge">$foo3</code>는 <code class="highlighter-rouge">$foo</code> 인스턴스로 부터 복제했으므로, 복제 시점의 <code class="highlighter-rouge">$foo</code>의 상태를 그대로 가져오지만, 서로 다른 객체입니다.</li>
+  <li><code class="highlighter-rouge">$foo4</code>는 <code class="highlighter-rouge">Foo</code> 클래스의 새로운 인스턴스이므로, 당연히 <code class="highlighter-rouge">$foo</code>, <code class="highlighter-rouge">$foo2</code>, <code class="highlighter-rouge">$foo3</code>와 다른 객체입니다.</li>
+</ul>
+
+<p><a href="/images/2018-11-04-img-01.png"><img src="/images/2018-11-04-img-01.png" alt="" /></a></p>
+
+:ET

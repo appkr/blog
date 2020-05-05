@@ -153,7 +153,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// exceptions.php</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * 개발자가 직접 소비하지 않은 예외를 처리하기 위한 전역 예외 처리기.
  */</span>
 <span class="k">function</span> <span class="nf">exception_handler</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span>
@@ -164,13 +164,13 @@
     <span class="p">);</span>
 <span class="p">}</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * 전역 예외 처리기를 설정한다.
  * 여기까지가 일종의 프레임워크 부트스트랩 부분이다.
  */</span>
 <span class="nb">set_exception_handler</span><span class="p">(</span><span class="s1">'exception_handler'</span><span class="p">);</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * 실행할 때 예외를 식별하고 예외를 던지도록 구현해 놓은 함수. 
  * 외부에서 가져온 라이브러리나 직접 구현한 서비스라고 가정 하자. 
  */</span>
@@ -183,7 +183,7 @@
     <span class="k">return</span> <span class="s2">"함수가 받은 인자는 </span><span class="si">{</span><span class="nv">$arg</span><span class="si">}</span><span class="s2">입니다."</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="sd">/**
+<span class="cd">/**
  * 여기서 부터 클라이언트 코드(우리가 짠 애플리케이션)라고 가정하자.
  */</span> 
 <span class="k">try</span> <span class="p">{</span>
@@ -204,7 +204,7 @@
         <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getCode</span><span class="p">(),</span>
         <span class="nv">$e</span>
     <span class="p">);</span>
-<span class="p">}</span> <span class="nx">finally</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'Finally 안쪽의 문장은 무조건 실행됩니다.'</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -403,7 +403,7 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$arg</span><span class="p">)</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$arg</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="s2">"함수가 받은 인자는 </span><span class="si">{</span><span class="nv">$arg</span><span class="si">}</span><span class="s2">입니다."</span><span class="p">;</span>
 <span class="p">}</span>
@@ -519,13 +519,13 @@ Call Stack:
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1123,7 +1123,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1189,7 +1189,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1201,7 +1201,7 @@ Call Stack:
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1251,6 +1251,13 @@ Call Stack:
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1260,13 +1267,6 @@ Call Stack:
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1367,7 +1367,7 @@ Call Stack:
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

@@ -154,7 +154,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">;</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">stdClass</span><span class="p">;</span>
 <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
 <span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
@@ -176,7 +176,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">;</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">stdClass</span><span class="p">;</span>
 <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$a</span><span class="p">;</span>
 <span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
@@ -242,11 +242,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Common/Model/Money.php</span>
 
-<span class="k">class</span> <span class="nc">Money</span>
+<span class="kd">class</span> <span class="nc">Money</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
     <span class="p">}</span>
@@ -263,7 +263,7 @@
     
     <span class="k">public</span> <span class="k">function</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="nx">Money</span> <span class="nv">$other</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">get_class</span><span class="p">()</span> <span class="o">===</span> <span class="nx">__CLASS__</span>
+        <span class="k">return</span> <span class="nb">get_class</span><span class="p">()</span> <span class="o">===</span> <span class="k">__CLASS__</span>
             <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">===</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="na">getAmount</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -366,9 +366,9 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
 
 <p>이벤트를 데이터 소스로 사용하는 디자인 패턴입니다. 이벤트 데이터를 스택에 쌓아 놓고, 이벤트 리플레이를 통해 현재 상태를 계산해 냅니다. 핵심 함수와 전체 개념은 아래와 같습니다.</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">decide</span><span class="o">(</span><span class="n">command</span><span class="o">,</span> <span class="n">state</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">ListEvent</span>
-<span class="n">apply</span><span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">event</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">state</span>
-<span class="n">replay</span><span class="o">(</span><span class="n">initialState</span><span class="o">,</span> <span class="nc">ListEvent</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">version</span><span class="o">)</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">decide</span><span class="o">(</span><span class="n">command</span><span class="o">,</span> <span class="n">state</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">ListEvent</span>
+<span class="nf">apply</span><span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">event</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">state</span>
+<span class="nf">replay</span><span class="o">(</span><span class="n">initialState</span><span class="o">,</span> <span class="nc">ListEvent</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">version</span><span class="o">)</span>
 </code></pre></div></div>
 
 <p><img src="//blog.leifbattermann.de/wp-content/uploads/2017/04/event-sourcing.svg" alt="" /></p>
@@ -485,13 +485,13 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1089,7 +1089,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1155,7 +1155,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1167,7 +1167,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1217,6 +1217,13 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1226,13 +1233,6 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1333,7 +1333,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

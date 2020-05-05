@@ -1,0 +1,19 @@
+I"<p>앞서 <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-1/">1부</a>에서는 다음 내용을 다루었다.</p>
+
+<ul>
+  <li>RPC 시스템에 대한 이해와 여러 가지 RPC 프레임워크의 특징</li>
+  <li>Thrift IDL(Interface Definition Language)를 이용해서 API 규격 만드는 방법</li>
+  <li>API 규격을 다양한 언어로 컴파일하고 라이브러리화 하는 방법</li>
+  <li>API 서버 프로젝트에 라이브러리를 플러그인하고 API 규격에 맞춘 서비스를 개발하는 방법</li>
+  <li>API 클라이언트가 서버에 접속하여 Thrift 프로토콜로 통신하는 방법</li>
+</ul>
+
+<p>1부에서 언급했다시피, <strong>Thrift 요청과 응답은 Thrift 프로토콜 안쪽에서 (역)직렬화</strong> 된다. 1부의 내용만으로는 디버깅이 어려워 서비스를 개발하기가 수월치 않다. 그래서 2부에서는 다음 내용을 다룬다.</p>
+
+<ul>
+  <li><strong>Thrift 프로토콜 안쪽에서 작동하는 미들웨어</strong>를 만들어서 Thrift 요청을 핸들링하고 그 과정에서 발생한 예외를 잡고 소비하는 방법</li>
+  <li><strong>책임 연쇄(Chain of Responsibility) 패턴</strong>의 이해</li>
+  <li>통합 테스트(Integration Test) 구현</li>
+</ul>
+
+:ET

@@ -1,0 +1,216 @@
+I"�c<p>최근에 회사 일로 검색 서비스를 개발했다. 검색 엔진으로는 Elastic Search를 사용했고, 매일 최한시(off-peak time)에 한 번씩 운영 데이터베이스에서 검색, 필터링, 정렬, Aggregation 등에 필요한 컬럼만 골라 인덱싱하도록 설계했다. 그리고, 재고 수량과 같이 실시간 업데이트가 필요한 값 들은 다른 서비스에서 SNS 메시지 또는 메시지 큐를 이용해서 전달하고, 전달 받은 값을 인덱싱에 반영하도록 구현했다.</p>
+
+<p>Elastic Search는 사용법이 복잡하긴 하지만, 인덱싱된 필드 값에 따라 내림차순, 오름차순으로 미리 정렬된 결과를 받을 수 있다. 그런데, 아무리 실시간 업데이트를 한다고 해도, 인덱싱된 값만으로 정렬이 불가능한 경우가 있고, 이 경우에는 검색 결과를 받아서 후 처리로 배열을 순회하면서 다시 정렬을 해야 한다. 같은 클래스의 Public 메서드가 정렬 요청을 하므로, 당연히 Protected 메서드로 구현했다.</p>
+
+<p>일반적으로 알려진 <strong>테스트 모범 사례</strong>는 다음과 같다.</p>
+
+<ul>
+  <li><strong>내가 짠 코드만 테스트한다.</strong> 외부에서 가져온 라이브러리를 테스트할 이유는 없다.</li>
+  <li><strong>Public 메서드만 테스트한다.</strong> Private나 Protected 메서드는 Public 메서드가 작동하는데 도움을 주는 메서드들이므로, Public 메서드를 테스트함으로써 자동으로 테스트된다.</li>
+</ul>
+
+<p>후처리 정렬의 정상 작동을 확인해야 할 필요성이 생긴 것이다. 물론 구현한 Protected 메서드의 가시성을 Public으로 변경하면 쉽다. 그런데, 다른 클래스에서 호출하지도 않을 메서드를 Public으로 선언하는 것은 기분이 찜찜하다. 이 포스트에서는 <strong>Private나 Protected로 선언된 메서드를 유닛 테스트하는 방법을 설명</strong>한다. 결론부터 말하면, <strong>PHP의 <code class="highlighter-rouge">Reflection</code> API를 이용</strong>하는 것이다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="1-테스트-타겟">1. 테스트 타겟</h2>
+
+<p>테스트의 대상은 아래 클래스의 <code class="highlighter-rouge">sortByStoreStatusAndCanBuyNow()</code> 메서드다. 여러 단계를 거치긴 하지만, Public으로 선언한 <code class="highlighter-rouge">query()</code> 메서드의 의해서 호출된다. 인라인으로 간략한 설명을 달아 두었다.</p>
+
+<p>참고로 <strong>네임스페이스에 나온 <a href="//bootake.com"><code class="highlighter-rouge">Bootake</code>는 내가 속한 회사에서 하는 서비스</a> 중 하나</strong>다. 이번에 구현한 코드는 아직 서비스에 반영되진 않았다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// core/Infrastructure/Queries/CvsProduct.php</span>
+
+<span class="kn">namespace</span> <span class="nn">Search\Infrastructure\Queries</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\Product</span> <span class="k">as</span> <span class="n">ThriftProduct</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\SearchFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\Section</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\SectionType</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Collection</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Search\Application\OutMappers\ProductMapper</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Search\Domain\Product</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">CvsProduct</span> <span class="k">extends</span> <span class="nx">BaseQuery</span> <span class="k">implements</span> <span class="nx">Queryable</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">model</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 엘로퀀트 모델 인스턴스다. 모델에 선언한 몇 가지 속성에 접근하기 위해서 필요하다.</span>
+        <span class="c1">// BaseQuery라는 추상 부모 클래스에서 abstract function으로 이 메서드의 구현을 강제하고 있다.</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Product</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">query</span><span class="p">(</span><span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$regionId</span><span class="p">,</span> <span class="nv">$offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$limit</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Elastic Search로 부터 받은 검색 결과를 $rawResults에 담았다.</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">rawResults</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">search</span><span class="p">(</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildParam</span><span class="p">(</span><span class="nv">$sf</span><span class="p">,</span> <span class="nv">$regionId</span><span class="p">)</span>
+        <span class="p">);</span>
+
+        <span class="c1">// 검색 결과는 여러 상점에서 제폼을 검색하므로 동일 제품이 검색 결과에 나타난다.</span>
+        <span class="c1">// Elastic Search는 이미 Aggregation(GROUP BY)된 결과를 반환하는 것이 아니라,</span>
+        <span class="c1">// 특정 필드 값에 따라 Aggregation했을 때의 ID값을 결과에 포함하여 반환한다.</span>
+        <span class="c1">// 해서 실제 필요한 개수보다 더 많은 레코드를 요청하고, 필요한 레코드만 골라낸 후 페이징을 해야 한다.</span>
+        <span class="c1">// 부모 클래스의 fetch() 메서드가 이 역할을 담당한다.</span>
+        <span class="nv">$filtered</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">model</span><span class="o">-&gt;</span><span class="na">distinctAttribute</span><span class="p">(),</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildSection</span><span class="p">(</span><span class="nv">$filtered</span><span class="p">,</span> <span class="nv">$sf</span><span class="p">,</span> <span class="nv">$regionId</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildParam</span><span class="p">(</span><span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="nv">$regionId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Elastic Search에 전달할 검색 파라미터다.</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="c1">// ...</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildSection</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$payload</span><span class="p">,</span> <span class="nx">SearchFilter</span> <span class="nv">$sf</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$regionId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// HTTP 응답으로 반환할 필드만 골라서 맵핑한다.</span>
+        <span class="c1">// 이 과정에서 런타임에 계산해야 할 값들을 추가하거나, 데이터를 가공하거나 캐스팅하기도 한다.</span>
+        <span class="nv">$mapped</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">ProductMapper</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">mapCollection</span><span class="p">(</span><span class="nv">$payload</span><span class="p">,</span> <span class="nv">$sf</span><span class="p">,</span> <span class="nv">$regionId</span><span class="p">);</span>
+        
+        <span class="c1">// 정렬한다. 이 포스트의 대상이 되는 문제의 메서드가 여기서 호출된다.</span>
+        <span class="c1">// 정렬한 결과를 미리 정의한 ThriftProduct Type에 맞도록 맵핑했다. </span>
+        <span class="nv">$sorted</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sortByStoreStatusAndCanBuyNow</span><span class="p">(</span><span class="nv">$mapped</span><span class="p">)</span>
+                       <span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="k">array</span> <span class="nv">$product</span><span class="p">)</span> <span class="p">{</span>
+                           <span class="k">return</span> <span class="k">new</span> <span class="nx">ThriftProduct</span><span class="p">(</span><span class="nv">$product</span><span class="p">);</span>
+                       <span class="p">})</span>
+                       <span class="o">-&gt;</span><span class="na">values</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+
+        <span class="c1">// $sorted 배열은 [ThriftProduct, ThriftProduct, ...] 형식인데,</span>
+        <span class="c1">// 얘를 다시 Thrift 인터페이스에서 정의한 Section Type으로 랩핑한다.</span>
+        <span class="c1">// getTotal()등의 메서드는 부모 클래스에 있다.</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Section</span><span class="p">([</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="nx">SectionType</span><span class="o">::</span><span class="na">PRODUCT</span><span class="p">,</span>
+            <span class="s1">'matchedCount'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getTotal</span><span class="p">(),</span>
+            <span class="s1">'perPage'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">perPage</span><span class="p">(),</span>
+            <span class="s1">'currentPage'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">resolveCurrentPage</span><span class="p">(),</span>
+            <span class="s1">'stores'</span> <span class="o">=&gt;</span> <span class="p">[],</span>
+            <span class="s1">'products'</span> <span class="o">=&gt;</span> <span class="nv">$sorted</span><span class="p">,</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">sortByStoreStatusAndCanBuyNow</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$unsorted</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$unsorted</span><span class="o">-&gt;</span><span class="na">sortBy</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$product</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 'canBuyNow' 속성은 불리언이라 정렬을 위해 정수 값으로 바꾸어, $canBuyNow 변수에 할당했다.</span>
+            <span class="c1">// 'canBuyNow'는 지금 장바구니에 담긴 상품과 같은 상점의 제품이란 의미다.</span>
+            <span class="nv">$canBuyNow</span> <span class="o">=</span> <span class="nv">$product</span><span class="p">[</span><span class="s1">'canBuyNow'</span><span class="p">]</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
+
+            <span class="c1">// 제품이 속한 상점의 상태(영업 중 -&gt; 배송 준비 중 -&gt; 영업 준비 중)와</span>
+            <span class="c1">// $canBuyNow를 복합해서 정렬해야 하므로 두 개 값을 결합했다.</span>
+            <span class="c1">// 즉, 지금 상점이 영업 중이고 장바구니에 담긴 상품과 같은 상품이라 바로 구매 가능한 상품이 우선 노출된다.</span>
+            <span class="k">return</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%d%d'</span><span class="p">,</span> <span class="nv">$product</span><span class="p">[</span><span class="s1">'storeStatus'</span><span class="p">],</span> <span class="nv">$canBuyNow</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-테스트-작성">2. 테스트 작성</h2>
+
+<h3 id="21-테스트-헬퍼">2.1. 테스트 헬퍼</h3>
+
+<p><code class="highlighter-rouge">getTestableMethod()</code> 메서드는 PHP의 <code class="highlighter-rouge">Reflection</code> 클래스를 이용해서 인자로 받은 <code class="highlighter-rouge">$class::$name</code> 메서드를 이번 프로세스 동안만 Private 또는 Protected 메서드를 Public으로 변경해준다. 즉, 테스트를 수행하는 동안은 테스트 클래스가 타켓 메서드에 접근할 수 있다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/TestCase.php</span>
+
+<span class="kn">namespace</span> <span class="nn">Test</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">TestCase</span> <span class="k">extends</span> <span class="nx">\Laravel\Lumen\Testing\TestCase</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">createApplication</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">require</span> <span class="k">__DIR__</span><span class="o">.</span><span class="s1">'/../bootstrap/app.php'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getTestableMethod</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// $class의 Reflection 인스턴스를 만든다.</span>
+        <span class="nv">$reflection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\ReflectionClass</span><span class="p">(</span><span class="nv">$class</span><span class="p">);</span>
+        
+        <span class="c1">// $name 메서드를 접근 가능하도록 한다.</span>
+        <span class="nv">$method</span> <span class="o">=</span> <span class="nv">$reflection</span><span class="o">-&gt;</span><span class="na">getMethod</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+        <span class="nv">$method</span><span class="o">-&gt;</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+        <span class="c1">// Reflection된 클래스가 아니라, 메서드를 반환한다.</span>
+        <span class="k">return</span> <span class="nv">$method</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="22-테스트-코드">2.2. 테스트 코드</h3>
+
+<p>이제 테스트 코드를 쓰면 된다. 앞 절에서 만든 헬퍼에서 반환 받은 메서드에 <code class="highlighter-rouge">invokeArgs(클래스 인스턴스, [메서드의 인자])</code>식으로 사용하면 원래 감추진 메서드를 호출하여 결과를 얻을 수 있다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/Unit/QueryTest.php</span>
+
+<span class="kn">namespace</span> <span class="nn">Test\Unit</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nn">Bootake\SearchService\Thrift\Search\StoreStatus</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Elasticsearch\ClientBuilder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Search\Infrastructure\Queries\CvsProduct</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">QueryTest</span> <span class="k">extends</span> <span class="nx">\Test\TestCase</span>
+<span class="p">{</span>
+    <span class="cd">/** @test */</span>
+    <span class="k">function</span> <span class="nf">cvs_products_collection_should_be_sorted_by_its_parent_store_status</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$productCollection</span> <span class="o">=</span> <span class="nx">collect</span><span class="p">([</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">CLOSED</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">CLOSED</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">PREPARING</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">PREPARING</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">OPENED</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">OPENED</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">],</span>
+        <span class="p">]);</span>
+
+        <span class="c1">// 1절에서 설명한 테스트 타켓 클래스의 인스턴스를 만든다.</span>
+        <span class="nv">$cvsProductQuery</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CvsProduct</span><span class="p">(</span>
+            <span class="nx">ClientBuilder</span><span class="o">::</span><span class="na">fromConfig</span><span class="p">([</span><span class="cm">/*...*/</span><span class="p">])</span>
+        <span class="p">);</span>
+
+        <span class="c1">// 테스트 헬퍼를 이용해서 다른 클래스에서 접근할 수 있는 메서드를 가져온다. </span>
+        <span class="nv">$method</span> <span class="o">=</span> <span class="k">static</span><span class="o">::</span><span class="na">getTestableMethod</span><span class="p">(</span>
+            <span class="nx">CvsProduct</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+            <span class="s1">'sortByStoreStatusAndCanBuyNow'</span>
+        <span class="p">);</span>
+
+        <span class="c1">// 메서드를 호출하고 반환값을 저장한다.</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$method</span><span class="o">-&gt;</span><span class="na">invokeArgs</span><span class="p">(</span><span class="nv">$cvsProductQuery</span><span class="p">,</span> <span class="p">[</span><span class="nv">$productCollection</span><span class="p">]);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">OPENED</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">],</span>
+            <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">()</span>
+        <span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">'storeStatus'</span> <span class="o">=&gt;</span> <span class="nx">StoreStatus</span><span class="o">::</span><span class="na">CLOSED</span><span class="p">,</span> <span class="s1">'canBuyNow'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">],</span>
+            <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">last</span><span class="p">()</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a href="/images/2016-12-04-img-01.png"><img src="/images/2016-12-04-img-01.png" alt="Unit Test" /></a></p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="덧-elastic-search-검색-성능">덧. Elastic Search 검색 성능</h2>
+
+<p>지난 달에 열린 XECon에서 <a href="https://www.facebook.com/findstar">안정수</a>님이 <a href="https://laravel.kr/docs/5.3/scout">라라벨 Scout</a>를 발표했는데, 청중 중에 한 분이 Scout의 성능에 대한 질문을 하셨다. Scout는 Algolia 또는 Elastic Search 등의 검색 엔진을 라라벨 프로젝트에서 사용하기 쉽도록 랩핑한 라이브러리다. 본 포스트의 주제와 무관하지만 필자가 측정한 성능을 남겨 놓는다.</p>
+
+<p>검색 요청을 수신하고 프레임워크를 부팅하고 검색을 수행하는 메서드에 도달하는 데까지 41ms, 검색 요청에는 위/경도를 포함하고 있는데 받은 위/경도에 해당하는 지역 ID를 PostgreSQL을 사용하는 다른 마이크로 서비스에 던져 응답을 받는데까지 걸린 총 시간 481ms, 15만 인덱스에 대고 검색하고 결과를 받아 후처리하는 등 모든 작업을 마치고 응답을 내보기 직전까지 걸린 시간 777ms다.</p>
+
+<p>OS X의 PHP 내장 웹 서버에서 검색 서비스를 구동하고, Elastic Search는 원격에 있는 상태로 테스트했다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># storage/logs/lumen.log</span>
+
+<span class="o">[</span>2016-12-04 15:13:22] search.DEBUG: 검색 요청 수신:SearchService.php:69 <span class="o">[</span>0.04101300239563] 
+<span class="o">[</span>2016-12-04 15:13:22] search.DEBUG: RegionId 페치 완료<span class="o">(</span><span class="nv">regionId</span><span class="o">=</span><span class="k">****</span><span class="o">)</span>:SearchService.php:77 <span class="o">[</span>0.48165106773376] 
+<span class="o">[</span>2016-12-04 15:13:22] search.DEBUG: 검색 완료:SearchService.php:87 <span class="o">[</span>0.7775821685791] 
+<span class="o">[</span>2016-12-04 15:13:22] search.DEBUG: 성능 요구량 <span class="o">[</span><span class="s2">"메모리(MB) : 6.883152"</span>,<span class="s2">"CPU(%): 1.97802734375"</span><span class="o">]</span> 
+</code></pre></div></div>
+:ET

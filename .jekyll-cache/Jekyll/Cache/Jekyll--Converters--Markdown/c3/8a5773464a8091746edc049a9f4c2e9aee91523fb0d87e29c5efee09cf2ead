@@ -1,0 +1,16 @@
+I"�<p>이 문서는 Atlassian社에서 쓴 ‘Getting Git Right’ 튜토리얼 중 <a href="https://www.atlassian.com/git/tutorials/comparing-workflows">‘Comparing Workflows’</a>라는 글을 한글로 번역한 것이다. 이 글에서는 총 네 개의 워크플로우를 소개한다.</p>
+
+<ol>
+  <li><a href="#1-centralized-workflow">Centralized Workflow</a></li>
+  <li><a href="#2-feature-branch-workflow">Feature Branch Workflow</a></li>
+  <li><a href="#3-gitflow-workflow">Gitflow Workflow</a></li>
+  <li><a href="#4-forking-workflow">Forking Workflow</a></li>
+</ol>
+
+<hr />
+
+<p><img src="/images/2016-06-20-img-01.png" alt="" /></p>
+
+<p>이 글에서는 여러 엔터프라이즈 개발팀을 조사하여 정리한 대표적인 Git 협업 워크플로우를 소개한다. 여기서 제시하는 워크플로우들은 엄격한 규칙이라기 보다, 여러 분들의 상황에 적합한 워크플로우를 선택하기 위한  일종의 가이드로 이해해 주면 좋겠다.</p>
+
+:ET

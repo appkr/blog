@@ -1,0 +1,115 @@
+I"�<h3 id="1-jdk">1. JDK</h3>
+
+<p><a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u16-oth-JPR@CDS-CDS_Developer">JDK</a> 를 다운로드하여 설치한다.</p>
+
+<p>또는, <a href="//cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jre-6u16-windows-i586.exe?BundledLineItemUUID=moFIBe.oaqEAAAEkk.UxdJ2G&amp;OrderID=R1dIBe.onL8AAAEkiOUxdJ2G&amp;ProductID=VP1IBe.nzvkAAAEiap9pOuDb&amp;FileName=/jre-6u16-windows-i586.exe">JRE <sup>Java Runtime Environment</sup></a> 만 설치할 수도 있다. JDK Version 이 맞지 않으면, Emulator 가 정상적으로 실행되지 않는다.
+ 
+<!--more--></p>
+<div class="spacer">• • •</div>
+
+<h3 id="2-java-runtime-의-path-를-windows-환경-변수에-넣어-준다">2. Java Runtime 의 Path 를 Windows 환경 변수에 넣어 준다.</h3>
+
+<p>내 컴퓨터 &gt; 속성 &gt; 고급 &gt; 환경변수 &gt; 시스템 변수&gt; Path 로 이동하여, Java Runtime (java.exe) 가 위치한 경로를 넣어 주어야 한다. 내 경우에는 C:Program Files\Javajdk1.6.0_16\bin 에 java.exe 가 있었다.</p>
+
+<p>[그림 유실] </p>
+
+<!--more-->
+
+<h3 id="3-sdk-다운로드">3. SDK 다운로드</h3>
+
+<p><a href="//developer.android.com/sdk/download.html?v=android-sdk_r3-windows.zip">SDK</a> 를 다운로드하고, 적절한 위치에 압축을 해제 한다.</p>
+
+<h3 id="4-콘솔을-띄워-sdk에-미리-정의되어-있는-target-device-를-확인한다">4. 콘솔을 띄워, SDK에 미리 정의되어 있는 Target Device 를 확인한다.</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> <span class="nb">cd </span>path_to_your_android_sdktools
+<span class="se">\&gt;</span> path_to_your_android_sdktoolsandroid list targets
+</code></pre></div></div>
+
+<p>4 개의 Device 가 있는 것이 확인되었고, 하드웨어 구성, Android Version, Google API 포함 여부가 서로 다르다. (Emulator 는 QEMU Platform Simulator 기반으로 작성되었으며, x86 CPU 를 ARM v5 로 Emulation 해 준다.)</p>
+
+<p>[그림 유실]</p>
+
+<h3 id="5-avdandroid-virtual-device를-생성한다">5. AVD(Android Virtual Device)를 생성한다.</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> android create avd <span class="nt">-n</span> donut <span class="nt">-c</span> 2048M <span class="nt">-t</span> 1
+<span class="c"># `-n donut`: donut 라는 이름의 avd를 생성한다.</span>
+<span class="c"># `-c 2048M`: 2048MB의 Smartcard 가상 이미지를 생성한다. 이후에 모든 컨텐츠는 여기에 담게 된다.</span>
+<span class="c"># `-t 1`: f에서 확인한 미리 정의된 Target Device 중 1번 Device를 생성한다.</span>
+</code></pre></div></div>
+
+<p>한번 생성된 AVD 는 삭제하지 않는 이상 다시 만들 필요없다. AVD는 <code class="highlighter-rouge">c:\document and settings\UserName.Android</code> 아래에 생성된다.</p>
+
+<p>또는, GUI를 이용할 수도 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> android
+</code></pre></div></div>
+
+<p>GUI 메뉴에서 Virtual Devices &gt; New…</p>
+
+<p>[그림 유실]
+ </p>
+<h3 id="6-emulator를-실행한다">6. Emulator를 실행한다.</h3>
+
+<p>Emulator 부팅에는 수분의 시간이 걸린다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> emulator <span class="nt">-avd</span> donut &lt;/div&gt;
+</code></pre></div></div>
+
+<p>[그림 유실]</p>
+
+<p><code class="highlighter-rouge">adb</code> (Android Debug Bridge)를 이용하여 로그를 확인할 수도 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> adb logcat
+</code></pre></div></div>
+
+<h3 id="7-sd-card가-정상적으로-mount-되었는지-확인한다">7. SD Card가 정상적으로 Mount 되었는지 확인한다.</h3>
+
+<p>Settings &gt; SD Card &amp; Phone Storage로 접근한다.</p>
+
+<p>[그림 유실]</p>
+
+<h3 id="8-sd-card에-contents를-복사한다">8. SD Card에 Contents를 복사한다.</h3>
+
+<ul>
+  <li>
+    <p>방법 # 1 <code class="highlighter-rouge">adb</code> 를 이용하는 방법</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> adb push d:0.jpg /sdcard
+<span class="c"># d:0.jpg : Local Contents 의 경로 및 파일 명</span>
+<span class="c"># /sdcard/ : Remote SDCard 에 동일한 파일명으로 복사</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>방법 # 2 <code class="highlighter-rouge">ddms</code> (Dalvik Debug Monitor) 를 이용하는 방법</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> ddms
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>DDMS 실행되면 Device &gt; File Explorer 로 접근하여, Local 탐색기에서 원하는 Contents를 선택한 후, DDMS File Explorer의 sdcard 노드에 Drag &amp; Drop</p>
+
+<p>[그림 유실]</p>
+
+<h3 id="9-중요-emulator--dev-tools--media-scanner">9. <strong><code class="highlighter-rouge">중요</code></strong> Emulator &gt; Dev Tools &gt; Media Scanner</h3>
+
+<p>이 작업을 해 주지 않으면, SDCard에 복사한 Contents를 Emulator에서 재생할 수 없다.</p>
+
+<h3 id="10-gallery-나-music-으로-이동하여-복사한-contents-를-재생해-본다">10. Gallery 나 Music 으로 이동하여 복사한 Contents 를 재생해 본다.</h3>
+
+<p>Landscape/Portrait 모드로 토글은 Ctrl + F11.
+ 
+[그림 유실]</p>
+
+<h3 id="11-emulator-ddms-등은-창을-닫으면-모든-리소스가-반환되고-프로그램이-종료된다">11. Emulator, <code class="highlighter-rouge">ddms</code> 등은 창을 닫으면 모든 리소스가 반환되고, 프로그램이 종료된다.</h3>
+
+<h3 id="12-각-명령의-도움말은--help-스위치를-사용한다">12. 각 명령의 도움말은 -help 스위치를 사용한다.</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> android <span class="nt">-help</span>
+<span class="se">\&gt;</span> emulator <span class="nt">-hlep</span>
+<span class="se">\&gt;</span> adb <span class="nt">-help</span>
+<span class="se">\&gt;</span> ddms <span class="nt">-help</span>
+</code></pre></div></div>
+
+<p><a href="//developer.android.com/guide/developing/tools/emulator.html">Android Developer Site 의 도움말</a> 을 더 참고하자.</p>
+:ET

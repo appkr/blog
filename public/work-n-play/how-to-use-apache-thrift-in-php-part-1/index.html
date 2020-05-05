@@ -209,14 +209,14 @@
 
 <span class="n">include</span> <span class="s">"Errors.thrift"</span>                 <span class="c1">// Errors.thrfit 파일을 임포트 한다.</span>
 
-<span class="n">namespace</span> <span class="n">php</span> <span class="n">Appkr</span><span class="o">.</span><span class="na">Thrift</span><span class="o">.</span><span class="na">Post</span>         <span class="c1">// PHP용 네임스페이스를 정의한다.</span>
+<span class="n">namespace</span> <span class="n">php</span> <span class="nc">Appkr</span><span class="o">.</span><span class="na">Thrift</span><span class="o">.</span><span class="na">Post</span>         <span class="c1">// PHP용 네임스페이스를 정의한다.</span>
 <span class="n">namespace</span> <span class="n">java</span> <span class="n">kr</span><span class="o">.</span><span class="na">appkr</span><span class="o">.</span><span class="na">thrift</span><span class="o">.</span><span class="na">post</span>     <span class="c1">// 다른 언어도 정의할 수 있다는 것을 보여 주기 위해서</span>
                                         <span class="c1">// 예제 프로젝트에서 쓰지는 않지만, 자바 패키지도 정의했다.</span>
 
 <span class="cm">/**
  * Post 엔티티
  */</span>
-<span class="n">struct</span> <span class="n">Post</span> <span class="o">{</span>                           <span class="c1">// Post 메시지 타입을 정의한다. </span>
+<span class="n">struct</span> <span class="nc">Post</span> <span class="o">{</span>                           <span class="c1">// Post 메시지 타입을 정의한다. </span>
                                         <span class="c1">// 모델이라 볼 수도 있고, 필요한 데이터만 간추린 DTO라 볼 수도 있다.</span>
                                         <span class="c1">// PHP에서 연관 배열을 생성자의 인자로 넘겨서 Thrift 객체를 생성한다.</span>
                                         <span class="c1">// 예) $post= new Post(['id'=&gt;1, 'title'=&gt;'foo', ...]);</span>
@@ -240,12 +240,12 @@
 <span class="cm">/**
  * PostCollection 엔티티
  */</span>
-<span class="n">typedef</span> <span class="n">list</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span> <span class="n">PostCollection</span>       <span class="c1">// Thrift가 제공하는 기본 타입 외 커스텀 타입도 정의할 수 있다.</span>
+<span class="n">typedef</span> <span class="n">list</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">&gt;</span> <span class="nc">PostCollection</span>       <span class="c1">// Thrift가 제공하는 기본 타입 외 커스텀 타입도 정의할 수 있다.</span>
 
 <span class="cm">/**
  * 쿼리 필터 엔티티
  */</span>
-<span class="n">struct</span> <span class="n">QueryFilter</span> <span class="o">{</span>
+<span class="n">struct</span> <span class="nc">QueryFilter</span> <span class="o">{</span>
     <span class="cm">/** 검색할 키워드 */</span>
     <span class="mi">1</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">keyword</span> <span class="o">=</span> <span class="err">''</span><span class="o">,</span>    <span class="c1">// 기본 값을 할당했다.</span>
 
@@ -259,19 +259,19 @@
 <span class="cm">/**
  * Post 서비스
  */</span>
-<span class="n">service</span> <span class="n">PostService</span> <span class="o">{</span>                   <span class="c1">// 서비스를 정의한다.</span>
+<span class="n">service</span> <span class="nc">PostService</span> <span class="o">{</span>                   <span class="c1">// 서비스를 정의한다.</span>
                                         <span class="c1">// 여기서 앞서 정의한 struct와 enum을 사용한다.</span>
     <span class="cm">/**
      * 포스트 목록을 응답합니다.
      */</span>
-    <span class="n">PostCollection</span> <span class="nf">all</span><span class="o">(</span>                 <span class="c1">// 리턴 타입 -&gt; 메서드명 순으로 쓴다.</span>
-        <span class="mi">1</span><span class="o">:</span> <span class="n">QueryFilter</span> <span class="n">qf</span><span class="o">,</span>              <span class="c1">// 객체형 메서드 인자다.</span>
+    <span class="nc">PostCollection</span> <span class="nf">all</span><span class="o">(</span>                 <span class="c1">// 리턴 타입 -&gt; 메서드명 순으로 쓴다.</span>
+        <span class="mi">1</span><span class="o">:</span> <span class="nc">QueryFilter</span> <span class="n">qf</span><span class="o">,</span>              <span class="c1">// 객체형 메서드 인자다.</span>
         <span class="mi">2</span><span class="o">:</span> <span class="n">i32</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span>
         <span class="mi">3</span><span class="o">:</span> <span class="n">i32</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="o">)</span> <span class="kd">throws</span> <span class="o">(</span>                          <span class="c1">// 자바처럼 예외를 메서드 뒤에 정의한다.</span>
-        <span class="mi">1</span><span class="o">:</span> <span class="n">Errors</span><span class="o">.</span><span class="na">UserException</span> <span class="n">userException</span><span class="o">,</span>
+        <span class="mi">1</span><span class="o">:</span> <span class="nc">Errors</span><span class="o">.</span><span class="na">UserException</span> <span class="n">userException</span><span class="o">,</span>
                                         <span class="c1">// 임포트한 다른 네임스페이스의 메시지 타입을 참조할 때 점(.)을 이용한다.</span>
-        <span class="mi">2</span><span class="o">:</span> <span class="n">Errors</span><span class="o">.</span><span class="na">SystemException</span> <span class="n">systemException</span>
+        <span class="mi">2</span><span class="o">:</span> <span class="nc">Errors</span><span class="o">.</span><span class="na">SystemException</span> <span class="n">systemException</span>
                                         <span class="c1">// 여러 개의 예외를 던진다면 예외 변수 이름을 서로 다르게 사용해야 한다. </span>
                                         <span class="c1">// 가령 여기서 다시 userException을 쓰면 컴파일 에러가 난다.</span>
     <span class="o">),</span>
@@ -279,22 +279,22 @@
     <span class="cm">/**
      * 특정 포스트의 상세 정보를 응답합니다.
      */</span>
-    <span class="n">Post</span> <span class="nf">find</span><span class="o">(</span>
+    <span class="nc">Post</span> <span class="nf">find</span><span class="o">(</span>
         <span class="mi">1</span><span class="o">:</span> <span class="n">i32</span> <span class="n">id</span>
     <span class="o">)</span> <span class="kd">throws</span> <span class="o">(</span>
-        <span class="mi">1</span><span class="o">:</span> <span class="n">Errors</span><span class="o">.</span><span class="na">UserException</span> <span class="n">userException</span>
-        <span class="mi">2</span><span class="o">:</span> <span class="n">Errors</span><span class="o">.</span><span class="na">SystemException</span> <span class="n">systemException</span>
+        <span class="mi">1</span><span class="o">:</span> <span class="nc">Errors</span><span class="o">.</span><span class="na">UserException</span> <span class="n">userException</span>
+        <span class="mi">2</span><span class="o">:</span> <span class="nc">Errors</span><span class="o">.</span><span class="na">SystemException</span> <span class="n">systemException</span>
     <span class="o">),</span>
 
     <span class="cm">/**
      * 새 포스트를 만듭니다.
      */</span>
-    <span class="n">Post</span> <span class="nf">store</span><span class="o">(</span>
+    <span class="nc">Post</span> <span class="nf">store</span><span class="o">(</span>
         <span class="mi">1</span><span class="o">:</span> <span class="n">string</span> <span class="n">title</span><span class="o">,</span>
         <span class="mi">2</span><span class="o">:</span> <span class="n">string</span> <span class="n">content</span>
     <span class="o">)</span> <span class="kd">throws</span> <span class="o">(</span>
-        <span class="mi">1</span><span class="o">:</span> <span class="n">Errors</span><span class="o">.</span><span class="na">UserException</span> <span class="n">userException</span>
-        <span class="mi">2</span><span class="o">:</span> <span class="n">Errors</span><span class="o">.</span><span class="na">SystemException</span> <span class="n">systemException</span>
+        <span class="mi">1</span><span class="o">:</span> <span class="nc">Errors</span><span class="o">.</span><span class="na">UserException</span> <span class="n">userException</span>
+        <span class="mi">2</span><span class="o">:</span> <span class="nc">Errors</span><span class="o">.</span><span class="na">SystemException</span> <span class="n">systemException</span>
     <span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div></div>
@@ -374,10 +374,10 @@
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">composer.json</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appkr/thrift-example-idl"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"autoload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"psr-4"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"Appkr</span><span class="se">\\</span><span class="s2">"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dist-php/Appkr"</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appkr/thrift-example-idl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"autoload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"psr-4"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Appkr\\"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dist-php/Appkr"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -451,18 +451,18 @@
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">composer.json</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"laravel/laravel"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"repositories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"laravel/laravel"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"repositories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vcs"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git@github.com:appkr/thrift-example-idl.git"</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vcs"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git@github.com:appkr/thrift-example-idl.git"</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"php"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;=5.6.4"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"laravel/framework"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.3.*"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"apache/thrift"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev-master"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"appkr/thrift-example-idl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev-master"</span><span class="w">
+  </span><span class="nl">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"php"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;=5.6.4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"laravel/framework"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.3.*"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apache/thrift"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev-master"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"appkr/thrift-example-idl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dev-master"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -489,11 +489,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">CreatePostsTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreatePostsTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
     <span class="p">{</span>
@@ -558,15 +558,15 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/PostsController.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">App\Services\PostService</span><span class="p">;</span>           <span class="c1">// 직접 만들어야 한다.</span>
-<span class="k">use</span> <span class="nx">App\Thrift\ThriftResponse</span><span class="p">;</span>          <span class="c1">// 직접 만들어야 한다.</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Services\PostService</span><span class="p">;</span>           <span class="c1">// 직접 만들어야 한다.</span>
+<span class="kn">use</span> <span class="nn">App\Thrift\ThriftResponse</span><span class="p">;</span>          <span class="c1">// 직접 만들어야 한다.</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
                                         <span class="c1">// 5절에서 IDL 정의에 의해 Thrift 컴파일러가 생성해 준 파일이다. </span>
-<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">Controller</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
     <span class="p">{</span>
@@ -600,16 +600,16 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftResponse.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Thrift</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Thrift</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Thrift\Protocol\TCompactProtocol</span><span class="p">;</span>   <span class="c1">// 바이너리보다 더 가볍다(apache/thrift 라이브러리가 제공).</span>
-<span class="k">use</span> <span class="nx">Thrift\Transport\TMemoryBuffer</span><span class="p">;</span>     
-<span class="k">use</span> <span class="nx">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>      <span class="c1">// 디버깅할 때 편하다(apache/thrift 라이브러리가 제공). </span>
-<span class="k">use</span> <span class="nx">Thrift\Protocol\TBinaryProtocol</span><span class="p">;</span>    <span class="c1">// 대표적 프로토콜이다(apache/thrift 라이브러리가 제공).</span>
-<span class="k">use</span> <span class="nx">UnexpectedValueException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Thrift\Protocol\TCompactProtocol</span><span class="p">;</span>   <span class="c1">// 바이너리보다 더 가볍다(apache/thrift 라이브러리가 제공).</span>
+<span class="kn">use</span> <span class="nn">Thrift\Transport\TMemoryBuffer</span><span class="p">;</span>     
+<span class="kn">use</span> <span class="nn">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>      <span class="c1">// 디버깅할 때 편하다(apache/thrift 라이브러리가 제공). </span>
+<span class="kn">use</span> <span class="nn">Thrift\Protocol\TBinaryProtocol</span><span class="p">;</span>    <span class="c1">// 대표적 프로토콜이다(apache/thrift 라이브러리가 제공).</span>
+<span class="kn">use</span> <span class="nn">UnexpectedValueException</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">ThriftResponse</span>
+<span class="kd">class</span> <span class="nc">ThriftResponse</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">make</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="nv">$format</span><span class="p">)</span>
     <span class="p">{</span>
@@ -669,14 +669,14 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Service/PostsService.php</span>
 
-<span class="k">namespace</span> <span class="nx">App\Services</span><span class="p">;</span>
+<span class="kn">namespace</span> <span class="nn">App\Services</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">App\Post</span> <span class="k">as</span> <span class="nx">EloquentPost</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nx">ThriftPost</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Post</span> <span class="k">as</span> <span class="n">EloquentPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="n">ThriftPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
+<span class="kd">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nx">QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
     <span class="p">{</span>
@@ -715,16 +715,16 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php</span>
 
-<span class="k">use</span> <span class="nx">App\Post</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Illuminate\Foundation\Testing\DatabaseMigrations</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Thrift\Transport\THttpClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">App\Post</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Testing\DatabaseMigrations</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nn">Thrift\Transport\THttpClient</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="kd">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <span class="p">{</span>
-    <span class="k">use</span> <span class="nx">DatabaseMigrations</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nn">DatabaseMigrations</span><span class="p">;</span>
 
     <span class="k">protected</span> <span class="nv">$client</span><span class="p">;</span>
 
@@ -935,13 +935,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">81</span>
+          <span class="badge">82</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">65</span>
+          <span class="badge">66</span>
         </a>
       </li>
       <li>
@@ -1539,7 +1539,7 @@
       </a>
     </span>
     
-    <span style="font-size: 138%">
+    <span style="font-size: 142%">
       <a href="/tags#기업철학">
         기업철학
       </a>
@@ -1605,7 +1605,7 @@
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#조직관리">
         조직관리
       </a>
@@ -1617,7 +1617,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#조직행동">
         조직행동
       </a>
@@ -1667,6 +1667,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
           <a href="/work-n-play/youtube/">근황</a>
         </h4>
@@ -1676,13 +1683,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
           <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-06</small>
-          <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h4>
       </li>
       
@@ -1783,7 +1783,7 @@
     </a>
   </h4>
   <p>
-    &copy; 2008~2019 •
+    &copy; 2008~2020 •
     Built with <a href="http://jekyllrb.com/">Jekyll</a> •
     Hosted by <a href="https://pages.github.com/">Github</a> •
     <a href="/feed.xml">Rss</a>

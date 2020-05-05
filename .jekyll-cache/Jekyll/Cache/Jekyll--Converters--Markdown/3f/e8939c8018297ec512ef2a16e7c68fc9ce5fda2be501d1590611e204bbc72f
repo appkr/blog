@@ -1,0 +1,113 @@
+I"�%<p>제너레이터(generator)는 대용량 데이터를 순회하며 작업할 때 유용한 기능이며, 대부분의 프로그래밍 언어에서 찾아볼 수 있다. 언어만 다를 뿐 개념은 모두 같다. 이 포스트는 자바스크립트 및 PHP 제너레이터에 대한 필자 나름의 이해 방식을 기록한 것이다.</p>
+
+<!--more-->
+<div class="spacer">• • •</div>
+
+<h2 id="1-예제---es6">1. 예제 - ES6</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">|</span> <span class="kd">function</span> <span class="o">*</span> <span class="nx">numbers</span><span class="p">(){</span>
+<span class="mi">2</span> <span class="o">|</span>   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Generator!</span><span class="dl">'</span><span class="p">);</span>
+<span class="mi">3</span> <span class="o">|</span>   <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mi">4</span> <span class="o">|</span>   <span class="k">yield</span> <span class="mi">2</span><span class="p">;</span>
+<span class="mi">5</span> <span class="o">|</span> <span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">iterator</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>ES6에서는 함수 선언에 별표(<code class="highlighter-rouge">*</code>)를 붙여서 함수가 아니라 제너레이터임을 표시한다. <code class="highlighter-rouge">iterator</code> 변수에 방금 만든 제너레이터를 할당했다. 변수 이름에서 알 수 있듯이 함수의 모양을 빌렸지만, 개념적으로는 이터레이터(반복기)다.</p>
+
+<p>함수 시작부에 <code class="highlighter-rouge">console.log('Hello Generator!');</code>를 찍었지만 아무일도 일어나지 않았다. 지금은 대기 상태라 할 수 있다. 제너레이터를 실행하려면 <code class="highlighter-rouge">next()</code> 메서드를 호출하면 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
+<span class="c1">// Hello Generator!</span>
+<span class="c1">// Object {value: 1, done: false}</span>
+</code></pre></div></div>
+
+<p>이제 제너레이터 객체를 생성하고 첫번째 <code class="highlighter-rouge">yield</code> 키워드까지 실행한다. <code class="highlighter-rouge">yield</code> 키워드는 값을 반환한다는 측면에서 <code class="highlighter-rouge">return</code> 키워드와 비슷하면서도 다르다. <code class="highlighter-rouge">return</code>은 뒤에 나오는 로직을 전부 무시하지만, <code class="highlighter-rouge">yield</code>는 <code class="highlighter-rouge">iterator</code>가 불러주면 또 다시 동작한다. <code class="highlighter-rouge">done: false</code>를 주목한다.</p>
+
+<p>또 실행한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
+<span class="c1">// Object {value: 2, done: false}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">console.log(...)</code>와 첫번째 <code class="highlighter-rouge">yield</code> 키워드는 건너뛰었다. 두번째 <code class="highlighter-rouge">yield</code> 키워드에 의해 <code class="highlighter-rouge">value</code>는 2로 바뀌었지만 아직 <code class="highlighter-rouge">done: flase</code>이다.</p>
+
+<p>한번 더 실행한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
+<span class="c1">// Object {value: undefined, done: true}</span>
+</code></pre></div></div>
+
+<p>이제 더 이상 실행할 <code class="highlighter-rouge">yield</code> 키워드가 없다. <code class="highlighter-rouge">done: true</code>로 바뀌었다.</p>
+
+<p><a href="/images/2016-08-10-img-01.png"><img src="/images/2016-08-10-img-01.png" alt="Generator in action" /></a></p>
+
+<h2 id="2-해부하기">2. 해부하기</h2>
+
+<p>앞 절에서 실험한 내용을 그림으로 정리하면 다음과 같다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iterator                                numbers(generator instance)
+|                                       |
+|next();───────────────────────────────&gt;|console.log(...); 실행
+|                                       |yield 1; 실행하고 상태 저장
+|                       Hello Generator!|
+|                {value: 1, done: false}|
+|&lt;──────────────────────────────────────|
+|next();───────────────────────────────&gt;|yield 2; 실행하고 상태 저장
+|                {value: 2, done: false}|
+|&lt;──────────────────────────────────────|
+|next();───────────────────────────────&gt;|더 이상 실행할 로직이 없음
+|         {value: undefined, done: true}|
+|&lt;──────────────────────────────────────|
+|                                       |
+</code></pre></div></div>
+
+<p>전부 정리해 보면 제너레이터는(개인적인 이해일 뿐이다)</p>
+
+<ul>
+  <li>일회용 이터레이터다.</li>
+  <li>호출하는 쪽에서 이터레이션의 시작과 다음 이터레이션을 제어할 수 있다(On-demand Iteration).</li>
+  <li>어디까지 실행했는지 상태를 가진 객체다.</li>
+</ul>
+
+<h2 id="3-예제---php">3. 예제 - PHP</h2>
+
+<p>실전에 사용한 예제는 AWS PHP SDK에서 찾아 볼 수 있다. AWS SDK에서 이터레이션은 거의 대부분 제너레이터를 사용하는 것을 볼 수 있다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// https://github.com/aws/aws-sdk-php/blob/master/src/functions.php#L49</span>
+
+<span class="kn">namespace</span> <span class="nn">Aws</span><span class="p">;</span>
+
+<span class="cd">/**
+ * Applies a map function $f to each value in a collection.
+ *
+ * @param mixed    $iterable Iterable sequence of data.
+ * @param callable $f        Map function to apply.
+ *
+ * @return \Generator
+ */</span>
+<span class="k">function</span> <span class="nf">map</span><span class="p">(</span><span class="nv">$iterable</span><span class="p">,</span> <span class="kt">callable</span> <span class="nv">$f</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$iterable</span> <span class="k">as</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">yield</span> <span class="nv">$f</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 사용할 수 있다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$generator</span> <span class="o">=</span> <span class="nx">Aws\map</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">),</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$generator</span> <span class="k">as</span> <span class="nv">$number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$number</span><span class="p">,</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이 예제에서는 큰 차이를 못 느낄 수 있지만, 배열 요소 하나가 큰 데이터를 가지고 있을 때는 제너레이터를 쓰지 않고는 <code class="highlighter-rouge">php.ini</code> 설정에서 <code class="highlighter-rouge">memory_limit</code> 값을 엄청 늘려야 할 것이다. 배열 순회에 필요한 모든 데이터를 메모리에 적재한 후 실행하는 것과, 이번 순회에 필요한 데이터만 읽어오는 차이가 있다.</p>
+:ET

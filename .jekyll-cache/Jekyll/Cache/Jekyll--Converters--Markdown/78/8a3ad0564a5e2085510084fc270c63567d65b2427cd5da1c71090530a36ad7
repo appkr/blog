@@ -1,0 +1,13 @@
+I"R<h2 id="3d-graphics-101">3D Graphics 101</h2>
+
+<p>일반적으로 3D 그래픽스의 처리과정은 크게</p>
+
+<ul>
+  <li>응용프로그램 단계 (application stage)</li>
+  <li>지오메트리 단계 (geometry stage)</li>
+  <li>래스터라이제이션 단계 (rasterization stage)</li>
+</ul>
+
+<p>의 세 단계로 구분된다.</p>
+
+:ET

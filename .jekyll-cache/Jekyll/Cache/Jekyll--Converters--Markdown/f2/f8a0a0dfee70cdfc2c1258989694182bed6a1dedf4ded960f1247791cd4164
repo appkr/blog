@@ -1,0 +1,173 @@
+I"�)<p>Gitbook 은 이미 알고 있었지만, Pandoc 은 오늘 알게 되었다. 요거 요거 물건이다. Gitbook 과 Pandoc 을 이용해서 전자책을 만드는 방법을 정리해 놓는다.</p>
+
+<ul>
+  <li>
+    <p><a href="//github.com/GitbookIO/gitbook">Gitbook</a></p>
+
+    <p>GitBook is a command line tool (and Node.js library) for building beautiful books using GitHub/Git and Markdown</p>
+  </li>
+  <li>
+    <p><a href="//pandoc.org/">Pandoc</a></p>
+
+    <p>If you need to convert files from one markup format into another, pandoc is your swiss-army knife.</p>
+  </li>
+</ul>
+
+<!--more-->
+
+<div class="spacer">• • •</div>
+
+<h2 id="install-gitbook">Install Gitbook</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>gitbook-cli <span class="nt">-g</span>
+<span class="nv">$ </span>gitbook <span class="nt">--version</span> <span class="c"># 1.0.1</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">.epub</code>, <code class="highlighter-rouge">.mobi</code>, <code class="highlighter-rouge">.pdf</code> 출판을 위한 Calibre 확장 설치</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>Caskroom/cask/calibre
+</code></pre></div></div>
+
+<h2 id="install-pandoc">Install Pandoc</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>pandoc
+<span class="nv">$ </span>pandoc <span class="nt">--version</span> <span class="c"># pandoc 1.16.0.2</span>
+</code></pre></div></div>
+
+<div class="spacer">• • •</div>
+
+<p>필요한 도구가 모두 준비되었으니, 이제 새로운 전자출판 프로젝트를 만들고 책을 집필하자.</p>
+
+<h2 id="create-project">Create Project</h2>
+
+<p>책 본문은 <code class="highlighter-rouge">_draft</code> 디렉터리에 담는다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -p 옵션을 주면 만드려는 디렉터리의 부모 디렉터리가 없을 때 만든다.</span>
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> my-book/_draft <span class="o">&amp;&amp;</span> <span class="nb">cd </span>my-book
+</code></pre></div></div>
+
+<h2 id="write-contents">Write Contents</h2>
+
+<p>Markdown 문법으로 책 본문을 쓰자. 실험 집필에서는 <code class="highlighter-rouge">_draft/chapter1.md</code>, <code class="highlighter-rouge">_draft/chapter2.md</code> 2개의 Markdown 파일을 만들었다. 책에 쓰이는 이미지 파일들은 <code class="highlighter-rouge">_draft/images</code> 에 넣었다.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--_draft/chapter1.md--&gt;</span>
+
+<span class="gh"># An exhibit of Markdown</span>
+
+This note demonstrates some of what <span class="p">[</span><span class="nv">Markdown</span><span class="p">][</span><span class="ss">1</span><span class="p">]</span> is capable of doing.
+
+<span class="ge">*Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*</span>
+
+<span class="p">![](</span><span class="sx">images/markdown_editor.png</span><span class="p">)</span>
+
+<span class="p">[</span><span class="ss">1</span><span class="p">]:</span> <span class="sx">http://daringfireball.net/projects/markdown/</span>
+</code></pre></div></div>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--_draft/chapter2.md--&gt;</span>
+
+<span class="gh"># An exhibit of Markdown</span>
+
+<span class="gu">## Unordered list</span>
+<span class="p">
+-</span> An item
+<span class="p">-</span> Another item[^1]
+<span class="p">-</span> Yet another item
+<span class="p">-</span> And there's more...
+
+<span class="p">[</span><span class="ss">^1</span><span class="p">]:</span> <span class="sx">Another</span> Item_ http://blog.appkr.dev 
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">README.md</code> 와 <code class="highlighter-rouge">SUMMARY.md</code> 2개의 파일은 Gitbook Mandatory 이므로 꼭 만들어 주어야 한다. (프로젝트 루트에 만든다.)</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--README.md--&gt;</span>
+
+<span class="gh"># My Book</span>
+
+by appkr
+</code></pre></div></div>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--SUMMARY.md--&gt;</span>
+
+<span class="gh"># Table of Contents</span>
+<span class="p">
+-</span> <span class="p">[</span><span class="nv">Chapter 1</span><span class="p">](</span><span class="sx">_draft/chapter1.md</span><span class="p">)</span>
+<span class="p">-</span> <span class="p">[</span><span class="nv">Chapter 2</span><span class="p">](</span><span class="sx">_draft/chapter2.md</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="gitbook-serve">Gitbook Serve</h2>
+
+<p>속도가 빠르지는 않지만, Gitbook 을 이용하면 집필 중에 Markdown 컴파일 결과를 미리 확인할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gitbook serve
+</code></pre></div></div>
+
+<p><a href="/images/2016-02-23-img-02.png"><img src="/images/2016-02-23-img-02.png" alt="Gitbook 이 생성한 정적 웹 페이지" /></a></p>
+
+<div class="spacer">• • •</div>
+
+<p>이제 시험 집필이 끝났으니, 전자책으로 빌드(출판)한다. 빌드 결과는 <code class="highlighter-rouge">_build</code> 디렉터리에 저장하는 것으로 하자.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>_build
+</code></pre></div></div>
+
+<h2 id="gitbook-build">Gitbook Build</h2>
+
+<p>Gitbook 으로 <code class="highlighter-rouge">my-book.pdf</code>, <code class="highlighter-rouge">my-book.epub</code>, <code class="highlighter-rouge">my-book.mobi</code> 전자책을 빌드한다. Gitbook 은 <code class="highlighter-rouge">README.md</code> 및 <code class="highlighter-rouge">SUMMARY.md</code> 파일을 기준으로 동작한다. 따라서 이 파일들이 위치한 디렉터리에서 아래 명령들을 실행해야 한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># gitbook {format} {source_path} {output_path}</span>
+
+<span class="nv">$ </span>gitbook pdf ./ _build/my-book.pdf
+<span class="nv">$ </span>gitbook epub ./ _build/my-book.epub
+<span class="nv">$ </span>gitbook mobi ./ _build/my-book.mobi
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">$ gitbook build</code> 명령을 이용하면 정적 웹페이지를 빌드할 수 있다. 빌드된 웹페이지는 <code class="highlighter-rouge">_book</code> 디렉터리에 저장되는데, 웹 서버에 올리면 바로 온라인 책이 된다. 프로젝트 루트에 <code class="highlighter-rouge">.bookignore</code> 파일을 만들고, 정적 웹페이지 빌드에 제외할 파일과 디렉터리를 지정할 수 있다.</p>
+
+<h2 id="pandoc-build">Pandoc Build</h2>
+
+<p>Pandoc 으로도 Gitbook 으로 빌드한 형식의 파일들을 빌드할 수 있다. 그런데, 내가 Pandoc 을 이용하는 이유는 MS워드 형식(<code class="highlighter-rouge">.docx</code>) 때문이다. <strong>Gitbook 과 달리 Pandoc 은 빌드할 Markdown 파일이 위치한 경로를 기준으로 동작한다.</strong> 프로젝트 루트에서 Pandoc 빌드를 실행하면, 마크다운 안에 위치한 상대경로(e.g. 그림 파일)들이 모두 망가지기 때문에 주의해야 한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Change working directory</span>
+<span class="nv">$ </span><span class="nb">cd </span>_draft
+
+<span class="c"># pandoc {options} {source_files}</span>
+<span class="nv">$ </span>pandoc <span class="nt">--smart</span> <span class="nt">--output</span><span class="o">=</span>../_build/my-book.docx <span class="se">\</span>
+          ../README.md <span class="se">\</span>
+          ../SUMMARY.md <span class="se">\</span>
+          chapter1.md <span class="se">\</span>
+          chapter2.md
+</code></pre></div></div>
+
+<p>오오~ 멋지다.</p>
+
+<p><a href="/images/2016-02-23-img-01.png"><img src="/images/2016-02-23-img-01.png" alt="Pages 에서 오픈한 my-book.docx" /></a></p>
+
+<div class="spacer">• • •</div>
+
+<p>현재까지 작업한 프로젝트의 디렉터리 구조이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
+├── .bookignore
+├── .gitignore
+├── README.md
+├── SUMMARY.md
+├── _book
+├── _build
+│   ├── my-book.docx
+│   ├── my-book.epub
+│   ├── my-book.mobi
+│   └── my-book.pdf
+└── _draft
+    ├── chapter1.md
+    ├── chapter2.md
+    └── images
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Gitbook 은 웹 서버에 바로 올릴 수 있는 정적 HTML 페이지를 생성해 준다. 책 전체 색인, 좌우 스크롤/화살표 네비게이션 뿐 아니라, 검색, 배경색 변경, 글꼴 크기, SNS 공유 등의 부가 기능도 제공하는 꽤 쓸만한 웹 페이지 이다. 그리고, Gitbook 으로 빌드한 전자책의 짜임새가 Pandoc 보다 조금 더 낫다.</p>
+
+<p>Pandoc 은 Markdown 으로 집필한 책을 MS워드 형식으로 변환해 준다. (Pandoc 은 훨씬 더 많은 일을 할 수 있지만, 나는 이 목적으로만 쓴다.) 출판 업계가 교정 및 편집을 위해 MS워드를 표준으로 사용하고 있다는 점 때문에, Pandoc 의 가치는 더 빛난다.</p>
+
+<p>어쨌든 3시간 남짓의 실험으로 Markdown 형식으로 쓴 책을 <code class="highlighter-rouge">.epub</code>, <code class="highlighter-rouge">.mobi</code>, <code class="highlighter-rouge">.pdf</code>, <code class="highlighter-rouge">.docx</code> 뿐 아니라, 웹으로도 출판할 수 있는 도구를 얻었다. 예제 프로젝트는 이 <a href="https://github.com/appkr/book-writing-kit">Github Repo</a> 에서 받을 수 있다.</p>
+:ET

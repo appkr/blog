@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>블로그 플랫폼 이전 5 - Disqus & Facebook | Appkr.memo(new Story)</title>
 
@@ -175,7 +179,7 @@
 
 <!--more-->
 
-<p>핵심은 <code class="highlighter-rouge">&lt;script src="..."&gt;&lt;/script&gt;</code> 한 줄이다. 각 쿼리 스트링 파라미터의 의미는 아래와 같다.</p>
+<p>핵심은 <code class="language-plaintext highlighter-rouge">&lt;script src="..."&gt;&lt;/script&gt;</code> 한 줄이다. 각 쿼리 스트링 파라미터의 의미는 아래와 같다.</p>
 
 <table>
   <thead>
@@ -187,27 +191,27 @@
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">num_items</code></td>
+      <td><code class="language-plaintext highlighter-rouge">num_items</code></td>
       <td style="text-align: right">5</td>
       <td>가져올 댓글 갯수 (최신순)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">hide_mods</code></td>
+      <td><code class="language-plaintext highlighter-rouge">hide_mods</code></td>
       <td style="text-align: right">0</td>
-      <td>관리자 댓글 숨김 여부 (<code class="highlighter-rouge">1</code> 로 설정하면 관리자 댓글은 빠짐)</td>
+      <td>관리자 댓글 숨김 여부 (<code class="language-plaintext highlighter-rouge">1</code> 로 설정하면 관리자 댓글은 빠짐)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">excerpt_length</code></td>
+      <td><code class="language-plaintext highlighter-rouge">excerpt_length</code></td>
       <td style="text-align: right">100</td>
       <td>잘라낼 댓글 본문 길이 (Double Byte Safe)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">hide_avatars</code></td>
+      <td><code class="language-plaintext highlighter-rouge">hide_avatars</code></td>
       <td style="text-align: right">0</td>
-      <td>Avatar 이미지 숨김 여부 (<code class="highlighter-rouge">1</code> 로 설정하면 Avatar 빠짐)</td>
+      <td>Avatar 이미지 숨김 여부 (<code class="language-plaintext highlighter-rouge">1</code> 로 설정하면 Avatar 빠짐)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">avatar_size</code></td>
+      <td><code class="language-plaintext highlighter-rouge">avatar_size</code></td>
       <td style="text-align: right">32</td>
       <td>Avatar 이미지 크기</td>
     </tr>
@@ -239,11 +243,11 @@
 
 <h3 id="app-registration">App Registration</h3>
 
-<p>먼저 <a href="https://developers.facebook.com/quickstarts/?platform=web">Facebook Developer Console</a> 에서 App 을 등록해야 한다. 등록하고 받은 <code class="highlighter-rouge">app_id</code>, <code class="highlighter-rouge">app_secret</code> 는 잘 보관해 두어야 한다.</p>
+<p>먼저 <a href="https://developers.facebook.com/quickstarts/?platform=web">Facebook Developer Console</a> 에서 App 을 등록해야 한다. 등록하고 받은 <code class="language-plaintext highlighter-rouge">app_id</code>, <code class="language-plaintext highlighter-rouge">app_secret</code> 는 잘 보관해 두어야 한다.</p>
 
 <h3 id="javascript-sdk-설치">Javascript SDK 설치</h3>
 
-<p>SDK 를 설치하고 초기화 해야 한다. App 등록에서 받은 <code class="highlighter-rouge">app_id</code> 를 <code class="highlighter-rouge">facebookAppId</code> 변수에 할당하였다.</p>
+<p>SDK 를 설치하고 초기화 해야 한다. App 등록에서 받은 <code class="language-plaintext highlighter-rouge">app_id</code> 를 <code class="language-plaintext highlighter-rouge">facebookAppId</code> 변수에 할당하였다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L271</span>
 
@@ -268,7 +272,7 @@
 
 <p>표시할 뷰의 내용이 복잡하지도 않을 뿐더러, 3rd Party Template Engine<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> 의존성을 제거하기 위해 Template 컴파일을 직접 구현하기로 했다.</p>
 
-<p><code class="highlighter-rouge">ul.facebook-feed</code> 엘리먼트 안쪽에, Template 으로 쓰일 <code class="highlighter-rouge">script#facebook-feed-template</code> 엘리먼트를 위치시켰다. 그리고, Jekyll Liquid 와 충돌을 피하기 위해서 Single Curly Brace (<code class="highlighter-rouge">{}</code>) 를 String Interpolation 기호로 사용하였다. 바인딩할 대상은 <code class="highlighter-rouge">{ message }</code>, <code class="highlighter-rouge">{ id }</code>, <code class="highlighter-rouge">{ created_time }</code> 딱 3 개 뿐이다.</p>
+<p><code class="language-plaintext highlighter-rouge">ul.facebook-feed</code> 엘리먼트 안쪽에, Template 으로 쓰일 <code class="language-plaintext highlighter-rouge">script#facebook-feed-template</code> 엘리먼트를 위치시켰다. 그리고, Jekyll Liquid 와 충돌을 피하기 위해서 Single Curly Brace (<code class="language-plaintext highlighter-rouge">{}</code>) 를 String Interpolation 기호로 사용하였다. 바인딩할 대상은 <code class="language-plaintext highlighter-rouge">{ message }</code>, <code class="language-plaintext highlighter-rouge">{ id }</code>, <code class="language-plaintext highlighter-rouge">{ created_time }</code> 딱 3 개 뿐이다.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_includes/site-sidebar.html#L74 --&gt;</span>
 
@@ -299,7 +303,7 @@
 
 <h3 id="template-compile--rendering">Template Compile &amp; Rendering</h3>
 
-<p><a href="https://developers.facebook.com/docs/graph-api">Facebook Graph API</a> 를 이용하면 내 Facebook 계정의 포스트를 가져올 수 있다. 다만, 최근 API 에서는 <code class="highlighter-rouge">GET</code> 요청에도 인증이 필요한 것 같다. 여기서 꽤 오랜 삽질을 했다.</p>
+<p><a href="https://developers.facebook.com/docs/graph-api">Facebook Graph API</a> 를 이용하면 내 Facebook 계정의 포스트를 가져올 수 있다. 다만, 최근 API 에서는 <code class="language-plaintext highlighter-rouge">GET</code> 요청에도 인증이 필요한 것 같다. 여기서 꽤 오랜 삽질을 했다.</p>
 
 <p>Oauth 인증 UI 및 프로세스를 직접 구현하는 것을 피하기 위해, CURL 을 이용하였다.</p>
 
@@ -307,17 +311,17 @@
 <span class="c"># access_token=xxxxxxxxxxxxxxxxxxxxxxxxx...</span>
 </code></pre></div></div>
 
-<p>여기서 받은 <code class="highlighter-rouge">access_token</code> 은 1 시간 짜리이다. Facebook 공식 용어로는 Long Lived Token 이라 하는데, 60 일 짜리 토큰으로 교환해야 한다.</p>
+<p>여기서 받은 <code class="language-plaintext highlighter-rouge">access_token</code> 은 1 시간 짜리이다. Facebook 공식 용어로는 Long Lived Token 이라 하는데, 60 일 짜리 토큰으로 교환해야 한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp;client_id={app_id}&amp;client_secret={app_secret}&amp;fb_exchange_token={access_token}"</span>
 <span class="c"># access_token=yyyyyyyyyyyyyyyyyyyyyyyyy...</span>
 </code></pre></div></div>
 
-<p>60 일 짜리 <code class="highlighter-rouge">access_token</code> 이 확보되었다. API 를 호출하면 되는데…</p>
+<p>60 일 짜리 <code class="language-plaintext highlighter-rouge">access_token</code> 이 확보되었다. API 를 호출하면 되는데…</p>
 
-<p>Javascript 에서는 코드 내에 포함된 <code class="highlighter-rouge">access_token</code> 이 공개되므로 보안상 아주 위험하다. Javascript 를 벗어 나지 않고 이를 감출 수 있는 방법을 찾아 헤멨지만, 결론은 “그런 방법은 없다” 였다. 현재까지 조사한 바로는 자체 백엔드 서버 없이는 불가하다고 알려져 있는데… 일단 보안을 좀 희생하면서, 구현에 집중하기로 한다.</p>
+<p>Javascript 에서는 코드 내에 포함된 <code class="language-plaintext highlighter-rouge">access_token</code> 이 공개되므로 보안상 아주 위험하다. Javascript 를 벗어 나지 않고 이를 감출 수 있는 방법을 찾아 헤멨지만, 결론은 “그런 방법은 없다” 였다. 현재까지 조사한 바로는 자체 백엔드 서버 없이는 불가하다고 알려져 있는데… 일단 보안을 좀 희생하면서, 구현에 집중하기로 한다.</p>
 
-<p>문서를 보고 <code class="highlighter-rouge">me/posts</code> 엔드포인트를 이용하면 된다는 것을 알았다. <code class="highlighter-rouge">me/posts</code> API 호출 결과에서 <code class="highlighter-rouge">response.data</code> 속성이 포스트들을 담고 있는 Collection 이다. <code class="highlighter-rouge">markup</code> 변수는 <code class="highlighter-rouge">compile()</code> Helper 에 의해 컴파일된 <code class="highlighter-rouge">li</code> 엘리먼트가 포함된 HTML 이며, 이 HTML 을 <code class="highlighter-rouge">ul#facebook-feed</code> 에 붙여 DOM 을 업데이트하였다. (화면이 로드되고 한참 있다 뜬다~ jQuery 를 쓰면 안되는 이유;;)</p>
+<p>문서를 보고 <code class="language-plaintext highlighter-rouge">me/posts</code> 엔드포인트를 이용하면 된다는 것을 알았다. <code class="language-plaintext highlighter-rouge">me/posts</code> API 호출 결과에서 <code class="language-plaintext highlighter-rouge">response.data</code> 속성이 포스트들을 담고 있는 Collection 이다. <code class="language-plaintext highlighter-rouge">markup</code> 변수는 <code class="language-plaintext highlighter-rouge">compile()</code> Helper 에 의해 컴파일된 <code class="language-plaintext highlighter-rouge">li</code> 엘리먼트가 포함된 HTML 이며, 이 HTML 을 <code class="language-plaintext highlighter-rouge">ul#facebook-feed</code> 에 붙여 DOM 을 업데이트하였다. (화면이 로드되고 한참 있다 뜬다~ jQuery 를 쓰면 안되는 이유;;)</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L291</span>
 
@@ -340,7 +344,7 @@
 <span class="p">};</span>
 </code></pre></div></div>
 
-<p>아래는 <code class="highlighter-rouge">compile()</code>, <code class="highlighter-rouge">truncate()</code> Helper 이다. 넘겨 받은 <code class="highlighter-rouge">facebookUserFeedCollection</code> 배열을 순회하면서 Regex 로 <code class="highlighter-rouge">{}</code> 를 찾은 후, 배열 아이템의 값을 바인딩시키는 식으로 Template 을 HTML 로 컴파일하였다.</p>
+<p>아래는 <code class="language-plaintext highlighter-rouge">compile()</code>, <code class="language-plaintext highlighter-rouge">truncate()</code> Helper 이다. 넘겨 받은 <code class="language-plaintext highlighter-rouge">facebookUserFeedCollection</code> 배열을 순회하면서 Regex 로 <code class="language-plaintext highlighter-rouge">{}</code> 를 찾은 후, 배열 아이템의 값을 바인딩시키는 식으로 Template 을 HTML 로 컴파일하였다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L263</span>
 
@@ -370,7 +374,7 @@
 
 <p>휴~</p>
 
-<p>Disqus 와 동일한 <em><code class="highlighter-rouge">{n} {minutes/hours/days/...} ago</code></em> 형식의 날짜로 포맷팅하기 위해 <code class="highlighter-rouge">moment</code> 패키지를 가져왔고, <code class="highlighter-rouge">moment('2016-02-12T09:00:00+0000', moment.ISO_8601).fromNow())</code> 처럼 사용하였다.</p>
+<p>Disqus 와 동일한 <em><code class="language-plaintext highlighter-rouge">{n} {minutes/hours/days/...} ago</code></em> 형식의 날짜로 포맷팅하기 위해 <code class="language-plaintext highlighter-rouge">moment</code> 패키지를 가져왔고, <code class="language-plaintext highlighter-rouge">moment('2016-02-12T09:00:00+0000', moment.ISO_8601).fromNow())</code> 처럼 사용하였다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bower <span class="nb">install </span>moment <span class="nt">--save-dev</span>
 </code></pre></div></div>
@@ -1343,7 +1347,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

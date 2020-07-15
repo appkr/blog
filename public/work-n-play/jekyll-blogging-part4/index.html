@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>블로그 플랫폼 이전 4 - Build Automation with Gulp | Appkr.memo(new Story)</title>
 
@@ -149,7 +153,7 @@
 
 <h2 id="jekyll-serve">Jekyll Serve</h2>
 
-<p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
+<p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="language-plaintext highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="language-plaintext highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="language-plaintext highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll serve
 <span class="c"># Configuration file: /.../blog/_config.yml</span>
@@ -174,7 +178,7 @@
 
 <p>프로젝트 시작부터 <a href="//gulpjs.com/">Gulp</a> 를 사용한 것은 아니었다. Jekyll 이 Sass/SCSS/Coffee 컴파일을 지원한다는 사실이 좋았다. 그런데, JS 는 어떻하지? 이미지 최적화나 파일/디렉토리 복사, 배포는 또 어떻게 해야 하지? 구글링을 했지만, 마음에 드는 레시피를 찾지는 못한 상태였는데… “Gulp 를 못 쓸 이유는 없을 것 같은데?” 라고 자문하고, 바로 작업에 들어갔다.</p>
 
-<p>Gulp 스크립트 구동에 필요한 의존성 패키지들은 <code class="highlighter-rouge">package.json</code> 에 정의되어 있는데… 좀 많긴하다.</p>
+<p>Gulp 스크립트 구동에 필요한 의존성 패키지들은 <code class="language-plaintext highlighter-rouge">package.json</code> 에 정의되어 있는데… 좀 많긴하다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"{}"</span> <span class="o">&gt;</span> package.json
 <span class="nv">$ </span>npm <span class="nb">install</span> <span class="nt">--save-dev</span> babel-core babel-preset-es2015 browser-sync del gulp gulp-autoprefixer gulp-babel gulp-clean gulp-concat gulp-if gulp-imagemin gulp-load-plugins gulp-minify-css gulp-newer gulp-sass gulp-size gulp-sourcemaps gulp-subtree gulp-uglify run-sequence
@@ -347,28 +351,28 @@
 
 <h3 id="clean">clean</h3>
 
-<p>빌드 과정에서 생성된 임시 디렉토리 (<code class="highlighter-rouge">.tmp</code>) 와 빌드 결과를 담는 디렉토리 (<code class="highlighter-rouge">public</code>) 등을 삭제하고 초기화하는 작업을 수행한다.</p>
+<p>빌드 과정에서 생성된 임시 디렉토리 (<code class="language-plaintext highlighter-rouge">.tmp</code>) 와 빌드 결과를 담는 디렉토리 (<code class="language-plaintext highlighter-rouge">public</code>) 등을 삭제하고 초기화하는 작업을 수행한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp clean
 </code></pre></div></div>
 
 <h3 id="jekyll">jekyll</h3>
 
-<p><code class="highlighter-rouge">$ jekyll build</code> 를 수행한다.</p>
+<p><code class="language-plaintext highlighter-rouge">$ jekyll build</code> 를 수행한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp jekyll
 </code></pre></div></div>
 
 <h3 id="images">images</h3>
 
-<p><code class="highlighter-rouge">_assets/images</code> 디렉토리에 담긴 이미지를 최적화하여 <code class="highlighter-rouge">images</code> 디렉토리로 출판한다.</p>
+<p><code class="language-plaintext highlighter-rouge">_assets/images</code> 디렉토리에 담긴 이미지를 최적화하여 <code class="language-plaintext highlighter-rouge">images</code> 디렉토리로 출판한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp images
 </code></pre></div></div>
 
 <h3 id="styles">styles</h3>
 
-<p><code class="highlighter-rouge">_assets/styles</code> 에 있는 모든 Stylesheets (css, scss, sass) 에 대해</p>
+<p><code class="language-plaintext highlighter-rouge">_assets/styles</code> 에 있는 모든 Stylesheets (css, scss, sass) 에 대해</p>
 
 <ul>
   <li>Sass/SCSS Compile</li>
@@ -378,14 +382,14 @@
   <li>Source Map 작성</li>
 </ul>
 
-<p>한 후, <code class="highlighter-rouge">styles</code> 디렉토리로 출판한다.</p>
+<p>한 후, <code class="language-plaintext highlighter-rouge">styles</code> 디렉토리로 출판한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp styles
 </code></pre></div></div>
 
 <h3 id="scripts">scripts</h3>
 
-<p><code class="highlighter-rouge">gulp.src()</code> 에서 인자로 받은 Javascripts 에 대해</p>
+<p><code class="language-plaintext highlighter-rouge">gulp.src()</code> 에서 인자로 받은 Javascripts 에 대해</p>
 
 <ul>
   <li>Babelify (Ecma Script 에서 Legacy JS 로 변환)</li>
@@ -394,14 +398,14 @@
   <li>Source Map 작성</li>
 </ul>
 
-<p>한 후, <code class="highlighter-rouge">scripts</code> 디렉토리에 출판한다.</p>
+<p>한 후, <code class="language-plaintext highlighter-rouge">scripts</code> 디렉토리에 출판한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp scripts
 </code></pre></div></div>
 
 <h3 id="serve">serve</h3>
 
-<p><code class="highlighter-rouge">images</code>, <code class="highlighter-rouge">styles</code>, <code class="highlighter-rouge">scripts</code>, <code class="highlighter-rouge">jekyll</code> Task 를 순차적으로 수행한 후, <code class="highlighter-rouge">http://localhost:3000</code> 웹 서버를 띄우고 BrowserSync 를 구동시킨다. BrowserSync 구동 이후, <code class="highlighter-rouge">_assets</code> 디렉토리 하위의 Stylesheets, Javascripts, Image 및 <code class="highlighter-rouge">.html</code>, <code class="highlighter-rouge">.md</code> 파일의 변경을 감시한다. 파일 변경이 있으면, 현재 <code class="highlighter-rouge">http://localhost:3000</code> 이 열려있는 모든 브라우저를 리프레시 한다.</p>
+<p><code class="language-plaintext highlighter-rouge">images</code>, <code class="language-plaintext highlighter-rouge">styles</code>, <code class="language-plaintext highlighter-rouge">scripts</code>, <code class="language-plaintext highlighter-rouge">jekyll</code> Task 를 순차적으로 수행한 후, <code class="language-plaintext highlighter-rouge">http://localhost:3000</code> 웹 서버를 띄우고 BrowserSync 를 구동시킨다. BrowserSync 구동 이후, <code class="language-plaintext highlighter-rouge">_assets</code> 디렉토리 하위의 Stylesheets, Javascripts, Image 및 <code class="language-plaintext highlighter-rouge">.html</code>, <code class="language-plaintext highlighter-rouge">.md</code> 파일의 변경을 감시한다. 파일 변경이 있으면, 현재 <code class="language-plaintext highlighter-rouge">http://localhost:3000</code> 이 열려있는 모든 브라우저를 리프레시 한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp serve
 </code></pre></div></div>
@@ -418,14 +422,14 @@
 
 <h3 id="default">default</h3>
 
-<p><code class="highlighter-rouge">images</code>, <code class="highlighter-rouge">styles</code>, <code class="highlighter-rouge">scripts</code>, <code class="highlighter-rouge">jekyll</code> 빌드 작업만 수행하고, 웹 서버 구동, BrowserSync 구동, 파일 감시는 하지 않는다.</p>
+<p><code class="language-plaintext highlighter-rouge">images</code>, <code class="language-plaintext highlighter-rouge">styles</code>, <code class="language-plaintext highlighter-rouge">scripts</code>, <code class="language-plaintext highlighter-rouge">jekyll</code> 빌드 작업만 수행하고, 웹 서버 구동, BrowserSync 구동, 파일 감시는 하지 않는다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp
 </code></pre></div></div>
 
 <h3 id="deploy">deploy</h3>
 
-<p>현재 프로젝트를 <code class="highlighter-rouge">gh-pages</code> 브랜치로 checkout 한 후, <a href="https://pages.github.com/">Github Page</a> 에 배포한다.</p>
+<p>현재 프로젝트를 <code class="language-plaintext highlighter-rouge">gh-pages</code> 브랜치로 checkout 한 후, <a href="https://pages.github.com/">Github Page</a> 에 배포한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gulp deploy
 </code></pre></div></div>
@@ -1389,7 +1393,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

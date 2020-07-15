@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>새로운 프로젝트 관리 프레임웤 | Appkr.memo(new Story)</title>
 
@@ -177,7 +181,7 @@
 
 <p>이를 기반으로 미래의 적정 인력계획/조직계획/배치계획을 할 수 있을 뿐 아니라, 과거의 리소스 운용 실적에 대한 체크도 할 수 있다. 어느 하부 조직이 로드가 많을 것인지 뿐 아니라, 리소스 유휴가 있을 경우 어떤 역량을 키울 것인지에 대한 역량 확보 계획의 참고자료가 되기도 한다.</p>
 
-<p>하부 조직 별로 프로젝트가 구분되어 있어, 각각 <code class="highlighter-rouge">=sum()</code> 함수와 조건부 서식, 엑셀 그래프를 사용하였다.</p>
+<p>하부 조직 별로 프로젝트가 구분되어 있어, 각각 <code class="language-plaintext highlighter-rouge">=sum()</code> 함수와 조건부 서식, 엑셀 그래프를 사용하였다.</p>
 
 <h2 id="personal-load">Personal Load</h2>
 
@@ -189,7 +193,7 @@
 
 <p>조직 구성원 개개인에겐 향후 1년치 투입 프로젝트를 알려 줌으로써, 개인에게 비전을 제시하고, 개인이 해당 프로젝트를 통해 어떤 역량을 키울 수 있는지, 조직에 어떤 기여를 할 수 있는 지, 언제 쯤 업무가 몰리는 지를 시각적으로 예상할 수 있게 한다.</p>
 
-<p><code class="highlighter-rouge">=sumif()</code> 함수와 조건부 서식을 사용하였다.</p>
+<p><code class="language-plaintext highlighter-rouge">=sumif()</code> 함수와 조건부 서식을 사용하였다.</p>
 
 <h2 id="이-프레임웤의-의미">이 프레임웤의 의미</h2>
 
@@ -1206,7 +1210,16 @@ Function[/code]
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

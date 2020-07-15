@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>"휙~" 리얼 타임 라라벨 데모 프로젝트 | Appkr.memo(new Story)</title>
 
@@ -134,7 +138,7 @@
       </div>
 
       <div class="box-body">
-        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="highlighter-rouge">pusher</code>, <code class="highlighter-rouge">redis</code>, <code class="highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
+        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="language-plaintext highlighter-rouge">pusher</code>, <code class="language-plaintext highlighter-rouge">redis</code>, <code class="language-plaintext highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
 
 <p><strong>언제 어떻게 쓸 수 있나?</strong> 새로운 댓글이 작성되면 같은 댓글 목록을 보고 있는 사용자에게 새 댓글을 알리거나, 지금 서비스에 접속된 모든 사용자에게 푸시 알림을 보내는 등 서버에서 발생한 변경 내용을 클라이언트에 전파할 때 사용할 수 있다.</p>
 
@@ -188,7 +192,7 @@ you:~/workspace <span class="nv">$ </span><span class="nb">mv </span>whik/<span 
 you:~/workspace <span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-rf</span> whik 
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">public</code> 디렉터리를 웹 서버의 Document Root로 변경하기 위해 웹 서버 설정을 변경한다(<code class="highlighter-rouge">$ sudo nano /etc/apache2/sites-enabled/001-cloud9.conf</code>)</p>
+<p><code class="language-plaintext highlighter-rouge">public</code> 디렉터리를 웹 서버의 Document Root로 변경하기 위해 웹 서버 설정을 변경한다(<code class="language-plaintext highlighter-rouge">$ sudo nano /etc/apache2/sites-enabled/001-cloud9.conf</code>)</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/apache2/sites-enabled/001-cloud9.conf</span>
 
@@ -221,7 +225,7 @@ you:~/workspace <span class="nv">$ </span>php artisan key:generate
 
 <h2 id="2-socketchat">2. SocketChat</h2>
 
-<p>소스 코드의 <code class="highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
+<p>소스 코드의 <code class="language-plaintext highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
 
 <h3 id="21-코드-수정">2.1. 코드 수정</h3>
 
@@ -251,7 +255,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <h3 id="23-실험">2.3. 실험</h3>
 
-<p>클라우드9 IDE 화면에서 <kbd>Run Project</kbd> 버튼을 누른다. <code class="highlighter-rouge">http://your-c9-url/socketchat</code>을 여러 개의 브라우저로 열어 채팅이 동작하는지 확인한다.</p>
+<p>클라우드9 IDE 화면에서 <kbd>Run Project</kbd> 버튼을 누른다. <code class="language-plaintext highlighter-rouge">http://your-c9-url/socketchat</code>을 여러 개의 브라우저로 열어 채팅이 동작하는지 확인한다.</p>
 
 <p><a href="/images/2016-07-15-img-02.gif"><img src="/images/2016-07-15-img-02.gif" alt="Socketchat in action" /></a></p>
 
@@ -263,7 +267,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <h4 id="241-클라이언트의-메시지-전송">2.4.1. 클라이언트의 메시지 전송</h4>
 
-<p>클라이언트에서 <code class="highlighter-rouge">socket.emit()</code> API로 서버에 메시지를 보낸다. 여기서 <code class="highlighter-rouge">chat.message</code>란 채널 이름을 기억해두자.</p>
+<p>클라이언트에서 <code class="language-plaintext highlighter-rouge">socket.emit()</code> API로 서버에 메시지를 보낸다. 여기서 <code class="language-plaintext highlighter-rouge">chat.message</code>란 채널 이름을 기억해두자.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
 
@@ -282,7 +286,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <h4 id="242-서버의-메시지-브로드캐스트">2.4.2. 서버의 메시지 브로드캐스트</h4>
 
-<p>클라이언트가 <code class="highlighter-rouge">chat.message</code> 채널로 보낸 메시지를 서버가 수신하면, 현재 접속된 모든 클라이언트에게 브로드캐스트한다. 이번에도 <code class="highlighter-rouge">emit()</code> API를 이용하고, 채널 이름을 인자로 넘겼다.</p>
+<p>클라이언트가 <code class="language-plaintext highlighter-rouge">chat.message</code> 채널로 보낸 메시지를 서버가 수신하면, 현재 접속된 모든 클라이언트에게 브로드캐스트한다. 이번에도 <code class="language-plaintext highlighter-rouge">emit()</code> API를 이용하고, 채널 이름을 인자로 넘겼다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// public/socketchat/index.js</span>
 
@@ -297,7 +301,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <h4 id="243-클라이언트의-메시지-수신-및-소비">2.4.3. 클라이언트의 메시지 수신 및 소비</h4>
 
-<p><code class="highlighter-rouge">socket.on(channel, callback)</code>은 제이쿼리에서 많이 봤던 <code class="highlighter-rouge">selector.on(event, callback)</code>과 같은 이벤트 리스너다. 서버의 브로드캐스트 메시지 중 <code class="highlighter-rouge">chat.message</code> 채널로 발행한 메시지가 있으면 콜백이 동작한다.</p>
+<p><code class="language-plaintext highlighter-rouge">socket.on(channel, callback)</code>은 제이쿼리에서 많이 봤던 <code class="language-plaintext highlighter-rouge">selector.on(event, callback)</code>과 같은 이벤트 리스너다. 서버의 브로드캐스트 메시지 중 <code class="language-plaintext highlighter-rouge">chat.message</code> 채널로 발행한 메시지가 있으면 콜백이 동작한다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// public/socketchat/index.html</span>
 
@@ -310,7 +314,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 <span class="p">});</span>
 </code></pre></div></div>
 
-<p>종합하면, 어떤 클라이언트가 <code class="highlighter-rouge">https://your-c9-url/socketchat</code> 페이지에서 채팅 메시지를 작성하면, 같은 페이지에 접속한 다른 모든 클라이언트는 메시지를 받아 DOM을 업데이트한다.</p>
+<p>종합하면, 어떤 클라이언트가 <code class="language-plaintext highlighter-rouge">https://your-c9-url/socketchat</code> 페이지에서 채팅 메시지를 작성하면, 같은 페이지에 접속한 다른 모든 클라이언트는 메시지를 받아 DOM을 업데이트한다.</p>
 
 <p><a href="/images/2016-07-15-img-05.jpg"><img src="/images/2016-07-15-img-05.jpg" alt="Socketchat Block Diagram" /></a></p>
 
@@ -335,7 +339,7 @@ you:~/workspace/public/socketchat <span class="nv">$ </span>npm start
 
 <h3 id="32-실험-준비">3.2. 실험 준비</h3>
 
-<p>필요한 라이브러리를 설치하고, 클라우드9 콘솔에서 <code class="highlighter-rouge">feature/redis</code> 태그로 체크아웃한다.</p>
+<p>필요한 라이브러리를 설치하고, 클라우드9 콘솔에서 <code class="language-plaintext highlighter-rouge">feature/redis</code> 태그로 체크아웃한다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 필요한 Node 라이브러리를 설치한다.</span>
 you:~/workspace <span class="o">(</span>master<span class="o">)</span> <span class="nv">$ </span>npm <span class="nb">install</span> <span class="nt">--only</span><span class="o">=</span>prod
@@ -355,21 +359,21 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <h3 id="33-실험">3.3. 실험</h3>
 
-<p>클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="highlighter-rouge">http://your-c9-url/pub</code>과 <code class="highlighter-rouge">http://your-c9-url/sub</code>을 각각 브라우저로 연다. <code class="highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
+<p>클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="language-plaintext highlighter-rouge">http://your-c9-url/pub</code>과 <code class="language-plaintext highlighter-rouge">http://your-c9-url/sub</code>을 각각 브라우저로 연다. <code class="language-plaintext highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="language-plaintext highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
 
 <p><a href="/images/2016-07-15-img-03.gif"><img src="/images/2016-07-15-img-03.gif" alt="Socketchat in action" /></a></p>
 
 <h3 id="34-작동-원리">3.4. 작동 원리</h3>
 
-<p>2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(<code class="highlighter-rouge">public/socketchat/index.js</code>). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들 간에 메시지를 릴레이하는 역할만 수행했다.</p>
+<p>2절의 SocketChat 예제에서는 Node.js Express 프레임워크로 라우팅과 뷰를 처리했다(<code class="language-plaintext highlighter-rouge">public/socketchat/index.js</code>). 이 수퍼 마이크로 서비스에는 Socket.io 서버를 포함하고 있고, Socket.io 서버는 단지 Socket.io 클라이언트들 간에 메시지를 릴레이하는 역할만 수행했다.</p>
 
 <p>그런데, 이번 절에서는 시나리오가 좀 다르다. 라라벨 애플리케이션이 Socket.io 라이브러리를 이용해서 클라이언트들과 통신하도록 해야 한다. 라라벨과 Socket.io를 서비스하는 Node.js는 서로 다른 애플리케이션이고, 둘 간에 메시지를 전달할 방법으로 Redis를 선택했다.</p>
 
-<p>Node.js 서비스는 Redis 서버에 미리 약속한 채널(<code class="highlighter-rouge">whik</code>)을 계속 바라보고 있다가, 라라벨이 Redis에 약속한 채널(<code class="highlighter-rouge">whik</code>)에 메시지를 발행하면, 발행된 값을 읽어서 Socket.io 클라이언트에게 브로드캐스트하는 식으로 동작한다.</p>
+<p>Node.js 서비스는 Redis 서버에 미리 약속한 채널(<code class="language-plaintext highlighter-rouge">whik</code>)을 계속 바라보고 있다가, 라라벨이 Redis에 약속한 채널(<code class="language-plaintext highlighter-rouge">whik</code>)에 메시지를 발행하면, 발행된 값을 읽어서 Socket.io 클라이언트에게 브로드캐스트하는 식으로 동작한다.</p>
 
 <h4 id="341-라라벨의-redis-레코드-발행">3.4.1. 라라벨의 Redis 레코드 발행</h4>
 
-<p>라라벨의 <code class="highlighter-rouge">pub</code>라우팅을 방문하면, Redis 서버의 <code class="highlighter-rouge">whik</code> 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.</p>
+<p>라라벨의 <code class="language-plaintext highlighter-rouge">pub</code>라우팅을 방문하면, Redis 서버의 <code class="language-plaintext highlighter-rouge">whik</code> 채널에 JSON 직렬화된 레코드를 쓰도록 작성했다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php</span>
 
@@ -408,7 +412,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Redis에 새 레코드가 발행되면, Socket.io 서버는 <code class="highlighter-rouge">whik:App\\Events\\NewUserCreated</code> 채널로 접속된 모든 Socket.io 클라이언트에게 메시지를 브로드캐스트한다.</p>
+<p>Redis에 새 레코드가 발행되면, Socket.io 서버는 <code class="language-plaintext highlighter-rouge">whik:App\\Events\\NewUserCreated</code> 채널로 접속된 모든 Socket.io 클라이언트에게 메시지를 브로드캐스트한다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// socket.js</span>
 
@@ -420,7 +424,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <h4 id="344-socketio-클라이언트의-메시지-소비">3.4.4. Socket.io 클라이언트의 메시지 소비</h4>
 
-<p>라라벨의 <code class="highlighter-rouge">pub</code> 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다.</p>
+<p>라라벨의 <code class="language-plaintext highlighter-rouge">pub</code> 라우트는 Socket.io 클라이언트를 담고 있는 뷰를 반환한다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php</span>
 
@@ -429,7 +433,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 <span class="p">});</span>
 </code></pre></div></div>
 
-<p>Socket.io 클라이언트는 서버로부터 받은 메시지를 소비한다. <code class="highlighter-rouge">data</code>에는 <code class="highlighter-rouge">{"name": "foo", "email": "foo@bar.com"}</code>이 담겨 있다.</p>
+<p>Socket.io 클라이언트는 서버로부터 받은 메시지를 소비한다. <code class="language-plaintext highlighter-rouge">data</code>에는 <code class="language-plaintext highlighter-rouge">{"name": "foo", "email": "foo@bar.com"}</code>이 담겨 있다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// resources/views/welcome.blade.php</span>
 
@@ -454,7 +458,7 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <h3 id="41-실험-준비">4.1. 실험 준비</h3>
 
-<p>수정할 코드는 없다. <code class="highlighter-rouge">feature/broadcast</code> 태그로 체크아웃만 하면 된다.</p>
+<p>수정할 코드는 없다. <code class="language-plaintext highlighter-rouge">feature/broadcast</code> 태그로 체크아웃만 하면 된다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 체크아웃한다.</span>
 you:~/workspace <span class="o">(</span>master<span class="o">)</span> <span class="nv">$ </span>git checkout feature/broadcast
@@ -471,7 +475,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <h3 id="42-실험">4.2. 실험</h3>
 
-<p>3.3절과 똑같다. 클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="highlighter-rouge">http://your-c9-url/pub</code>과 <code class="highlighter-rouge">http://your-c9-url/sub</code>을 각각 연다. <code class="highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
+<p>3.3절과 똑같다. 클라우드9 화면에서 <kbd>Run Project</kbd> 버튼을 누르고, <code class="language-plaintext highlighter-rouge">http://your-c9-url/pub</code>과 <code class="language-plaintext highlighter-rouge">http://your-c9-url/sub</code>을 각각 연다. <code class="language-plaintext highlighter-rouge">pub</code> 페이지를 새로고침할 때마다, <code class="language-plaintext highlighter-rouge">sub</code> 페이지의 목록이 하나씩 추가되는 것을 확인할 수 있다.</p>
 
 <h3 id="43-작동-원리">4.3. 작동 원리</h3>
 
@@ -479,7 +483,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <h4 id="431-이벤트-클래스">4.3.1. 이벤트 클래스</h4>
 
-<p>이벤트 클래스는 아티즌 콘솔로 만든다(<code class="highlighter-rouge">$ php artisan make:event NewUserCreated</code>). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 <code class="highlighter-rouge">ShouldBroadcast</code> 인터페이스를 구현하면 된다. 인터페이스의 메서드는 <code class="highlighter-rouge">broadcastOn()</code> 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.</p>
+<p>이벤트 클래스는 아티즌 콘솔로 만든다(<code class="language-plaintext highlighter-rouge">$ php artisan make:event NewUserCreated</code>). 브로드캐스트 기능을 쓰려면, 이벤트 클래스에서 <code class="language-plaintext highlighter-rouge">ShouldBroadcast</code> 인터페이스를 구현하면 된다. 인터페이스의 메서드는 <code class="language-plaintext highlighter-rouge">broadcastOn()</code> 하나이고, 이 메서드에서는 브로드캐스트할 채널 이름을 반환하면 된다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Events/NewUserCreated.php</span>
 
@@ -508,7 +512,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <h4 id="432-이벤트-발행">4.3.2. 이벤트 발행</h4>
 
-<p>이제 <code class="highlighter-rouge">NewUserCreated</code> 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 <code class="highlighter-rouge">public</code>으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, <code class="highlighter-rouge">config/broadcasting.php</code>에 정의한 드라이버로 브로드캐스팅한다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">NewUserCreated</code> 이벤트가 발생하면, 라라벨은 이벤트 클래스에서 <code class="language-plaintext highlighter-rouge">public</code>으로 선언된 이벤트 데이터(클래스 프로퍼티)를 자동으로 JSON 직렬화하고, <code class="language-plaintext highlighter-rouge">config/broadcasting.php</code>에 정의한 드라이버로 브로드캐스팅한다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php</span>
 
@@ -1516,7 +1520,16 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

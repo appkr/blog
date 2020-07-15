@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Linux에서 Nand-FTL 기술의 사용 | Appkr.memo(new Story)</title>
 
@@ -150,7 +154,7 @@
   <li>Kernel 이 포함되어 공개된 FTL 소스코드는 사용에 다음의 제약이 있다. (quote from kernalx.x.x/drivers/mtd/ftl.c)</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LEGAL NOTE: The FTL format is patented by M-Systems. 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LEGAL NOTE: The FTL format is patented by M-Systems. 
 
 They have granted a license for its use with PCMCIA devices: "M-Systems grants a royalty-free, non-exclusive license under any presently existing M-Systems intellectual property rights necessary for the design and development of FTL-compatible drivers, file systems and utilities using the data formats with PCMCIA PC Cards as described in the PCMCIA Flash Translation Layer (FTL) Specification."
 
@@ -190,9 +194,9 @@ Use of the FTL format for non-PCMCIA applications may be an infringement of thes
   <li>다른 OS 에서 Linux 의 FTL 코드를 참조하여 함수/변수명을 전부 변경하여 개발한 후, OS 의 특성상 소스가 아닌 바이너리 형태로 배포한다고 해도, Reverse Engineering 에 의해서 위 원천 특허들의 침해 사실이 밝혀질 가능성이 충분하며, 특허권 소유자로 부터 소송을 당할 잠재적 위험이 있다.</li>
 </ul>
 
-<p><strong><code class="highlighter-rouge">주)</code></strong> Linux Kernel 에 포함된 FTL 코드들은 GPL 로 선언되어 있다.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">주)</code></strong> Linux Kernel 에 포함된 FTL 코드들은 GPL 로 선언되어 있다.</p>
 
-<p><strong><code class="highlighter-rouge">주)</code></strong> 특허료 많이 받아봐야, 단말 1 대당 500 원을 넘기 힘들 것이다. 1 만대 파는 회사에 500 만원을 받아 내자고, 변호사 비용과 비싼 시간을 들여 소송을 걸지는 않을 것이다.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">주)</code></strong> 특허료 많이 받아봐야, 단말 1 대당 500 원을 넘기 힘들 것이다. 1 만대 파는 회사에 500 만원을 받아 내자고, 변호사 비용과 비싼 시간을 들여 소송을 걸지는 않을 것이다.</p>
 
 <h2 id="덧글-2010-04-02">덧글 2010-04-02</h2>
 
@@ -1158,7 +1162,16 @@ Use of the FTL format for non-PCMCIA applications may be an infringement of thes
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>RPC - Apache Thrift 입문 1부 | Appkr.memo(new Story)</title>
 
@@ -136,11 +140,11 @@
       <div class="box-body">
         <p>RPC(Remote Procedure Call)와 REST(REpresentational State Transfer)는 원격 API를 호출하는 대표적인 방법이다.</p>
 
-<p>REST가 API를 통해 원격 서버에 있는 리소스(모델 또는 데이터)에 대한 상태를 주고 받는다고 생각하는 반면, RPC는 원격 서버의 함수를 호출해서 결과를 얻는다고 생각한다. 그래서 REST에서는 <code class="highlighter-rouge">GET /posts/{id}</code> 또는 <code class="highlighter-rouge">POST /posts</code>와 같이 원격 서버의 리소스에 접근할 수 있는 직접적인 통로를 제공하는 반면, RPC에서는 URL 엔드포인트는 그냥 통로일 뿐 원격 서버와 클라이언트가 공통으로 사용하는 라아브러리를 시용해서 <code class="highlighter-rouge">$client-&gt;find($id)</code>와 같이 통신한다.</p>
+<p>REST가 API를 통해 원격 서버에 있는 리소스(모델 또는 데이터)에 대한 상태를 주고 받는다고 생각하는 반면, RPC는 원격 서버의 함수를 호출해서 결과를 얻는다고 생각한다. 그래서 REST에서는 <code class="language-plaintext highlighter-rouge">GET /posts/{id}</code> 또는 <code class="language-plaintext highlighter-rouge">POST /posts</code>와 같이 원격 서버의 리소스에 접근할 수 있는 직접적인 통로를 제공하는 반면, RPC에서는 URL 엔드포인트는 그냥 통로일 뿐 원격 서버와 클라이언트가 공통으로 사용하는 라아브러리를 시용해서 <code class="language-plaintext highlighter-rouge">$client-&gt;find($id)</code>와 같이 통신한다.</p>
 
 <p>이 포스트에서는 PHP 프로젝트에서 Apache Thrift RPC 시스템을 사용하는 방법을 설명한다.</p>
 
-<p><strong><code class="highlighter-rouge">CAVEAT</code></strong> <strong>게시판 서비스를 만드는데 RPC를 쓰지 말라! 속도나 강건함을 얻는 대신 디버깅의 편리함을 포기해야 한다. 클라이언트가 멀티 플랫폼으로 구성되어 있어 서버와 주고 받는 메시지를 엄격하게 규정해야 하고, 외부에 공개하지 않는 API일 때만 고려해 볼 것을 권장한다.</strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">CAVEAT</code></strong> <strong>게시판 서비스를 만드는데 RPC를 쓰지 말라! 속도나 강건함을 얻는 대신 디버깅의 편리함을 포기해야 한다. 클라이언트가 멀티 플랫폼으로 구성되어 있어 서버와 주고 받는 메시지를 엄격하게 규정해야 하고, 외부에 공개하지 않는 API일 때만 고려해 볼 것을 권장한다.</strong></p>
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -203,7 +207,7 @@
 
 <p>IDL을 설명하는 Thrift 공식 문서는 많이 부실하다. 필자가 찾은 가이드 중 <a href="https://diwakergupta.github.io/thrift-missing-guide/">https://diwakergupta.github.io/thrift-missing-guide/</a>가 가장 좋았다.</p>
 
-<p>이 예졔 프로젝트(<code class="highlighter-rouge">thrift-example-idl</code>)는 IDL 문법 중 일부만 사용하지만, 진입장벽을 낮춰 주는 좋은 시작점이 될 것이라고 확신하다. IDL 코드 안에 주석으로 설명을 포함했다.</p>
+<p>이 예졔 프로젝트(<code class="language-plaintext highlighter-rouge">thrift-example-idl</code>)는 IDL 문법 중 일부만 사용하지만, 진입장벽을 낮춰 주는 좋은 시작점이 될 것이라고 확신하다. IDL 코드 안에 주석으로 설명을 포함했다.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/thrift-example-idl/blob/master/src/Post.thrift</span>
 
@@ -299,7 +303,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">Post.thrift</code>에서 참조한 <code class="highlighter-rouge">Errors.thrift</code>는 <a href="https://github.com/appkr/thrift-example-idl/blob/master/src/Errors.thrift">예제 프로젝트</a>에서 찾을 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">Post.thrift</code>에서 참조한 <code class="language-plaintext highlighter-rouge">Errors.thrift</code>는 <a href="https://github.com/appkr/thrift-example-idl/blob/master/src/Errors.thrift">예제 프로젝트</a>에서 찾을 수 있다.</p>
 
 <p>IDL 예제 프로젝트의 파일 목록은 다음과 같다.</p>
 
@@ -312,7 +316,7 @@
 
 <p>Thrift IDL 문법으로 인터페이스 작성이 끝나면 Thrift 컴파일러 바이너리로 보일러 플레이트 코드를 생성한다.</p>
 
-<p><del>OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 작성 시점의 <code class="highlighter-rouge">thrift</code> 바이너리는 PHP의 PSR4를 지원하지 않는 0.9.3 버전이다. 따라서 Thrift 프로젝트의 <code class="highlighter-rouge">dev-master 1.0.0-candidate</code> 소스를 받아서 컴파일해야하는데 OS X에서는 여간 어려운 일이 아니다. 따라서 <a href="/files/thrift-osx.gz">OS X에서 미리 컴파일해 놓은 파일을 여기서 다운로드</a> 받아 사용할 것을 권장한다. 다운로드 받은 파일의 압축을 풀고 <code class="highlighter-rouge">/usr/local/bin</code> 디렉터리로 옮기고 실행 권한을 설정해 준다.</del></p>
+<p><del>OS X 컴퓨터에서는 홈브루로 설치할 수 있는데, 이 포스트를 작성 시점의 <code class="language-plaintext highlighter-rouge">thrift</code> 바이너리는 PHP의 PSR4를 지원하지 않는 0.9.3 버전이다. 따라서 Thrift 프로젝트의 <code class="language-plaintext highlighter-rouge">dev-master 1.0.0-candidate</code> 소스를 받아서 컴파일해야하는데 OS X에서는 여간 어려운 일이 아니다. 따라서 <a href="/files/thrift-osx.gz">OS X에서 미리 컴파일해 놓은 파일을 여기서 다운로드</a> 받아 사용할 것을 권장한다. 다운로드 받은 파일의 압축을 풀고 <code class="language-plaintext highlighter-rouge">/usr/local/bin</code> 디렉터리로 옮기고 실행 권한을 설정해 준다.</del></p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span><span class="nb">mv </span>thrift /usr/local/bin/
 ~ <span class="nv">$ </span><span class="nb">chmod </span>755 /usr/local/bin/thrift
@@ -337,7 +341,7 @@
 ~/thrift-example-idl <span class="nv">$ </span>thrift <span class="nt">-r</span> <span class="nt">--gen</span> php:server,psr4 src/Post.thrift
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">-r</code>은 인클루드(임포트)한 파일까지도 컴파일하겠다는 의미이고, <code class="highlighter-rouge">--gen</code>은 <code class="highlighter-rouge">language:key1[=val1]</code> 형식으로 쓴다. 가령 IDL로 정의한 인터페이스를 자바 코드로 컴파일한다면 <code class="highlighter-rouge">--gen java</code>처럼 쓰면 된다. 아무런 에러 피드백 없이 명령 수행이 끝났다면 성공한 것이다. 디렉터리 목록으로 컴파일된 결과를 확인해 보자.</p>
+<p><code class="language-plaintext highlighter-rouge">-r</code>은 인클루드(임포트)한 파일까지도 컴파일하겠다는 의미이고, <code class="language-plaintext highlighter-rouge">--gen</code>은 <code class="language-plaintext highlighter-rouge">language:key1[=val1]</code> 형식으로 쓴다. 가령 IDL로 정의한 인터페이스를 자바 코드로 컴파일한다면 <code class="language-plaintext highlighter-rouge">--gen java</code>처럼 쓰면 된다. 아무런 에러 피드백 없이 명령 수행이 끝났다면 성공한 것이다. 디렉터리 목록으로 컴파일된 결과를 확인해 보자.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/thrift-example-idl
 ├── gen-php
@@ -364,12 +368,12 @@
 └── src
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">gen-php</code>를 <code class="highlighter-rouge">dist-php</code>로 옮기고,</p>
+<p><code class="language-plaintext highlighter-rouge">gen-php</code>를 <code class="language-plaintext highlighter-rouge">dist-php</code>로 옮기고,</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/thrift-example-idl <span class="nv">$ </span><span class="nb">mv </span>gen-php dist-php
 </code></pre></div></div>
 
-<p>PHP 애플리케이션에서 PSR-4 표준으로 오토로드할 수 있도록 <code class="highlighter-rouge">composer.json</code> 파일을 만들었다.</p>
+<p>PHP 애플리케이션에서 PSR-4 표준으로 오토로드할 수 있도록 <code class="language-plaintext highlighter-rouge">composer.json</code> 파일을 만들었다.</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">composer.json</span><span class="w">
 
@@ -383,7 +387,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p><code class="highlighter-rouge">thrift-example-idl</code> 예제 프로젝트에서는 이상의 모든 작업을 <code class="highlighter-rouge">Makefile</code>로 작성해 두었다. 자바 컴파일도 포함하고 있다. 해서 다음 명령으로 이상의 복잡한 작업을 수행할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">thrift-example-idl</code> 예제 프로젝트에서는 이상의 모든 작업을 <code class="language-plaintext highlighter-rouge">Makefile</code>로 작성해 두었다. 자바 컴파일도 포함하고 있다. 해서 다음 명령으로 이상의 복잡한 작업을 수행할 수 있다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/thrift-example-idl <span class="nv">$ </span>make clean
 <span class="c"># rm -rf lang/java/build lang/java/post-thrift.jar</span>
@@ -400,7 +404,7 @@
 <span class="c"># mv gen-php dist-php</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">Makefile</code>에서는 IDL 문서도 HTML로 생성하고 있는데, 열어보면 아래 그림처럼 생겼다.</p>
+<p><code class="language-plaintext highlighter-rouge">Makefile</code>에서는 IDL 문서도 HTML로 생성하고 있는데, 열어보면 아래 그림처럼 생겼다.</p>
 
 <p><a href="/images/2016-11-04-img-01.png"><img src="/images/2016-11-04-img-01.png" alt="자동 생성된 API 문서" /></a></p>
 
@@ -446,7 +450,7 @@
 
 <h3 id="62-thrift가-컴파일한-보일러-플레이트-코드-가져오기">6.2. Thrift가 컴파일한 보일러 플레이트 코드 가져오기</h3>
 
-<p>우리의 서버 애플리케이션에서는 Apache Thrift 라이브러리와 5절에서 생성한 보일러 플레이트 코드가 필요하다. 깃허브와 컴포저를 이용했는데, 그냥 복사해서 vendor 디렉터리 아래에 붙여 넣어도 된다. <code class="highlighter-rouge">composer.json</code>에 <code class="highlighter-rouge">apache/thrift</code>와 <code class="highlighter-rouge">appkr/thrift-example-idl</code>를 추가한다(5절에서 만든 보일러 플레이트 코드는 packagist.org에 등록되어 있지 않으므로, <code class="highlighter-rouge">composer.json</code>에서 <code class="highlighter-rouge">repositories</code> 키를 이용했다).</p>
+<p>우리의 서버 애플리케이션에서는 Apache Thrift 라이브러리와 5절에서 생성한 보일러 플레이트 코드가 필요하다. 깃허브와 컴포저를 이용했는데, 그냥 복사해서 vendor 디렉터리 아래에 붙여 넣어도 된다. <code class="language-plaintext highlighter-rouge">composer.json</code>에 <code class="language-plaintext highlighter-rouge">apache/thrift</code>와 <code class="language-plaintext highlighter-rouge">appkr/thrift-example-idl</code>를 추가한다(5절에서 만든 보일러 플레이트 코드는 packagist.org에 등록되어 있지 않으므로, <code class="language-plaintext highlighter-rouge">composer.json</code>에서 <code class="language-plaintext highlighter-rouge">repositories</code> 키를 이용했다).</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">composer.json</span><span class="w">
 
@@ -468,7 +472,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>방금 추가한 라이브러리를 프로젝트로 끌어온다. 혹시 명령 수행 과정에 <code class="highlighter-rouge">minimimum-stability</code> 설정에 문제가 있다면, 위 두 개의 의존성을 <code class="highlighter-rouge">composer.json</code>의 <code class="highlighter-rouge">require-dev</code> 키 아래로 옮기거나, <code class="highlighter-rouge">"minimum-stability":"dev"</code> 설정을 <code class="highlighter-rouge">composer.json</code>에 추가하여 해결할 수 있다. 실 프로젝트에서는 IDL 인터페이스 프로젝트의 컴파일 결과를 별도 브랜치로 옮기거나 태그로 달아 이 문제를 피할 수 있다.</p>
+<p>방금 추가한 라이브러리를 프로젝트로 끌어온다. 혹시 명령 수행 과정에 <code class="language-plaintext highlighter-rouge">minimimum-stability</code> 설정에 문제가 있다면, 위 두 개의 의존성을 <code class="language-plaintext highlighter-rouge">composer.json</code>의 <code class="language-plaintext highlighter-rouge">require-dev</code> 키 아래로 옮기거나, <code class="language-plaintext highlighter-rouge">"minimum-stability":"dev"</code> 설정을 <code class="language-plaintext highlighter-rouge">composer.json</code>에 추가하여 해결할 수 있다. 실 프로젝트에서는 IDL 인터페이스 프로젝트의 컴파일 결과를 별도 브랜치로 옮기거나 태그로 달아 이 문제를 피할 수 있다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/thrift-example-project <span class="nv">$ </span>composer update
 <span class="c"># ...</span>
@@ -485,7 +489,7 @@
 <span class="c"># Created ...</span>
 </code></pre></div></div>
 
-<p>4절 에서 정의한 대로 <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">title</code>, <code class="highlighter-rouge">content</code>, <code class="highlighter-rouge">created_at</code>, <code class="highlighter-rouge">updated_at</code> 컬럼을 정의한다.</p>
+<p>4절 에서 정의한 대로 <code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">title</code>, <code class="language-plaintext highlighter-rouge">content</code>, <code class="language-plaintext highlighter-rouge">created_at</code>, <code class="language-plaintext highlighter-rouge">updated_at</code> 컬럼을 정의한다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php</span>
 
@@ -542,7 +546,7 @@
 
 <h4 id="632-라우팅-및-컨트롤러">6.3.2. 라우팅 및 컨트롤러</h4>
 
-<p>클라이언트가 접근할 수 있는 URL 엔드포인트가 필요하다. Thrift에서는 모든 데이터를 HTTP 본문으로 보내기 때문에 HTTP <code class="highlighter-rouge">POST</code> 메서드로 요청을 보내고 받아야 한다.</p>
+<p>클라이언트가 접근할 수 있는 URL 엔드포인트가 필요하다. Thrift에서는 모든 데이터를 HTTP 본문으로 보내기 때문에 HTTP <code class="language-plaintext highlighter-rouge">POST</code> 메서드로 요청을 보내고 받아야 한다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
 
@@ -580,9 +584,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">PostService</code>는 우리가 직접 만들어야 하는 메인 서비스 코드다. 이 서비스 인스턴스를 <code class="highlighter-rouge">PostServiceProcessor</code>에 주입한다. 프로세서는 앞 절에서 Thrift가 만들어준 코드다.</p>
+<p><code class="language-plaintext highlighter-rouge">PostService</code>는 우리가 직접 만들어야 하는 메인 서비스 코드다. 이 서비스 인스턴스를 <code class="language-plaintext highlighter-rouge">PostServiceProcessor</code>에 주입한다. 프로세서는 앞 절에서 Thrift가 만들어준 코드다.</p>
 
-<p>다음 그림은 Thrift의 네트워크 스택이다. <code class="highlighter-rouge">Transport</code>는 HTTP 서버와 클라이언트다. <code class="highlighter-rouge">Protocol</code> 객체는 입력 및 출력 스트림(HTTP 본문)을 읽거나 쓰고, Thrift 객체로 (역)직렬화한다. <code class="highlighter-rouge">Processor</code>는 매니저와 같은 역할로, 역직렬화된 입력 스트림을 넘겨 받아 생성자로 받은 서비스 객체에게 처리를 위임하고 리턴 값을 받아 <code class="highlighter-rouge">Protocol</code>에게 넘겨주는 일을 한다.</p>
+<p>다음 그림은 Thrift의 네트워크 스택이다. <code class="language-plaintext highlighter-rouge">Transport</code>는 HTTP 서버와 클라이언트다. <code class="language-plaintext highlighter-rouge">Protocol</code> 객체는 입력 및 출력 스트림(HTTP 본문)을 읽거나 쓰고, Thrift 객체로 (역)직렬화한다. <code class="language-plaintext highlighter-rouge">Processor</code>는 매니저와 같은 역할로, 역직렬화된 입력 스트림을 넘겨 받아 생성자로 받은 서비스 객체에게 처리를 위임하고 리턴 값을 받아 <code class="language-plaintext highlighter-rouge">Protocol</code>에게 넘겨주는 일을 한다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         +------------------------------------+
          |   Service <span class="o">(</span>직접 구현해야 함<span class="o">)</span>           |
@@ -596,7 +600,7 @@
          +------------------------------------+
 </code></pre></div></div>
 
-<p>컨트롤러에서 본 <code class="highlighter-rouge">ThriftResponse</code>를 만든다.</p>
+<p>컨트롤러에서 본 <code class="language-plaintext highlighter-rouge">ThriftResponse</code>를 만든다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Thrift/ThriftResponse.php</span>
 
@@ -653,19 +657,19 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>트랜스포트와 프로토콜 구현은 컴포저로 가져온 Thrift 라이브러리에 이미 포함되어 있으므로 순서에 맞게 잘 조립하기만 하면 된다. 코드에서 보다시피 <code class="highlighter-rouge">json</code>, <code class="highlighter-rouge">binary</code>, <code class="highlighter-rouge">compact</code> 등의 프로토콜을 이용할 수 있다. 이 코드는 한번 짜놓으면 바꿀 일이 거의 없으므로 내용을 따지지 말고 그냥 공식처럼 가져다 쓰자.</p>
+<p>트랜스포트와 프로토콜 구현은 컴포저로 가져온 Thrift 라이브러리에 이미 포함되어 있으므로 순서에 맞게 잘 조립하기만 하면 된다. 코드에서 보다시피 <code class="language-plaintext highlighter-rouge">json</code>, <code class="language-plaintext highlighter-rouge">binary</code>, <code class="language-plaintext highlighter-rouge">compact</code> 등의 프로토콜을 이용할 수 있다. 이 코드는 한번 짜놓으면 바꿀 일이 거의 없으므로 내용을 따지지 말고 그냥 공식처럼 가져다 쓰자.</p>
 
 <h4 id="633-서비스-개발">6.3.3. 서비스 개발</h4>
 
-<p><code class="highlighter-rouge">PostServiceIf</code>는 Thrift가 IDL로 자동 생성한 PHP의 클래스 인터페이스다. IDL에 정의했듯이 이 인터페이스는</p>
+<p><code class="language-plaintext highlighter-rouge">PostServiceIf</code>는 Thrift가 IDL로 자동 생성한 PHP의 클래스 인터페이스다. IDL에 정의했듯이 이 인터페이스는</p>
 
 <ul>
-  <li><code class="highlighter-rouge">list&lt;ThriftPost&gt; all(QueryFilter $qf, int $offset, int $limit)</code>,</li>
-  <li><code class="highlighter-rouge">ThriftPost find(int $id)</code>,</li>
-  <li><code class="highlighter-rouge">ThriftPost store(string $title, string $content)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">list&lt;ThriftPost&gt; all(QueryFilter $qf, int $offset, int $limit)</code>,</li>
+  <li><code class="language-plaintext highlighter-rouge">ThriftPost find(int $id)</code>,</li>
+  <li><code class="language-plaintext highlighter-rouge">ThriftPost store(string $title, string $content)</code></li>
 </ul>
 
-<p>API를 가지고 있으므로 여기서 구현해 주면 된다. IDL에 의하면 <code class="highlighter-rouge">\Appkr\Thrift\Post\Post</code> 객체지만, <code class="highlighter-rouge">App\Post</code> 엘로퀀트 모델과 구분을 위해 일부러 <code class="highlighter-rouge">ThriftPost</code>로 썼다.</p>
+<p>API를 가지고 있으므로 여기서 구현해 주면 된다. IDL에 의하면 <code class="language-plaintext highlighter-rouge">\Appkr\Thrift\Post\Post</code> 객체지만, <code class="language-plaintext highlighter-rouge">App\Post</code> 엘로퀀트 모델과 구분을 위해 일부러 <code class="language-plaintext highlighter-rouge">ThriftPost</code>로 썼다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Service/PostsService.php</span>
 
@@ -707,7 +711,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>각 API 들이 IDL에서 정의한 <code class="highlighter-rouge">list&lt;ThriftPost&gt;</code> 및 <code class="highlighter-rouge">ThriftPost</code> 타입을 반환해야 하므로, <code class="highlighter-rouge">all()</code> 메서드에서는 엘로퀀트 쿼리에 의해 번환된 <code class="highlighter-rouge">EloquentCollection</code> 객체를 순회하면서 <code class="highlighter-rouge">ThriftPost</code> 객체로 맵핑해 주었다.</p>
+<p>각 API 들이 IDL에서 정의한 <code class="language-plaintext highlighter-rouge">list&lt;ThriftPost&gt;</code> 및 <code class="language-plaintext highlighter-rouge">ThriftPost</code> 타입을 반환해야 하므로, <code class="language-plaintext highlighter-rouge">all()</code> 메서드에서는 엘로퀀트 쿼리에 의해 번환된 <code class="language-plaintext highlighter-rouge">EloquentCollection</code> 객체를 순회하면서 <code class="language-plaintext highlighter-rouge">ThriftPost</code> 객체로 맵핑해 주었다.</p>
 
 <h4 id="634-작동-테스트">6.3.4. 작동 테스트</h4>
 
@@ -800,7 +804,7 @@
 
 <h2 id="7-결론">7. 결론</h2>
 
-<p>Thrift 클라이언트가 보낸 HTTP 요청 본문은 이렇게 생겼다. <code class="highlighter-rouge">JSONProtocol</code>을 썼으니 그나마 읽을 수 있는 것이지, <code class="highlighter-rouge">BinaryProtocol</code>을 쓰면 전혀 읽을 수 없는 본문이 전달된다.</p>
+<p>Thrift 클라이언트가 보낸 HTTP 요청 본문은 이렇게 생겼다. <code class="language-plaintext highlighter-rouge">JSONProtocol</code>을 썼으니 그나마 읽을 수 있는 것이지, <code class="language-plaintext highlighter-rouge">BinaryProtocol</code>을 쓰면 전혀 읽을 수 없는 본문이 전달된다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
 
@@ -809,7 +813,7 @@
 <span class="o">[</span>2016-11-04 17:09:27] local.INFO: HTTP Body <span class="o">[</span><span class="s2">"[1,</span><span class="se">\"</span><span class="s2">store</span><span class="se">\"</span><span class="s2">,1,0,{</span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">foo</span><span class="se">\"</span><span class="s2">},</span><span class="se">\"</span><span class="s2">2</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Lorem content</span><span class="se">\"</span><span class="s2">}}]"</span><span class="o">]</span> 
 </code></pre></div></div>
 
-<p>디버깅이 지극히 힘들다. Thrift 트랜젝션에서 <code class="highlighter-rouge">var_dump($var)</code>라도 찍으면 <code class="highlighter-rouge">Thrift\Exception\TProtocolException</code> 또는 <code class="highlighter-rouge">Thrift\Exception\TTransportException</code>이 바로 떨어진다. 웹 브라우저와 HTTP 클라이언트를 이용하는 것이 아닐 뿐더러, 껍데기만 HTTP일뿐(Tcp도 가능하다고 한다) 완전 다른 프로토콜이므로 라라벨 로그에 의존해서 디버깅 해야 한다. 그럼에도 장점은 있다.</p>
+<p>디버깅이 지극히 힘들다. Thrift 트랜젝션에서 <code class="language-plaintext highlighter-rouge">var_dump($var)</code>라도 찍으면 <code class="language-plaintext highlighter-rouge">Thrift\Exception\TProtocolException</code> 또는 <code class="language-plaintext highlighter-rouge">Thrift\Exception\TTransportException</code>이 바로 떨어진다. 웹 브라우저와 HTTP 클라이언트를 이용하는 것이 아닐 뿐더러, 껍데기만 HTTP일뿐(Tcp도 가능하다고 한다) 완전 다른 프로토콜이므로 라라벨 로그에 의존해서 디버깅 해야 한다. 그럼에도 장점은 있다.</p>
 
 <ul>
   <li>(봤다시피) 마치 원격 API를 로컬 라이브러리의 API처럼 호출한다. 따라서 클라이언트는 편하다.</li>
@@ -1797,7 +1801,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Linux "top" cheatsheet | Appkr.memo(new Story)</title>
 
@@ -134,9 +138,9 @@
       </div>
 
       <div class="box-body">
-        <p>보통 개발용 컴퓨터에서는 <code class="highlighter-rouge">htop</code>처럼 좀 더 편리한 프로세스 모니터 도구를 사용하지만, 운영 서버에는 서비스에 불필요한 바이너리는 설치하지 않는게 좋죠. 해서, 특히 서비스 장애와 같이 급박한 상황에 운영 서버에 SSH in 해서 <code class="highlighter-rouge">top</code>을 이용하려면 바보가 된 느낌을 종종 받습니다.</p>
+        <p>보통 개발용 컴퓨터에서는 <code class="language-plaintext highlighter-rouge">htop</code>처럼 좀 더 편리한 프로세스 모니터 도구를 사용하지만, 운영 서버에는 서비스에 불필요한 바이너리는 설치하지 않는게 좋죠. 해서, 특히 서비스 장애와 같이 급박한 상황에 운영 서버에 SSH in 해서 <code class="language-plaintext highlighter-rouge">top</code>을 이용하려면 바보가 된 느낌을 종종 받습니다.</p>
 
-<p>이 포스트에서는 바닐라 리눅스 환경에서 사용 빈도가 높은 <code class="highlighter-rouge">top</code> 사용법만 정리해봤습니다. 우분투 16.04를 사용했는데요, <del>CentOS도 같을 거라 생각합니다</del> CentOS는 조금 다릅니다, 댓글로 남깁니다.</p>
+<p>이 포스트에서는 바닐라 리눅스 환경에서 사용 빈도가 높은 <code class="language-plaintext highlighter-rouge">top</code> 사용법만 정리해봤습니다. 우분투 16.04를 사용했는데요, <del>CentOS도 같을 거라 생각합니다</del> CentOS는 조금 다릅니다, 댓글로 남깁니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/issue
 <span class="c"># Ubuntu 16.04.3 LTS \n \l</span>
@@ -174,10 +178,10 @@
   <li>Navigation &amp; Sorting (default: desc)
     <ul>
       <li><kbd>&lt;</kbd>, <kbd>&gt;</kbd>: 활성 필드 네비게이션</li>
-      <li><kbd>N</kbd>: <code class="highlighter-rouge">PID</code> 필드를 활성으로 변경</li>
-      <li><kbd>M</kbd>: <code class="highlighter-rouge">%MEM</code> 필드를 활성으로 변경</li>
-      <li><kbd>P</kbd>: <code class="highlighter-rouge">%CPU</code> 필드를 활성으로 변경</li>
-      <li><kbd>T</kbd>: <code class="highlighter-rouge">TIME+</code> 필드를 활성으로 변경</li>
+      <li><kbd>N</kbd>: <code class="language-plaintext highlighter-rouge">PID</code> 필드를 활성으로 변경</li>
+      <li><kbd>M</kbd>: <code class="language-plaintext highlighter-rouge">%MEM</code> 필드를 활성으로 변경</li>
+      <li><kbd>P</kbd>: <code class="language-plaintext highlighter-rouge">%CPU</code> 필드를 활성으로 변경</li>
+      <li><kbd>T</kbd>: <code class="language-plaintext highlighter-rouge">TIME+</code> 필드를 활성으로 변경</li>
     </ul>
   </li>
   <li>Search &amp; Filter
@@ -194,7 +198,7 @@
 <!--more-->
 <div class="spacer">• • •</div>
 
-<p>각 키 스트로크에 <code class="highlighter-rouge">top</code> 화면이 어떻게 반응하는지 Asciinema로 찍었습니다.</p>
+<p>각 키 스트로크에 <code class="language-plaintext highlighter-rouge">top</code> 화면이 어떻게 반응하는지 Asciinema로 찍었습니다.</p>
 
 <h2 id="help">Help</h2>
 <ul>
@@ -236,13 +240,13 @@
   <li><kbd>&lt;</kbd>, <kbd>&gt;</kbd>: 활성 필드 네비게이션
 <script src="https://asciinema.org/a/206320.js" id="asciicast-206320" async=""></script>
     <ul>
-      <li><kbd>N</kbd>: <code class="highlighter-rouge">PID</code> 필드를 활성으로 변경
+      <li><kbd>N</kbd>: <code class="language-plaintext highlighter-rouge">PID</code> 필드를 활성으로 변경
 <!--206321--></li>
-      <li><kbd>M</kbd>: <code class="highlighter-rouge">%MEM</code> 필드를 활성으로 변경
+      <li><kbd>M</kbd>: <code class="language-plaintext highlighter-rouge">%MEM</code> 필드를 활성으로 변경
 <!--206322--></li>
-      <li><kbd>P</kbd>: <code class="highlighter-rouge">%CPU</code> 필드를 활성으로 변경
+      <li><kbd>P</kbd>: <code class="language-plaintext highlighter-rouge">%CPU</code> 필드를 활성으로 변경
 <!--206323--></li>
-      <li><kbd>T</kbd>: <code class="highlighter-rouge">TIME+</code> 필드를 활성으로 변경
+      <li><kbd>T</kbd>: <code class="language-plaintext highlighter-rouge">TIME+</code> 필드를 활성으로 변경
 <!--206324--></li>
     </ul>
   </li>
@@ -1216,7 +1220,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부 | Appkr.memo(new Story)</title>
 
@@ -160,27 +164,27 @@
 
 <h4 id="fcmserviceprovider">FcmServiceProvider</h4>
 <ul>
-  <li><code class="highlighter-rouge">FcmDeviceRepository</code> 인터페이스에 대한 구체 클래스인 <code class="highlighter-rouge">EloquentFcmDeviceRepository</code>를 등록한다.</li>
-  <li><code class="highlighter-rouge">FcmHandler</code> 조립을 위한 공식을 등록한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">FcmDeviceRepository</code> 인터페이스에 대한 구체 클래스인 <code class="language-plaintext highlighter-rouge">EloquentFcmDeviceRepository</code>를 등록한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">FcmHandler</code> 조립을 위한 공식을 등록한다.</li>
 </ul>
 
 <h4 id="fcmhandler">FcmHandler</h4>
 <ul>
   <li>Fcm 메시지를 전송한다.</li>
-  <li>메시지 전달을 요청한 push_service_id가 바뀌었으면, <code class="highlighter-rouge">FcmDeviceRepository</code>를 이용해서 <code class="highlighter-rouge">Device</code> 모델을 업데이트한다.</li>
-  <li>메시지 전달에 실패했을 때, 재전송하거나, 유효하지 않은 push_service_id라고 응답 받으면, <code class="highlighter-rouge">FcmDeviceRepository</code>를 이용해서 <code class="highlighter-rouge">Device</code> 모델을 삭제한다.</li>
+  <li>메시지 전달을 요청한 push_service_id가 바뀌었으면, <code class="language-plaintext highlighter-rouge">FcmDeviceRepository</code>를 이용해서 <code class="language-plaintext highlighter-rouge">Device</code> 모델을 업데이트한다.</li>
+  <li>메시지 전달에 실패했을 때, 재전송하거나, 유효하지 않은 push_service_id라고 응답 받으면, <code class="language-plaintext highlighter-rouge">FcmDeviceRepository</code>를 이용해서 <code class="language-plaintext highlighter-rouge">Device</code> 모델을 삭제한다.</li>
   <li>로그를 남긴다.</li>
 </ul>
 
 <h4 id="fcmdevicerepository-eloquentfcmdevicerepository">FcmDeviceRepository, EloquentFcmDeviceRepository</h4>
 <ul>
-  <li>Fcm 서버의 응답에 따라, <code class="highlighter-rouge">Device</code> 모델을 업데이트하거나 삭제한다.</li>
+  <li>Fcm 서버의 응답에 따라, <code class="language-plaintext highlighter-rouge">Device</code> 모델을 업데이트하거나 삭제한다.</li>
 </ul>
 
 <h4 id="downstreamresponse">DownstreamResponse</h4>
 <ul>
-  <li><code class="highlighter-rouge">GuzzleClient</code>의 HTTP 응답을 파싱하여, 의미를 담고 있고 사용하기 편리한 형태로 가공한 데이터 객체다.</li>
-  <li><code class="highlighter-rouge">brozot/laravel-fcm</code>에서 제공하는 클래스를 그대로 인용했다.</li>
+  <li><code class="language-plaintext highlighter-rouge">GuzzleClient</code>의 HTTP 응답을 파싱하여, 의미를 담고 있고 사용하기 편리한 형태로 가공한 데이터 객체다.</li>
+  <li><code class="language-plaintext highlighter-rouge">brozot/laravel-fcm</code>에서 제공하는 클래스를 그대로 인용했다.</li>
 </ul>
 
 <h4 id="user-device">User, Device</h4>
@@ -190,7 +194,7 @@
 
 <h2 id="2-환경변수-등록">2. 환경변수 등록</h2>
 
-<p>이전 포스트에서 설명했듯이 Firebase 콘솔로 부터 받은 <strong>서버 키</strong>와 <strong>발신자 ID</strong>를 Fcm 서버에 요청할 때마다 제출해야 정상적으로 통신이된다. <code class="highlighter-rouge">.env</code> 파일에 환경 변수를 먼저 등록하고, 라라벨 config를 통해 이 값들에 접근할 수 있도록 하자.</p>
+<p>이전 포스트에서 설명했듯이 Firebase 콘솔로 부터 받은 <strong>서버 키</strong>와 <strong>발신자 ID</strong>를 Fcm 서버에 요청할 때마다 제출해야 정상적으로 통신이된다. <code class="language-plaintext highlighter-rouge">.env</code> 파일에 환경 변수를 먼저 등록하고, 라라벨 config를 통해 이 값들에 접근할 수 있도록 하자.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># .env</span>
 
@@ -260,16 +264,16 @@
 </code></pre></div></div>
 
 <ul>
-  <li>24: <code class="highlighter-rouge">FcmDeviceRepository</code>를 요청하면, <code class="highlighter-rouge">EloquentFcmDeviceRepository</code>를 조립해서 제공한다.</li>
+  <li>24: <code class="language-plaintext highlighter-rouge">FcmDeviceRepository</code>를 요청하면, <code class="language-plaintext highlighter-rouge">EloquentFcmDeviceRepository</code>를 조립해서 제공한다.</li>
   <li>32~40: Fcm 서버와 통신하기위한 HTTP 클라이언트를 조립한다.</li>
-  <li>44: <code class="highlighter-rouge">FcmHandler</code> 객체가 동작하기 위해 필요한 의존 객체를 생성자로 주입하고 생성된 최종 객체를 반환한다.</li>
+  <li>44: <code class="language-plaintext highlighter-rouge">FcmHandler</code> 객체가 동작하기 위해 필요한 의존 객체를 생성자로 주입하고 생성된 최종 객체를 반환한다.</li>
 </ul>
 
 <h2 id="4-디바이스-리포지토리">4. 디바이스 리포지토리</h2>
 
 <p>인터페이스를 만들지 말지는 개발자의 선택이다.</p>
 
-<p>이 예제에서 구현한 엘로퀀트를 이용하는 리포지토리를 대신하는 다른 리포지토리를 런타임에 선택해서 사용하려면 인터페이스를 만들고, 인터페이스를 구현하는 구체 클래스를 추가하는 것이 좋다. 가령, 서비스 프로바이더에 조건문을 걸어 환경에 따라 서로 다른 리포지토리를 사용하는 용례를 생각해 볼 수 있다(<code class="highlighter-rouge">if (App::environment('local')) { return new NullRepository; }</code>).</p>
+<p>이 예제에서 구현한 엘로퀀트를 이용하는 리포지토리를 대신하는 다른 리포지토리를 런타임에 선택해서 사용하려면 인터페이스를 만들고, 인터페이스를 구현하는 구체 클래스를 추가하는 것이 좋다. 가령, 서비스 프로바이더에 조건문을 걸어 환경에 따라 서로 다른 리포지토리를 사용하는 용례를 생각해 볼 수 있다(<code class="language-plaintext highlighter-rouge">if (App::environment('local')) { return new NullRepository; }</code>).</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 <span class="cp">&lt;?php</span> <span class="c1">// app/Services/FcmDeviceRepository.php</span>
  <span class="mi">2</span> 
@@ -320,10 +324,10 @@
 </code></pre></div></div>
 
 <ul>
-  <li>12: Fcm 서버에서 응답받은 <code class="highlighter-rouge">$oldId</code>를 가진 <code class="highlighter-rouge">Device</code> 모델을 찾는다.</li>
-  <li>17: Fcm 서버에서 응답받은 <code class="highlighter-rouge">$newId</code>로 교체한다.</li>
+  <li>12: Fcm 서버에서 응답받은 <code class="language-plaintext highlighter-rouge">$oldId</code>를 가진 <code class="language-plaintext highlighter-rouge">Device</code> 모델을 찾는다.</li>
+  <li>17: Fcm 서버에서 응답받은 <code class="language-plaintext highlighter-rouge">$newId</code>로 교체한다.</li>
   <li>20: 저장한다.</li>
-  <li>24~34: 마찬가지로 Fcm 서버가 유효하지 않다고 응답해준 <code class="highlighter-rouge">$deprecatedId</code>를 가진 <code class="highlighter-rouge">Device</code> 모델을 찾아 삭제한다.</li>
+  <li>24~34: 마찬가지로 Fcm 서버가 유효하지 않다고 응답해준 <code class="language-plaintext highlighter-rouge">$deprecatedId</code>를 가진 <code class="language-plaintext highlighter-rouge">Device</code> 모델을 찾아 삭제한다.</li>
 </ul>
 
 <h2 id="5-fcm-핸들러">5. Fcm 핸들러</h2>
@@ -418,8 +422,8 @@
 <ul>
   <li>42~47: 재전송이 아닌 최초 요청일때, 로그를 남긴다.</li>
   <li>50: Fcm 스펙이 한 요청당 1,000개의 수신자까지만 메시지를 전송할 수 있으므로, 제한 개수를 넘을 때는 청크로 나누어 처리한다.</li>
-  <li>52~53: 청크로 나누었기 때문에, 청크에 대한 응답을 합치는 구문이다. 가령 1,500개 수신자에게 메시지를 보낸다면, 1,000개 짜리 청크에 대한 응답을 <code class="highlighter-rouge">$response</code> 변수에 담아두고, 나머지 500개 청크에 대한 응답을 <code class="highlighter-rouge">$response</code>에 머지하는 방식이다.</li>
-  <li>65~66: 처리 방식(청크 vs. 한방)에 무관하게, Fcm 서버의 응답을 담고 있는 <code class="highlighter-rouge">$response</code> 변수를 이용해서, push_service_id의 업데이트 또는 삭제 작업을 다른 함수에 위임한다.</li>
+  <li>52~53: 청크로 나누었기 때문에, 청크에 대한 응답을 합치는 구문이다. 가령 1,500개 수신자에게 메시지를 보낸다면, 1,000개 짜리 청크에 대한 응답을 <code class="language-plaintext highlighter-rouge">$response</code> 변수에 담아두고, 나머지 500개 청크에 대한 응답을 <code class="language-plaintext highlighter-rouge">$response</code>에 머지하는 방식이다.</li>
+  <li>65~66: 처리 방식(청크 vs. 한방)에 무관하게, Fcm 서버의 응답을 담고 있는 <code class="language-plaintext highlighter-rouge">$response</code> 변수를 이용해서, push_service_id의 업데이트 또는 삭제 작업을 다른 함수에 위임한다.</li>
 </ul>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="mi">80</span>     <span class="k">public</span> <span class="k">function</span> <span class="nf">setReceivers</span><span class="p">(</span><span class="k">array</span> <span class="nv">$receivers</span><span class="p">)</span>
@@ -460,9 +464,9 @@
 </code></pre></div></div>
 
 <ul>
-  <li>92: <code class="highlighter-rouge">getRqeust()</code> 함수에게 요청 객체 생성을 위임한다.</li>
-  <li>93: 라라벨 컨테이너가 서비스 프로바이더에 등록해둔 조립 공식에 따라 만들어준, <code class="highlighter-rouge">$httpClient: GuzzleClient</code> 객체를 이용해서 Fcm 서버에 HTTP 요청을 보내고, 응답을 <code class="highlighter-rouge">$guzzleResponse</code> 변수에 담았다.</li>
-  <li>95: Fcm 서버의 응답(<code class="highlighter-rouge">$guzzleResponse</code>)과 수신자 목록을 이용해서 <code class="highlighter-rouge">DownstreamResponse</code> 데이터 객체를 만들고 반환한다. 63, 66~67에서 봤던 <code class="highlighter-rouge">$response</code> 변수가 바로 여기서 반환한 <code class="highlighter-rouge">DownstreamResponse</code> 객체다.</li>
+  <li>92: <code class="language-plaintext highlighter-rouge">getRqeust()</code> 함수에게 요청 객체 생성을 위임한다.</li>
+  <li>93: 라라벨 컨테이너가 서비스 프로바이더에 등록해둔 조립 공식에 따라 만들어준, <code class="language-plaintext highlighter-rouge">$httpClient: GuzzleClient</code> 객체를 이용해서 Fcm 서버에 HTTP 요청을 보내고, 응답을 <code class="language-plaintext highlighter-rouge">$guzzleResponse</code> 변수에 담았다.</li>
+  <li>95: Fcm 서버의 응답(<code class="language-plaintext highlighter-rouge">$guzzleResponse</code>)과 수신자 목록을 이용해서 <code class="language-plaintext highlighter-rouge">DownstreamResponse</code> 데이터 객체를 만들고 반환한다. 63, 66~67에서 봤던 <code class="language-plaintext highlighter-rouge">$response</code> 변수가 바로 여기서 반환한 <code class="language-plaintext highlighter-rouge">DownstreamResponse</code> 객체다.</li>
 </ul>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">111</span>     <span class="k">private</span> <span class="k">function</span> <span class="nf">updatePushServiceIdsIfAny</span><span class="p">(</span><span class="nx">DownstreamResponse</span> <span class="nv">$response</span><span class="p">)</span>
@@ -491,7 +495,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li>131: 라라벨 컨테이너가 주입해준 <code class="highlighter-rouge">EloquentFcmDeviceRepository</code> 객체를 여기서 사용한다. 이미 설명했듯이, 리포지토리의 <code class="highlighter-rouge">updateFcmDevice()</code> 함수를 호출해서, push_service_id를 업데이트 작업을 지시하는 부분이다.</li>
+  <li>131: 라라벨 컨테이너가 주입해준 <code class="language-plaintext highlighter-rouge">EloquentFcmDeviceRepository</code> 객체를 여기서 사용한다. 이미 설명했듯이, 리포지토리의 <code class="language-plaintext highlighter-rouge">updateFcmDevice()</code> 함수를 호출해서, push_service_id를 업데이트 작업을 지시하는 부분이다.</li>
 </ul>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">135</span>     <span class="k">private</span> <span class="k">function</span> <span class="nf">handleDeliveryFailureIfAny</span><span class="p">(</span><span class="nx">DownstreamResponse</span> <span class="nv">$response</span><span class="p">)</span>
@@ -539,12 +543,12 @@
 </code></pre></div></div>
 
 <ul>
-  <li>우선 <code class="highlighter-rouge">handleDeliveryFailureIfAny()</code> 함수를 두가지 일을 한다. 이렇게 구현된 이유는 뒤에 설명할 Fcm 서버의 응답 스펙과 관련이 있다. 두 가지 일이란;</li>
+  <li>우선 <code class="language-plaintext highlighter-rouge">handleDeliveryFailureIfAny()</code> 함수를 두가지 일을 한다. 이렇게 구현된 이유는 뒤에 설명할 Fcm 서버의 응답 스펙과 관련이 있다. 두 가지 일이란;</li>
   <li>141~151: 첫째 디바이스 리포지토리에게 유효하지 않는 push_service_id 삭제 지시를 한다.</li>
   <li>153~175: 둘째, 재전송이 필요한 push_service_id 들에 대해 2번 더 전송 시도한다.</li>
-  <li>160~161: 지금까지 <code class="highlighter-rouge">$retriedCount</code> 변수에는 <code class="highlighter-rouge">0</code>이 담겨 있었고, 이 라인에서 <code class="highlighter-rouge">1</code>을 더했다.</li>
+  <li>160~161: 지금까지 <code class="language-plaintext highlighter-rouge">$retriedCount</code> 변수에는 <code class="language-plaintext highlighter-rouge">0</code>이 담겨 있었고, 이 라인에서 <code class="language-plaintext highlighter-rouge">1</code>을 더했다.</li>
   <li>162~164: <a href="https://en.wikipedia.org/wiki/Exponential_backoff">Exponential Backoff</a> 구현이다. 방금 실패했으면 재시도해도 실패할 가능성이 있으므로, 재시도 주기를 점진적으로 늘려가며 재시도하는 로직이다.</li>
-  <li>173~174: 수신자(<code class="highlighter-rouge">$receivers</code>) 변수를 실패한 push_service_id[]로 덮어 쓰고, <code class="highlighter-rouge">sendMessage()</code> API를 다시 호출한다. 또 실패하면 이 함수에 들어오게 되고, <code class="highlighter-rouge">$retriedCount</code>, <code class="highlighter-rouge">$retryIntervalInUs</code> 등의 제어 변수들이 조정되고, 또 재시도하게 될 것이다.</li>
+  <li>173~174: 수신자(<code class="language-plaintext highlighter-rouge">$receivers</code>) 변수를 실패한 push_service_id[]로 덮어 쓰고, <code class="language-plaintext highlighter-rouge">sendMessage()</code> API를 다시 호출한다. 또 실패하면 이 함수에 들어오게 되고, <code class="language-plaintext highlighter-rouge">$retriedCount</code>, <code class="language-plaintext highlighter-rouge">$retryIntervalInUs</code> 등의 제어 변수들이 조정되고, 또 재시도하게 될 것이다.</li>
 </ul>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">178</span>     <span class="k">private</span> <span class="k">function</span> <span class="nf">isInitialRequest</span><span class="p">()</span>
@@ -622,7 +626,7 @@
 <span class="p">});</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">$user-&gt;getPushServiceIds()</code>는 모델에 정의한 헬퍼 함수이며, 다음과 같다.</p>
+<p><code class="language-plaintext highlighter-rouge">$user-&gt;getPushServiceIds()</code>는 모델에 정의한 헬퍼 함수이며, 다음과 같다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/User.php</span>
 
@@ -643,7 +647,7 @@
 
 <h2 id="8-푸쉬-메시지-요청에-대한-fcm-서버-응답의-이해">8. 푸쉬 메시지 요청에 대한 Fcm 서버 응답의 이해</h2>
 
-<p><code class="highlighter-rouge">DownstreamResponse</code> 클래스를 이해하려면, <a href="https://firebase.google.com/docs/cloud-messaging/server#response">Fcm 문서</a>에 명시된 Fcm 서버의 응답 메시지를 이해해야 하는데… 아래는 총 6개의 단말기에 푸쉬 메시지를 보냈을 때 Fcm 서버의 응답 예제이다. 이 예제를 통해서 Fcm 응답 스펙을 이해할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">DownstreamResponse</code> 클래스를 이해하려면, <a href="https://firebase.google.com/docs/cloud-messaging/server#response">Fcm 문서</a>에 명시된 Fcm 서버의 응답 메시지를 이해해야 하는데… 아래는 총 6개의 단말기에 푸쉬 메시지를 보냈을 때 Fcm 서버의 응답 예제이다. 이 예제를 통해서 Fcm 응답 스펙을 이해할 수 있다.</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> 
   </span><span class="nl">"multicast_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">,</span><span class="w">
@@ -661,57 +665,57 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>우선 <code class="highlighter-rouge">results.message_id</code>가 있는 메시지들은 성공한 것이다. <code class="highlighter-rouge">DownstreamResponse</code> 클래스의 메서드들도 다음 표에 정리했다.</p>
+<p>우선 <code class="language-plaintext highlighter-rouge">results.message_id</code>가 있는 메시지들은 성공한 것이다. <code class="language-plaintext highlighter-rouge">DownstreamResponse</code> 클래스의 메서드들도 다음 표에 정리했다.</p>
 
 <table>
   <thead>
     <tr>
       <th>응답 필드</th>
-      <th>라이브러리의 메서드(<code class="highlighter-rouge">DownstreamResponse</code>)</th>
+      <th>라이브러리의 메서드(<code class="language-plaintext highlighter-rouge">DownstreamResponse</code>)</th>
       <th>설명</th>
       <th>예제 응답 번호(zero-index)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">success</code></td>
-      <td><code class="highlighter-rouge">numberSuccess()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">success</code></td>
+      <td><code class="language-plaintext highlighter-rouge">numberSuccess()</code></td>
       <td>푸쉬 메시지 전달에 성공한 건수</td>
       <td>0,3,4</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">failure</code></td>
-      <td><code class="highlighter-rouge">numberFailure()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">failure</code></td>
+      <td><code class="language-plaintext highlighter-rouge">numberFailure()</code></td>
       <td>푸쉬 메시지 전달에 실패한 건수</td>
       <td>1,2,5</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">canonical_ids</code></td>
-      <td><code class="highlighter-rouge">numberModification()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">canonical_ids</code></td>
+      <td><code class="language-plaintext highlighter-rouge">numberModification()</code></td>
       <td>단말기의 고유 식별 토큰이 변경된 건수</td>
       <td>4</td>
     </tr>
     <tr>
       <td> </td>
-      <td><code class="highlighter-rouge">tokensToDelete()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tokensToDelete()</code></td>
       <td>애플리케이션 서버에서 삭제할 토큰의 목록</td>
       <td>5</td>
     </tr>
     <tr>
       <td> </td>
-      <td><code class="highlighter-rouge">tokensToModify()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tokensToModify()</code></td>
       <td>애플리케이션 서버에서 업데이트할 토큰의 목록</td>
       <td>4</td>
     </tr>
     <tr>
       <td> </td>
-      <td><code class="highlighter-rouge">tokensToRetry()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tokensToRetry()</code></td>
       <td>애플리케이션 서버에서 재 전송해야 하는 토큰의 목록</td>
       <td>1</td>
     </tr>
     <tr>
       <td> </td>
-      <td><code class="highlighter-rouge">tokensWithError()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tokensWithError()</code></td>
       <td>에러가 난 이유 목록</td>
       <td> </td>
     </tr>
@@ -1696,7 +1700,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

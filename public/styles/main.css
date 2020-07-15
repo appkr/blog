@@ -1,0 +1,1130 @@
+/* =global */
+body {
+    color: #111111;
+    line-height: 2em;
+    background: #FAFAFA;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+::selection {
+    background: #00BFF3;
+    color: #FFF;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background: #00BFF3;
+    color: #FFF;
+    text-shadow: none;
+}
+
+#app {
+    font-family: "Apple SD Gothic Neo", "Nanum Gothic", "나눔고딕", "Malgun Gothic";
+    /* =heading */
+    /* =anchor */
+    /* =blockquote */
+    /* =image */
+    /* =nav */
+    /* =button */
+    /* =box */
+    /* =sidebar */
+    /* =pagination */
+    /* =site-footer */
+    /* =light-box */
+}
+
+#app h1, #app h2, #app h3, #app h4, #app h5, #app h6 {
+    text-space: -1px;
+    font-weight: 300;
+}
+
+#app a {
+    color: #00BFF3;
+    text-decoration: none;
+}
+
+#app a:hover {
+    color: #0097c0;
+}
+
+#app blockquote {
+    border: none;
+    border-radius: 0;
+    margin: 0 -30px 20px;
+    padding: 30px;
+}
+
+#app blockquote small, #app blockquote footer, #app blockquote cite {
+    color: #FFF;
+    font-size: 12.8px;
+}
+
+#app blockquote footer {
+    padding-left: 50px;
+    margin-bottom: 10px;
+}
+
+#app blockquote cite {
+    text-decoration: underline;
+}
+
+#app blockquote, #app blockquote p {
+    position: relative;
+    font-size: 22.4px;
+    font-style: italic;
+    padding: 16px 16px 16px 50px;
+    line-height: 1.5em;
+    color: #FFF;
+    background-color: #6739b6;
+}
+
+#app blockquote p:first-child:before {
+    content: url(../images/icon-quote.png) no-close-quote;
+    position: absolute;
+    top: 16px;
+    left: 0;
+}
+
+#app blockquote p:nth-of-type(2) {
+    display: none;
+}
+
+#app .badge {
+    background-color: #E1E1E1;
+    font-weight: normal;
+}
+
+#app #main .box-body {
+    font-size: 16px;
+}
+
+#app #main .box-body h1, #app #main .box-body h2, #app #main .box-body h3, #app #main .box-body h4, #app #main .box-body h5, #app #main .box-body h6 {
+    font-weight: bold;
+}
+
+#app #main .box-body p, #app #main .box-body :not(blockquote p) {
+    line-height: 2em;
+    margin: 0 0 2em;
+}
+
+#app #main img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 16px auto;
+    padding: 4px;
+    border: 1px solid #CDCfD7;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+    height: auto;
+}
+
+#app #main img a {
+    border: none;
+}
+
+#app #main.minimal img {
+    border: none;
+    margin: 3em auto;
+    max-width: 600px;
+}
+
+#app .material-icons {
+    vertical-align: middle;
+}
+
+#app .navbar {
+    background-color: #222629;
+    color: #FFF;
+    margin-bottom: 40px;
+}
+
+#app .navbar a, #app .navbar a:hover, #app .navbar a:focus {
+    color: #FFF;
+}
+
+#app .navbar .navbar-nav li {
+    min-width: 80px;
+}
+
+#app .navbar .navbar-nav > .active > a, #app .navbar .navbar-nav a:hover, #app .navbar .navbar-nav a:focus {
+    border-bottom: 2px solid #00BFF3;
+    transition: all .15s ease-in-out;
+}
+
+#app .btn {
+    height: 38px;
+    padding-right: 20px;
+    border-radius: 19px;
+    color: #FFF;
+    text-transform: none;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 300;
+}
+
+#app .btn:hover, #app .btn:focus {
+    opacity: 0.9;
+    color: #FFF;
+    transition: all .2s ease-in-out;
+}
+
+#app .btn-default {
+    background-color: #25292c;
+}
+
+#app .btn-primary {
+    background-color: #00BFF3;
+}
+
+#app .box {
+    margin: 0 0 30px 0;
+    padding: 30px;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: #FFF;
+}
+
+#app .box .highlighter-rouge {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    /* Comment */
+    /* Error */
+    /* Escape */
+    /* Generic */
+    /* Keyword */
+    /* Literal */
+    /* Name */
+    /* Operator */
+    /* Other */
+    /* Punctuation */
+    /* Comment.Multiline */
+    /* Comment.Preproc */
+    /* Comment.Single */
+    /* Comment.Special */
+    /* Generic.Deleted */
+    /* Generic.Emph */
+    /* Generic.Error */
+    /* Generic.Heading */
+    /* Generic.Inserted */
+    /* Generic.Output */
+    /* Generic.Prompt */
+    /* Generic.Strong */
+    /* Generic.Subheading */
+    /* Generic.Traceback */
+    /* Keyword.Constant */
+    /* Keyword.Declaration */
+    /* Keyword.Namespace */
+    /* Keyword.Pseudo */
+    /* Keyword.Reserved */
+    /* Keyword.Type */
+    /* Literal.Date */
+    /* Literal.Number */
+    /* Literal.String */
+    /* Name.Attribute */
+    /* Name.Builtin */
+    /* Name.Class */
+    /* Name.Constant */
+    /* Name.Decorator */
+    /* Name.Entity */
+    /* Name.Exception */
+    /* Name.Function */
+    /* Name.Label */
+    /* Name.Namespace */
+    /* Name.Other */
+    /* Name.Property */
+    /* Name.Tag */
+    /* Name.Variable */
+    /* Operator.Word */
+    /* Text.Whitespace */
+    /* Literal.Number.Bin */
+    /* Literal.Number.Float */
+    /* Literal.Number.Hex */
+    /* Literal.Number.Integer */
+    /* Literal.Number.Oct */
+    /* Literal.String.Backtick */
+    /* Literal.String.Char */
+    /* Literal.String.Doc */
+    /* Literal.String.Double */
+    /* Literal.String.Escape */
+    /* Literal.String.Heredoc */
+    /* Literal.String.Interpol */
+    /* Literal.String.Other */
+    /* Literal.String.Regex */
+    /* Literal.String.Single */
+    /* Literal.String.Symbol */
+    /* Name.Builtin.Pseudo */
+    /* Name.Variable.Class */
+    /* Name.Variable.Global */
+    /* Name.Variable.Instance */
+    /* Literal.Number.Integer.Long */
+}
+
+#app .box .highlighter-rouge pre {
+    border: none;
+    border-radius: 0;
+    margin: 0 -30px;
+    padding: 30px;
+    color: #d4d7d6;
+    background-color: #222629;
+}
+
+#app .box .highlighter-rouge .c {
+    color: #888888;
+}
+
+#app .box .highlighter-rouge .err {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .esc {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .g {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .k {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .l {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .n {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .o {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .x {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .p {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .cm {
+    color: #41535b;
+}
+
+#app .box .highlighter-rouge .cp {
+    color: #ff026a;
+}
+
+#app .box .highlighter-rouge .c1 {
+    color: #888888;
+}
+
+#app .box .highlighter-rouge .cs {
+    color: #41535b;
+}
+
+#app .box .highlighter-rouge .gd {
+    color: #870505;
+}
+
+#app .box .highlighter-rouge .ge {
+    color: #d4d7d6;
+    text-decoration: underline;
+}
+
+#app .box .highlighter-rouge .gr {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .gh {
+    color: #d4d7d6;
+    font-weight: bold;
+}
+
+#app .box .highlighter-rouge .gi {
+    color: #d4d7d6;
+    font-weight: bold;
+    background-color: #43800a;
+}
+
+#app .box .highlighter-rouge .go {
+    color: #2b2e28;
+    background-color: #1f2122;
+}
+
+#app .box .highlighter-rouge .gp {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .gs {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .gu {
+    color: #d4d7d6;
+    font-weight: bold;
+}
+
+#app .box .highlighter-rouge .gt {
+    color: #f8f8f8;
+}
+
+#app .box .highlighter-rouge .kc {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .kd {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .kn {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .kp {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .kr {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .kt {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .ld {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .m {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .s {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .na {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .nb {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .nc {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .no {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .nd {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .ni {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .ne {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .nf {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .nl {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .nn {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .nx {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .py {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .nt {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .nv {
+    color: #e6cd69;
+}
+
+#app .box .highlighter-rouge .ow {
+    color: #9fca56;
+}
+
+#app .box .highlighter-rouge .w {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .mb {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .mf {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .mh {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .mi {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .mo {
+    color: #cd3f45;
+}
+
+#app .box .highlighter-rouge .sb {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .sc {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .sd {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .s2 {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .se {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .sh {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .si {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .sx {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .sr {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .s1 {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .ss {
+    color: #55b5db;
+}
+
+#app .box .highlighter-rouge .bp {
+    color: #d4d7d6;
+}
+
+#app .box .highlighter-rouge .vc {
+    color: #e6cd69;
+}
+
+#app .box .highlighter-rouge .vg {
+    color: #e6cd69;
+}
+
+#app .box .highlighter-rouge .vi {
+    color: #e6cd69;
+}
+
+#app .box .highlighter-rouge .il {
+    color: #cd3f45;
+}
+
+#app .box .line-numbers {
+    text-align: right;
+    padding-right: 1em;
+    margin-right: 1em;
+    border-right: 1px solid #888;
+    color: #888;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#app .box .box-header, #app .box .box-body, #app .box .box-footer {
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+#app .box .box-header h1, #app .box .box-header h2, #app .box .box-header h3, #app .box .box-header h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#app .box .box-header .dropdown-menu {
+    border-radius: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+#app .box .box-header .dropdown-menu > li > a {
+    font-weight: 300;
+}
+
+#app .box .box-meta a {
+    color: #CDCfD7;
+}
+
+#app .box .box-meta a:hover, #app .box .box-meta a:focus {
+    color: #A7A9A9;
+}
+
+#app .box .action a {
+    color: #111111;
+}
+
+#app .box .action a:hover, #app .box .action a:focus {
+    color: #111111;
+}
+
+#app .box .box-meta {
+    color: #CDCfD7;
+    margin-bottom: 20px;
+}
+
+#app .box .box-meta .material-icons {
+    font-size: 12.8px;
+    line-height: 12.8px;
+    margin-right: 5px;
+}
+
+#app .box .box-meta span {
+    margin-right: 20px;
+}
+
+#app .box .box-meta span:last-child {
+    margin-right: 0;
+}
+
+#app .box .box-body {
+    /* =spacer */
+}
+
+#app .box .box-body h1, #app .box .box-body h2, #app .box .box-body h3, #app .box .box-body h4, #app .box .box-body h5, #app .box .box-body h6 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+#app .box .box-body h1:hover .header-link, #app .box .box-body h2:hover .header-link, #app .box .box-body h3:hover .header-link, #app .box .box-body h4:hover .header-link, #app .box .box-body h5:hover .header-link, #app .box .box-body h6:hover .header-link {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#app .box .box-body h1 {
+    font-size: 34.2px;
+}
+
+#app .box .box-body h2 {
+    font-size: 28.5px;
+}
+
+#app .box .box-body h3 {
+    font-size: 22.8px;
+}
+
+#app .box .box-body h4 {
+    font-size: 17.1px;
+}
+
+#app .box .box-body p, #app .box .box-body :not(blockquote p) {
+    margin: 0 0 1.2em;
+}
+
+#app .box .box-body .header-link {
+    position: relative;
+    left: 0.5em;
+    opacity: 0;
+    font-size: 0.8em;
+    transition: opacity 0.2s ease-in-out 0.1s;
+}
+
+#app .box .box-body #gravatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+#app .box .box-body .spacer {
+    text-align: center;
+    margin: 48px auto;
+}
+
+#app .box .box-tags {
+    height: 60px;
+    line-height: 60px;
+    margin: 30px -30px -30px;
+    padding: 0 30px;
+    background-color: #F5F5F5;
+}
+
+#app .box .box-tags span {
+    color: #CDCfD7;
+}
+
+#app .box .box-tags a {
+    color: #A7A9A9;
+}
+
+#app .box .box-tags a:hover, #app .box .box-tags a:focus {
+    color: #00BFF3;
+}
+
+#app #sidebar {
+    padding: 0;
+}
+
+#app #sidebar .box {
+    padding: 0;
+}
+
+#app #sidebar .box-header {
+    position: relative;
+    padding: 24px;
+    background-color: #F5F5F5;
+}
+
+#app #sidebar .box-header:before {
+    content: url(../images/arrow.png);
+    position: absolute;
+    bottom: -10px;
+    left: 24px;
+}
+
+#app #sidebar .box-body {
+    padding: 0;
+}
+
+#app #sidebar .box-body ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#app #sidebar .box-body li, #app #sidebar .box-body div.tags, #app #sidebar .box-body form {
+    padding: 1em 24px;
+}
+
+#app #sidebar .box-body li {
+    border-bottom: 1px solid #F5F5F5;
+}
+
+#app #sidebar .box-body li:last-child {
+    border-bottom: none;
+}
+
+#app #sidebar .box-body li.active {
+    color: #00BFF3;
+}
+
+#app #sidebar .box-body a {
+    color: #111111;
+}
+
+#app #sidebar .box-body a:hover, #app #sidebar .box-body a:focus {
+    color: #00BFF3;
+}
+
+#app #sidebar .box-body #q-results li.active {
+    background-color: #F5F5F5;
+}
+
+#app #sidebar .box-body li > a {
+    display: block;
+}
+
+#app #sidebar .box-body li > a:after {
+    font-family: "Material Icons";
+    content: "\E409";
+    position: absolute;
+    right: 24px;
+}
+
+#app #sidebar .box-body h1, #app #sidebar .box-body h2, #app #sidebar .box-body h3, #app #sidebar .box-body h4 {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+#app #sidebar .box-body h1 small, #app #sidebar .box-body h1 a, #app #sidebar .box-body h2 small, #app #sidebar .box-body h2 a, #app #sidebar .box-body h3 small, #app #sidebar .box-body h3 a, #app #sidebar .box-body h4 small, #app #sidebar .box-body h4 a {
+    display: block;
+}
+
+#app #sidebar .box-body h1 small, #app #sidebar .box-body h2 small, #app #sidebar .box-body h3 small, #app #sidebar .box-body h4 small {
+    margin-bottom: 16px;
+}
+
+#app #sidebar .box-body .tags {
+    word-bread: break-word;
+}
+
+#app #sidebar .box-body .dsq-widget-avatar {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 2px;
+    border: 1px solid #CDCfD7;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+#app #sidebar .box-body .dsq-widget-avatar a {
+    border: none;
+}
+
+#app #sidebar .box-body .dsq-widget-list li > a {
+    line-height: 32px;
+}
+
+#app #sidebar .box-body .dsq-widget-list li > a:after {
+    content: "";
+}
+
+#app #sidebar .box-body .dsq-widget-user {
+    margin-bottom: 10px;
+}
+
+#app #sidebar .box-body .dsq-widget-meta {
+    display: inline-block;
+    font-size: 12.8px;
+}
+
+#app #sidebar .box-body .dsq-widget-meta a:first-child {
+    display: none;
+}
+
+#app #sidebar .box-body .dsq-widget-meta a:last-child:after {
+    font-family: "Material Icons";
+    content: "\E409";
+    position: absolute;
+    right: 24px;
+}
+
+#app #sidebar .box-body .facebook-meta {
+    font-size: 12.8px;
+}
+
+#app #sidebar .box-body .facebook-meta a:after {
+    font-family: "Material Icons";
+    content: "\E409";
+    position: absolute;
+    right: 24px;
+}
+
+#app #pagination .pager {
+    margin: 30px auto;
+}
+
+#app #pagination .pager li a {
+    background-color: #00BFF3;
+    padding: 12px 16px;
+    border-radius: 0;
+    border: none;
+}
+
+#app #pagination .pager li.disabled a {
+    background-color: #CDCfD7;
+    color: #A7A9A9;
+}
+
+#app #pagination .pager a, #app #pagination .pager a:hover, #app #pagination .pager a:focus {
+    color: #FFF;
+}
+
+#app #pagination .pager .pager-title-sm {
+    display: none;
+}
+
+#app #site-footer {
+    background-color: #222629;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#app #site-footer h4 {
+    font-weight: 300;
+}
+
+#app #site-footer a, #app #site-footer a:hover, #app #site-footer a:focus {
+    color: #FFF;
+}
+
+#app #site-footer p {
+    font-size: 12.8px;
+    color: #E1E1E1;
+}
+
+#app #back-to-top {
+    z-index: 999;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    padding: 10px;
+    background-color: rgba(0, 191, 243, 0.8);
+}
+
+#app #back-to-top a, #app #back-to-top a:hover, #app #back-to-top a:focus {
+    color: #FFF;
+}
+
+#app .tags .box-header {
+    margin-bottom: 20px;
+}
+
+#app .tags ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+#app .tags h4 {
+    position: relative;
+    padding: 5px 16px;
+}
+
+#app .tags h4 small, #app .tags h4 > a {
+    display: block;
+    margin: 10px 0;
+}
+
+#app .tags h4 > a:after {
+    font-family: "Material Icons";
+    content: "\E409";
+    position: absolute;
+    right: 40px;
+}
+
+#app .tags h4:hover {
+    background-color: #F5F5F5;
+    color: #A7A9A9;
+}
+
+#app .tags .tags-cloud {
+    padding: 5px 16px;
+    line-height: 2.4em;
+}
+
+#app .tags .tags-cloud li {
+    display: inline-block;
+}
+
+#app .tags .tags-cloud a {
+    background: #F5F5F5;
+    padding: 5px 7px;
+    color: #111111;
+    margin-right: 5px;
+}
+
+#app .tags .tags-cloud a .badge {
+    margin-right: 7px;
+}
+
+#app .tags .tags-cloud a:hover, #app .tags .tags-cloud a:focus, #app .tags .tags-cloud li .active {
+    background-color: #00BFF3;
+    color: #FFF;
+}
+
+#app .ekko-lightbox a:hover {
+    text-decoration: none;
+    opacity: 1;
+}
+
+#app .ekko-lightbox .left {
+    left: 0;
+    float: left;
+    padding-left: 15px;
+    text-align: left;
+}
+
+#app .ekko-lightbox .right {
+    right: 0;
+    float: right;
+    padding-right: 15px;
+    text-align: right;
+}
+
+#app .ekko-lightbox .modal-footer {
+    text-align: left;
+}
+
+#app .ekko-lightbox-container {
+    position: relative;
+}
+
+#app .ekko-lightbox-nav-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+
+#app .ekko-lightbox-nav-overlay a {
+    z-index: 100;
+    display: block;
+    width: 49%;
+    height: 100%;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+    opacity: 0;
+    filter: dropshadow(color=#000000, offx=2, offy=2);
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+#app .ekko-lightbox-nav-overlay a:empty {
+    width: 49%;
+}
+
+/* Tablet and under-size devices */
+@media (max-width: 992px) {
+    #app .box .box-body h1 {
+        font-size: 30.6px;
+    }
+
+    #app .box .box-body h2 {
+        font-size: 25.5px;
+    }
+
+    #app .box .box-body h3 {
+        font-size: 20.4px;
+    }
+
+    #app .box .box-body h4 {
+        font-size: 15.3px;
+    }
+
+    #app blockquote, #app blockquote p {
+        font-size: 19.2px;
+        font-style: italic;
+        padding: 16px;
+        line-height: 1.4em;
+    }
+
+    #app blockquote p:first-child:before {
+        content: "";
+    }
+
+    #app blockquote footer {
+        padding-left: 20px;
+    }
+}
+
+/* Tablet and under-size devices */
+@media (max-width: 768px) {
+    #app blockquote, #app blockquote p {
+        font-size: 17.6px;
+        font-style: italic;
+        line-height: 1.3em;
+    }
+
+    #app blockquote footer {
+        padding-left: 16px;
+    }
+
+    #app .container, #app .col-md-9, #app .col-md-3 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #app .navbar .navbar-nav a:focus, #app .navbar .navbar-nav a:hover, #app .navbar .navbar-nav > .active > a {
+        border: none;
+    }
+
+    #app .box .box-body h1 {
+        font-size: 28.8px;
+    }
+
+    #app .box .box-body h2 {
+        font-size: 24px;
+    }
+
+    #app .box .box-body h3 {
+        font-size: 19.2px;
+    }
+
+    #app .box .box-body h4 {
+        font-size: 14.4px;
+    }
+
+    #app #main .box-meta span:last-child,
+    #app #main .box-meta span:nth-child(2) {
+        display: none;
+    }
+
+    #app #sidebar .box-body ul li {
+        margin-bottom: 0;
+    }
+
+    #app #sidebar .box-body ul li a, #app #sidebar .box-body ul li h4, #app #sidebar .box-body ul li small, #app #sidebar .box-body ul li i {
+        margin-bottom: 0;
+    }
+
+    #app #sidebar .box-body .box-meta {
+        margin-bottom: 10px;
+    }
+
+    #app #pagination .pager li a {
+        padding: 12px 10px;
+    }
+
+    #app #pagination .pager .pager-title {
+        display: none;
+    }
+
+    #app #pagination .pager .pager-title-sm {
+        display: inline-block;
+    }
+
+    #app #pagination li, #app #pagination a, #app #pagination span, #app #pagination i {
+        margin-bottom: 0;
+    }
+
+    #app #site-footer {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    #app #site-footer h4 {
+        font-size: 16px;
+    }
+
+    #app #site-footer p {
+        font-size: 10.24px;
+    }
+}
+
+@media print {
+    .navbar, #sidebar, #pagination, .comments, #site-footer, .box-meta span:last-child, #back-to-top {
+        display: none;
+    }
+}

@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>DDD Memo | Appkr.memo(new Story)</title>
 
@@ -201,7 +205,7 @@
 
 <h1 id="4-리포지터리와-모델-구현">4. 리포지터리와 모델 구현</h1>
 
-<p>p114. 엔티티가 객체로서 제 역할을 하려면 외부에 set 메서드 대신 의도가 잘 드러나는 기능을 제공해야 한다. 상태 변경을 위한 <code class="highlighter-rouge">setState()</code> 메서드 보다 주문 취소를 위한 <code class="highlighter-rouge">cancel()</code> 메서드가 도메인을 더 잘 표현하고, <code class="highlighter-rouge">setShippingInfo()</code> 메서드보다 배송지를 변경한다는 의미를 갖는 <code class="highlighter-rouge">changeShippingInfo()</code>가 도메인을 더 잘 표현한다.</p>
+<p>p114. 엔티티가 객체로서 제 역할을 하려면 외부에 set 메서드 대신 의도가 잘 드러나는 기능을 제공해야 한다. 상태 변경을 위한 <code class="language-plaintext highlighter-rouge">setState()</code> 메서드 보다 주문 취소를 위한 <code class="language-plaintext highlighter-rouge">cancel()</code> 메서드가 도메인을 더 잘 표현하고, <code class="language-plaintext highlighter-rouge">setShippingInfo()</code> 메서드보다 배송지를 변경한다는 의미를 갖는 <code class="language-plaintext highlighter-rouge">changeShippingInfo()</code>가 도메인을 더 잘 표현한다.</p>
 
 <p>p134. 애그리거트 루트를 로딩하면 루트에 속한 모든 객체가 완전한 상태여야 한다.</p>
 
@@ -288,7 +292,7 @@
 
 <h1 id="9-도메인-모델과-bounded-context">9. 도메인 모델과 BOUNDED CONTEXT</h1>
 
-<p>p249. 이때 카탈로그 컨텍스트와 추천 컨텍스트의 도메인 모델(<code class="highlighter-rouge">Product</code>)은 서로 다르다. 카탈로그는 제품을 중심으로 도메인 모델을 구현하지만, 추천은 추천 연산을 위한 모델을 구한다.</p>
+<p>p249. 이때 카탈로그 컨텍스트와 추천 컨텍스트의 도메인 모델(<code class="language-plaintext highlighter-rouge">Product</code>)은 서로 다르다. 카탈로그는 제품을 중심으로 도메인 모델을 구현하지만, 추천은 추천 연산을 위한 모델을 구한다.</p>
 
 <p>p255. 이런 마이크로서비스의 특징은 BOUNDED CONTEXT와 잘 어울린다. 각 BOUNDED CONTEXT는 모델의 경계를 형성하는데, BOUNDED CONTEXT를 마이크로서비스로 구현하면 자연스럽게 컨텍스트별로 모델이 분리된다. 코드로 치면 마이크로서비스마다 프로젝트를 생성하므로 BOUNDED CONTEXT마다 프로젝트를 만들게 된다 이는 코드 수준에서 모델을 분리해서 두 BOUNDED CONTEXT의 모델이 섞이지 않도록 해 준다. 별도 프로세스로 개발한 BOUNDED CONTEXT는 독립적으로 배포하고 모니터링하고 확장하게 되는데 이 역시 마이크로서비스의 특징이다.</p>
 
@@ -314,7 +318,7 @@
 
 <p>p284. 생각해 볼만한 것은 외부의 환불 서비스 실행에 실패했다고 해서 반드시 트랜잭션을 롤백해야 하는 지에 대한 문제이다. 일단 구매 취소 자체는 처리하고 환불만 재처리하거나 수동으로 처리할 수도 있다.</p>
 
-<p>p296. 이벤트는 과거에 벌어진 사건이므로 데이터가 변경되지 않는다. 이런 이유로 <code class="highlighter-rouge">EventStore</code> 인터페이스는 새로운 이벤트를 추가하는 기능과 조회하는 기능만 제공하고 기존 이벤트 데이터를 수정하는 기능은 제공하지 않는다.</p>
+<p>p296. 이벤트는 과거에 벌어진 사건이므로 데이터가 변경되지 않는다. 이런 이유로 <code class="language-plaintext highlighter-rouge">EventStore</code> 인터페이스는 새로운 이벤트를 추가하는 기능과 조회하는 기능만 제공하고 기존 이벤트 데이터를 수정하는 기능은 제공하지 않는다.</p>
 
 <p>p307. 이벤트 적용시 추가 고려사항</p>
 
@@ -1308,7 +1312,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

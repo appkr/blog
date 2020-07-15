@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Appkr.memo(new Story)</title>
 
@@ -361,17 +365,17 @@
 <h2 id="대수학적인-사고를-하는-기획자">대수학적인 사고를 하는 기획자</h2>
 
 <ul>
-  <li>강물의 유속 <code class="highlighter-rouge">3Km/h</code></li>
-  <li>노 젓는 속도 <code class="highlighter-rouge">5Km/h</code> (배를 돌러 거꾸로 갈 경우, 배의 속도 <code class="highlighter-rouge">8Km/h</code>)</li>
-  <li>모자를 잃어 버린 것을 깨달은 현재 배와 모자 사이의 거리 (배의 이동거리: <code class="highlighter-rouge">2Km/h</code> x <code class="highlighter-rouge">30min</code> = <code class="highlighter-rouge">1Km</code>, 모자의 이동 거리: <code class="highlighter-rouge">3Km/h</code> x <code class="highlighter-rouge">30min</code> = <code class="highlighter-rouge">1.5Km</code>) <code class="highlighter-rouge">2.5Km</code></li>
-  <li>모자의 속도 <code class="highlighter-rouge">3Km/h</code></li>
-  <li>모자를 찾는 데 필요한 시간 <code class="highlighter-rouge">t</code></li>
+  <li>강물의 유속 <code class="language-plaintext highlighter-rouge">3Km/h</code></li>
+  <li>노 젓는 속도 <code class="language-plaintext highlighter-rouge">5Km/h</code> (배를 돌러 거꾸로 갈 경우, 배의 속도 <code class="language-plaintext highlighter-rouge">8Km/h</code>)</li>
+  <li>모자를 잃어 버린 것을 깨달은 현재 배와 모자 사이의 거리 (배의 이동거리: <code class="language-plaintext highlighter-rouge">2Km/h</code> x <code class="language-plaintext highlighter-rouge">30min</code> = <code class="language-plaintext highlighter-rouge">1Km</code>, 모자의 이동 거리: <code class="language-plaintext highlighter-rouge">3Km/h</code> x <code class="language-plaintext highlighter-rouge">30min</code> = <code class="language-plaintext highlighter-rouge">1.5Km</code>) <code class="language-plaintext highlighter-rouge">2.5Km</code></li>
+  <li>모자의 속도 <code class="language-plaintext highlighter-rouge">3Km/h</code></li>
+  <li>모자를 찾는 데 필요한 시간 <code class="language-plaintext highlighter-rouge">t</code></li>
 </ul>
 
 <p>배가 이동해야 할 거리 = 모자가 이동한 거리
-(노젓는 속도 <code class="highlighter-rouge">5Km/h</code> + 유속 <code class="highlighter-rouge">3Km/h</code>) x <code class="highlighter-rouge">t</code> = 현재 배와 모자사이의 거리 <code class="highlighter-rouge">2.5Km</code> + 모자가 추가로 이동할 거리 <code class="highlighter-rouge">3Km/h</code> x <code class="highlighter-rouge">t</code></p>
+(노젓는 속도 <code class="language-plaintext highlighter-rouge">5Km/h</code> + 유속 <code class="language-plaintext highlighter-rouge">3Km/h</code>) x <code class="language-plaintext highlighter-rouge">t</code> = 현재 배와 모자사이의 거리 <code class="language-plaintext highlighter-rouge">2.5Km</code> + 모자가 추가로 이동할 거리 <code class="language-plaintext highlighter-rouge">3Km/h</code> x <code class="language-plaintext highlighter-rouge">t</code></p>
 
-<p>따라서 <code class="highlighter-rouge">t</code> = <code class="highlighter-rouge">0.5</code></p>
+<p>따라서 <code class="language-plaintext highlighter-rouge">t</code> = <code class="language-plaintext highlighter-rouge">0.5</code></p>
 
 
       </div>
@@ -1362,7 +1366,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

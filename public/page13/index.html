@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Appkr.memo(new Story)</title>
 
@@ -137,9 +141,9 @@
 <p>내가 기존에 알고 있던 지식은</p>
 
 <ul>
-  <li>Tag Selector 1 점 (<em>e.g. <code class="highlighter-rouge">a {...}</code></em>)</li>
-  <li>Class Selector 10 점 (<em>e.g. <code class="highlighter-rouge">.darth {...}</code></em>)</li>
-  <li>Id Selector 100 점 (<em>e.g. <code class="highlighter-rouge">#sith {...}</code></em>)</li>
+  <li>Tag Selector 1 점 (<em>e.g. <code class="language-plaintext highlighter-rouge">a {...}</code></em>)</li>
+  <li>Class Selector 10 점 (<em>e.g. <code class="language-plaintext highlighter-rouge">.darth {...}</code></em>)</li>
+  <li>Id Selector 100 점 (<em>e.g. <code class="language-plaintext highlighter-rouge">#sith {...}</code></em>)</li>
 </ul>
 
 <p>였다. 궁금증은 <em>‘Tag 를 11 개 중첩해서 쓰면 Class 하나를 오버라이드할 수 있을까?’</em> 라는 것.</p>
@@ -290,7 +294,7 @@
 
 <h2 id="jekyll-serve">Jekyll Serve</h2>
 
-<p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
+<p>Jekyll 은 로컬 테스트 서버를 포함하고 있다. 콘솔 메시지를 자세히 보면, 빌드 대상이 되는 파일들을 컴파일하여 <code class="language-plaintext highlighter-rouge">public</code> 디렉토리에 출판하고, <code class="language-plaintext highlighter-rouge">public</code> 디렉토리를 Document Root 로 하는 <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> 로컬 웹 서버를 띄운다는 것을 알 수 있다. 서버를 뛰우지 않고 빌드만 하려면, <code class="language-plaintext highlighter-rouge">$ jekyll build</code>. 오오~ 멋지다~</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll serve
 <span class="c"># Configuration file: /.../blog/_config.yml</span>
@@ -1367,7 +1371,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

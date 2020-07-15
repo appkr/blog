@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>라라벨 엘로퀀트 모델 이벤트 고찰 | Appkr.memo(new Story)</title>
 
@@ -153,16 +157,16 @@
 
 <p><a href="https://github.com/appkr/pattern/tree/master/Behavioral/Observer2">관찰자(Observer) 패턴</a>은 관찰의 대상이 되는 타입에, 대상을 관찰하려는 타입을 등록해두고, 특정 사건(Event)이 발생하면 등록된 관찰자의 함수를 호출하는 겁니다. 쉽게 말하면, “밥 다되면 불러줘~”라고 미리 말해두고, 밥이 다 되면 알려주는 거죠.</p>
 
-<p>“관찰자를 등록하고 사건이 발생하면 등록된 관찰자들에게 알려준다”는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 <code class="highlighter-rouge">$observables</code> 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 <code class="highlighter-rouge">save()</code>와 같은 퍼블릭 함수가 작동할 때, 자신의 <code class="highlighter-rouge">fireModelEvent('created')</code> 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 <code class="highlighter-rouge">created($this)</code>를 호출하는 식으로 작동합니다.</p>
+<p>“관찰자를 등록하고 사건이 발생하면 등록된 관찰자들에게 알려준다”는 큰 개념은 같지만, 라라벨의 엘로퀀트 모델은 <code class="language-plaintext highlighter-rouge">$observables</code> 변수에 객체가 아닌 문자열로 관찰자를 등록합니다. 그리고 엘로퀀트에서는 <code class="language-plaintext highlighter-rouge">save()</code>와 같은 퍼블릭 함수가 작동할 때, 자신의 <code class="language-plaintext highlighter-rouge">fireModelEvent('created')</code> 함수를 호출하고, 이 함수가 다시 관찰자에서 이벤트와 같은 이름을 가진 함수, 예를 들어 <code class="language-plaintext highlighter-rouge">created($this)</code>를 호출하는 식으로 작동합니다.</p>
 
 <!--more-->
 <div class="spacer">• • •</div>
 
 <h2 id="1-insert">1. Insert</h2>
 
-<p><code class="highlighter-rouge">$model-&gt;update()</code>, <code class="highlighter-rouge">$model-&gt;push()</code>, <code class="highlighter-rouge">$model-&gt;touch()</code> 등의 API도 결국에는 <code class="highlighter-rouge">save()</code> 함수를 거치게 됩니다. <code class="highlighter-rouge">save()</code> 함수는 <code class="highlighter-rouge">saving</code> 이벤트를 던진 후, 다시 Insert를 해야할지 Update를 해야할지 판단하고, <code class="highlighter-rouge">performInsert()</code> 또는 <code class="highlighter-rouge">performUpdate()</code> 함수를 선택적으로 호출합니다. 분기된 함수 안에서 다시 <code class="highlighter-rouge">creating</code>, <code class="highlighter-rouge">created</code>, <code class="highlighter-rouge">..</code> 등의 이벤트를 던집니다. 분기된 함수 오퍼레이션이 끝나면 <code class="highlighter-rouge">save()</code> 함수는 <code class="highlighter-rouge">saved</code> 이벤트를 던지고 수명을 다합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">$model-&gt;update()</code>, <code class="language-plaintext highlighter-rouge">$model-&gt;push()</code>, <code class="language-plaintext highlighter-rouge">$model-&gt;touch()</code> 등의 API도 결국에는 <code class="language-plaintext highlighter-rouge">save()</code> 함수를 거치게 됩니다. <code class="language-plaintext highlighter-rouge">save()</code> 함수는 <code class="language-plaintext highlighter-rouge">saving</code> 이벤트를 던진 후, 다시 Insert를 해야할지 Update를 해야할지 판단하고, <code class="language-plaintext highlighter-rouge">performInsert()</code> 또는 <code class="language-plaintext highlighter-rouge">performUpdate()</code> 함수를 선택적으로 호출합니다. 분기된 함수 안에서 다시 <code class="language-plaintext highlighter-rouge">creating</code>, <code class="language-plaintext highlighter-rouge">created</code>, <code class="language-plaintext highlighter-rouge">..</code> 등의 이벤트를 던집니다. 분기된 함수 오퍼레이션이 끝나면 <code class="language-plaintext highlighter-rouge">save()</code> 함수는 <code class="language-plaintext highlighter-rouge">saved</code> 이벤트를 던지고 수명을 다합니다.</p>
 
-<p>따라서, <code class="highlighter-rouge">saving</code> -&gt; <code class="highlighter-rouge">creating</code> -&gt; <code class="highlighter-rouge">created</code> -&gt; <code class="highlighter-rouge">saved</code> 순서로 이벤트가 발생합니다.</p>
+<p>따라서, <code class="language-plaintext highlighter-rouge">saving</code> -&gt; <code class="language-plaintext highlighter-rouge">creating</code> -&gt; <code class="language-plaintext highlighter-rouge">created</code> -&gt; <code class="language-plaintext highlighter-rouge">saved</code> 순서로 이벤트가 발생합니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L42</span>
 
@@ -184,7 +188,7 @@
 
 <h2 id="2-update">2. Update</h2>
 
-<p><code class="highlighter-rouge">saving</code> -&gt; <code class="highlighter-rouge">updating</code> -&gt; <code class="highlighter-rouge">updated</code> -&gt; <code class="highlighter-rouge">saved</code> 순.</p>
+<p><code class="language-plaintext highlighter-rouge">saving</code> -&gt; <code class="language-plaintext highlighter-rouge">updating</code> -&gt; <code class="language-plaintext highlighter-rouge">updated</code> -&gt; <code class="language-plaintext highlighter-rouge">saved</code> 순.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L59</span>
 
@@ -210,7 +214,7 @@
 
 <h2 id="3-delete">3. Delete</h2>
 
-<p><code class="highlighter-rouge">deleting</code> -&gt; <code class="highlighter-rouge">deleted</code> 순.</p>
+<p><code class="language-plaintext highlighter-rouge">deleting</code> -&gt; <code class="language-plaintext highlighter-rouge">deleted</code> 순.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/appkr/db-lock-poc/blob/master/app/Http/Controllers/ProductController.php#L96</span>
 
@@ -1184,7 +1188,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

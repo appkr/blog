@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>블로그 플랫폼 이전 2 - Goodbye Wordpress, Hello Jekyll | Appkr.memo(new Story)</title>
 
@@ -174,10 +178,10 @@
 <p>Jekyll 에서 포스트는 이렇게 작성한다.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">_posts</code> 디렉토리 아래에 <code class="highlighter-rouge">Y-m-d-title.{html,md}</code> 형식의 파일을 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">_posts</code> 디렉토리 아래에 <code class="language-plaintext highlighter-rouge">Y-m-d-title.{html,md}</code> 형식의 파일을 만든다.</li>
   <li>파일 내용은 Front Formatter 와 포스트 본문으로 구성된다.
     <ul>
-      <li>Front Formatter 는 포스트의 메타데이터이다. Front Formatter 는 상단에 3개의 연속된 대시 (<code class="highlighter-rouge">-</code>) 블럭에 YAML 형식으로 쓴다.</li>
+      <li>Front Formatter 는 포스트의 메타데이터이다. Front Formatter 는 상단에 3개의 연속된 대시 (<code class="language-plaintext highlighter-rouge">-</code>) 블럭에 YAML 형식으로 쓴다.</li>
       <li>본문은 HTML 또는 Markdown 형식으로 편하게 쓴다.</li>
     </ul>
   </li>
@@ -192,7 +196,7 @@
 
 <h3 id="liquid-template-engine">Liquid Template Engine</h3>
 
-<p>Jekyll 은 <a href="https://github.com/Shopify/liquid/wiki">Liquid Template Engine</a> 을 이용한다. 사용법은 다른 Template Engine 과 거의 유사하다. Liquid 는 제어/반복/할당 등은 <code class="highlighter-rouge">{% %}</code> 를 이용하고, 변수 Interpolation 은 <code class="highlighter-rouge">{{ }}</code> 를 이용한다.</p>
+<p>Jekyll 은 <a href="https://github.com/Shopify/liquid/wiki">Liquid Template Engine</a> 을 이용한다. 사용법은 다른 Template Engine 과 거의 유사하다. Liquid 는 제어/반복/할당 등은 <code class="language-plaintext highlighter-rouge">{% %}</code> 를 이용하고, 변수 Interpolation 은 <code class="language-plaintext highlighter-rouge">{{ }}</code> 를 이용한다.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/index.html --&gt;</span>
 ---
@@ -243,7 +247,7 @@ layout: default
 
 <h2 id="structure--config">Structure &amp; Config</h2>
 
-<p>아래 처럼 디렉토리 구조를 잡았다. 일반적인 Jekyll 프로젝트 구조 대비 달라진 점은, <code class="highlighter-rouge">_assets</code> 디렉토리에 뷰 제어 관련 리소스를 전부 몰어 넣어 놓은 점과, Jekyll Build 결과물을 <code class="highlighter-rouge">_sites</code> 가 아닌 <code class="highlighter-rouge">public</code> 디렉토리에 담는다는 점 정도 이다.</p>
+<p>아래 처럼 디렉토리 구조를 잡았다. 일반적인 Jekyll 프로젝트 구조 대비 달라진 점은, <code class="language-plaintext highlighter-rouge">_assets</code> 디렉토리에 뷰 제어 관련 리소스를 전부 몰어 넣어 놓은 점과, Jekyll Build 결과물을 <code class="language-plaintext highlighter-rouge">_sites</code> 가 아닌 <code class="language-plaintext highlighter-rouge">public</code> 디렉토리에 담는다는 점 정도 이다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
 ├── _assets                           <span class="c"># Housing for Images, JS, CSS</span>
@@ -344,14 +348,14 @@ layout: default
 
 <h2 id="migrate-posts">Migrate Posts</h2>
 
-<p>데이터 마이그레이션을 위해 아래 Ruby 스크립트를 작성하였다. 이 스크립트에서 주목할만한 부분은 워드프레스 <code class="highlighter-rouge">wp_posts.post_content</code> 컬럼에 기록된 HTML 형식의 포스트 본문을 <a href="https://github.com/cousine/downmark_it"><code class="highlighter-rouge">DownmarkIt</code></a> 라이브러리를 이용하여 다시 Markdown 형식으로 변경하는 부분이다.</p>
+<p>데이터 마이그레이션을 위해 아래 Ruby 스크립트를 작성하였다. 이 스크립트에서 주목할만한 부분은 워드프레스 <code class="language-plaintext highlighter-rouge">wp_posts.post_content</code> 컬럼에 기록된 HTML 형식의 포스트 본문을 <a href="https://github.com/cousine/downmark_it"><code class="language-plaintext highlighter-rouge">DownmarkIt</code></a> 라이브러리를 이용하여 다시 Markdown 형식으로 변경하는 부분이다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget https://raw.githubusercontent.com/cousine/downmark_it/master/downmark_it.rb <span class="nt">-O</span> lib/downmark_it.rb
 <span class="c"># downmark_it.rb 는 hpricot 라이브러리에 의존하므로 설치한다. </span>
 <span class="nv">$ </span>gem <span class="nb">install </span>hpricot
 </code></pre></div></div>
 
-<p>아래는 변환 스크립트 전체 소스이다. 이 스크립트의 역할은 로컬 데이터베이스 테이블에서 워드프레스에서 생성된 데이터를 가져온 후, Jekyll 형식에 맞는 내용으로 변경한 후 <code class="highlighter-rouge">Y-m-d-title.md</code> 파일에 저장하는 것이다.</p>
+<p>아래는 변환 스크립트 전체 소스이다. 이 스크립트의 역할은 로컬 데이터베이스 테이블에서 워드프레스에서 생성된 데이터를 가져온 후, Jekyll 형식에 맞는 내용으로 변경한 후 <code class="language-plaintext highlighter-rouge">Y-m-d-title.md</code> 파일에 저장하는 것이다.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># https://github.com/appkr/blog/blob/master/lib/wordpress.rb</span>
 <span class="c1"># Inspired from vitobotta's script</span>
@@ -1405,7 +1409,16 @@ layout: default
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

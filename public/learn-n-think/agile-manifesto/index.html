@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>애자일 선언서 이해하기 | Appkr.memo(new Story)</title>
 
@@ -205,7 +209,7 @@
 
 <p>훌륭한 고객은 구체적인 작업 목록을 제시하진 못해도, 해결하고자 하는 비즈니스 문제와 최종 결과물의 목표 이미지를 명확히 인지하고 있다. 또, 훌륭한 용역 제공자는 자신이 뭘 하고 싶은 지 설명하지 못하는 고객일지라도, 그들이 해결하고자 하는 문제를 구체화할 수 있도록 이끌어 주고, 최종 결과물의 목표 이미지와 기대 효과를 가늠할 수 있도록 해준다.</p>
 
-<p>일단 일을 시작하게 되면 고객과 계속 협업해야 한다. 계약을 수행하는 중에 스펙은 계속 변한다, 그것이 고객에 의해서든, 개발팀의 한계에 의해서든. 고객이 제시한 요구사항을 구현하다보면 더 좋은 설계를 역으로 제안하는 경우도 있다. 가끔은 팀의 현재 기술 수준, 시간, 또는 자원의 한계로 구현이 불가한 경우도 있다. 개발자는 매일 매일 선택의 순간을 만나게 되고(e.g. <code class="highlighter-rouge">&gt;</code> or <code class="highlighter-rouge">&gt;=</code>), 스스로 선택할 수 없는 문제라면, 고객에게 빠르게 결정을 요청해야 한다. 스펙 변경에 의해 개발자의 일 량이 늘거나 줄기도 하며, 기간을 늘리거나, 개발자를 더 투입해야 하는 순간도 있는데, 프로젝트/팀 매니저의 역할이다<small class="text-muted">오버타임하거나 태업하는 개발자를 관리하는 것은 매니저의 책임</small>.</p>
+<p>일단 일을 시작하게 되면 고객과 계속 협업해야 한다. 계약을 수행하는 중에 스펙은 계속 변한다, 그것이 고객에 의해서든, 개발팀의 한계에 의해서든. 고객이 제시한 요구사항을 구현하다보면 더 좋은 설계를 역으로 제안하는 경우도 있다. 가끔은 팀의 현재 기술 수준, 시간, 또는 자원의 한계로 구현이 불가한 경우도 있다. 개발자는 매일 매일 선택의 순간을 만나게 되고(e.g. <code class="language-plaintext highlighter-rouge">&gt;</code> or <code class="language-plaintext highlighter-rouge">&gt;=</code>), 스스로 선택할 수 없는 문제라면, 고객에게 빠르게 결정을 요청해야 한다. 스펙 변경에 의해 개발자의 일 량이 늘거나 줄기도 하며, 기간을 늘리거나, 개발자를 더 투입해야 하는 순간도 있는데, 프로젝트/팀 매니저의 역할이다<small class="text-muted">오버타임하거나 태업하는 개발자를 관리하는 것은 매니저의 책임</small>.</p>
 
 <p><strong>계약을 하지 말라는 얘기가 아니다. 계약은 무조건해야 한다. 다만, “상호 이득”을 위해 서로가 긴밀하게 협업해야 한다<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.</strong></p>
 
@@ -1206,7 +1210,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

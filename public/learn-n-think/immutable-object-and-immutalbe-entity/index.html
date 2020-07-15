@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>불변 밸류와 불변 엔티티 | Appkr.memo(new Story)</title>
 
@@ -148,7 +152,7 @@
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>위 코드의 실행 결과는 <code class="highlighter-rouge">int(1)</code>입니다. 변수 <code class="highlighter-rouge">$b</code>에 변수 <code class="highlighter-rouge">$a</code>의 값을 할당한 후, <code class="highlighter-rouge">$b</code>에 새로운 값 <code class="highlighter-rouge">3</code>을 할당했습니다. 당연히 <code class="highlighter-rouge">$b</code>에는 <code class="highlighter-rouge">3</code>이 담겨 있고, <code class="highlighter-rouge">$a</code>에는 <code class="highlighter-rouge">1</code>이 담겨 있을 겁니다. 아주 쉽죠?</p>
+<p>위 코드의 실행 결과는 <code class="language-plaintext highlighter-rouge">int(1)</code>입니다. 변수 <code class="language-plaintext highlighter-rouge">$b</code>에 변수 <code class="language-plaintext highlighter-rouge">$a</code>의 값을 할당한 후, <code class="language-plaintext highlighter-rouge">$b</code>에 새로운 값 <code class="language-plaintext highlighter-rouge">3</code>을 할당했습니다. 당연히 <code class="language-plaintext highlighter-rouge">$b</code>에는 <code class="language-plaintext highlighter-rouge">3</code>이 담겨 있고, <code class="language-plaintext highlighter-rouge">$a</code>에는 <code class="language-plaintext highlighter-rouge">1</code>이 담겨 있을 겁니다. 아주 쉽죠?</p>
 
 <p>그런데, 객체 컨텍스트에서도 이 규칙이 그대로 적용될까요? 클래스는 변수와 함수로 구성된 템플릿이며, 객체란 그 템플릿에 필요한 값을 채워서 완성한 실체입니다. 여튼 위의 예제와 똑같이 동작해야 하지않을까요?</p>
 
@@ -170,9 +174,9 @@
 <span class="c1">// }</span>
 </code></pre></div></div>
 
-<p>변수 <code class="highlighter-rouge">$b</code>에 <code class="highlighter-rouge">$a</code>에 담긴 객체를 그대로 할당한 후, <code class="highlighter-rouge">$b</code>의 <code class="highlighter-rouge">$name</code> 속성을 변경했습니다. <code class="highlighter-rouge">$b::name</code> 속성 값만 <code class="highlighter-rouge">"Bar"</code>로 바뀔 것이라 생각했지만, <code class="highlighter-rouge">$a::name</code> 속성 값도 <code class="highlighter-rouge">"Bar"</code>로 변경되어버렸습니다. <code class="highlighter-rouge">var_dump()</code>로 출력된 결과물에 객체 번호를 보면 힌트를 얻을 수 있습니다. <code class="highlighter-rouge">$a</code>와 <code class="highlighter-rouge">$b</code> 모두 <code class="highlighter-rouge">#696</code>으로 같습니다. 즉, 객체 <code class="highlighter-rouge">$b</code>는 객체 <code class="highlighter-rouge">$a</code>의 메모리 번지를 그냥 참조하고 있다고 볼 수 있습니다.</p>
+<p>변수 <code class="language-plaintext highlighter-rouge">$b</code>에 <code class="language-plaintext highlighter-rouge">$a</code>에 담긴 객체를 그대로 할당한 후, <code class="language-plaintext highlighter-rouge">$b</code>의 <code class="language-plaintext highlighter-rouge">$name</code> 속성을 변경했습니다. <code class="language-plaintext highlighter-rouge">$b::name</code> 속성 값만 <code class="language-plaintext highlighter-rouge">"Bar"</code>로 바뀔 것이라 생각했지만, <code class="language-plaintext highlighter-rouge">$a::name</code> 속성 값도 <code class="language-plaintext highlighter-rouge">"Bar"</code>로 변경되어버렸습니다. <code class="language-plaintext highlighter-rouge">var_dump()</code>로 출력된 결과물에 객체 번호를 보면 힌트를 얻을 수 있습니다. <code class="language-plaintext highlighter-rouge">$a</code>와 <code class="language-plaintext highlighter-rouge">$b</code> 모두 <code class="language-plaintext highlighter-rouge">#696</code>으로 같습니다. 즉, 객체 <code class="language-plaintext highlighter-rouge">$b</code>는 객체 <code class="language-plaintext highlighter-rouge">$a</code>의 메모리 번지를 그냥 참조하고 있다고 볼 수 있습니다.</p>
 
-<p>해결법은 의외로 간단합니다. 복제하는거죠. <code class="highlighter-rouge">clone</code> 키워드와 객체 번호가 <code class="highlighter-rouge">#696</code>, <code class="highlighter-rouge">#697</code>로 서로 다름을 확인해주세요.</p>
+<p>해결법은 의외로 간단합니다. 복제하는거죠. <code class="language-plaintext highlighter-rouge">clone</code> 키워드와 객체 번호가 <code class="language-plaintext highlighter-rouge">#696</code>, <code class="language-plaintext highlighter-rouge">#697</code>로 서로 다름을 확인해주세요.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
@@ -199,9 +203,9 @@
 
 <h3 id="21-carbon">2.1. Carbon</h3>
 
-<p>라라벨 프로젝트에서 가장 쉽게 만날 수 있는 밸류 객체(Value Object, 값 객체)는 <code class="highlighter-rouge">Carbon</code> 입니다. 엘로퀀트 모델을 만들면 기본적으로 <code class="highlighter-rouge">created_at</code>, <code class="highlighter-rouge">updated_at</code>이란 속성이 추가되고, 이 속성에는 <code class="highlighter-rouge">Carbon</code> 객체가 할당됩니다.</p>
+<p>라라벨 프로젝트에서 가장 쉽게 만날 수 있는 밸류 객체(Value Object, 값 객체)는 <code class="language-plaintext highlighter-rouge">Carbon</code> 입니다. 엘로퀀트 모델을 만들면 기본적으로 <code class="language-plaintext highlighter-rouge">created_at</code>, <code class="language-plaintext highlighter-rouge">updated_at</code>이란 속성이 추가되고, 이 속성에는 <code class="language-plaintext highlighter-rouge">Carbon</code> 객체가 할당됩니다.</p>
 
-<p>객체의 이점을 얻기 위해서 보통 원시 타입(<code class="highlighter-rouge">string</code>, <code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">float</code>, <code class="highlighter-rouge">array</code>)을 밸류 객체로 바꿔서 사용하는데, 예를 들면, <code class="highlighter-rouge">string</code> 타입의 블로그 포스트 제목을 <code class="highlighter-rouge">Title</code> 객체를 만들어 사용하는 것 같은 것이죠. 예제가 현실적이지는 않지만, 앞서 말한 <code class="highlighter-rouge">Carbon</code>을 이용함으로써 다음과 같은 편리함이 더해집니다.</p>
+<p>객체의 이점을 얻기 위해서 보통 원시 타입(<code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">array</code>)을 밸류 객체로 바꿔서 사용하는데, 예를 들면, <code class="language-plaintext highlighter-rouge">string</code> 타입의 블로그 포스트 제목을 <code class="language-plaintext highlighter-rouge">Title</code> 객체를 만들어 사용하는 것 같은 것이죠. 예제가 현실적이지는 않지만, 앞서 말한 <code class="language-plaintext highlighter-rouge">Carbon</code>을 이용함으로써 다음과 같은 편리함이 더해집니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman</span>
@@ -210,7 +214,7 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="nv">$article</span>-&gt;save<span class="o">()</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><strong>그런데 <code class="highlighter-rouge">Carbon</code>은 불변 밸류가 아닙니다.</strong> 아래 예제는 무시무시합니다.</p>
+<p><strong>그런데 <code class="language-plaintext highlighter-rouge">Carbon</code>은 불변 밸류가 아닙니다.</strong> 아래 예제는 무시무시합니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="o">&gt;&gt;&gt;</span> <span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span><span class="p">;</span>
@@ -227,9 +231,9 @@
 <span class="c">#    }</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">$now</code>라는 변수를 여러 곳에서 참조한다고 가정해보죠. 어떤 로직에서 <code class="highlighter-rouge">$now</code> 변수에 <code class="highlighter-rouge">addMonths()</code> API를 호출했다고 가정하죠. 그러면 그 뒤에 <code class="highlighter-rouge">$now</code> 변수를 참조하는 로직은 전부 한 달 뒤의 날짜 값을 사용하게 되는 겁니다. <code class="highlighter-rouge">Carbon</code>의 특성을 모르는 개발자가 이와 같이 코드를 짰을 때, <code class="highlighter-rouge">Carbon</code>의 특성에 대해 이해하고 있는 다른 개발자가 이 버그를 잡을 수 있을까요?</p>
+<p><code class="language-plaintext highlighter-rouge">$now</code>라는 변수를 여러 곳에서 참조한다고 가정해보죠. 어떤 로직에서 <code class="language-plaintext highlighter-rouge">$now</code> 변수에 <code class="language-plaintext highlighter-rouge">addMonths()</code> API를 호출했다고 가정하죠. 그러면 그 뒤에 <code class="language-plaintext highlighter-rouge">$now</code> 변수를 참조하는 로직은 전부 한 달 뒤의 날짜 값을 사용하게 되는 겁니다. <code class="language-plaintext highlighter-rouge">Carbon</code>의 특성을 모르는 개발자가 이와 같이 코드를 짰을 때, <code class="language-plaintext highlighter-rouge">Carbon</code>의 특성에 대해 이해하고 있는 다른 개발자가 이 버그를 잡을 수 있을까요?</p>
 
-<p>아참 해결방법은 <code class="highlighter-rouge">clone</code> 키워드를 이용하는 것입니다.</p>
+<p>아참 해결방법은 <code class="language-plaintext highlighter-rouge">clone</code> 키워드를 이용하는 것입니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="o">&gt;&gt;&gt;</span> <span class="nv">$now</span> <span class="o">=</span> Carbon<span class="se">\C</span>arbon::now<span class="o">()</span><span class="p">;</span>
@@ -238,7 +242,7 @@
 
 <h3 id="22-money">2.2. Money</h3>
 
-<p>불변 객체는 한 번 생성된 이후에 상태를 변경할 수 없는 객체입니다. 아래 <code class="highlighter-rouge">Money</code> 클래스 예제를 살펴보면, <code class="highlighter-rouge">add()</code> 메서드는 다른 <code class="highlighter-rouge">Money</code> 객체를 인자로 받고, <code class="highlighter-rouge">$value</code> 속성의 상태를 변경하는 것이 아니라, 완전 새로운 <code class="highlighter-rouge">Money</code> 객체를 반환합니다.</p>
+<p>불변 객체는 한 번 생성된 이후에 상태를 변경할 수 없는 객체입니다. 아래 <code class="language-plaintext highlighter-rouge">Money</code> 클래스 예제를 살펴보면, <code class="language-plaintext highlighter-rouge">add()</code> 메서드는 다른 <code class="language-plaintext highlighter-rouge">Money</code> 객체를 인자로 받고, <code class="language-plaintext highlighter-rouge">$value</code> 속성의 상태를 변경하는 것이 아니라, 완전 새로운 <code class="language-plaintext highlighter-rouge">Money</code> 객체를 반환합니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/core/Myshop/Common/Model/Money.php</span>
 
@@ -269,7 +273,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>아래 팅커 출력 결과에서 객체의 번호가 <code class="highlighter-rouge">#683</code>, <code class="highlighter-rouge">#692</code>, <code class="highlighter-rouge">#694</code>로 모두 다름에 주목해야 합니다. 매번 다른 객체가 생성된다는 뜻이죠~</p>
+<p>아래 팅커 출력 결과에서 객체의 번호가 <code class="language-plaintext highlighter-rouge">#683</code>, <code class="language-plaintext highlighter-rouge">#692</code>, <code class="language-plaintext highlighter-rouge">#694</code>로 모두 다름에 주목해야 합니다. 매번 다른 객체가 생성된다는 뜻이죠~</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># Psy Shell v0.8.3 (PHP 7.1.2 — cli) by Justin Hileman</span>
@@ -287,7 +291,7 @@
 <span class="c"># =&gt; 200</span>
 </code></pre></div></div>
 
-<p>밸류 객체는 객체의 속성 값이 모두 같다면 “같다”라고 할 수 있습니다. <code class="highlighter-rouge">User</code> 객체를 예로 들어 볼까요? 공교롭게도 어떤 <code class="highlighter-rouge">User</code>가 저와 같은 <code class="highlighter-rouge">$name</code>, <code class="highlighter-rouge">$age</code>를 가지고 있다고 가정해보죠? 그럼 두 <code class="highlighter-rouge">User</code>는 같을까요? 당연히 다르죠? 그런데, 2017-06-04 라는 값을 가진 <code class="highlighter-rouge">Date</code> 객체를 가정해보죠. 다른 <code class="highlighter-rouge">Date</code> 객체가 똑같이 2017-06-04라는 값을 가지고 있다면 둘은 같은걸까요? 예. 예로 든 <code class="highlighter-rouge">Date</code>는 밸류이고, <code class="highlighter-rouge">User</code>는 엔티티입니다.</p>
+<p>밸류 객체는 객체의 속성 값이 모두 같다면 “같다”라고 할 수 있습니다. <code class="language-plaintext highlighter-rouge">User</code> 객체를 예로 들어 볼까요? 공교롭게도 어떤 <code class="language-plaintext highlighter-rouge">User</code>가 저와 같은 <code class="language-plaintext highlighter-rouge">$name</code>, <code class="language-plaintext highlighter-rouge">$age</code>를 가지고 있다고 가정해보죠? 그럼 두 <code class="language-plaintext highlighter-rouge">User</code>는 같을까요? 당연히 다르죠? 그런데, 2017-06-04 라는 값을 가진 <code class="language-plaintext highlighter-rouge">Date</code> 객체를 가정해보죠. 다른 <code class="language-plaintext highlighter-rouge">Date</code> 객체가 똑같이 2017-06-04라는 값을 가지고 있다면 둘은 같은걸까요? 예. 예로 든 <code class="language-plaintext highlighter-rouge">Date</code>는 밸류이고, <code class="language-plaintext highlighter-rouge">User</code>는 엔티티입니다.</p>
 
 <h2 id="3-불변-엔티티">3. 불변 엔티티</h2>
 
@@ -299,7 +303,7 @@
 
 <p>엔티티는 고유 식별자를 가지고 있습니다. 엔티티는 생성된 후 식별자를 제외한 상태가 변경될 수 있습니다. “상태”라 표현한 것이 결국 클래스의 Private 변수들의 값이며, 이 Private 변수에는 다른 엔티티, 밸류 객체, 원시 타입 값들이 담기게 됩니다. 엔티티를 사용하는 클라이언트 클래스에서 엔티티의 Public 함수(API)를 호출하여 엔티티의 상태를 변경하겠죠~</p>
 
-<p>밸류는 식별자가 없습니다. <code class="highlighter-rouge">Carbon</code>처럼 상태가 변경될 수도 있지만, 앞서 살펴본 대로 불변 객체를 사용하는 것이 더 나은 설계라고 알려져 있습니다. 앞서 살펴본 <code class="highlighter-rouge">Money</code> 밸류처럼 말이죠. 밸류 객체 역시, 해당 밸류를 상태로 사용하는 엔티티가 대상 밸류에 포함된 Public API를 호출함으로써 엔티티 자신의 상태를 변경할 겁니다.</p>
+<p>밸류는 식별자가 없습니다. <code class="language-plaintext highlighter-rouge">Carbon</code>처럼 상태가 변경될 수도 있지만, 앞서 살펴본 대로 불변 객체를 사용하는 것이 더 나은 설계라고 알려져 있습니다. 앞서 살펴본 <code class="language-plaintext highlighter-rouge">Money</code> 밸류처럼 말이죠. 밸류 객체 역시, 해당 밸류를 상태로 사용하는 엔티티가 대상 밸류에 포함된 Public API를 호출함으로써 엔티티 자신의 상태를 변경할 겁니다.</p>
 
 <p>객체로 생성되어 메모리에 살아 있는 동안 상태를 변경하고, 데이터베이스에 저장함으로써 다시 꺼내서 재생할 때까지 냉동 수면을 하게 됩니다.</p>
 
@@ -345,7 +349,7 @@ VALUES <span class="o">(</span>1, <span class="s2">"{original:{base_charge:90}, 
 
 <h4 id="322-하나의-엔티티에-대해-여러-레코드를-기록">3.2.2. 하나의 엔티티에 대해 여러 레코드를 기록</h4>
 
-<p>3.2.1의 두 개 테이블을 하나로 합쳐서 상태를 저장하는 방식입니다. <code class="highlighter-rouge">UPDATE</code> 쿼리는 없고, 오직 <code class="highlighter-rouge">INSERT</code>만 허용합니다.</p>
+<p>3.2.1의 두 개 테이블을 하나로 합쳐서 상태를 저장하는 방식입니다. <code class="language-plaintext highlighter-rouge">UPDATE</code> 쿼리는 없고, 오직 <code class="language-plaintext highlighter-rouge">INSERT</code>만 허용합니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Table: bills
 +-------------------------------+
@@ -1347,7 +1351,16 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

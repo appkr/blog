@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부 | Appkr.memo(new Story)</title>
 
@@ -164,7 +168,7 @@
 
 <h3 id="12-단말기-등록">1.2. 단말기 등록</h3>
 
-<p>FCM 콘솔에 등록한 패키지 이름으로 FCM SDK를 적용해서 앱을 만들고, 앱을 시작할 때 FCM 서버와 통신하여, 앱을 실행한 해당 단말기를 식별할 수 있는 고유 토큰(<code class="highlighter-rouge">registration_id</code>)을 받을 수 있다. 전화번호처럼 이 단말기의 고유 식별 번호라 생각하면 된다.</p>
+<p>FCM 콘솔에 등록한 패키지 이름으로 FCM SDK를 적용해서 앱을 만들고, 앱을 시작할 때 FCM 서버와 통신하여, 앱을 실행한 해당 단말기를 식별할 수 있는 고유 토큰(<code class="language-plaintext highlighter-rouge">registration_id</code>)을 받을 수 있다. 전화번호처럼 이 단말기의 고유 식별 번호라 생각하면 된다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>App Server      FCM Server      Mobile
 │               │ Request token │
@@ -178,8 +182,8 @@
 </code></pre></div></div>
 
 <ul>
-  <li>위 시퀀스 다이어그램에서 모바일 애플리케이션이 FCM 서버로 부터 <code class="highlighter-rouge">"foo"</code>라는 토큰을 받았다.</li>
-  <li>모바일 애플리케이션은 앱 서버에 <code class="highlighter-rouge">"foo"</code> 토큰 저장 요청을 한다.</li>
+  <li>위 시퀀스 다이어그램에서 모바일 애플리케이션이 FCM 서버로 부터 <code class="language-plaintext highlighter-rouge">"foo"</code>라는 토큰을 받았다.</li>
+  <li>모바일 애플리케이션은 앱 서버에 <code class="language-plaintext highlighter-rouge">"foo"</code> 토큰 저장 요청을 한다.</li>
   <li>이 때 앱 서버는 토큰 저장을 요청한 클라이언트(단말 또는 사용자)를 식별하고 전달 받은 토큰을 데이터베이스에 저장한다.</li>
 </ul>
 
@@ -199,7 +203,7 @@
 │&lt;<span class="nt">--------------</span>│               │
 </code></pre></div></div>
 
-<p>모든 과정이 순조로울 수는 없다. 메시지 전송 요청에 대한 FCM 서버의 응답에 따라, 서버에 저장된 클라이언트의 토큰(<code class="highlighter-rouge">registration_id</code>)을 업데이트하거나 삭제하는 등 몇 가지 후속 처리를 해야할 경우도 있다.</p>
+<p>모든 과정이 순조로울 수는 없다. 메시지 전송 요청에 대한 FCM 서버의 응답에 따라, 서버에 저장된 클라이언트의 토큰(<code class="language-plaintext highlighter-rouge">registration_id</code>)을 업데이트하거나 삭제하는 등 몇 가지 후속 처리를 해야할 경우도 있다.</p>
 
 <h2 id="2-단말기-등록-서비스-구현">2. 단말기 등록 서비스 구현</h2>
 
@@ -241,7 +245,7 @@
 <span class="c"># Created Migration: YYYY_MM_DD_xxxxxx_create_devices_table</span>
 </code></pre></div></div>
 
-<p>마이그레이션을 작성한다. 우리 예제에서는 모바일 애플리케이션이 저장을 요청하는 토큰을 <code class="highlighter-rouge">push_service_id</code> 컬럼에 저장하기로 하자.</p>
+<p>마이그레이션을 작성한다. 우리 예제에서는 모바일 애플리케이션이 저장을 요청하는 토큰을 <code class="language-plaintext highlighter-rouge">push_service_id</code> 컬럼에 저장하기로 하자.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// YYYY_MM_DD_xxxxxx_create_devices_table.php</span>
 
@@ -280,7 +284,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">User</code> 모델과 <code class="highlighter-rouge">Device</code> 모델 간의 관계는 일대다 관계라고 가정하자. 한 사람이 여러 대의 단말기를 가질 수 있다는 의미다.</p>
+<p><code class="language-plaintext highlighter-rouge">User</code> 모델과 <code class="language-plaintext highlighter-rouge">Device</code> 모델 간의 관계는 일대다 관계라고 가정하자. 한 사람이 여러 대의 단말기를 가질 수 있다는 의미다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/User.php</span>
 
@@ -406,7 +410,7 @@ Content-Type: application/json
 
 <h3 id="24-http-기본-인증-구현">2.4. HTTP 기본 인증 구현</h3>
 
-<p>API 클라이언트 인증을 위해 HTTP 기본 인증을 하는 미들웨어를 만들자. <code class="highlighter-rouge">Auth::onceBasic()</code> 메서드는 클라이언트가 <code class="highlighter-rouge">Authorization</code> 헤더로 제출한 <code class="highlighter-rouge">base64_encode("{$email}:{$password}")</code>를 검사하고 로그인 정보가 맞으면 이번 요청 동안만 로그인을 유지하고, 잘못된 로그인 정보라면 401 응답을 반환한다.</p>
+<p>API 클라이언트 인증을 위해 HTTP 기본 인증을 하는 미들웨어를 만들자. <code class="language-plaintext highlighter-rouge">Auth::onceBasic()</code> 메서드는 클라이언트가 <code class="language-plaintext highlighter-rouge">Authorization</code> 헤더로 제출한 <code class="language-plaintext highlighter-rouge">base64_encode("{$email}:{$password}")</code>를 검사하고 로그인 정보가 맞으면 이번 요청 동안만 로그인을 유지하고, 잘못된 로그인 정보라면 401 응답을 반환한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/fcm-scratchpad <span class="nv">$ </span>php artisan make:middlware AuthenticateOnceWithBasicAuth
 </code></pre></div></div>
@@ -426,7 +430,7 @@ Content-Type: application/json
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>미들웨어를 만들면 HTTP 커널에 등록해야 한다. <code class="highlighter-rouge">auth.basic.once</code>라는 별칭으로 등록했다.</p>
+<p>미들웨어를 만들면 HTTP 커널에 등록해야 한다. <code class="language-plaintext highlighter-rouge">auth.basic.once</code>라는 별칭으로 등록했다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Kernel.php</span>
 
@@ -466,7 +470,7 @@ Content-Type: application/json
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>다음 그림처럼 포스트맨에서 <code class="highlighter-rouge">Authorization</code> 탭을 누르고 <code class="highlighter-rouge">Username: user@example.com</code>, <code class="highlighter-rouge">Password: secret</code>를 입력한 후 <code class="highlighter-rouge">Update Request</code> 버튼을 누르면 <code class="highlighter-rouge">Authorization</code> 헤더가 업데이트된다.</p>
+<p>다음 그림처럼 포스트맨에서 <code class="language-plaintext highlighter-rouge">Authorization</code> 탭을 누르고 <code class="language-plaintext highlighter-rouge">Username: user@example.com</code>, <code class="language-plaintext highlighter-rouge">Password: secret</code>를 입력한 후 <code class="language-plaintext highlighter-rouge">Update Request</code> 버튼을 누르면 <code class="language-plaintext highlighter-rouge">Authorization</code> 헤더가 업데이트된다.</p>
 
 <p><a href="/images/2016-12-18-img-03.png"><img src="/images/2016-12-18-img-03.png" alt="Postman" /></a></p>
 
@@ -1451,7 +1455,16 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

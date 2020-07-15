@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Chrome OS 에 숨어 있는 전략적 의도 | Appkr.memo(new Story)</title>
 
@@ -155,7 +159,7 @@
   <li>HTML 5 기술을 사용한다. 브라우저에서 HTML 로 로컬 하드웨어들을 제어하고, 오프라인에서 만든/수정한 Data 는 온라인이 되면 동기화된다는 의미이다.</li>
   <li>Virtual Desktop 을 지원한다. 여러 브라우저를 서로 다른 화면에 열 수 있다.</li>
   <li>한 개의 Desktop 내에서는 Tab 과 Panel 로만 화면이 구성된다.</li>
-  <li>GPL 이 아닌 새로운 OSS License 정책을 취하고 있다. <a href="http://git.chromium.org/cgi-bin/gitweb.cgi?p=chromiumos.git;a=blob;f=src/LICENSE;h=0aa7fc93577374e4f4c29387cf2a17ea95f8d4bc;hb=HEAD"><code class="highlighter-rouge">Copyright (c) 2006-2009 The Chromium OS Authors. All rights reserved.</code></a> 라는 문구를 삭제할 수 없다.</li>
+  <li>GPL 이 아닌 새로운 OSS License 정책을 취하고 있다. <a href="http://git.chromium.org/cgi-bin/gitweb.cgi?p=chromiumos.git;a=blob;f=src/LICENSE;h=0aa7fc93577374e4f4c29387cf2a17ea95f8d4bc;hb=HEAD"><code class="language-plaintext highlighter-rouge">Copyright (c) 2006-2009 The Chromium OS Authors. All rights reserved.</code></a> 라는 문구를 삭제할 수 없다.</li>
   <li>현재 시중에 나와 있는 대표적인 넷북을 <a href="http://sites.google.com/a/chromium.org/dev/chromium-os/getting-dev-hardware/dev-hardware-list">개발플랫폼</a> 으로 사용한다. 공개된 개발 플랫폼은 모두 x86 계열이지만, ARM Architecture 도 지원할 것이라고 한다.</li>
   <li>공개된 버전은 브라우저만 실행할 수 있으며, Chrome 버튼은 활성화 되어 있지 않다.</li>
 </ul>
@@ -1181,7 +1185,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>AWS ECS/ECR을 이용한 서비스 배포 | Appkr.memo(new Story)</title>
 
@@ -149,7 +153,7 @@
 
 <p>그런데 <strong>아직 서울 지역는 오픈되지 않았습니다.</strong> 빨리 좀 오픈해 주세요~ 갓마존.</p>
 
-<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
+<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="language-plaintext highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -160,7 +164,7 @@
 
 <p><a href="https://github.com/appkr/deploy-laravel-with-ecs-and-ecr">https://github.com/appkr/deploy-laravel-with-ecs-and-ecr</a></p>
 
-<p>이 예제에서는 로컬의 <code class="highlighter-rouge">.env</code> 파일을 도커 이미지에 포함하여 애플리케이션의 실행 환경 변수를 설정하고 있습니다. 실제 배포에서는 AWS Console/로컬 셸에서 환경 변수를 등록하거나, <code class="highlighter-rouge">Dockerfile</code>에서 S3 등에 저장된 <code class="highlighter-rouge">.env</code>를 도커 이미지로 다운로드 받아 사용하도록 하는 것이 안전할 것입니다.</p>
+<p>이 예제에서는 로컬의 <code class="language-plaintext highlighter-rouge">.env</code> 파일을 도커 이미지에 포함하여 애플리케이션의 실행 환경 변수를 설정하고 있습니다. 실제 배포에서는 AWS Console/로컬 셸에서 환경 변수를 등록하거나, <code class="language-plaintext highlighter-rouge">Dockerfile</code>에서 S3 등에 저장된 <code class="language-plaintext highlighter-rouge">.env</code>를 도커 이미지로 다운로드 받아 사용하도록 하는 것이 안전할 것입니다.</p>
 
 <h2 id="2-hello-ecs">2. Hello ECS</h2>
 
@@ -181,13 +185,13 @@
 
 <h3 id="21-step-1-configure-repository">2.1. Step 1: Configure repository</h3>
 
-<p>ECR 레지스트리에 저장소 이름을 정하는 화면입니다. <code class="highlighter-rouge">appkr/myshop</code>으로 이름을 정했습니다.</p>
+<p>ECR 레지스트리에 저장소 이름을 정하는 화면입니다. <code class="language-plaintext highlighter-rouge">appkr/myshop</code>으로 이름을 정했습니다.</p>
 
 <p><a href="/images/2017-02-12-img-03.png"><img src="/images/2017-02-12-img-03.png" alt="Step 1: Configure repository" /></a></p>
 
 <h3 id="22-step-2-build-tag-and-push-docker-image">2.2. Step 2: Build, tag, and push Docker image</h3>
 
-<p>화면에 ECR을 초기화하기 위한 자세한 안내가 나옵니다. 1 절에서 이미지는 빌드하고 테스트했으므로 빌드 과정은 건너 뜁니다. <code class="highlighter-rouge">appkr/myshop:latest</code> 이미지를 빌드했고, 실행하여 작동 테스트를 완료했다고 가정합니다. 나머지 과정은 다음과 같습니다.</p>
+<p>화면에 ECR을 초기화하기 위한 자세한 안내가 나옵니다. 1 절에서 이미지는 빌드하고 테스트했으므로 빌드 과정은 건너 뜁니다. <code class="language-plaintext highlighter-rouge">appkr/myshop:latest</code> 이미지를 빌드했고, 실행하여 작동 테스트를 완료했다고 가정합니다. 나머지 과정은 다음과 같습니다.</p>
 
 <p>로컬 셸에서 ECR 서비스에 로그인합니다. 도커 허브나 <a href="https://docs.docker.com/registry/">도커 레지스트리</a>에 로그인하는 방법과 같습니다. 굉장히 긴 비밀번호가 달린 명령문을 콘솔에 출력하는데 그대로 복사해서 붙여 넣고 로그인합니다.</p>
 
@@ -213,7 +217,7 @@
 
 <h3 id="23-step-3-create-a-task-definition">2.3. Step 3: Create a task definition</h3>
 
-<p>필자도 ECS를 배우고 있는 과정으로, 두 번 밖에 사용해 보지 않았기에 갓마존에서 말하는 <code class="highlighter-rouge">task</code>의 개념을 정확히 이해하지 못했습니다. <kbd>Create a task definition</kbd> 창에 다음과 같이 입력했습니다.</p>
+<p>필자도 ECS를 배우고 있는 과정으로, 두 번 밖에 사용해 보지 않았기에 갓마존에서 말하는 <code class="language-plaintext highlighter-rouge">task</code>의 개념을 정확히 이해하지 못했습니다. <kbd>Create a task definition</kbd> 창에 다음과 같이 입력했습니다.</p>
 
 <ul>
   <li>Task definition name*: deploy</li>
@@ -270,11 +274,11 @@
 
 <h3 id="31-로드-밸런서">3.1. 로드 밸런서</h3>
 
-<p><kbd>Cluster</kbd> 메뉴에서 <code class="highlighter-rouge">myshop</code> 서비스를 선택하면, <kbd>Load Balancing</kbd> 섹션을 볼 수 있습니다. 누르면 다음 화면을 볼 수 있습니다.</p>
+<p><kbd>Cluster</kbd> 메뉴에서 <code class="language-plaintext highlighter-rouge">myshop</code> 서비스를 선택하면, <kbd>Load Balancing</kbd> 섹션을 볼 수 있습니다. 누르면 다음 화면을 볼 수 있습니다.</p>
 
 <p><a href="/images/2017-02-12-img-05.png"><img src="/images/2017-02-12-img-05.png" alt="EC2 Load Balancing" /></a></p>
 
-<p>하이라이트된 URL이 도커 컨테이너에서 실행 중인 서비스로서, 사용자가 접근할 수 있는 URL이 됩니다. 브라우저에서 열어보면 컨테이너 <code class="highlighter-rouge">59450439db83</code>에서 서비스가 실행 중인 것을 확인할 수 있습니다.</p>
+<p>하이라이트된 URL이 도커 컨테이너에서 실행 중인 서비스로서, 사용자가 접근할 수 있는 URL이 됩니다. 브라우저에서 열어보면 컨테이너 <code class="language-plaintext highlighter-rouge">59450439db83</code>에서 서비스가 실행 중인 것을 확인할 수 있습니다.</p>
 
 <p><a href="/images/2017-02-12-img-06.png"><img src="/images/2017-02-12-img-06.png" alt="EC2 Load Balancing" /></a></p>
 
@@ -305,7 +309,7 @@
 
 <h2 id="4-워크-플로우">4. 워크 플로우</h2>
 
-<p>이제 로컬 개발 환경에서 애플리케이션 코드가 변경되면, <code class="highlighter-rouge">docker build</code> -&gt; <code class="highlighter-rouge">docker tag</code> -&gt; <code class="highlighter-rouge">docker push</code> 명령만으로 변경된 애플리케이션을 AWS ECS 클러스터에 배포할 수 있습니다.</p>
+<p>이제 로컬 개발 환경에서 애플리케이션 코드가 변경되면, <code class="language-plaintext highlighter-rouge">docker build</code> -&gt; <code class="language-plaintext highlighter-rouge">docker tag</code> -&gt; <code class="language-plaintext highlighter-rouge">docker push</code> 명령만으로 변경된 애플리케이션을 AWS ECS 클러스터에 배포할 수 있습니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/deploy-laravel-with-ecs-and-ecr <span class="nv">$ </span>docker build <span class="nt">--tag</span> appkr/myshop <span class="nb">.</span>
 
@@ -314,13 +318,13 @@
 ~/any <span class="nv">$ </span>docker push 628988759087.dkr.ecr.ap-northeast-1.amazonaws.com/appkr/myshop:latest
 </code></pre></div></div>
 
-<p>이상의 과정을 Jenkins등 CI/CD 도구에 걸어 놓으면, 코드 변경 -&gt; <code class="highlighter-rouge">git push</code> -&gt; Test by CI tool -&gt; Deploy by CD tool 등으로 애플리케이션 개발 및 수정 이후의 모든 과정을 완전 자동화할 수 있을 겁니다. 도커, CI/CD를 통한 테스트 및 배포 자동화는 배포에 대한 개발자의 두려움을 없애 줍니다.</p>
+<p>이상의 과정을 Jenkins등 CI/CD 도구에 걸어 놓으면, 코드 변경 -&gt; <code class="language-plaintext highlighter-rouge">git push</code> -&gt; Test by CI tool -&gt; Deploy by CD tool 등으로 애플리케이션 개발 및 수정 이후의 모든 과정을 완전 자동화할 수 있을 겁니다. 도커, CI/CD를 통한 테스트 및 배포 자동화는 배포에 대한 개발자의 두려움을 없애 줍니다.</p>
 
 <p>배포 및 운영만을 담당하는 엔지니어가 별도로 있는 조오~은 회사가 아니라면, 결과적으로 ECS/ECR를 이용한 서비스 배포는 개발자가 비즈니스 로직 개발에만 집중할 수 있도록 함으로써, 비즈니스 싸이클이 빨리지는 효과를 얻을 수 있습니다.</p>
 
 <hr />
 
-<p>도커 이용의 장점이나 사용법을 배우려면 <code class="highlighter-rouge">subicura</code>님의 블로그 포스트를 참고하시기 바랍니다.</p>
+<p>도커 이용의 장점이나 사용법을 배우려면 <code class="language-plaintext highlighter-rouge">subicura</code>님의 블로그 포스트를 참고하시기 바랍니다.</p>
 
 <p><a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">초보를 위한 도커 안내서 by subicura(김충섭)</a></p>
 
@@ -1280,7 +1284,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

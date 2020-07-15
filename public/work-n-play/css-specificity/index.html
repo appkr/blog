@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>CSS Specificity | Appkr.memo(new Story)</title>
 
@@ -154,9 +158,9 @@
 <p>내가 기존에 알고 있던 지식은</p>
 
 <ul>
-  <li>Tag Selector 1 점 (<em>e.g. <code class="highlighter-rouge">a {...}</code></em>)</li>
-  <li>Class Selector 10 점 (<em>e.g. <code class="highlighter-rouge">.darth {...}</code></em>)</li>
-  <li>Id Selector 100 점 (<em>e.g. <code class="highlighter-rouge">#sith {...}</code></em>)</li>
+  <li>Tag Selector 1 점 (<em>e.g. <code class="language-plaintext highlighter-rouge">a {...}</code></em>)</li>
+  <li>Class Selector 10 점 (<em>e.g. <code class="language-plaintext highlighter-rouge">.darth {...}</code></em>)</li>
+  <li>Id Selector 100 점 (<em>e.g. <code class="language-plaintext highlighter-rouge">#sith {...}</code></em>)</li>
 </ul>
 
 <p>였다. 궁금증은 <em>‘Tag 를 11 개 중첩해서 쓰면 Class 하나를 오버라이드할 수 있을까?’</em> 라는 것.</p>
@@ -167,7 +171,7 @@
 <span class="nv">$ </span><span class="nb">touch </span>index.html
 </code></pre></div></div>
 
-<p>오늘 전까지는, 아래 <code class="highlighter-rouge">&lt;style&gt;</code> 내부에 주석으로 표시된 계산법으로 알고 있었다. (삐이이~~ 잘못 알고 있던 것이다.)</p>
+<p>오늘 전까지는, 아래 <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> 내부에 주석으로 표시된 계산법으로 알고 있었다. (삐이이~~ 잘못 알고 있던 것이다.)</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- index.html --&gt;</span>
 
@@ -229,15 +233,15 @@
 
 <p><a href="/images/2016-02-16-img-01.png"><img src="/images/2016-02-16-img-01.png" alt="CSS Specificity" /></a></p>
 
-<p>헐~ㅋ 결과는 녹색 (<code class="highlighter-rouge">green</code>) 이 아니라 청색 (<code class="highlighter-rouge">blue</code>) 이다.</p>
+<p>헐~ㅋ 결과는 녹색 (<code class="language-plaintext highlighter-rouge">green</code>) 이 아니라 청색 (<code class="language-plaintext highlighter-rouge">blue</code>) 이다.</p>
 
 <p>실험의 결론을 정리하면, ‘Tag selector 는 Class Selector 를 이길 수 없고, Class Selector 는 Id Selector 를 이길 수 없다’ 는 것. 즉, 기존의 내 계산법은 잘못된 것이었다.</p>
 
 <h3 id="whats-wrong-whats-correct">What’s wrong? What’s correct?</h3>
 
-<p>CSS 적용 우선순위는 개발팀들이 거의 <em>de facto</em> 로 생각하고 프로젝트들에 적용하고 있는 <a href="//semver.org/lang/ko/">Semantic Versioning</a> 에 비유할 수 있다. <code class="highlighter-rouge">0.1.0</code> 과 <code class="highlighter-rouge">0.0.12</code> 의 차이 같은 것이다. <code class="highlighter-rouge">0.1.0</code> 이 더 최신 버전이라 채택되고, 특별한 이유가 없다면 <code class="highlighter-rouge">0.0.12</code> 는 무시되는 것 처럼..</p>
+<p>CSS 적용 우선순위는 개발팀들이 거의 <em>de facto</em> 로 생각하고 프로젝트들에 적용하고 있는 <a href="//semver.org/lang/ko/">Semantic Versioning</a> 에 비유할 수 있다. <code class="language-plaintext highlighter-rouge">0.1.0</code> 과 <code class="language-plaintext highlighter-rouge">0.0.12</code> 의 차이 같은 것이다. <code class="language-plaintext highlighter-rouge">0.1.0</code> 이 더 최신 버전이라 채택되고, 특별한 이유가 없다면 <code class="language-plaintext highlighter-rouge">0.0.12</code> 는 무시되는 것 처럼..</p>
 
-<p>오늘 작심5일 강의에서 알게된 아티클 –<a href="https://stuffandnonsense.co.uk/archives/css_specificity_wars.html">CSS: Specificity Wars</a>– 과 Sync 를 위해, CSS 에서는 Dot(<code class="highlighter-rouge">.</code>) 대신, Comma(<code class="highlighter-rouge">,</code>) 구분자를 이용해서 다시 계산해 본다.</p>
+<p>오늘 작심5일 강의에서 알게된 아티클 –<a href="https://stuffandnonsense.co.uk/archives/css_specificity_wars.html">CSS: Specificity Wars</a>– 과 Sync 를 위해, CSS 에서는 Dot(<code class="language-plaintext highlighter-rouge">.</code>) 대신, Comma(<code class="language-plaintext highlighter-rouge">,</code>) 구분자를 이용해서 다시 계산해 본다.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- index.html --&gt;</span>
 
@@ -264,7 +268,7 @@
 
 <h3 id="then">Then?</h3>
 
-<p>그럼 <code class="highlighter-rouge">div .darth</code> 는 <code class="highlighter-rouge">.darth</code> 를 이길 수 있을까?</p>
+<p>그럼 <code class="language-plaintext highlighter-rouge">div .darth</code> 는 <code class="language-plaintext highlighter-rouge">.darth</code> 를 이길 수 있을까?</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.darth</span> <span class="p">{</span>
   <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
@@ -1232,7 +1236,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

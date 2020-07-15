@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>블로그 플랫폼 이전 3 - Publishing | Appkr.memo(new Story)</title>
 
@@ -216,19 +220,19 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 <span class="nt">&lt;/div&gt;</span>
 </code></pre></div></div>
 
-<p>전체 레이아웃은 다음 그림과 같다. 레이아웃 맨 아래에 <code class="highlighter-rouge">_layouts/site-footer.html</code> 은 스크린샷에서 빠졌다.</p>
+<p>전체 레이아웃은 다음 그림과 같다. 레이아웃 맨 아래에 <code class="language-plaintext highlighter-rouge">_layouts/site-footer.html</code> 은 스크린샷에서 빠졌다.</p>
 
 <p><a href="/images/2016-02-11-img-03.png"><img src="/images/2016-02-11-img-03.png" alt="" /></a></p>
 
 <h2 id="bower">Bower</h2>
 
-<p>3rd Party Front-end 패키지 관리를 위해 <a href="//bower.io/">Bower</a> 를 계속 이용해 왔다. 이 프로젝트에서 사용할 Assets 을 정의할 <code class="highlighter-rouge">bower.json</code> 과 Bower 설정을 저장할 <code class="highlighter-rouge">.bowerrc</code> 파일을 만들었다.</p>
+<p>3rd Party Front-end 패키지 관리를 위해 <a href="//bower.io/">Bower</a> 를 계속 이용해 왔다. 이 프로젝트에서 사용할 Assets 을 정의할 <code class="language-plaintext highlighter-rouge">bower.json</code> 과 Bower 설정을 저장할 <code class="language-plaintext highlighter-rouge">.bowerrc</code> 파일을 만들었다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bower init
 <span class="nv">$ </span><span class="nb">touch</span> .bowerrc
 </code></pre></div></div>
 
-<p><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll/#structure-config">이전 포스트의 프로젝트 구조</a> 에서 정한 대로 Bower 가 끌고오는 Assets 들의 설치 디렉토리를 <code class="highlighter-rouge">_assets/vendor</code> 로 변경해 주었다. 기본값으로 두었을 때 사용되는 <code class="highlighter-rouge">bower_components</code> 는 Gulp Build 자동화할 때 불편하기 때문에…</p>
+<p><a href="/work-n-play/블로그-플랫폼-이전-2-goodbye-wordpress-hello-jekyll/#structure-config">이전 포스트의 프로젝트 구조</a> 에서 정한 대로 Bower 가 끌고오는 Assets 들의 설치 디렉토리를 <code class="language-plaintext highlighter-rouge">_assets/vendor</code> 로 변경해 주었다. 기본값으로 두었을 때 사용되는 <code class="language-plaintext highlighter-rouge">bower_components</code> 는 Gulp Build 자동화할 때 불편하기 때문에…</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/.bowerrc</span>
 
@@ -248,7 +252,7 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bower <span class="nb">install </span>bootstrap-material-design <span class="nt">--save-dev</span>
 </code></pre></div></div>
 
-<p>Sass 보다는 Curly Brace(<code class="highlighter-rouge">{}</code>)를 사용하는 SCSS 문법을 선호한다.</p>
+<p>Sass 보다는 Curly Brace(<code class="language-plaintext highlighter-rouge">{}</code>)를 사용하는 SCSS 문법을 선호한다.</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span> <span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="nc">.com</span><span class="o">/</span><span class="nt">appkr</span><span class="o">/</span><span class="nt">blog</span><span class="o">/</span><span class="nt">blob</span><span class="o">/</span><span class="nt">master</span><span class="o">/</span><span class="nt">_assets</span><span class="o">/</span><span class="nt">styles</span><span class="o">/</span><span class="nt">main</span><span class="nc">.scss</span>
 
@@ -258,7 +262,7 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 <span class="k">@import</span> <span class="s1">"../vendor/bootstrap-material-design/sass/bootstrap-material-design"</span><span class="p">;</span>
 <span class="k">@import</span> <span class="s1">"../vendor/bootstrap-material-design/sass/ripples"</span><span class="p">;</span>
 
-<span class="err">$</span><span class="nt">text-color</span><span class="o">:</span> <span class="nf">#9699a6</span><span class="o">;</span>
+<span class="err">$</span><span class="nt">text-color</span><span class="o">:</span> <span class="err">#9699</span><span class="nt">a6</span><span class="o">;</span>
 <span class="o">//</span> <span class="o">...</span>
 
 <span class="nt">body</span> <span class="p">{</span>
@@ -271,13 +275,13 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 
 <h3 id="덧-1">덧</h3>
 
-<p>Jekyll 은 Fenced Code Block 의 스타일링을 기본 지원한다. 이 프로젝트에서는 Jekyll 의 기본 값인 <code class="highlighter-rouge">Rouge</code> 를 이용하지 않고, 일부러 <a href="//pygments.org/"><code class="highlighter-rouge">Pygments</code></a> 를 이용하였다. <code class="highlighter-rouge">Pygments</code> 는 Python 으로 작성된 Syntax Highlighter 로, <code class="highlighter-rouge">Rouge</code> 보다 <a href="//pygments.org/languages/">더 많은 언어의 문법</a>을 지원하기 때문이다.</p>
+<p>Jekyll 은 Fenced Code Block 의 스타일링을 기본 지원한다. 이 프로젝트에서는 Jekyll 의 기본 값인 <code class="language-plaintext highlighter-rouge">Rouge</code> 를 이용하지 않고, 일부러 <a href="//pygments.org/"><code class="language-plaintext highlighter-rouge">Pygments</code></a> 를 이용하였다. <code class="language-plaintext highlighter-rouge">Pygments</code> 는 Python 으로 작성된 Syntax Highlighter 로, <code class="language-plaintext highlighter-rouge">Rouge</code> 보다 <a href="//pygments.org/languages/">더 많은 언어의 문법</a>을 지원하기 때문이다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>Pygments
 <span class="nv">$ </span>gem <span class="nb">install </span>pygments.rb
 </code></pre></div></div>
 
-<p>여기까지 했다고 해서 Fenced Code Block 이 예쁘게 표시되는 것은 아니다. <code class="highlighter-rouge">Pygments</code> 의 역할은, 가령 <code class="highlighter-rouge">&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;</code> 처럼, 코드 영역에 class 를 덧 붙여주는 역할을 한다. 따라서, <code class="highlighter-rouge">Pygments</code> 에 호환되도록 스타일시트를 정의해 주어야 한다. 이 프로젝트에서는 <a href="https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L209">SETI Theme</a> 을 적용하였다.</p>
+<p>여기까지 했다고 해서 Fenced Code Block 이 예쁘게 표시되는 것은 아니다. <code class="language-plaintext highlighter-rouge">Pygments</code> 의 역할은, 가령 <code class="language-plaintext highlighter-rouge">&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;</code> 처럼, 코드 영역에 class 를 덧 붙여주는 역할을 한다. 따라서, <code class="language-plaintext highlighter-rouge">Pygments</code> 에 호환되도록 스타일시트를 정의해 주어야 한다. 이 프로젝트에서는 <a href="https://github.com/appkr/blog/blob/master/_assets/styles/main.scss#L209">SETI Theme</a> 을 적용하였다.</p>
 
 <h2 id="javascripts">Javascripts</h2>
 
@@ -288,7 +292,7 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 
 <h3 id="search">Search</h3>
 
-<p>“데이터베이스를 사용하지 않는 정적 페이지인데 검색이 가능해?” 라고 반문하는 방문자가 있다면 당연한 일이다. 나도 그랬으니까… Simple-Jekyll-Search 의 동작 원리는 <code class="highlighter-rouge">search.json</code> 이란 파일에 사이트 전체의 인덱스를 미리 만들 수 있도록 Liquid 문법으로 써 놓고, Jekyll Build 때 인덱싱된 파일이 떨구어지도록 하는 식이다. <code class="highlighter-rouge">search.json</code> 이 생성되면 프로젝트를 배포할 때 같이 배포되며, Javascript 가 Ajax 요청으로 로컬에 위치한 전체 사이트 인덱스를 검색하고 결과를 뷰로 보여줄 수 있다.</p>
+<p>“데이터베이스를 사용하지 않는 정적 페이지인데 검색이 가능해?” 라고 반문하는 방문자가 있다면 당연한 일이다. 나도 그랬으니까… Simple-Jekyll-Search 의 동작 원리는 <code class="language-plaintext highlighter-rouge">search.json</code> 이란 파일에 사이트 전체의 인덱스를 미리 만들 수 있도록 Liquid 문법으로 써 놓고, Jekyll Build 때 인덱싱된 파일이 떨구어지도록 하는 식이다. <code class="language-plaintext highlighter-rouge">search.json</code> 이 생성되면 프로젝트를 배포할 때 같이 배포되며, Javascript 가 Ajax 요청으로 로컬에 위치한 전체 사이트 인덱스를 검색하고 결과를 뷰로 보여줄 수 있다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/search.json</span>
 
@@ -365,7 +369,7 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 
 <p>삽질은 개발자의 고유한 특징이다. 비 개발자는 그냥 ‘안되는구나~’ 라고 불평하며 다른 대안을 찾아 나서기 때문이다.</p>
 
-<p>Twitter Boostrap (==twbs) 클래스들이 오버라이드될 줄 알았는데, 잘못된 가정이었다. 이번에 알게된 사실은 CSS 스타일 정의에서 가중치 또는 우선순위이다. HTML Element 에 부여된 id 는 100 점, class 는 10 점, tag 는 1 점 이라는 것이다. 가령 <code class="highlighter-rouge">blockquote  {...}</code> 는 1점인 반면, <code class="highlighter-rouge">#app blockquote {...}</code> 는 101 점. <code class="highlighter-rouge">blockquote {... !important}</code> 를 쓰는 것은 안티패턴이다. 해서 twbs 클래스를 오버라이드하는 가장 좋은 방법은 아래 처럼 id 를 이용하는 방법..</p>
+<p>Twitter Boostrap (==twbs) 클래스들이 오버라이드될 줄 알았는데, 잘못된 가정이었다. 이번에 알게된 사실은 CSS 스타일 정의에서 가중치 또는 우선순위이다. HTML Element 에 부여된 id 는 100 점, class 는 10 점, tag 는 1 점 이라는 것이다. 가령 <code class="language-plaintext highlighter-rouge">blockquote  {...}</code> 는 1점인 반면, <code class="language-plaintext highlighter-rouge">#app blockquote {...}</code> 는 101 점. <code class="language-plaintext highlighter-rouge">blockquote {... !important}</code> 를 쓰는 것은 안티패턴이다. 해서 twbs 클래스를 오버라이드하는 가장 좋은 방법은 아래 처럼 id 를 이용하는 방법..</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- https://github.com/appkr/blog/blob/master/_layouts/default.html --&gt;</span>
 
@@ -1343,7 +1347,16 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

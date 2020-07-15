@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Appkr.memo(new Story)</title>
 
@@ -116,7 +120,7 @@
       </div>
 
       <div class="box-body">
-        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="highlighter-rouge">pusher</code>, <code class="highlighter-rouge">redis</code>, <code class="highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
+        <p><strong>‘<a href="https://github.com/appkr/whik">휙~</a>‘</strong> 라라벨은 도메인 이벤트를 클라이언트에게 브로드캐스트할 수 있는 기능을 제공한다. 5.2.39 기준으로 <code class="language-plaintext highlighter-rouge">pusher</code>, <code class="language-plaintext highlighter-rouge">redis</code>, <code class="language-plaintext highlighter-rouge">log</code> 등의 브로드캐스팅 드라이버를 지원한다. 이 데모에서는 라라벨이 <strong>‘휙~’</strong>하고 메시지를 던지면, Socket.io가 접속된 모든 클라이언트에게 <strong>‘휙~’</strong>하고 메시지를 전파한다.</p>
 
 <p><strong>언제 어떻게 쓸 수 있나?</strong> 새로운 댓글이 작성되면 같은 댓글 목록을 보고 있는 사용자에게 새 댓글을 알리거나, 지금 서비스에 접속된 모든 사용자에게 푸시 알림을 보내는 등 서버에서 발생한 변경 내용을 클라이언트에 전파할 때 사용할 수 있다.</p>
 
@@ -1281,7 +1285,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

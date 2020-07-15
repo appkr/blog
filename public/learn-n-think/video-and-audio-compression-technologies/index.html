@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>영상/음성 압축 기술 | Appkr.memo(new Story)</title>
 
@@ -192,13 +196,13 @@
 <p>[그림 유실]</p>
 
 <ul>
-  <li><code class="highlighter-rouge">DivX Movie.avi</code> : 프로그램에서 불러올 동영상 파일이다.</li>
-  <li><code class="highlighter-rouge">AVI Splitter</code> : AVI 소스 필터이다. 앞에서 설명했듯이 AVI 압축 형식이 아니고 압축된 영상, 음성의 데이터를 담는 그릇에 해당하는 컨테이너이다. AVI Splitter 를 통해 압축된 영상과 음성 데이터가 추출된다. 여기서는 Stream 00 으로 영상 스트림이, Stream 01 로는 음성 스트림이 나온다. 경우에 따라서는 여러 개의 음성 스트림이 포함될 수 있다.</li>
-  <li><code class="highlighter-rouge">ffdshow MPEG-4 Video Decoder</code> : 오픈소스로 개발되고 있는 DivX 코덱이다. DivX뿐만 아니라 XviD 등 다양한 압축 형식을 디코딩할 수 있다.</li>
-  <li><code class="highlighter-rouge">Video Renderer</code> : 화면에 표시해 주기 위해서 디스플레이 드라이버와 연결된다. 시스템 설정에 따라서 Overlay 나 VMR Renderer 가 연결되기도 한다.</li>
-  <li><code class="highlighter-rouge">ACM Wrapper</code> : 실제 음성 코덱과 연결시키기 위한 Audio Codec Manager 이다.</li>
-  <li><code class="highlighter-rouge">AC3Filter</code> : AC3 (Dolby Digital) 멀티채널 오디오를 디코딩하기 위한 코덱이 연결되었다.</li>
-  <li><code class="highlighter-rouge">Default DirectSound Device</code> : 음성 재생을 위한 사운드카드 드라이버와 연결되는 지점이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">DivX Movie.avi</code> : 프로그램에서 불러올 동영상 파일이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">AVI Splitter</code> : AVI 소스 필터이다. 앞에서 설명했듯이 AVI 압축 형식이 아니고 압축된 영상, 음성의 데이터를 담는 그릇에 해당하는 컨테이너이다. AVI Splitter 를 통해 압축된 영상과 음성 데이터가 추출된다. 여기서는 Stream 00 으로 영상 스트림이, Stream 01 로는 음성 스트림이 나온다. 경우에 따라서는 여러 개의 음성 스트림이 포함될 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">ffdshow MPEG-4 Video Decoder</code> : 오픈소스로 개발되고 있는 DivX 코덱이다. DivX뿐만 아니라 XviD 등 다양한 압축 형식을 디코딩할 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Video Renderer</code> : 화면에 표시해 주기 위해서 디스플레이 드라이버와 연결된다. 시스템 설정에 따라서 Overlay 나 VMR Renderer 가 연결되기도 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">ACM Wrapper</code> : 실제 음성 코덱과 연결시키기 위한 Audio Codec Manager 이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">AC3Filter</code> : AC3 (Dolby Digital) 멀티채널 오디오를 디코딩하기 위한 코덱이 연결되었다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Default DirectSound Device</code> : 음성 재생을 위한 사운드카드 드라이버와 연결되는 지점이다.</li>
 </ul>
 
 <p>동영상 파일로부터의 다이렉트쇼 필터 (DirectShow Filter) 형태로 만들어진 코덱의 연결은 자동으로 이뤄지는데, 그 연결 상태를 보면 현재 시스템에 재생을 위한 코덱이 정상적으로 설치가 되어 있는지, 원하는 코덱으로 디코딩 가능한지 살펴볼 수 있다. 그런데 여기서 동영상 제작에 쓰인 코덱의 형태에 따라서 자동으로 연결된다는 것이 좋은 점도 있지만 문제를 만들기도 한다. 왜냐하면 통합 코덱의 설치 등으로 시스템에 여러 가지 종류의 코덱이 설치되어 있을 때 서로 충돌이 일어나서 제대로 연결이 안 되거나 엉뚱한 코덱이 연결될 수 있기 때문이다. 따라서 이러한 문제를 해결하기 위해서 내장된 코덱을 우선적으로 연결하는 방식으로 호환성을 확보하는 동영상 플레이어도 있다.</p>
@@ -208,11 +212,11 @@
 <p>요즘 동영상 압축에 많이 사용되는 코덱이 어떤 것이 있는지 살펴보자. 크게 최초의 마이크로스프트의 MPEG-4 코덱을 해킹한 DivX 3.x 와 DivX 네트웍스의 DivX 4.x/5.x 그리고 오픈소스 진영의 XviD가 있다.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">DivX 3.x</code> : 가장 널리 우리에게 알려진 코덱 형식이다. DivX ;-) 라는 이름으로도 많이 알려진 코덱으로 마이크로소프트의 MPEG-4 V3 를 기반으로 해서 제작된 코덱이다. 다루기가 쉽다는 장점이 있으며 DivX 4 에 비해서 약간 속도가 빠르다.</li>
-  <li><code class="highlighter-rouge">DivX 4</code> : DivX 네트웍스에 의해서 DivX 3.x 와는 별개로 새롭게 개발된 코덱이지만 곧 이은 DivX 5 의 개발로 많이 쓰이지는 않는 코덱이다.</li>
-  <li><code class="highlighter-rouge">DivX 5</code> : DivX 4 에 비해서 많은 기능과 높은 수준의 영상을 보여주는 코덱이다. 또한 합법적으로 사용할 수 있으며 개인 용도로는 자유롭게 사용할 수 있다. 특히 이전 DivX 버전과 호환성을 가지고 있으며 가장 발전된 MPEG-4 기능들을 제공하는 코덱이다.</li>
-  <li><code class="highlighter-rouge">XviD</code> : 현재는 아쉽게도 개발이 중단된 상태지만 최근 혜성처럼 등장한 새로운 코덱이다. DivX와 마찬가지로 MPEG-4 를 기반으로 하는 코덱이며, 합법적으로 사용할 수 있다는 장점이 있다. 알파 버전에서도 상당히 뛰어난 결과를 보여준다. 특히 오픈 소스를 내세우는 코덱이기 때문에 누구나 개발을 통해서 더 나은 코덱으로 발전시킬 수 있는 장점이 있다.</li>
-  <li><code class="highlighter-rouge">WMV</code> : 마이크로소프트에서 MPEG-2/MPEG-4 에 대응하고 스트리밍을 위해 만든 압축 방식이다. 윈도우에 최적화되어 있고 비디오카드의 도움받아 재생시 CPU 의 부담을 줄일 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">DivX 3.x</code> : 가장 널리 우리에게 알려진 코덱 형식이다. DivX ;-) 라는 이름으로도 많이 알려진 코덱으로 마이크로소프트의 MPEG-4 V3 를 기반으로 해서 제작된 코덱이다. 다루기가 쉽다는 장점이 있으며 DivX 4 에 비해서 약간 속도가 빠르다.</li>
+  <li><code class="language-plaintext highlighter-rouge">DivX 4</code> : DivX 네트웍스에 의해서 DivX 3.x 와는 별개로 새롭게 개발된 코덱이지만 곧 이은 DivX 5 의 개발로 많이 쓰이지는 않는 코덱이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">DivX 5</code> : DivX 4 에 비해서 많은 기능과 높은 수준의 영상을 보여주는 코덱이다. 또한 합법적으로 사용할 수 있으며 개인 용도로는 자유롭게 사용할 수 있다. 특히 이전 DivX 버전과 호환성을 가지고 있으며 가장 발전된 MPEG-4 기능들을 제공하는 코덱이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">XviD</code> : 현재는 아쉽게도 개발이 중단된 상태지만 최근 혜성처럼 등장한 새로운 코덱이다. DivX와 마찬가지로 MPEG-4 를 기반으로 하는 코덱이며, 합법적으로 사용할 수 있다는 장점이 있다. 알파 버전에서도 상당히 뛰어난 결과를 보여준다. 특히 오픈 소스를 내세우는 코덱이기 때문에 누구나 개발을 통해서 더 나은 코덱으로 발전시킬 수 있는 장점이 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">WMV</code> : 마이크로소프트에서 MPEG-2/MPEG-4 에 대응하고 스트리밍을 위해 만든 압축 방식이다. 윈도우에 최적화되어 있고 비디오카드의 도움받아 재생시 CPU 의 부담을 줄일 수 있다.</li>
 </ul>
 
 <p>아래 표는 마이크로소프트에서 제공한 WMV와 MPEG-2와의 성능 비교이다.</p>
@@ -347,7 +351,7 @@
 
 <p>따라서 조만간 오픈소스로 개발되고 있는 MPEG-4 기반의 각종 코덱과 그것을 사용하는 소프트웨어와 하드웨어에도 MPEG 라이선스료를 생각하지 않을 수 없을 것이다. 물론 아직 비상용 소프트웨어에 대한 MPEG 라이선스에 대한 어떠한 것도 정립된 단계는 아니지만, MPEGLA 가 강경하게 나온다면 지금은 공짜로 사용할 수 있는 동영상 플레이어를 유료로 구입해야 할지도 모른다. 또한 서두에 언급한 것처럼 컨텐츠를 제작하고 배급하는 회사로부터의 DivX 영화에 대한 강력한 규제가 현실화된다면 DivX 라는 공룡이 멸종될지도 모르겠다. 그러나 공룡이 멸종한 후에 인류가 탄생했듯이 디지털 멀티미디어의 세상은 영원할 것이다.</p>
 
-<p><strong><code class="highlighter-rouge">주)</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">주)</code></strong></p>
 
 <ul>
   <li>1870 년에 알렉산터 벨과 엘리샤 그레이가 각각 독립적으로 전기를 통해 인간의 목소리를 전달할 수 있는 최초의 기계를 발명했다.</li>
@@ -1321,7 +1325,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

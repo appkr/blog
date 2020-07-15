@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>3D graphics 기술에 대한 이해 | Appkr.memo(new Story)</title>
 
@@ -158,7 +162,7 @@
 
 <p>그 다음, 버텍스는 프리미티브 단위로 묶인 뒤 내부를 채우고 있는 각 픽셀의 색을 결정하기 위해 래스터라이제이션 단계로 보내지게 된다. 마지막 단계인 래스터라이제이션 단계에서는 미리 로딩되어 있는 텍스처 이미지를 외부 메모리로부터 읽어와 텍스처 매핑(texture mapping)을 하고 안개 효과(fog effect), 투명도(alpha) 반영 등의 나머지 픽셀별 연산을 통해 각 픽셀의 색깔 값을 결정하여 최종 결과를 프레임 버퍼(frame buffer)에 저장한다.</p>
 
-<p><strong><code class="highlighter-rouge">참고</code></strong> 보통은 전류소모를 최소화 하기 위해서 Frame Buffer를 GPU에 내장한다. (GPU 안에 Memory Controller가 있음을 의미함)</p>
+<p><strong><code class="language-plaintext highlighter-rouge">참고</code></strong> 보통은 전류소모를 최소화 하기 위해서 Frame Buffer를 GPU에 내장한다. (GPU 안에 Memory Controller가 있음을 의미함)</p>
 
 <!--more-->
 
@@ -1188,7 +1192,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

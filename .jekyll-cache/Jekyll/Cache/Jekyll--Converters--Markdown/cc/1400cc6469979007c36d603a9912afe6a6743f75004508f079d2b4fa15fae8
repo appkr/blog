@@ -1,7 +1,0 @@
-I"�<h3 id="1-jdk">1. JDK</h3>
-
-<p><a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u16-oth-JPR@CDS-CDS_Developer">JDK</a> 를 다운로드하여 설치한다.</p>
-
-<p>또는, <a href="//cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/VerifyItem-Start/jre-6u16-windows-i586.exe?BundledLineItemUUID=moFIBe.oaqEAAAEkk.UxdJ2G&amp;OrderID=R1dIBe.onL8AAAEkiOUxdJ2G&amp;ProductID=VP1IBe.nzvkAAAEiap9pOuDb&amp;FileName=/jre-6u16-windows-i586.exe">JRE <sup>Java Runtime Environment</sup></a> 만 설치할 수도 있다. JDK Version 이 맞지 않으면, Emulator 가 정상적으로 실행되지 않는다.
- </p>
-:ET

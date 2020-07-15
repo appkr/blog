@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Appkr.memo(new Story)</title>
 
@@ -119,21 +123,21 @@
         <p><img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="Exploit of a mom" />
 <small>그림출처: <a href="https://xkcd.com/327/">Exploits of a Mom</a></small></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#1 (학교) 여기 학교인데요. 전화 드린 이유는, 학교에 컴퓨터 문제가 좀 있어서요.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#1 (학교) 여기 학교인데요. 전화 드린 이유는, 학교에 컴퓨터 문제가 좀 있어서요.
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#2 (엄마) 우리 애가 사고쳤나요?
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#2 (엄마) 우리 애가 사고쳤나요?
      (학교) 예... 일종의...
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#3 (학교) 그런데, 정말로 아들 이름을 "Robert'); DROP TABLE students;--" 로 지으신게 맞나요?
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#3 (학교) 그런데, 정말로 아들 이름을 "Robert'); DROP TABLE students;--" 로 지으신게 맞나요?
       (엄마) 예 맞아요. 그래서 집에서는 우리 애를 "리틀 바비 테이블"이라고 불러요.
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#4 (학교) ;;; 기뻐하실 지 모르겠지만, 학생 테이블의 레코드 전체를 잃어 버렸어요.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#4 (학교) ;;; 기뻐하실 지 모르겠지만, 학생 테이블의 레코드 전체를 잃어 버렸어요.
       (엄마) 적어도 이번 사건 덕분에 DB에 입력할 값을 잘 필터링 해야 한다는 사실 정도는 배우셨겠군요~
 </code></pre></div></div>
 
 <div class="spacer">• • •</div>
 
-<p>프레임웍을 쓰면 쉽게 안전성을 확보할 수 있는데요. 그럼에도 불구하고, 아래 코드의 <code class="highlighter-rouge">queryStoresByParams()</code> 함수처럼 Raw 쿼리를 써야 할 때가 있죠. 이 때 SQL Injection을 당하지 않도록 주의해야 합니다.</p>
+<p>프레임웍을 쓰면 쉽게 안전성을 확보할 수 있는데요. 그럼에도 불구하고, 아래 코드의 <code class="language-plaintext highlighter-rouge">queryStoresByParams()</code> 함수처럼 Raw 쿼리를 써야 할 때가 있죠. 이 때 SQL Injection을 당하지 않도록 주의해야 합니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 회사 코드에서 일부 발췌</span>
 
@@ -237,9 +241,9 @@
       </div>
 
       <div class="box-body">
-        <p>보통 개발용 컴퓨터에서는 <code class="highlighter-rouge">htop</code>처럼 좀 더 편리한 프로세스 모니터 도구를 사용하지만, 운영 서버에는 서비스에 불필요한 바이너리는 설치하지 않는게 좋죠. 해서, 특히 서비스 장애와 같이 급박한 상황에 운영 서버에 SSH in 해서 <code class="highlighter-rouge">top</code>을 이용하려면 바보가 된 느낌을 종종 받습니다.</p>
+        <p>보통 개발용 컴퓨터에서는 <code class="language-plaintext highlighter-rouge">htop</code>처럼 좀 더 편리한 프로세스 모니터 도구를 사용하지만, 운영 서버에는 서비스에 불필요한 바이너리는 설치하지 않는게 좋죠. 해서, 특히 서비스 장애와 같이 급박한 상황에 운영 서버에 SSH in 해서 <code class="language-plaintext highlighter-rouge">top</code>을 이용하려면 바보가 된 느낌을 종종 받습니다.</p>
 
-<p>이 포스트에서는 바닐라 리눅스 환경에서 사용 빈도가 높은 <code class="highlighter-rouge">top</code> 사용법만 정리해봤습니다. 우분투 16.04를 사용했는데요, <del>CentOS도 같을 거라 생각합니다</del> CentOS는 조금 다릅니다, 댓글로 남깁니다.</p>
+<p>이 포스트에서는 바닐라 리눅스 환경에서 사용 빈도가 높은 <code class="language-plaintext highlighter-rouge">top</code> 사용법만 정리해봤습니다. 우분투 16.04를 사용했는데요, <del>CentOS도 같을 거라 생각합니다</del> CentOS는 조금 다릅니다, 댓글로 남깁니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/issue
 <span class="c"># Ubuntu 16.04.3 LTS \n \l</span>
@@ -277,10 +281,10 @@
   <li>Navigation &amp; Sorting (default: desc)
     <ul>
       <li><kbd>&lt;</kbd>, <kbd>&gt;</kbd>: 활성 필드 네비게이션</li>
-      <li><kbd>N</kbd>: <code class="highlighter-rouge">PID</code> 필드를 활성으로 변경</li>
-      <li><kbd>M</kbd>: <code class="highlighter-rouge">%MEM</code> 필드를 활성으로 변경</li>
-      <li><kbd>P</kbd>: <code class="highlighter-rouge">%CPU</code> 필드를 활성으로 변경</li>
-      <li><kbd>T</kbd>: <code class="highlighter-rouge">TIME+</code> 필드를 활성으로 변경</li>
+      <li><kbd>N</kbd>: <code class="language-plaintext highlighter-rouge">PID</code> 필드를 활성으로 변경</li>
+      <li><kbd>M</kbd>: <code class="language-plaintext highlighter-rouge">%MEM</code> 필드를 활성으로 변경</li>
+      <li><kbd>P</kbd>: <code class="language-plaintext highlighter-rouge">%CPU</code> 필드를 활성으로 변경</li>
+      <li><kbd>T</kbd>: <code class="language-plaintext highlighter-rouge">TIME+</code> 필드를 활성으로 변경</li>
     </ul>
   </li>
   <li>Search &amp; Filter
@@ -354,7 +358,7 @@
 
 <p><a href="/images/2018-07-09-img-01.png"><img src="/images/2018-07-09-img-01.png" alt="Strong Dependency" /></a></p>
 
-<p>이번 포스트에서는 라라벨 애플리케이션에서 애플리케이션 실행 시점의 주변 상황을 담아 놓고 필요할 때 꺼내 쓰기 위한 데이터 컨테이너를 구현했던 썰을 풀어보려합니다. <code class="highlighter-rouge">ApplicationContext</code>라 이름 지었고 Java 언어의 <code class="highlighter-rouge">ThreadLocal</code><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>과 비슷한 역할을 한다고 보면 됩니다. 주로 아래와 같은 상황에 유용하게 사용되기를 바라며 만들었어요.</p>
+<p>이번 포스트에서는 라라벨 애플리케이션에서 애플리케이션 실행 시점의 주변 상황을 담아 놓고 필요할 때 꺼내 쓰기 위한 데이터 컨테이너를 구현했던 썰을 풀어보려합니다. <code class="language-plaintext highlighter-rouge">ApplicationContext</code>라 이름 지었고 Java 언어의 <code class="language-plaintext highlighter-rouge">ThreadLocal</code><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>과 비슷한 역할을 한다고 보면 됩니다. 주로 아래와 같은 상황에 유용하게 사용되기를 바라며 만들었어요.</p>
 
 <ul>
   <li>프레임워크 영역(=main)의 데이터를 코어 영역(=app)으로 전달할 때</li>
@@ -1392,7 +1396,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

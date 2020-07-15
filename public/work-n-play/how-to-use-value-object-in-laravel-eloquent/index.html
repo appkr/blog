@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 | Appkr.memo(new Story)</title>
 
@@ -155,7 +159,7 @@
 <p><strong>원시 타입과 박스 타입</strong></p>
 
 <p>PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 원시 타입(Primitive Type)이라 합니다. 64bit 환경에서는 int라 쓰지만 4byte가 아니라 8bytes 즉 2^64 메모리 공간을 차지하고, float도 double과 같은 표현 범위를 가집니다(see http://php.net/manual/en/language.types.php). 
-여튼, 아래 예처럼 고객을 의미할 때 <code class="highlighter-rouge">customer:string</code>처럼 원시타입으로 표현하기 보다는 <code class="highlighter-rouge">customer:Customer</code>로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.</p>
+여튼, 아래 예처럼 고객을 의미할 때 <code class="language-plaintext highlighter-rouge">customer:string</code>처럼 원시타입으로 표현하기 보다는 <code class="language-plaintext highlighter-rouge">customer:Customer</code>로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$c</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
 
@@ -169,7 +173,7 @@
 
 <h2 id="0-예제를-위한-뼈대-코드-준비">0. 예제를 위한 뼈대 코드 준비</h2>
 
-<p>새 라라벨 프로젝트를 만듭니다. <code class="highlighter-rouge">laravel</code> 명령어를 쓸 수 없다면, <a href="https://laravel.com/docs/5.7#installing-laravel">라라벨 매뉴얼</a>을 참고해서 Laravel Installer를 설치합니다.</p>
+<p>새 라라벨 프로젝트를 만듭니다. <code class="language-plaintext highlighter-rouge">laravel</code> 명령어를 쓸 수 없다면, <a href="https://laravel.com/docs/5.7#installing-laravel">라라벨 매뉴얼</a>을 참고해서 Laravel Installer를 설치합니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>laravel new eloquent-value-object
 <span class="nv">$ </span><span class="nb">cd </span>eloquent-value-object
@@ -178,7 +182,7 @@
 <span class="nv">$ </span><span class="nb">cp</span> .env.example .env
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">.env</code>파일에서 <code class="highlighter-rouge">DB_DATABASE</code> 값은 <code class="highlighter-rouge">eloquent_value_object</code>로 변경했습니다. 설정한대로 데이터베이스와 사용자를 만듭니다.</p>
+<p><code class="language-plaintext highlighter-rouge">.env</code>파일에서 <code class="language-plaintext highlighter-rouge">DB_DATABASE</code> 값은 <code class="language-plaintext highlighter-rouge">eloquent_value_object</code>로 변경했습니다. 설정한대로 데이터베이스와 사용자를 만듭니다.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">eloquent_value_object</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="o">=</span> <span class="n">utf8</span> <span class="k">DEFAULT</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="n">utf8_unicode_ci</span><span class="p">;</span>
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="nv">"homestead"</span><span class="o">@</span><span class="nv">"%"</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="nv">"secret"</span><span class="p">;</span>
@@ -186,7 +190,7 @@
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">artisan</code> CLI로 모델, 스키마 마이그레이션, 모델 팩토리 뼈대 코드를 만듭니다.</p>
+<p><code class="language-plaintext highlighter-rouge">artisan</code> CLI로 모델, 스키마 마이그레이션, 모델 팩토리 뼈대 코드를 만듭니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan make:model Customer <span class="nt">--migration</span> <span class="nt">--factory</span>
 <span class="c">#Model created successfully.</span>
@@ -200,7 +204,7 @@
 
 <p>이 방법은 주소에 관련된 DB 컬럼은 정규화된 형태로 사용하되, 엘로퀀트 모델에서는 주소와 관련된 DB 컬럼을 조합해서 의미있는 PHP 객체로 사용하는 방법입니다. 다시 말하면, 엘로퀀트 모델을 DB에 영속화할 때는 변경자를 이용해서 객체의 필드를 DB 컬럼으로 각각 맵핑시키고, DB 컬럼을 읽어서 엘로퀀트 모델로 재생할 때는 접근자를 이용해서 객체의 필드로 셋팅하는 겁니다.</p>
 
-<p>아래 그림에서 <code class="highlighter-rouge">Customer.address</code> 필드는 <code class="highlighter-rouge">Address</code> 타입의 값 객체인데, <code class="highlighter-rouge">customers.addr_si_do_name</code>, <code class="highlighter-rouge">customers.addr_si_gun_gu_name</code>, <code class="highlighter-rouge">...</code>, <code class="highlighter-rouge">customers.addr_detail</code> 컬럼과 맵핑됩니다.</p>
+<p>아래 그림에서 <code class="language-plaintext highlighter-rouge">Customer.address</code> 필드는 <code class="language-plaintext highlighter-rouge">Address</code> 타입의 값 객체인데, <code class="language-plaintext highlighter-rouge">customers.addr_si_do_name</code>, <code class="language-plaintext highlighter-rouge">customers.addr_si_gun_gu_name</code>, <code class="language-plaintext highlighter-rouge">...</code>, <code class="language-plaintext highlighter-rouge">customers.addr_detail</code> 컬럼과 맵핑됩니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+--------------------+
 | class Customer     |
@@ -268,9 +272,9 @@
 
 <h3 id="12-엔티티와-값-객체">1.2. 엔티티와 값 객체</h3>
 
-<p>야래 코드의 <code class="highlighter-rouge">setAddressAttribute()</code> 변경자에서 <code class="highlighter-rouge">Address</code> 객체의 각 필드를 DB 컬럼에 맵핑하고 있습니다. 한편 <code class="highlighter-rouge">getAddressAttribute()</code> 접근자에서는 DB 컬럼을 <code class="highlighter-rouge">Address</code> 객체의 각 필드로 맵핑하고 있습니다.</p>
+<p>야래 코드의 <code class="language-plaintext highlighter-rouge">setAddressAttribute()</code> 변경자에서 <code class="language-plaintext highlighter-rouge">Address</code> 객체의 각 필드를 DB 컬럼에 맵핑하고 있습니다. 한편 <code class="language-plaintext highlighter-rouge">getAddressAttribute()</code> 접근자에서는 DB 컬럼을 <code class="language-plaintext highlighter-rouge">Address</code> 객체의 각 필드로 맵핑하고 있습니다.</p>
 
-<p><code class="highlighter-rouge">Cusomer</code>의 모든 데이터가 메모리에서 객체로 존재하는 런타임에는 DB 컬럼과의 관계는 몰라도 되므로, 엘로퀀트의 <code class="highlighter-rouge">$hidden</code> 속성을 이용해서 숨겼습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Cusomer</code>의 모든 데이터가 메모리에서 객체로 존재하는 런타임에는 DB 컬럼과의 관계는 몰라도 되므로, 엘로퀀트의 <code class="language-plaintext highlighter-rouge">$hidden</code> 속성을 이용해서 숨겼습니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Customer.php</span>
 
@@ -357,7 +361,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">Customer</code> 클래스가 의존하는 값 객체, <code class="highlighter-rouge">Address</code>, <code class="highlighter-rouge">JibunAddress</code>, <code class="highlighter-rouge">RoadAddress</code> 클래스를 만듭니다. 주목할 점은 <code class="highlighter-rouge">isEqualTo()</code> 함수입니다. 앞서 설명한 바와 같이, 값 객체간의 동등 비교를 위해 모든 필드의 값을 비교하는 것을 볼 수 있습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Customer</code> 클래스가 의존하는 값 객체, <code class="language-plaintext highlighter-rouge">Address</code>, <code class="language-plaintext highlighter-rouge">JibunAddress</code>, <code class="language-plaintext highlighter-rouge">RoadAddress</code> 클래스를 만듭니다. 주목할 점은 <code class="language-plaintext highlighter-rouge">isEqualTo()</code> 함수입니다. 앞서 설명한 바와 같이, 값 객체간의 동등 비교를 위해 모든 필드의 값을 비교하는 것을 볼 수 있습니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Address.php</span>
 
@@ -1706,7 +1710,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

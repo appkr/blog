@@ -1,9 +1,9 @@
 .idea
 .jekyll-cache
 .tmp
-_assets/vendor
+_assets
 node_modules
 npm*
-/images
-/styles
-/scripts
+#/images
+#/styles
+#/scripts

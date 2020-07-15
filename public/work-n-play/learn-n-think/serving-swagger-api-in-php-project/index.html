@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>PHP 프로젝트에 Swagger 적용 #1 | Appkr.memo(new Story)</title>
 
@@ -170,7 +174,7 @@
 
 <p>참고로 <strong>프라임</strong> 서비스는 라라벨 서버, 닷넷 및 Android 클라이언트로 구성되어 있습니다. <strong>부릉</strong> 서비스는 스프링 서버, 닷넷 및 Android 클라이언트로 구성되어 있습니다. 두 서비스를 전부 관리하는 관리도구는 자바스크립트 SPA <sub class="text-muted">SINGLE PAGE APPLICATION</sub>로 구성되어 있습니다.</p>
 
-<p>이 포스트와 관련해서 <strong>중요한 사실은 프라임도 부릉에게는 일개 클라이언트라는 점</strong>입니다. 부릉은 멀티 클라이언트 플랫폼에 대응하기 위해 스웨거 API 스펙을 관리하고 있고, 프라임은 부릉이 노출하고 있는 API를 사용하기 위해서 스웨거 스펙으로 자동 생성한 PHP 클라이언트 라이브러리를 컴포저로 땡겨서 <code class="highlighter-rouge">vendor</code>에 꽂아서 사용합니다. 저는 프라임 서버 개발자입니다. 지난 일년간을 스웨거 스펙의 소비자이기만 하다가, 최근에 갑자기 <em>‘PHP로 짠 서버 프로젝트가 스웨거 API의 생산자가 될 수 있을까?’</em>라는 생각이 들기 시작했습니다.</p>
+<p>이 포스트와 관련해서 <strong>중요한 사실은 프라임도 부릉에게는 일개 클라이언트라는 점</strong>입니다. 부릉은 멀티 클라이언트 플랫폼에 대응하기 위해 스웨거 API 스펙을 관리하고 있고, 프라임은 부릉이 노출하고 있는 API를 사용하기 위해서 스웨거 스펙으로 자동 생성한 PHP 클라이언트 라이브러리를 컴포저로 땡겨서 <code class="language-plaintext highlighter-rouge">vendor</code>에 꽂아서 사용합니다. 저는 프라임 서버 개발자입니다. 지난 일년간을 스웨거 스펙의 소비자이기만 하다가, 최근에 갑자기 <em>‘PHP로 짠 서버 프로젝트가 스웨거 API의 생산자가 될 수 있을까?’</em>라는 생각이 들기 시작했습니다.</p>
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -183,7 +187,7 @@
 
 <h3 id="11-swagger-editor">1.1. Swagger Editor</h3>
 
-<p>웹 UI에서 <code class="highlighter-rouge">yml</code> 형식으로 스웨거 스펙을 직접 작성하거나, 미리 작성한 스펙을 불러와서 수정할 수 있는 편집기입니다.</p>
+<p>웹 UI에서 <code class="language-plaintext highlighter-rouge">yml</code> 형식으로 스웨거 스펙을 직접 작성하거나, 미리 작성한 스펙을 불러와서 수정할 수 있는 편집기입니다.</p>
 
 <p><a href="/images/2017-12-24-img-02-swagger-editor.png"><img src="/images/2017-12-24-img-02-swagger-editor.png" alt="Swagger Editor" /></a></p>
 
@@ -195,7 +199,7 @@
 
 <h3 id="13-swagger-codegen">1.3. Swagger Codegen</h3>
 
-<p>스웨거 스펙을 기반으로 서버 또는 클라이언트 SDK(=~ 라이브러리 + 문서 등)를 만들어 줍니다. 즉, 스펙만 있으면 서버 또는 클라이언트 코드를 뚝딱 만들고, 복붙 또는 의존성 관리자로 끼워 넣어서 서비스를 빠르게 개발 할 수 있도록 도와줍니다. 이 도구가 지원하는 플랫폼 목록은 아래와 같습니다. 목록에서 <code class="highlighter-rouge">lumen</code>, <code class="highlighter-rouge">php</code>, <code class="highlighter-rouge">php-symfony</code>, <code class="highlighter-rouge">php-silex</code> 찾으셨나요?</p>
+<p>스웨거 스펙을 기반으로 서버 또는 클라이언트 SDK(=~ 라이브러리 + 문서 등)를 만들어 줍니다. 즉, 스펙만 있으면 서버 또는 클라이언트 코드를 뚝딱 만들고, 복붙 또는 의존성 관리자로 끼워 넣어서 서비스를 빠르게 개발 할 수 있도록 도와줍니다. 이 도구가 지원하는 플랫폼 목록은 아래와 같습니다. 목록에서 <code class="language-plaintext highlighter-rouge">lumen</code>, <code class="language-plaintext highlighter-rouge">php</code>, <code class="language-plaintext highlighter-rouge">php-symfony</code>, <code class="language-plaintext highlighter-rouge">php-silex</code> 찾으셨나요?</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ <span class="nv">$ </span>swagger-codegen version
 <span class="c"># 2.3.0-SNAPSHOT</span>
@@ -227,7 +231,7 @@
 
 <p>정리하자면, 후자를 택한다 해도, API 서버 프로젝트의 HTTP 컨트롤러에서 더미 응답을 제공하는 최소 수준만 코드 작업하고, Annotation을 써서 빠르게 클라이언트 API를 정의할 수 있습니다. 나중에 약간의 변경이 생기더라도, 약속을 빨리 정하는 것이 개발 기간, 품질, 팀웍 모든 면에서 낫다는 점을 경험으로 배웠습니다. 스웨거는 과거의 “Code first” 개발 방식이 아니라, “Document first and generate boilerplate”, 즉 RAD <sub class="text-muted">RAPID APPLICATION DEVELOPMENT</sub>를 추구하는 현대적인 애플리케이션 개발 방식을 담고 있습니다.</p>
 
-<p>자바 스프링에서만 가능한 스웨거 스펙을 생성하는 또 하나의 방법이 있는데요. <a href="https://github.com/springfox/springfox"><code class="highlighter-rouge">springfox/springfox</code></a>를 의존성으로 포함하고, 빌드할 때 스웨거 스펙을 자동으로 생성되게 하는 방법입니다. 패키지가 컨트롤러를 해석해서 작동하므로 Annotation도 필요없습니다. 다른 언어 프레임워크에서 유사한 패키지를 아직 찾거나 듣지는 못했습니다.</p>
+<p>자바 스프링에서만 가능한 스웨거 스펙을 생성하는 또 하나의 방법이 있는데요. <a href="https://github.com/springfox/springfox"><code class="language-plaintext highlighter-rouge">springfox/springfox</code></a>를 의존성으로 포함하고, 빌드할 때 스웨거 스펙을 자동으로 생성되게 하는 방법입니다. 패키지가 컨트롤러를 해석해서 작동하므로 Annotation도 필요없습니다. 다른 언어 프레임워크에서 유사한 패키지를 아직 찾거나 듣지는 못했습니다.</p>
 
 <h3 id="22-sdk-생성">2.2. SDK 생성</h3>
 
@@ -274,7 +278,7 @@
 
 <h3 id="23-라이브러리-설치-및-코드-작성">2.3. 라이브러리 설치 및 코드 작성</h3>
 
-<p>앞 절에서 생성된 라이브러리는 컴포저를 이용해서 API 클라이언트 프로젝트에 끼워 넣습니다. 물론, 정석은 아니지만 <code class="highlighter-rouge">vendor</code> 폴더에 직접 복붙해도됩니다.</p>
+<p>앞 절에서 생성된 라이브러리는 컴포저를 이용해서 API 클라이언트 프로젝트에 끼워 넣습니다. 물론, 정석은 아니지만 <code class="language-plaintext highlighter-rouge">vendor</code> 폴더에 직접 복붙해도됩니다.</p>
 
 <p>PHP에서 API 클라이언트를 개발한다면 보통 Guzzle을 이용해서 API 엔드포인트로 HTTP 요청을 보내고 응답을 받아서 처리하는 식으로 프로그래밍할 겁니다. 스웨거가 생성한 클라이언트 코드는 Guzzle를 한번 더 감싸놓은 형태로서, 저수준 REST 호출이 아닌, PHP 함수 호출로 API를 소비할 수 있도록 해 줍니다.</p>
 
@@ -1287,7 +1291,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

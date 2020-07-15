@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>제너레이터 이해하기 | Appkr.memo(new Story)</title>
 
@@ -150,16 +154,16 @@
 <span class="kd">let</span> <span class="nx">iterator</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">();</span>
 </code></pre></div></div>
 
-<p>ES6에서는 함수 선언에 별표(<code class="highlighter-rouge">*</code>)를 붙여서 함수가 아니라 제너레이터임을 표시한다. <code class="highlighter-rouge">iterator</code> 변수에 방금 만든 제너레이터를 할당했다. 변수 이름에서 알 수 있듯이 함수의 모양을 빌렸지만, 개념적으로는 이터레이터(반복기)다.</p>
+<p>ES6에서는 함수 선언에 별표(<code class="language-plaintext highlighter-rouge">*</code>)를 붙여서 함수가 아니라 제너레이터임을 표시한다. <code class="language-plaintext highlighter-rouge">iterator</code> 변수에 방금 만든 제너레이터를 할당했다. 변수 이름에서 알 수 있듯이 함수의 모양을 빌렸지만, 개념적으로는 이터레이터(반복기)다.</p>
 
-<p>함수 시작부에 <code class="highlighter-rouge">console.log('Hello Generator!');</code>를 찍었지만 아무일도 일어나지 않았다. 지금은 대기 상태라 할 수 있다. 제너레이터를 실행하려면 <code class="highlighter-rouge">next()</code> 메서드를 호출하면 된다.</p>
+<p>함수 시작부에 <code class="language-plaintext highlighter-rouge">console.log('Hello Generator!');</code>를 찍었지만 아무일도 일어나지 않았다. 지금은 대기 상태라 할 수 있다. 제너레이터를 실행하려면 <code class="language-plaintext highlighter-rouge">next()</code> 메서드를 호출하면 된다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
 <span class="c1">// Hello Generator!</span>
 <span class="c1">// Object {value: 1, done: false}</span>
 </code></pre></div></div>
 
-<p>이제 제너레이터 객체를 생성하고 첫번째 <code class="highlighter-rouge">yield</code> 키워드까지 실행한다. <code class="highlighter-rouge">yield</code> 키워드는 값을 반환한다는 측면에서 <code class="highlighter-rouge">return</code> 키워드와 비슷하면서도 다르다. <code class="highlighter-rouge">return</code>은 뒤에 나오는 로직을 전부 무시하지만, <code class="highlighter-rouge">yield</code>는 <code class="highlighter-rouge">iterator</code>가 불러주면 또 다시 동작한다. <code class="highlighter-rouge">done: false</code>를 주목한다.</p>
+<p>이제 제너레이터 객체를 생성하고 첫번째 <code class="language-plaintext highlighter-rouge">yield</code> 키워드까지 실행한다. <code class="language-plaintext highlighter-rouge">yield</code> 키워드는 값을 반환한다는 측면에서 <code class="language-plaintext highlighter-rouge">return</code> 키워드와 비슷하면서도 다르다. <code class="language-plaintext highlighter-rouge">return</code>은 뒤에 나오는 로직을 전부 무시하지만, <code class="language-plaintext highlighter-rouge">yield</code>는 <code class="language-plaintext highlighter-rouge">iterator</code>가 불러주면 또 다시 동작한다. <code class="language-plaintext highlighter-rouge">done: false</code>를 주목한다.</p>
 
 <p>또 실행한다.</p>
 
@@ -167,7 +171,7 @@
 <span class="c1">// Object {value: 2, done: false}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">console.log(...)</code>와 첫번째 <code class="highlighter-rouge">yield</code> 키워드는 건너뛰었다. 두번째 <code class="highlighter-rouge">yield</code> 키워드에 의해 <code class="highlighter-rouge">value</code>는 2로 바뀌었지만 아직 <code class="highlighter-rouge">done: flase</code>이다.</p>
+<p><code class="language-plaintext highlighter-rouge">console.log(...)</code>와 첫번째 <code class="language-plaintext highlighter-rouge">yield</code> 키워드는 건너뛰었다. 두번째 <code class="language-plaintext highlighter-rouge">yield</code> 키워드에 의해 <code class="language-plaintext highlighter-rouge">value</code>는 2로 바뀌었지만 아직 <code class="language-plaintext highlighter-rouge">done: flase</code>이다.</p>
 
 <p>한번 더 실행한다.</p>
 
@@ -175,7 +179,7 @@
 <span class="c1">// Object {value: undefined, done: true}</span>
 </code></pre></div></div>
 
-<p>이제 더 이상 실행할 <code class="highlighter-rouge">yield</code> 키워드가 없다. <code class="highlighter-rouge">done: true</code>로 바뀌었다.</p>
+<p>이제 더 이상 실행할 <code class="language-plaintext highlighter-rouge">yield</code> 키워드가 없다. <code class="language-plaintext highlighter-rouge">done: true</code>로 바뀌었다.</p>
 
 <p><a href="/images/2016-08-10-img-01.png"><img src="/images/2016-08-10-img-01.png" alt="Generator in action" /></a></p>
 
@@ -183,7 +187,7 @@
 
 <p>앞 절에서 실험한 내용을 그림으로 정리하면 다음과 같다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iterator                                numbers(generator instance)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iterator                                numbers(generator instance)
 |                                       |
 |next();───────────────────────────────&gt;|console.log(...); 실행
 |                                       |yield 1; 실행하고 상태 저장
@@ -245,7 +249,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>이 예제에서는 큰 차이를 못 느낄 수 있지만, 배열 요소 하나가 큰 데이터를 가지고 있을 때는 제너레이터를 쓰지 않고는 <code class="highlighter-rouge">php.ini</code> 설정에서 <code class="highlighter-rouge">memory_limit</code> 값을 엄청 늘려야 할 것이다. 배열 순회에 필요한 모든 데이터를 메모리에 적재한 후 실행하는 것과, 이번 순회에 필요한 데이터만 읽어오는 차이가 있다.</p>
+<p>이 예제에서는 큰 차이를 못 느낄 수 있지만, 배열 요소 하나가 큰 데이터를 가지고 있을 때는 제너레이터를 쓰지 않고는 <code class="language-plaintext highlighter-rouge">php.ini</code> 설정에서 <code class="language-plaintext highlighter-rouge">memory_limit</code> 값을 엄청 늘려야 할 것이다. 배열 순회에 필요한 모든 데이터를 메모리에 적재한 후 실행하는 것과, 이번 순회에 필요한 데이터만 읽어오는 차이가 있다.</p>
 
       </div>
 
@@ -1202,7 +1206,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

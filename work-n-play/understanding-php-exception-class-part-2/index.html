@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>PHP의 예외 클래스 이해하기 2부 | Appkr.memo(new Story)</title>
 
@@ -162,25 +166,25 @@
 ~/working-with-exceptions <span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'project created'</span>
 </code></pre></div></div>
 
-<p>이 예제 프로젝트에서는 데이터베이스를 쓰지 않을 것이므로, DB 설정 수정, 마이그레이션이나 시딩등을 필요치 않다. 로컬 서버를 구동하고, 브라우저에서 <code class="highlighter-rouge">http://localhost:8000</code>을 열어 정상 설치 여부를 확인한다.</p>
+<p>이 예제 프로젝트에서는 데이터베이스를 쓰지 않을 것이므로, DB 설정 수정, 마이그레이션이나 시딩등을 필요치 않다. 로컬 서버를 구동하고, 브라우저에서 <code class="language-plaintext highlighter-rouge">http://localhost:8000</code>을 열어 정상 설치 여부를 확인한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php artisan serve
 <span class="c"># Laravel development server started on http://127.0.0.1:8000/</span>
 </code></pre></div></div>
 
-<p>이하 필자는 로컬 서버 대신 <a href="https://laravel.kr/docs/5.3/valet">라라벨 Valet 서버</a>를 이용할 것이다. 라라벨 Valet 서버를 이용하면, 로컬 서버 구동없이 프로젝트 폴더 이름에 <code class="highlighter-rouge">.dev</code>를 붙여서 브라우저에서 바로 확인할 수 있어서 편리하다.</p>
+<p>이하 필자는 로컬 서버 대신 <a href="https://laravel.kr/docs/5.3/valet">라라벨 Valet 서버</a>를 이용할 것이다. 라라벨 Valet 서버를 이용하면, 로컬 서버 구동없이 프로젝트 폴더 이름에 <code class="language-plaintext highlighter-rouge">.dev</code>를 붙여서 브라우저에서 바로 확인할 수 있어서 편리하다.</p>
 
 <h2 id="2-예외-클래스-만들기">2. 예외 클래스 만들기</h2>
 
-<p>PHP 내장 예외 클래스를 상속받아 도메인에서 사용할 최상위 예외 클래스를 <code class="highlighter-rouge">DomainException</code>이라 하자. 다음 클래스 다이어그램에는 최상위 예외를 상속 받아 <code class="highlighter-rouge">HttpDomainException</code>을 다시 만들고 있다. 지난 1부에서 봤던 <code class="highlighter-rouge">Exception</code>과 <code class="highlighter-rouge">Throwable</code>의 상속 구조도 볼 수 있다.</p>
+<p>PHP 내장 예외 클래스를 상속받아 도메인에서 사용할 최상위 예외 클래스를 <code class="language-plaintext highlighter-rouge">DomainException</code>이라 하자. 다음 클래스 다이어그램에는 최상위 예외를 상속 받아 <code class="language-plaintext highlighter-rouge">HttpDomainException</code>을 다시 만들고 있다. 지난 1부에서 봤던 <code class="language-plaintext highlighter-rouge">Exception</code>과 <code class="language-plaintext highlighter-rouge">Throwable</code>의 상속 구조도 볼 수 있다.</p>
 
 <p><a href="/images/2017-01-15-img-01.png"><img src="/images/2017-01-15-img-01.png" alt="UML" /></a></p>
 
 <p>이하 코드들은 <a href="https://github.com/appkr/working-with-exceptions">깃허브에 공개</a> 되어 있다. 편의를 위해 원본에 있던 주석은 제거했다.</p>
 
-<h3 id="21-domainexception">2.1. <code class="highlighter-rouge">DomainException</code></h3>
+<h3 id="21-domainexception">2.1. <code class="language-plaintext highlighter-rouge">DomainException</code></h3>
 
-<p>도메인의 최상위 예외 클래스다. 도메인 로직을 수행하는 중에 발생하는 예외를 식별하기 위한 베이스 클래스다. 가령, 캐치한 예외를 HTTP 응답으로 내 보내야 한다면, 2.2 절에서 만들 <code class="highlighter-rouge">HttpDomainException</code>으로 다시 던지면 될 것이다.</p>
+<p>도메인의 최상위 예외 클래스다. 도메인 로직을 수행하는 중에 발생하는 예외를 식별하기 위한 베이스 클래스다. 가령, 캐치한 예외를 HTTP 응답으로 내 보내야 한다면, 2.2 절에서 만들 <code class="language-plaintext highlighter-rouge">HttpDomainException</code>으로 다시 던지면 될 것이다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/DomainException.php</span>
 
@@ -233,7 +237,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="22-customdomainexcepion">2.2. <code class="highlighter-rouge">CustomDomainExcepion</code></h3>
+<h3 id="22-customdomainexcepion">2.2. <code class="language-plaintext highlighter-rouge">CustomDomainExcepion</code></h3>
 
 <p>도메인의 최상위 예외를 상속받아, 도메인에서 발생한 예외적인 상황을 식별하기 위한 클래스다. 가령 토큰을 파싱하는데 실패했다거나, 이메일 보내기에 실패했다거나, Guzzle HTTP 클라이언트로 다른 API 서버에 접속하는데 실패했다거나.. 등의 경우다.</p>
 
@@ -269,11 +273,11 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="23-httpdomainexception">2.3. <code class="highlighter-rouge">HttpDomainException</code></h3>
+<h3 id="23-httpdomainexception">2.3. <code class="language-plaintext highlighter-rouge">HttpDomainException</code></h3>
 
-<p>이 클래스 역시 <code class="highlighter-rouge">DomainException</code>을 상속받고 있다. 예외 클래스에 따라 Http 응답을 카테고라이즈하기 위해 사용된다.</p>
+<p>이 클래스 역시 <code class="language-plaintext highlighter-rouge">DomainException</code>을 상속받고 있다. 예외 클래스에 따라 Http 응답을 카테고라이즈하기 위해 사용된다.</p>
 
-<p>두 개의 인터페이스를 구현하고 있는데, 하나는 <code class="highlighter-rouge">HttpExceptionInterface</code>, 다른 하나는 <code class="highlighter-rouge">Classifiable</code>이다. 인터페이스를 통해 구현해야 하는 메서드들은 이 예외를 소비하는 쪽에서 해당 메서드가 있다는 것을 100% 신뢰하고 호출할 수 있도록 해 준다. 3절을 읽을 때 쯤 무릎을 ‘탁~’ 칠 것이다.</p>
+<p>두 개의 인터페이스를 구현하고 있는데, 하나는 <code class="language-plaintext highlighter-rouge">HttpExceptionInterface</code>, 다른 하나는 <code class="language-plaintext highlighter-rouge">Classifiable</code>이다. 인터페이스를 통해 구현해야 하는 메서드들은 이 예외를 소비하는 쪽에서 해당 메서드가 있다는 것을 100% 신뢰하고 호출할 수 있도록 해 준다. 3절을 읽을 때 쯤 무릎을 ‘탁~’ 칠 것이다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/HttpDomainException.php</span>
 
@@ -341,9 +345,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="24-customhttpexception">2.4. <code class="highlighter-rouge">CustomHttpException</code></h3>
+<h3 id="24-customhttpexception">2.4. <code class="language-plaintext highlighter-rouge">CustomHttpException</code></h3>
 
-<p>2.2 절에서 봤던 <code class="highlighter-rouge">FileCompressionFailed</code>와 같은 예외가 이 부류에 속한다.</p>
+<p>2.2 절에서 봤던 <code class="language-plaintext highlighter-rouge">FileCompressionFailed</code>와 같은 예외가 이 부류에 속한다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/CustomHttpException.php</span>
 
@@ -367,9 +371,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="25-classifiable">2.5. <code class="highlighter-rouge">Classifiable</code></h3>
+<h3 id="25-classifiable">2.5. <code class="language-plaintext highlighter-rouge">Classifiable</code></h3>
 
-<p>이 인터페이스는 각 예외 클래스의 로그 레벨에 따라 로깅할 메서드(예: <code class="highlighter-rouge">debug()</code>, <code class="highlighter-rouge">error</code>)를 결정하고, 특정 레벨 이상의 심각도를 가진 예외이면 특별한 조치를 하기 위한 목적으로 만들어졌다.</p>
+<p>이 인터페이스는 각 예외 클래스의 로그 레벨에 따라 로깅할 메서드(예: <code class="language-plaintext highlighter-rouge">debug()</code>, <code class="language-plaintext highlighter-rouge">error</code>)를 결정하고, 특정 레벨 이상의 심각도를 가진 예외이면 특별한 조치를 하기 위한 목적으로 만들어졌다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Classifiable.php</span>
 
@@ -382,11 +386,11 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="26-loglevel">2.6. <code class="highlighter-rouge">LogLevel</code></h3>
+<h3 id="26-loglevel">2.6. <code class="language-plaintext highlighter-rouge">LogLevel</code></h3>
 
 <p>로그 레벨 클래스다.</p>
 
-<p>이 클래스는 추상화가 덜 되어 있는데, 이상적인 클래스의 모양은 상수만 가지고 있어야 한다. 그리고 나머지 부분들을 부모 클래스로 추출하고, 두 개의 객체간의 일치 비교 메서드, 설정하려는 상수가 있는 지 검사하는 메서드 등을 추가하면 괜찮은 <code class="highlighter-rouge">BaseEnum</code> 클래스를 만들 수 있을 것이다.</p>
+<p>이 클래스는 추상화가 덜 되어 있는데, 이상적인 클래스의 모양은 상수만 가지고 있어야 한다. 그리고 나머지 부분들을 부모 클래스로 추출하고, 두 개의 객체간의 일치 비교 메서드, 설정하려는 상수가 있는 지 검사하는 메서드 등을 추가하면 괜찮은 <code class="language-plaintext highlighter-rouge">BaseEnum</code> 클래스를 만들 수 있을 것이다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/LogLevel.php</span>
 
@@ -514,11 +518,11 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>wget https://raw.githubusercontent.com/appkr/working-with-exceptions/master/docs/Working-With-PHP-Exceptions.postman_collection.json
 </code></pre></div></div>
 
-<p>다운로드 받은 포스트맨 콜렉션을, 포스트맨에 임포트하고, <code class="highlighter-rouge">:host</code> 부분만 자신에게 맞게 변경한다.</p>
+<p>다운로드 받은 포스트맨 콜렉션을, 포스트맨에 임포트하고, <code class="language-plaintext highlighter-rouge">:host</code> 부분만 자신에게 맞게 변경한다.</p>
 
 <p><a href="/images/2017-01-15-img-02.png"><img src="/images/2017-01-15-img-02.png" alt="포스트맨 콜렉션" /></a></p>
 
-<p>모두 <code class="highlighter-rouge">GET</code> 방식을 사용하므로 웹 브라우저를 사용해도 무방하다.</p>
+<p>모두 <code class="language-plaintext highlighter-rouge">GET</code> 방식을 사용하므로 웹 브라우저를 사용해도 무방하다.</p>
 
 <p>여기까지 <a href="https://github.com/appkr/working-with-exceptions/commit/4f85e78f4cd4f4b3f7ae61a3968fa0ada313d7c1">변경된 예제 소스 코드는 여기</a>서 확인할 수 있다.</p>
 
@@ -526,13 +530,13 @@
 
 <p>라라벨이 제공하는 전역 예외 처리기를 이용해서 프로그램의 실행 흐름을 안전에게 제어하고, 예외를 분류해서 적절하게 소비하는 방법을 구현해 볼 것이다.</p>
 
-<p>라라벨은 부팅할 때, 1부에서 살펴본대로 PHP의 <code class="highlighter-rouge">set_exception_handler()</code> 함수를 그대로 사용해서, 예외 처리기를 등록한다. <a href="https://github.com/laravel/framework/blob/5.3/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php#L35">여기</a>서 찾을 수 있다. 그리고 앞서 말한 예외 처리기를 <a href="https://github.com/laravel/laravel/blob/master/app/Exceptions/Handler.php#L9">애플리케이션 영역에서 상속</a>하여 개발자가 로직을 쓸 수 있도록 하고 있다. 전역 처리기는 <code class="highlighter-rouge">report()</code>와 <code class="highlighter-rouge">render()</code> 두 가지 메서드를 제공한다.</p>
+<p>라라벨은 부팅할 때, 1부에서 살펴본대로 PHP의 <code class="language-plaintext highlighter-rouge">set_exception_handler()</code> 함수를 그대로 사용해서, 예외 처리기를 등록한다. <a href="https://github.com/laravel/framework/blob/5.3/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php#L35">여기</a>서 찾을 수 있다. 그리고 앞서 말한 예외 처리기를 <a href="https://github.com/laravel/laravel/blob/master/app/Exceptions/Handler.php#L9">애플리케이션 영역에서 상속</a>하여 개발자가 로직을 쓸 수 있도록 하고 있다. 전역 처리기는 <code class="language-plaintext highlighter-rouge">report()</code>와 <code class="language-plaintext highlighter-rouge">render()</code> 두 가지 메서드를 제공한다.</p>
 
-<h3 id="41-handlerreport">4.1. <code class="highlighter-rouge">Handler::report()</code></h3>
+<h3 id="41-handlerreport">4.1. <code class="language-plaintext highlighter-rouge">Handler::report()</code></h3>
 
 <p>리포팅을 하는 메서드다. 라라벨 로그를 기본으로 시스템 로그, 슬랙, LogStash, BugSnag, Loggly 등에 예외를 알리기 위한 메서드다.</p>
 
-<p>리포팅을 한 후에 사용자에게 HTTP 응답을 제공해야 하기 때문에, <code class="highlighter-rouge">report()</code> 메서드에는 <code class="highlighter-rouge">return</code> 키워드가 없다는 점을 주목해야한다.</p>
+<p>리포팅을 한 후에 사용자에게 HTTP 응답을 제공해야 하기 때문에, <code class="language-plaintext highlighter-rouge">report()</code> 메서드에는 <code class="language-plaintext highlighter-rouge">return</code> 키워드가 없다는 점을 주목해야한다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/Handler.php</span>
 
@@ -577,7 +581,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>이제 <code class="highlighter-rouge">Classifiable</code>을 구현한 예외 클래스는 로그 레벨을 정확하게 지켜서 로깅을 할 뿐더러, 심각도에 따라 처리 방법을 적절히 분기할 수도 있다. 라라벨 로그를 보면 <code class="highlighter-rouge">local.DEBUG</code>로 기록된 것을 확인할 수 있다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">Classifiable</code>을 구현한 예외 클래스는 로그 레벨을 정확하게 지켜서 로깅을 할 뿐더러, 심각도에 따라 처리 방법을 적절히 분기할 수도 있다. 라라벨 로그를 보면 <code class="language-plaintext highlighter-rouge">local.DEBUG</code>로 기록된 것을 확인할 수 있다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># storage/logs/laravel.log</span>
 
@@ -586,9 +590,9 @@ baz: qux <span class="k">in</span> /Users/appkr/workspace/working-with-exception
 Stack trace:
 </code></pre></div></div>
 
-<h3 id="43-handlerrender">4.3. <code class="highlighter-rouge">Handler::render()</code></h3>
+<h3 id="43-handlerrender">4.3. <code class="language-plaintext highlighter-rouge">Handler::render()</code></h3>
 
-<p>사용자에게 피드백을 제공하기 위한 메서드다. <code class="highlighter-rouge">env('APP_DEBUG') === true</code>이면 라라벨이 제공하는 기본 Whoops 페이지에 스택 트레이스를 포함한 HTTP 응답을 반환한다. 반대 경우에는 스택 트레이스를 제외한 Whoops 페이지가 제공된다. 스택 트레이스를 제외한 영역에는 파일의 전체 경로를 보여주지 않는다.</p>
+<p>사용자에게 피드백을 제공하기 위한 메서드다. <code class="language-plaintext highlighter-rouge">env('APP_DEBUG') === true</code>이면 라라벨이 제공하는 기본 Whoops 페이지에 스택 트레이스를 포함한 HTTP 응답을 반환한다. 반대 경우에는 스택 트레이스를 제외한 Whoops 페이지가 제공된다. 스택 트레이스를 제외한 영역에는 파일의 전체 경로를 보여주지 않는다.</p>
 
 <p>1부에서 설명했다시피, 항상 구체적인 예외(자식)를 먼저 처리하고, 덜 구체적인 순으로 진행해야 한다.</p>
 
@@ -646,7 +650,7 @@ Stack trace:
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">주의</code></strong><code class="highlighter-rouge">$exception-&gt;getArgs()</code>가 빈 배열을 반환할 수도 있다. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+<p><strong><code class="language-plaintext highlighter-rouge">주의</code></strong><code class="language-plaintext highlighter-rouge">$exception-&gt;getArgs()</code>가 빈 배열을 반환할 수도 있다. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
 
 <p>아이고!!! 엄청난 중복때문에 마음이 SOME~~ 불편하다. 우선 이 포스트의 주제를 벗어나므로 지금은 그냥 두자.</p>
 
@@ -658,7 +662,7 @@ Stack trace:
 
 <p><a href="/images/2017-01-15-img-03.png"><img src="/images/2017-01-15-img-03.png" alt="포스트맨" /></a></p>
 
-<p>포스트맨 콜렉션에는 간단한 통합 테스트도 포함되어 있다. 각 요청의 <code class="highlighter-rouge">Tests</code> 탭에 작성한 테스트 코드는 아래처럼 생겼고, 포스트맨 UI에서 <code class="highlighter-rouge">Runner</code> 버튼을 눌러 실행할 수 있다.</p>
+<p>포스트맨 콜렉션에는 간단한 통합 테스트도 포함되어 있다. 각 요청의 <code class="language-plaintext highlighter-rouge">Tests</code> 탭에 작성한 테스트 코드는 아래처럼 생겼고, 포스트맨 UI에서 <code class="language-plaintext highlighter-rouge">Runner</code> 버튼을 눌러 실행할 수 있다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">);</span>
 <span class="nx">tests</span><span class="p">[</span><span class="dl">"</span><span class="s2">Compare field value</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="mi">500</span><span class="p">;</span>
@@ -691,7 +695,7 @@ Stack trace:
 <span class="c">#                         Time: 168 ms, Memory: 10.00MB</span>
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">참고</code></strong> 라라벨 프로젝트에서 PHPUnit의 <code class="highlighter-rouge">expectException()</code> 메서드 사용 <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup></p>
+<p><strong><code class="language-plaintext highlighter-rouge">참고</code></strong> 라라벨 프로젝트에서 PHPUnit의 <code class="language-plaintext highlighter-rouge">expectException()</code> 메서드 사용 <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup></p>
 
 <p>여기까지 <a href="https://github.com/appkr/working-with-exceptions/commit/1ced2b1430cc5741407d4e2df331e7d57a5644cd">변경된 예제 소스 코드는 여기</a>서 확인할 수 있다.</p>
 
@@ -778,7 +782,7 @@ Stack trace:
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>렌더러 클래스들이 <code class="highlighter-rouge">render()</code> 메서드를 항상 구현하도록 <code class="highlighter-rouge">Renderrable</code> 인터페이스를 만들자.</p>
+<p>렌더러 클래스들이 <code class="language-plaintext highlighter-rouge">render()</code> 메서드를 항상 구현하도록 <code class="language-plaintext highlighter-rouge">Renderrable</code> 인터페이스를 만들자.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Exceptions/Renderers/Renderable.php</span>
 
@@ -794,7 +798,7 @@ Stack trace:
 
 <h2 id="6-결론">6. 결론</h2>
 
-<p>10년의 공백 후 다시 프로그래밍 세계로 돌아온 2012년에는 객체 지향 프로그래밍을 전혀 몰랐고, 예외 같은 것은 당연히 쓸 줄 몰라 함수마다 <code class="highlighter-rouge">global $logs</code>(<code class="highlighter-rouge">['level' =&gt; 1, 'message' =&gt; '', '...' =&gt; '...']</code>)를 남발했던 기억이 난다. 모던 프로그래밍에서 예외는 꼭 배워야 할 중요한 주제임에 틀림없다.</p>
+<p>10년의 공백 후 다시 프로그래밍 세계로 돌아온 2012년에는 객체 지향 프로그래밍을 전혀 몰랐고, 예외 같은 것은 당연히 쓸 줄 몰라 함수마다 <code class="language-plaintext highlighter-rouge">global $logs</code>(<code class="language-plaintext highlighter-rouge">['level' =&gt; 1, 'message' =&gt; '', '...' =&gt; '...']</code>)를 남발했던 기억이 난다. 모던 프로그래밍에서 예외는 꼭 배워야 할 중요한 주제임에 틀림없다.</p>
 
 <p>라라벨에서는 애플리케이션이 작동하는 수명 주기동안 어디서든지 예외를 던질 수 있다. 사용자 인증, 미들웨어, 폼 리퀘스트, 컨트롤러, 서비스 레이어 등등 어디서든지 말이다. 그리고, 개발자들은 전역 예외 처리기를 이용함으로써 프로그램 실행 흐름을 안전하고 구조적으로 제어할 수 있다.</p>
 
@@ -806,8 +810,8 @@ Stack trace:
 
 <ul>
   <li>예외가 발생시킨 클라이언트의 IP 주소, HTTP 요청 헤더, 대상 URL과 메서드, 쿼리 스트링과 파라미터, 세션, 쿠키 등</li>
-  <li><code class="highlighter-rouge">User</code> 객체</li>
-  <li>예외가 발생한 환경(<code class="highlighter-rouge">production</code> or <code class="highlighter-rouge">staging</code>) 및 릴리스 버전</li>
+  <li><code class="language-plaintext highlighter-rouge">User</code> 객체</li>
+  <li>예외가 발생한 환경(<code class="language-plaintext highlighter-rouge">production</code> or <code class="language-plaintext highlighter-rouge">staging</code>) 및 릴리스 버전</li>
   <li>역추적 코드 트래스 외 DB쿼리, UI 이동 등의 예외 발생 경로</li>
   <li>담당자 할당하는 등 여러 가지 관리 기능을 제공한다.</li>
 </ul>
@@ -830,7 +834,7 @@ Stack trace:
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
-      <p><code class="highlighter-rouge">$exception-&gt;getArgs()</code>가 빈 배열을 반환할 수도 있다.</p>
+      <p><code class="language-plaintext highlighter-rouge">$exception-&gt;getArgs()</code>가 빈 배열을 반환할 수도 있다.</p>
 
       <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/working-with-exceptions <span class="nv">$ </span>php artisan tinker
 <span class="o">&gt;&gt;&gt;</span> json_encode<span class="o">([])</span><span class="p">;</span> <span class="c"># '[]'</span>
@@ -841,7 +845,7 @@ Stack trace:
       <p>이 문제점은 PHP가 ArrayList와 HashMap(or Dictionary) 타입을 엄격하게 구분하지 않아 발생하는 문제로, 사용할 때 주의가 필요하다. 특히 Strong-typed Language를 사용하는 클라이언트에서 Type이 일관되지 않은 JSON 응답을 받아 모델에 맵핑하다보면 크래쉬가 발생할 수 있다는 점을 유의하자. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
-      <p>라라벨 프로젝트에서 PHPUnit의 <code class="highlighter-rouge">expectException()</code> 메서드 사용</p>
+      <p>라라벨 프로젝트에서 PHPUnit의 <code class="language-plaintext highlighter-rouge">expectException()</code> 메서드 사용</p>
 
       <p>라라벨의 전역 예외 처리기에서 예외를 완전히 소비해 버리고 다시 던져 주기 않기 때문에, PHPUnit까지 예외가 전달되지 않는 문제가 있다. 이 문제는 PHPUnit 테스트에서만 라라벨의 전역 예외 처리기의 동작을 변경함으로써 해결할 수 있다.</p>
 
@@ -1846,7 +1850,16 @@ Stack trace:
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Video Codec Quality Comparison | Appkr.memo(new Story)</title>
 
@@ -207,11 +211,11 @@
   </tbody>
 </table>
 
-<p><strong><code class="highlighter-rouge">주)</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">주)</code></strong></p>
 
 <ul>
-  <li><a href="http://en.wikipedia.org/wiki/PSNR"><code class="highlighter-rouge">PSNR, Peak Signal-to-Noise Ratio</code></a> 원본 대비 압축된 영상의 화질을 측정하는 단위, 높을 수록 좋음.</li>
-  <li><code class="highlighter-rouge">SSIM</code> 동 자료를 발표한 연구기관에서 정한 주관적 화질 측정 단위, 높을 수록 좋음</li>
+  <li><a href="http://en.wikipedia.org/wiki/PSNR"><code class="language-plaintext highlighter-rouge">PSNR, Peak Signal-to-Noise Ratio</code></a> 원본 대비 압축된 영상의 화질을 측정하는 단위, 높을 수록 좋음.</li>
+  <li><code class="language-plaintext highlighter-rouge">SSIM</code> 동 자료를 발표한 연구기관에서 정한 주관적 화질 측정 단위, 높을 수록 좋음</li>
 </ul>
 
 <!--more-->
@@ -326,7 +330,7 @@
   </tbody>
 </table>
 
-<p><strong><code class="highlighter-rouge">주)</code></strong></p>
+<p><strong><code class="language-plaintext highlighter-rouge">주)</code></strong></p>
 
 <p>H.263/MPEG4는 H.264/VC-1 대비 코덱의 복잡성이 낮아 계산량은 적으로 그 부호화된 이미지의 파일 사이즈는 몇 배에 달한다. 즉, 더 많은 Bitrate가 필요하며, 파일 이동 또는 네트워크 전송에서 불리하다.</p>
 
@@ -1288,7 +1292,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

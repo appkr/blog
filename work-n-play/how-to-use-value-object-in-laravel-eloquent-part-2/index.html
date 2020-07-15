@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부 | Appkr.memo(new Story)</title>
 
@@ -155,9 +159,9 @@
 
 <h2 id="2-lob를-이용하는-방법">2. LOB를 이용하는 방법</h2>
 
-<p>객체를 <code class="highlighter-rouge">serialize()</code> 함수 또는 <code class="highlighter-rouge">json_encode()</code>로 직렬화하고, 다시 역직렬화해서 객체로 재생할 수 있으면, 직렬화된 문자 덩어리를 LOB라 부릅니다. LOB는 컴퓨터가 읽기 편한 BLOB(Binary Large Object)와 사람이 읽을 수 있는 CLOB(Character Large Object)로 나눌 수 있습니다.</p>
+<p>객체를 <code class="language-plaintext highlighter-rouge">serialize()</code> 함수 또는 <code class="language-plaintext highlighter-rouge">json_encode()</code>로 직렬화하고, 다시 역직렬화해서 객체로 재생할 수 있으면, 직렬화된 문자 덩어리를 LOB라 부릅니다. LOB는 컴퓨터가 읽기 편한 BLOB(Binary Large Object)와 사람이 읽을 수 있는 CLOB(Character Large Object)로 나눌 수 있습니다.</p>
 
-<p><code class="highlighter-rouge">serialize()</code> 함수로 직렬화해서 DB에 저장한 데이터는 PHP에서만 꺼내서 쓸 수 있는 반면, <code class="highlighter-rouge">json_encode()</code>로 직렬화하면 어떤 컴퓨터 언어에서든 꺼내서 쓸 수 있습니다. 즉 PHP 직렬화는 데이터가 PHP 프로그래밍 언어에 종속되는 결과를 초래하므로 신중하게 생각하고 결정해야 합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">serialize()</code> 함수로 직렬화해서 DB에 저장한 데이터는 PHP에서만 꺼내서 쓸 수 있는 반면, <code class="language-plaintext highlighter-rouge">json_encode()</code>로 직렬화하면 어떤 컴퓨터 언어에서든 꺼내서 쓸 수 있습니다. 즉 PHP 직렬화는 데이터가 PHP 프로그래밍 언어에 종속되는 결과를 초래하므로 신중하게 생각하고 결정해야 합니다.</p>
 
 <p>1절에서 객체의 필드를 DB 컬럼에 일대일로 맵핑한 반면, LOB를 이용한 방법은 아래 그림처럼 객체를 DB 컬럼 하나에 맵핑하는 방법입니다.</p>
 
@@ -213,12 +217,12 @@
 
 <h3 id="22-엔티티와-값-객체-그리고-팩토리">2.2. 엔티티와 값 객체, 그리고 팩토리</h3>
 
-<p>1절에서 만든 주소 객체를 그대로 사용하고, <code class="highlighter-rouge">Customer</code> 모델만 조금 고쳤습니다.</p>
+<p>1절에서 만든 주소 객체를 그대로 사용하고, <code class="language-plaintext highlighter-rouge">Customer</code> 모델만 조금 고쳤습니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout attr-accessor-mutator <span class="nt">--</span> app/Address.php app/JibunAddress.php app/RoadAddress.php app/Customer.php database/factories/CustomerFactory.php
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">setAddressAttribute()</code> 변경자에서 <code class="highlighter-rouge">customers.address:json</code> 컬럼에 저장하기 위해 JSON으로 직렬화하는 부분을 주목해주세요.</p>
+<p><code class="language-plaintext highlighter-rouge">setAddressAttribute()</code> 변경자에서 <code class="language-plaintext highlighter-rouge">customers.address:json</code> 컬럼에 저장하기 위해 JSON으로 직렬화하는 부분을 주목해주세요.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Customer.php</span>
 
@@ -250,7 +254,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>PHP 직렬화를 선택했다면 변경자에서 <code class="highlighter-rouge">json_encode()</code> 대신 <code class="highlighter-rouge">serialize()</code>로 직렬화해서 저장하고 <code class="highlighter-rouge">unserizlize()</code>로 꺼내서 바로 PHP 객체로 재생할 수 있습니다. 앞서 언급한 플랫폼 의존성을 피하고자 JSON 형식을 선택했고, DB에서 꺼내 쓸 때는 JSON을 객체로 재생해줘야 합니다. 이 역할을 <code class="highlighter-rouge">AddressFactory</code>클래스가 담당합니다.</p>
+<p>PHP 직렬화를 선택했다면 변경자에서 <code class="language-plaintext highlighter-rouge">json_encode()</code> 대신 <code class="language-plaintext highlighter-rouge">serialize()</code>로 직렬화해서 저장하고 <code class="language-plaintext highlighter-rouge">unserizlize()</code>로 꺼내서 바로 PHP 객체로 재생할 수 있습니다. 앞서 언급한 플랫폼 의존성을 피하고자 JSON 형식을 선택했고, DB에서 꺼내 쓸 때는 JSON을 객체로 재생해줘야 합니다. 이 역할을 <code class="language-plaintext highlighter-rouge">AddressFactory</code>클래스가 담당합니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/AddressFactory.php</span>
 
@@ -289,7 +293,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">Address</code>, <code class="highlighter-rouge">JibunAddress</code>, <code class="highlighter-rouge">RoadAddress</code>의 필드 이름이 변경되거나, 추가, 삭제된 경우를 상상해보죠. 재생을 위한 설계도가 되는 클래스가 변경된 상태에서 다시 객체로 생성할 수 있을까요? JSON으로 직렬화했다면 가능합니다. PHP로 직렬화했다면 불가능합니다.</p>
+<p><code class="language-plaintext highlighter-rouge">Address</code>, <code class="language-plaintext highlighter-rouge">JibunAddress</code>, <code class="language-plaintext highlighter-rouge">RoadAddress</code>의 필드 이름이 변경되거나, 추가, 삭제된 경우를 상상해보죠. 재생을 위한 설계도가 되는 클래스가 변경된 상태에서 다시 객체로 생성할 수 있을까요? JSON으로 직렬화했다면 가능합니다. PHP로 직렬화했다면 불가능합니다.</p>
 
 <h3 id="23-optional-모델-팩토리">2.3. [Optional] 모델 팩토리</h3>
 
@@ -297,9 +301,9 @@
 
 <h3 id="24-테스트">2.4. 테스트</h3>
 
-<p>아래 코드에서 <code class="highlighter-rouge">Customer.address</code> 필드에 JSON이 그대로 담겨있는게 보입니다. 엘로퀀트는 활성 레코드 패턴이라 모델 자체가 DB라 볼 수 있고, DB에서 읽은 컬럼의 값을 객체의 필드에 그냥 담아 놓은 것이라 보시면 됩니다.</p>
+<p>아래 코드에서 <code class="language-plaintext highlighter-rouge">Customer.address</code> 필드에 JSON이 그대로 담겨있는게 보입니다. 엘로퀀트는 활성 레코드 패턴이라 모델 자체가 DB라 볼 수 있고, DB에서 읽은 컬럼의 값을 객체의 필드에 그냥 담아 놓은 것이라 보시면 됩니다.</p>
 
-<p>접근자를 호출했을 때 비로소 <code class="highlighter-rouge">Address</code> 객체로 바뀝니다. 접근자를 호출하는 방법은 접근자 함수를 직접 불러도 되지만, <code class="highlighter-rouge">$c1-&gt;address</code> 처럼 필드에 접근하면 호출됩니다. 아래 코드에서 접근자에서 <code class="highlighter-rouge">AddressFactory</code>를 이용해서 <code class="highlighter-rouge">App\Address {#2958}</code>로 재생한 것을 볼 수 있습니다.</p>
+<p>접근자를 호출했을 때 비로소 <code class="language-plaintext highlighter-rouge">Address</code> 객체로 바뀝니다. 접근자를 호출하는 방법은 접근자 함수를 직접 불러도 되지만, <code class="language-plaintext highlighter-rouge">$c1-&gt;address</code> 처럼 필드에 접근하면 호출됩니다. 아래 코드에서 접근자에서 <code class="language-plaintext highlighter-rouge">AddressFactory</code>를 이용해서 <code class="language-plaintext highlighter-rouge">App\Address {#2958}</code>로 재생한 것을 볼 수 있습니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># 엔티티 생성 및 영속화</span>
@@ -418,7 +422,7 @@ id  name    SI_DO_NAME
 
 <h2 id="3-참조를-이용하는-방법">3. 참조를 이용하는 방법</h2>
 
-<p><code class="highlighter-rouge">customers</code> 테이블과 <code class="highlighter-rouge">customer_addresses</code> 테이블로 나누고, 각각의 엘로퀀트 모델을 만든 후, <code class="highlighter-rouge">HasOne</code>/<code class="highlighter-rouge">BelongsTo</code> 관계로 연결하는 방법입니다. 데이터 중심적인 설계를 하면 이런 결과가 나오는데, 객체 지향스럽지 않아서 권장하지 않습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">customers</code> 테이블과 <code class="language-plaintext highlighter-rouge">customer_addresses</code> 테이블로 나누고, 각각의 엘로퀀트 모델을 만든 후, <code class="language-plaintext highlighter-rouge">HasOne</code>/<code class="language-plaintext highlighter-rouge">BelongsTo</code> 관계로 연결하는 방법입니다. 데이터 중심적인 설계를 하면 이런 결과가 나오는데, 객체 지향스럽지 않아서 권장하지 않습니다.</p>
 
 <p>이는 엘로퀀트ORM의 한계이며, 독트린ORM을 사용하면 엔티티의 속성을 여러 테이블에 나누어 영속화하는 것이 가능합니다(see <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/tutorials/embeddables.html">https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/tutorials/embeddables.html</a>).</p>
 
@@ -629,7 +633,7 @@ id  name    SI_DO_NAME
 
 <h3 id="34-테스트">3.4. 테스트</h3>
 
-<p><code class="highlighter-rouge">CustomerAddress</code> 모델은 기본 키(<code class="highlighter-rouge">id</code>)가 있어서 값 객체인지 엔티티인지 모호합니다. 당연히 <code class="highlighter-rouge">$c1-&gt;address</code> 와 <code class="highlighter-rouge">$c2-&gt;address</code>는 서로 다른 메모리 공간을 사용하고 객체의 식별자 해시도 완전히 다릅니다(물론 앞 절에서 처럼 동등 비교 함수를 구현하면 됩니다).</p>
+<p><code class="language-plaintext highlighter-rouge">CustomerAddress</code> 모델은 기본 키(<code class="language-plaintext highlighter-rouge">id</code>)가 있어서 값 객체인지 엔티티인지 모호합니다. 당연히 <code class="language-plaintext highlighter-rouge">$c1-&gt;address</code> 와 <code class="language-plaintext highlighter-rouge">$c2-&gt;address</code>는 서로 다른 메모리 공간을 사용하고 객체의 식별자 해시도 완전히 다릅니다(물론 앞 절에서 처럼 동등 비교 함수를 구현하면 됩니다).</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>php artisan tinker
 <span class="c"># 엔티티 생성 및 영속화</span>
@@ -1780,7 +1784,16 @@ id  name    SI_DO_NAME
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

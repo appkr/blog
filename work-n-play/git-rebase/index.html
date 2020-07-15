@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>GIT REBASE, 커밋 이력을 유지하면서 과거 커밋의 내용 수정하기 | Appkr.memo(new Story)</title>
 
@@ -144,7 +148,7 @@
 
 <p>말로는 쉬워보이지만, 2번이 정말 어려웠다.</p>
 
-<p>예를 들어, <code class="highlighter-rouge">foo</code> -&gt; <code class="highlighter-rouge">bar</code> -&gt; <code class="highlighter-rouge">baz</code> 커밋 로그가 있다고 하자. 리베이스로 <code class="highlighter-rouge">foo</code> 커밋의 내용을 수정했는데 <code class="highlighter-rouge">bar</code>에서 충돌이 발생했다. <code class="highlighter-rouge">bar</code> 커밋에서 발생한 충돌을 해결하고 나면, <code class="highlighter-rouge">bar</code> 커밋은 <code class="highlighter-rouge">foo</code> 커밋으로 합쳐지고, <code class="highlighter-rouge">bar</code> 커밋 로그는 남지 않는다.</p>
+<p>예를 들어, <code class="language-plaintext highlighter-rouge">foo</code> -&gt; <code class="language-plaintext highlighter-rouge">bar</code> -&gt; <code class="language-plaintext highlighter-rouge">baz</code> 커밋 로그가 있다고 하자. 리베이스로 <code class="language-plaintext highlighter-rouge">foo</code> 커밋의 내용을 수정했는데 <code class="language-plaintext highlighter-rouge">bar</code>에서 충돌이 발생했다. <code class="language-plaintext highlighter-rouge">bar</code> 커밋에서 발생한 충돌을 해결하고 나면, <code class="language-plaintext highlighter-rouge">bar</code> 커밋은 <code class="language-plaintext highlighter-rouge">foo</code> 커밋으로 합쳐지고, <code class="language-plaintext highlighter-rouge">bar</code> 커밋 로그는 남지 않는다.</p>
 
 <p>‘최종 커밋만 있으면 되지~’, ‘중간 커밋을 살리는 것이 무슨 의미가…?’라는 의문이 생길 수 있다. 맞다. 최종 커밋만 있으면 된다. 그런데, 나는 이번에 나올 책에서 챕터별로 예제 코드를 커밋했고, 커밋 로그 하나가 사라지면 챕터에 해당하는 소스코드의 이력이 사라지기 때문에 이 문제를 꼭 해결해야만 했다.</p>
 
@@ -172,7 +176,7 @@
 <span class="nv">$ </span><span class="nb">touch </span>foo.txt
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">foo.txt</code>의 내용은 다음과 같다.</p>
+<p><code class="language-plaintext highlighter-rouge">foo.txt</code>의 내용은 다음과 같다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First message
 Second message
@@ -193,11 +197,11 @@ Fourth message
 
 <h2 id="2-첫번째-리베이스---수정">2. 첫번째 리베이스 - 수정</h2>
 
-<p><code class="highlighter-rouge">bb44c4b first commit</code>에서 커밋한 내용에 오류가 있어서 수정해야한다고 가정하자.</p>
+<p><code class="language-plaintext highlighter-rouge">bb44c4b first commit</code>에서 커밋한 내용에 오류가 있어서 수정해야한다고 가정하자.</p>
 
 <h3 id="21-git-rebase-interactive-root">2.1. git rebase –interactive –root</h3>
 
-<p><code class="highlighter-rouge">--root</code> 옵션을 붙여야 최초 커밋부터 리베이스할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">--root</code> 옵션을 붙여야 최초 커밋부터 리베이스할 수 있다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>branch:master<span class="o">)</span> <span class="nv">$ </span>git rebase <span class="nt">--interactive</span> <span class="nt">--root</span>
 </code></pre></div></div>
@@ -226,11 +230,11 @@ pick a36e27a fourth commit
 <span class="c"># Note that empty commits are commented out</span>
 </code></pre></div></div>
 
-<p>첫번째 커밋인 <code class="highlighter-rouge">pick bb44c4b first commit</code>을 <code class="highlighter-rouge">e bb44c4b first commit</code>으로 바꾸고 저장하면 리베이스가 시작된다.</p>
+<p>첫번째 커밋인 <code class="language-plaintext highlighter-rouge">pick bb44c4b first commit</code>을 <code class="language-plaintext highlighter-rouge">e bb44c4b first commit</code>으로 바꾸고 저장하면 리베이스가 시작된다.</p>
 
 <h3 id="22-코드-수정">2.2. 코드 수정</h3>
 
-<p><code class="highlighter-rouge">bb44c4b first commit</code> 당시의 <code class="highlighter-rouge">foo.txt</code>의 내용은 이렇다.</p>
+<p><code class="language-plaintext highlighter-rouge">bb44c4b first commit</code> 당시의 <code class="language-plaintext highlighter-rouge">foo.txt</code>의 내용은 이렇다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First message
 </code></pre></div></div>
@@ -243,7 +247,7 @@ Interim message <span class="o">(</span>new line<span class="o">)</span>
 
 <h3 id="23-git-commit--ac-head1">2.3. git commit -aC HEAD@{1}</h3>
 
-<p>리베이스를 시작하는 순간 커밋의 SHA 해시는 바뀐다. 코드 수정이 끝났으니 커밋을 해야 하는데, 콘솔에 안내된 메시지대로 <code class="highlighter-rouge">$ git commit --amend</code>를 하면, 충돌 해결 후 커밋 로그가 사라진다. 커밋 로그를 유지하기 위해 <code class="highlighter-rouge">--amend</code> 옵션을 쓰지 않고 커밋하고, 대신 <code class="highlighter-rouge">-C</code> 옵션을 사용했다. <code class="highlighter-rouge">-C</code> 옵션은 기존의 커밋 메시지를 참조한다는 의미이고, <code class="highlighter-rouge">HEAD@{1}</code>은 현재 리베이스 중인 커밋의 메시지를 말한다.</p>
+<p>리베이스를 시작하는 순간 커밋의 SHA 해시는 바뀐다. 코드 수정이 끝났으니 커밋을 해야 하는데, 콘솔에 안내된 메시지대로 <code class="language-plaintext highlighter-rouge">$ git commit --amend</code>를 하면, 충돌 해결 후 커밋 로그가 사라진다. 커밋 로그를 유지하기 위해 <code class="language-plaintext highlighter-rouge">--amend</code> 옵션을 쓰지 않고 커밋하고, 대신 <code class="language-plaintext highlighter-rouge">-C</code> 옵션을 사용했다. <code class="language-plaintext highlighter-rouge">-C</code> 옵션은 기존의 커밋 메시지를 참조한다는 의미이고, <code class="language-plaintext highlighter-rouge">HEAD@{1}</code>은 현재 리베이스 중인 커밋의 메시지를 말한다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>branch:81c42b4<span class="o">)</span> <span class="nv">$ </span>git commit <span class="nt">-aC</span> HEAD@<span class="o">{</span>1<span class="o">}</span>
 <span class="c"># [detached HEAD 24959b0] first commit</span>
@@ -264,7 +268,7 @@ Interim message <span class="o">(</span>new line<span class="o">)</span>
 <span class="c"># Could not apply 1f97602261123673cba6dbcfd75e37eed5ec1f4b... second commit</span>
 </code></pre></div></div>
 
-<p>2.2에서 수정한 내용 때문에, 당연히 충돌이 발생한다. <code class="highlighter-rouge">$ git status</code> 명령으로 어떤 파일에서 충돌이 발생하는 지 확인한다. 여기서는 파일이 하나 밖에 없어서 굳이 확인할 필요도 없지만…</p>
+<p>2.2에서 수정한 내용 때문에, 당연히 충돌이 발생한다. <code class="language-plaintext highlighter-rouge">$ git status</code> 명령으로 어떤 파일에서 충돌이 발생하는 지 확인한다. 여기서는 파일이 하나 밖에 없어서 굳이 확인할 필요도 없지만…</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>branch:24959b0<span class="k">*</span><span class="o">)</span> <span class="nv">$ </span>git status
 <span class="c"># interactive rebase in progress; onto c15a027</span>
@@ -291,7 +295,7 @@ Interim message <span class="o">(</span>new line<span class="o">)</span>
 
 <h3 id="25-충돌-해결">2.5. 충돌 해결</h3>
 
-<p><code class="highlighter-rouge">foo.txt</code>의 현재 상태는 이렇다.</p>
+<p><code class="language-plaintext highlighter-rouge">foo.txt</code>의 현재 상태는 이렇다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt; HEAD
 First message <span class="o">(</span>modified<span class="o">)</span>
@@ -334,7 +338,7 @@ Second message
 <span class="k">*</span> 81c42b4 first commit
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">81c42b4</code>은 수정하기 전의 최초 커밋이다. <code class="highlighter-rouge">24959b0</code>은 최초 내용을 수정한 커밋이다., <code class="highlighter-rouge">d05fc39</code>는 원래 <code class="highlighter-rouge">second commit</code>인데 충돌을 해결하면서 생긴 커밋이다. 이제 두번째 리베이스를 할 준비가 됐다.</p>
+<p><code class="language-plaintext highlighter-rouge">81c42b4</code>은 수정하기 전의 최초 커밋이다. <code class="language-plaintext highlighter-rouge">24959b0</code>은 최초 내용을 수정한 커밋이다., <code class="language-plaintext highlighter-rouge">d05fc39</code>는 원래 <code class="language-plaintext highlighter-rouge">second commit</code>인데 충돌을 해결하면서 생긴 커밋이다. 이제 두번째 리베이스를 할 준비가 됐다.</p>
 
 <h2 id="3-두번째-리베이스---커밋-로그-다듬기">3. 두번째 리베이스 - 커밋 로그 다듬기</h2>
 
@@ -345,7 +349,7 @@ Second message
 
 <h3 id="31-리베이스-작업-설정">3.1. 리베이스 작업 설정</h3>
 
-<p>에디터 창이 뜬다. <code class="highlighter-rouge">24959b0</code> 커밋은 <code class="highlighter-rouge">81c42b4</code>과 합친다(f, fixup). <code class="highlighter-rouge">d05fc39</code> 커밋은 메시지를 바꾼다(r, reword).</p>
+<p>에디터 창이 뜬다. <code class="language-plaintext highlighter-rouge">24959b0</code> 커밋은 <code class="language-plaintext highlighter-rouge">81c42b4</code>과 합친다(f, fixup). <code class="language-plaintext highlighter-rouge">d05fc39</code> 커밋은 메시지를 바꾼다(r, reword).</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pick 81c42b4 first commit
 f 24959b0 first commit
@@ -379,7 +383,7 @@ pick 60e2196 fourth commit
 <span class="c">#</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">first commit</code> 를 <code class="highlighter-rouge">second commit</code>으로 바꾸고 저장하면 끝.</p>
+<p><code class="language-plaintext highlighter-rouge">first commit</code> 를 <code class="language-plaintext highlighter-rouge">second commit</code>으로 바꾸고 저장하면 끝.</p>
 
 <h2 id="4-리베이스-결과">4. 리베이스 결과</h2>
 
@@ -392,7 +396,7 @@ pick 60e2196 fourth commit
 <span class="o">(</span>END<span class="o">)</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">foo.txt</code> 파일의 내용이다.</p>
+<p><code class="language-plaintext highlighter-rouge">foo.txt</code> 파일의 내용이다.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First message <span class="o">(</span>modified<span class="o">)</span>
 Interim message <span class="o">(</span>new line<span class="o">)</span>
@@ -1360,7 +1364,16 @@ Fourth message
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

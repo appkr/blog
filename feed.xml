@@ -5,9 +5,9 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 05 May 2020 18:45:38 +0900</pubDate>
-    <lastBuildDate>Tue, 05 May 2020 18:45:38 +0900</lastBuildDate>
-    <generator>Jekyll v4.0.0</generator>
+    <pubDate>Wed, 15 Jul 2020 22:44:48 +0900</pubDate>
+    <lastBuildDate>Wed, 15 Jul 2020 22:44:48 +0900</lastBuildDate>
+    <generator>Jekyll v4.1.1</generator>
     
       <item>
         <title>개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</title>
@@ -34,7 +34,7 @@
 &lt;!--more--&gt;
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;BCG 매트릭스&lt;/strong&gt;란 &lt;strong&gt;시장의 성장률&lt;/strong&gt;와 사업/제품의 &lt;strong&gt;상대적 시장 점유율&lt;/strong&gt;로 표현한 사분면에 사업군/제품군의 매출 또는 판매수량을 원으로 배치시켜 현재의 위치를 파악하고 전략적 의사결정을 돕기 위한 분석 도구입니다. 상대적 시장 점유율이란, &lt;code class=&quot;highlighter-rouge&quot;&gt;자사의 시장 점유율 / 자사를 제외하고 1위 경쟁사의 시장 점유율&lt;/code&gt;로 계산하며, 자사가 해당 시장에서 1위이면 1보다 큰 값, 그렇지 않다면 1보다 작은 값이 나옵니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BCG 매트릭스&lt;/strong&gt;란 &lt;strong&gt;시장의 성장률&lt;/strong&gt;와 사업/제품의 &lt;strong&gt;상대적 시장 점유율&lt;/strong&gt;로 표현한 사분면에 사업군/제품군의 매출 또는 판매수량을 원으로 배치시켜 현재의 위치를 파악하고 전략적 의사결정을 돕기 위한 분석 도구입니다. 상대적 시장 점유율이란, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자사의 시장 점유율 / 자사를 제외하고 1위 경쟁사의 시장 점유율&lt;/code&gt;로 계산하며, 자사가 해당 시장에서 1위이면 1보다 큰 값, 그렇지 않다면 1보다 작은 값이 나옵니다.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;물음표 &lt;small&gt;Question Mark&lt;/small&gt;&lt;/strong&gt;: 시장은 성장하지만, 아직은 자사의 사업/제품 경쟁력이 부족해 상대적 시장 점유율은 낮은 영역입니다.&lt;/li&gt;
@@ -49,9 +49,9 @@
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;이미지 출처: 위키피디아&lt;/small&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Pentrix&lt;/code&gt;는 2위 업체보다 점유율이 2배나 높네요.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Pentrix&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Dorlan&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bendac&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Eviron&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Lotran&lt;/code&gt; 등에서 얻은 매출로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Xantax&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Longal&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Energan&lt;/code&gt; 등에 더 투자해서 이들은 스타 영역으로 옮길 수 있습니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Zodial&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Braviton&lt;/code&gt; 등은 성장률이 10% 이상인 시장에 있지만, 경쟁에서 지고 있는 것으로 보입니다. 시장 성장률이 더 떨어지면 매각 또는 철수등의 전략적 의사 결정을 할 수 있을 겁니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pentrix&lt;/code&gt;는 2위 업체보다 점유율이 2배나 높네요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pentrix&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dorlan&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bendac&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Eviron&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Lotran&lt;/code&gt; 등에서 얻은 매출로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Xantax&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Longal&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Energan&lt;/code&gt; 등에 더 투자해서 이들은 스타 영역으로 옮길 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Zodial&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Braviton&lt;/code&gt; 등은 성장률이 10% 이상인 시장에 있지만, 경쟁에서 지고 있는 것으로 보입니다. 시장 성장률이 더 떨어지면 매각 또는 철수등의 전략적 의사 결정을 할 수 있을 겁니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
@@ -164,11 +164,11 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;3번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;foo()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
+  &lt;li&gt;3번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foo()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
   &lt;li&gt;6번 줄에서 “1”을 출력합니다.&lt;/li&gt;
-  &lt;li&gt;7번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;bar()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
+  &lt;li&gt;7번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bar()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
   &lt;li&gt;12번 줄에서 “2”를 출력합니다.&lt;/li&gt;
-  &lt;li&gt;13번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
+  &lt;li&gt;13번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수를 호출합니다.&lt;/li&gt;
   &lt;li&gt;18번 줄에서 “3”을 출력합니다.&lt;/li&gt;
   &lt;li&gt;14번 줄에서 “4”를 출력합니다.&lt;/li&gt;
   &lt;li&gt;8번 줄에서 “5”를 출력합니다.&lt;/li&gt;
@@ -178,7 +178,7 @@
 
 &lt;h2 id=&quot;2-예외-상황&quot;&gt;2 예외 상황&lt;/h2&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수에서 예외를 만들고 결과를 살펴보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수에서 예외를 만들고 결과를 살펴보겠습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php linenos highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
@@ -211,12 +211,12 @@ Stack trace:
 &lt;p&gt;스택 트레이스를 하나씩 뜯어 보겠습니다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;첫 줄을 통해 &lt;code class=&quot;highlighter-rouge&quot;&gt;/Users/appkr/workspace/stack-trace/php/exception.php&lt;/code&gt; 파일의 14번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeException&lt;/code&gt;이 발생했고, 메시지는 &lt;code class=&quot;highlighter-rouge&quot;&gt;런타임 예외가 발생했습니다&lt;/code&gt;라는 사실을 알 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;첫 줄을 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/Users/appkr/workspace/stack-trace/php/exception.php&lt;/code&gt; 파일의 14번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeException&lt;/code&gt;이 발생했고, 메시지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;런타임 예외가 발생했습니다&lt;/code&gt;라는 사실을 알 수 있습니다.&lt;/li&gt;
   &lt;li&gt;첫 줄에서 문제의 원인을 알 수 있다면 아래 내용은 읽을 필요가 없습니다.&lt;/li&gt;
   &lt;li&gt;총 4 개의 스택 프레임이 잡혔는데, 시간 역순으로 기록되어 있습니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#2 exception.php&lt;/code&gt; 3번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;foo()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#1 exception.php&lt;/code&gt; 6번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;bar()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#0 exception.php&lt;/code&gt; 10번 줄에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#2 exception.php&lt;/code&gt; 3번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foo()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#1 exception.php&lt;/code&gt; 6번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bar()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#0 exception.php&lt;/code&gt; 10번 줄에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;baz()&lt;/code&gt; 함수를 호출했네요.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;어떤가요, 1절에서 본 내용과 전혀 다르지 않죠?&lt;/p&gt;
@@ -257,7 +257,7 @@ Stack trace:
 
 &lt;p&gt;그런데 위 스택 트레이스는 문제를 일으킨 근본 원인(Root Cause)이 무엇인지 보이지 않는다는 문제가 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; 블록에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;CustomException&lt;/code&gt;을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catch&lt;/code&gt; 블록에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomException&lt;/code&gt;을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php linenos highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
@@ -330,10 +330,10 @@ Stack trace:
 &lt;p&gt;다음의 정보를 얻을 수 있습니다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 &lt;code class=&quot;highlighter-rouge&quot;&gt;NOTICE&lt;/code&gt; 레벨의 예외.&lt;/li&gt;
-  &lt;li&gt;블랙리스트 여부를 검사하고 예외를 던진 위치는 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/Manager.php&lt;/code&gt; 파일의 109 줄.&lt;/li&gt;
-  &lt;li&gt;예외가 발생시킨 함수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tymon\JWTAuth\Manager::decode()&lt;/code&gt;이며, 이 함수를 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/JWT.php&lt;/code&gt; 200 줄에서 호출.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;My\Domain\Auth\Exceptions\UnauthorizedTokenException&lt;/code&gt; 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 메시지를 담은 JSON 예외 응답을 받았을 것.&lt;/li&gt;
+  &lt;li&gt;사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NOTICE&lt;/code&gt; 레벨의 예외.&lt;/li&gt;
+  &lt;li&gt;블랙리스트 여부를 검사하고 예외를 던진 위치는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/Manager.php&lt;/code&gt; 파일의 109 줄.&lt;/li&gt;
+  &lt;li&gt;예외가 발생시킨 함수는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tymon\JWTAuth\Manager::decode()&lt;/code&gt;이며, 이 함수를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/www/html/vendor/tymon/jwt-auth/src/JWT.php&lt;/code&gt; 200 줄에서 호출.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;My\Domain\Auth\Exceptions\UnauthorizedTokenException&lt;/code&gt; 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 메시지를 담은 JSON 예외 응답을 받았을 것.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!--more--&gt;
@@ -382,7 +382,7 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
     at main.main&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main.java:23&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;예외의 근본원인을 &lt;code class=&quot;highlighter-rouge&quot;&gt;Caused by:&lt;/code&gt; 로 표시하는 부분을 제외하면 거의 똑같습니다.&lt;/p&gt;
+&lt;p&gt;예외의 근본원인을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Caused by:&lt;/code&gt; 로 표시하는 부분을 제외하면 거의 똑같습니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;52-ruby&quot;&gt;5.2 Ruby&lt;/h3&gt;
 
@@ -515,9 +515,9 @@ main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 �
 
 &lt;h2 id=&quot;2-lob를-이용하는-방법&quot;&gt;2. LOB를 이용하는 방법&lt;/h2&gt;
 
-&lt;p&gt;객체를 &lt;code class=&quot;highlighter-rouge&quot;&gt;serialize()&lt;/code&gt; 함수 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt;로 직렬화하고, 다시 역직렬화해서 객체로 재생할 수 있으면, 직렬화된 문자 덩어리를 LOB라 부릅니다. LOB는 컴퓨터가 읽기 편한 BLOB(Binary Large Object)와 사람이 읽을 수 있는 CLOB(Character Large Object)로 나눌 수 있습니다.&lt;/p&gt;
+&lt;p&gt;객체를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serialize()&lt;/code&gt; 함수 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt;로 직렬화하고, 다시 역직렬화해서 객체로 재생할 수 있으면, 직렬화된 문자 덩어리를 LOB라 부릅니다. LOB는 컴퓨터가 읽기 편한 BLOB(Binary Large Object)와 사람이 읽을 수 있는 CLOB(Character Large Object)로 나눌 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;serialize()&lt;/code&gt; 함수로 직렬화해서 DB에 저장한 데이터는 PHP에서만 꺼내서 쓸 수 있는 반면, &lt;code class=&quot;highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt;로 직렬화하면 어떤 컴퓨터 언어에서든 꺼내서 쓸 수 있습니다. 즉 PHP 직렬화는 데이터가 PHP 프로그래밍 언어에 종속되는 결과를 초래하므로 신중하게 생각하고 결정해야 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serialize()&lt;/code&gt; 함수로 직렬화해서 DB에 저장한 데이터는 PHP에서만 꺼내서 쓸 수 있는 반면, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt;로 직렬화하면 어떤 컴퓨터 언어에서든 꺼내서 쓸 수 있습니다. 즉 PHP 직렬화는 데이터가 PHP 프로그래밍 언어에 종속되는 결과를 초래하므로 신중하게 생각하고 결정해야 합니다.&lt;/p&gt;
 
 &lt;p&gt;1절에서 객체의 필드를 DB 컬럼에 일대일로 맵핑한 반면, LOB를 이용한 방법은 아래 그림처럼 객체를 DB 컬럼 하나에 맵핑하는 방법입니다.&lt;/p&gt;
 
@@ -573,12 +573,12 @@ main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 �
 
 &lt;h3 id=&quot;22-엔티티와-값-객체-그리고-팩토리&quot;&gt;2.2. 엔티티와 값 객체, 그리고 팩토리&lt;/h3&gt;
 
-&lt;p&gt;1절에서 만든 주소 객체를 그대로 사용하고, &lt;code class=&quot;highlighter-rouge&quot;&gt;Customer&lt;/code&gt; 모델만 조금 고쳤습니다.&lt;/p&gt;
+&lt;p&gt;1절에서 만든 주소 객체를 그대로 사용하고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Customer&lt;/code&gt; 모델만 조금 고쳤습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout attr-accessor-mutator &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; app/Address.php app/JibunAddress.php app/RoadAddress.php app/Customer.php database/factories/CustomerFactory.php
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setAddressAttribute()&lt;/code&gt; 변경자에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;customers.address:json&lt;/code&gt; 컬럼에 저장하기 위해 JSON으로 직렬화하는 부분을 주목해주세요.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setAddressAttribute()&lt;/code&gt; 변경자에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customers.address:json&lt;/code&gt; 컬럼에 저장하기 위해 JSON으로 직렬화하는 부분을 주목해주세요.&lt;/p&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Customer.php&lt;/span&gt;
 
@@ -610,7 +610,7 @@ main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 �
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;PHP 직렬화를 선택했다면 변경자에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt; 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;serialize()&lt;/code&gt;로 직렬화해서 저장하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;unserizlize()&lt;/code&gt;로 꺼내서 바로 PHP 객체로 재생할 수 있습니다. 앞서 언급한 플랫폼 의존성을 피하고자 JSON 형식을 선택했고, DB에서 꺼내 쓸 때는 JSON을 객체로 재생해줘야 합니다. 이 역할을 &lt;code class=&quot;highlighter-rouge&quot;&gt;AddressFactory&lt;/code&gt;클래스가 담당합니다.&lt;/p&gt;
+&lt;p&gt;PHP 직렬화를 선택했다면 변경자에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt; 대신 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serialize()&lt;/code&gt;로 직렬화해서 저장하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unserizlize()&lt;/code&gt;로 꺼내서 바로 PHP 객체로 재생할 수 있습니다. 앞서 언급한 플랫폼 의존성을 피하고자 JSON 형식을 선택했고, DB에서 꺼내 쓸 때는 JSON을 객체로 재생해줘야 합니다. 이 역할을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddressFactory&lt;/code&gt;클래스가 담당합니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/AddressFactory.php&lt;/span&gt;
 
@@ -649,7 +649,7 @@ main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 �
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Address&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;JibunAddress&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;RoadAddress&lt;/code&gt;의 필드 이름이 변경되거나, 추가, 삭제된 경우를 상상해보죠. 재생을 위한 설계도가 되는 클래스가 변경된 상태에서 다시 객체로 생성할 수 있을까요? JSON으로 직렬화했다면 가능합니다. PHP로 직렬화했다면 불가능합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Address&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JibunAddress&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RoadAddress&lt;/code&gt;의 필드 이름이 변경되거나, 추가, 삭제된 경우를 상상해보죠. 재생을 위한 설계도가 되는 클래스가 변경된 상태에서 다시 객체로 생성할 수 있을까요? JSON으로 직렬화했다면 가능합니다. PHP로 직렬화했다면 불가능합니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;23-optional-모델-팩토리&quot;&gt;2.3. [Optional] 모델 팩토리&lt;/h3&gt;
 
@@ -657,9 +657,9 @@ main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 �
 
 &lt;h3 id=&quot;24-테스트&quot;&gt;2.4. 테스트&lt;/h3&gt;
 
-&lt;p&gt;아래 코드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Customer.address&lt;/code&gt; 필드에 JSON이 그대로 담겨있는게 보입니다. 엘로퀀트는 활성 레코드 패턴이라 모델 자체가 DB라 볼 수 있고, DB에서 읽은 컬럼의 값을 객체의 필드에 그냥 담아 놓은 것이라 보시면 됩니다.&lt;/p&gt;
+&lt;p&gt;아래 코드에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Customer.address&lt;/code&gt; 필드에 JSON이 그대로 담겨있는게 보입니다. 엘로퀀트는 활성 레코드 패턴이라 모델 자체가 DB라 볼 수 있고, DB에서 읽은 컬럼의 값을 객체의 필드에 그냥 담아 놓은 것이라 보시면 됩니다.&lt;/p&gt;
 
-&lt;p&gt;접근자를 호출했을 때 비로소 &lt;code class=&quot;highlighter-rouge&quot;&gt;Address&lt;/code&gt; 객체로 바뀝니다. 접근자를 호출하는 방법은 접근자 함수를 직접 불러도 되지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;$c1-&amp;gt;address&lt;/code&gt; 처럼 필드에 접근하면 호출됩니다. 아래 코드에서 접근자에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;AddressFactory&lt;/code&gt;를 이용해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;App\Address {#2958}&lt;/code&gt;로 재생한 것을 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;접근자를 호출했을 때 비로소 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Address&lt;/code&gt; 객체로 바뀝니다. 접근자를 호출하는 방법은 접근자 함수를 직접 불러도 되지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c1-&amp;gt;address&lt;/code&gt; 처럼 필드에 접근하면 호출됩니다. 아래 코드에서 접근자에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddressFactory&lt;/code&gt;를 이용해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;App\Address {#2958}&lt;/code&gt;로 재생한 것을 볼 수 있습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan tinker
 &lt;span class=&quot;c&quot;&gt;# 엔티티 생성 및 영속화&lt;/span&gt;
@@ -778,7 +778,7 @@ id  name    SI_DO_NAME
 
 &lt;h2 id=&quot;3-참조를-이용하는-방법&quot;&gt;3. 참조를 이용하는 방법&lt;/h2&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;customers&lt;/code&gt; 테이블과 &lt;code class=&quot;highlighter-rouge&quot;&gt;customer_addresses&lt;/code&gt; 테이블로 나누고, 각각의 엘로퀀트 모델을 만든 후, &lt;code class=&quot;highlighter-rouge&quot;&gt;HasOne&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;BelongsTo&lt;/code&gt; 관계로 연결하는 방법입니다. 데이터 중심적인 설계를 하면 이런 결과가 나오는데, 객체 지향스럽지 않아서 권장하지 않습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customers&lt;/code&gt; 테이블과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customer_addresses&lt;/code&gt; 테이블로 나누고, 각각의 엘로퀀트 모델을 만든 후, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HasOne&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BelongsTo&lt;/code&gt; 관계로 연결하는 방법입니다. 데이터 중심적인 설계를 하면 이런 결과가 나오는데, 객체 지향스럽지 않아서 권장하지 않습니다.&lt;/p&gt;
 
 &lt;p&gt;이는 엘로퀀트ORM의 한계이며, 독트린ORM을 사용하면 엔티티의 속성을 여러 테이블에 나누어 영속화하는 것이 가능합니다(see &lt;a href=&quot;https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/tutorials/embeddables.html&quot;&gt;https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/tutorials/embeddables.html&lt;/a&gt;).&lt;/p&gt;
 
@@ -989,7 +989,7 @@ id  name    SI_DO_NAME
 
 &lt;h3 id=&quot;34-테스트&quot;&gt;3.4. 테스트&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CustomerAddress&lt;/code&gt; 모델은 기본 키(&lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;)가 있어서 값 객체인지 엔티티인지 모호합니다. 당연히 &lt;code class=&quot;highlighter-rouge&quot;&gt;$c1-&amp;gt;address&lt;/code&gt; 와 &lt;code class=&quot;highlighter-rouge&quot;&gt;$c2-&amp;gt;address&lt;/code&gt;는 서로 다른 메모리 공간을 사용하고 객체의 식별자 해시도 완전히 다릅니다(물론 앞 절에서 처럼 동등 비교 함수를 구현하면 됩니다).&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerAddress&lt;/code&gt; 모델은 기본 키(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;)가 있어서 값 객체인지 엔티티인지 모호합니다. 당연히 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c1-&amp;gt;address&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c2-&amp;gt;address&lt;/code&gt;는 서로 다른 메모리 공간을 사용하고 객체의 식별자 해시도 완전히 다릅니다(물론 앞 절에서 처럼 동등 비교 함수를 구현하면 됩니다).&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan tinker
 &lt;span class=&quot;c&quot;&gt;# 엔티티 생성 및 영속화&lt;/span&gt;
@@ -1218,7 +1218,7 @@ id  name    SI_DO_NAME
 &lt;p&gt;&lt;strong&gt;원시 타입과 박스 타입&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;PHP 언어에서 int, float, string, array, bool과 같은 데이터 타입을 원시 타입(Primitive Type)이라 합니다. 64bit 환경에서는 int라 쓰지만 4byte가 아니라 8bytes 즉 2^64 메모리 공간을 차지하고, float도 double과 같은 표현 범위를 가집니다(see http://php.net/manual/en/language.types.php). 
-여튼, 아래 예처럼 고객을 의미할 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;customer:string&lt;/code&gt;처럼 원시타입으로 표현하기 보다는 &lt;code class=&quot;highlighter-rouge&quot;&gt;customer:Customer&lt;/code&gt;로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.&lt;/p&gt;
+여튼, 아래 예처럼 고객을 의미할 때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customer:string&lt;/code&gt;처럼 원시타입으로 표현하기 보다는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customer:Customer&lt;/code&gt;로 쓰는 것이 더 많은 컨텍스트를 전달 할 수 있습니다. 여기서 후자를 박스 타입(Boxed Type)이라 부를 수 있습니다. 이를 다시 맥락에 따라서 엔티티나 값 객체로 부를 수도 있고요.&lt;/p&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'홍길동'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -1232,7 +1232,7 @@ id  name    SI_DO_NAME
 
 &lt;h2 id=&quot;0-예제를-위한-뼈대-코드-준비&quot;&gt;0. 예제를 위한 뼈대 코드 준비&lt;/h2&gt;
 
-&lt;p&gt;새 라라벨 프로젝트를 만듭니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;laravel&lt;/code&gt; 명령어를 쓸 수 없다면, &lt;a href=&quot;https://laravel.com/docs/5.7#installing-laravel&quot;&gt;라라벨 매뉴얼&lt;/a&gt;을 참고해서 Laravel Installer를 설치합니다.&lt;/p&gt;
+&lt;p&gt;새 라라벨 프로젝트를 만듭니다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;laravel&lt;/code&gt; 명령어를 쓸 수 없다면, &lt;a href=&quot;https://laravel.com/docs/5.7#installing-laravel&quot;&gt;라라벨 매뉴얼&lt;/a&gt;을 참고해서 Laravel Installer를 설치합니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;laravel new eloquent-value-object
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;eloquent-value-object
@@ -1241,7 +1241,7 @@ id  name    SI_DO_NAME
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; .env.example .env
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt;파일에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;DB_DATABASE&lt;/code&gt; 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;eloquent_value_object&lt;/code&gt;로 변경했습니다. 설정한대로 데이터베이스와 사용자를 만듭니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt;파일에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DB_DATABASE&lt;/code&gt; 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eloquent_value_object&lt;/code&gt;로 변경했습니다. 설정한대로 데이터베이스와 사용자를 만듭니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eloquent_value_object&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;CHARACTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;utf8&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLLATE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;utf8_unicode_ci&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;homestead&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&quot;%&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;secret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -1249,7 +1249,7 @@ id  name    SI_DO_NAME
 &lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FLUSH&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;artisan&lt;/code&gt; CLI로 모델, 스키마 마이그레이션, 모델 팩토리 뼈대 코드를 만듭니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;artisan&lt;/code&gt; CLI로 모델, 스키마 마이그레이션, 모델 팩토리 뼈대 코드를 만듭니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php artisan make:model Customer &lt;span class=&quot;nt&quot;&gt;--migration&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--factory&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;#Model created successfully.&lt;/span&gt;
@@ -1263,7 +1263,7 @@ id  name    SI_DO_NAME
 
 &lt;p&gt;이 방법은 주소에 관련된 DB 컬럼은 정규화된 형태로 사용하되, 엘로퀀트 모델에서는 주소와 관련된 DB 컬럼을 조합해서 의미있는 PHP 객체로 사용하는 방법입니다. 다시 말하면, 엘로퀀트 모델을 DB에 영속화할 때는 변경자를 이용해서 객체의 필드를 DB 컬럼으로 각각 맵핑시키고, DB 컬럼을 읽어서 엘로퀀트 모델로 재생할 때는 접근자를 이용해서 객체의 필드로 셋팅하는 겁니다.&lt;/p&gt;
 
-&lt;p&gt;아래 그림에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Customer.address&lt;/code&gt; 필드는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Address&lt;/code&gt; 타입의 값 객체인데, &lt;code class=&quot;highlighter-rouge&quot;&gt;customers.addr_si_do_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;customers.addr_si_gun_gu_name&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;...&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;customers.addr_detail&lt;/code&gt; 컬럼과 맵핑됩니다.&lt;/p&gt;
+&lt;p&gt;아래 그림에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Customer.address&lt;/code&gt; 필드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Address&lt;/code&gt; 타입의 값 객체인데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customers.addr_si_do_name&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customers.addr_si_gun_gu_name&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;...&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customers.addr_detail&lt;/code&gt; 컬럼과 맵핑됩니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+--------------------+
 | class Customer     |
@@ -1331,9 +1331,9 @@ id  name    SI_DO_NAME
 
 &lt;h3 id=&quot;12-엔티티와-값-객체&quot;&gt;1.2. 엔티티와 값 객체&lt;/h3&gt;
 
-&lt;p&gt;야래 코드의 &lt;code class=&quot;highlighter-rouge&quot;&gt;setAddressAttribute()&lt;/code&gt; 변경자에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Address&lt;/code&gt; 객체의 각 필드를 DB 컬럼에 맵핑하고 있습니다. 한편 &lt;code class=&quot;highlighter-rouge&quot;&gt;getAddressAttribute()&lt;/code&gt; 접근자에서는 DB 컬럼을 &lt;code class=&quot;highlighter-rouge&quot;&gt;Address&lt;/code&gt; 객체의 각 필드로 맵핑하고 있습니다.&lt;/p&gt;
+&lt;p&gt;야래 코드의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setAddressAttribute()&lt;/code&gt; 변경자에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Address&lt;/code&gt; 객체의 각 필드를 DB 컬럼에 맵핑하고 있습니다. 한편 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getAddressAttribute()&lt;/code&gt; 접근자에서는 DB 컬럼을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Address&lt;/code&gt; 객체의 각 필드로 맵핑하고 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Cusomer&lt;/code&gt;의 모든 데이터가 메모리에서 객체로 존재하는 런타임에는 DB 컬럼과의 관계는 몰라도 되므로, 엘로퀀트의 &lt;code class=&quot;highlighter-rouge&quot;&gt;$hidden&lt;/code&gt; 속성을 이용해서 숨겼습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cusomer&lt;/code&gt;의 모든 데이터가 메모리에서 객체로 존재하는 런타임에는 DB 컬럼과의 관계는 몰라도 되므로, 엘로퀀트의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$hidden&lt;/code&gt; 속성을 이용해서 숨겼습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Customer.php&lt;/span&gt;
 
@@ -1420,7 +1420,7 @@ id  name    SI_DO_NAME
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Customer&lt;/code&gt; 클래스가 의존하는 값 객체, &lt;code class=&quot;highlighter-rouge&quot;&gt;Address&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;JibunAddress&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;RoadAddress&lt;/code&gt; 클래스를 만듭니다. 주목할 점은 &lt;code class=&quot;highlighter-rouge&quot;&gt;isEqualTo()&lt;/code&gt; 함수입니다. 앞서 설명한 바와 같이, 값 객체간의 동등 비교를 위해 모든 필드의 값을 비교하는 것을 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Customer&lt;/code&gt; 클래스가 의존하는 값 객체, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Address&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JibunAddress&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RoadAddress&lt;/code&gt; 클래스를 만듭니다. 주목할 점은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isEqualTo()&lt;/code&gt; 함수입니다. 앞서 설명한 바와 같이, 값 객체간의 동등 비교를 위해 모든 필드의 값을 비교하는 것을 볼 수 있습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Address.php&lt;/span&gt;
 
@@ -1834,12 +1834,12 @@ id  name    SI_DO_NAME
 
 &lt;p&gt;“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+------------+           0..* +------------+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+------------+           0..* +------------+
 |  Customer  | &amp;lt;&amp;gt;-----------&amp;gt; |   Order    |
 +------------+                +------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;애플리케이션 레이어에서 구현한다면, ORM을 통해 구한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Collection&amp;lt;Customer&amp;gt;&lt;/code&gt;을 순회하면서, &lt;code class=&quot;highlighter-rouge&quot;&gt;Customer&lt;/code&gt;객체의 멤버 필드인 &lt;code class=&quot;highlighter-rouge&quot;&gt;Collection&amp;lt;Order&amp;gt;&lt;/code&gt;를 대상으로 최근 Order 객체만 필터링했거나, 적절한 순서로 정렬하여 뽑아 쓰기 쉽도록 했을겁니다. 요런 느낌으로요(검증 안된 Pseudo Code 입니다).&lt;/p&gt;
+&lt;p&gt;애플리케이션 레이어에서 구현한다면, ORM을 통해 구한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Collection&amp;lt;Customer&amp;gt;&lt;/code&gt;을 순회하면서, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Customer&lt;/code&gt;객체의 멤버 필드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Collection&amp;lt;Order&amp;gt;&lt;/code&gt;를 대상으로 최근 Order 객체만 필터링했거나, 적절한 순서로 정렬하여 뽑아 쓰기 쉽도록 했을겁니다. 요런 느낌으로요(검증 안된 Pseudo Code 입니다).&lt;/p&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Service Layer&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;listCustomers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -1863,7 +1863,7 @@ id  name    SI_DO_NAME
 &lt;ul&gt;
   &lt;li&gt;시간복잡도는 O(m x n)입니다.&lt;/li&gt;
   &lt;li&gt;CPU와 메모리를 혹사시킵니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Customer.orders: Collection&amp;lt;Order&amp;gt;&lt;/code&gt;를 미리 로드하지 않았다면, N + 1 문제가 발생합니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Customer.orders: Collection&amp;lt;Order&amp;gt;&lt;/code&gt;를 미리 로드하지 않았다면, N + 1 문제가 발생합니다.&lt;/li&gt;
   &lt;li&gt;이 외에도 제가 보지 못한 문제점들이 더 있을 겁니다…&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1874,9 +1874,9 @@ id  name    SI_DO_NAME
 
 &lt;h2 id=&quot;1-테이블-스키마&quot;&gt;1. 테이블 스키마&lt;/h2&gt;
 
-&lt;p&gt;간결함을 위해 주변 테이블과 정규화등은 모듀 생략합니다(e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;order_lines&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;products&lt;/code&gt;, …).&lt;/p&gt;
+&lt;p&gt;간결함을 위해 주변 테이블과 정규화등은 모듀 생략합니다(e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;order_lines&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;products&lt;/code&gt;, …).&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+------------+                +------------+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+------------+                +------------+
 |  customers | -|----------o&amp;lt; |   orders   |
 +------------+                +------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -2127,9 +2127,9 @@ id  name    SI_DO_NAME
         <description>&lt;p&gt;PHP 객체를 다른 변수에 할당(대입)하면, 객체 자체가 메모리 복제되어 새로운 변수에 할당되는 것이 아니라, 원본 객체가 담긴 메모리 번지만 참조됩니다(Like Pointer in C language).&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$foo&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;$foo2&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Foo&lt;/code&gt; 클래스의 인스턴스가 담긴, 같은 메모리 번지를 가리킵니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$foo3&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;$foo&lt;/code&gt; 인스턴스로 부터 복제했으므로, 복제 시점의 &lt;code class=&quot;highlighter-rouge&quot;&gt;$foo&lt;/code&gt;의 상태를 그대로 가져오지만, 서로 다른 객체입니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$foo4&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Foo&lt;/code&gt; 클래스의 새로운 인스턴스이므로, 당연히 &lt;code class=&quot;highlighter-rouge&quot;&gt;$foo&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;$foo2&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;$foo3&lt;/code&gt;와 다른 객체입니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo2&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Foo&lt;/code&gt; 클래스의 인스턴스가 담긴, 같은 메모리 번지를 가리킵니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo3&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt; 인스턴스로 부터 복제했으므로, 복제 시점의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt;의 상태를 그대로 가져오지만, 서로 다른 객체입니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo4&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Foo&lt;/code&gt; 클래스의 새로운 인스턴스이므로, 당연히 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo3&lt;/code&gt;와 다른 객체입니다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a href=&quot;/images/2018-11-04-img-01.png&quot;&gt;&lt;img src=&quot;/images/2018-11-04-img-01.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -2140,11 +2140,11 @@ id  name    SI_DO_NAME
 
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 사용할 때 실수한 적이 있는데요. &lt;a href=&quot;/learn-n-think/immutable-object-and-immutalbe-entity/&quot;&gt;불변 객체&lt;/a&gt;가 아니므로, 주의해서 사용해야 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 사용할 때 실수한 적이 있는데요. &lt;a href=&quot;/learn-n-think/immutable-object-and-immutalbe-entity/&quot;&gt;불변 객체&lt;/a&gt;가 아니므로, 주의해서 사용해야 합니다.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수는 최초 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 인스턴스 생성시에만 현재 시각의 의미를 담고 있습니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addDays()&lt;/code&gt; 함수를 호출하는 순간, &lt;code class=&quot;highlighter-rouge&quot;&gt;$now&lt;/code&gt;는 이미 현재 시각이 아니라 24시간 뒤의 의미를 가지게 됩니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 인스턴스 생성시에만 현재 시각이 담겨있다고 착각하고, 다른 변수에 담아서 사용하는 등의 실수를 조심해야 합니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수는 최초 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 인스턴스 생성시에만 현재 시각의 의미를 담고 있습니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addDays()&lt;/code&gt; 함수를 호출하는 순간, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$now&lt;/code&gt;는 이미 현재 시각이 아니라 24시간 뒤의 의미를 가지게 됩니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 인스턴스 생성시에만 현재 시각이 담겨있다고 착각하고, 다른 변수에 담아서 사용하는 등의 실수를 조심해야 합니다.&lt;/li&gt;
   &lt;li&gt;가장 안전한 방법은 새로운 객체를 만드는 겁니다.&lt;/li&gt;
 &lt;/ul&gt;
 

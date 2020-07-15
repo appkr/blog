@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Monolog를 이용한 애플리케이션 로깅 | Appkr.memo(new Story)</title>
 
@@ -134,9 +138,9 @@
       </div>
 
       <div class="box-body">
-        <p>이 포스트에서는 <strong>PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 <a href="https://github.com/Seldaek/monolog">Monolog</a>의 사용법을 소개</strong>한다. Monolog는 <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md">PSR-3</a> <code class="highlighter-rouge">LoggerInterface</code>를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, <strong>파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리</strong>할 수 있다.</p>
+        <p>이 포스트에서는 <strong>PHP 커뮤니티에서 De facto(사실상) 표준으로 인식되는 로깅 라이브러리인 <a href="https://github.com/Seldaek/monolog">Monolog</a>의 사용법을 소개</strong>한다. Monolog는 <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md">PSR-3</a> <code class="language-plaintext highlighter-rouge">LoggerInterface</code>를 구현한 구현체이며, RFC-5424에서 정의한 심각도 규격(e.g. DEBUG, INFO, ..)에 따라 로그를 핸들링한다. 컴포저를 만든 조르디 보기아노(Jordi Boggiano)가 구현했으며, <strong>파일 뿐만 아니라 데이터베이스, 메일, SaaS 서비스등 다양한 방법으로 로그를 처리</strong>할 수 있다.</p>
 
-<p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
+<p>이 포스트에서는 라라벨 프로젝트에서 기본 로그 저장소인 파일(<code class="language-plaintext highlighter-rouge">storage/logs/laravel.log</code>)에 더해서 Elastic Search에도 로그를 적재하는 방법을 다룬다. 다음 도구 또는 서비스를 사용한다.</p>
 
 <ul>
   <li>라라벨: PHP 프로그래밍 언어로 작성된 풀 스택 웹 프레임워크<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></li>
@@ -191,7 +195,7 @@
 <p>Monolog 라이브러리는 다음과 같은 디렉토리 구조로, 크게 보면</p>
 
 <ol>
-  <li>PSR-3 <code class="highlighter-rouge">LoggerInterface</code> 구현체</li>
+  <li>PSR-3 <code class="language-plaintext highlighter-rouge">LoggerInterface</code> 구현체</li>
   <li>로그 핸들러</li>
   <li>로그 포매터</li>
   <li>로그 프로세서</li>
@@ -241,7 +245,7 @@
 <span class="nv">$ </span>brew cask <span class="nb">install </span>docker <span class="nt">--appdir</span><span class="o">=</span>/Application
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">Note</code>`</strong> Docker 데몬은 관리자 권한을 요구하므로, 설치 후 최초 한번 실행해서 운영체제 로그인 정보를 입력하여 권한을 부여해야한다.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">Note</code>`</strong> Docker 데몬은 관리자 권한을 요구하므로, 설치 후 최초 한번 실행해서 운영체제 로그인 정보를 입력하여 권한을 부여해야한다.</p>
 
 <h4 id="312-elastic-search-이미지-다운로드-및-실행">3.1.2. Elastic Search 이미지 다운로드 및 실행</h4>
 
@@ -270,7 +274,7 @@
 <span class="c"># a88d12860180        elasticsearch    ...        ...        ...       9200/tcp es50</span>
 </code></pre></div></div>
 
-<p>브라우저에서 <code class="highlighter-rouge">http://localhost:9200</code>을 방문해서 방금 Docker 컨테이너로 구동한 Elastic Search가 잘 작동하나 확인해 보자.</p>
+<p>브라우저에서 <code class="language-plaintext highlighter-rouge">http://localhost:9200</code>을 방문해서 방금 Docker 컨테이너로 구동한 Elastic Search가 잘 작동하나 확인해 보자.</p>
 
 <p><a href="/images/2016-12-03-img-01.png"><img src="/images/2016-12-03-img-01.png" alt="Elastic Search Welcome Page" /></a></p>
 
@@ -297,14 +301,14 @@
 
 <h3 id="33-monolog를-위한-elastic-search-핸들러-만들기">3.3. Monolog를 위한 Elastic Search 핸들러 만들기</h3>
 
-<p>Monolog 라이브러리에는 <code class="highlighter-rouge">ElasticSearchHandler</code>가 이미 포함되어 있다. 그런데, 앞 절에서 설치한 Elastic Search 공식 클라이언트가 아닌 다른 클라이언트를 사용하고 있다. API가 달라 부득이 별도의 핸들러를 만들어야 한다. Monolog와 Elastic Search 문서를 읽어 보니 어렵지 않다. 만들어 보자.</p>
+<p>Monolog 라이브러리에는 <code class="language-plaintext highlighter-rouge">ElasticSearchHandler</code>가 이미 포함되어 있다. 그런데, 앞 절에서 설치한 Elastic Search 공식 클라이언트가 아닌 다른 클라이언트를 사용하고 있다. API가 달라 부득이 별도의 핸들러를 만들어야 한다. Monolog와 Elastic Search 문서를 읽어 보니 어렵지 않다. 만들어 보자.</p>
 
-<p>라라벨 <a href="https://laravel.com/docs/5.3/errors#configuration">공식 문서</a>에서는 <code class="highlighter-rouge">bootstrap/app.php</code>에서 등록하는 방법을 설명하고 있다. 좀 더 고급지고, 다른 프로젝트에서 재활용할 수 있도록 별도 서비스 프로바이더로 만들어 봤다.</p>
+<p>라라벨 <a href="https://laravel.com/docs/5.3/errors#configuration">공식 문서</a>에서는 <code class="language-plaintext highlighter-rouge">bootstrap/app.php</code>에서 등록하는 방법을 설명하고 있다. 좀 더 고급지고, 다른 프로젝트에서 재활용할 수 있도록 별도 서비스 프로바이더로 만들어 봤다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/monolog-scratchpad <span class="nv">$ </span>php artisan make:provider CustomLogProvider
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">boot()</code> 메서드에서 <code class="highlighter-rouge">ESHandler</code> 인스턴스를 만들고 포매터와 프로세서를 추가한 후, <code class="highlighter-rouge">Monolog</code> 인스턴스에 추가한다. 몇 가지 예제를 더 추가했는데 인라인 주석을 달아 두었다.</p>
+<p><code class="language-plaintext highlighter-rouge">boot()</code> 메서드에서 <code class="language-plaintext highlighter-rouge">ESHandler</code> 인스턴스를 만들고 포매터와 프로세서를 추가한 후, <code class="language-plaintext highlighter-rouge">Monolog</code> 인스턴스에 추가한다. 몇 가지 예제를 더 추가했는데 인라인 주석을 달아 두었다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php</span>
 
@@ -356,7 +360,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>이제 <code class="highlighter-rouge">ESHandler</code>를 만들 차례인데, Elastic Search API 문서를 참고해야 한다. 다음 코드 블록에서 <code class="highlighter-rouge">write</code> 메서드는 부모 클래스에서 구현을 강제한 메서드이며, 메서드 본문은 Elastic Search PHP 클라이언트의 사용법을 참고한 것이다.</p>
+<p>이제 <code class="language-plaintext highlighter-rouge">ESHandler</code>를 만들 차례인데, Elastic Search API 문서를 참고해야 한다. 다음 코드 블록에서 <code class="language-plaintext highlighter-rouge">write</code> 메서드는 부모 클래스에서 구현을 강제한 메서드이며, 메서드 본문은 Elastic Search PHP 클라이언트의 사용법을 참고한 것이다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/LogHandlers/ESHandler.php</span>
 
@@ -425,7 +429,7 @@
 <span class="p">});</span>
 </code></pre></div></div>
 
-<p>아래 그림은 <code class="highlighter-rouge">http://localhost:9200/monolog/Laravel/_search?size=100&amp;sort=datetime:desc</code>로 요청했을 때의 출력 결과다.</p>
+<p>아래 그림은 <code class="language-plaintext highlighter-rouge">http://localhost:9200/monolog/Laravel/_search?size=100&amp;sort=datetime:desc</code>로 요청했을 때의 출력 결과다.</p>
 
 <p><a href="/images/2016-12-03-img-03.png"><img src="/images/2016-12-03-img-03.png" alt="Elastic Search에 적재된 로그" /></a></p>
 
@@ -438,7 +442,7 @@
 
 <h2 id="4-결론">4. 결론</h2>
 
-<p><strong>Monolog는 PHP 커뮤니티 규칙을 따르는 로거</strong>로서, 핸들러, 포매터, 프로세서 등의 기능을 이용해서, 애플리케이션 로깅의 자유도와 확장성을 제공한다. 본문에서 봤다시피 <strong>핸들러를 계속 스태킹(stacking)하여 여러 가지 방법으로 로그를 처리</strong>할 수 있다. 가령 이 글의 예제처럼 파일에도 쓰고, Elastic Search에도 쓰고, 덧붙여서 <code class="highlighter-rouge">stdout</code> 또는 <code class="highlighter-rouge">stderr</code>로도 출력하고 싶다면 <code class="highlighter-rouge">ErrorLogHandler</code>를 추가하면 된다. 아래처럼 말이다.</p>
+<p><strong>Monolog는 PHP 커뮤니티 규칙을 따르는 로거</strong>로서, 핸들러, 포매터, 프로세서 등의 기능을 이용해서, 애플리케이션 로깅의 자유도와 확장성을 제공한다. 본문에서 봤다시피 <strong>핸들러를 계속 스태킹(stacking)하여 여러 가지 방법으로 로그를 처리</strong>할 수 있다. 가령 이 글의 예제처럼 파일에도 쓰고, Elastic Search에도 쓰고, 덧붙여서 <code class="language-plaintext highlighter-rouge">stdout</code> 또는 <code class="language-plaintext highlighter-rouge">stderr</code>로도 출력하고 싶다면 <code class="language-plaintext highlighter-rouge">ErrorLogHandler</code>를 추가하면 된다. 아래처럼 말이다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/CustomLogProvider.php</span>
 
@@ -453,7 +457,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><strong><code class="highlighter-rouge">Note</code></strong> Docker 컨테이너를 중지하려면 <code class="highlighter-rouge">docker stop es50</code> 명령을 수행한다. <code class="highlighter-rouge">docker rm es50</code> 명령으로 이미 만든 컨테이너를 완전히 삭제하지 않았다면 다음 번 실행할 때는 <code class="highlighter-rouge">docker start es50</code> 명령으로 간단히 시작할 수 있다. Elastic Search는 꽤 무거운 서비스라 부팅하는데 10초 정도 걸릴 수 있다.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">Note</code></strong> Docker 컨테이너를 중지하려면 <code class="language-plaintext highlighter-rouge">docker stop es50</code> 명령을 수행한다. <code class="language-plaintext highlighter-rouge">docker rm es50</code> 명령으로 이미 만든 컨테이너를 완전히 삭제하지 않았다면 다음 번 실행할 때는 <code class="language-plaintext highlighter-rouge">docker start es50</code> 명령으로 간단히 시작할 수 있다. Elastic Search는 꽤 무거운 서비스라 부팅하는데 10초 정도 걸릴 수 있다.</p>
 
 <hr />
 
@@ -1431,7 +1435,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

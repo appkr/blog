@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>자바스크립트와 프로미스 | Appkr.memo(new Story)</title>
 
@@ -149,22 +153,22 @@
 
 <h2 id="1-promise">1. Promise</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="err">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="err">성공콜백</span><span class="p">,</span> <span class="err">실패콜백</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">성공콜백</span><span class="p">,</span> <span class="nx">실패콜백</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">철수 작업자가 할당되었습니다.</span><span class="dl">'</span><span class="p">);</span>
   
   <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">5초가 필요한 "Foo" 작업을 시뮬레이션합니다.</span><span class="dl">'</span><span class="p">);</span>
     
-    <span class="err">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="err">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="err">작업이름</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">"</span><span class="dl">'</span> <span class="o">+</span> <span class="err">작업이름</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">작업이름</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">"</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">작업이름</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">철수</code>는 <code class="highlighter-rouge">Promise</code> 클래스의 인스턴스다. <code class="highlighter-rouge">Promise</code> 클래스는 <code class="highlighter-rouge">then()</code> API를 가지고 있고, 함수를 인자로 받는다. 인자로 받은 함수는 다시 성공 또는 실패했을 때 실행할 콜백을 인자로 받는다.</p>
+<p><code class="language-plaintext highlighter-rouge">철수</code>는 <code class="language-plaintext highlighter-rouge">Promise</code> 클래스의 인스턴스다. <code class="language-plaintext highlighter-rouge">Promise</code> 클래스는 <code class="language-plaintext highlighter-rouge">then()</code> API를 가지고 있고, 함수를 인자로 받는다. 인자로 받은 함수는 다시 성공 또는 실패했을 때 실행할 콜백을 인자로 받는다.</p>
 
 <p>자바스크립트는 개발자가 제어할 수 없는 클라이언트에서 작동하고, 클라이언트 측의 인코딩때문에 어떤 문제가 발생할 지 전혀 예측할 수 없다. 실무에서 한글 코딩은 비추한다.</p>
 
@@ -172,22 +176,22 @@
 
 <p>똑같은 코드를 ES6로 쓰면,</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="err">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="err">성공콜백</span><span class="p">,</span> <span class="err">실패콜백</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">성공콜백</span><span class="p">,</span> <span class="nx">실패콜백</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">철수 작업자가 할당되었습니다.</span><span class="dl">'</span><span class="p">);</span>
   
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">5초가 필요한 "Foo" 작업을 시뮬레이션합니다.</span><span class="dl">'</span><span class="p">);</span>
     
-    <span class="err">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="err">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
-  <span class="err">작업이름</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`"</span><span class="p">${</span><span class="err">작업이름</span><span class="p">}</span><span class="s2">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.`</span><span class="p">)</span>
+<span class="nx">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+  <span class="nx">작업이름</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`"</span><span class="p">${</span><span class="nx">작업이름</span><span class="p">}</span><span class="s2">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.`</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div></div>
 
-<p>오늘도 Coffee 스크립트를 많이 사용하는 프레임워크 모임에 다녀왔는데, 이제 Coffee를 쓸 이유가 없다. ES6가 Coffee의 문법을 거의 대부분 채택하고 있기 때문이다. 그림에서 보다시피 최신 브라우저에서는 ES6 -&gt; ES5 컴파일하지 않고도 최신 문법이 작동한다<small>(내 최신 브라우저에서 작동한다고, 다른 이의 브라우저에서 작동한다고 보장할 수 없으므로 아직은 컴파일해야 한다)</small>. <code class="highlighter-rouge">Prototype</code>등 익숙치 않은 개념은 이제 <code class="highlighter-rouge">class</code>, <code class="highlighter-rouge">constructor</code>, <code class="highlighter-rouge">static</code> 등 다른 언어에서 항상 쓰던 문법으로 교체되었다.</p>
+<p>오늘도 Coffee 스크립트를 많이 사용하는 프레임워크 모임에 다녀왔는데, 이제 Coffee를 쓸 이유가 없다. ES6가 Coffee의 문법을 거의 대부분 채택하고 있기 때문이다. 그림에서 보다시피 최신 브라우저에서는 ES6 -&gt; ES5 컴파일하지 않고도 최신 문법이 작동한다<small>(내 최신 브라우저에서 작동한다고, 다른 이의 브라우저에서 작동한다고 보장할 수 없으므로 아직은 컴파일해야 한다)</small>. <code class="language-plaintext highlighter-rouge">Prototype</code>등 익숙치 않은 개념은 이제 <code class="language-plaintext highlighter-rouge">class</code>, <code class="language-plaintext highlighter-rouge">constructor</code>, <code class="language-plaintext highlighter-rouge">static</code> 등 다른 언어에서 항상 쓰던 문법으로 교체되었다.</p>
 
 <h2 id="3-결론">3. 결론</h2>
 
@@ -1152,7 +1156,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

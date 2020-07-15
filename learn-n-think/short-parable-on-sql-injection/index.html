@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>SQL Injection 방어 | Appkr.memo(new Story)</title>
 
@@ -137,21 +141,21 @@
         <p><img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="Exploit of a mom" />
 <small>그림출처: <a href="https://xkcd.com/327/">Exploits of a Mom</a></small></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#1 (학교) 여기 학교인데요. 전화 드린 이유는, 학교에 컴퓨터 문제가 좀 있어서요.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#1 (학교) 여기 학교인데요. 전화 드린 이유는, 학교에 컴퓨터 문제가 좀 있어서요.
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#2 (엄마) 우리 애가 사고쳤나요?
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#2 (엄마) 우리 애가 사고쳤나요?
      (학교) 예... 일종의...
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#3 (학교) 그런데, 정말로 아들 이름을 "Robert'); DROP TABLE students;--" 로 지으신게 맞나요?
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#3 (학교) 그런데, 정말로 아들 이름을 "Robert'); DROP TABLE students;--" 로 지으신게 맞나요?
       (엄마) 예 맞아요. 그래서 집에서는 우리 애를 "리틀 바비 테이블"이라고 불러요.
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#4 (학교) ;;; 기뻐하실 지 모르겠지만, 학생 테이블의 레코드 전체를 잃어 버렸어요.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cut#4 (학교) ;;; 기뻐하실 지 모르겠지만, 학생 테이블의 레코드 전체를 잃어 버렸어요.
       (엄마) 적어도 이번 사건 덕분에 DB에 입력할 값을 잘 필터링 해야 한다는 사실 정도는 배우셨겠군요~
 </code></pre></div></div>
 
 <div class="spacer">• • •</div>
 
-<p>프레임웍을 쓰면 쉽게 안전성을 확보할 수 있는데요. 그럼에도 불구하고, 아래 코드의 <code class="highlighter-rouge">queryStoresByParams()</code> 함수처럼 Raw 쿼리를 써야 할 때가 있죠. 이 때 SQL Injection을 당하지 않도록 주의해야 합니다.</p>
+<p>프레임웍을 쓰면 쉽게 안전성을 확보할 수 있는데요. 그럼에도 불구하고, 아래 코드의 <code class="language-plaintext highlighter-rouge">queryStoresByParams()</code> 함수처럼 Raw 쿼리를 써야 할 때가 있죠. 이 때 SQL Injection을 당하지 않도록 주의해야 합니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// 회사 코드에서 일부 발췌</span>
 
@@ -1170,7 +1174,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

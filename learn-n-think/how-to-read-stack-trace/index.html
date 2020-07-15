@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>스택 트레이스 읽는 법 | Appkr.memo(new Story)</title>
 
@@ -181,11 +185,11 @@
 </code></pre></div></div>
 
 <ul>
-  <li>3번 줄에서 <code class="highlighter-rouge">foo()</code> 함수를 호출합니다.</li>
+  <li>3번 줄에서 <code class="language-plaintext highlighter-rouge">foo()</code> 함수를 호출합니다.</li>
   <li>6번 줄에서 “1”을 출력합니다.</li>
-  <li>7번 줄에서 <code class="highlighter-rouge">bar()</code> 함수를 호출합니다.</li>
+  <li>7번 줄에서 <code class="language-plaintext highlighter-rouge">bar()</code> 함수를 호출합니다.</li>
   <li>12번 줄에서 “2”를 출력합니다.</li>
-  <li>13번 줄에서 <code class="highlighter-rouge">baz()</code> 함수를 호출합니다.</li>
+  <li>13번 줄에서 <code class="language-plaintext highlighter-rouge">baz()</code> 함수를 호출합니다.</li>
   <li>18번 줄에서 “3”을 출력합니다.</li>
   <li>14번 줄에서 “4”를 출력합니다.</li>
   <li>8번 줄에서 “5”를 출력합니다.</li>
@@ -195,7 +199,7 @@
 
 <h2 id="2-예외-상황">2 예외 상황</h2>
 
-<p><code class="highlighter-rouge">baz()</code> 함수에서 예외를 만들고 결과를 살펴보겠습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">baz()</code> 함수에서 예외를 만들고 결과를 살펴보겠습니다.</p>
 
 <div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
@@ -228,12 +232,12 @@ Stack trace:
 <p>스택 트레이스를 하나씩 뜯어 보겠습니다.</p>
 
 <ul>
-  <li>첫 줄을 통해 <code class="highlighter-rouge">/Users/appkr/workspace/stack-trace/php/exception.php</code> 파일의 14번 줄에서 <code class="highlighter-rouge">RuntimeException</code>이 발생했고, 메시지는 <code class="highlighter-rouge">런타임 예외가 발생했습니다</code>라는 사실을 알 수 있습니다.</li>
+  <li>첫 줄을 통해 <code class="language-plaintext highlighter-rouge">/Users/appkr/workspace/stack-trace/php/exception.php</code> 파일의 14번 줄에서 <code class="language-plaintext highlighter-rouge">RuntimeException</code>이 발생했고, 메시지는 <code class="language-plaintext highlighter-rouge">런타임 예외가 발생했습니다</code>라는 사실을 알 수 있습니다.</li>
   <li>첫 줄에서 문제의 원인을 알 수 있다면 아래 내용은 읽을 필요가 없습니다.</li>
   <li>총 4 개의 스택 프레임이 잡혔는데, 시간 역순으로 기록되어 있습니다.</li>
-  <li><code class="highlighter-rouge">#2 exception.php</code> 3번 줄에서 <code class="highlighter-rouge">foo()</code> 함수를 호출했네요.</li>
-  <li><code class="highlighter-rouge">#1 exception.php</code> 6번 줄에서 <code class="highlighter-rouge">bar()</code> 함수를 호출했네요.</li>
-  <li><code class="highlighter-rouge">#0 exception.php</code> 10번 줄에서 <code class="highlighter-rouge">baz()</code> 함수를 호출했네요.</li>
+  <li><code class="language-plaintext highlighter-rouge">#2 exception.php</code> 3번 줄에서 <code class="language-plaintext highlighter-rouge">foo()</code> 함수를 호출했네요.</li>
+  <li><code class="language-plaintext highlighter-rouge">#1 exception.php</code> 6번 줄에서 <code class="language-plaintext highlighter-rouge">bar()</code> 함수를 호출했네요.</li>
+  <li><code class="language-plaintext highlighter-rouge">#0 exception.php</code> 10번 줄에서 <code class="language-plaintext highlighter-rouge">baz()</code> 함수를 호출했네요.</li>
 </ul>
 
 <p>어떤가요, 1절에서 본 내용과 전혀 다르지 않죠?</p>
@@ -274,7 +278,7 @@ Stack trace:
 
 <p>그런데 위 스택 트레이스는 문제를 일으킨 근본 원인(Root Cause)이 무엇인지 보이지 않는다는 문제가 있습니다.</p>
 
-<p><code class="highlighter-rouge">catch</code> 블록에서 <code class="highlighter-rouge">CustomException</code>을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.</p>
+<p><code class="language-plaintext highlighter-rouge">catch</code> 블록에서 <code class="language-plaintext highlighter-rouge">CustomException</code>을 던질 때, 직전 예외를 생성자에 넣어 주는 것 만으로 쉽게 해결할 수 있습니다.</p>
 
 <div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
@@ -347,10 +351,10 @@ Stack trace:
 <p>다음의 정보를 얻을 수 있습니다.</p>
 
 <ul>
-  <li>사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 <code class="highlighter-rouge">NOTICE</code> 레벨의 예외.</li>
-  <li>블랙리스트 여부를 검사하고 예외를 던진 위치는 <code class="highlighter-rouge">/var/www/html/vendor/tymon/jwt-auth/src/Manager.php</code> 파일의 109 줄.</li>
-  <li>예외가 발생시킨 함수는 <code class="highlighter-rouge">Tymon\JWTAuth\Manager::decode()</code>이며, 이 함수를 <code class="highlighter-rouge">/var/www/html/vendor/tymon/jwt-auth/src/JWT.php</code> 200 줄에서 호출.</li>
-  <li><code class="highlighter-rouge">My\Domain\Auth\Exceptions\UnauthorizedTokenException</code> 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 메시지를 담은 JSON 예외 응답을 받았을 것.</li>
+  <li>사용자가 제출한 JWT 토큰이 블랙리스트되서 발생한 <code class="language-plaintext highlighter-rouge">NOTICE</code> 레벨의 예외.</li>
+  <li>블랙리스트 여부를 검사하고 예외를 던진 위치는 <code class="language-plaintext highlighter-rouge">/var/www/html/vendor/tymon/jwt-auth/src/Manager.php</code> 파일의 109 줄.</li>
+  <li>예외가 발생시킨 함수는 <code class="language-plaintext highlighter-rouge">Tymon\JWTAuth\Manager::decode()</code>이며, 이 함수를 <code class="language-plaintext highlighter-rouge">/var/www/html/vendor/tymon/jwt-auth/src/JWT.php</code> 200 줄에서 호출.</li>
+  <li><code class="language-plaintext highlighter-rouge">My\Domain\Auth\Exceptions\UnauthorizedTokenException</code> 라는 도메인 예외가 발생했고, (핸들링 로직에 따라) 사용자는 “Invalid token, please sign in again”라는 메시지를 담은 JSON 예외 응답을 받았을 것.</li>
 </ul>
 
 <!--more-->
@@ -399,7 +403,7 @@ Caused by: java.lang.RuntimeException: 런타임 예외가 발생했습니다
     at main.main<span class="o">(</span>main.java:23<span class="o">)</span>
 </code></pre></div></div>
 
-<p>예외의 근본원인을 <code class="highlighter-rouge">Caused by:</code> 로 표시하는 부분을 제외하면 거의 똑같습니다.</p>
+<p>예외의 근본원인을 <code class="language-plaintext highlighter-rouge">Caused by:</code> 로 표시하는 부분을 제외하면 거의 똑같습니다.</p>
 
 <h3 id="52-ruby">5.2 Ruby</h3>
 
@@ -1387,7 +1391,16 @@ main.rb:20:in `rescue in &lt;main&gt;'</span>: 사용자 정의 예외가 발생
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

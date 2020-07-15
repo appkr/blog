@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Windows Sharepoint Service 3.0 (WSS3.0) 설치 | Appkr.memo(new Story)</title>
 
@@ -137,7 +141,7 @@
 
 <!--more-->
 
-<p>host name 은 <code class="highlighter-rouge">sbd</code> 라 하자.</p>
+<p>host name 은 <code class="language-plaintext highlighter-rouge">sbd</code> 라 하자.</p>
 
 <h3 id="install-net-framework">Install-.net Framework</h3>
 
@@ -156,18 +160,18 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> sharepoint.exe
 </code></pre></div></div>
 
-<p>약관동의 -&gt; 고급설치 -&gt; 서버유형:독립실행형 -&gt; 데이터위치: <code class="highlighter-rouge">d:\wss_data</code> -&gt; “지금 Sharepoint 제품 및 기술 구성 마법사 실행”</p>
+<p>약관동의 -&gt; 고급설치 -&gt; 서버유형:독립실행형 -&gt; 데이터위치: <code class="language-plaintext highlighter-rouge">d:\wss_data</code> -&gt; “지금 Sharepoint 제품 및 기술 구성 마법사 실행”</p>
 
 <h3 id="configure-smtp-서버">Configure-SMTP 서버</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMTP Server: xxx.xxx.xxx.xxx
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SMTP Server: xxx.xxx.xxx.xxx
 </code></pre></div></div>
 
 <h3 id="configure-wss-log">Configure-WSS Log</h3>
 
 <p>WSS 중앙관리 -&gt; 작업 -&gt; 진단 로깅 활성화</p>
 
-<h3 id="configure-database-를-c-에서-d-로-이동">Configure-Database 를 <code class="highlighter-rouge">C:\</code> 에서 <code class="highlighter-rouge">D:\</code> 로 이동</h3>
+<h3 id="configure-database-를-c-에서-d-로-이동">Configure-Database 를 <code class="language-plaintext highlighter-rouge">C:\</code> 에서 <code class="language-plaintext highlighter-rouge">D:\</code> 로 이동</h3>
 
 <p>IIS/WSS Service 종료 후, Content Database 이름 확인</p>
 
@@ -210,7 +214,7 @@ sql&gt; Go
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> copy %WINDIR%SYSMSISSEEMSSQL.2005<span class="se">\M</span>SSQLData<span class="se">\*</span>.<span class="k">*</span> d:<span class="se">\w</span>ss_db
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310', @filename1 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310.mdf',
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310', @filename1 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310.mdf',
 @filename2 = 'd:wss_db\SharePoint_Config_2e0e9493-bccb-4b66-9e61-ea4c2974a310_log.ldf'
 sql&gt; Go
 sql&gt; EXEC sp_attach_db @dbname = 'SharePoint_AdminContent_b597bf8d-8ed5-4de7-86dc-774a919cab5c',
@@ -228,15 +232,15 @@ sql&gt; Go
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> SearchServerExpress.exe
 </code></pre></div></div>
 
-<p>서버유형: 독립실행형 -&gt; Index파일 위치: <code class="highlighter-rouge">d:\sse_index</code></p>
+<p>서버유형: 독립실행형 -&gt; Index파일 위치: <code class="language-plaintext highlighter-rouge">d:\sse_index</code></p>
 
-<p>“Sharepoing 제품 및 기술 구성 마법사” -&gt; “Shared Service Provider (SSP): <code class="highlighter-rouge">http://sbd/ssp/admin</code>” -&gt; “SSP Database” -&gt; 데이터베이스 서버: SBDOfficeServers -&gt; 데이터베이스 이름: SharedServices1_DB -&gt; “검색 Database” -&gt; 데이터베이스 이름: <code class="highlighter-rouge">SharedServices1_Search_DB</code> -&gt; “인덱스 서버” -&gt; 인덱스 파일 경로 위치: <code class="highlighter-rouge">d:\sse_index\Office Server\Applications</code></p>
+<p>“Sharepoing 제품 및 기술 구성 마법사” -&gt; “Shared Service Provider (SSP): <code class="language-plaintext highlighter-rouge">http://sbd/ssp/admin</code>” -&gt; “SSP Database” -&gt; 데이터베이스 서버: SBDOfficeServers -&gt; 데이터베이스 이름: SharedServices1_DB -&gt; “검색 Database” -&gt; 데이터베이스 이름: <code class="language-plaintext highlighter-rouge">SharedServices1_Search_DB</code> -&gt; “인덱스 서버” -&gt; 인덱스 파일 경로 위치: <code class="language-plaintext highlighter-rouge">d:\sse_index\Office Server\Applications</code></p>
 
 <h3 id="configure-search-server-사이트-만들기">Configure-Search Server 사이트 만들기</h3>
 
 <h3 id="configure-중앙관리">Configure-중앙관리</h3>
 
-<p>작업 -&gt; 진단 로깅 설정 -&gt; 추적 로그 경로: <code class="highlighter-rouge">d:\wss_log</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 일반 설정 -&gt; 기본 표준 시간대 : GMT+9 서울 -&gt; 최대 업로드 크기 : <code class="highlighter-rouge">999MB</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 정책 -&gt; NT AUTHORITY\LOCAL SERVICE: <code class="highlighter-rouge">전체 읽기</code></p>
+<p>작업 -&gt; 진단 로깅 설정 -&gt; 추적 로그 경로: <code class="language-plaintext highlighter-rouge">d:\wss_log</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 일반 설정 -&gt; 기본 표준 시간대 : GMT+9 서울 -&gt; 최대 업로드 크기 : <code class="language-plaintext highlighter-rouge">999MB</code> -&gt; 응용 프로그램 관리 -&gt; 웹 응용 프로그램 정책 -&gt; NT AUTHORITY\LOCAL SERVICE: <code class="language-plaintext highlighter-rouge">전체 읽기</code></p>
 
 <h3 id="install-application-template-core">Install-Application Template Core</h3>
 
@@ -260,7 +264,7 @@ sql&gt; Go
 
 <h3 id="configure-작업-예약">Configure-작업 예약</h3>
 
-<p>중앙관리 -&gt; 작업 -&gt; 사용현황분석프로세스 -&gt; 로그파일 위치 : <code class="highlighter-rouge">d:\wss_user_log</code> -&gt; 분석 시간 : <code class="highlighter-rouge">오전 03:00~04:00</code></p>
+<p>중앙관리 -&gt; 작업 -&gt; 사용현황분석프로세스 -&gt; 로그파일 위치 : <code class="language-plaintext highlighter-rouge">d:\wss_user_log</code> -&gt; 분석 시간 : <code class="language-plaintext highlighter-rouge">오전 03:00~04:00</code></p>
 
 <p>제어판 -&gt; 작업예약 -&gt; C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\BIN\wss_backup.bat -&gt; 매일 오전 05:00</p>
 
@@ -1260,7 +1264,16 @@ NET USE z: /DELETE
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

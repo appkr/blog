@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>서비스 URL의 중요성 및 변경의 비용 | Appkr.memo(new Story)</title>
 
@@ -146,8 +150,8 @@
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">/lessons/01-welcome.md</code></td>
-      <td><code class="highlighter-rouge">/lessons/01-welcome.html</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/lessons/01-welcome.md</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/lessons/01-welcome.html</code></td>
     </tr>
   </tbody>
 </table>
@@ -176,18 +180,18 @@
 
 <h2 id="1-github-page에서-url-redirect">1. Github Page에서 URL Redirect</h2>
 
-<p>Github Page는 정적 페이지만 서비스할 수 있으며, <code class="highlighter-rouge">.htaccess</code> 리디렉션 기능을 이용할 수 없다(<a href="https://help.github.com/articles/redirects-on-github-pages/">https://help.github.com/articles/redirects-on-github-pages/</a>).</p>
+<p>Github Page는 정적 페이지만 서비스할 수 있으며, <code class="language-plaintext highlighter-rouge">.htaccess</code> 리디렉션 기능을 이용할 수 없다(<a href="https://help.github.com/articles/redirects-on-github-pages/">https://help.github.com/articles/redirects-on-github-pages/</a>).</p>
 
 <p>그렇다면 웹 페이지에서 다른 페이지로 리디렉션해야한다. 자바스크립트는 클라이언트측에서 동작하는 언어이므로 당연히 사용 가능하다. Github Page의 커스텀 404 페이지와 다음 기술을 적용하기로 했다.</p>
 
 <ul>
-  <li>HTML 헤더의 <code class="highlighter-rouge">&lt;meta http-equiv="refrech" content="0; http://new/url"&gt;</code> 태그를 이용하는 방법</li>
-  <li>자바스크립트의 <code class="highlighter-rouge">window.location.href</code> 속성을 이용하는 방법</li>
+  <li>HTML 헤더의 <code class="language-plaintext highlighter-rouge">&lt;meta http-equiv="refrech" content="0; http://new/url"&gt;</code> 태그를 이용하는 방법</li>
+  <li>자바스크립트의 <code class="language-plaintext highlighter-rouge">window.location.href</code> 속성을 이용하는 방법</li>
 </ul>
 
 <h3 id="11-커스텀-404-페이지-추가">1.1. 커스텀 404 페이지 추가</h3>
 
-<p>Github Page(<code class="highlighter-rouge">gh-pages</code> 브랜치)에 등록되지 않은 파일 요청이 들어오면 404 페이지를 출력하는데, 이 404 페이지를 별도로 추가할 수 있다.</p>
+<p>Github Page(<code class="language-plaintext highlighter-rouge">gh-pages</code> 브랜치)에 등록되지 않은 파일 요청이 들어오면 404 페이지를 출력하는데, 이 404 페이지를 별도로 추가할 수 있다.</p>
 
 <p><a href="/images/2016-05-18-img-01.png"><img src="/images/2016-05-18-img-01.png" alt="Github 404 Page" /></a></p>
 
@@ -225,21 +229,21 @@
 
 <ul>
   <li>
-    <p><code class="highlighter-rouge">&lt;link rel="canonical" href="..."&gt;</code></p>
+    <p><code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" href="..."&gt;</code></p>
 
     <p>상당히 중요하다. 구글 검색엔진은 같은 HTML 문서에 대해 중복된 주소가 있으면 검색 순위에 페널티를 준다. 이 태그는 페널티를 피할 뿐만 아니라, 검색 엔진에 인덱싱된 기존 URL을 새 URL로 바꾸도록 한다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">if (/([0-9]{2,5}-[\pL-\pN\._-]+)\.md/gi.test(url)) { ... }</code></p>
+    <p><code class="language-plaintext highlighter-rouge">if (/([0-9]{2,5}-[\pL-\pN\._-]+)\.md/gi.test(url)) { ... }</code></p>
 
-    <p><code class="highlighter-rouge">var url = window.location.href;</code> 변수에는 <code class="highlighter-rouge">http://l5.appkr.kr/lessons/01-welcome.md</code>와 같은 문자열이 담긴다. 이 변수의 값에 2~5 길이의 숫자로 시작하고, 대시(<code class="highlighter-rouge">-</code>) 다음에 문자 또는 숫자 등이 연결되어 있으며, <code class="highlighter-rouge">.md</code>로 끝나는 문자열이 있으면, 이 조건문을 탄다.</p>
+    <p><code class="language-plaintext highlighter-rouge">var url = window.location.href;</code> 변수에는 <code class="language-plaintext highlighter-rouge">http://l5.appkr.kr/lessons/01-welcome.md</code>와 같은 문자열이 담긴다. 이 변수의 값에 2~5 길이의 숫자로 시작하고, 대시(<code class="language-plaintext highlighter-rouge">-</code>) 다음에 문자 또는 숫자 등이 연결되어 있으며, <code class="language-plaintext highlighter-rouge">.md</code>로 끝나는 문자열이 있으면, 이 조건문을 탄다.</p>
 
     <p>이 조건문을 타지 않으면 Not Found 페이지가 그대로 출력된다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">url = url.replace('.md', '.html');</code>, <code class="highlighter-rouge">document.querySelector(...).setAttribute(...);</code></p>
+    <p><code class="language-plaintext highlighter-rouge">url = url.replace('.md', '.html');</code>, <code class="language-plaintext highlighter-rouge">document.querySelector(...).setAttribute(...);</code></p>
 
-    <p>확장자를 <code class="highlighter-rouge">.html</code>로 바꾸고 HTML 헤더의 Meta 및 Link 태그의 속성 값을 바꾼다.</p>
+    <p>확장자를 <code class="language-plaintext highlighter-rouge">.html</code>로 바꾸고 HTML 헤더의 Meta 및 Link 태그의 속성 값을 바꾼다.</p>
   </li>
 </ul>
 
@@ -255,7 +259,7 @@
 
 <p>SEO 특강이라고 이것 저것 가르치는 유료 강의들이 있던데, URL이 SEO에 얼마나 중요한지 가르쳐 주는지 모르겠다. 많은 마케터와 개발자가 이 사실을 모르고 있거나, 알고 있더라도 간과한다.</p>
 
-<p>가장 먼저 나온 위키피디아의 원래 주소는 <code class="highlighter-rouge">https://en.wikipedia.org/w/index.php?title=Display_resolution</code>이다. 어떻게 된거지?</p>
+<p>가장 먼저 나온 위키피디아의 원래 주소는 <code class="language-plaintext highlighter-rouge">https://en.wikipedia.org/w/index.php?title=Display_resolution</code>이다. 어떻게 된거지?</p>
 
 <h3 id="22-pretty-url">2.2. Pretty Url</h3>
 
@@ -263,18 +267,18 @@
 
 <ul>
   <li>SEO에 유리하다.</li>
-  <li>인지적으로 훨씬 더 유리하다(<code class="highlighter-rouge">wiki</code> 카테고리 아래에 <code class="highlighter-rouge">Display_resolution</code>이란 리소스가 있는 것처럼 보인다).</li>
+  <li>인지적으로 훨씬 더 유리하다(<code class="language-plaintext highlighter-rouge">wiki</code> 카테고리 아래에 <code class="language-plaintext highlighter-rouge">Display_resolution</code>이란 리소스가 있는 것처럼 보인다).</li>
   <li>URL과 백엔드(프로그래밍 언어/프레임워크, 또는 이들에 의해 서비스되는 리소스)를 디커플링할 수 있다.</li>
 </ul>
 
-<p>클리앙의 URL 하나를 긁어 왔다. 이 URL을 보고 무엇을 담고 있는 지 알 수 있는가? 절대 알 수 없다. 게다가 서비스 프레임워크로 PHP를 쓰고, <code class="highlighter-rouge">cm_mac</code>이란 데이터베이스 테이블이 있고, 현재 ID는 <code class="highlighter-rouge">791884</code>라고 해커한테 광고하고 있다.</p>
+<p>클리앙의 URL 하나를 긁어 왔다. 이 URL을 보고 무엇을 담고 있는 지 알 수 있는가? 절대 알 수 없다. 게다가 서비스 프레임워크로 PHP를 쓰고, <code class="language-plaintext highlighter-rouge">cm_mac</code>이란 데이터베이스 테이블이 있고, 현재 ID는 <code class="language-plaintext highlighter-rouge">791884</code>라고 해커한테 광고하고 있다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://clien.net/cs2/bbs/board.php?bo_table=cm_mac&amp;wr_id=791884
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://clien.net/cs2/bbs/board.php?bo_table=cm_mac&amp;wr_id=791884
 </code></pre></div></div>
 
-<p>백엔드 구현은 위키피디아와 크게 다를 바 없을 것이다. 모르긴 해도 <code class="highlighter-rouge">board.php</code> 또는 이 파일이 의존하는 다른 파일에서 <code class="highlighter-rouge">SELECT * FROM cm_mac WHERE wr_id=791884;</code>와 같은 데이터베이스 쿼리를 하고, 쿼리 결과를 HTML에 끼워 넣어서 사용자에게 응답할 것이다.</p>
+<p>백엔드 구현은 위키피디아와 크게 다를 바 없을 것이다. 모르긴 해도 <code class="language-plaintext highlighter-rouge">board.php</code> 또는 이 파일이 의존하는 다른 파일에서 <code class="language-plaintext highlighter-rouge">SELECT * FROM cm_mac WHERE wr_id=791884;</code>와 같은 데이터베이스 쿼리를 하고, 쿼리 결과를 HTML에 끼워 넣어서 사용자에게 응답할 것이다.</p>
 
-<p>반면, 위키피디아는 <code class="highlighter-rouge">wiki</code> 카테고리(또는 디렉터리) 아래에 <code class="highlighter-rouge">Display_resolution</code>이란 리소스가 있는 것처럼 보인다. 물론 위키피디아도 <code class="highlighter-rouge">SELECT * FROM wiki WHERE title='Display_resolution'</code> 쿼리를 할 것이다.</p>
+<p>반면, 위키피디아는 <code class="language-plaintext highlighter-rouge">wiki</code> 카테고리(또는 디렉터리) 아래에 <code class="language-plaintext highlighter-rouge">Display_resolution</code>이란 리소스가 있는 것처럼 보인다. 물론 위키피디아도 <code class="language-plaintext highlighter-rouge">SELECT * FROM wiki WHERE title='Display_resolution'</code> 쿼리를 할 것이다.</p>
 
 <h3 id="23-url-rewrite">2.3. URL Rewrite</h3>
 
@@ -282,7 +286,7 @@
 
 <div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># https://github.com/laravel/laravel/blob/master/public/.htaccess</span>
 
-<span class="nc">RewriteEngine</span> On
+<span class="nc">RewriteEngine</span> <span class="ss">On</span>
 
 <span class="nc">RewriteCond</span> %{REQUEST_FILENAME} !-d
 <span class="nc">RewriteRule</span> ^(.*)/$ /$1 [L,R=301]
@@ -294,40 +298,40 @@
 
 <ul>
   <li>
-    <p><code class="highlighter-rouge">RewriteCond %{REQUEST_FILENAME} !-d</code></p>
+    <p><code class="language-plaintext highlighter-rouge">RewriteCond %{REQUEST_FILENAME} !-d</code></p>
 
-    <p>다음에 이어질 <code class="highlighter-rouge">RewriteRule</code>이 동작할 조건이다. 이 조건에 해당할 때만 다음 줄이 실행된다.</p>
+    <p>다음에 이어질 <code class="language-plaintext highlighter-rouge">RewriteRule</code>이 동작할 조건이다. 이 조건에 해당할 때만 다음 줄이 실행된다.</p>
 
-    <p><code class="highlighter-rouge">%{REQUEST_FILENAME}</code>는 아파치 웹 서버의 환경 변수 중 URL에 포함된 경로(Path)를 뜻한다. 위키피디아의 예에서는 <code class="highlighter-rouge">wiki/Screen_resolution</code>이 된다.</p>
+    <p><code class="language-plaintext highlighter-rouge">%{REQUEST_FILENAME}</code>는 아파치 웹 서버의 환경 변수 중 URL에 포함된 경로(Path)를 뜻한다. 위키피디아의 예에서는 <code class="language-plaintext highlighter-rouge">wiki/Screen_resolution</code>이 된다.</p>
 
-    <p><code class="highlighter-rouge">!</code>은 Not(Negation, 부정 연산자)이다. <code class="highlighter-rouge">-d</code>는 디렉터리다. <code class="highlighter-rouge">-f</code>를 쓰면 파일을 뜻한다. 쉘 스크립트에서 사용하던 <code class="highlighter-rouge">[ !-d "wiki/Screen_resolution"]</code>과 같다고 보면 된다. 이 문장의 의미는 ‘서버에 <code class="highlighter-rouge">wiki/Screen_resolution</code>이라는 디렉터리가 없으면’으로 해석할 수 있다.</p>
+    <p><code class="language-plaintext highlighter-rouge">!</code>은 Not(Negation, 부정 연산자)이다. <code class="language-plaintext highlighter-rouge">-d</code>는 디렉터리다. <code class="language-plaintext highlighter-rouge">-f</code>를 쓰면 파일을 뜻한다. 쉘 스크립트에서 사용하던 <code class="language-plaintext highlighter-rouge">[ !-d "wiki/Screen_resolution"]</code>과 같다고 보면 된다. 이 문장의 의미는 ‘서버에 <code class="language-plaintext highlighter-rouge">wiki/Screen_resolution</code>이라는 디렉터리가 없으면’으로 해석할 수 있다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">RewriteRule ^(.*)/$ /$1 [L,R=301]</code></p>
+    <p><code class="language-plaintext highlighter-rouge">RewriteRule ^(.*)/$ /$1 [L,R=301]</code></p>
 
     <p>첫 번째 Rewrite 규칙이다. 인자 사이는 공백으로 구분한다. 첫 번째 인자는 찾을 문자열, 두 번째는 바꿀 URL의 모양, 대괄호 안에는 액션을 쓴다.</p>
 
-    <p><code class="highlighter-rouge">^(.*)/$</code>는 정규 표현식이다. <code class="highlighter-rouge">^</code>는 시작을 <code class="highlighter-rouge">$</code>는 끝을 의미한다. <code class="highlighter-rouge">()</code>는 캡처링 그룹, <code class="highlighter-rouge">.</code>는 개행을 제외한 모든 문자, <code class="highlighter-rouge">*</code>는 0개부터 무한대까지의 개수를 한정한다. 해석하자면 <code class="highlighter-rouge">/</code>로 끝나는 URL 경로다.</p>
+    <p><code class="language-plaintext highlighter-rouge">^(.*)/$</code>는 정규 표현식이다. <code class="language-plaintext highlighter-rouge">^</code>는 시작을 <code class="language-plaintext highlighter-rouge">$</code>는 끝을 의미한다. <code class="language-plaintext highlighter-rouge">()</code>는 캡처링 그룹, <code class="language-plaintext highlighter-rouge">.</code>는 개행을 제외한 모든 문자, <code class="language-plaintext highlighter-rouge">*</code>는 0개부터 무한대까지의 개수를 한정한다. 해석하자면 <code class="language-plaintext highlighter-rouge">/</code>로 끝나는 URL 경로다.</p>
 
-    <p><code class="highlighter-rouge">$1</code>은 캡처링 그룹으로 잡은 문자열이다. 가령, <code class="highlighter-rouge">wiki/Screen_resolution/</code>처럼 마지막에 <code class="highlighter-rouge">/</code>가 있었다면, <code class="highlighter-rouge">/wiki/Screen_resolution</code>로 바꿀 것이다.</p>
+    <p><code class="language-plaintext highlighter-rouge">$1</code>은 캡처링 그룹으로 잡은 문자열이다. 가령, <code class="language-plaintext highlighter-rouge">wiki/Screen_resolution/</code>처럼 마지막에 <code class="language-plaintext highlighter-rouge">/</code>가 있었다면, <code class="language-plaintext highlighter-rouge">/wiki/Screen_resolution</code>로 바꿀 것이다.</p>
 
-    <p><code class="highlighter-rouge">L</code>을 주면 이 문장 다음에 RewriteRule이 더 있어도 실행하지 않는다. <code class="highlighter-rouge">R=301</code>은 301 응답 코드와 함께 새로운 URL로 리디렉션한다는 뜻이다. 그냥 <code class="highlighter-rouge">R</code>만 주면 302 응답 코드로 리디렉션한다. 차이는 301은 영구적 URL 변경, 302는 임시적 URL 변경이다. 웹 브라우저가 아니라 웹 크롤러가 이 URL을 방문했다면 301 응답을 받아 자신의 데이터베이스에서 색인을 업데이트할 것이다.</p>
+    <p><code class="language-plaintext highlighter-rouge">L</code>을 주면 이 문장 다음에 RewriteRule이 더 있어도 실행하지 않는다. <code class="language-plaintext highlighter-rouge">R=301</code>은 301 응답 코드와 함께 새로운 URL로 리디렉션한다는 뜻이다. 그냥 <code class="language-plaintext highlighter-rouge">R</code>만 주면 302 응답 코드로 리디렉션한다. 차이는 301은 영구적 URL 변경, 302는 임시적 URL 변경이다. 웹 브라우저가 아니라 웹 크롤러가 이 URL을 방문했다면 301 응답을 받아 자신의 데이터베이스에서 색인을 업데이트할 것이다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">RewriteCond %{REQUEST_FILENAME} !-d</code>, <code class="highlighter-rouge">RewriteCond %{REQUEST_FILENAME} !-f</code></p>
+    <p><code class="language-plaintext highlighter-rouge">RewriteCond %{REQUEST_FILENAME} !-d</code>, <code class="language-plaintext highlighter-rouge">RewriteCond %{REQUEST_FILENAME} !-f</code></p>
 
-    <p>다시 한번 더 조건을 타는데, 요청한 URL 경로에 해당하는 파일이나 디렉터리의 존재를 확인한다. 예를 들어, <code class="highlighter-rouge">wiki/foo.png</code> 등 웹 서버에 이미지, CSS, 자바스크립트 등 정적 파일이 실제로 존재한다면 이 조건은 통과하고, 웹 서버가 처리한다.</p>
+    <p>다시 한번 더 조건을 타는데, 요청한 URL 경로에 해당하는 파일이나 디렉터리의 존재를 확인한다. 예를 들어, <code class="language-plaintext highlighter-rouge">wiki/foo.png</code> 등 웹 서버에 이미지, CSS, 자바스크립트 등 정적 파일이 실제로 존재한다면 이 조건은 통과하고, 웹 서버가 처리한다.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">RewriteRule ^ index.php [L]</code></p>
+    <p><code class="language-plaintext highlighter-rouge">RewriteRule ^ index.php [L]</code></p>
 
-    <p>이 Rewrite 규칙에 도달하면 무조건 <code class="highlighter-rouge">index.php</code>로 HTTP 요청을 넘긴다. Rewrite 규칙에는 URL 경로나 쿼리스트링등이 없는데, PHP/라라벨이 <code class="highlighter-rouge">$_SERVER</code> 수퍼 글로벌 변수를 이용해서 값을 읽을 수 있기 때문에 굳이 넘겨줄 필요가 없기 때문이다.</p>
+    <p>이 Rewrite 규칙에 도달하면 무조건 <code class="language-plaintext highlighter-rouge">index.php</code>로 HTTP 요청을 넘긴다. Rewrite 규칙에는 URL 경로나 쿼리스트링등이 없는데, PHP/라라벨이 <code class="language-plaintext highlighter-rouge">$_SERVER</code> 수퍼 글로벌 변수를 이용해서 값을 읽을 수 있기 때문에 굳이 넘겨줄 필요가 없기 때문이다.</p>
 
-    <p>HTTP 요청을 넘겨 받은 <code class="highlighter-rouge">index.php</code>는 <code class="highlighter-rouge">$_SERVER['PATH_INFO']</code>, <code class="highlighter-rouge">$_SERVER['QUERY_STRING']</code>으로 <code class="highlighter-rouge">wiki/Screen_resolution/</code>등의 정보를 추출할 수 있으며, 다시 애플리케이션 라우팅을 이용해서 적합한 컨트롤러 로직으로 요청의 처리를 위임한다.</p>
+    <p>HTTP 요청을 넘겨 받은 <code class="language-plaintext highlighter-rouge">index.php</code>는 <code class="language-plaintext highlighter-rouge">$_SERVER['PATH_INFO']</code>, <code class="language-plaintext highlighter-rouge">$_SERVER['QUERY_STRING']</code>으로 <code class="language-plaintext highlighter-rouge">wiki/Screen_resolution/</code>등의 정보를 추출할 수 있으며, 다시 애플리케이션 라우팅을 이용해서 적합한 컨트롤러 로직으로 요청의 처리를 위임한다.</p>
   </li>
 </ul>
 
-<p>종합하면, 서버에 없는 디렉터리면 요청 URL 끝에 달린 <code class="highlighter-rouge">/</code>를 떼고 301 응답을 반환하면, 클라이언트는 <code class="highlighter-rouge">/</code>를 뗀 상태로 다시 요청한다. 이번에는 <code class="highlighter-rouge">/</code>가 없기 때문에 첫번째 조건은 그냥 통과하고, 두번째 조건에서 서버에 실제로 존재하는 디렉터리 또는 파일이 아니라면, 전부 <code class="highlighter-rouge">index.php</code>에게 클라이언트의 요청을 처리할 것을 위임한다.</p>
+<p>종합하면, 서버에 없는 디렉터리면 요청 URL 끝에 달린 <code class="language-plaintext highlighter-rouge">/</code>를 떼고 301 응답을 반환하면, 클라이언트는 <code class="language-plaintext highlighter-rouge">/</code>를 뗀 상태로 다시 요청한다. 이번에는 <code class="language-plaintext highlighter-rouge">/</code>가 없기 때문에 첫번째 조건은 그냥 통과하고, 두번째 조건에서 서버에 실제로 존재하는 디렉터리 또는 파일이 아니라면, 전부 <code class="language-plaintext highlighter-rouge">index.php</code>에게 클라이언트의 요청을 처리할 것을 위임한다.</p>
 
 <h2 id="3-결론">3. 결론</h2>
 
@@ -338,7 +342,7 @@
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
-      <p>Front Controller_ 웹 애플리케이션의 단일 진입점이다. 가령 클리앙의 예처럼 <code class="highlighter-rouge">foo.php</code>, <code class="highlighter-rouge">bar.php</code>, <code class="highlighter-rouge">...</code>이 아니라, <code class="highlighter-rouge">index.php</code> 단 하나의 진입점을 말한다. HTTP 요청이 이 진입점에 들어 오면, 애플리케이션을 부팅하고 라우팅 테이블에 의해 적절한 처리 로직을 가동하고 응답을 반환한다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>Front Controller_ 웹 애플리케이션의 단일 진입점이다. 가령 클리앙의 예처럼 <code class="language-plaintext highlighter-rouge">foo.php</code>, <code class="language-plaintext highlighter-rouge">bar.php</code>, <code class="language-plaintext highlighter-rouge">...</code>이 아니라, <code class="language-plaintext highlighter-rouge">index.php</code> 단 하나의 진입점을 말한다. HTTP 요청이 이 진입점에 들어 오면, 애플리케이션을 부팅하고 라우팅 테이블에 의해 적절한 처리 로직을 가동하고 응답을 반환한다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -1298,7 +1302,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

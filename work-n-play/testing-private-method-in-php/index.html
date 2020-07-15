@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>Private(or Protected) 메서드 테스트 하기  | Appkr.memo(new Story)</title>
 
@@ -145,16 +149,16 @@
   <li><strong>Public 메서드만 테스트한다.</strong> Private나 Protected 메서드는 Public 메서드가 작동하는데 도움을 주는 메서드들이므로, Public 메서드를 테스트함으로써 자동으로 테스트된다.</li>
 </ul>
 
-<p>후처리 정렬의 정상 작동을 확인해야 할 필요성이 생긴 것이다. 물론 구현한 Protected 메서드의 가시성을 Public으로 변경하면 쉽다. 그런데, 다른 클래스에서 호출하지도 않을 메서드를 Public으로 선언하는 것은 기분이 찜찜하다. 이 포스트에서는 <strong>Private나 Protected로 선언된 메서드를 유닛 테스트하는 방법을 설명</strong>한다. 결론부터 말하면, <strong>PHP의 <code class="highlighter-rouge">Reflection</code> API를 이용</strong>하는 것이다.</p>
+<p>후처리 정렬의 정상 작동을 확인해야 할 필요성이 생긴 것이다. 물론 구현한 Protected 메서드의 가시성을 Public으로 변경하면 쉽다. 그런데, 다른 클래스에서 호출하지도 않을 메서드를 Public으로 선언하는 것은 기분이 찜찜하다. 이 포스트에서는 <strong>Private나 Protected로 선언된 메서드를 유닛 테스트하는 방법을 설명</strong>한다. 결론부터 말하면, <strong>PHP의 <code class="language-plaintext highlighter-rouge">Reflection</code> API를 이용</strong>하는 것이다.</p>
 
 <!--more-->
 <div class="spacer">• • •</div>
 
 <h2 id="1-테스트-타겟">1. 테스트 타겟</h2>
 
-<p>테스트의 대상은 아래 클래스의 <code class="highlighter-rouge">sortByStoreStatusAndCanBuyNow()</code> 메서드다. 여러 단계를 거치긴 하지만, Public으로 선언한 <code class="highlighter-rouge">query()</code> 메서드의 의해서 호출된다. 인라인으로 간략한 설명을 달아 두었다.</p>
+<p>테스트의 대상은 아래 클래스의 <code class="language-plaintext highlighter-rouge">sortByStoreStatusAndCanBuyNow()</code> 메서드다. 여러 단계를 거치긴 하지만, Public으로 선언한 <code class="language-plaintext highlighter-rouge">query()</code> 메서드의 의해서 호출된다. 인라인으로 간략한 설명을 달아 두었다.</p>
 
-<p>참고로 <strong>네임스페이스에 나온 <a href="//bootake.com"><code class="highlighter-rouge">Bootake</code>는 내가 속한 회사에서 하는 서비스</a> 중 하나</strong>다. 이번에 구현한 코드는 아직 서비스에 반영되진 않았다.</p>
+<p>참고로 <strong>네임스페이스에 나온 <a href="//bootake.com"><code class="language-plaintext highlighter-rouge">Bootake</code>는 내가 속한 회사에서 하는 서비스</a> 중 하나</strong>다. 이번에 구현한 코드는 아직 서비스에 반영되진 않았다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// core/Infrastructure/Queries/CvsProduct.php</span>
 
@@ -249,7 +253,7 @@
 
 <h3 id="21-테스트-헬퍼">2.1. 테스트 헬퍼</h3>
 
-<p><code class="highlighter-rouge">getTestableMethod()</code> 메서드는 PHP의 <code class="highlighter-rouge">Reflection</code> 클래스를 이용해서 인자로 받은 <code class="highlighter-rouge">$class::$name</code> 메서드를 이번 프로세스 동안만 Private 또는 Protected 메서드를 Public으로 변경해준다. 즉, 테스트를 수행하는 동안은 테스트 클래스가 타켓 메서드에 접근할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">getTestableMethod()</code> 메서드는 PHP의 <code class="language-plaintext highlighter-rouge">Reflection</code> 클래스를 이용해서 인자로 받은 <code class="language-plaintext highlighter-rouge">$class::$name</code> 메서드를 이번 프로세스 동안만 Private 또는 Protected 메서드를 Public으로 변경해준다. 즉, 테스트를 수행하는 동안은 테스트 클래스가 타켓 메서드에 접근할 수 있다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/TestCase.php</span>
 
@@ -278,7 +282,7 @@
 
 <h3 id="22-테스트-코드">2.2. 테스트 코드</h3>
 
-<p>이제 테스트 코드를 쓰면 된다. 앞 절에서 만든 헬퍼에서 반환 받은 메서드에 <code class="highlighter-rouge">invokeArgs(클래스 인스턴스, [메서드의 인자])</code>식으로 사용하면 원래 감추진 메서드를 호출하여 결과를 얻을 수 있다.</p>
+<p>이제 테스트 코드를 쓰면 된다. 앞 절에서 만든 헬퍼에서 반환 받은 메서드에 <code class="language-plaintext highlighter-rouge">invokeArgs(클래스 인스턴스, [메서드의 인자])</code>식으로 사용하면 원래 감추진 메서드를 호출하여 결과를 얻을 수 있다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/Unit/QueryTest.php</span>
 
@@ -1305,7 +1309,16 @@
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

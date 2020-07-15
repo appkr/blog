@@ -39,7 +39,11 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-  <link rel="stylesheet" href="/styles/main.min.css"/>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/bootstrap-material-design.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
 
   <title>내가 경험한 웹의 역사 | Appkr.memo(new Story)</title>
 
@@ -135,7 +139,7 @@
       <div class="box-body">
         <p>World Wide Web 의 역사는 오래되지 않았다.</p>
 
-<p>내가 야자를 하던 시절 세상에 처음 소개되었으며, 군을 제대하고 복학을 할 때 즈음 국내에도 막 붐이 일기 시작했었다. 대학을 진학하면서 내가 처음 가진 PC 는 486SX 33MHz 였던 것으로 기억한다. 작전병으로 군생활을 처음 시작했을 때는 전자 타자기에 먹지를 댄 종이를 끼우고 보고서를 작성했고, 곧 MS-DOS 로 운영되는 PC 가 보급되었다. 군 생활 내내 MS-DOS 환경에서 <code class="highlighter-rouge">\&gt;hwp</code> 를 쳐서 실행되는 아래아 한글을 사용했으며, 병장이 되어서야 Windows 95 가 보급되었다.</p>
+<p>내가 야자를 하던 시절 세상에 처음 소개되었으며, 군을 제대하고 복학을 할 때 즈음 국내에도 막 붐이 일기 시작했었다. 대학을 진학하면서 내가 처음 가진 PC 는 486SX 33MHz 였던 것으로 기억한다. 작전병으로 군생활을 처음 시작했을 때는 전자 타자기에 먹지를 댄 종이를 끼우고 보고서를 작성했고, 곧 MS-DOS 로 운영되는 PC 가 보급되었다. 군 생활 내내 MS-DOS 환경에서 <code class="language-plaintext highlighter-rouge">\&gt;hwp</code> 를 쳐서 실행되는 아래아 한글을 사용했으며, 병장이 되어서야 Windows 95 가 보급되었다.</p>
 
 <p>그 당시의 웹은 모두 Static 페이지들이었다. 방문자의 컨텍스트나 그들의 추가적인 액션에 따라 동적으로 변하는 문서가 아닌, 모든 사용자에게 동일한 화면를 보여준다는 의미이다. 국내에 Dynamic Web 이 태동한 시기는 90 년 대 후반으로 기억되며 그 때 당시의 Dynamic 웹 들은 이렇게 생겼었다.</p>
 
@@ -153,7 +157,7 @@
 
 <p>웹 개발에는 입문을 했고, 기업들 홈페이지 알바 뛰면서 번 돈을 모아서, 방학 중에 C 와 Oracle 특강을 들었다. 그 덕에 98년 즈음에 Dynamic Web 을 C 라는 언어로 시작할 수 있었다.</p>
 
-<p>오래된 zip 파일을 풀었다. (난 대학 시절에 만든 리포트를 포함한 모든 자료를 아직도 보관하고 있다.) 아래는 <code class="highlighter-rouge">cgic</code> 라이브러리를 이용하여 html 폼 입력을 파싱하여 화면에 뿌리는 코드이다.</p>
+<p>오래된 zip 파일을 풀었다. (난 대학 시절에 만든 리포트를 포함한 모든 자료를 아직도 보관하고 있다.) 아래는 <code class="language-plaintext highlighter-rouge">cgic</code> 라이브러리를 이용하여 html 폼 입력을 파싱하여 화면에 뿌리는 코드이다.</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// write.c</span>
 
@@ -237,7 +241,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>C 는 굉장히 견고한 언어이지만, 내가 하려는 웹 개발에서는 너무나도 불편함이 많았다. <code class="highlighter-rouge">printf()</code> 함수를 이용하여 HTML 코드를 한 줄씩 stdout 으로 출력하는 방법만이 C 에서 웹 서버로 무엇인가를 전달하는 유일한 방법이었다.</p>
+<p>C 는 굉장히 견고한 언어이지만, 내가 하려는 웹 개발에서는 너무나도 불편함이 많았다. <code class="language-plaintext highlighter-rouge">printf()</code> 함수를 이용하여 HTML 코드를 한 줄씩 stdout 으로 출력하는 방법만이 C 에서 웹 서버로 무엇인가를 전달하는 유일한 방법이었다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\&gt;</span> gcc write.c cgic.c <span class="nt">-o</span> write.cgi
 </code></pre></div></div>
@@ -371,7 +375,7 @@ EOT
 
 <div class="spacer">• • •</div>
 
-<p>PHP 사용자 수의 급속한 상승은 웹 프로그래밍에서 C 와 Perl 의 불편함 때문으로 생각된다. 1) Template 엔진 처럼 쓸 수 있다는 점과, 2) <code class="highlighter-rouge">$_GET</code>, <code class="highlighter-rouge">$_POST</code> 와 같은 전역 변수를 통해 사용자 입력값을 쉽게 가져올 수 있는 기능은 당시 많은 웹 프로그래머들을 매료시켰다.</p>
+<p>PHP 사용자 수의 급속한 상승은 웹 프로그래밍에서 C 와 Perl 의 불편함 때문으로 생각된다. 1) Template 엔진 처럼 쓸 수 있다는 점과, 2) <code class="language-plaintext highlighter-rouge">$_GET</code>, <code class="language-plaintext highlighter-rouge">$_POST</code> 와 같은 전역 변수를 통해 사용자 입력값을 쉽게 가져올 수 있는 기능은 당시 많은 웹 프로그래머들을 매료시켰다.</p>
 
 <p>PHP 가 인기를 얻게된 또 하나의 이유는 LAMP 스택의 부상을 들 수 있다. 정확히 기억나진 않지만 10 사용자용 윈도우 2000 서버 1 카피의 가격이 당시엔 200 만원이 넘었던 것으로 기억한다. 닷컴 열기와 함께 Linux 를 이용한 호스팅이 활기를 띠면서, 서버에 기본으로 탑재되어 있는 PHP 를 쓰지 않을 이유는 없었을 것이다. 이런 이유로 LAMP 스택이 인터넷 발전에 지대한 영향을 미쳤다고 나는 평가하고 있다.</p>
 
@@ -1424,7 +1428,16 @@ EOT
     </a>
   </div>
 
-  <script src="/scripts/main.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/simple-jekyll-search/1.1.1/jekyll-search.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/material.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/js/ripples.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"/>
+  <script src="/scripts/fat.js"/>
+  <script src="/scripts/main.js"/>
 </body>
 
 </html>

@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/learn-n-think/short-parable-on-sql-injection/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>SQL Injection 방어 | Appkr.memo(new Story)</title>
+  <title>SQL Injection 방어 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -163,15 +163,15 @@
 <span class="p">{</span>
     <span class="c1">// 라라벨 프레임웍이 제공하는 엘로퀀트 ORM과 쿼리 빌더를 이용하는 경우</span>
     <span class="c1">// PDO와 Prepared Statement를 이용하므로 SQL Injection은 자동 방어됨</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">retrieveStoresByParams</span><span class="p">(</span><span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$eagerLoads</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">retrieveStoresByParams</span><span class="p">(</span><span class="kt">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$eagerLoads</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
         <span class="nv">$builder</span> <span class="o">=</span> <span class="o">!</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span>
-            <span class="o">?</span> <span class="nx">Store</span><span class="o">::</span><span class="na">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">)</span>
-            <span class="o">:</span> <span class="nx">Store</span><span class="o">::</span><span class="na">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">);</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applySearchParams</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applyOrderBy</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
+            <span class="o">?</span> <span class="nc">Store</span><span class="o">::</span><span class="nf">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">with</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">)</span>
+            <span class="o">:</span> <span class="nc">Store</span><span class="o">::</span><span class="nf">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">applySearchParams</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">applyOrderBy</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
 
-        <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getSize</span><span class="p">(),</span> <span class="p">[</span><span class="s1">'*'</span><span class="p">],</span> <span class="s1">'page'</span><span class="p">,</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getPage</span><span class="p">());</span>
+        <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">paginate</span><span class="p">(</span><span class="nv">$dto</span><span class="o">-&gt;</span><span class="nf">getSize</span><span class="p">(),</span> <span class="p">[</span><span class="s1">'*'</span><span class="p">],</span> <span class="s1">'page'</span><span class="p">,</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="nf">getPage</span><span class="p">());</span>
     <span class="p">}</span>
 
     <span class="c1">// Raw 쿼리를 쓸 때 사용자로부터 받은 문자열을 직접 쿼리에 끼워 넣으면 SQL Injection에 무방비 상태가 됨</span>
@@ -181,7 +181,7 @@
     <span class="c1">// PHP7 with Xdebug on Docker, 테이블 조인 5개 &amp; 12,000 레코드 조회시 API 응답 시간</span>
     <span class="c1">// 	 - retrieveStoresByParams(): around N sec </span>
     <span class="c1">//   - queryStoresByParams(): under N/10 sec</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">queryStoresByParams</span><span class="p">(</span><span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'stores.*'</span><span class="p">])</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">queryStoresByParams</span><span class="p">(</span><span class="kt">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'stores.*'</span><span class="p">])</span>
     <span class="p">{</span>
         <span class="nv">$columnString</span> <span class="o">=</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">);</span>
         <span class="nv">$query</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"select </span><span class="si">{</span><span class="nv">$columnString</span><span class="si">}</span><span class="s2"> from stores"</span><span class="p">;</span>
@@ -189,7 +189,7 @@
 
         <span class="nv">$query</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"where 1 = 1"</span><span class="p">;</span>
 
-        <span class="nv">$from</span> <span class="o">=</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getFrom</span><span class="p">();</span>
+        <span class="nv">$from</span> <span class="o">=</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="nf">getFrom</span><span class="p">();</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$from</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="nv">$query</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">"and stores.created_at &gt;= :from"</span><span class="p">;</span>
             <span class="nv">$bindings</span><span class="p">[</span><span class="s1">'from'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$from</span><span class="p">;</span>
@@ -197,23 +197,23 @@
 
         <span class="c1">// ...</span>
 
-        <span class="k">return</span> <span class="nx">\DB</span><span class="o">::</span><span class="na">select</span><span class="p">(</span><span class="nb">implode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$query</span><span class="p">),</span> <span class="nv">$bindings</span><span class="p">);</span>
+        <span class="k">return</span> <span class="err">\</span><span class="no">DB</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="nb">implode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$query</span><span class="p">),</span> <span class="nv">$bindings</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">applySearchParams</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="n">applySearchParams</span><span class="p">(</span><span class="kt">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="kt">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$from</span> <span class="o">=</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getFrom</span><span class="p">();</span>
+        <span class="nv">$from</span> <span class="o">=</span> <span class="nv">$dto</span><span class="o">-&gt;</span><span class="nf">getFrom</span><span class="p">();</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$from</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'stores.created_at'</span><span class="p">,</span> <span class="s1">'&gt;='</span><span class="p">,</span> <span class="nv">$from</span><span class="p">);</span>
+            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'stores.created_at'</span><span class="p">,</span> <span class="s1">'&gt;='</span><span class="p">,</span> <span class="nv">$from</span><span class="p">);</span>
         <span class="p">}</span>
     
         <span class="c1">// ...</span>
     <span class="p">}</span>
     
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">applyOrderBy</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="nx">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="n">applyOrderBy</span><span class="p">(</span><span class="kt">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="kt">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$dto</span><span class="o">-&gt;</span><span class="na">getOrderBy</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$order</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="nv">$order</span><span class="p">[</span><span class="s1">'sortKey'</span><span class="p">],</span> <span class="nv">$order</span><span class="p">[</span><span class="s1">'sortDirection'</span><span class="p">]);</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$dto</span><span class="o">-&gt;</span><span class="nf">getOrderBy</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$order</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">orderBy</span><span class="p">(</span><span class="nv">$order</span><span class="p">[</span><span class="s1">'sortKey'</span><span class="p">],</span> <span class="nv">$order</span><span class="p">[</span><span class="s1">'sortDirection'</span><span class="p">]);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1149,6 +1149,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1156,7 +1180,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

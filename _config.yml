@@ -9,7 +9,7 @@ plugins:
 # Site settings
 #-------------------------------------------------------------------------------
 
-title: "Appkr.memo(new Story)"
+title: "Appkr.memo(new Story())"
 
 description: "appkr's blog to record day-to-day life & thoughts."
 baseurl: ""

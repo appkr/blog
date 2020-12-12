@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/how-to-use-value-object-in-laravel-eloquent-part-2/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부 | Appkr.memo(new Story)</title>
+  <title>라라벨의 엘로퀀트 ORM에서 값 객체 사용하기 2부 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -187,25 +187,25 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000000_create_customers_table.php</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateCustomersTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'고객 이름'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="s1">'address'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'고객 주소'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'고객 이름'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">json</span><span class="p">(</span><span class="s1">'address'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'고객 주소'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">timestamps</span><span class="p">();</span>
         <span class="p">});</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">dropIfExists</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -228,7 +228,7 @@
 
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
 <span class="cd">/**
  * App\Customer
@@ -240,16 +240,16 @@
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @mixin \Eloquent
  */</span>
-<span class="kd">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">Customer</span> <span class="kd">extends</span> <span class="nc">Model</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAddressAttribute</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$address</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getAddressAttribute</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$address</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">AddressFactory</span><span class="o">::</span><span class="na">createFromJson</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nc">AddressFactory</span><span class="o">::</span><span class="nf">createFromJson</span><span class="p">(</span><span class="nv">$address</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">setAddressAttribute</span><span class="p">(</span><span class="nx">Address</span> <span class="nv">$address</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">setAddressAttribute</span><span class="p">(</span><span class="kt">Address</span> <span class="nv">$address</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">attributes</span><span class="p">[</span><span class="s1">'address'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$address</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">attributes</span><span class="p">[</span><span class="s1">'address'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$address</span><span class="o">-&gt;</span><span class="nf">toArray</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -262,32 +262,32 @@
 
 <span class="kd">class</span> <span class="nc">AddressFactory</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">createFromJson</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$json</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="n">createFromJson</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$json</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$u</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
 
-        <span class="nv">$j</span> <span class="o">=</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">jibunAddress</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="nv">$jibunAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JibunAddress</span><span class="p">(</span>
-            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">adminDongName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">legalDongName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">legalRiName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">isMountain</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$j</span><span class="o">-&gt;</span><span class="na">jibunNumber</span> <span class="o">??</span> <span class="kc">null</span>
+        <span class="nv">$j</span> <span class="o">=</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="n">jibunAddress</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nv">$jibunAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JibunAddress</span><span class="p">(</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="n">adminDongName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="n">legalDongName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="n">legalRiName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="n">isMountain</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$j</span><span class="o">-&gt;</span><span class="n">jibunNumber</span> <span class="o">??</span> <span class="kc">null</span>
         <span class="p">);</span>
 
-        <span class="nv">$r</span> <span class="o">=</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">roadAddress</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="nv">$roadAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RoadAddress</span><span class="p">(</span>
-            <span class="nv">$r</span><span class="o">-&gt;</span><span class="na">roadName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$r</span><span class="o">-&gt;</span><span class="na">isBasement</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$r</span><span class="o">-&gt;</span><span class="na">buildingNumber</span> <span class="o">??</span> <span class="kc">null</span>
+        <span class="nv">$r</span> <span class="o">=</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="n">roadAddress</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nv">$roadAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RoadAddress</span><span class="p">(</span>
+            <span class="nv">$r</span><span class="o">-&gt;</span><span class="n">roadName</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$r</span><span class="o">-&gt;</span><span class="n">isBasement</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$r</span><span class="o">-&gt;</span><span class="n">buildingNumber</span> <span class="o">??</span> <span class="kc">null</span>
         <span class="p">);</span>
 
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">Address</span><span class="p">(</span>
-            <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">siDo</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
-            <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">siGunGu</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">Address</span><span class="p">(</span>
+            <span class="nv">$u</span><span class="o">-&gt;</span><span class="n">siDo</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nv">$u</span><span class="o">-&gt;</span><span class="n">siGunGu</span> <span class="o">??</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nv">$jibunAddress</span><span class="p">,</span>
             <span class="nv">$roadAddress</span><span class="p">,</span>
-            <span class="nv">$u</span><span class="o">-&gt;</span><span class="na">detailAddress</span> <span class="o">??</span> <span class="kc">null</span>
+            <span class="nv">$u</span><span class="o">-&gt;</span><span class="n">detailAddress</span> <span class="o">??</span> <span class="kc">null</span>
         <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -464,61 +464,61 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000100_create_customers_table.php</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CreateCustomersTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateCustomersTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'name'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'name'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">timestamps</span><span class="p">();</span>
         <span class="p">});</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">dropIfExists</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/2019_02_07_000200_create_customer_addresses_table.php</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CreateCustomerAddressesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateCustomerAddressesTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'customer_addresses'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedInteger</span><span class="p">(</span><span class="s1">'customer_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_si_do_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'시도'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_si_gun_gu_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'시군구'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_admin_dong_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'행정동'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_legal_dong_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'법정동'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_legal_ri_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'법정리'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">boolean</span><span class="p">(</span><span class="s1">'addr_is_mountain'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'산 여부 (0:대지, 1:산)'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_jibun_number'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'지번'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_road_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'도로명'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedTinyInteger</span><span class="p">(</span><span class="s1">'addr_is_basement'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'지하 여부 (0:지상, 1:지하, 2:공중)'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_building_number'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'건물번호'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'addr_detail'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">'상세주소 (건물명 등)'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'customer_addresses'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">unsignedInteger</span><span class="p">(</span><span class="s1">'customer_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">index</span><span class="p">();</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_si_do_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'시도'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_si_gun_gu_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'시군구'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_admin_dong_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'행정동'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_legal_dong_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'법정동'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_legal_ri_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'법정리'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">boolean</span><span class="p">(</span><span class="s1">'addr_is_mountain'</span><span class="p">)</span><span class="o">-&gt;</span><span class="k">default</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'산 여부 (0:대지, 1:산)'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_jibun_number'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'지번'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_road_name'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'도로명'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">unsignedTinyInteger</span><span class="p">(</span><span class="s1">'addr_is_basement'</span><span class="p">)</span><span class="o">-&gt;</span><span class="k">default</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'지하 여부 (0:지상, 1:지하, 2:공중)'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_building_number'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'건물번호'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'addr_detail'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">comment</span><span class="p">(</span><span class="s1">'상세주소 (건물명 등)'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">timestamps</span><span class="p">();</span>
 
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">'customer_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">foreign</span><span class="p">(</span><span class="s1">'customer_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">references</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">on</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">);</span>
         <span class="p">});</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'customer_addresses'</span><span class="p">);</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">dropIfExists</span><span class="p">(</span><span class="s1">'customer_addresses'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -536,7 +536,7 @@ id  name    SI_DO_NAME
 
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
 <span class="cd">/**
  * App\Customer
@@ -548,11 +548,11 @@ id  name    SI_DO_NAME
  * @property-read \App\CustomerAddress $address
  * @mixin \Eloquent
  */</span>
-<span class="kd">class</span> <span class="nc">Customer</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">Customer</span> <span class="kd">extends</span> <span class="nc">Model</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">address</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">address</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hasOne</span><span class="p">(</span><span class="nx">CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">'customer_id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">hasOne</span><span class="p">(</span><span class="nc">CustomerAddress</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="s1">'customer_id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -561,7 +561,7 @@ id  name    SI_DO_NAME
 
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
 <span class="cd">/**
  * App\CustomerAddress
@@ -584,11 +584,11 @@ id  name    SI_DO_NAME
  * @property-read \App\Customer $customer
  * @mixin \Eloquent
  */</span>
-<span class="kd">class</span> <span class="nc">CustomerAddress</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">CustomerAddress</span> <span class="kd">extends</span> <span class="nc">Model</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">customer</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">customer</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsTo</span><span class="p">(</span><span class="nx">Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">'customer_id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">belongsTo</span><span class="p">(</span><span class="nc">Customer</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="s1">'customer_id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -597,9 +597,9 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerAddressFactory.php</span>
 
-<span class="kn">use</span> <span class="nn">Faker\Generator</span> <span class="k">as</span> <span class="n">Faker</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Faker\Generator</span> <span class="k">as</span> <span class="nc">Faker</span><span class="p">;</span>
 
-<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nb">define</span><span class="p">(</span><span class="nc">App\CustomerAddress</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span>
         <span class="s1">'addr_si_do_name'</span> <span class="o">=&gt;</span> <span class="s1">'서울특별시'</span><span class="p">,</span>
         <span class="s1">'addr_si_gun_gu_name'</span> <span class="o">=&gt;</span> <span class="s1">'강남구'</span><span class="p">,</span>
@@ -618,16 +618,16 @@ id  name    SI_DO_NAME
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/factories/CustomerFactory.php</span>
 
-<span class="kn">use</span> <span class="nn">Faker\Generator</span> <span class="k">as</span> <span class="n">Faker</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Faker\Generator</span> <span class="k">as</span> <span class="nc">Faker</span><span class="p">;</span>
 
-<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nb">define</span><span class="p">(</span><span class="nc">App\Customer</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span>
-        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span>
     <span class="p">];</span>
 <span class="p">});</span>
 
-<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">afterCreating</span><span class="p">(</span><span class="nx">App\Customer</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">App\Customer</span> <span class="nv">$customer</span><span class="p">,</span> <span class="nx">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">address</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nx">factory</span><span class="p">(</span><span class="nx">App\CustomerAddress</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">());</span>
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nf">afterCreating</span><span class="p">(</span><span class="nc">App\Customer</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">App</span><span class="err">\</span><span class="nc">Customer</span> <span class="nv">$customer</span><span class="p">,</span> <span class="nc">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$customer</span><span class="o">-&gt;</span><span class="nf">address</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">save</span><span class="p">(</span><span class="nf">factory</span><span class="p">(</span><span class="nc">App\CustomerAddress</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">());</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -1759,6 +1759,30 @@ id  name    SI_DO_NAME
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1766,7 +1790,7 @@ id  name    SI_DO_NAME
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

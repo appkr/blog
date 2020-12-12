@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/understanding-php-exception-class-part-2/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>PHP의 예외 클래스 이해하기 2부 | Appkr.memo(new Story)</title>
+  <title>PHP의 예외 클래스 이해하기 2부 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -190,37 +190,37 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Exception</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">RuntimeException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Exception</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">RuntimeException</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">DomainException</span> <span class="k">extends</span> <span class="nx">RuntimeException</span>
+<span class="kd">class</span> <span class="nc">DomainException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span>
 <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$args</span><span class="p">;</span>
 
     <span class="c1">// PHP 내장 예외에서 string $message를 첫 인자로 받는 반면</span>
     <span class="c1">// 우리 클래스에서는 array $args를 첫 인자로 받는다.</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
-        <span class="k">array</span> <span class="nv">$args</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$code</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$previous</span> <span class="o">=</span> <span class="kc">null</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">array</span> <span class="nv">$args</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$code</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$previous</span> <span class="o">=</span> <span class="kc">null</span>
     <span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">args</span> <span class="o">=</span> <span class="nv">$args</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">args</span> <span class="o">=</span> <span class="nv">$args</span><span class="p">;</span>
         
         <span class="c1">// 배열로 받은 첫 인자를 문자열로 바꾸어</span>
         <span class="c1">// 부모 예외의 생성자를 호출한다.</span>
-        <span class="nv">$message</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buildMessage</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
-        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$previous</span><span class="p">);</span>
+        <span class="nv">$message</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">buildMessage</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
+        <span class="k">parent</span><span class="o">::</span><span class="nf">__construct</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$previous</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getArgs</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getArgs</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">args</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// 앞서 말한 배열을 문자열로 바꾸는 메서드다.</span>
     <span class="c1">// 문자열 패턴에 관한 관례가 있다면 맞추어서, 없다면 자유롭게 만들면 된다.</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildMessage</span><span class="p">(</span><span class="k">array</span> <span class="nv">$args</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="n">buildMessage</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$args</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
-        <span class="nv">$flattened</span> <span class="o">=</span> <span class="nx">array_dot</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
+        <span class="nv">$flattened</span> <span class="o">=</span> <span class="nf">array_dot</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
         <span class="nv">$argKeys</span> <span class="o">=</span> <span class="nb">array_keys</span><span class="p">(</span><span class="nv">$flattened</span><span class="p">);</span>
         <span class="nv">$argValues</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nv">$flattened</span><span class="p">);</span>
 
@@ -245,7 +245,7 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CustomDomainException</span> <span class="k">extends</span> <span class="nx">DomainException</span>
+<span class="kd">class</span> <span class="nc">CustomDomainException</span> <span class="kd">extends</span> <span class="nc">DomainException</span>
 <span class="p">{</span>
 
 <span class="p">}</span>
@@ -257,18 +257,18 @@
 
 <span class="nv">$source</span> <span class="o">=</span> <span class="s1">'/path/to/file'</span><span class="p">;</span>
 <span class="nv">$target</span> <span class="o">=</span> <span class="s1">'/path/to/file.zip'</span><span class="p">;</span>
-<span class="nv">$compressor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Compressor</span><span class="p">(</span><span class="s1">'zip'</span><span class="p">);</span>
-<span class="nv">$storage</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Storage</span><span class="p">(</span><span class="s1">'storage'</span><span class="p">);</span>
+<span class="nv">$compressor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Compressor</span><span class="p">(</span><span class="s1">'zip'</span><span class="p">);</span>
+<span class="nv">$storage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Storage</span><span class="p">(</span><span class="s1">'storage'</span><span class="p">);</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$compressed</span> <span class="o">=</span> <span class="nv">$compressor</span><span class="o">-&gt;</span><span class="na">zip</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
-    <span class="nv">$storage</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="nv">$target</span><span class="p">,</span> <span class="nv">$compressed</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">DiskFullException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$compressed</span> <span class="o">=</span> <span class="nv">$compressor</span><span class="o">-&gt;</span><span class="nf">zip</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+    <span class="nv">$storage</span><span class="o">-&gt;</span><span class="nf">put</span><span class="p">(</span><span class="nv">$target</span><span class="p">,</span> <span class="nv">$compressed</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">DiskFullException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 디스크를 버리고 다시 시도 하는 등의 예외 처리를 하고</span>
     <span class="c1">// 사용자에게 실패를 알리기 위해서 HttpException을 다시 던진다.</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nx">FileCompressionFailed</span><span class="p">([</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">FileCompressionFailed</span><span class="p">([</span>
         <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'파일을 압축하지 못했습니다.'</span><span class="p">,</span>
-        <span class="s1">'reason'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
+        <span class="s1">'reason'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">(),</span>
     <span class="p">],</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">$e</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -283,64 +283,64 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">App\Classifiable</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">App\LogLevel</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Exception</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Symfony\Component\HttpKernel\Exception\HttpExceptionInterface</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Classifiable</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\LogLevel</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Exception</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\HttpKernel\Exception\HttpExceptionInterface</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">HttpDomainException</span> <span class="k">extends</span> <span class="nx">DomainException</span> <span class="k">implements</span> <span class="nx">HttpExceptionInterface</span><span class="p">,</span> <span class="nx">Classifiable</span>
+<span class="kd">class</span> <span class="nc">HttpDomainException</span> <span class="kd">extends</span> <span class="nc">DomainException</span> <span class="kd">implements</span> <span class="nc">HttpExceptionInterface</span><span class="p">,</span> <span class="nc">Classifiable</span>
 <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$statusCode</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
     <span class="k">private</span> <span class="nv">$headers</span> <span class="o">=</span> <span class="p">[];</span>
 
     <span class="c1">// 2.1 절 대비 $statusCode, $headers 두 개의 생성자 인자가 더 추가되었다.</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
-        <span class="k">array</span> <span class="nv">$args</span> <span class="o">=</span> <span class="p">[],</span> <span class="kt">int</span> <span class="nv">$statusCode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="k">array</span> <span class="nv">$headers</span> <span class="o">=</span> <span class="p">[],</span> <span class="kt">int</span> <span class="nv">$code</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$previous</span> <span class="o">=</span> <span class="kc">null</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">array</span> <span class="nv">$args</span> <span class="o">=</span> <span class="p">[],</span> <span class="kt">int</span> <span class="nv">$statusCode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="kt">array</span> <span class="nv">$headers</span> <span class="o">=</span> <span class="p">[],</span> <span class="kt">int</span> <span class="nv">$code</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$previous</span> <span class="o">=</span> <span class="kc">null</span>
     <span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">is_null</span><span class="p">(</span><span class="nv">$statusCode</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 자식 클래스에서 프로퍼티로 정의한 값을 덮어쓰기 하지 않기 위한 조치다.</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">statusCode</span> <span class="o">=</span> <span class="nv">$statusCode</span><span class="p">;</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">statusCode</span> <span class="o">=</span> <span class="nv">$statusCode</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$headers</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 자식 클래스에서 프로퍼티로 정의한 값을 덮어쓰기 하지 않기 위한 조치다.</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headers</span> <span class="o">=</span> <span class="nv">$headers</span><span class="p">;</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">headers</span> <span class="o">=</span> <span class="nv">$headers</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$args</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$previous</span><span class="p">);</span>
+        <span class="k">parent</span><span class="o">::</span><span class="nf">__construct</span><span class="p">(</span><span class="nv">$args</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$previous</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">// 이하는 인터페이스를 구현한 메서드들이다.</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">setStatusCode</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$statusCode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">setStatusCode</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$statusCode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">statusCode</span> <span class="o">=</span> <span class="nv">$statusCode</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">statusCode</span> <span class="o">=</span> <span class="nv">$statusCode</span><span class="p">;</span>
 
         <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getStatusCode</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getStatusCode</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">statusCode</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">statusCode</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">setHeaders</span><span class="p">(</span><span class="k">array</span> <span class="nv">$headers</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">setHeaders</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$headers</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headers</span> <span class="o">=</span> <span class="nv">$headers</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">headers</span> <span class="o">=</span> <span class="nv">$headers</span><span class="p">;</span>
 
         <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getHeaders</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getHeaders</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">headers</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLogLevel</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getLogLevel</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">LogLevel</span><span class="o">::</span><span class="na">getInstance</span><span class="p">(</span><span class="s1">'DEBUG'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nc">LogLevel</span><span class="o">::</span><span class="nf">getInstance</span><span class="p">(</span><span class="s1">'DEBUG'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -353,10 +353,10 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">App\Classifiable</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">App\LogLevel</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Classifiable</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\LogLevel</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CustomHttpException</span> <span class="k">extends</span> <span class="nx">HttpDomainException</span> <span class="k">implements</span> <span class="nx">Classifiable</span>
+<span class="kd">class</span> <span class="nc">CustomHttpException</span> <span class="kd">extends</span> <span class="nc">HttpDomainException</span> <span class="kd">implements</span> <span class="nc">Classifiable</span>
 <span class="p">{</span>
     <span class="c1">// 클래스에서 HTTP 응답 코드를 하드코드로 선언하고 있다.</span>
     <span class="c1">// 이 예외가 사용되는 경우는 항상 일관된 410 응답을 줄 수 있다. </span>
@@ -364,9 +364,9 @@
 
     <span class="c1">// Classifiable 인터페이스를 구현한 메서드다.</span>
     <span class="c1">// LogLevel::$name 속성이 설정된 객체를 반환한다.</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLogLevel</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getLogLevel</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">LogLevel</span><span class="o">::</span><span class="na">getInstance</span><span class="p">(</span><span class="s1">'DEBUG'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nc">LogLevel</span><span class="o">::</span><span class="nf">getInstance</span><span class="p">(</span><span class="s1">'DEBUG'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -382,7 +382,7 @@
 <span class="kd">interface</span> <span class="nc">Classifiable</span>
 <span class="p">{</span>
     <span class="c1">// 이 인터페이스를 구현한 클래스는 이 메서드를 반드시 제공해야 한다.</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLogLevel</span><span class="p">();</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getLogLevel</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -415,51 +415,51 @@
     <span class="c1">// Static Constructor(생성자)다.</span>
     <span class="c1">// LogLevel::genInstance() 문장으로 클래스 인스턴스를 편리하게</span>
     <span class="c1">// 얻기 위한 도우미 메서드다.</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getInstance</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$name</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="n">getInstance</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$name</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 아래에 정의된 진짜 생성자를 보면 이해하기 쉬울 것이다.</span>
         <span class="c1">// 결국 이 클래스의 $name 프로퍼티가 설정된 객체를 반환한다.</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="k">static</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">static</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">// $name 프로퍼티에 설정된 문자열을 조회한다.</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getName</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getName</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// $name 프로퍼티에 설정된 문자열 값에 대칭되는 상수의 값을 조회한다.</span>
     <span class="c1">// 가령 $name에 'DEBUG'가 담겨 있다면, 이 메서드의 반환값은 7이다.</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getValue</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">constant</span><span class="p">(</span><span class="s2">"static::</span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">constant</span><span class="p">(</span><span class="s2">"static::</span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
     <span class="p">}</span>
     
     <span class="c1">// 이 클래스의 진짜 생성자다.</span>
     <span class="c1">// private로 가시성을 선언해서, 외부에서 new 키워드로 인스턴스를 만들 수 없다.</span>
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$name</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="nv">$name</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 생성자로 넘어온 인자가 없으면 'DEBUG'를 기본값으로 설정한다.</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'DEBUG'</span><span class="p">;</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'DEBUG'</span><span class="p">;</span>
 
             <span class="c1">// 다음 로직으로 더 진행하지 않도록 Early Retrun 한다.</span>
             <span class="k">return</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">defined</span><span class="p">(</span><span class="s1">'static::'</span> <span class="o">.</span> <span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">defined</span><span class="p">(</span><span class="s1">'static::'</span> <span class="mf">.</span> <span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 생성자로 넘어온 인자에 해당하는 상수가 정의되어 있는 지 확인한다.</span>
             <span class="c1">// validate()와 같은 별도의 메서드로 추출하면 좋을 것 같다.</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\InvalidArgumentException</span><span class="p">(</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">InvalidArgumentException</span><span class="p">(</span>
                 <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'정의되지 않은 상수입니다. "%s:%s"'</span><span class="p">,</span> <span class="nb">get_called_class</span><span class="p">(),</span> <span class="nv">$name</span><span class="p">)</span>
             <span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -472,41 +472,41 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">group</span><span class="p">([</span><span class="s1">'prefix'</span> <span class="o">=&gt;</span> <span class="s1">'exceptions'</span><span class="p">],</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nx">\App\Exceptions\DomainException</span><span class="p">([</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">group</span><span class="p">([</span><span class="s1">'prefix'</span> <span class="o">=&gt;</span> <span class="s1">'exceptions'</span><span class="p">],</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\DomainException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]);</span>
     <span class="p">});</span>
 
-    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'custom-domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nx">\App\Exceptions\CustomDomainException</span><span class="p">([</span>
+    <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'custom-domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\CustomDomainException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]);</span>
     <span class="p">});</span>
 
-    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'http-domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nx">\App\Exceptions\HttpDomainException</span><span class="p">([</span>
+    <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'http-domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\HttpDomainException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]);</span>
     <span class="p">});</span>
 
-    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'custom-http'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'custom-http'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
         <span class="c1">// HttpExceptionInterface를 구현한 부모를 상속 받고 있으므로</span>
         <span class="c1">// setStatusCode() 메서드를 이용해서 CustomHttpException::$statusCode</span>
         <span class="c1">// 프로퍼티를 덮어 쓸 수 있다.</span>
-        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="nx">\App\Exceptions\CustomHttpException</span><span class="p">([</span>
+        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\CustomHttpException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
-        <span class="p">]))</span><span class="o">-&gt;</span><span class="na">setStatusCode</span><span class="p">(</span><span class="mi">409</span><span class="p">);</span>
+        <span class="p">]))</span><span class="o">-&gt;</span><span class="nf">setStatusCode</span><span class="p">(</span><span class="mi">409</span><span class="p">);</span>
     <span class="p">});</span>
 
-    <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'model-not-found'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'model-not-found'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
         <span class="c1">// ModelNotFoundException도 setModel() 메서드를 이용해서</span>
         <span class="c1">// 런타임에 모델과 모델의 기본키를 설정할 수 있도록 구현되어 있다.</span>
         <span class="c1">// 참고로 이 예외는 라라벨 프레임워크에서 제공하는 예외이며,</span>
         <span class="c1">// User::findOrFail($notExistingId)를 호출했을 때 발생한다.</span>
-        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="nx">\Illuminate\Database\Eloquent\ModelNotFoundException</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">setModel</span><span class="p">(</span><span class="nx">\App\User</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\ModelNotFoundException</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">setModel</span><span class="p">(</span><span class="err">\</span><span class="nc">App\User</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div></div>
@@ -542,40 +542,40 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">App\Classifiable</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">App\LogLevel</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Exception</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Exceptions\Handler</span> <span class="k">as</span> <span class="n">ExceptionHandler</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Psr\Log\LoggerInterface</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Classifiable</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\LogLevel</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Exception</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Foundation\Exceptions\Handler</span> <span class="k">as</span> <span class="nc">ExceptionHandler</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Psr\Log\LoggerInterface</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
+<span class="kd">class</span> <span class="nc">Handler</span> <span class="kd">extends</span> <span class="nc">ExceptionHandler</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">report</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">report</span><span class="p">(</span><span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// Classifiable 인터페이스를 구현한 예외 객체라면 </span>
         <span class="c1">// getLogLevel() 메서드를 쓸 수 있다는 것을 확인할 수 있다.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">Classifiable</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">Classifiable</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// 라라벨 5.2 까지는 부모 클래스에서 주입 받은 $this-&gt;logger를 쓸 수 있었으나</span>
             <span class="c1">// 라라벨 5.3 부터는 MonoLog 인스턴스를 직접 만들어야 한다.</span>
-            <span class="nv">$logger</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">container</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">(</span><span class="nx">LoggerInterface</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
-            <span class="nv">$logLevel</span> <span class="o">=</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getLogLevel</span><span class="p">();</span>
+            <span class="nv">$logger</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">container</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">(</span><span class="nc">LoggerInterface</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
+            <span class="nv">$logLevel</span> <span class="o">=</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getLogLevel</span><span class="p">();</span>
             
             <span class="c1">// case 구문을 7개나 써야 하는 번거로움을 피하기 위해 메타 프로그래밍을 했다.</span>
             <span class="c1">// 'DEBUG' -&gt; 'debug' 로 문자열을 트랜스폼한다.</span>
-            <span class="nv">$method</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$logLevel</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">());</span>
+            <span class="nv">$method</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$logLevel</span><span class="o">-&gt;</span><span class="nf">getName</span><span class="p">());</span>
             
             <span class="c1">// 아래 문장은 $logger-&gt;debug($exception)와 같다.</span>
             <span class="nb">call_user_func</span><span class="p">([</span><span class="nv">$logger</span><span class="p">,</span> <span class="nv">$method</span><span class="p">],</span> <span class="nv">$exception</span><span class="p">);</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$logLevel</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="nx">LogLevel</span><span class="o">::</span><span class="na">ERROR</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$logLevel</span><span class="o">-&gt;</span><span class="nf">getValue</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="nc">LogLevel</span><span class="o">::</span><span class="no">ERROR</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// 심각도가 높은 예외가 발생했다. 관리자에게 알림을 보내거나 SaaS 서비스에</span>
                 <span class="c1">// 로그를 등록하는 등의 특별한 리포팅 작업을 이 곳에서 수행할 수 있다.</span>
             <span class="p">}</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="c1">// 부모 클래스의 기본 동작은 라라벨 로그에 내용을 기록하는 것이다.</span>
-            <span class="k">parent</span><span class="o">::</span><span class="na">report</span><span class="p">(</span><span class="nv">$exception</span><span class="p">);</span>
+            <span class="k">parent</span><span class="o">::</span><span class="nf">report</span><span class="p">(</span><span class="nv">$exception</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -600,52 +600,52 @@ Stack trace:
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Exception</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\ModelNotFoundException</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Exceptions\Handler</span> <span class="k">as</span> <span class="n">ExceptionHandler</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Http\Response</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Exception</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Eloquent\ModelNotFoundException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Foundation\Exceptions\Handler</span> <span class="k">as</span> <span class="nc">ExceptionHandler</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Http\Response</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
+<span class="kd">class</span> <span class="nc">Handler</span> <span class="kd">extends</span> <span class="nc">ExceptionHandler</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">HttpDomainException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">HttpDomainException</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// HttpDomainException 인터페이스를 구현했다면</span>
             <span class="c1">// getStatusCode() 메서드를 쓸 수 있다는 것을 확인할 수 있다.</span>
-            <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getStatusCode</span><span class="p">();</span>
+            <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getStatusCode</span><span class="p">();</span>
 
-            <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span>
+            <span class="k">return</span> <span class="nf">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">json</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="nv">$statusCode</span><span class="p">,</span>
-                    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getArgs</span><span class="p">(),</span>
+                    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getArgs</span><span class="p">(),</span>
                 <span class="p">],</span>
-                <span class="nv">$statusCode</span><span class="p">,</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getHeaders</span><span class="p">()</span>
+                <span class="nv">$statusCode</span><span class="p">,</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getHeaders</span><span class="p">()</span>
             <span class="p">);</span>
-        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">DomainException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">DomainException</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// 응답 코드를 강제로 500으로 바꿨다.</span>
-            <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nx">Response</span><span class="o">::</span><span class="na">HTTP_INTERNAL_SERVER_ERROR</span><span class="p">;</span>
+            <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nc">Response</span><span class="o">::</span><span class="no">HTTP_INTERNAL_SERVER_ERROR</span><span class="p">;</span>
 
-            <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span>
+            <span class="k">return</span> <span class="nf">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">json</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="nv">$statusCode</span><span class="p">,</span>
-                    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getArgs</span><span class="p">(),</span>
+                    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getArgs</span><span class="p">(),</span>
                 <span class="p">],</span>
                 <span class="nv">$statusCode</span>
             <span class="p">);</span>
-        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">ModelNotFoundException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">ModelNotFoundException</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// 응답 코드를 404로 바꿨다.</span>
-            <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nx">Response</span><span class="o">::</span><span class="na">HTTP_NOT_FOUND</span><span class="p">;</span>
+            <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nc">Response</span><span class="o">::</span><span class="no">HTTP_NOT_FOUND</span><span class="p">;</span>
 
-            <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span>
+            <span class="k">return</span> <span class="nf">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">json</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="nv">$statusCode</span><span class="p">,</span>
-                    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
+                    <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">(),</span>
                 <span class="p">],</span>
                 <span class="nv">$statusCode</span>
             <span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$exception</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$exception</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -677,12 +677,12 @@ Stack trace:
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ExpectExceptionTest.php</span>
 
-<span class="kd">class</span> <span class="nc">ExpectExceptionTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="kd">class</span> <span class="nc">ExpectExceptionTest</span> <span class="kd">extends</span> <span class="nc">TestCase</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">testDomainException</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">testDomainException</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">expectException</span><span class="p">(</span><span class="nx">App\Exceptions\DomainException</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">visit</span><span class="p">(</span><span class="s1">'exceptions/domain'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">expectException</span><span class="p">(</span><span class="nc">App\Exceptions\DomainException</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">visit</span><span class="p">(</span><span class="s1">'exceptions/domain'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -724,33 +724,33 @@ Stack trace:
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
+<span class="kd">class</span> <span class="nc">Handler</span> <span class="kd">extends</span> <span class="nc">ExceptionHandler</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 적절한 렌더링 클래스 선택을 getRenderingStrategy() 메서드에게 위임한다.</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getRenderingStrategy</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$exception</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$exception</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getRenderingStrategy</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$exception</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$exception</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getRenderingStrategy</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="n">getRenderingStrategy</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 적절한 객체를 선택하고 만들어서 반환하는 Factory다.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">HttpDomainException</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nx">\App\Exceptions\Renderers\HttpDomainException</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">DomainException</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nx">\App\Exceptions\Renderers\DomainException</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nx">ModelNotFoundException</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nx">\App\Exceptions\Renderers\ModelNotFoundException</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">HttpDomainException</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\Exceptions\Renderers\HttpDomainException</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">DomainException</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\Exceptions\Renderers\DomainException</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">ModelNotFoundException</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\Exceptions\Renderers\ModelNotFoundException</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="c1">// render() 메서드에서 return 구문을 쓰고 있고,</span>
         <span class="c1">// if 제어를 제거했으므로 return parent::render()를 실행할 방법이다.</span>
         <span class="c1">// 다른 녀석들 처럼 render() 메서드를 쓸 수 있는 객체를 반환하면 되는데,</span>
         <span class="c1">// 라라벨의 컨테이너에서 부모 클래스 객체를 Resolve하고 반환했다.</span>
-        <span class="k">return</span> <span class="nx">app</span><span class="p">(</span><span class="nb">get_parent_class</span><span class="p">(</span><span class="nv">$this</span><span class="p">));</span>
+        <span class="k">return</span> <span class="nf">app</span><span class="p">(</span><span class="nb">get_parent_class</span><span class="p">(</span><span class="nv">$this</span><span class="p">));</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -763,20 +763,20 @@ Stack trace:
 
 <span class="kn">namespace</span> <span class="nn">App\Exceptions\Renderers</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Exception</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Exception</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">HttpDomainException</span> <span class="k">implements</span> <span class="nx">Renderable</span>
+<span class="kd">class</span> <span class="nc">HttpDomainException</span> <span class="kd">implements</span> <span class="nc">Renderable</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getStatusCode</span><span class="p">();</span>
+        <span class="nv">$statusCode</span> <span class="o">=</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getStatusCode</span><span class="p">();</span>
 
-        <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span>
+        <span class="k">return</span> <span class="nf">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">json</span><span class="p">(</span>
             <span class="p">[</span>
                 <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="nv">$statusCode</span><span class="p">,</span>
-                <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getArgs</span><span class="p">(),</span>
+                <span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getArgs</span><span class="p">(),</span>
             <span class="p">],</span>
-            <span class="nv">$statusCode</span><span class="p">,</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getHeaders</span><span class="p">()</span>
+            <span class="nv">$statusCode</span><span class="p">,</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="nf">getHeaders</span><span class="p">()</span>
         <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -790,7 +790,7 @@ Stack trace:
 
 <span class="kd">interface</span> <span class="nc">Renderable</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">\Exception</span> <span class="nv">$exception</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="err">\</span><span class="nc">Exception</span> <span class="nv">$exception</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -851,28 +851,28 @@ Stack trace:
 
       <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/TestCase.php</span>
 
-<span class="k">abstract</span> <span class="kd">class</span> <span class="nc">TestCase</span> <span class="k">extends</span> <span class="nx">Illuminate\Foundation\Testing\TestCase</span>
+<span class="k">abstract</span> <span class="kd">class</span> <span class="nc">TestCase</span> <span class="kd">extends</span> <span class="nc">Illuminate\Foundation\Testing\TestCase</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">expectException</span><span class="p">(</span><span class="nv">$exception</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">expectException</span><span class="p">(</span><span class="nv">$exception</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">disableExceptionHandling</span><span class="p">();</span>
-        <span class="k">parent</span><span class="o">::</span><span class="na">expectException</span><span class="p">(</span><span class="nv">$exception</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">disableExceptionHandling</span><span class="p">();</span>
+        <span class="k">parent</span><span class="o">::</span><span class="nf">expectException</span><span class="p">(</span><span class="nv">$exception</span><span class="p">);</span>
 
         <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">disableExceptionHandling</span><span class="p">()</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="n">disableExceptionHandling</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">instance</span><span class="p">(</span>
+        <span class="nf">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">instance</span><span class="p">(</span>
             <span class="c1">// 애플리케이션에서 Handler 인스턴스를 요청하면,</span>
-            <span class="nx">App\Exceptions\Handler</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+            <span class="nc">App\Exceptions\Handler</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
             <span class="c1">// 아래 익명 클래스를 반환한다.</span>
-            <span class="k">new</span> <span class="kd">class</span> <span class="nc">extends</span> <span class="nx">App\Exceptions\Handler</span> <span class="p">{</span>
-                <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{}</span>
-                <span class="k">public</span> <span class="k">function</span> <span class="nf">report</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span> <span class="p">{}</span>
-                <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
+            <span class="k">new</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nc">App\Exceptions\Handler</span> <span class="p">{</span>
+                <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">()</span> <span class="p">{}</span>
+                <span class="k">public</span> <span class="k">function</span> <span class="n">report</span><span class="p">(</span><span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span> <span class="p">{}</span>
+                <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$exception</span><span class="p">)</span>
                 <span class="p">{</span>
                     <span class="c1">// 부모의 render() 메서드를 완전히 덮어 써서</span>
                     <span class="c1">// 기존 구현을 무력화시키고, 받은 예외는 다시 던진다.</span>
@@ -1825,6 +1825,30 @@ Stack trace:
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1832,7 +1856,7 @@ Stack trace:
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

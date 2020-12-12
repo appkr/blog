@@ -390,6 +390,8 @@ var compile = function(template, collection) {
     markup += template
       .replace(/{\s?id\s?}/ig, item.id)
       .replace(/{\s?message\s?}/ig, truncate(item.message || item.story))
+      .replace(/{\s?type\s?}/ig, item.type)
+      .replace(/{\s?repoName\s?}/ig, item.repoName)
       .replace(/{\s?created_time\s?}/ig, moment(item.created_time, moment.ISO_8601).fromNow());
   });
 
@@ -404,7 +406,7 @@ window.fbAsyncInit = function() {
   var facebookFeedContainer = $('ul#facebook-feed');
   var facebookFeedTemplate = $.trim($('#facebook-feed-template').html());
 
-  FB.init({appId: facebookAppId, autoLogAppEvents: true, xfbml: true, version: 'v3.2'});
+  FB.init({appId: facebookAppId, autoLogAppEvents: true, xfbml: true, version: 'v9.0'});
 
   FB.api('me/posts', 'GET', {limit: 3, access_token: a65bbdd5e332c9def690b9165b64abfc}, function(response) {
     if (! response || response.error || ! response.data.length) {
@@ -462,6 +464,7 @@ window.fbAsyncInit = function() {
     }
   }).done(function(response) {
     var collection = [];
+
     $.each(response, function(index, item) {
       collection.push({
         id: item.id,
@@ -473,6 +476,36 @@ window.fbAsyncInit = function() {
     gistListContainer.append(compile(gistListTemplate, collection));
   }).fail(function(xhr, status) {
     gistListContainer.html('<li>Some error :(</li>');
+  });
+})();
+
+/* Render Github Activity */
+(function() {
+  var activityListContainer = $('ul#activity-list');
+  var activityListTemplate = $.trim($('#activity-list-template').html());
+
+  $.ajax({
+    url: 'https://api.github.com/users/appkr/events?page=1&per_page=3',
+    type: 'GET',
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
+    }
+  }).done(function(response) {
+    var collection = [];
+
+    $.each(response, function(index, item) {
+      collection.push({
+        id: item.id,
+        type: item.type,
+        message: item.payload.commits[0].message,
+        repoName: item.repo.name,
+        created_time: item.created_at
+      });
+    });
+
+    activityListContainer.append(compile(activityListTemplate, collection));
+  }).fail(function(xhr, status) {
+    activityListContainer.html('<li>Some error :(</li>');
   });
 })();
 

@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/understanding-php-exception-class/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>PHP의 예외 클래스 이해하기 | Appkr.memo(new Story)</title>
+  <title>PHP의 예외 클래스 이해하기 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -160,11 +160,11 @@
 <span class="cd">/**
  * 개발자가 직접 소비하지 않은 예외를 처리하기 위한 전역 예외 처리기.
  */</span>
-<span class="k">function</span> <span class="nf">exception_handler</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">exception_handler</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span>
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
-        <span class="nb">get_class</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getPrevious</span><span class="p">())</span>
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">(),</span>
+        <span class="nb">get_class</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getPrevious</span><span class="p">())</span>
     <span class="p">);</span>
 <span class="p">}</span>
 
@@ -178,10 +178,10 @@
  * 실행할 때 예외를 식별하고 예외를 던지도록 구현해 놓은 함수. 
  * 외부에서 가져온 라이브러리나 직접 구현한 서비스라고 가정 하자. 
  */</span>
-<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$arg</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="nv">$arg</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">is_int</span><span class="p">(</span><span class="nv">$arg</span><span class="p">)</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nx">InvalidArgumentException</span><span class="p">(</span><span class="s1">'입력한 인자가 정수가 아닙니다.'</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">InvalidArgumentException</span><span class="p">(</span><span class="s1">'입력한 인자가 정수가 아닙니다.'</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="s2">"함수가 받은 인자는 </span><span class="si">{</span><span class="nv">$arg</span><span class="si">}</span><span class="s2">입니다."</span><span class="p">;</span>
@@ -191,21 +191,21 @@
  * 여기서 부터 클라이언트 코드(우리가 짠 애플리케이션)라고 가정하자.
  */</span> 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span>
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> 
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getCode</span><span class="p">(),</span> 
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getFile</span><span class="p">(),</span> 
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getLine</span><span class="p">(),</span> 
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getTrace</span><span class="p">(),</span> 
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getPrevious</span><span class="p">(),</span> 
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getTraceAsString</span><span class="p">()</span>
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">(),</span> 
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getCode</span><span class="p">(),</span> 
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getFile</span><span class="p">(),</span> 
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getLine</span><span class="p">(),</span> 
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getTrace</span><span class="p">(),</span> 
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getPrevious</span><span class="p">(),</span> 
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getTraceAsString</span><span class="p">()</span>
     <span class="p">);</span>
 
-    <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span>
-        <span class="s1">'예외 체인을 따라 버블 업 합니다.'</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
-        <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getCode</span><span class="p">(),</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="p">(</span>
+        <span class="s1">'예외 체인을 따라 버블 업 합니다.'</span> <span class="mf">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">(),</span>
+        <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getCode</span><span class="p">(),</span>
         <span class="nv">$e</span>
     <span class="p">);</span>
 <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
@@ -219,7 +219,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="k">throw</span> <span class="k">new</span> <span class="nx">FooException</span><span class="p">(</span><span class="s1">'메시지'</span><span class="p">);</span>
+<span class="k">throw</span> <span class="k">new</span> <span class="nc">FooException</span><span class="p">(</span><span class="s1">'메시지'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>예외 클래스의 프로토타입(생성자의 인자)은 다음과 같다. 대괄호는 배열 문법이 아니고, 선택사항(optional)이란 뜻이다. 즉 생성자에 아무런 인자를 안 넣어도 된다.</p>
@@ -265,8 +265,8 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 <span class="c1">// ...</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">}</span>
 
@@ -348,12 +348,12 @@ string<span class="o">(</span>24<span class="o">)</span> <span class="s2">"Inval
 <span class="c1">// ...</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">InvalidArgumentException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">InvalidArgumentException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'첫번째 catch 블록'</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">UnexpectedValueException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">UnexpectedValueException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'두번째 catch 블록'</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'세번째 catch 블록'</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -379,10 +379,10 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 <span class="c1">// ...</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'엉뚱한 예외 처리 로직'</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">InvalidArgumentException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">InvalidArgumentException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="s1">'우리가 기대하던 내용'</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -407,12 +407,12 @@ string<span class="o">(</span>26<span class="o">)</span> <span class="s2">"마�
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$arg</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$arg</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="s2">"함수가 받은 인자는 </span><span class="si">{</span><span class="nv">$arg</span><span class="si">}</span><span class="s2">입니다."</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nb">var_dump</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="s1">'string'</span><span class="p">));</span>
 </code></pre></div></div>
 
 <p>이 코드의 실행 결과는 다음과 같다. 전역 예외 처리기 또는 에러 처리가가 없으므로, PHP 런타임이 치명적 오류(Fatal error)를 내 뱉고 있는 상황이다. 운영 중인 웹 사이트에서 이런 메시지가 나온 적이 있는가? 그런데, 이 상황을 몇 시간째 모르고 있었던 경우는 없는가? 아찔하다~</p>
@@ -1360,6 +1360,30 @@ Call Stack:
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1367,7 +1391,7 @@ Call Stack:
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

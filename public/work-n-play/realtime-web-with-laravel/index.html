@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/realtime-web-with-laravel/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>"휙~" 리얼 타임 라라벨 데모 프로젝트 | Appkr.memo(new Story)</title>
+  <title>"휙~" 리얼 타임 라라벨 데모 프로젝트 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -377,15 +377,15 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">'event'</span> <span class="o">=&gt;</span> <span class="s1">'App\\Events\\NewUserCreated'</span><span class="p">,</span>
-        <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">App\User</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">(),</span>
+        <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nf">factory</span><span class="p">(</span><span class="nc">App\User</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">toArray</span><span class="p">(),</span>
     <span class="p">];</span>
 
-    <span class="nx">Redis</span><span class="o">::</span><span class="na">publish</span><span class="p">(</span><span class="s1">'whik'</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
+    <span class="nc">Redis</span><span class="o">::</span><span class="nf">publish</span><span class="p">(</span><span class="s1">'whik'</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 
-    <span class="k">return</span> <span class="nx">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="p">[],</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">response</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">json</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="p">[],</span> <span class="no">JSON_PRETTY_PRINT</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -428,8 +428,8 @@ you:~/workspace <span class="o">(</span>c124f70<span class="o">)</span> <span cl
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'sub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'sub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">view</span><span class="p">(</span><span class="s1">'welcome'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -489,21 +489,21 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <span class="kn">namespace</span> <span class="nn">App\Events</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Contracts\Broadcasting\ShouldBroadcast</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Contracts\Broadcasting\ShouldBroadcast</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">NewUserCreated</span> <span class="k">extends</span> <span class="nx">Event</span> <span class="k">implements</span> <span class="nx">ShouldBroadcast</span>
+<span class="kd">class</span> <span class="nc">NewUserCreated</span> <span class="kd">extends</span> <span class="nc">Event</span> <span class="kd">implements</span> <span class="nc">ShouldBroadcast</span>
 <span class="p">{</span>
-    <span class="kn">use</span> <span class="nn">SerializesModels</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nc">SerializesModels</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="nv">$user</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$user</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$user</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">user</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">broadcastOn</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">broadcastOn</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">'whik'</span><span class="p">];</span>
     <span class="p">}</span>
@@ -516,9 +516,9 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/routes.php</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nv">$user</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">App\User</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
-    <span class="nx">event</span><span class="p">(</span><span class="k">new</span> <span class="nx">App\Events\NewUserCreated</span><span class="p">(</span><span class="nv">$user</span><span class="p">));</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'pub'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nf">factory</span><span class="p">(</span><span class="nc">App\User</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">toArray</span><span class="p">();</span>
+    <span class="nf">event</span><span class="p">(</span><span class="k">new</span> <span class="nc">App\Events\NewUserCreated</span><span class="p">(</span><span class="nv">$user</span><span class="p">));</span>
 
     <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
 <span class="p">});</span>
@@ -1495,6 +1495,30 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1502,7 +1526,7 @@ you:~/workspace <span class="o">(</span>5736550<span class="o">)</span> <span cl
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

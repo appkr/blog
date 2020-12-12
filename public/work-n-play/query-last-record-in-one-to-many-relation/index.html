@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/query-last-record-in-one-to-many-relation/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>One to Many 조인에서 Many 쪽 최종 레코드만 조회하기 | Appkr.memo(new Story)</title>
+  <title>One to Many 조인에서 Many 쪽 최종 레코드만 조회하기 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -154,19 +154,19 @@
 <p>애플리케이션 레이어에서 구현한다면, ORM을 통해 구한 <code class="language-plaintext highlighter-rouge">Collection&lt;Customer&gt;</code>을 순회하면서, <code class="language-plaintext highlighter-rouge">Customer</code>객체의 멤버 필드인 <code class="language-plaintext highlighter-rouge">Collection&lt;Order&gt;</code>를 대상으로 최근 Order 객체만 필터링했거나, 적절한 순서로 정렬하여 뽑아 쓰기 쉽도록 했을겁니다. 요런 느낌으로요(검증 안된 Pseudo Code 입니다).</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Service Layer</span>
-<span class="k">public</span> <span class="k">function</span> <span class="nf">listCustomers</span><span class="p">()</span>
+<span class="k">public</span> <span class="k">function</span> <span class="n">listCustomers</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$customers</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Customer</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$sorted</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">sortByDesc</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">values</span><span class="p">();</span>
-        <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">setRelation</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">,</span> <span class="nv">$sorted</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$customers</span><span class="o">-&gt;</span><span class="nf">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="kt">Customer</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$sorted</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="n">orders</span><span class="o">-&gt;</span><span class="nf">sortByDesc</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">values</span><span class="p">();</span>
+        <span class="nv">$customer</span><span class="o">-&gt;</span><span class="nf">setRelation</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">,</span> <span class="nv">$sorted</span><span class="p">);</span>
         <span class="k">return</span> <span class="nv">$customer</span><span class="p">;</span>
     <span class="p">});</span>
 <span class="p">}</span>
 
 <span class="c1">// Controller/View 등</span>
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$customers</span> <span class="k">as</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$lastOrder</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
-    <span class="nv">$lastOrder</span><span class="o">-&gt;</span><span class="na">order_number</span><span class="p">;</span> <span class="c1">// 최근 주문 번호   </span>
+    <span class="nv">$lastOrder</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="n">orders</span><span class="o">-&gt;</span><span class="nf">first</span><span class="p">();</span>
+    <span class="nv">$lastOrder</span><span class="o">-&gt;</span><span class="n">order_number</span><span class="p">;</span> <span class="c1">// 최근 주문 번호   </span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -391,17 +391,17 @@
 <p>대략 이런 모습일겁니다(검증 안된 Pseudo Code 입니다).</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Service Layer</span>
-<span class="k">public</span> <span class="k">function</span> <span class="nf">queryCustomersWithRecentOrderSummary</span><span class="p">()</span>
+<span class="k">public</span> <span class="k">function</span> <span class="n">queryCustomersWithRecentOrderSummary</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="nv">$builder</span> <span class="o">=</span> <span class="nx">Customer</span><span class="o">::</span><span class="na">query</span><span class="p">();</span>
-    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">leftJoin</span><span class="p">(</span><span class="s1">'orders AS o1'</span><span class="p">,</span> <span class="s1">'customers.customer_id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'o1.customer_id'</span><span class="p">);</span>
-    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">leftJoin</span><span class="p">(</span><span class="s1">'orders AS o2'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$join</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$join</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'customers.customer_id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'o2.customer_id'</span><span class="p">);</span>
-        <span class="nv">$join</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'o1.order_number'</span><span class="p">,</span> <span class="s1">'&lt;'</span><span class="p">,</span> <span class="s1">'o2.order_number'</span><span class="p">);</span>
+    <span class="nv">$builder</span> <span class="o">=</span> <span class="nc">Customer</span><span class="o">::</span><span class="nf">query</span><span class="p">();</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">leftJoin</span><span class="p">(</span><span class="s1">'orders AS o1'</span><span class="p">,</span> <span class="s1">'customers.customer_id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'o1.customer_id'</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">leftJoin</span><span class="p">(</span><span class="s1">'orders AS o2'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$join</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$join</span><span class="o">-&gt;</span><span class="nf">on</span><span class="p">(</span><span class="s1">'customers.customer_id'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'o2.customer_id'</span><span class="p">);</span>
+        <span class="nv">$join</span><span class="o">-&gt;</span><span class="nf">on</span><span class="p">(</span><span class="s1">'o1.order_number'</span><span class="p">,</span> <span class="s1">'&lt;'</span><span class="p">,</span> <span class="s1">'o2.order_number'</span><span class="p">);</span>
     <span class="p">});</span>
-    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">whereNull</span><span class="p">(</span><span class="s1">'o2.order_number'</span><span class="p">);</span>
-    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">([</span><span class="s1">'customers.*'</span><span class="p">,</span> <span class="s1">'o1.*'</span><span class="p">]);</span>
-    <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">whereNull</span><span class="p">(</span><span class="s1">'o2.order_number'</span><span class="p">);</span>
+    <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">([</span><span class="s1">'customers.*'</span><span class="p">,</span> <span class="s1">'o1.*'</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="nv">$builder</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -1332,6 +1332,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1339,7 +1363,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

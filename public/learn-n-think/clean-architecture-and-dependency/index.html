@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/learn-n-think/clean-architecture-and-dependency/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>아키텍처와 의존성 | Appkr.memo(new Story)</title>
+  <title>아키텍처와 의존성 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -189,12 +189,12 @@
 
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="nx">\Illuminate\Database\Eloquent\Model</span>
+<span class="kd">class</span> <span class="nc">Product</span> <span class="k">extends</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Model</span>
 <span class="p">{</span>
     <span class="c1">// ...  </span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProductImageAttribute</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$productImage</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getProductImageAttribute</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$productImage</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">public_path</span><span class="p">(</span><span class="s2">"images/</span><span class="si">{</span><span class="nv">$productImage</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nf">public_path</span><span class="p">(</span><span class="s2">"images/</span><span class="si">{</span><span class="nv">$productImage</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -279,18 +279,18 @@
 
 <span class="kn">namespace</span> <span class="nn">Leopro\TripPlanner\Application\Tests</span><span class="p">;</span>
 
-<span class="nx">use</span> <span class="o">...</span>
+<span class="kn">use</span> <span class="mf">...</span>
 
-<span class="kd">class</span> <span class="nc">CreateTripTest</span> <span class="k">extends</span> <span class="nx">\PHPUnit_Framework_TestCase</span>
+<span class="kd">class</span> <span class="nc">CreateTripTest</span> <span class="k">extends</span> <span class="err">\</span><span class="n">PHPUnit_Framework_TestCase</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">testCreateTrip</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">testCreateTrip</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$tripRepository</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMockBuilder</span><span class="p">(</span><span class="s1">'...'</span><span class="p">);</span>
-        <span class="nv">$command</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CreateTripCommand</span><span class="p">(</span><span class="s1">'my trip'</span><span class="p">);</span>
-        <span class="nv">$useCase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CreateTripUseCase</span><span class="p">(</span><span class="nv">$tripRepository</span><span class="p">);</span>
+        <span class="nv">$tripRepository</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getMockBuilder</span><span class="p">(</span><span class="s1">'...'</span><span class="p">);</span>
+        <span class="nv">$command</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateTripCommand</span><span class="p">(</span><span class="s1">'my trip'</span><span class="p">);</span>
+        <span class="nv">$useCase</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CreateTripUseCase</span><span class="p">(</span><span class="nv">$tripRepository</span><span class="p">);</span>
 
-        <span class="nv">$trip</span> <span class="o">=</span> <span class="nv">$useCase</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="s1">'...'</span><span class="p">);</span>
+        <span class="nv">$trip</span> <span class="o">=</span> <span class="nv">$useCase</span><span class="o">-&gt;</span><span class="nf">run</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">assertInstanceOf</span><span class="p">(</span><span class="s1">'...'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -305,18 +305,18 @@
 
 <span class="kn">namespace</span> <span class="nn">Leopro\TripPlanner\Application\Command</span><span class="p">;</span>
 
-<span class="nx">use</span> <span class="o">...</span>
+<span class="kn">use</span> <span class="mf">...</span>
 
-<span class="kd">class</span> <span class="nc">CreateTripCommand</span> <span class="k">implements</span> <span class="nx">Command</span>
+<span class="kd">class</span> <span class="nc">CreateTripCommand</span> <span class="kd">implements</span> <span class="nc">Command</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$name</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span><span class="mf">...</span><span class="p">}</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getRequest</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getRequest</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">ArrayCollection</span><span class="p">([</span>
-          <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ArrayCollection</span><span class="p">([</span>
+          <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">name</span>
         <span class="p">]);</span>
     <span class="p">}</span>
     
@@ -334,26 +334,26 @@
 
 <span class="kn">namespace</span> <span class="nn">Leopro\TripPlanner\Application\UseCase</span><span class="p">;</span>
 
-<span class="nx">use</span> <span class="o">...</span>
+<span class="kn">use</span> <span class="mf">...</span>
 
-<span class="kd">class</span> <span class="nc">CreateTripUseCase</span> <span class="k">extends</span> <span class="nx">AbstractUseCase</span> <span class="k">implements</span> <span class="nx">UseCase</span>
+<span class="kd">class</span> <span class="nc">CreateTripUseCase</span> <span class="kd">extends</span> <span class="nc">AbstractUseCase</span> <span class="kd">implements</span> <span class="nc">UseCase</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$tripRepository</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">TripRepository</span> <span class="nv">$tripRepository</span><span class="p">)</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">TripRepository</span> <span class="nv">$tripRepository</span><span class="p">)</span> <span class="p">{</span><span class="mf">...</span><span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getManagedCommand</span><span class="p">()</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getManagedCommand</span><span class="p">()</span> <span class="p">{</span><span class="mf">...</span><span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">(</span><span class="nx">Command</span> <span class="nv">$command</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">run</span><span class="p">(</span><span class="kt">Command</span> <span class="nv">$command</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">exceptionIfCommandNotManaged</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">exceptionIfCommandNotManaged</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
 
-        <span class="nv">$trip</span> <span class="o">=</span> <span class="nx">Trip</span><span class="o">::</span><span class="na">createWithFirstRoute</span><span class="p">(</span>
-            <span class="k">new</span> <span class="nx">TripIdentity</span><span class="p">(</span><span class="nb">uniqid</span><span class="p">()),</span>
-            <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">getRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span>
+        <span class="nv">$trip</span> <span class="o">=</span> <span class="nc">Trip</span><span class="o">::</span><span class="nf">createWithFirstRoute</span><span class="p">(</span>
+            <span class="k">new</span> <span class="nc">TripIdentity</span><span class="p">(</span><span class="nb">uniqid</span><span class="p">()),</span>
+            <span class="nv">$command</span><span class="o">-&gt;</span><span class="nf">getRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span>
         <span class="p">);</span>
 
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">tripRepository</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$trip</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tripRepository</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="nv">$trip</span><span class="p">);</span>
 
         <span class="k">return</span> <span class="nv">$trip</span><span class="p">;</span>
     <span class="p">}</span>
@@ -372,7 +372,7 @@
 
 <span class="kn">namespace</span> <span class="nn">Leopro\TripPlanner\Domain\Entity</span><span class="p">;</span>
 
-<span class="nx">use</span> <span class="o">...</span>
+<span class="kn">use</span> <span class="mf">...</span>
 
 <span class="kd">class</span> <span class="nc">Trip</span>
 <span class="p">{</span>
@@ -380,12 +380,12 @@
     <span class="k">private</span> <span class="nv">$name</span><span class="p">;</span>
     <span class="k">private</span> <span class="nv">$routes</span><span class="p">;</span>
 
-    <span class="k">private</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">TripIdentity</span> <span class="nv">$identity</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">TripIdentity</span> <span class="nv">$identity</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span><span class="mf">...</span><span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">createWithFirstRoute</span><span class="p">(</span><span class="nx">TripIdentity</span> <span class="nv">$identity</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="n">createWithFirstRoute</span><span class="p">(</span><span class="kt">TripIdentity</span> <span class="nv">$identity</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$trip</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">self</span><span class="p">(</span><span class="nv">$identity</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
-        <span class="nv">$trip</span><span class="o">-&gt;</span><span class="na">routes</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nx">Route</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$trip</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">));</span>
+        <span class="nv">$trip</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">self</span><span class="p">(</span><span class="nv">$identity</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+        <span class="nv">$trip</span><span class="o">-&gt;</span><span class="n">routes</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="nc">Route</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="nv">$trip</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">));</span>
 
         <span class="k">return</span> <span class="nv">$trip</span><span class="p">;</span>
     <span class="p">}</span>
@@ -402,12 +402,12 @@
 
 <span class="kn">namespace</span> <span class="nn">Leopro\TripPlanner\Domain\Contract</span><span class="p">;</span>
 
-<span class="nx">use</span> <span class="o">...</span>
+<span class="kn">use</span> <span class="mf">...</span>
 
 <span class="kd">interface</span> <span class="nc">TripRepository</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nx">TripIdentity</span> <span class="nv">$identity</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">Trip</span> <span class="nv">$trip</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">get</span><span class="p">(</span><span class="kt">TripIdentity</span> <span class="nv">$identity</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">Trip</span> <span class="nv">$trip</span><span class="p">);</span>
 <span class="p">}</span> 
 </code></pre></div></div>
 
@@ -423,11 +423,11 @@
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$content</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$content</span> <span class="o">=</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="nv">$content</span> <span class="o">=</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span><span class="mf">...</span><span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getContent</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getContent</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span> 
 </code></pre></div></div>
@@ -446,12 +446,12 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span>
 
-<span class="nx">use</span> <span class="o">...</span>
+<span class="kn">use</span> <span class="mf">...</span>
 
 <span class="kd">class</span> <span class="nc">TripController</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">create</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">Trip</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">());</span> 
+        <span class="k">return</span> <span class="nc">Trip</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">all</span><span class="p">());</span> 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1400,6 +1400,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1407,7 +1431,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/db-query-performance-illustration-using-array/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>데이터베이스 쿼리 성능 차이를 이해하기 위한 실험 | Appkr.memo(new Story)</title>
+  <title>데이터베이스 쿼리 성능 차이를 이해하기 위한 실험 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -194,13 +194,13 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// index.php</span>
 
 <span class="c1">// 오토로드</span>
-<span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">);</span>
+<span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">);</span>
 
 <span class="c1">// 허용 메모리 키우고, 테스트 데이터 생성</span>
 <span class="nb">ini_set</span><span class="p">(</span><span class="s1">'memory_limit'</span><span class="p">,</span> <span class="s1">'512M'</span><span class="p">);</span>
-<span class="nv">$teams</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/teams.php'</span><span class="p">);</span>
-<span class="nv">$users</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/users.php'</span><span class="p">);</span>
-<span class="nv">$userIndex</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s1">'/data/index.php'</span><span class="p">);</span>
+<span class="nv">$teams</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/data/teams.php'</span><span class="p">);</span>
+<span class="nv">$users</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/data/users.php'</span><span class="p">);</span>
+<span class="nv">$userIndex</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/data/index.php'</span><span class="p">);</span>
 
 <span class="c1">// 타이머 시작</span>
 <span class="nb">define</span><span class="p">(</span><span class="s1">'START'</span><span class="p">,</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
@@ -218,15 +218,15 @@
 
 <span class="c1">// 유효성 검사</span>
 <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$scenario</span><span class="p">,</span> <span class="nv">$allowed</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">'정의되지 않은 시나리오입니다.'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="p">(</span><span class="s1">'정의되지 않은 시나리오입니다.'</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// 테스트 수행</span>
-<span class="nv">$found</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="o">.</span> <span class="s2">"/scenario/</span><span class="si">{</span><span class="nv">$scenario</span><span class="si">}</span><span class="s2">.php"</span><span class="p">);</span>
+<span class="nv">$found</span> <span class="o">=</span> <span class="k">require</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s2">"/scenario/</span><span class="si">{</span><span class="nv">$scenario</span><span class="si">}</span><span class="s2">.php"</span><span class="p">);</span>
 
 <span class="c1">// 결과 계산</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'처리시간(ms)'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">-</span> <span class="nx">START</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s1">'처리시간(ms)'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">-</span> <span class="no">START</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
     <span class="s1">'메모리(MB)'</span> <span class="o">=&gt;</span>  <span class="nb">memory_get_usage</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000000</span><span class="p">,</span>
     <span class="s1">'CPU(%)'</span> <span class="o">=&gt;</span> <span class="nb">sys_getloadavg</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
     <span class="s1">'found'</span> <span class="o">=&gt;</span> <span class="nv">$found</span><span class="p">,</span>
@@ -234,7 +234,7 @@
 
 <span class="c1">// 결과 출력</span>
 <span class="nb">header</span><span class="p">(</span><span class="s1">'Content-Type: application/json;charset=utf-8'</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$result</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$result</span><span class="p">,</span> <span class="no">JSON_PRETTY_PRINT</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h2 id="2-실험-데이터-생성">2. 실험 데이터 생성</h2>
@@ -247,18 +247,18 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// data/teams.php</span>
 
-<span class="kn">use</span> <span class="nn">App\Team</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Team</span><span class="p">;</span>
 
 <span class="k">return</span> <span class="p">[</span>
-    <span class="k">new</span> <span class="nx">Team</span><span class="p">([</span>
+    <span class="k">new</span> <span class="nc">Team</span><span class="p">([</span>
         <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'청팀'</span><span class="p">,</span>
         <span class="s1">'since'</span> <span class="o">=&gt;</span> <span class="mi">1970</span><span class="p">,</span>
         <span class="s1">'subscription'</span> <span class="o">=&gt;</span> <span class="s1">'monthly'</span>
     <span class="p">]),</span>
-    <span class="k">new</span> <span class="nx">Team</span><span class="p">([</span><span class="o">...</span><span class="p">]),</span>
-    <span class="k">new</span> <span class="nx">Team</span><span class="p">([</span><span class="o">...</span><span class="p">]),</span>
-    <span class="k">new</span> <span class="nx">Team</span><span class="p">([</span>
+    <span class="k">new</span> <span class="nc">Team</span><span class="p">([</span><span class="mf">...</span><span class="p">]),</span>
+    <span class="k">new</span> <span class="nc">Team</span><span class="p">([</span><span class="mf">...</span><span class="p">]),</span>
+    <span class="k">new</span> <span class="nc">Team</span><span class="p">([</span>
         <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
         <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'흑팀'</span><span class="p">,</span>
         <span class="s1">'since'</span> <span class="o">=&gt;</span> <span class="mi">2000</span><span class="p">,</span>
@@ -273,19 +273,19 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// data/users.php</span>
 
-<span class="kn">use</span> <span class="nn">App\User</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\User</span><span class="p">;</span>
 
-<span class="nv">$faker</span> <span class="o">=</span> <span class="nx">\Faker\Factory</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'ko_KR'</span><span class="p">);</span>
+<span class="nv">$faker</span> <span class="o">=</span> <span class="err">\</span><span class="nc">Faker\Factory</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'ko_KR'</span><span class="p">);</span>
 <span class="nv">$users</span> <span class="o">=</span> <span class="p">[];</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$team</span> <span class="o">=</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">randomElement</span><span class="p">(</span><span class="nv">$teams</span><span class="p">);</span>
+    <span class="nv">$team</span> <span class="o">=</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="nf">randomElement</span><span class="p">(</span><span class="nv">$teams</span><span class="p">);</span>
 
-    <span class="nv">$users</span><span class="p">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">([</span>
+    <span class="nv">$users</span><span class="p">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="p">([</span>
         <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">,</span>
-        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s2">"</span><span class="si">{</span><span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nv">$id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-        <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">safeEmail</span><span class="p">,</span>
-        <span class="s1">'team_id'</span> <span class="o">=&gt;</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="na">id</span>
+        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s2">"</span><span class="si">{</span><span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nv">$id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">safeEmail</span><span class="p">,</span>
+        <span class="s1">'team_id'</span> <span class="o">=&gt;</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="n">id</span>
     <span class="p">]);</span>
 <span class="p">}</span>
 
@@ -301,7 +301,7 @@
 <span class="nv">$userIndex</span> <span class="o">=</span> <span class="p">[];</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$users</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$userIndex</span><span class="p">[</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">team_id</span><span class="p">][]</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+    <span class="nv">$userIndex</span><span class="p">[</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="n">team_id</span><span class="p">][]</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">return</span> <span class="nv">$userIndex</span><span class="p">;</span>
@@ -373,12 +373,12 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// scenario/fullscan.php</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$users</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span> <span class="s1">'_9999'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="s1">'_9999'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="nx">\App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -430,12 +430,12 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// scenario/indexed.php</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$userIndex</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span> <span class="s1">'_9999'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="s1">'_9999'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="nx">\App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -493,21 +493,21 @@
 <span class="nv">$found</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$users</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span> <span class="s1">'_9999'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="s1">'_9999'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
         <span class="nv">$found</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$found</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$team</span> <span class="o">=</span> <span class="nv">$teams</span><span class="p">[</span><span class="nv">$found</span><span class="o">-&gt;</span><span class="na">team_id</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-    <span class="nv">$found</span><span class="o">-&gt;</span><span class="na">team_name</span> <span class="o">=</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-    <span class="nv">$found</span><span class="o">-&gt;</span><span class="na">team_since</span> <span class="o">=</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="na">since</span><span class="p">;</span>
-    <span class="nv">$found</span><span class="o">-&gt;</span><span class="na">team_subscription</span> <span class="o">=</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="na">subscription</span><span class="p">;</span>
+    <span class="nv">$team</span> <span class="o">=</span> <span class="nv">$teams</span><span class="p">[</span><span class="nv">$found</span><span class="o">-&gt;</span><span class="n">team_id</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="nv">$found</span><span class="o">-&gt;</span><span class="n">team_name</span> <span class="o">=</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">;</span>
+    <span class="nv">$found</span><span class="o">-&gt;</span><span class="n">team_since</span> <span class="o">=</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="n">since</span><span class="p">;</span>
+    <span class="nv">$found</span><span class="o">-&gt;</span><span class="n">team_subscription</span> <span class="o">=</span> <span class="nv">$team</span><span class="o">-&gt;</span><span class="n">subscription</span><span class="p">;</span>
 
     <span class="k">return</span> <span class="nv">$found</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="nx">\App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -565,16 +565,16 @@
 <span class="k">while</span> <span class="p">(</span><span class="nv">$endIndex</span> <span class="o">&gt;</span> <span class="nv">$startIndex</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$medianIndex</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$startIndex</span> <span class="o">+</span> <span class="nv">$endIndex</span><span class="p">);</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$search</span> <span class="o">&gt;</span> <span class="nv">$users</span><span class="p">[</span><span class="nv">$medianIndex</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$search</span> <span class="o">&gt;</span> <span class="nv">$users</span><span class="p">[</span><span class="nv">$medianIndex</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
         <span class="nv">$startIndex</span> <span class="o">=</span> <span class="nv">$medianIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$search</span> <span class="o">&lt;</span> <span class="nv">$users</span><span class="p">[</span><span class="nv">$medianIndex</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$search</span> <span class="o">&lt;</span> <span class="nv">$users</span><span class="p">[</span><span class="nv">$medianIndex</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
         <span class="nv">$endIndex</span> <span class="o">=</span> <span class="nv">$medianIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nv">$users</span><span class="p">[</span><span class="nv">$medianIndex</span><span class="p">];</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="nx">\App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -1634,6 +1634,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1641,7 +1665,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

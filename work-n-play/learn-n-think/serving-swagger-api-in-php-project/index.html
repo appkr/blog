@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/learn-n-think/serving-swagger-api-in-php-project/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>PHP 프로젝트에 Swagger 적용 #1 | Appkr.memo(new Story)</title>
+  <title>PHP 프로젝트에 Swagger 적용 #1 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -283,11 +283,11 @@
 <p>PHP에서 API 클라이언트를 개발한다면 보통 Guzzle을 이용해서 API 엔드포인트로 HTTP 요청을 보내고 응답을 받아서 처리하는 식으로 프로그래밍할 겁니다. 스웨거가 생성한 클라이언트 코드는 Guzzle를 한번 더 감싸놓은 형태로서, 저수준 REST 호출이 아닌, PHP 함수 호출로 API를 소비할 수 있도록 해 줍니다.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/swagger-api-client-poc/blob/master/tests/AuthApiTest.php#L57</span>
-<span class="kd">class</span> <span class="nc">AuthApiTest</span> <span class="k">extends</span> <span class="nx">SwaggerPocApiTester</span>
+<span class="kd">class</span> <span class="nc">AuthApiTest</span> <span class="kd">extends</span> <span class="nc">SwaggerPocApiTester</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">testMe</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">testMe</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$authorizationString</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getAuthString</span><span class="p">();</span>
+        <span class="nv">$authorizationString</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getAuthString</span><span class="p">();</span>
         
         <span class="c1">// 전통적으로 많이 쓰던</span>
         <span class="c1">// GuzzleClient::get('auth/me', [</span>
@@ -296,10 +296,10 @@
         <span class="c1">// </span>
         <span class="c1">// AuthApi::me(string $authorizationString): UserDto;</span>
         <span class="c1">// 라는 시그니처의 함수를 호출했습니다.</span>
-        <span class="nv">$me</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getAuthApi</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">me</span><span class="p">(</span><span class="nv">$authorizationString</span><span class="p">);</span>
+        <span class="nv">$me</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getAuthApi</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">me</span><span class="p">(</span><span class="nv">$authorizationString</span><span class="p">);</span>
         
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dump</span><span class="p">(</span><span class="nv">$me</span><span class="p">);</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertInstanceOf</span><span class="p">(</span><span class="nx">UserDto</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$me</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">dump</span><span class="p">(</span><span class="nv">$me</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">assertInstanceOf</span><span class="p">(</span><span class="nc">UserDto</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="nv">$me</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1266,6 +1266,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1273,7 +1297,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

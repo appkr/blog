@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/how-to-use-apache-thrift-in-php-part-1/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>RPC - Apache Thrift 입문 1부 | Appkr.memo(new Story)</title>
+  <title>RPC - Apache Thrift 입문 1부 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -493,25 +493,25 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/migrations/YYYY_MM_DD_hhiiss_create_posts_table.php</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CreatePostsTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreatePostsTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'title'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">'content'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'title'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">text</span><span class="p">(</span><span class="s1">'content'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">timestamps</span><span class="p">();</span>
         <span class="p">});</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">);</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">dropIfExists</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -528,10 +528,10 @@
 
 <span class="c1">// ...</span>
 
-<span class="nv">$factory</span><span class="o">-&gt;</span><span class="na">define</span><span class="p">(</span><span class="nx">App\Post</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Faker\Generator</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nb">define</span><span class="p">(</span><span class="nc">App\Post</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Faker</span><span class="err">\</span><span class="nc">Generator</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span>
-        <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">sentence</span><span class="p">,</span>
-        <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="na">paragraph</span><span class="p">,</span>
+        <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">sentence</span><span class="p">,</span>
+        <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">paragraph</span><span class="p">,</span>
     <span class="p">];</span>
 <span class="p">});</span>
 </code></pre></div></div>
@@ -550,7 +550,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="s1">'PostsController@handle'</span><span class="p">);</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">post</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="s1">'PostsController@handle'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>컨트롤러를 만들고,</p>
@@ -564,21 +564,21 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">App\Services\PostService</span><span class="p">;</span>           <span class="c1">// 직접 만들어야 한다.</span>
-<span class="kn">use</span> <span class="nn">App\Thrift\ThriftResponse</span><span class="p">;</span>          <span class="c1">// 직접 만들어야 한다.</span>
-<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Services\PostService</span><span class="p">;</span>           <span class="c1">// 직접 만들어야 한다.</span>
+<span class="kn">use</span> <span class="nc">App\Thrift\ThriftResponse</span><span class="p">;</span>          <span class="c1">// 직접 만들어야 한다.</span>
+<span class="kn">use</span> <span class="nc">Appkr\Thrift\Post\PostServiceProcessor</span><span class="p">;</span>
                                         <span class="c1">// 5절에서 IDL 정의에 의해 Thrift 컴파일러가 생성해 준 파일이다. </span>
-<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Http\Request</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">PostsController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">PostsController</span> <span class="kd">extends</span> <span class="nc">Controller</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">handle</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostService</span><span class="p">();</span>   <span class="c1">// 서비스 인스턴스를 생성한다.</span>
-        <span class="nv">$processor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceProcessor</span><span class="p">(</span><span class="nv">$service</span><span class="p">);</span>
+        <span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostService</span><span class="p">();</span>   <span class="c1">// 서비스 인스턴스를 생성한다.</span>
+        <span class="nv">$processor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostServiceProcessor</span><span class="p">(</span><span class="nv">$service</span><span class="p">);</span>
                                         <span class="c1">// 서비스 인스턴스를 프로세서에 주입한다.</span>
         
-        <span class="k">return</span> <span class="nx">ThriftResponse</span><span class="o">::</span><span class="na">make</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="s1">'json'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nc">ThriftResponse</span><span class="o">::</span><span class="nf">make</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="s1">'json'</span><span class="p">);</span>
                                         <span class="c1">// HTTP 요청을 Process하고 JSON HTTP 응답을 반환한다.</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -606,52 +606,52 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Thrift</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Thrift\Protocol\TCompactProtocol</span><span class="p">;</span>   <span class="c1">// 바이너리보다 더 가볍다(apache/thrift 라이브러리가 제공).</span>
-<span class="kn">use</span> <span class="nn">Thrift\Transport\TMemoryBuffer</span><span class="p">;</span>     
-<span class="kn">use</span> <span class="nn">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>      <span class="c1">// 디버깅할 때 편하다(apache/thrift 라이브러리가 제공). </span>
-<span class="kn">use</span> <span class="nn">Thrift\Protocol\TBinaryProtocol</span><span class="p">;</span>    <span class="c1">// 대표적 프로토콜이다(apache/thrift 라이브러리가 제공).</span>
-<span class="kn">use</span> <span class="nn">UnexpectedValueException</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Thrift\Protocol\TCompactProtocol</span><span class="p">;</span>   <span class="c1">// 바이너리보다 더 가볍다(apache/thrift 라이브러리가 제공).</span>
+<span class="kn">use</span> <span class="nc">Thrift\Transport\TMemoryBuffer</span><span class="p">;</span>     
+<span class="kn">use</span> <span class="nc">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>      <span class="c1">// 디버깅할 때 편하다(apache/thrift 라이브러리가 제공). </span>
+<span class="kn">use</span> <span class="nc">Thrift\Protocol\TBinaryProtocol</span><span class="p">;</span>    <span class="c1">// 대표적 프로토콜이다(apache/thrift 라이브러리가 제공).</span>
+<span class="kn">use</span> <span class="nc">UnexpectedValueException</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">ThriftResponse</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">make</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="nv">$format</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="n">make</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nv">$processor</span><span class="p">,</span> <span class="nv">$format</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$readTransport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TMemoryBuffer</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span>
-        <span class="nv">$writeTransport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TMemoryBuffer</span><span class="p">();</span>
+        <span class="nv">$readTransport</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TMemoryBuffer</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">getContent</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span>
+        <span class="nv">$writeTransport</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TMemoryBuffer</span><span class="p">();</span>
                                         <span class="c1">// (역)직렬화 전에 HTTP 요청/응답을 바이트 단위로 읽고</span>
                                         <span class="c1">// 쓰기 위한 임시 저장소다.  </span>
 
         <span class="k">switch</span> <span class="p">(</span><span class="nv">$format</span><span class="p">)</span> <span class="p">{</span>              <span class="c1">// 프로토콜 객체를 만든다.</span>
             <span class="k">case</span> <span class="s1">'json'</span><span class="o">:</span>
-                <span class="nv">$readProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TJSONProtocol</span><span class="p">(</span><span class="nv">$readTransport</span><span class="p">);</span>
-                <span class="nv">$writeProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TJSONProtocol</span><span class="p">(</span><span class="nv">$writeTransport</span><span class="p">);</span>
+                <span class="nv">$readProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TJSONProtocol</span><span class="p">(</span><span class="nv">$readTransport</span><span class="p">);</span>
+                <span class="nv">$writeProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TJSONProtocol</span><span class="p">(</span><span class="nv">$writeTransport</span><span class="p">);</span>
                 <span class="k">break</span><span class="p">;</span>
             <span class="k">case</span> <span class="s1">'binary'</span><span class="o">:</span>
-                <span class="nv">$readProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TBinaryProtocol</span><span class="p">(</span><span class="nv">$readTransport</span><span class="p">);</span>
-                <span class="nv">$writeProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TBinaryProtocol</span><span class="p">(</span><span class="nv">$writeTransport</span><span class="p">);</span>
+                <span class="nv">$readProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TBinaryProtocol</span><span class="p">(</span><span class="nv">$readTransport</span><span class="p">);</span>
+                <span class="nv">$writeProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TBinaryProtocol</span><span class="p">(</span><span class="nv">$writeTransport</span><span class="p">);</span>
                 <span class="k">break</span><span class="p">;</span>
             <span class="k">case</span> <span class="s1">'compact'</span><span class="o">:</span>
-                <span class="nv">$readProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TCompactProtocol</span><span class="p">(</span><span class="nv">$readTransport</span><span class="p">);</span>
-                <span class="nv">$writeProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TCompactProtocol</span><span class="p">(</span><span class="nv">$writeTransport</span><span class="p">);</span>
+                <span class="nv">$readProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TCompactProtocol</span><span class="p">(</span><span class="nv">$readTransport</span><span class="p">);</span>
+                <span class="nv">$writeProtocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TCompactProtocol</span><span class="p">(</span><span class="nv">$writeTransport</span><span class="p">);</span>
                 <span class="k">break</span><span class="p">;</span>
             <span class="k">default</span><span class="o">:</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="nx">UnexpectedValueException</span><span class="p">;</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nc">UnexpectedValueException</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="nv">$readTransport</span><span class="o">-&gt;</span><span class="na">open</span><span class="p">();</span>
-        <span class="nv">$writeTransport</span><span class="o">-&gt;</span><span class="na">open</span><span class="p">();</span>
-        <span class="nv">$processor</span><span class="o">-&gt;</span><span class="na">process</span><span class="p">(</span><span class="nv">$readProtocol</span><span class="p">,</span> <span class="nv">$writeProtocol</span><span class="p">);</span>
+        <span class="nv">$readTransport</span><span class="o">-&gt;</span><span class="nf">open</span><span class="p">();</span>
+        <span class="nv">$writeTransport</span><span class="o">-&gt;</span><span class="nf">open</span><span class="p">();</span>
+        <span class="nv">$processor</span><span class="o">-&gt;</span><span class="nf">process</span><span class="p">(</span><span class="nv">$readProtocol</span><span class="p">,</span> <span class="nv">$writeProtocol</span><span class="p">);</span>
                                         <span class="c1">// 프로세서에서 역직렬화된 HTTP 요청 본문과</span>
                                         <span class="c1">// HTTP 응답을 쓸 수 있는 객체를 인자로 넘긴다.</span>
-        <span class="nv">$readTransport</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-        <span class="nv">$writeTransport</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+        <span class="nv">$readTransport</span><span class="o">-&gt;</span><span class="nf">close</span><span class="p">();</span>
+        <span class="nv">$writeTransport</span><span class="o">-&gt;</span><span class="nf">close</span><span class="p">();</span>
 
-        <span class="nv">$content</span> <span class="o">=</span> <span class="nv">$writeTransport</span><span class="o">-&gt;</span><span class="na">getBuffer</span><span class="p">();</span>
+        <span class="nv">$content</span> <span class="o">=</span> <span class="nv">$writeTransport</span><span class="o">-&gt;</span><span class="nf">getBuffer</span><span class="p">();</span>
                                         <span class="c1">// 프로세서가 버퍼에 쓴 HTTP 응답 본문을 읽어서 변수에 담는다.</span>
 
-        <span class="k">return</span> <span class="nx">response</span><span class="p">(</span><span class="nv">$content</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/x-thrift'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nf">response</span><span class="p">(</span><span class="nv">$content</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nb">header</span><span class="p">(</span><span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/x-thrift'</span><span class="p">);</span>
                                         <span class="c1">// Content-Type 헤더를 application/thrift로 지정해야 한다. </span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -675,38 +675,38 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Services</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">App\Post</span> <span class="k">as</span> <span class="n">EloquentPost</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="n">ThriftPost</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Post</span> <span class="k">as</span> <span class="nc">EloquentPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Thrift\Post\Post</span> <span class="k">as</span> <span class="nc">ThriftPost</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Thrift\Post\PostServiceIf</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">PostService</span> <span class="k">implements</span> <span class="nx">PostServiceIf</span>
+<span class="kd">class</span> <span class="nc">PostService</span> <span class="kd">implements</span> <span class="nc">PostServiceIf</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">all</span><span class="p">(</span><span class="nx">QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">all</span><span class="p">(</span><span class="kt">QueryFilter</span> <span class="nv">$qf</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$posts</span> <span class="o">=</span> <span class="nx">EloquentPost</span><span class="o">::</span><span class="na">offset</span><span class="p">(</span><span class="nv">$offset</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="nv">$limit</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+        <span class="nv">$posts</span> <span class="o">=</span> <span class="nc">EloquentPost</span><span class="o">::</span><span class="nf">offset</span><span class="p">(</span><span class="nv">$offset</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">limit</span><span class="p">(</span><span class="nv">$limit</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">();</span>
                                         <span class="c1">// $offset을 건너뛰고 $limit개의 포스트를 조회하는 엘로퀀트 쿼리다. </span>
                                         <span class="c1">// QueryFilter는 이번 포스트에서는 쓰지 않는다.</span>
-        <span class="k">return</span> <span class="nv">$posts</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nx">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
-        <span class="p">})</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>                      <span class="c1">// EloquentCollection을 순회하면서 ThriftPost 객체에 맵핑해 준다.</span>
+        <span class="k">return</span> <span class="nv">$posts</span><span class="o">-&gt;</span><span class="nf">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">toArray</span><span class="p">());</span>
+        <span class="p">})</span><span class="o">-&gt;</span><span class="nf">all</span><span class="p">();</span>                      <span class="c1">// EloquentCollection을 순회하면서 ThriftPost 객체에 맵핑해 준다.</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$post</span> <span class="o">=</span> <span class="nx">EloquentPost</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+        <span class="nv">$post</span> <span class="o">=</span> <span class="nc">EloquentPost</span><span class="o">::</span><span class="nf">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
 
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">toArray</span><span class="p">());</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">store</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="nv">$content</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">store</span><span class="p">(</span><span class="nv">$title</span><span class="p">,</span> <span class="nv">$content</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EloquentPost</span><span class="p">;</span>
-        <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$title</span><span class="p">;</span>
-        <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span>
-        <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+        <span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EloquentPost</span><span class="p">;</span>
+        <span class="nv">$post</span><span class="o">-&gt;</span><span class="n">title</span> <span class="o">=</span> <span class="nv">$title</span><span class="p">;</span>
+        <span class="nv">$post</span><span class="o">-&gt;</span><span class="n">content</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span>
+        <span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">save</span><span class="p">();</span>
 
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ThriftPost</span><span class="p">(</span><span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">toArray</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -719,43 +719,43 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// tests/ThriftClientTest.php</span>
 
-<span class="kn">use</span> <span class="nn">App\Post</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Testing\DatabaseMigrations</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Thrift\Transport\THttpClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\Post</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Thrift\Post\PostServiceClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Thrift\Post\QueryFilter</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Foundation\Testing\DatabaseMigrations</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Thrift\Protocol\TJSONProtocol</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Thrift\Transport\THttpClient</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">ThriftClientTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<span class="kd">class</span> <span class="nc">ThriftClientTest</span> <span class="kd">extends</span> <span class="nc">TestCase</span>
 <span class="p">{</span>
-    <span class="kn">use</span> <span class="nn">DatabaseMigrations</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nc">DatabaseMigrations</span><span class="p">;</span>
 
     <span class="k">protected</span> <span class="nv">$client</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">setUp</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">parent</span><span class="o">::</span><span class="na">setUp</span><span class="p">();</span>
+        <span class="k">parent</span><span class="o">::</span><span class="nf">setUp</span><span class="p">();</span>
 
-        <span class="nv">$transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THttpClient</span><span class="p">(</span>
+        <span class="nv">$transport</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">THttpClient</span><span class="p">(</span>
             <span class="s1">'localhost'</span><span class="p">,</span>
             <span class="s1">'8000'</span><span class="p">,</span>
             <span class="s1">'api/posts'</span>
         <span class="p">);</span>                              <span class="c1">// apache/thrfit 라이브러에서 제공하는 HTTP 클라이언트다.</span>
 
-        <span class="nv">$protocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TJSONProtocol</span><span class="p">(</span><span class="nv">$transport</span><span class="p">);</span>
+        <span class="nv">$protocol</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TJSONProtocol</span><span class="p">(</span><span class="nv">$transport</span><span class="p">);</span>
                                         <span class="c1">// 편의를 위해 JSONProtocol을 이용했다.</span>
 
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PostServiceClient</span><span class="p">(</span><span class="nv">$protocol</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostServiceClient</span><span class="p">(</span><span class="nv">$protocol</span><span class="p">);</span>
                                         <span class="c1">// IDL 컴파일할 때 자동 생성된 클라이언트다.</span>
         
-        <span class="nx">factory</span><span class="p">(</span><span class="nx">Post</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+        <span class="nf">factory</span><span class="p">(</span><span class="nc">Post</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">();</span>
                                         <span class="c1">// 매번 테스트마다 Post를 20개씩 만든다.</span>
                                         <span class="c1">// DatabaseMigrations에 의해서 테스트가 끝나면 롤백된다.</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">testAll</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">testAll</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$queryFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueryFilter</span><span class="p">([</span>
+        <span class="nv">$queryFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">QueryFilter</span><span class="p">([</span>
             <span class="s1">'keyword'</span> <span class="o">=&gt;</span> <span class="s1">'Lorem'</span><span class="p">,</span>
             <span class="s1">'sortBy'</span> <span class="o">=&gt;</span> <span class="s1">'created_at'</span><span class="p">,</span>
             <span class="s1">'sortDirection'</span> <span class="o">=&gt;</span> <span class="s1">'desc'</span>
@@ -763,21 +763,21 @@
                                         <span class="c1">// 앞서 언급했듯이 연관 배열 형식으로 객체를 만들 수 있다.</span>
                                         <span class="c1">// 정의하지 않은 필드는 무시된다. 예) 'foo' =&gt; 'bar'는 무시됨.</span>
 
-        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">(</span><span class="nv">$queryFilter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">client</span><span class="o">-&gt;</span><span class="nf">all</span><span class="p">(</span><span class="nv">$queryFilter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
                                         <span class="c1">// 로컬 라이브러리의 API를 호출하듯이 원격 API를 호출한다.</span>
                                         <span class="c1">// 마치 Guzzle이나, aws-php-sdk를 쓰는 것과 비슷하다. </span>
         <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">testFind</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">testFind</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">client</span><span class="o">-&gt;</span><span class="nf">find</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
         <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">testStore</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">testStore</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">client</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">client</span><span class="o">-&gt;</span><span class="nf">store</span><span class="p">(</span>
             <span class="s1">'foo'</span><span class="p">,</span>
             <span class="s1">'Lorem content'</span>
         <span class="p">);</span>
@@ -1776,6 +1776,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1783,7 +1807,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

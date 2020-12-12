@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/learn-n-think/understanding-generator/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>제너레이터 이해하기 | Appkr.memo(new Story)</title>
+  <title>제너레이터 이해하기 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -228,7 +228,7 @@
  *
  * @return \Generator
  */</span>
-<span class="k">function</span> <span class="nf">map</span><span class="p">(</span><span class="nv">$iterable</span><span class="p">,</span> <span class="kt">callable</span> <span class="nv">$f</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">map</span><span class="p">(</span><span class="nv">$iterable</span><span class="p">,</span> <span class="kt">callable</span> <span class="nv">$f</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">foreach</span> <span class="p">(</span><span class="nv">$iterable</span> <span class="k">as</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">yield</span> <span class="nv">$f</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
@@ -240,7 +240,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="nv">$generator</span> <span class="o">=</span> <span class="nx">Aws\map</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">),</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+<span class="nv">$generator</span> <span class="o">=</span> <span class="nf">Aws\map</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">),</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nv">$value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">});</span>
 
@@ -1181,6 +1181,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1188,7 +1212,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

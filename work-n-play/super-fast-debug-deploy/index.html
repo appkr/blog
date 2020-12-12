@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/super-fast-debug-deploy/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>엄청나게 빠른 버그 감지, 디버그, 코드 배포 | Appkr.memo(new Story)</title>
+  <title>엄청나게 빠른 버그 감지, 디버그, 코드 배포 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -170,22 +170,22 @@
 
 <span class="c1">// ...</span>
 
-<span class="kd">class</span> <span class="nc">Handler</span> <span class="k">extends</span> <span class="nx">ExceptionHandler</span>
+<span class="kd">class</span> <span class="nc">Handler</span> <span class="kd">extends</span> <span class="nc">ExceptionHandler</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">report</span><span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">report</span><span class="p">(</span><span class="kt">Exception</span> <span class="nv">$e</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shouldReport</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span> <span class="k">and</span> <span class="nx">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">environment</span><span class="p">(</span><span class="s1">'production'</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">app</span><span class="p">(</span><span class="nx">\App\Reporters\ErrorReport</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="p">[</span><span class="nv">$e</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">shouldReport</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span> <span class="k">and</span> <span class="nf">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">environment</span><span class="p">(</span><span class="s1">'production'</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nf">app</span><span class="p">(</span><span class="err">\</span><span class="nc">App\Reporters\ErrorReport</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="p">[</span><span class="nv">$e</span><span class="p">])</span><span class="o">-&gt;</span><span class="nf">send</span><span class="p">();</span>
         <span class="p">}</span>
 
-        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">report</span><span class="p">(</span><span class="nv">$e</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="nf">report</span><span class="p">(</span><span class="nv">$e</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="kt">Exception</span> <span class="nv">$e</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// Custom exception rendering logic ...</span>
 
-        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="na">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$e</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="nf">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$e</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1191,6 +1191,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1198,7 +1222,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

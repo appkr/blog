@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/learn-n-think/history-lesson-on-web/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>내가 경험한 웹의 역사 | Appkr.memo(new Story)</title>
+  <title>내가 경험한 웹의 역사 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -398,8 +398,8 @@ EOT
 <span class="nv">$CATEGORY_DATA</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="nv">$QUERY</span><span class="p">,</span> <span class="nv">$DB_CONNECT</span><span class="p">);</span>
 
 <span class="k">while</span><span class="p">(</span><span class="nv">$CATEGORY_DATA</span> <span class="o">&amp;&amp;</span> <span class="nv">$LIST</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span> <span class="nv">$CATEGORY_DATA</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num1</span><span class="o">==</span><span class="nv">$LIST</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;</span> <span class="nv">$SCAT_NUM1</span> <span class="o">=</span> <span class="nv">$LIST</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">];}</span> 
-  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="o">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST</span><span class="p">[</span><span class="nx">CAT_NAME</span><span class="p">])</span><span class="o">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num1</span><span class="o">==</span><span class="nv">$LIST</span><span class="p">[</span><span class="no">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;</span> <span class="nv">$SCAT_NUM1</span> <span class="o">=</span> <span class="nv">$LIST</span><span class="p">[</span><span class="no">CAT_NUM</span><span class="p">];}</span> 
+  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="mf">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST</span><span class="p">[</span><span class="no">CAT_NAME</span><span class="p">])</span><span class="mf">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
               <span class="nt">&lt;/SELECT&gt;</span>
@@ -407,12 +407,12 @@ EOT
               <span class="nt">&lt;SELECT</span> <span class="na">NAME=</span><span class="s">cat_num2</span> <span class="na">STYLE=</span><span class="s">'width:110'</span> <span class="na">onchange=</span><span class="s">'javascript:this.form.submit();'</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;OPTION</span> <span class="na">VALUE=</span><span class="s">''</span><span class="nt">&gt;</span>-------------------<span class="nt">&lt;/OPTION&gt;</span>
 <span class="cp">&lt;?</span>
-<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='2' AND LEFT(CAT_NUM,3)='"</span><span class="o">.</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$SCAT_NUM1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="s2">"' ORDER BY GID DESC"</span><span class="p">;</span>
+<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='2' AND LEFT(CAT_NUM,3)='"</span><span class="mf">.</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$SCAT_NUM1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="mf">.</span><span class="s2">"' ORDER BY GID DESC"</span><span class="p">;</span>
 <span class="nv">$CATEGORY_DATA1</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="nv">$QUERY</span><span class="p">,</span> <span class="nv">$DB_CONNECT</span><span class="p">);</span>
 
 <span class="k">while</span><span class="p">(</span><span class="nv">$CATEGORY_DATA1</span> <span class="o">&amp;&amp;</span> <span class="nv">$LIST1</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span> <span class="nv">$CATEGORY_DATA1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST1[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num2</span><span class="o">==</span><span class="nv">$LIST1</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;</span> <span class="nv">$SCAT_NUM2</span> <span class="o">=</span> <span class="nv">$LIST1</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">];}</span> 
-  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="o">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST1</span><span class="p">[</span><span class="nx">CAT_NAME</span><span class="p">])</span><span class="o">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST1[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num2</span><span class="o">==</span><span class="nv">$LIST1</span><span class="p">[</span><span class="no">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;</span> <span class="nv">$SCAT_NUM2</span> <span class="o">=</span> <span class="nv">$LIST1</span><span class="p">[</span><span class="no">CAT_NUM</span><span class="p">];}</span> 
+  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="mf">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST1</span><span class="p">[</span><span class="no">CAT_NAME</span><span class="p">])</span><span class="mf">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
               <span class="nt">&lt;/SELECT&gt;</span>
@@ -420,12 +420,12 @@ EOT
               <span class="nt">&lt;SELECT</span> <span class="na">NAME=</span><span class="s">cat_num3</span> <span class="na">STYLE=</span><span class="s">'width:110'</span> <span class="na">onchange=</span><span class="s">'javascript:this.form.submit();'</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;OPTION</span> <span class="na">VALUE=</span><span class="s">''</span><span class="nt">&gt;</span>-------------------<span class="nt">&lt;/OPTION&gt;</span>
 <span class="cp">&lt;?</span>
-<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='3' AND LEFT(CAT_NUM,6)='"</span><span class="o">.</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$SCAT_NUM2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="s2">"' ORDER BY GID DESC"</span><span class="p">;</span>
+<span class="nv">$QUERY</span> <span class="o">=</span> <span class="s2">"SELECT * FROM iamceo_category WHERE CAT_DEPTH='3' AND LEFT(CAT_NUM,6)='"</span><span class="mf">.</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$SCAT_NUM2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="mf">.</span><span class="s2">"' ORDER BY GID DESC"</span><span class="p">;</span>
 <span class="nv">$CATEGORY_DATA2</span> <span class="o">=</span> <span class="nb">mysql_query</span><span class="p">(</span><span class="nv">$QUERY</span><span class="p">,</span> <span class="nv">$DB_CONNECT</span><span class="p">);</span>
 
 <span class="k">while</span><span class="p">(</span><span class="nv">$CATEGORY_DATA2</span> <span class="o">&amp;&amp;</span> <span class="nv">$cat_num1</span> <span class="o">&amp;&amp;</span> <span class="nv">$LIST2</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span> <span class="nv">$CATEGORY_DATA2</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST2[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num3</span><span class="o">==</span><span class="nv">$LIST2</span><span class="p">[</span><span class="nx">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;}</span> 
-  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="o">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST2</span><span class="p">[</span><span class="nx">CAT_NAME</span><span class="p">])</span><span class="o">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">"&lt;OPTION VALUE='</span><span class="nv">$LIST2[CAT_NUM]</span><span class="s2">'"</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$cat_num3</span><span class="o">==</span><span class="nv">$LIST2</span><span class="p">[</span><span class="no">CAT_NUM</span><span class="p">])</span> <span class="p">{</span><span class="k">echo</span> <span class="s2">"selected"</span><span class="p">;}</span> 
+  <span class="k">echo</span> <span class="s2">"&gt;"</span><span class="mf">.</span><span class="nb">stripslashes</span><span class="p">(</span><span class="nv">$LIST2</span><span class="p">[</span><span class="no">CAT_NAME</span><span class="p">])</span><span class="mf">.</span><span class="s2">"&lt;/OPTION&gt;"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
               <span class="nt">&lt;/SELECT&gt;</span>
@@ -1403,6 +1403,30 @@ EOT
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1410,7 +1434,7 @@ EOT
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/learn-n-think/immutable-object-and-immutalbe-entity/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>불변 밸류와 불변 엔티티 | Appkr.memo(new Story)</title>
+  <title>불변 밸류와 불변 엔티티 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -159,9 +159,9 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">stdClass</span><span class="p">;</span>
-<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
-<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>
 <span class="c1">// class stdClass#696 (1) {</span>
 <span class="c1">//   public $name =&gt;</span>
@@ -181,9 +181,9 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">stdClass</span><span class="p">;</span>
-<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
 <span class="nv">$b</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$a</span><span class="p">;</span>
-<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>
 <span class="c1">// class stdClass#697 (1) {</span>
 <span class="c1">//   public $name =&gt;</span>
@@ -250,25 +250,25 @@
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">Money</span> <span class="nv">$other</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">Money</span> <span class="nv">$other</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">Money</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">+</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="na">getAmount</span><span class="p">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">Money</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">+</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="nf">getAmount</span><span class="p">());</span>
     <span class="p">}</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAmount</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getAmount</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">isEqualTo</span><span class="p">(</span><span class="nx">Money</span> <span class="nv">$other</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">isEqualTo</span><span class="p">(</span><span class="kt">Money</span> <span class="nv">$other</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="nb">get_class</span><span class="p">()</span> <span class="o">===</span> <span class="k">__CLASS__</span>
-            <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">===</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="na">getAmount</span><span class="p">();</span>
+            <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">===</span> <span class="nv">$other</span><span class="o">-&gt;</span><span class="nf">getAmount</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1326,6 +1326,30 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1333,7 +1357,7 @@ VALUES <span class="o">(</span>1, 2, 1, <span class="s2">"2017-06"</span>, 100, 
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

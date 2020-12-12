@@ -34,7 +34,7 @@
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/work-n-play/firebase-cloud-message-php-server-implementation-part-1/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부 | Appkr.memo(new Story)</title>
+  <title>모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부 | Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -249,37 +249,37 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// YYYY_MM_DD_xxxxxx_create_devices_table.php</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">CreateDevicesTable</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<span class="kd">class</span> <span class="nc">CreateDevicesTable</span> <span class="kd">extends</span> <span class="nc">Migration</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">up</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'device_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">();</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">();</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">integer</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">unsigned</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">index</span><span class="p">();</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'device_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">();</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">string</span><span class="p">(</span><span class="s1">'push_service_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">nullable</span><span class="p">();</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">timestamps</span><span class="p">();</span>
 
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">)</span>
-                <span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span>
-                <span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
-                <span class="o">-&gt;</span><span class="na">onDelete</span><span class="p">(</span><span class="s1">'cascade'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">foreign</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">)</span>
+                <span class="o">-&gt;</span><span class="nf">references</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span>
+                <span class="o">-&gt;</span><span class="nf">on</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+                <span class="o">-&gt;</span><span class="nf">onDelete</span><span class="p">(</span><span class="s1">'cascade'</span><span class="p">);</span>
         <span class="p">});</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">down</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">table</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// 외래키 관계를 선언했다면, 리버스 마이그레이션 할때 에러를 피하기 위해</span>
             <span class="c1">// 테이블을 삭제하기 전에 외래키를 먼저 삭제하는 것이 중요하다.</span>
-            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropForeign</span><span class="p">(</span><span class="s1">'devices_user_id_foreign'</span><span class="p">);</span>
+            <span class="nv">$table</span><span class="o">-&gt;</span><span class="nf">dropForeign</span><span class="p">(</span><span class="s1">'devices_user_id_foreign'</span><span class="p">);</span>
         <span class="p">});</span>
 
-        <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">);</span>
+        <span class="nc">Schema</span><span class="o">::</span><span class="nf">dropIfExists</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -290,14 +290,14 @@
 
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Auth\User</span> <span class="k">as</span> <span class="n">Authenticatable</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Foundation\Auth\User</span> <span class="k">as</span> <span class="nc">Authenticatable</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Authenticatable</span>
+<span class="kd">class</span> <span class="nc">User</span> <span class="kd">extends</span> <span class="nc">Authenticatable</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">devices</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">devices</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hasMany</span><span class="p">(</span><span class="nx">Device</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">hasMany</span><span class="p">(</span><span class="nc">Device</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -308,18 +308,18 @@
 
 <span class="kn">namespace</span> <span class="nn">App</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Device</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="kd">class</span> <span class="nc">Device</span> <span class="kd">extends</span> <span class="nc">Model</span>
 <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$fillable</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">'device_id'</span><span class="p">,</span>
         <span class="s1">'push_service_id'</span>
     <span class="p">];</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">user</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">user</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsTo</span><span class="p">(</span><span class="nx">User</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">belongsTo</span><span class="p">(</span><span class="nc">User</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -328,21 +328,21 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// database/seeds/DatabaseSeeder.php</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Database\Seeder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Database\Seeder</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">DatabaseSeeder</span> <span class="k">extends</span> <span class="nx">Seeder</span>
+<span class="kd">class</span> <span class="nc">DatabaseSeeder</span> <span class="kd">extends</span> <span class="nc">Seeder</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">run</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">run</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="c1">// 라라벨에 기본 내장된 User 모델 팩토리를 이용했다.</span>
-        <span class="nv">$user</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">(</span><span class="nx">App\User</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">([</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nf">factory</span><span class="p">(</span><span class="nc">App\User</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">([</span>
             <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'user@example.com'</span><span class="p">,</span>
             <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'김고객'</span><span class="p">,</span>
         <span class="p">]);</span>
         <span class="c1">// User-Device 간 관계를 이용해서 새 더미 레코드를 생성했다.</span>
-        <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">([</span>
-            <span class="s1">'device_id'</span> <span class="o">=&gt;</span> <span class="nx">str_rand</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
-            <span class="s1">'push_service_id'</span> <span class="o">=&gt;</span> <span class="nx">str_rand</span><span class="p">(</span><span class="mi">152</span><span class="p">),</span>
+        <span class="nv">$user</span><span class="o">-&gt;</span><span class="nf">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">([</span>
+            <span class="s1">'device_id'</span> <span class="o">=&gt;</span> <span class="nf">str_rand</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+            <span class="s1">'push_service_id'</span> <span class="o">=&gt;</span> <span class="nf">str_rand</span><span class="p">(</span><span class="mi">152</span><span class="p">),</span>
         <span class="p">]);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -354,7 +354,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
 
-<span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">'/devices'</span><span class="p">,</span> <span class="s1">'DevicesController@upsert'</span><span class="p">);</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">post</span><span class="p">(</span><span class="s1">'/devices'</span><span class="p">,</span> <span class="s1">'DevicesController@upsert'</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>HTTP 요청 처리 로직을 작성한다. 예제 프로젝트에서는 레코드가 없으면 새로 만들고, 레코드가 있으면 업데이트하는 업서트 로직을 만들었다.</p>
@@ -366,25 +366,25 @@
 
 <span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">App\User</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">App\User</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Http\Request</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">DevicesController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">DevicesController</span> <span class="kd">extends</span> <span class="nc">Controller</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">upsert</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">upsert</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 사용자 인증 기능을 구현하지 않았으므로 하드코드로 사용자를 지정해주었다.</span>
-        <span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nc">User</span><span class="o">::</span><span class="nf">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
-        <span class="nv">$device</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">devices</span><span class="p">()</span>
-            <span class="o">-&gt;</span><span class="na">whereDeviceId</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">device_id</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+        <span class="nv">$device</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="nf">devices</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="nf">whereDeviceId</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="n">device_id</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">first</span><span class="p">();</span>
 
-        <span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+        <span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">all</span><span class="p">();</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$device</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$device</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+            <span class="nv">$device</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="nf">devices</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">create</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nv">$device</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+            <span class="nv">$device</span><span class="o">-&gt;</span><span class="nf">update</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="nv">$device</span><span class="p">;</span>
@@ -419,13 +419,13 @@ Content-Type: application/json
 
 <span class="kn">namespace</span> <span class="nn">App\Http\Middleware</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">AuthenticateOnceWithBasicAuth</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$next</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">handle</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$next</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">onceBasic</span><span class="p">()</span> <span class="o">?:</span> <span class="nv">$next</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nc">Auth</span><span class="o">::</span><span class="nf">onceBasic</span><span class="p">()</span> <span class="o">?:</span> <span class="nv">$next</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -436,13 +436,13 @@ Content-Type: application/json
 
 <span class="kn">namespace</span> <span class="nn">App\Http</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Illuminate\Foundation\Http\Kernel</span> <span class="k">as</span> <span class="n">HttpKernel</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Foundation\Http\Kernel</span> <span class="k">as</span> <span class="nc">HttpKernel</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">Kernel</span> <span class="k">extends</span> <span class="nx">HttpKernel</span>
+<span class="kd">class</span> <span class="nc">Kernel</span> <span class="kd">extends</span> <span class="nc">HttpKernel</span>
 <span class="p">{</span>
     <span class="c1">// ...</span>
     <span class="k">protected</span> <span class="nv">$routeMiddleware</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">'auth.basic.once'</span> <span class="o">=&gt;</span> <span class="nx">\App\Http\Middleware\AuthenticateOnceWithBasicAuth</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="s1">'auth.basic.once'</span> <span class="o">=&gt;</span> <span class="err">\</span><span class="nc">App\Http\Middleware\AuthenticateOnceWithBasicAuth</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
     <span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -453,17 +453,17 @@ Content-Type: application/json
 
 <span class="c1">// ...</span>
 
-<span class="kd">class</span> <span class="nc">DevicesController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="kd">class</span> <span class="nc">DevicesController</span> <span class="kd">extends</span> <span class="nc">Controller</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">'auth.basic.once'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">middleware</span><span class="p">(</span><span class="s1">'auth.basic.once'</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">upsert</span><span class="p">(</span><span class="nx">DeviceRequest</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">upsert</span><span class="p">(</span><span class="kt">DeviceRequest</span> <span class="nv">$request</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// $user = User::find(1);</span>
-        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">();</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">user</span><span class="p">();</span>
 
         <span class="c1">// ...</span>
     <span class="p">}</span>
@@ -1430,6 +1430,30 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1437,7 +1461,7 @@ Authorization: Basic dXNlckBleGFtcGxlLmNvbTpzZWNyZXQ=
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

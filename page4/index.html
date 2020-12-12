@@ -13,13 +13,13 @@
   <meta name="msapplication-tap-highlight" content="no"/>
 
   <!-- Facebook Meta -->
-  <meta property="og:title" content="Appkr.memo(new Story)"/>
+  <meta property="og:title" content="Appkr.memo(new Story())"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
   <meta property="og:image" content=""/>
 
   <!-- Google+ Meta -->
-  <meta itemprop="name" content="Appkr.memo(new Story)">
+  <meta itemprop="name" content="Appkr.memo(new Story())">
   <meta itemprop="description" content="appkr's blog to record day-to-day life & thoughts.">
   <meta itemprop="image" content="">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
@@ -27,14 +27,14 @@
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
-  <meta name="twitter:title" content="Appkr.memo(new Story)" />
+  <meta name="twitter:title" content="Appkr.memo(new Story())" />
   <meta name="twitter:description" content="appkr's blog to record day-to-day life & thoughts." />
   <meta name="twitter:image" content="" />
   <meta name="twitter:domain" content="blog.appkr.dev">
 
   <!-- Mobile and Rss -->
   <link rel="canonical" href="https://blog.appkr.dev/page4/"/>
-  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story)" href="https://blog.appkr.dev/feed.xml"/>
+  <link rel="alternate" type="application/rss+xml" title="Appkr.memo(new Story())" href="https://blog.appkr.dev/feed.xml"/>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
   <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
@@ -45,7 +45,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.7/css/ripples.min.css"/>
   <link rel="stylesheet" href="/styles/main.css"/>
 
-  <title>Appkr.memo(new Story)</title>
+  <title>Appkr.memo(new Story())</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -66,7 +66,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        Appkr.memo(new Story)
+        Appkr.memo(new Story())
       </a>
     </div>
 
@@ -338,12 +338,12 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// https://github.com/appkr/db-lock-poc/blob/master/app/Providers/EventServiceProvider.php</span>
 
-<span class="kd">class</span> <span class="nc">EventServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="kd">class</span> <span class="nc">EventServiceProvider</span> <span class="kd">extends</span> <span class="nc">ServiceProvider</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">boot</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nx">Event</span><span class="o">::</span><span class="na">listen</span><span class="p">(</span><span class="s1">'eloquent.*'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nb">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
+        <span class="nc">Event</span><span class="o">::</span><span class="nf">listen</span><span class="p">(</span><span class="s1">'eloquent.*'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nc">Log</span><span class="o">::</span><span class="nf">info</span><span class="p">(</span><span class="nv">$event</span><span class="p">);</span>
         <span class="p">});</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1321,6 +1321,30 @@
   </div>
 </section>
 
+<section class="box" id="activity-lists">
+  <div class="box-header">
+    <h3>Github Activity</h3>
+  </div>
+
+  <div class="box-body">
+    <ul id="activity-list">
+      <script id="activity-list-template" type="text/x-template">
+        <li>
+          <span class="facebook-message">
+            <small>{ type }</small>: { message }
+          </span>
+          ·
+          <span class="facebook-meta">
+            <a href="https://github.com/{ repoName }/commits">
+              { created_time }
+            </a>
+          </span>
+        </li>
+      </script>
+    </ul>
+  </div>
+</section>
+
   </aside>
 </div>
 
@@ -1328,7 +1352,7 @@
   <footer id="site-footer">
   <h4>
     <a href="/">
-      Appkr.memo(new Story)
+      Appkr.memo(new Story())
     </a>
   </h4>
   <p>

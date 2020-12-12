@@ -9,6 +9,14 @@
   },
   
   {
+    "title"    : "git log examples",
+    "category" : "learn-and-think",
+    "tags"     : "Git, 개발자",
+    "url"      : "/learn-and-think/git-log-examples/",
+    "date"     : "2020-02-12"
+  },
+  
+  {
     "title"    : "근황",
     "category" : "work-n-play",
     "tags"     : "",

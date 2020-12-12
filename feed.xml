@@ -5,8 +5,8 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 04 Aug 2020 08:44:56 +0900</pubDate>
-    <lastBuildDate>Tue, 04 Aug 2020 08:44:56 +0900</lastBuildDate>
+    <pubDate>Sun, 13 Dec 2020 01:47:29 +0900</pubDate>
+    <lastBuildDate>Sun, 13 Dec 2020 01:47:29 +0900</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
     
       <item>
@@ -99,6 +99,71 @@
         <category>learn-n-think</category>
         
         <category>work-n-play</category>
+        
+      </item>
+    
+      <item>
+        <title>git log examples</title>
+        <description>&lt;script id=&quot;asciicast-378873&quot; src=&quot;https://asciinema.org/a/378873.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;뷰&quot;&gt;뷰&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# -p: 각 커밋별 diff&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# -2: 최근 2개 커밋&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --stat: 각 커밋별 통계&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--stat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --pretty: oneline, short, full, fuller&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;oneline
+git log &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;short
+git log &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;full
+git log &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;fuller
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --graph&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--graph&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --name-only: 각 커밋별 파일 목록&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--name-only&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;필터링&quot;&gt;필터링&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# commitId..commitId: 커밋ID로 필터&lt;/span&gt;
+git log git log b315c55..HEAD
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --since; --after: 기간으로 필터&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--since&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1.weeks
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --until; --before: 기간으로 필터&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--until&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3.days
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --author: 커미터로 필터&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;--author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;appkr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# -S: 파일, 함수로 필터&lt;/span&gt;
+git log &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; PersistentEventPublisher
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;알림&quot;&gt;알림&lt;/h2&gt;
+&lt;p&gt;터미널에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git log&lt;/code&gt;했을 때 저랑 다르게 나오는데요. 예, 로그 기본 출력 형식은 전역 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitconfig&lt;/code&gt;에 미리 정의해뒀기때문입니다&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# ~/.gitconfig&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;format]
+	pretty &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; oneline
+	pretty &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; format: %C&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;auto&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;%h%Creset %C&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;auto&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;%ad%Creset %C&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;auto,green&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;%aN%Creset %C&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;auto&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;%s%Creset
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 12 Feb 2020 00:00:00 +0900</pubDate>
+        <link>https://blog.appkr.dev/learn-and-think/git-log-examples/</link>
+        <guid isPermaLink="true">https://blog.appkr.dev/learn-and-think/git-log-examples/</guid>
+        
+        <category>Git</category>
+        
+        <category>개발자</category>
+        
+        
+        <category>learn-and-think</category>
         
       </item>
     
@@ -2119,64 +2184,6 @@ id  name    SI_DO_NAME
         
         
         <category>cheatsheet</category>
-        
-      </item>
-    
-      <item>
-        <title>PHP 객체의 복제 특성</title>
-        <description>&lt;p&gt;PHP 객체를 다른 변수에 할당(대입)하면, 객체 자체가 메모리 복제되어 새로운 변수에 할당되는 것이 아니라, 원본 객체가 담긴 메모리 번지만 참조됩니다(Like Pointer in C language).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo2&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Foo&lt;/code&gt; 클래스의 인스턴스가 담긴, 같은 메모리 번지를 가리킵니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo3&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt; 인스턴스로 부터 복제했으므로, 복제 시점의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt;의 상태를 그대로 가져오지만, 서로 다른 객체입니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo4&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Foo&lt;/code&gt; 클래스의 새로운 인스턴스이므로, 당연히 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$foo3&lt;/code&gt;와 다른 객체입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2018-11-04-img-01.png&quot;&gt;&lt;img src=&quot;/images/2018-11-04-img-01.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;&lt;a href=&quot;/images/2018-11-04-img-02.png&quot;&gt;&lt;img src=&quot;/images/2018-11-04-img-02.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 사용할 때 실수한 적이 있는데요. &lt;a href=&quot;/learn-n-think/immutable-object-and-immutalbe-entity/&quot;&gt;불변 객체&lt;/a&gt;가 아니므로, 주의해서 사용해야 합니다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수는 최초 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 인스턴스 생성시에만 현재 시각의 의미를 담고 있습니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addDays()&lt;/code&gt; 함수를 호출하는 순간, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$now&lt;/code&gt;는 이미 현재 시각이 아니라 24시간 뒤의 의미를 가지게 됩니다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$now&lt;/code&gt; 변수에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Carbon&lt;/code&gt; 인스턴스 생성시에만 현재 시각이 담겨있다고 착각하고, 다른 변수에 담아서 사용하는 등의 실수를 조심해야 합니다.&lt;/li&gt;
-  &lt;li&gt;가장 안전한 방법은 새로운 객체를 만드는 겁니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Carbon&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;arbon::now&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; Carbon&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;arbon @1541322917 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#2894&lt;/span&gt;
-     &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;: 2018-11-04 09:15:17.094112 UTC &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+00:00&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt;-&amp;gt;addDays&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; Carbon&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;arbon @1541409317 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#2894&lt;/span&gt;
-     &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;: 2018-11-05 09:15:17.094112 UTC &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+00:00&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$now2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; Carbon&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;arbon @1541409317 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#2894&lt;/span&gt;
-     &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;: 2018-11-05 09:15:17.094112 UTC &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+00:00&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;,
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;references&quot;&gt;References&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;//php.net/manual/en/features.gc.refcounting-basics.php&quot;&gt;php.net/manual/en/features.gc.refcounting-basics.php&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;//php.net/manual/en/class.datetimeimmutable.php&quot;&gt;php.net/manual/en/class.datetimeimmutable.php&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;//laravel-news.com/mutable-and-immutable-date-time-php&quot;&gt;laravel-news.com/mutable-and-immutable-date-time-php&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 04 Nov 2018 00:00:00 +0900</pubDate>
-        <link>https://blog.appkr.dev/learn-n-think/php-object-copy/</link>
-        <guid isPermaLink="true">https://blog.appkr.dev/learn-n-think/php-object-copy/</guid>
-        
-        <category>PHP</category>
-        
-        
-        <category>learn-n-think</category>
         
       </item>
     

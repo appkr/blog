@@ -90,6 +90,109 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/learn-n-think/immutable-object-and-immutalbe-entity/">불변 밸류와 불변 엔티티</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-06-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/immutable-object-and-immutalbe-entity/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>상수는 변하지 않는 값</strong>, <strong>변수는 변하는 값</strong>이라고 배웠습니다. 객체에서도 마치 상수처럼 <strong>한 번 생성된 이후에 상태를 변경할 수 없는 객체를 불변(Immutable) 객체</strong>라고 합니다.</p>
+
+<h2 id="1-불변성에-대한-개념-익히기">1. 불변성에 대한 개념 익히기</h2>
+
+<p>아래 예제를 살펴 볼까요?</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>위 코드의 실행 결과는 <code class="language-plaintext highlighter-rouge">int(1)</code>입니다. 변수 <code class="language-plaintext highlighter-rouge">$b</code>에 변수 <code class="language-plaintext highlighter-rouge">$a</code>의 값을 할당한 후, <code class="language-plaintext highlighter-rouge">$b</code>에 새로운 값 <code class="language-plaintext highlighter-rouge">3</code>을 할당했습니다. 당연히 <code class="language-plaintext highlighter-rouge">$b</code>에는 <code class="language-plaintext highlighter-rouge">3</code>이 담겨 있고, <code class="language-plaintext highlighter-rouge">$a</code>에는 <code class="language-plaintext highlighter-rouge">1</code>이 담겨 있을 겁니다. 아주 쉽죠?</p>
+
+<p>그런데, 객체 컨텍스트에서도 이 규칙이 그대로 적용될까요? 클래스는 변수와 함수로 구성된 템플릿이며, 객체란 그 템플릿에 필요한 값을 채워서 완성한 실체입니다. 여튼 위의 예제와 똑같이 동작해야 하지않을까요?</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">stdClass</span><span class="p">;</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>
+<span class="c1">// class stdClass#696 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Bar"</span>
+<span class="c1">// }</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="c1">// class stdClass#696 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Bar"</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
+
+<p>변수 <code class="language-plaintext highlighter-rouge">$b</code>에 <code class="language-plaintext highlighter-rouge">$a</code>에 담긴 객체를 그대로 할당한 후, <code class="language-plaintext highlighter-rouge">$b</code>의 <code class="language-plaintext highlighter-rouge">$name</code> 속성을 변경했습니다. <code class="language-plaintext highlighter-rouge">$b::name</code> 속성 값만 <code class="language-plaintext highlighter-rouge">"Bar"</code>로 바뀔 것이라 생각했지만, <code class="language-plaintext highlighter-rouge">$a::name</code> 속성 값도 <code class="language-plaintext highlighter-rouge">"Bar"</code>로 변경되어버렸습니다. <code class="language-plaintext highlighter-rouge">var_dump()</code>로 출력된 결과물에 객체 번호를 보면 힌트를 얻을 수 있습니다. <code class="language-plaintext highlighter-rouge">$a</code>와 <code class="language-plaintext highlighter-rouge">$b</code> 모두 <code class="language-plaintext highlighter-rouge">#696</code>으로 같습니다. 즉, 객체 <code class="language-plaintext highlighter-rouge">$b</code>는 객체 <code class="language-plaintext highlighter-rouge">$a</code>의 메모리 번지를 그냥 참조하고 있다고 볼 수 있습니다.</p>
+
+<p>해결법은 의외로 간단합니다. 복제하는거죠. <code class="language-plaintext highlighter-rouge">clone</code> 키워드와 객체 번호가 <code class="language-plaintext highlighter-rouge">#696</code>, <code class="language-plaintext highlighter-rouge">#697</code>로 서로 다름을 확인해주세요.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">stdClass</span><span class="p">;</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Foo'</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'Bar'</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>
+<span class="c1">// class stdClass#697 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Bar"</span>
+<span class="c1">// }</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+<span class="c1">// class stdClass#696 (1) {</span>
+<span class="c1">//   public $name =&gt;</span>
+<span class="c1">//   string(3) "Foo"</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/immutable-object-and-immutalbe-entity/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/ddd-memo/">DDD Memo</a>
         </h2>
         <p class="box-meta">
@@ -328,56 +431,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/style-changed/">존칭형으로 블로그 쓰기</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-02-11
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/style-changed/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>이 블로그는 직업인으로서의 일상과 생각을 정리하여 기록하기 위해 2008년부터 쓰기 시작했습니다. 당시에는 모바일 반도체를 개발하는 회사에서 제품을 기획하는 일을 하고 있었지요. 블로그 플랫폼도 네이버로 시작했던 걸로 기억합니다. 일기처럼 쓰는 글이었으므로 당연히 평서형(반말)을 썼습니다.</p>
-
-<p>네이버에서 텍스타일로, 텍스타일에서 티스토리로, 다시 워드프레스로 이전하며 블로깅을 하다가 2011년 반도체 회사를 떠나면서 더 이상 글을 쓰지 않았습니다. 개발자의 삶을 살기로 마음먹은 2015년 중반부터 개발자스럽게 블로그 플랫폼을 Jekyll로 옮겨 개발자로서 배운 내용을 하나씩 남기기 시작했습니다.</p>
-
-<p>깃허브에 라라벨 프레임워크에 대한 온라인 강의를 연재하고, 책을 집필하고, 오프라인 강의를 하면서, <strong>블로그는 지난 세월 기획자로 살던 저를 개발자 appkr로 세상에 알리는 든든한 지원군 역할</strong>을 해 왔습니다. 덕분에 성공적으로 경력 전환도 할 수 있었습니다.</p>
-
-<p><a href="/images/2017-02-11-img-01.png"><img src="/images/2017-02-11-img-01.png" alt="블로그 방문자 추이" /></a></p>
-
-<p>그림처럼 꽤 많은 분들이 찾아 주셨고, 이제 이 블로그는 혼자만의 일상을 기록하기보다는 다른 개발자들과 소통하는 공간으로 성격이 변모되었습니다. 해서 <strong>앞으로는 존칭형(존댓말)으로 글을 쓰려고 합니다</strong>. 사실 존칭형으로 글 쓰는 것이 더 쉽기도하고요~</p>
-
-      </div>
-
-      <footer class="box-footer">
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -552,7 +605,7 @@
       </a>
     </span>
     
-    <span style="font-size: 102%">
+    <span style="font-size: 106%">
       <a href="/tags#Git">
         Git
       </a>
@@ -1026,7 +1079,7 @@
       </a>
     </span>
     
-    <span style="font-size: 294%">
+    <span style="font-size: 298%">
       <a href="/tags#개발자">
         개발자
       </a>
@@ -1173,15 +1226,15 @@
       
       <li>
         <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
-          <a href="/work-n-play/youtube/">근황</a>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-02-12</small>
+          <a href="/learn-and-think/git-log-examples/">git log examples</a>
         </h4>
       </li>
       
       <li>
         <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-03-09</small>
-          <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
+          <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
+          <a href="/work-n-play/youtube/">근황</a>
         </h4>
       </li>
       

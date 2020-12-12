@@ -90,6 +90,53 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/learn-and-think/git-log-examples/">git log examples</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2020-12-12
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-and-think">
+                
+                    Uncategorized
+                
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-and-think/git-log-examples/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <script id="asciicast-378873" src="https://asciinema.org/a/378873.js" async=""></script>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-and-think/git-log-examples/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
         </h2>
         <p class="box-meta">
@@ -155,96 +202,6 @@
         <a class="btn btn-default" href="/learn-n-think/work-n-play/explorer-exploiter/">
           Read More <i class="material-icons">arrow_forward</i>
         </a>
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-and-think/git-log-examples/">git log examples</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2020-02-12
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-and-think">
-                
-                    Uncategorized
-                
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-and-think/git-log-examples/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <script id="asciicast-378873" src="https://asciinema.org/a/378873.js" async=""></script>
-
-<h2 id="뷰">뷰</h2>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -p: 각 커밋별 diff</span>
-git log <span class="nt">-p</span>
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -2: 최근 2개 커밋</span>
-git log <span class="nt">-p</span> <span class="nt">-2</span>
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --stat: 각 커밋별 통계</span>
-git log <span class="nt">--stat</span>
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --pretty: oneline, short, full, fuller</span>
-git log <span class="nt">--pretty</span><span class="o">=</span>oneline
-git log <span class="nt">--pretty</span><span class="o">=</span>short
-git log <span class="nt">--pretty</span><span class="o">=</span>full
-git log <span class="nt">--pretty</span><span class="o">=</span>fuller
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --graph</span>
-git log <span class="nt">--graph</span>
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --name-only: 각 커밋별 파일 목록</span>
-git log <span class="nt">--name-only</span>
-</code></pre></div></div>
-
-<h2 id="필터링">필터링</h2>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># commitId..commitId: 커밋ID로 필터</span>
-git log git log b315c55..HEAD
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --since; --after: 기간으로 필터</span>
-git log <span class="nt">--since</span><span class="o">=</span>1.weeks
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --until; --before: 기간으로 필터</span>
-git log <span class="nt">--until</span><span class="o">=</span>3.days
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --author: 커미터로 필터</span>
-git log <span class="nt">--author</span><span class="o">=</span>appkr
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -S: 파일, 함수로 필터</span>
-git log <span class="nt">-S</span> PersistentEventPublisher
-</code></pre></div></div>
-
-<h2 id="알림">알림</h2>
-<p>터미널에서 <code class="language-plaintext highlighter-rouge">git log</code>했을 때 저랑 다르게 나오는데요. 예, 로그 기본 출력 형식은 전역 <code class="language-plaintext highlighter-rouge">.gitconfig</code>에 미리 정의해뒀기때문입니다</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ~/.gitconfig</span>
-<span class="o">[</span>format]
-	pretty <span class="o">=</span> oneline
-	pretty <span class="o">=</span> format: %C<span class="o">(</span>auto<span class="o">)</span>%h%Creset %C<span class="o">(</span>auto<span class="o">)</span>%ad%Creset %C<span class="o">(</span>auto,green<span class="o">)</span>%aN%Creset %C<span class="o">(</span>auto<span class="o">)</span>%s%Creset
-</code></pre></div></div>
-
-      </div>
-
-      <footer class="box-footer">
         
       </footer>
     </article>
@@ -1183,15 +1140,15 @@ git log <span class="nt">-S</span> PersistentEventPublisher
       
       <li>
         <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
-          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-12-12</small>
+          <a href="/learn-and-think/git-log-examples/">git log examples</a>
         </h4>
       </li>
       
       <li>
         <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2020-02-12</small>
-          <a href="/learn-and-think/git-log-examples/">git log examples</a>
+          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
+          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
         </h4>
       </li>
       

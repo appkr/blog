@@ -1,7 +1,7 @@
 ---
 layout: post-minimal
 title: 'git log examples'
-date: 2020-02-12 00:00:00 +0900
+date: 2020-12-12 00:00:00 +0900
 categories:
 - learn-and-think
 tags:
@@ -10,6 +10,9 @@ tags:
 ---
 
 <script id="asciicast-378873" src="https://asciinema.org/a/378873.js" async></script>
+
+<!--more-->
+<div class="spacer">• • •</div>
 
 ## 뷰
 ```bash

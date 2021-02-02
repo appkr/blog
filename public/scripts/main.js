@@ -497,7 +497,7 @@ window.fbAsyncInit = function() {
       collection.push({
         id: item.id,
         type: item.type,
-        message: item.payload.commits[0].message,
+        message: item.payload.commits ? item.payload.commits[0].message : item.payload.action,
         repoName: item.repo.name,
         created_time: item.created_at
       });

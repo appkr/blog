@@ -90,6 +90,124 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 2부</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-24
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <div class="panel panel-default">
+  <div class="panel-body">
+    <p class="lead">이 포스트는 2016년 12월 24일 첫 포스트 이후, 2017년 1월, 2018년 7월, 2018년 11월 총 세차례에 걸쳐 완전히 다시 썼으며, 예제 코드 또한 변경되었습니다.</p> 
+    <p class="lead">최종 리팩토링의 가장 큰 변경은 기존에 사용하던 <code class="highlighter-rouge">brozot/laravel-fcm</code> 패키지를 완전히 버리고, <code class="highlighter-rouge">Guzzle</code>로 직접 구현했다는 점입니다.</p>
+  </div>
+</div>
+
+<p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
+
+<p><img src="https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png" alt="Firebase Logo" /></p>
+
+<p><a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">지난 1부</a>에서는 푸쉬 메시지를 받을 모바일 단말 애플리케이션이 구글 Fcm 서버로 부터 받은 고유 식별 토큰을 애플리케이션 서버로 전달해 등록하는 과정을 구현했다. 이번 포스트에서는 등록한 토큰으로 푸쉬 메시지를 쏘는 기능을 구현한다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/firebase-cloud-message-php-server-implementation-part-2/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">모바일 푸쉬 메시지(FCM)를 위한 PHP 서버 구현 1부</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2016-12-18
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><strong>FCM(Firebase Cloud Message)은 Android, iOS, Web 등의 클라이언트에 푸쉬 메시지를 보내기 위한 서비스</strong>다. 과거 GCM(Google Cloud Message)이 진화한 것이다.</p>
+
+<p><img src="https://1.bp.blogspot.com/-YIfQT6q8ZM4/Vzyq5z1B8HI/AAAAAAAAAAc/UmWSSMLKtKgtH7CACElUp12zXkrPK5UoACLcB/s1600/image00.png" alt="Firebase Logo" /></p>
+
+<p>PubNub, Pusher 등의 메시징 서비스와 FCM이 다른 점은 단말기가 꺼져 있거나, 잠김 모드에 있거나, 메시지를 받을 애플리케이션이 실행 중이지 않을 때도 메시지를 보낼 수 있다는 점이다.</p>
+
+<p>FCM을 이용한 푸쉬 메시징 시스템을 구성하라면 다음 두 가지가 필요하다.</p>
+
+<ul>
+  <li>푸쉬 메시지를 받을 모바일 <strong>단말용 애플리케이션</strong></li>
+  <li>푸쉬 메시지를 전송할 모바일 단말을 선별하고, 원하는 메시지와 함께 구글 FCM 서버에 메시지 전송 요청을 부탁할 <strong>애플리케이션 서버</strong>(<a href="https://firebase.google.com/docs/cloud-messaging/server">구글 공식 문서</a>에서는 “앱 서버”라고 칭하기도 한다).</li>
+</ul>
+
+<p>이 포스트에서는 <strong>애플리케이션 서버를 구현하는 과정</strong>을 기술해본다. 모바일 단말용 애플리케이션은 이 포스트에서 다루지 않는다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/firebase-cloud-message-php-server-implementation-part-1/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/how-to-use-apache-thrift-in-php-part-2/">RPC - Apache Thrift 입문 2부</a>
         </h2>
         <p class="box-meta">
@@ -265,123 +383,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/laravel-paper-book-published/">[광고 같은 광고 아닌 알짜 정보] '라라벨로 배우는 실전 PHP 웹 프로그래밍' 출간 안내</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-11-27
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/laravel-paper-book-published/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>제가 집필한 책이 어제 출간되었습니다. <strong>웹 프로그래밍</strong>을 다룹니다. 웹 프로그래밍을 위한 도구로는 <strong>PHP 언어로 작성된 라라벨 프레임워크</strong>를 사용합니다.</p>
-
-<p>2016년 초에 완성하고 깃허브에 공개한 <strong><a href="https://github.com/appkr/l5essential">무료 온라인 강의</a>를 토대로 제이펍 출판사에 계신 프로페셔널들의 도움을 받아 비문을 고치고 부족한 설명을 보충</strong>하였습니다. 게다가 생활 코딩 오프라인 수업에 조교로 자원 봉사(5회?), 8시간 또는 14시간 짜리 라라벨 입문 강의(각 4회씩 총 8회) 등을 통해 입문자와 예비 독자들을 만나며, 여러분들이 어려워하거나 실수하기 쉬운 내용을 캐치하고 책의 내용과 구성에 반영했습니다.</p>
-
-<p><a href="//cfile2.uf.tistory.com/image/261326505829771C18CBB0"><img src="//cfile2.uf.tistory.com/image/261326505829771C18CBB0" alt="라라벨로 배우는 실전 PHP 웹 프로그래밍" /></a></p>
-
-<h4 id="프로그래밍을-생짜-처음-하신다고요">프로그래밍을 생짜 처음 하신다고요?</h4>
-
-<p>생활코딩의 <a href="https://opentutorials.org/course/1688">웹 애플리케이션 만들기</a> 정도만 공부하신 수준이면 이 책을 시작하는데 무리가 없습니다.</p>
-
-<h4 id="임베디드-응용-시스템-프로그래밍을-하시거나하셨는데-필요에-의해-웹-프로그래밍을-하셔야-한다고요">임베디드, 응용, 시스템 프로그래밍을 하시거나/하셨는데, 필요에 의해 웹 프로그래밍을 하셔야 한다고요?</h4>
-
-<p>이 책으로 시작하시는 당신은 행운아입니다.</p>
-
-<p>이 곳에서 구매할 수 있습니다. <a href="//www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&amp;mallGb=KOR&amp;barcode=9791185890623">교보문고</a>, <a href="//www.bandinlunis.com/front/product/detailProduct.do?prodId=4011008">반디앤루니스</a>, <a href="//www.aladin.co.kr/shop/wproduct.aspx?ItemId=96495117">알라딘</a>, <a href="//www.yes24.com/24/goods/33320248">yes24</a>, <a href="//book.interpark.com/product/BookDisplay.do?_method=detail&amp;sc.shopNo=0000400000&amp;sc.prdNo=261904099">인터파크</a></p>
-
-<blockquote>
-  <p>개발자들은 코드를 보면 코드를 짠 사람의 실력과 성격을 어느 정도 가늠할 수 있다는 얘기를 들었습니다. 마찬가지로, 저희들은 원고를 보고 지은이의 내공과 성격을 어느 정도 유추하곤 합니다. 김주원 님의 원고를 처음 받았을 때의 느낌은 ‘참 꼼꼼하면서 정갈한 분이시겠구나’였습니다. 책 전체의 뼈대와 같은 차례도 탄탄하고, 글을 풀어가는 느낌도 군더더기가 없어서 좋았습니다. 물론, 원고를 받고 책이 나오기까지 많은 분의 도움으로 수정 및 보완 작업을 거치긴 했지만요.</p>
-  <footer>제이펍 블로그 포스트 중에서 (//jpub.tistory.com/622)</footer>
-</blockquote>
-
-<p><strong><code class="language-plaintext highlighter-rouge">안내</code></strong> 매월 첫째 주 수요일에 열리는 <a href="//www.modernpug.org/">모던퍼그</a> 정기 모임에 책을 들고 참여하시면 저자 싸인해 드리겠습니다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/laravel-paper-book-published/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/">라라벨-루멘-PHP 날코딩 성능 비교</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2016-11-07
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>라라벨과 루멘, PHP 날코딩간의 성능 비교를 해 보신 분들이 없는 것 같아 직접 해 봤다. <strong>결론은 뻔하지만, PHP 날코딩이 가장 빠르고, 메모리 사용량도 적다. 프레임워크를 써야 이유는 다른 곳에 있으니, 이 실험 결과만 보고 오해나 곡해하지 마시기 바란다.</strong></p>
-
-<p><strong><code class="language-plaintext highlighter-rouge">주의</code></strong> 이 실험은 다른 PHP 프레임워크 또는 다른 플랫폼의 프레임워크와 라라벨 또는 루멘의 성능을 비교하기 위한 것이 아니다(다른 PHP 프레임워크와의 비교는 <a href="//taylorotwell.com/how-lumen-is-benchmarked/">“How Lumen Is Benchmarked”</a>를 참고하라). <strong>이 실험은 라라벨과 루멘의 기본적인 속도와 필요 리소스를 측정해 봄으로써, PHP 날코딩의 성능과 프레임워크가 제공하는 이점 간의 트레이드오프(trade-off)에 대한 의사 결정 포인트를 제공하기 위한 목적으로 수행하였다.</strong></p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/performance-comparison-between-laravel-lumen-homemade/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -438,7 +439,7 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">82</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
@@ -1090,7 +1091,7 @@
       </a>
     </span>
     
-    <span style="font-size: 210%">
+    <span style="font-size: 218%">
       <a href="/tags#인생철학">
         인생철학
       </a>
@@ -1170,22 +1171,22 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2021-02-03</small>
+          <a href="/learn-n-think/the-travelers-gift/">REVISIT 폰더씨의 위대한 하루</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2021-02-03</small>
+          <a href="/learn-n-think/dream-store/">달러구트 꿈 백화점</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2020-12-12</small>
           <a href="/learn-and-think/git-log-examples/">git log examples</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
-          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
-          <a href="/work-n-play/youtube/">근황</a>
         </h4>
       </li>
       

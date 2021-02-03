@@ -90,6 +90,137 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2018-11-20
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/query-last-record-in-one-to-many-relation/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <blockquote>
+  <p>고객 목록에 고객별 최근 주문 1건에 대한 요약 정보를 보여주세요.</p>
+</blockquote>
+
+<p>라는 요구사항이 있습니다.</p>
+
+<p>“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------------+           0..* +------------+
+|  Customer  | &lt;&gt;-----------&gt; |   Order    |
++------------+                +------------+
+</code></pre></div></div>
+
+<p>애플리케이션 레이어에서 구현한다면, ORM을 통해 구한 <code class="language-plaintext highlighter-rouge">Collection&lt;Customer&gt;</code>을 순회하면서, <code class="language-plaintext highlighter-rouge">Customer</code>객체의 멤버 필드인 <code class="language-plaintext highlighter-rouge">Collection&lt;Order&gt;</code>를 대상으로 최근 Order 객체만 필터링했거나, 적절한 순서로 정렬하여 뽑아 쓰기 쉽도록 했을겁니다. 요런 느낌으로요(검증 안된 Pseudo Code 입니다).</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Service Layer</span>
+<span class="k">public</span> <span class="k">function</span> <span class="n">listCustomers</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$customers</span><span class="o">-&gt;</span><span class="nf">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="kt">Customer</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$sorted</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="n">orders</span><span class="o">-&gt;</span><span class="nf">sortByDesc</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">values</span><span class="p">();</span>
+        <span class="nv">$customer</span><span class="o">-&gt;</span><span class="nf">setRelation</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">,</span> <span class="nv">$sorted</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$customer</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Controller/View 등</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$customers</span> <span class="k">as</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$lastOrder</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="n">orders</span><span class="o">-&gt;</span><span class="nf">first</span><span class="p">();</span>
+    <span class="nv">$lastOrder</span><span class="o">-&gt;</span><span class="n">order_number</span><span class="p">;</span> <span class="c1">// 최근 주문 번호   </span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>문제점들이 눈에 띕니다.</p>
+
+<ul>
+  <li>시간복잡도는 O(m x n)입니다.</li>
+  <li>CPU와 메모리를 혹사시킵니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Customer.orders: Collection&lt;Order&gt;</code>를 미리 로드하지 않았다면, N + 1 문제가 발생합니다.</li>
+  <li>이 외에도 제가 보지 못한 문제점들이 더 있을 겁니다…</li>
+</ul>
+
+<p>읽기 전용 쿼리이므로 ORM을 쓰지 않아도 됩니다. 싸고, 빠르고, 안전하게 SQL만으로 뽑아내는 방법을 찾아봤습니다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/query-last-record-in-one-to-many-relation/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/cheatsheet/vim-cheatsheet/">Vim cheatsheet</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2018-11-05
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#cheatsheet">
+                
+                    Cheatsheet
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/cheatsheet/vim-cheatsheet/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <script src="https://gist.github.com/appkr/526922293990c3440a8a18960ad26f8f.js"></script>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/php-object-copy/">PHP 객체의 복제 특성</a>
         </h2>
         <p class="box-meta">
@@ -365,127 +496,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/application-context-container/">라라벨 ApplicationContext 컨테이너 구현</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2018-07-09
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/application-context-container/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>사전에서 context(컨텍스트)를 찾아보면 어떤 사건이 발생했을 때의 주변 상황 정도로 설명하고 있습니다. 컴퓨터 소프트웨어에서도 컨텍스트 스위칭, 로그 컨텍스트, 애플리케이션 컨텍스트 등 컨텍스트라는 단어를 많이 사용합니다.</p>
-
-<p>라라벨은 IoC를 위한 Service Container<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>가 있으며, 여기에 어떤 데이터 타입이든 바인딩할 수 있고, 애플리케이션 실행 중에 아래처럼 꺼내 쓸 수 있습니다.</p>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$container</span> <span class="o">=</span> <span class="nf">app</span><span class="p">();</span>
-<span class="nv">$container</span><span class="o">-&gt;</span><span class="nf">bind</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="s1">'bar'</span><span class="p">;</span>
-<span class="p">});</span>
-<span class="nv">$container</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">);</span> <span class="c1">// 'bar'</span>
-</code></pre></div></div>
-
-<p>그런데, 아래와 같은 문제가 있죠<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. 작은 애플리케이션에서는 이렇게 쓴다고 전혀 문제없지만, 애플리케이션이 커지면 결국 개발자에게 큰 부담으로 다가옵니다.</p>
-
-<p><a href="/images/2018-07-09-img-01.png"><img src="/images/2018-07-09-img-01.png" alt="Strong Dependency" /></a></p>
-
-<p>이번 포스트에서는 라라벨 애플리케이션에서 애플리케이션 실행 시점의 주변 상황을 담아 놓고 필요할 때 꺼내 쓰기 위한 데이터 컨테이너를 구현했던 썰을 풀어보려합니다. <code class="language-plaintext highlighter-rouge">ApplicationContext</code>라 이름 지었고 Java 언어의 <code class="language-plaintext highlighter-rouge">ThreadLocal</code><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>과 비슷한 역할을 한다고 보면 됩니다. 주로 아래와 같은 상황에 유용하게 사용되기를 바라며 만들었어요.</p>
-
-<ul>
-  <li>프레임워크 영역(=main)의 데이터를 코어 영역(=app)으로 전달할 때</li>
-  <li>로깅 및 감사</li>
-  <li>프로세스간 컨텍스트 릴레이 등등 (e.g. Api -&gt; Queue, App -&gt; External, …)</li>
-</ul>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/application-context-container/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/php-filebeat-elk-log-tracking/">PHP Log Tracking with ELK & Filebeat part#2</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2018-06-30
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/php-filebeat-elk-log-tracking/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>이 슬라이드는 Modern PHP User Group 2018년 7월 정기 모임 발표 자료입니다.</p>
-
-<p><img src="/images/2018-06-30-img-01.png" alt="PHP Log Tracking with ELK &amp; Filebeat part#2" /></p>
-
-<div class="panel panel-default" style="width:100%; max-width: 600px; margin: 1em auto;">
-  <div class="panel-body text-center">
-    <a href="https://docs.google.com/presentation/d/1q3RWOF_EOHosMkefP9Uu5DJXcXP6gBE1atit7-pI8ts/edit?usp=sharing">
-      <i class="material-icons">open_in_browser</i>
-      브라우저에서 슬라이드 열기
-    </a>
-  </div>
-</div>
-
-      </div>
-
-      <footer class="box-footer">
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -542,7 +552,7 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">82</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
@@ -1194,7 +1204,7 @@
       </a>
     </span>
     
-    <span style="font-size: 210%">
+    <span style="font-size: 218%">
       <a href="/tags#인생철학">
         인생철학
       </a>
@@ -1274,22 +1284,22 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2021-02-03</small>
+          <a href="/learn-n-think/the-travelers-gift/">REVISIT 폰더씨의 위대한 하루</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2021-02-03</small>
+          <a href="/learn-n-think/dream-store/">달러구트 꿈 백화점</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2020-12-12</small>
           <a href="/learn-and-think/git-log-examples/">git log examples</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2020-05-05</small>
-          <a href="/learn-n-think/work-n-play/explorer-exploiter/">개척자와 개발자, 타입별로 어떤 팀에 배치해야 할까요?</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2019-07-21</small>
-          <a href="/work-n-play/youtube/">근황</a>
         </h4>
       </li>
       

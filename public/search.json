@@ -1,6 +1,22 @@
 [
   
   {
+    "title"    : "REVISIT 폰더씨의 위대한 하루",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/the-travelers-gift/",
+    "date"     : "2021-02-03"
+  },
+  
+  {
+    "title"    : "달러구트 꿈 백화점",
+    "category" : "learn-n-think",
+    "tags"     : "인생철학",
+    "url"      : "/learn-n-think/dream-store/",
+    "date"     : "2021-02-03"
+  },
+  
+  {
     "title"    : "git log examples",
     "category" : "learn-and-think",
     "tags"     : "Git, 개발자",

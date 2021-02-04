@@ -104,7 +104,7 @@ body {
 
 #app #main .box-body p, #app #main .box-body :not(blockquote p) {
     line-height: 2em;
-    margin: 0 0 2em;
+    /*margin: 0 0 2em;*/
 }
 
 #app #main img {

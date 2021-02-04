@@ -127,6 +127,7 @@ body {
     border: none;
     margin: 3em auto;
     max-width: 600px;
+    text-align: center;
 }
 
 #app .material-icons {

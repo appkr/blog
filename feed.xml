@@ -5,8 +5,8 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 13 Feb 2021 22:00:43 +0900</pubDate>
-    <lastBuildDate>Sat, 13 Feb 2021 22:00:43 +0900</lastBuildDate>
+    <pubDate>Sun, 14 Feb 2021 06:56:32 +0900</pubDate>
+    <lastBuildDate>Sun, 14 Feb 2021 06:56:32 +0900</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
     
       <item>
@@ -178,7 +178,8 @@
 
 &lt;h3 id=&quot;-토큰-유효성-검사&quot;&gt;④ 토큰 유효성 검사&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Laravel&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring&lt;/code&gt; 서비스는 클라이언트가 제출한 JWT의 유효성 검증을 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UAA&lt;/code&gt;로부터 공개키를 조회한다&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Laravel&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring&lt;/code&gt; 서비스는 클라이언트가 제출한 JWT의 유효성 검사에 필요한 공개키를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UAA&lt;/code&gt;로부터 조회한다&lt;/li&gt;
+  &lt;li&gt;받은 공개 키로 토큰 유효성을 검증하는 방법은 구현할 때 설명할 예정&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;s1&quot;&gt;'http://localhost:9999/oauth/token_key'&lt;/span&gt;
@@ -186,6 +187,18 @@
     &lt;span class=&quot;s2&quot;&gt;&quot;alg&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;SHA256withRSA&quot;&lt;/span&gt;,
     &lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;-----BEGIN PUBLIC KEY-----&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeOrJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiILwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j+wIDAQAB&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-----END PUBLIC KEY-----&quot;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;공개 키의 본문은 64글자 단위로 줄 바꿈해야 함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;-----BEGIN&lt;/span&gt; PUBLIC KEY-----
+64 bytes
+next 64 bytes
+..
+나머지
+&lt;span class=&quot;nt&quot;&gt;-----END&lt;/span&gt; PUBLIC KEY-----
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;2-oauth2-이해하기&quot;&gt;2 OAuth2 이해하기&lt;/h2&gt;

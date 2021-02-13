@@ -9,7 +9,7 @@ tags:
 - Laravel
 - MSA
 - Oauth2
-image: /images/2021-02-13-monolithic.svg
+image: /images/2021-02-13-monolithic.png
 ---
 
 모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증 부분입니다, 아래 그림처럼 말이죠. 

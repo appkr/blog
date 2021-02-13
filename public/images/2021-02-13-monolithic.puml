@@ -1,0 +1,28 @@
+@startuml
+
+[Client]
+
+interface UserAndAuthAPI #red
+interface SubDomain1API
+interface SubDomain2API
+
+package monolithic {
+  component [User] #red
+  component [SubDomain1]
+  component [SubDomain2]
+  database DB
+}
+
+Client -->UserAndAuthAPI
+Client --> SubDomain1API
+Client --> SubDomain2API
+
+UserAndAuthAPI -- User
+SubDomain1API -- SubDomain1
+SubDomain2API -- SubDomain2
+
+User --> DB
+SubDomain1 --> DB
+SubDomain2 --> DB
+
+@enduml

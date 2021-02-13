@@ -1,0 +1,36 @@
+@startuml
+
+[Client]
+
+interface UserAndAuthAPI #red
+interface SubDomain1API
+interface SubDomain2API
+
+package UAA {
+  component [User] #red
+  database UAADB
+}
+
+package Microservice1{
+  component [SubDomain1]
+  database MS1DB
+}
+
+package Microservice2{
+  component [SubDomain2]
+  database MS2DB
+}
+
+Client --> UserAndAuthAPI
+Client --> SubDomain1API
+Client --> SubDomain2API
+
+UserAndAuthAPI -- User
+SubDomain1API -- SubDomain1
+SubDomain2API -- SubDomain2
+
+User --> UAADB
+SubDomain1 --> MS1DB
+SubDomain2 --> MS2DB
+
+@enduml

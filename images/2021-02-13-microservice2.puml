@@ -1,0 +1,38 @@
+@startuml
+
+component [Client] <<curl>>
+
+interface UAAAPI <<9999>>
+interface ExampleAPI <<8000>>
+interface HelloAPI <<8080>>
+
+package UAA {
+  component [User]
+  database UAADB
+}
+
+package Laravel{
+  component [Example]
+  database ExampleDB
+}
+
+package Spring{
+  component [Hello]
+}
+
+Client --> UAAAPI #red: ①
+
+Client --> ExampleAPI #red: ②
+Client --> HelloAPI
+
+UAAAPI -- User
+ExampleAPI -- Example
+HelloAPI -- Hello
+
+Example -left-> HelloAPI #red: ③
+Example -left-> UAAAPI #red: ④
+
+User --> UAADB
+Example --> ExampleDB
+
+@enduml

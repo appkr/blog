@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "라라벨 마이크로서비스 예제",
+    "category" : "work-n-play",
+    "tags"     : "PHP, Laravel, MSA, Oauth2",
+    "url"      : "/work-n-play/laravel-msa-example/",
+    "date"     : "2021-02-13"
+  },
+  
+  {
     "title"    : "REVISIT 폰더씨의 위대한 하루",
     "category" : "learn-n-think",
     "tags"     : "인생철학",

@@ -12,7 +12,7 @@ tags:
 image: /images/2021-02-13-monolithic.png
 ---
 
-모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증 부분입니다, 아래 그림처럼 말이죠. 
+모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠. 
 
 ![](/images/2021-02-13-monolithic.svg)
 <div class="text-center"><small>모노리틱 서비스 구조</small></div>
@@ -151,16 +151,58 @@ $ curl -L -X GET 'http://localhost:9999/oauth/token_key'
 ```
 
 ## 2 OAuth2 이해하기
+
+OAuth2에 대한 지식이 부족하기도 하거니와, 방대한 주제라 블로그 포스트에서 설명하기는 어렵습니다. [thephpleague의 문서](https://oauth2.thephpleague.com/authorization-server/which-grant/)를 차분히 읽어보실 것을 권장합니다. 이 예제에서는 Password와 ClientCredentials 그랜트만 사용합니다. 
+
+**`Password` 그랜트는 1st Party 클라이언트**, 즉 내부에서 만든 클라이언트 애플리케이션을 위한 인증 방법입니다. Facebook을 예로 들어볼까요? Facebook 입장에서 공식 앱은 1st Party 클라이언트입니다. 페북 공식 앱을 사용하기 위해선 페북 사용자 아이디와 비밀번호를 제출해야하죠? 계정 정보가 정확하면 페북 인증 서버는 공식 앱에 `access_token`을 발급하고, 공식 앱은 발급 받은 토큰을 제출하면서 내 타임라인 데이터를 조회하고, 조회한 데이터를 뷰에 바인딩해서 렌더링할겁니다.
+
+**`ClientCredentials` 그랜트는 주로 1st Party 서버**를 위한 인증 방법입니다. 예를들어 페북 친구 서비스는 중요한 리소스라 아무나 조회하거나 변경해서는 안됩니다. 친구 추천 서버가 친구 서버와 통신할 때, 페북 인증 서버에서 받은 `access_token`으로 자격증명을 제출할 겁니다.
+
+어떤 그랜트를 쓰든 보호된 리소스를 요청할 때 `Authorization` 요청 헤더에 `access_token`을 제출해야 합니다, 이렇게 말이죠.
+
+```http
+GET /api/resources
+Authorization: bearer access_token
+```
+
 ## 3 JWT 이해하기
+
+OAuth2 인증 서버가 `access_token`으로 꼭 JWT를 제공할 필요는 없습니다. 만약 `Password` 또는 `ClientCredentials` 그랜트 인증 요청에 대해 난수 토큰을 제공했다 가정해보죠. 클라언트는 마이크로 서비스의 보호된 리소스를 사용하기위해 난수 토큰을 제출할테고, 요청을 받은 마이크로 서비스를 받은 난수 토큰의 유효성을 검증해야 하는데... 아마도 마이크로 서비스가 받은 난수 토큰이 유효한지 OAuth2 인증 서버에 물어봐야겠죠~ 뿐더러 `createdBy`, `updatedBy` 등의 필드 값을 채우려면 난수 토큰에 해당하는 사용자 정보도 조회하고 메모리에 보관하고 있어야 할 겁니다.
+
+JWT는 토큰 본문 안에 여러 가지 정보를 담은 `access_token`을 만들 수 있기 때문에 앞서 언급한 문제점들을 해결할 수 있습니다.
+
+[https://jwt.io](https://jwt.io)에서 1절에서 받은 `access_token`을 파싱해보겠습니다. 아래 그림의 왼쪽 입력 박스에 토큰을 붙여 넣으면, 오른쪽에 파싱된 정보가 나옵니다. 
+
+![](/images/2021-02-13-jwt.png)
+<div class="text-center"><small>JWT 파싱</small></div>
+
+### HEADER
+- `alg`: 알고리즘
+- `typ`: 토큰 타입 (jwt OR jwk)
+
+### PAYLOAD
+- `iat`: 발급일
+- `exp`: 만료일
+- `jti`: JWT ID
+- `user_name`, `scope`, `authorities`, `client_id`: 커스텀 클레임
+
+### SIGNATURE
+- 1절 "④ 토큰 유효성 검사"에서 조회한 공개 키를 입력 박스에 넣는다; 공개 키를 넣지 않아도 파싱은 된다
+- **공개 키를 넣어서 토큰 유효성이 검증되면 네트워크 구간에서 토큰이 변조되지 않았음을 확신할 수 있다**
+
+### JWT 라이브러리 설치
+```bash
+$ composer require firebase/php-jwt
+```
+
+전체 예제코드는 [https://github.com/appkr/laravel-msa-example](https://github.com/appkr/laravel-msa-example)에서 볼 수 있습니다.
+
+<p class="lead">2부에서 계속...</p> 
+<!--
 ## 4 구현
 ## 5 검증
 ## 6 요약
 
-전체 예제코드는 [https://github.com/appkr/laravel-msa-example](https://github.com/appkr/laravel-msa-example)에서 볼 수 있습니다.
-
-<p class="lead">To be continued...</p> 
-
-<!--
 {:.linenos}
 ```php
 ```

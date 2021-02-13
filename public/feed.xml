@@ -5,8 +5,8 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 13 Feb 2021 11:00:52 +0900</pubDate>
-    <lastBuildDate>Sat, 13 Feb 2021 11:00:52 +0900</lastBuildDate>
+    <pubDate>Sat, 13 Feb 2021 12:42:31 +0900</pubDate>
+    <lastBuildDate>Sat, 13 Feb 2021 12:42:31 +0900</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
     
       <item>
@@ -27,6 +27,7 @@
 &lt;h2 id=&quot;1-큰-그림&quot;&gt;1 큰 그림&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2021-02-13-microservice2.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 콤포넌트&lt;/small&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;각-콤포넌트-설명&quot;&gt;각 콤포넌트 설명&lt;/h3&gt;
 
@@ -107,6 +108,9 @@
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;hello-service &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./gradlew clean bootRun
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2021-02-13-microservice3.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 시퀀스&lt;/small&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;-로그인-및-토큰-획득&quot;&gt;① 로그인 및 토큰 획득&lt;/h3&gt;
 &lt;ul&gt;

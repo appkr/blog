@@ -28,6 +28,7 @@ image: /images/2021-02-13-monolithic.png
 ## 1 큰 그림
 
 ![](/images/2021-02-13-microservice2.svg)
+<div class="text-center"><small>마이크로 서비스 콤포넌트</small></div>
 
 ### 각 콤포넌트 설명
 
@@ -72,6 +73,9 @@ $ docker-compose -f docker/docker-compose.yml up
 ```bash
 $ cd hello-service && ./gradlew clean bootRun
 ```
+
+![](/images/2021-02-13-microservice3.svg)
+<div class="text-center"><small>마이크로 서비스 시퀀스</small></div>
 
 ### ① 로그인 및 토큰 획득
 - Client는 `web_app`/`changeit` 사용자 계정과 Password 그랜트를 이용하여 `UAA`로부터 JWT<small class="text-muted">Json Web Token</small>를 발급 받는다

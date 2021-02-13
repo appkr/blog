@@ -1,0 +1,44 @@
+@startuml
+
+actor Client as a
+participant UAA as b
+participant Laravel as c
+participant Spring as d
+
+== Password Grant ==
+
+autonumber
+a -> b: ① 로그인 및 토큰 획득
+activate a
+activate b
+return: JWT
+deactivate a
+
+autonumber
+a -> c: ② Example 리소스 요청 with JWT
+activate a
+activate c
+c -> b: ④ RS256 Public Key 요청
+activate b
+return: RS256 Public Key
+c -> c: ④ 토큰 유효성 검사
+return: Example 리소스
+deactivate a
+
+== ClientCredentials Grant ==
+
+autonumber
+c -> b: ③ 로그인 및 토큰 획득
+activate c
+activate b
+return JWT
+deactivate c
+
+autonumber
+c -> d: ③ Hello 리소스 요청 with JWT
+activate c
+activate d
+d -> d: ④ 토큰 유효성 검사
+return Hello 리소스
+
+@enduml

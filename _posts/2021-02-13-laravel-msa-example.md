@@ -140,7 +140,8 @@ curl -s -H 'Accept:application/json' -H "Authorization: bearer ${ACCESS_TOKEN}" 
 ```
 
 ### ④ 토큰 유효성 검사
-- `Laravel`, `Spring` 서비스는 클라이언트가 제출한 JWT의 유효성 검증을 위해 `UAA`로부터 공개키를 조회한다
+- `Laravel`, `Spring` 서비스는 클라이언트가 제출한 JWT의 유효성 검사에 필요한 공개키를 `UAA`로부터 조회한다
+- 받은 공개 키로 토큰 유효성을 검증하는 방법은 구현할 때 설명할 예정
 
 ```bash
 $ curl -L -X GET 'http://localhost:9999/oauth/token_key'
@@ -148,6 +149,17 @@ $ curl -L -X GET 'http://localhost:9999/oauth/token_key'
     "alg": "SHA256withRSA",
     "value": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeOrJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiILwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j+wIDAQAB\n-----END PUBLIC KEY-----"
 }
+```
+
+- 공개 키의 본문은 64글자 단위로 줄 바꿈해야 함
+
+```bash
+-----BEGIN PUBLIC KEY-----
+64 bytes
+next 64 bytes
+..
+나머지
+-----END PUBLIC KEY-----
 ```
 
 ## 2 OAuth2 이해하기

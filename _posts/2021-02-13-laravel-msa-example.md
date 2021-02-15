@@ -9,10 +9,10 @@ tags:
 - Laravel
 - MSA
 - Oauth2
-image: /images/2021-02-13-monolithic.png
+image: /images/2021-02-13-microservice.png
 ---
 
-모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠. 
+모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠. 
 
 ![](/images/2021-02-13-monolithic.svg)
 <div class="text-center"><small>모노리틱 서비스 구조</small></div>
@@ -207,15 +207,4 @@ JWT는 토큰 본문 안에 여러 가지 정보를 담은 `access_token`을 만
 $ composer require firebase/php-jwt
 ```
 
-전체 예제코드는 [https://github.com/appkr/laravel-msa-example](https://github.com/appkr/laravel-msa-example)에서 볼 수 있습니다.
-
-<p class="lead">2부에서 계속...</p> 
-<!--
-## 4 구현
-## 5 검증
-## 6 요약
-
-{:.linenos}
-```php
-```
--->
+전체 예제 코드는 [https://github.com/appkr/laravel-msa-example](https://github.com/appkr/laravel-msa-example)에서 볼 수 있습니다.

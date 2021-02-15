@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="모노리틱monolithic 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.모노리틱 서비스 구조마이크로 서비스 구조이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAAUser Account..."/>
+  <meta name="description" content="모노리틱monolithic 서비스 구조에서 마이크로 서비스 구조로 전환할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.모노리틱 서비스 구조마이크로 서비스 구조이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAAUser Account and..."/>
   <meta name="google-site-verification" content="K08vxFtrUM8f7VcQr6MPRFuI7ub1QHanrPFjsKKPV2s" />
   <meta name="naver-site-verification" content="1154945df3baf6485909c67f4dbc47a19988736d"/>
 
@@ -16,20 +16,20 @@
   <meta property="og:title" content="라라벨 마이크로서비스 예제"/>
   <meta property="og:type" content="Website"/>
   <meta property="og:author" content="appkr (juwonkim@me.com)"/>
-  <meta property="og:image" content="/images/2021-02-13-monolithic.png"/>
+  <meta property="og:image" content="/images/2021-02-13-microservice.png"/>
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content="라라벨 마이크로서비스 예제">
-  <meta itemprop="description" content="모노리틱monolithic 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.모노리틱 서비스 구조마이크로 서비스 구조이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAAUser Account...">
-  <meta itemprop="image" content="/images/2021-02-13-monolithic.png">
+  <meta itemprop="description" content="모노리틱monolithic 서비스 구조에서 마이크로 서비스 구조로 전환할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.모노리틱 서비스 구조마이크로 서비스 구조이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAAUser Account and...">
+  <meta itemprop="image" content="/images/2021-02-13-microservice.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content="라라벨 마이크로서비스 예제" />
-  <meta name="twitter:description" content="모노리틱monolithic 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.모노리틱 서비스 구조마이크로 서비스 구조이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAAUser Account..." />
-  <meta name="twitter:image" content="/images/2021-02-13-monolithic.png" />
+  <meta name="twitter:description" content="모노리틱monolithic 서비스 구조에서 마이크로 서비스 구조로 전환할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.모노리틱 서비스 구조마이크로 서비스 구조이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAAUser Account and..." />
+  <meta name="twitter:image" content="/images/2021-02-13-microservice.png" />
   <meta name="twitter:domain" content="blog.appkr.dev">
 
   <!-- Mobile and Rss -->
@@ -138,7 +138,7 @@
       </div>
 
       <div class="box-body">
-        <p>모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환을 고려할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.</p>
+        <p>모노리틱<small class="text-muted">monolithic</small> 서비스 구조에서 마이크로 서비스 구조로 전환할 때 가장 먼저 고려해야할 모듈은 사용자 인증입니다, 아래 그림처럼 말이죠.</p>
 
 <p><img src="/images/2021-02-13-monolithic.svg" alt="" /></p>
 <div class="text-center"><small>모노리틱 서비스 구조</small></div>
@@ -377,18 +377,7 @@ Authorization: bearer access_token
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>composer require firebase/php-jwt
 </code></pre></div></div>
 
-<p>전체 예제코드는 <a href="https://github.com/appkr/laravel-msa-example">https://github.com/appkr/laravel-msa-example</a>에서 볼 수 있습니다.</p>
-
-<p class="lead">2부에서 계속...</p>
-<!--
-## 4 구현
-## 5 검증
-## 6 요약
-
-{:.linenos}
-```php
-```
--->
+<p>전체 예제 코드는 <a href="https://github.com/appkr/laravel-msa-example">https://github.com/appkr/laravel-msa-example</a>에서 볼 수 있습니다.</p>
 
       </div>
 
@@ -435,9 +424,12 @@ Authorization: bearer access_token
         
 
         
-        <li class="next disabled">
-          <a href="#">
-            <span>Newer</span>
+        <li class="next">
+          <a href="/work-n-play/laravel-msa-example-part-2/">
+            <span class="pager-title">
+              라라벨 마이크로서비스 예제 2부
+            </span>
+            <span class="pager-title-sm">Newer</span>
             <span aria-hidden="true">
               <i class="material-icons">navigate_next</i>
             </span>
@@ -496,7 +488,7 @@ Authorization: bearer access_token
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">67</span>
+          <span class="badge">68</span>
         </a>
       </li>
       <li>
@@ -632,7 +624,7 @@ Authorization: bearer access_token
       </a>
     </span>
     
-    <span style="font-size: 146%">
+    <span style="font-size: 150%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -656,7 +648,7 @@ Authorization: bearer access_token
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#MSA">
         MSA
       </a>
@@ -674,13 +666,13 @@ Authorization: bearer access_token
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#Oauth2">
         Oauth2
       </a>
     </span>
     
-    <span style="font-size: 150%">
+    <span style="font-size: 154%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1234,6 +1226,13 @@ Authorization: bearer access_token
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2021-02-15</small>
+          <a href="/work-n-play/laravel-msa-example-part-2/">라라벨 마이크로서비스 예제 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-13</small>
           <a href="/work-n-play/laravel-msa-example/">라라벨 마이크로서비스 예제</a>
         </h4>
@@ -1243,13 +1242,6 @@ Authorization: bearer access_token
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-03</small>
           <a href="/learn-n-think/the-travelers-gift/">REVISIT 폰더씨의 위대한 하루</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2021-02-03</small>
-          <a href="/learn-n-think/dream-store/">달러구트 꿈 백화점</a>
         </h4>
       </li>
       

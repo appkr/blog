@@ -1,0 +1,70 @@
+@startuml
+
+package App {
+
+  class TokenAuthenticate {
+    - tokenParser: TokenParser
+    + handle(Request, Closure): Closure
+  }
+  
+}
+
+package Infra {
+
+  class TokenExtractor {
+    + {static} extract(Request): string
+  }
+  
+  class TokenParser {
+    + tokenKeyProvider: TokenKeyProvider
+    + parse(jwtString: string): Token
+  }
+  
+  class Token {
+    - tokenString: string
+    - userName: UUID
+    - exp: Carbon
+    - iat: Carbon
+    - jti: string
+  }
+  
+  interface TokenKeyProvider {
+    + getKey(): string
+  }
+  
+  class UaaTokenKeyProvider implements TokenKeyProvider {
+    - httpClient: GuzzleClient
+    - config: string[]
+  }
+  
+  class CacheableTokenKeyProvider implements TokenKeyProvider {
+    - delegate: TokenKeyProvider
+    - cacheRepository: CacheRepository
+  }
+  
+  class TokenKeyResponse {
+    - alg: string
+    - key: string
+  }
+
+}
+
+package JWT {
+
+  class JWT {
+    + decode(jwtString: string, publicKey: string, algorithm: string[]): stdClass
+  }
+
+}
+
+TokenAuthenticate --> TokenExtractor
+TokenAuthenticate --> TokenParser
+TokenParser --> TokenKeyProvider
+TokenParser --> Token
+Token --> JWT
+UaaTokenKeyProvider --> TokenKeyResponse
+CacheableTokenKeyProvider --> TokenKeyProvider
+CacheableTokenKeyProvider --> TokenKeyResponse
+
+
+@enduml

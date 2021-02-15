@@ -151,14 +151,17 @@ $ curl -L -X GET 'http://localhost:9999/oauth/token_key'
 }
 ```
 
-- 공개 키의 본문은 64글자 단위로 줄 바꿈해야 함
+- 공개 키의 본문은 64글자 단위로 줄 바꿈해야 함; 따라서 이런 모양으로 포맷팅해서 사용해야 함
 
 ```bash
 -----BEGIN PUBLIC KEY-----
-64 bytes
-next 64 bytes
-..
-나머지
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeO
+rJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7
+NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3
+HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp
+1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiI
+LwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j
++wIDAQAB
 -----END PUBLIC KEY-----
 ```
 
@@ -208,3 +211,5 @@ $ composer require firebase/php-jwt
 ```
 
 전체 예제 코드는 [https://github.com/appkr/laravel-msa-example](https://github.com/appkr/laravel-msa-example)에서 볼 수 있습니다.
+
+2부에서 이어집니다

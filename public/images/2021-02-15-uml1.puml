@@ -1,0 +1,51 @@
+@startuml
+
+package App {
+
+  class TokenAuthenticate {
+    - tokenParser: TokenParser
+    + handle(Request, Closure): Closure
+  }
+  
+}
+
+package Infra {
+
+  class TokenExtractor {
+    + {static} extract(Request): string
+  }
+  
+  class TokenParser {
+    + tokenKeyProvider: TokenKeyProvider
+    + parse(jwtString: string): Token
+  }
+  
+  class Token {
+    - tokenString: string
+    - userName: UUID
+    - exp: Carbon
+    - iat: Carbon
+    - jti: string
+  }
+  
+  interface TokenKeyProvider {
+    + getKey(): string
+  }
+  
+}
+
+package JWT {
+  
+  class JWT {
+    + decode(jwtString: string, publicKey: string, algorithm: string[]): stdClass
+  }
+  
+}
+
+TokenAuthenticate --> TokenExtractor
+TokenAuthenticate --> TokenParser
+TokenParser --> TokenKeyProvider
+TokenParser --> Token
+Token --> JWT
+
+@enduml

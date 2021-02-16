@@ -23,6 +23,12 @@ image: /images/2021-02-15-uml2.png
 <div class="spacer">• • •</div>
 <!--div class="text-center"><small>마이크로 서비스 콤포넌트</small></div-->
 
+<div class="panel panel-default" style="width:100%; margin: auto;">
+  <div class="panel-body text-center">
+     <a><i class="material-icons">info</i> 이하 본문에서 줄번호가 있는 코드 박스는 모바일 뷰에서 깨집니다. 데스크탑 브라우저를 권장합니다.</a>
+  </div>
+</div>
+
 ## 4 구현#1
 
 ### 4-1 프로젝트 셋업
@@ -34,7 +40,7 @@ $ php artisan --version
 # Laravel Framework 8.21.0
 ```
 
-예제 소스 코드에는 PHP7.3, fpm, Nginx, MySQL 등의 런타임 환경을 docker-compose로 구동하도록 했습니다.
+예제 소스 코드에는 PHP7.3, Nginx, MySQL 등의 런타임 환경을 docker-compose로 구동하도록 했습니다.
 ```bash
 $ tree docker
 # docker
@@ -91,7 +97,7 @@ $ tree docker
 
 전체 클러스터를 구동하고 작동 여부를 검증합니다.
 ```bash
-$ docker-composer -f docker/docker-compose.yml up -d
+$ docker-compose -f docker/docker-compose.yml up -d
 $ open http://localhost:8000
 ```
 
@@ -101,7 +107,8 @@ UAA는 별도로 작동시키고 작동을 검증합니다.
 $ wget https://github.com/appkr/msa-starter/raw/master/jhipster-uaa.zip \
   && unzip jhipster-uaa.zip 
   && cd jhipster-uaa
-# UAA가 중지되면 구동할 때마다 실행 
+
+# 구동할 때마다 실행; 중지하려면 Ctrl + c
 $ ./gradlew clean bootRun
 $ curl -s http://localhost:9999/management/health
 # { "status" : "UP" }
@@ -242,7 +249,7 @@ class TokenAuthenticate
 - `28` line: 클라이언트가 토큰을 제출하지 않았다면, 예외가 발생한다
 - `30` line: `TokenParser::parse` 메서드는 JWT 토큰을 받아서 파싱하고 `Token`모델을 반환하는 역할을 한다 
 - `32` line: 이상의 과정에서 `TokenException`이 발생할 수 있으며, 이때는 사용자에게 4xx 응답코드와 예외 메시지를 응답한다
-- `40` line: 이상의 과정이 순조롭게 진행되었다면, UserResolver 클로저를 등록한다; `43`줄을 보면 파싱된 토큰에서 `userName:UUIDInterface`을 조회하고 응답하는 것을 볼 수 있다
+- `40` line: 이상의 과정이 순조롭게 진행되었다면, UserResolver 클로저를 등록한다; `43`줄을 보면 파싱된 토큰에서 `userName: UUIDInterface` 클레임 값을 조회하고 사용하는 모습을 볼 수 있다
 
 ```php
 <?php // routes/api.php
@@ -346,14 +353,14 @@ class TokenParser
 ```
 
 - `15` line: `TokenKeyProvider` 주입한다
-- `22` line: 토큰을 파싱 및 객체 생성 책임을 `Token` 클래스에 위임함; 원본 토큰 문자열과 `TokenKeyProvider`을 인자로 전달한다
+- `22` line: 토큰을 파싱 및 객체 생성 책임을 `Token` 클래스에 위임함; 원본 토큰 문자열과 `TokenKeyProvider`로 조회한 공개키를 인자로 전달한다
 - `26-34` line: `firebase/php-jwt` 패키지의 `\Firebase\JWT\JWT::decode` 메서드에서 던진 예외를 `TokenException`으로 치환한다
 
 예외|설명
 ---|---
 `SignatureInvalidException`|공개 키가 유효하지 않을 때
 `BeforeValidException`|`iat`(Issued at) 값보다 현재 시각이 과거일 때
-`ExpiredException`|`iat`(Expiration time) 값보다 현재 시각이 미래일 때
+`ExpiredException`|`exp`(Expiration time) 값보다 현재 시각이 미래일 때
 `UnexpectedValueException`|토큰이 변조되었거나 유효하지 않을 때
 
 현재까지의 구현을 클래스 다이어그램으로 살펴볼까요?
@@ -414,7 +421,7 @@ class UaaTokenKeyProvider implements TokenKeyProvider
 
 ### 5-5 OAuth2ServiceProvider
 
-런타임에 TokenParser, TokenKeyProvider 등의 객체를 정상적으로 주입하기 위해서는 서비스 프로바이더에 객체 조립 공식을 등록해야 합니다.
+런타임에 `TokenParser`, `TokenKeyProvider` 등의 객체를 정상적으로 주입하기 위해서는 서비스 프로바이더에 객체 조립 공식을 등록해야 합니다.
 
 {:.linenos}
 ```php
@@ -480,12 +487,12 @@ X-RateLimit-Limit: 60
 X-RateLimit-Remaining: 59
 Access-Control-Allow-Origin: *
 
-{"data":[{"id":1,"title":"\uc774\ubb38\uc138 5\uc9d1","created_at":"2021-02-05T02:18:46.000000Z","updated_at":"2021-02-05T02:18:46.000000Z","created_by":"d593f9ef-d089-44fe-abe7-05c30219bb4c","updated_by":"d593f9ef-d089-44fe-abe7-05c30219bb4c"},"page":{"size":10,"totalElements":4,"totalPages":1,"number":1}}
+{"data":[{"id":1,"title":"\uc774\ubb38\uc138 5\uc9d1","created_at":"2021-02-05T02:18:46.000000Z","updated_at":"2021-02-05T02:18:46.000000Z","created_by":"d593f9ef-d089-44fe-abe7-05c30219bb4c","updated_by":"d593f9ef-d089-44fe-abe7-05c30219bb4c"},"page":{"size":10,"totalElements":1,"totalPages":1,"number":1}}
 ```
 
 ### 5-5 CacheableTokenKeyProvider
 
-현재까지 구현은 공개 키가 필요할 때마다 매번 UAA에 HTTP 요청을 해야 합니다. 한번 받은 공개 키는 24시간 동안 캐시에 저장하고 꺼내쓸 수 있도록 구현했습니다.
+현재까지 구현은 공개 키가 필요할 때마다 매번 UAA에 HTTP 요청을 해야 합니다. 한번 받은 공개 키는 24시간 동안 캐시에 저장하고 꺼내쓸 수 있도록 구현을 변경했습니다.
 
 {:.linenos}
 ```php
@@ -531,7 +538,7 @@ class CacheableTokenKeyProvider implements TokenKeyProvider
 }
 ```
 
-- `32` line: `$delegate: UaaTokenKeyProvider`로부터 받은 응답을 24시간 동안 `oauth2.token_key`라고 캐시 키의 값으로 저장한다 
+- `32` line: `$delegate: UaaTokenKeyProvider`로부터 받은 응답을 24시간 동안 `oauth2.token_key`라는 캐시 키의 값으로 저장한다 
 - `36` line: `$delegate: UaaTokenKeyProvider`에게 위임한다; 데코레이터 패턴을 적용함
 
 데코레이터가 정상 작동할 수 있도록 서비스 프로바이더에 객체 조립 공식을 변경 등록해야 합니다.
@@ -574,12 +581,12 @@ Password 그랜트가 완성됐습니다. 클래스 다이어그램을 살펴볼
 
 ![](/images/2021-02-15-uml2.svg)
 <div class="text-center"><small>UAA 연동: HttpMiddleware를 이용한 Password 그랜트</small></div>
-
+<!--
 ## 6 구현#3 ClientCredentials 그랜트 
 
 ### 6-1 TokenProvider 구현
 TBD
 
 ## 7 요약
-
+-->
 3부에서 이어집니다

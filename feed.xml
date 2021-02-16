@@ -5,8 +5,8 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 15 Feb 2021 16:08:36 +0900</pubDate>
-    <lastBuildDate>Mon, 15 Feb 2021 16:08:36 +0900</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2021 10:01:17 +0900</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2021 10:01:17 +0900</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
     
       <item>
@@ -22,6 +22,12 @@
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
 &lt;!--div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 콤포넌트&lt;/small&gt;&lt;/div--&gt;
 
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; margin: auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+     &lt;a&gt;&lt;i class=&quot;material-icons&quot;&gt;info&lt;/i&gt; 이하 본문에서 줄번호가 있는 코드 박스는 모바일 뷰에서 깨집니다. 데스크탑 브라우저를 권장합니다.&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
 &lt;h2 id=&quot;4-구현1&quot;&gt;4 구현#1&lt;/h2&gt;
 
 &lt;h3 id=&quot;4-1-프로젝트-셋업&quot;&gt;4-1 프로젝트 셋업&lt;/h3&gt;
@@ -32,7 +38,7 @@
 &lt;span class=&quot;c&quot;&gt;# Laravel Framework 8.21.0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;예제 소스 코드에는 PHP7.3, fpm, Nginx, MySQL 등의 런타임 환경을 docker-compose로 구동하도록 했습니다.&lt;/p&gt;
+&lt;p&gt;예제 소스 코드에는 PHP7.3, Nginx, MySQL 등의 런타임 환경을 docker-compose로 구동하도록 했습니다.&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tree docker
 &lt;span class=&quot;c&quot;&gt;# docker&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;# ├── custom-php.ini      # xdebug, opcache 등 설정&lt;/span&gt;
@@ -86,7 +92,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;전체 클러스터를 구동하고 작동 여부를 검증합니다.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-composer &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; docker/docker-compose.yml up &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; docker/docker-compose.yml up &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;open http://localhost:8000
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -95,7 +101,8 @@
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://github.com/appkr/msa-starter/raw/master/jhipster-uaa.zip &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; unzip jhipster-uaa.zip 
   &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jhipster-uaa
-&lt;span class=&quot;c&quot;&gt;# UAA가 중지되면 구동할 때마다 실행 &lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# 구동할 때마다 실행; 중지하려면 Ctrl + c&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./gradlew clean bootRun
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; http://localhost:9999/management/health
 &lt;span class=&quot;c&quot;&gt;# { &quot;status&quot; : &quot;UP&quot; }&lt;/span&gt;
@@ -230,7 +237,7 @@
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;28&lt;/code&gt; line: 클라이언트가 토큰을 제출하지 않았다면, 예외가 발생한다&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;30&lt;/code&gt; line: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenParser::parse&lt;/code&gt; 메서드는 JWT 토큰을 받아서 파싱하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Token&lt;/code&gt;모델을 반환하는 역할을 한다&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;32&lt;/code&gt; line: 이상의 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenException&lt;/code&gt;이 발생할 수 있으며, 이때는 사용자에게 4xx 응답코드와 예외 메시지를 응답한다&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;40&lt;/code&gt; line: 이상의 과정이 순조롭게 진행되었다면, UserResolver 클로저를 등록한다; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;43&lt;/code&gt;줄을 보면 파싱된 토큰에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName:UUIDInterface&lt;/code&gt;을 조회하고 응답하는 것을 볼 수 있다&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;40&lt;/code&gt; line: 이상의 과정이 순조롭게 진행되었다면, UserResolver 클로저를 등록한다; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;43&lt;/code&gt;줄을 보면 파싱된 토큰에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userName: UUIDInterface&lt;/code&gt; 클레임 값을 조회하고 사용하는 모습을 볼 수 있다&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// routes/api.php&lt;/span&gt;
@@ -331,7 +338,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;15&lt;/code&gt; line: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenKeyProvider&lt;/code&gt; 주입한다&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;22&lt;/code&gt; line: 토큰을 파싱 및 객체 생성 책임을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Token&lt;/code&gt; 클래스에 위임함; 원본 토큰 문자열과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenKeyProvider&lt;/code&gt;을 인자로 전달한다&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;22&lt;/code&gt; line: 토큰을 파싱 및 객체 생성 책임을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Token&lt;/code&gt; 클래스에 위임함; 원본 토큰 문자열과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenKeyProvider&lt;/code&gt;로 조회한 공개키를 인자로 전달한다&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;26-34&lt;/code&gt; line: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;firebase/php-jwt&lt;/code&gt; 패키지의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\Firebase\JWT\JWT::decode&lt;/code&gt; 메서드에서 던진 예외를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenException&lt;/code&gt;으로 치환한다&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -353,7 +360,7 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExpiredException&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iat&lt;/code&gt;(Expiration time) 값보다 현재 시각이 미래일 때&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exp&lt;/code&gt;(Expiration time) 값보다 현재 시각이 미래일 때&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnexpectedValueException&lt;/code&gt;&lt;/td&gt;
@@ -420,7 +427,7 @@
 
 &lt;h3 id=&quot;5-5-oauth2serviceprovider&quot;&gt;5-5 OAuth2ServiceProvider&lt;/h3&gt;
 
-&lt;p&gt;런타임에 TokenParser, TokenKeyProvider 등의 객체를 정상적으로 주입하기 위해서는 서비스 프로바이더에 객체 조립 공식을 등록해야 합니다.&lt;/p&gt;
+&lt;p&gt;런타임에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenParser&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TokenKeyProvider&lt;/code&gt; 등의 객체를 정상적으로 주입하기 위해서는 서비스 프로바이더에 객체 조립 공식을 등록해야 합니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php linenos highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// app/Providers/OAuth2ServiceProvider.php&lt;/span&gt;
 
@@ -484,12 +491,12 @@
 &lt;span class=&quot;na&quot;&gt;X-RateLimit-Remaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;59&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;Access-Control-Allow-Origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;
 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c774&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;bb38&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c138 5&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c9d1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;page&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalElements&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalPages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c774&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;bb38&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c138 5&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c9d1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;page&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalElements&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalPages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;5-5-cacheabletokenkeyprovider&quot;&gt;5-5 CacheableTokenKeyProvider&lt;/h3&gt;
 
-&lt;p&gt;현재까지 구현은 공개 키가 필요할 때마다 매번 UAA에 HTTP 요청을 해야 합니다. 한번 받은 공개 키는 24시간 동안 캐시에 저장하고 꺼내쓸 수 있도록 구현했습니다.&lt;/p&gt;
+&lt;p&gt;현재까지 구현은 공개 키가 필요할 때마다 매번 UAA에 HTTP 요청을 해야 합니다. 한번 받은 공개 키는 24시간 동안 캐시에 저장하고 꺼내쓸 수 있도록 구현을 변경했습니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-php linenos highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// src/Infra/JhipsterUaa/CacheableTokenKeyProvider.php&lt;/span&gt;
 
@@ -534,7 +541,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;32&lt;/code&gt; line: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$delegate: UaaTokenKeyProvider&lt;/code&gt;로부터 받은 응답을 24시간 동안 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oauth2.token_key&lt;/code&gt;라고 캐시 키의 값으로 저장한다&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;32&lt;/code&gt; line: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$delegate: UaaTokenKeyProvider&lt;/code&gt;로부터 받은 응답을 24시간 동안 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oauth2.token_key&lt;/code&gt;라는 캐시 키의 값으로 저장한다&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;36&lt;/code&gt; line: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$delegate: UaaTokenKeyProvider&lt;/code&gt;에게 위임한다; 데코레이터 패턴을 적용함&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -578,14 +585,14 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/2021-02-15-uml2.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;UAA 연동: HttpMiddleware를 이용한 Password 그랜트&lt;/small&gt;&lt;/div&gt;
+&lt;!--
+## 6 구현#3 ClientCredentials 그랜트 
 
-&lt;h2 id=&quot;6-구현3-clientcredentials-그랜트&quot;&gt;6 구현#3 ClientCredentials 그랜트&lt;/h2&gt;
+### 6-1 TokenProvider 구현
+TBD
 
-&lt;h3 id=&quot;6-1-tokenprovider-구현&quot;&gt;6-1 TokenProvider 구현&lt;/h3&gt;
-&lt;p&gt;TBD&lt;/p&gt;
-
-&lt;h2 id=&quot;7-요약&quot;&gt;7 요약&lt;/h2&gt;
-
+## 7 요약
+--&gt;
 &lt;p&gt;3부에서 이어집니다&lt;/p&gt;
 </description>
         <pubDate>Mon, 15 Feb 2021 00:00:00 +0900</pubDate>
@@ -615,7 +622,7 @@
 &lt;p&gt;&lt;img src=&quot;/images/2021-02-13-microservice.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 구조&lt;/small&gt;&lt;/div&gt;
 
-&lt;p&gt;이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAA&lt;small class=&quot;text-muted&quot;&gt;User Account and Authentication&lt;/small&gt; 서버와 연동하는 예제를 설명합니다. 기존의 모노리틱 서비스를 마이크로 서비스로 이전하는 방법은 설명하지 않습니다. 그리고, UAA는 &lt;a href=&quot;https://www.jhipster.tech/using-uaa/&quot;&gt;JhipsterUaa&lt;/a&gt;를 이용합니다; &lt;a href=&quot;https://www.keycloak.org/&quot;&gt;Keycloak&lt;/a&gt;, &lt;a href=&quot;https://laravel.com/docs/8.x/passport&quot;&gt;Laravel Passport&lt;/a&gt; 등의 OAuth2 서비스를 사용해도 유사한 방법으로 연동할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAA&lt;small class=&quot;text-muted&quot;&gt;User Account and Authentication&lt;/small&gt; 서버와 연동하는 사례를 설명합니다. 기존의 모노리틱 서비스를 마이크로 서비스로 이전하는 방법은 설명하지 않습니다. 그리고, UAA는 &lt;a href=&quot;https://www.jhipster.tech/using-uaa/&quot;&gt;JhipsterUAA&lt;/a&gt;를 이용합니다; &lt;a href=&quot;https://www.keycloak.org/&quot;&gt;Keycloak&lt;/a&gt;, &lt;a href=&quot;https://laravel.com/docs/8.x/passport&quot;&gt;Laravel Passport&lt;/a&gt; 등의 OAuth2 서비스를 사용해도 유사한 방법으로 연동할 수 있습니다.&lt;/p&gt;
 
 &lt;!--more--&gt;
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
@@ -625,19 +632,27 @@
 &lt;p&gt;&lt;img src=&quot;/images/2021-02-13-microservice2.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 콤포넌트&lt;/small&gt;&lt;/div&gt;
 
+&lt;h3 id=&quot;용어&quot;&gt;용어&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인증 서버: OAuth2 서버와 같은 의미로 사용함&lt;/li&gt;
+  &lt;li&gt;리소스 서버: 마이크로 서비스와 같은 의미로 사용함&lt;/li&gt;
+  &lt;li&gt;리소스: REST 컨텍스트에서 도메인을 표현하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;각-콤포넌트-설명&quot;&gt;각 콤포넌트 설명&lt;/h3&gt;
 
 &lt;h4 id=&quot;client&quot;&gt;Client&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;curl 또는 postman&lt;/li&gt;
+  &lt;li&gt;curl, postman, 웹/모바일 애플리케이션, 서버의 HTTP Client(e.g. Guzzle, RestTemplate)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;uaa&quot;&gt;UAA&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.jhipster.tech/using-uaa/&quot;&gt;JhipsterUaa&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.jhipster.tech/using-uaa/&quot;&gt;JhipsterUAA&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Port 9999&lt;/li&gt;
-  &lt;li&gt;단순함을 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authority&lt;/code&gt; 등의 서브 도메인은 그림에서 생략함&lt;/li&gt;
-  &lt;li&gt;단순함을 위해 인증을 위한 엔드포인트외의 리소스 엔드포인트는 표에서 생략함&lt;/li&gt;
+  &lt;li&gt;단순함을 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authority&lt;/code&gt; 등의 서브 도메인은 위 그림에서 생략함&lt;/li&gt;
+  &lt;li&gt;단순함을 위해 인증을 위한 엔드포인트 外의 리소스 엔드포인트는 아래 표에서 생략함&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;table&gt;
@@ -681,6 +696,8 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
+&lt;p&gt;JhipsterUAA는 아래 명령으로 설치하고 구동할 수 있습니다.&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://github.com/appkr/msa-starter/raw/master/jhipster-uaa.zip
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;unzip jhipster-uaa.zip &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jhipster-uaa &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./gradlew clean bootRun
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -692,7 +709,10 @@
   &lt;li&gt;Port 8000&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;예제 소스코드를 복제했다면 아래 명령으로 Laravel 서비스를 구동할 수 있습니다&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; docker/docker-compose.yml up
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;open http://localhost:8000
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;spring&quot;&gt;Spring&lt;/h4&gt;
@@ -702,32 +722,36 @@
   &lt;li&gt;Port 8080&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;예제 소스코드를 복제했다면 아래 명령으로 Spring 서비스를 구동할 수 있습니다.&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;hello-service &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./gradlew clean bootRun
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;큰 그림을 요약하고, 전체 작동 플로우를 정리하면 아래 시퀀스 다이어그램과 같습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2021-02-13-microservice3.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 시퀀스&lt;/small&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;-로그인-및-토큰-획득&quot;&gt;① 로그인 및 토큰 획득&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Client는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web_app&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;changeit&lt;/code&gt; 사용자 계정과 Password 그랜트를 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UAA&lt;/code&gt;로부터 JWT&lt;small class=&quot;text-muted&quot;&gt;Json Web Token&lt;/small&gt;를 발급 받는다
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web_app&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;changeit&lt;/code&gt; 사용자 계정과 Password 그랜트를 이용하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UAA&lt;/code&gt;로부터 JWT&lt;small class=&quot;text-muted&quot;&gt;Json Web Token&lt;/small&gt;를 발급 받는다
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ RESPONSE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;s1&quot;&gt;'http://localhost:9999/oauth/token'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Content-Type: application/x-www-form-urlencoded'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept: application/json'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Authorization: Basic  d2ViX2FwcDpjaGFuZ2VpdA=='&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'grant_type=password'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'username=user'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'password=user'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'scope=openid'&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Content-Type: application/x-www-form-urlencoded'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept: application/json'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Authorization: Basic  d2ViX2FwcDpjaGFuZ2VpdA=='&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'grant_type=password'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'username=user'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'password=user'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--data-urlencode&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'scope=openid'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImV4cCI6MTYxMjQ5ODAyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiREJmM0g0NHRlVFhOVmNEWjBBeWJTQUY3dFBZIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.Y4py8MMHJdMwbXxpocdQPrMEevRnl2nkEUuXw6UeRmtB7qWDFADmzO-xQz8Hkvmz2LT0U4gPSHvRSOEWGuZ_Nack8MRU7ICWGRl53WZyiPTzt7ucLcO0w1eOBUPFxsHQHffyZ4XzrDJWlqWadhzlnxw9oJUcvi8aAKkBtBSVOCslxYMkBNzs7vjxbLHNQIAjZbb1YetBzpAQOq8RJCdSQNDcMSZ9eZG705ucaFBv3LgDf5sxK47Yqqqk3oCMDdyMXB2MW2bsFivpf6BZd3ydfHrCgcrU5y2Vl2g6fG6PsADkaJ4Fv31UdVj0QG-kX8fgj9GL7MjZUyI-bWruiLNTgw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bearer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;refresh_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImF0aSI6IkRCZjNINDR0ZVRYTlZjRFowQXliU0FGN3RQWSIsImV4cCI6MTYxMzEwMjUyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoicDhWQVB5aWhHU3NGYXlma1pMWnd1MURLSHBrIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.gD4uoRwk_kbX19uUBxnUdvmu3KDZBrTLWeY0h6lj-UVvhKaUF7BNH1AzwSfX10y-tYjdfElk7_m7x6Vo9gG93HMUPtnSQPPNknI6KcE4sFRRs-Wk15o74S7ukiSjvdtq9Bx2u7t6EEd3e1UHHcRYLFwxJUND53YRM7VR38QWhJgxGW6aA6EK4Rz7fgqFaylK8xWlFjhYoFl3w_VBErqDZWyprKRl9IDDrd6xCo-5RIauuLGGvMTim9IhedaSwTDN7fJz68tyJinfejIjEVjnw90MPCAKzwYY2As30i7AdIPzUrvJPHSjhlZnZ9lSU6_BufQUw1caBQe-vSbtXx0pMw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;299&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;scope&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;openid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;iat&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1612497723&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;jti&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DBf3H44teTXNVcDZ0AybSAF7tPY&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImV4cCI6MTYxMjQ5ODAyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiREJmM0g0NHRlVFhOVmNEWjBBeWJTQUY3dFBZIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.Y4py8MMHJdMwbXxpocdQPrMEevRnl2nkEUuXw6UeRmtB7qWDFADmzO-xQz8Hkvmz2LT0U4gPSHvRSOEWGuZ_Nack8MRU7ICWGRl53WZyiPTzt7ucLcO0w1eOBUPFxsHQHffyZ4XzrDJWlqWadhzlnxw9oJUcvi8aAKkBtBSVOCslxYMkBNzs7vjxbLHNQIAjZbb1YetBzpAQOq8RJCdSQNDcMSZ9eZG705ucaFBv3LgDf5sxK47Yqqqk3oCMDdyMXB2MW2bsFivpf6BZd3ydfHrCgcrU5y2Vl2g6fG6PsADkaJ4Fv31UdVj0QG-kX8fgj9GL7MjZUyI-bWruiLNTgw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bearer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;refresh_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImF0aSI6IkRCZjNINDR0ZVRYTlZjRFowQXliU0FGN3RQWSIsImV4cCI6MTYxMzEwMjUyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoicDhWQVB5aWhHU3NGYXlma1pMWnd1MURLSHBrIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.gD4uoRwk_kbX19uUBxnUdvmu3KDZBrTLWeY0h6lj-UVvhKaUF7BNH1AzwSfX10y-tYjdfElk7_m7x6Vo9gG93HMUPtnSQPPNknI6KcE4sFRRs-Wk15o74S7ukiSjvdtq9Bx2u7t6EEd3e1UHHcRYLFwxJUND53YRM7VR38QWhJgxGW6aA6EK4Rz7fgqFaylK8xWlFjhYoFl3w_VBErqDZWyprKRl9IDDrd6xCo-5RIauuLGGvMTim9IhedaSwTDN7fJz68tyJinfejIjEVjnw90MPCAKzwYY2As30i7AdIPzUrvJPHSjhlZnZ9lSU6_BufQUw1caBQe-vSbtXx0pMw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;299&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;scope&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;openid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;iat&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1612497723&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;jti&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DBf3H44teTXNVcDZ0AybSAF7tPY&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
@@ -740,22 +764,22 @@
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept:application/json'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: bearer &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ACCESS_TOKEN&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; http://localhost:8000/api/examples
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;이문세 5집&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;이문세 5집&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_at&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2021-02-05T02:18:46.000000Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;created_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;updated_by&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;d593f9ef-d089-44fe-abe7-05c30219bb4c&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;page&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalElements&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalPages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;page&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalElements&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalPages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
@@ -767,7 +791,7 @@
   &lt;li&gt;발급 받은 JWT로 HelloAPI 리소스를 조회한다&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept:application/json'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: bearer &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ACCESS_TOKEN&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; http://localhost:8000/api/hello
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept:application/json'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: bearer &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ACCESS_TOKEN&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; http://localhost:8000/api/hello
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello from non-laravel service&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -779,11 +803,12 @@
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; GET &lt;span class=&quot;s1&quot;&gt;'http://localhost:9999/oauth/token_key'&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;alg&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;SHA256withRSA&quot;&lt;/span&gt;,
-    &lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;-----BEGIN PUBLIC KEY-----&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeOrJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiILwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j+wIDAQAB&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-----END PUBLIC KEY-----&quot;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;alg&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SHA256withRSA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-----BEGIN PUBLIC KEY-----&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeOrJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiILwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j+wIDAQAB&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-----END PUBLIC KEY-----&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;공개 키의 본문은 64글자 단위로 줄 바꿈해야 함; 따라서 이런 모양으로 포맷팅해서 사용해야 함&lt;/li&gt;
@@ -802,25 +827,25 @@ LwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j
 
 &lt;h2 id=&quot;2-oauth2-이해하기&quot;&gt;2 OAuth2 이해하기&lt;/h2&gt;
 
-&lt;p&gt;OAuth2에 대한 지식이 부족하기도 하거니와, 방대한 주제라 블로그 포스트에서 설명하기는 어렵습니다. &lt;a href=&quot;https://oauth2.thephpleague.com/authorization-server/which-grant/&quot;&gt;thephpleague의 문서&lt;/a&gt;를 차분히 읽어보실 것을 권장합니다. 이 예제에서는 Password와 ClientCredentials 그랜트만 사용합니다.&lt;/p&gt;
+&lt;p&gt;OAuth2에 대한 지식이 부족하기도 하거니와, 방대한 주제라 블로그 포스트에서 설명하기는 어렵습니다. &lt;a href=&quot;https://oauth2.thephpleague.com/authorization-server/which-grant/&quot;&gt;thephpleague의 문서&lt;/a&gt;를 차분히 읽어보실 것을 권장합니다. 이 예제에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Password&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientCredentials&lt;/code&gt; 그랜트만 사용합니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Password&lt;/code&gt; 그랜트는 1st Party 클라이언트&lt;/strong&gt;, 즉 내부에서 만든 클라이언트 애플리케이션을 위한 인증 방법입니다. Facebook을 예로 들어볼까요? Facebook 입장에서 공식 앱은 1st Party 클라이언트입니다. 페북 공식 앱을 사용하기 위해선 페북 사용자 아이디와 비밀번호를 제출해야하죠? 계정 정보가 정확하면 페북 인증 서버는 공식 앱에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;을 발급하고, 공식 앱은 발급 받은 토큰을 제출하면서 내 타임라인 데이터를 조회하고, 조회한 데이터를 뷰에 바인딩해서 렌더링할겁니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientCredentials&lt;/code&gt; 그랜트는 주로 1st Party 서버&lt;/strong&gt;를 위한 인증 방법입니다. 예를들어 페북 친구 서비스는 중요한 리소스라 아무나 조회하거나 변경해서는 안됩니다. 친구 추천 서버가 친구 서버와 통신할 때, 페북 인증 서버에서 받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;으로 자격증명을 제출할 겁니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientCredentials&lt;/code&gt; 그랜트는 주로 1st Party 서버&lt;/strong&gt;를 위한 인증 방법입니다. 예를들어 페북 친구 서비스는 중요한 리소스라 아무나 조회하거나 변경해서는 안됩니다. 친구 추천 서버가 친구 서버와 통신할 때, 페북 인증 서버에서 받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;으로 자격증명을 제출하고 친구 목록을 얻어올 겁니다.&lt;/p&gt;
 
 &lt;p&gt;어떤 그랜트를 쓰든 보호된 리소스를 요청할 때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; 요청 헤더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;을 제출해야 합니다, 이렇게 말이죠.&lt;/p&gt;
 
-&lt;div class=&quot;language-http highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;GET /api/resources
+&lt;div class=&quot;language-http highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;GET /api/protected-resources
 Authorization: bearer access_token
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;3-jwt-이해하기&quot;&gt;3 JWT 이해하기&lt;/h2&gt;
 
-&lt;p&gt;OAuth2 인증 서버가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;으로 꼭 JWT를 제공할 필요는 없습니다. 만약 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Password&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientCredentials&lt;/code&gt; 그랜트 인증 요청에 대해 난수 토큰을 제공했다 가정해보죠. 클라언트는 마이크로 서비스의 보호된 리소스를 사용하기위해 난수 토큰을 제출할테고, 요청을 받은 마이크로 서비스를 받은 난수 토큰의 유효성을 검증해야 하는데… 아마도 마이크로 서비스가 받은 난수 토큰이 유효한지 OAuth2 인증 서버에 물어봐야겠죠~ 뿐더러 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createdBy&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updatedBy&lt;/code&gt; 등의 필드 값을 채우려면 난수 토큰에 해당하는 사용자 정보도 조회하고 메모리에 보관하고 있어야 할 겁니다.&lt;/p&gt;
+&lt;p&gt;OAuth2 인증 서버는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;으로 JWT를 사용할 필요는 없습니다. 만약 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Password&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientCredentials&lt;/code&gt; 그랜트 인증 요청에 대해 JWT가 아닌 난수 토큰을 제공했다 가정해보죠. 클라언트는 마이크로 서비스의 보호된 리소스를 사용하기위해 난수 토큰을 제출할테고, 요청을 받은 마이크로 서비스를 받은 난수 토큰의 유효성을 검증해야 하는데… 아마도 마이크로 서비스가 받은 난수 토큰이 유효한지 OAuth2 인증 서버에 다시 물어봐야겠죠~ 뿐더러 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createdBy&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updatedBy&lt;/code&gt; 등의 필드 값을 채우려면 난수 토큰에 해당하는 사용자 정보도 조회하고 메모리에 보관하고 있어야 할 겁니다.&lt;/p&gt;
 
 &lt;p&gt;JWT는 토큰 본문 안에 여러 가지 정보를 담은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;을 만들 수 있기 때문에 앞서 언급한 문제점들을 해결할 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://jwt.io&quot;&gt;https://jwt.io&lt;/a&gt;에서 1절에서 받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;을 파싱해보겠습니다. 아래 그림의 왼쪽 입력 박스에 토큰을 붙여 넣으면, 오른쪽에 파싱된 정보가 나옵니다.&lt;/p&gt;
+&lt;p&gt;1절에서 받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;access_token&lt;/code&gt;을 &lt;a href=&quot;https://jwt.io&quot;&gt;https://jwt.io&lt;/a&gt;에서 파싱해보겠습니다. 아래 그림의 왼쪽 입력 박스에 토큰을 붙여 넣으면, 오른쪽에 파싱된 정보가 나옵니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2021-02-13-jwt.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;JWT 파싱&lt;/small&gt;&lt;/div&gt;

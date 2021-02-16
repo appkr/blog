@@ -146,7 +146,7 @@
 <p><img src="/images/2021-02-13-microservice.svg" alt="" /></p>
 <div class="text-center"><small>마이크로 서비스 구조</small></div>
 
-<p>이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAA<small class="text-muted">User Account and Authentication</small> 서버와 연동하는 예제를 설명합니다. 기존의 모노리틱 서비스를 마이크로 서비스로 이전하는 방법은 설명하지 않습니다. 그리고, UAA는 <a href="https://www.jhipster.tech/using-uaa/">JhipsterUaa</a>를 이용합니다; <a href="https://www.keycloak.org/">Keycloak</a>, <a href="https://laravel.com/docs/8.x/passport">Laravel Passport</a> 등의 OAuth2 서비스를 사용해도 유사한 방법으로 연동할 수 있습니다.</p>
+<p>이 포스트에서는 라라벨 프레임워크로 마이크로 서비스를 만들때 UAA<small class="text-muted">User Account and Authentication</small> 서버와 연동하는 사례를 설명합니다. 기존의 모노리틱 서비스를 마이크로 서비스로 이전하는 방법은 설명하지 않습니다. 그리고, UAA는 <a href="https://www.jhipster.tech/using-uaa/">JhipsterUAA</a>를 이용합니다; <a href="https://www.keycloak.org/">Keycloak</a>, <a href="https://laravel.com/docs/8.x/passport">Laravel Passport</a> 등의 OAuth2 서비스를 사용해도 유사한 방법으로 연동할 수 있습니다.</p>
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -156,19 +156,27 @@
 <p><img src="/images/2021-02-13-microservice2.svg" alt="" /></p>
 <div class="text-center"><small>마이크로 서비스 콤포넌트</small></div>
 
+<h3 id="용어">용어</h3>
+
+<ul>
+  <li>인증 서버: OAuth2 서버와 같은 의미로 사용함</li>
+  <li>리소스 서버: 마이크로 서비스와 같은 의미로 사용함</li>
+  <li>리소스: REST 컨텍스트에서 도메인을 표현하는 방법</li>
+</ul>
+
 <h3 id="각-콤포넌트-설명">각 콤포넌트 설명</h3>
 
 <h4 id="client">Client</h4>
 <ul>
-  <li>curl 또는 postman</li>
+  <li>curl, postman, 웹/모바일 애플리케이션, 서버의 HTTP Client(e.g. Guzzle, RestTemplate)</li>
 </ul>
 
 <h4 id="uaa">UAA</h4>
 <ul>
-  <li><a href="https://www.jhipster.tech/using-uaa/">JhipsterUaa</a></li>
+  <li><a href="https://www.jhipster.tech/using-uaa/">JhipsterUAA</a></li>
   <li>Port 9999</li>
-  <li>단순함을 위해 <code class="language-plaintext highlighter-rouge">Client</code>, <code class="language-plaintext highlighter-rouge">Authority</code> 등의 서브 도메인은 그림에서 생략함</li>
-  <li>단순함을 위해 인증을 위한 엔드포인트외의 리소스 엔드포인트는 표에서 생략함</li>
+  <li>단순함을 위해 <code class="language-plaintext highlighter-rouge">Client</code>, <code class="language-plaintext highlighter-rouge">Authority</code> 등의 서브 도메인은 위 그림에서 생략함</li>
+  <li>단순함을 위해 인증을 위한 엔드포인트 外의 리소스 엔드포인트는 아래 표에서 생략함</li>
 </ul>
 
 <table>
@@ -212,6 +220,8 @@
   </tbody>
 </table>
 
+<p>JhipsterUAA는 아래 명령으로 설치하고 구동할 수 있습니다.</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget https://github.com/appkr/msa-starter/raw/master/jhipster-uaa.zip
 <span class="nv">$ </span>unzip jhipster-uaa.zip <span class="o">&amp;&amp;</span> <span class="nb">cd </span>jhipster-uaa <span class="o">&amp;&amp;</span> ./gradlew clean bootRun
 </code></pre></div></div>
@@ -223,7 +233,10 @@
   <li>Port 8000</li>
 </ul>
 
+<p>예제 소스코드를 복제했다면 아래 명령으로 Laravel 서비스를 구동할 수 있습니다</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose <span class="nt">-f</span> docker/docker-compose.yml up
+<span class="nv">$ </span>open http://localhost:8000
 </code></pre></div></div>
 
 <h4 id="spring">Spring</h4>
@@ -233,32 +246,36 @@
   <li>Port 8080</li>
 </ul>
 
+<p>예제 소스코드를 복제했다면 아래 명령으로 Spring 서비스를 구동할 수 있습니다.</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>hello-service <span class="o">&amp;&amp;</span> ./gradlew clean bootRun
 </code></pre></div></div>
+
+<p>큰 그림을 요약하고, 전체 작동 플로우를 정리하면 아래 시퀀스 다이어그램과 같습니다.</p>
 
 <p><img src="/images/2021-02-13-microservice3.svg" alt="" /></p>
 <div class="text-center"><small>마이크로 서비스 시퀀스</small></div>
 
 <h3 id="-로그인-및-토큰-획득">① 로그인 및 토큰 획득</h3>
 <ul>
-  <li>Client는 <code class="language-plaintext highlighter-rouge">web_app</code>/<code class="language-plaintext highlighter-rouge">changeit</code> 사용자 계정과 Password 그랜트를 이용하여 <code class="language-plaintext highlighter-rouge">UAA</code>로부터 JWT<small class="text-muted">Json Web Token</small>를 발급 받는다
+  <li><code class="language-plaintext highlighter-rouge">Client</code>는 <code class="language-plaintext highlighter-rouge">web_app</code>/<code class="language-plaintext highlighter-rouge">changeit</code> 사용자 계정과 Password 그랜트를 이용하여 <code class="language-plaintext highlighter-rouge">UAA</code>로부터 JWT<small class="text-muted">Json Web Token</small>를 발급 받는다
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ RESPONSE</span><span class="o">=</span>curl <span class="nt">-L</span> <span class="nt">-X</span> POST <span class="s1">'http://localhost:9999/oauth/token'</span> <span class="se">\</span>
-<span class="nt">-H</span> <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
-<span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-<span class="nt">-H</span> <span class="s1">'Authorization: Basic  d2ViX2FwcDpjaGFuZ2VpdA=='</span> <span class="se">\</span>
-<span class="nt">--data-urlencode</span> <span class="s1">'grant_type=password'</span> <span class="se">\</span>
-<span class="nt">--data-urlencode</span> <span class="s1">'username=user'</span> <span class="se">\</span>
-<span class="nt">--data-urlencode</span> <span class="s1">'password=user'</span> <span class="se">\</span>
-<span class="nt">--data-urlencode</span> <span class="s1">'scope=openid'</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Basic  d2ViX2FwcDpjaGFuZ2VpdA=='</span> <span class="se">\</span>
+  <span class="nt">--data-urlencode</span> <span class="s1">'grant_type=password'</span> <span class="se">\</span>
+  <span class="nt">--data-urlencode</span> <span class="s1">'username=user'</span> <span class="se">\</span>
+  <span class="nt">--data-urlencode</span> <span class="s1">'password=user'</span> <span class="se">\</span>
+  <span class="nt">--data-urlencode</span> <span class="s1">'scope=openid'</span>
 </code></pre></div>    </div>
     <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="nl">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImV4cCI6MTYxMjQ5ODAyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiREJmM0g0NHRlVFhOVmNEWjBBeWJTQUY3dFBZIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.Y4py8MMHJdMwbXxpocdQPrMEevRnl2nkEUuXw6UeRmtB7qWDFADmzO-xQz8Hkvmz2LT0U4gPSHvRSOEWGuZ_Nack8MRU7ICWGRl53WZyiPTzt7ucLcO0w1eOBUPFxsHQHffyZ4XzrDJWlqWadhzlnxw9oJUcvi8aAKkBtBSVOCslxYMkBNzs7vjxbLHNQIAjZbb1YetBzpAQOq8RJCdSQNDcMSZ9eZG705ucaFBv3LgDf5sxK47Yqqqk3oCMDdyMXB2MW2bsFivpf6BZd3ydfHrCgcrU5y2Vl2g6fG6PsADkaJ4Fv31UdVj0QG-kX8fgj9GL7MjZUyI-bWruiLNTgw"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImF0aSI6IkRCZjNINDR0ZVRYTlZjRFowQXliU0FGN3RQWSIsImV4cCI6MTYxMzEwMjUyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoicDhWQVB5aWhHU3NGYXlma1pMWnd1MURLSHBrIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.gD4uoRwk_kbX19uUBxnUdvmu3KDZBrTLWeY0h6lj-UVvhKaUF7BNH1AzwSfX10y-tYjdfElk7_m7x6Vo9gG93HMUPtnSQPPNknI6KcE4sFRRs-Wk15o74S7ukiSjvdtq9Bx2u7t6EEd3e1UHHcRYLFwxJUND53YRM7VR38QWhJgxGW6aA6EK4Rz7fgqFaylK8xWlFjhYoFl3w_VBErqDZWyprKRl9IDDrd6xCo-5RIauuLGGvMTim9IhedaSwTDN7fJz68tyJinfejIjEVjnw90MPCAKzwYY2As30i7AdIPzUrvJPHSjhlZnZ9lSU6_BufQUw1caBQe-vSbtXx0pMw"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="p">,</span><span class="w">
-</span><span class="nl">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612497723</span><span class="p">,</span><span class="w">
-</span><span class="nl">"jti"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBf3H44teTXNVcDZ0AybSAF7tPY"</span><span class="w">
+  </span><span class="nl">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImV4cCI6MTYxMjQ5ODAyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiREJmM0g0NHRlVFhOVmNEWjBBeWJTQUY3dFBZIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.Y4py8MMHJdMwbXxpocdQPrMEevRnl2nkEUuXw6UeRmtB7qWDFADmzO-xQz8Hkvmz2LT0U4gPSHvRSOEWGuZ_Nack8MRU7ICWGRl53WZyiPTzt7ucLcO0w1eOBUPFxsHQHffyZ4XzrDJWlqWadhzlnxw9oJUcvi8aAKkBtBSVOCslxYMkBNzs7vjxbLHNQIAjZbb1YetBzpAQOq8RJCdSQNDcMSZ9eZG705ucaFBv3LgDf5sxK47Yqqqk3oCMDdyMXB2MW2bsFivpf6BZd3ydfHrCgcrU5y2Vl2g6fG6PsADkaJ4Fv31UdVj0QG-kX8fgj9GL7MjZUyI-bWruiLNTgw"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImF0aSI6IkRCZjNINDR0ZVRYTlZjRFowQXliU0FGN3RQWSIsImV4cCI6MTYxMzEwMjUyMywiaWF0IjoxNjEyNDk3NzIzLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoicDhWQVB5aWhHU3NGYXlma1pMWnd1MURLSHBrIiwiY2xpZW50X2lkIjoid2ViX2FwcCJ9.gD4uoRwk_kbX19uUBxnUdvmu3KDZBrTLWeY0h6lj-UVvhKaUF7BNH1AzwSfX10y-tYjdfElk7_m7x6Vo9gG93HMUPtnSQPPNknI6KcE4sFRRs-Wk15o74S7ukiSjvdtq9Bx2u7t6EEd3e1UHHcRYLFwxJUND53YRM7VR38QWhJgxGW6aA6EK4Rz7fgqFaylK8xWlFjhYoFl3w_VBErqDZWyprKRl9IDDrd6xCo-5RIauuLGGvMTim9IhedaSwTDN7fJz68tyJinfejIjEVjnw90MPCAKzwYY2As30i7AdIPzUrvJPHSjhlZnZ9lSU6_BufQUw1caBQe-vSbtXx0pMw"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612497723</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"jti"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBf3H44teTXNVcDZ0AybSAF7tPY"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>    </div>
   </li>
@@ -271,22 +288,22 @@
 <span class="nv">$ </span>curl <span class="nt">-s</span> <span class="nt">-H</span> <span class="s1">'Accept:application/json'</span> <span class="nt">-H</span> <span class="s2">"Authorization: bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span> http://localhost:8000/api/examples
 </code></pre></div>    </div>
     <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이문세 5집"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이문세 5집"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"updated_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"totalElements"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"totalElements"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>    </div>
   </li>
@@ -298,7 +315,7 @@
   <li>발급 받은 JWT로 HelloAPI 리소스를 조회한다</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="nt">-H</span> <span class="s1">'Accept:application/json'</span> <span class="nt">-H</span> <span class="s2">"Authorization: bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span> http://localhost:8000/api/hello
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-s</span> <span class="nt">-H</span> <span class="s1">'Accept:application/json'</span> <span class="nt">-H</span> <span class="s2">"Authorization: bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span> http://localhost:8000/api/hello
 </code></pre></div></div>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"Hello from non-laravel service"</span><span class="w">
 </span></code></pre></div></div>
@@ -310,11 +327,12 @@
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-L</span> <span class="nt">-X</span> GET <span class="s1">'http://localhost:9999/oauth/token_key'</span>
-<span class="o">{</span>
-    <span class="s2">"alg"</span>: <span class="s2">"SHA256withRSA"</span>,
-    <span class="s2">"value"</span>: <span class="s2">"-----BEGIN PUBLIC KEY-----</span><span class="se">\n</span><span class="s2">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeOrJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiILwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j+wIDAQAB</span><span class="se">\n</span><span class="s2">-----END PUBLIC KEY-----"</span>
-<span class="o">}</span>
 </code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHA256withRSA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-----BEGIN PUBLIC KEY-----</span><span class="se">\n</span><span class="s2">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlo/L8mU9Isiihp1ksxeOrJzPn4915xZC/pnbO+ur/ccZL23BYHP/wUxpWZy8Gh94+GK8/gcjVEk66acg4Gk7NH0uQGxdrq8WDMywPIAawekwiQJd6l/yVNXIDhuk0LzcgmU+1ESyeTNdlx84Z0X3HI6w8SH6OE4RBcr9rGfIt0ytXmHj1P4zxmJt/YhZyyyUq0WGuBq31UaQTOiJa0rp1kDKSMN0Hvz4UmkYtUvgtqUujrqNcWkSEummO8WyuhnCs+zAaF2KA5XSalEXFNiILwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j+wIDAQAB</span><span class="se">\n</span><span class="s2">-----END PUBLIC KEY-----"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li>공개 키의 본문은 64글자 단위로 줄 바꿈해야 함; 따라서 이런 모양으로 포맷팅해서 사용해야 함</li>
@@ -333,25 +351,25 @@ LwFPtQFxqIQrjjiWcI61vvTxtor4zI5r4X6aDteYIJidAzYwkIiuacnLWX5ziL3j
 
 <h2 id="2-oauth2-이해하기">2 OAuth2 이해하기</h2>
 
-<p>OAuth2에 대한 지식이 부족하기도 하거니와, 방대한 주제라 블로그 포스트에서 설명하기는 어렵습니다. <a href="https://oauth2.thephpleague.com/authorization-server/which-grant/">thephpleague의 문서</a>를 차분히 읽어보실 것을 권장합니다. 이 예제에서는 Password와 ClientCredentials 그랜트만 사용합니다.</p>
+<p>OAuth2에 대한 지식이 부족하기도 하거니와, 방대한 주제라 블로그 포스트에서 설명하기는 어렵습니다. <a href="https://oauth2.thephpleague.com/authorization-server/which-grant/">thephpleague의 문서</a>를 차분히 읽어보실 것을 권장합니다. 이 예제에서는 <code class="language-plaintext highlighter-rouge">Password</code>와 <code class="language-plaintext highlighter-rouge">ClientCredentials</code> 그랜트만 사용합니다.</p>
 
 <p><strong><code class="language-plaintext highlighter-rouge">Password</code> 그랜트는 1st Party 클라이언트</strong>, 즉 내부에서 만든 클라이언트 애플리케이션을 위한 인증 방법입니다. Facebook을 예로 들어볼까요? Facebook 입장에서 공식 앱은 1st Party 클라이언트입니다. 페북 공식 앱을 사용하기 위해선 페북 사용자 아이디와 비밀번호를 제출해야하죠? 계정 정보가 정확하면 페북 인증 서버는 공식 앱에 <code class="language-plaintext highlighter-rouge">access_token</code>을 발급하고, 공식 앱은 발급 받은 토큰을 제출하면서 내 타임라인 데이터를 조회하고, 조회한 데이터를 뷰에 바인딩해서 렌더링할겁니다.</p>
 
-<p><strong><code class="language-plaintext highlighter-rouge">ClientCredentials</code> 그랜트는 주로 1st Party 서버</strong>를 위한 인증 방법입니다. 예를들어 페북 친구 서비스는 중요한 리소스라 아무나 조회하거나 변경해서는 안됩니다. 친구 추천 서버가 친구 서버와 통신할 때, 페북 인증 서버에서 받은 <code class="language-plaintext highlighter-rouge">access_token</code>으로 자격증명을 제출할 겁니다.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">ClientCredentials</code> 그랜트는 주로 1st Party 서버</strong>를 위한 인증 방법입니다. 예를들어 페북 친구 서비스는 중요한 리소스라 아무나 조회하거나 변경해서는 안됩니다. 친구 추천 서버가 친구 서버와 통신할 때, 페북 인증 서버에서 받은 <code class="language-plaintext highlighter-rouge">access_token</code>으로 자격증명을 제출하고 친구 목록을 얻어올 겁니다.</p>
 
 <p>어떤 그랜트를 쓰든 보호된 리소스를 요청할 때 <code class="language-plaintext highlighter-rouge">Authorization</code> 요청 헤더에 <code class="language-plaintext highlighter-rouge">access_token</code>을 제출해야 합니다, 이렇게 말이죠.</p>
 
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET /api/resources
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET /api/protected-resources
 Authorization: bearer access_token
 </span></code></pre></div></div>
 
 <h2 id="3-jwt-이해하기">3 JWT 이해하기</h2>
 
-<p>OAuth2 인증 서버가 <code class="language-plaintext highlighter-rouge">access_token</code>으로 꼭 JWT를 제공할 필요는 없습니다. 만약 <code class="language-plaintext highlighter-rouge">Password</code> 또는 <code class="language-plaintext highlighter-rouge">ClientCredentials</code> 그랜트 인증 요청에 대해 난수 토큰을 제공했다 가정해보죠. 클라언트는 마이크로 서비스의 보호된 리소스를 사용하기위해 난수 토큰을 제출할테고, 요청을 받은 마이크로 서비스를 받은 난수 토큰의 유효성을 검증해야 하는데… 아마도 마이크로 서비스가 받은 난수 토큰이 유효한지 OAuth2 인증 서버에 물어봐야겠죠~ 뿐더러 <code class="language-plaintext highlighter-rouge">createdBy</code>, <code class="language-plaintext highlighter-rouge">updatedBy</code> 등의 필드 값을 채우려면 난수 토큰에 해당하는 사용자 정보도 조회하고 메모리에 보관하고 있어야 할 겁니다.</p>
+<p>OAuth2 인증 서버는 <code class="language-plaintext highlighter-rouge">access_token</code>으로 JWT를 사용할 필요는 없습니다. 만약 <code class="language-plaintext highlighter-rouge">Password</code> 또는 <code class="language-plaintext highlighter-rouge">ClientCredentials</code> 그랜트 인증 요청에 대해 JWT가 아닌 난수 토큰을 제공했다 가정해보죠. 클라언트는 마이크로 서비스의 보호된 리소스를 사용하기위해 난수 토큰을 제출할테고, 요청을 받은 마이크로 서비스를 받은 난수 토큰의 유효성을 검증해야 하는데… 아마도 마이크로 서비스가 받은 난수 토큰이 유효한지 OAuth2 인증 서버에 다시 물어봐야겠죠~ 뿐더러 <code class="language-plaintext highlighter-rouge">createdBy</code>, <code class="language-plaintext highlighter-rouge">updatedBy</code> 등의 필드 값을 채우려면 난수 토큰에 해당하는 사용자 정보도 조회하고 메모리에 보관하고 있어야 할 겁니다.</p>
 
 <p>JWT는 토큰 본문 안에 여러 가지 정보를 담은 <code class="language-plaintext highlighter-rouge">access_token</code>을 만들 수 있기 때문에 앞서 언급한 문제점들을 해결할 수 있습니다.</p>
 
-<p><a href="https://jwt.io">https://jwt.io</a>에서 1절에서 받은 <code class="language-plaintext highlighter-rouge">access_token</code>을 파싱해보겠습니다. 아래 그림의 왼쪽 입력 박스에 토큰을 붙여 넣으면, 오른쪽에 파싱된 정보가 나옵니다.</p>
+<p>1절에서 받은 <code class="language-plaintext highlighter-rouge">access_token</code>을 <a href="https://jwt.io">https://jwt.io</a>에서 파싱해보겠습니다. 아래 그림의 왼쪽 입력 박스에 토큰을 붙여 넣으면, 오른쪽에 파싱된 정보가 나옵니다.</p>
 
 <p><img src="/images/2021-02-13-jwt.png" alt="" /></p>
 <div class="text-center"><small>JWT 파싱</small></div>

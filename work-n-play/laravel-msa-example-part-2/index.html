@@ -149,6 +149,12 @@
 <div class="spacer">• • •</div>
 <!--div class="text-center"><small>마이크로 서비스 콤포넌트</small></div-->
 
+<div class="panel panel-default" style="width:100%; margin: auto;">
+  <div class="panel-body text-center">
+     <a><i class="material-icons">info</i> 이하 본문에서 줄번호가 있는 코드 박스는 모바일 뷰에서 깨집니다. 데스크탑 브라우저를 권장합니다.</a>
+  </div>
+</div>
+
 <h2 id="4-구현1">4 구현#1</h2>
 
 <h3 id="4-1-프로젝트-셋업">4-1 프로젝트 셋업</h3>
@@ -159,7 +165,7 @@
 <span class="c"># Laravel Framework 8.21.0</span>
 </code></pre></div></div>
 
-<p>예제 소스 코드에는 PHP7.3, fpm, Nginx, MySQL 등의 런타임 환경을 docker-compose로 구동하도록 했습니다.</p>
+<p>예제 소스 코드에는 PHP7.3, Nginx, MySQL 등의 런타임 환경을 docker-compose로 구동하도록 했습니다.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tree docker
 <span class="c"># docker</span>
 <span class="c"># ├── custom-php.ini      # xdebug, opcache 등 설정</span>
@@ -213,7 +219,7 @@
 </code></pre></div></div>
 
 <p>전체 클러스터를 구동하고 작동 여부를 검증합니다.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-composer <span class="nt">-f</span> docker/docker-compose.yml up <span class="nt">-d</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose <span class="nt">-f</span> docker/docker-compose.yml up <span class="nt">-d</span>
 <span class="nv">$ </span>open http://localhost:8000
 </code></pre></div></div>
 
@@ -222,7 +228,8 @@
 <span class="nv">$ </span>wget https://github.com/appkr/msa-starter/raw/master/jhipster-uaa.zip <span class="se">\</span>
   <span class="o">&amp;&amp;</span> unzip jhipster-uaa.zip 
   <span class="o">&amp;&amp;</span> <span class="nb">cd </span>jhipster-uaa
-<span class="c"># UAA가 중지되면 구동할 때마다 실행 </span>
+
+<span class="c"># 구동할 때마다 실행; 중지하려면 Ctrl + c</span>
 <span class="nv">$ </span>./gradlew clean bootRun
 <span class="nv">$ </span>curl <span class="nt">-s</span> http://localhost:9999/management/health
 <span class="c"># { "status" : "UP" }</span>
@@ -357,7 +364,7 @@
   <li><code class="language-plaintext highlighter-rouge">28</code> line: 클라이언트가 토큰을 제출하지 않았다면, 예외가 발생한다</li>
   <li><code class="language-plaintext highlighter-rouge">30</code> line: <code class="language-plaintext highlighter-rouge">TokenParser::parse</code> 메서드는 JWT 토큰을 받아서 파싱하고 <code class="language-plaintext highlighter-rouge">Token</code>모델을 반환하는 역할을 한다</li>
   <li><code class="language-plaintext highlighter-rouge">32</code> line: 이상의 과정에서 <code class="language-plaintext highlighter-rouge">TokenException</code>이 발생할 수 있으며, 이때는 사용자에게 4xx 응답코드와 예외 메시지를 응답한다</li>
-  <li><code class="language-plaintext highlighter-rouge">40</code> line: 이상의 과정이 순조롭게 진행되었다면, UserResolver 클로저를 등록한다; <code class="language-plaintext highlighter-rouge">43</code>줄을 보면 파싱된 토큰에서 <code class="language-plaintext highlighter-rouge">userName:UUIDInterface</code>을 조회하고 응답하는 것을 볼 수 있다</li>
+  <li><code class="language-plaintext highlighter-rouge">40</code> line: 이상의 과정이 순조롭게 진행되었다면, UserResolver 클로저를 등록한다; <code class="language-plaintext highlighter-rouge">43</code>줄을 보면 파싱된 토큰에서 <code class="language-plaintext highlighter-rouge">userName: UUIDInterface</code> 클레임 값을 조회하고 사용하는 모습을 볼 수 있다</li>
 </ul>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
@@ -458,7 +465,7 @@
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">15</code> line: <code class="language-plaintext highlighter-rouge">TokenKeyProvider</code> 주입한다</li>
-  <li><code class="language-plaintext highlighter-rouge">22</code> line: 토큰을 파싱 및 객체 생성 책임을 <code class="language-plaintext highlighter-rouge">Token</code> 클래스에 위임함; 원본 토큰 문자열과 <code class="language-plaintext highlighter-rouge">TokenKeyProvider</code>을 인자로 전달한다</li>
+  <li><code class="language-plaintext highlighter-rouge">22</code> line: 토큰을 파싱 및 객체 생성 책임을 <code class="language-plaintext highlighter-rouge">Token</code> 클래스에 위임함; 원본 토큰 문자열과 <code class="language-plaintext highlighter-rouge">TokenKeyProvider</code>로 조회한 공개키를 인자로 전달한다</li>
   <li><code class="language-plaintext highlighter-rouge">26-34</code> line: <code class="language-plaintext highlighter-rouge">firebase/php-jwt</code> 패키지의 <code class="language-plaintext highlighter-rouge">\Firebase\JWT\JWT::decode</code> 메서드에서 던진 예외를 <code class="language-plaintext highlighter-rouge">TokenException</code>으로 치환한다</li>
 </ul>
 
@@ -480,7 +487,7 @@
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ExpiredException</code></td>
-      <td><code class="language-plaintext highlighter-rouge">iat</code>(Expiration time) 값보다 현재 시각이 미래일 때</td>
+      <td><code class="language-plaintext highlighter-rouge">exp</code>(Expiration time) 값보다 현재 시각이 미래일 때</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">UnexpectedValueException</code></td>
@@ -547,7 +554,7 @@
 
 <h3 id="5-5-oauth2serviceprovider">5-5 OAuth2ServiceProvider</h3>
 
-<p>런타임에 TokenParser, TokenKeyProvider 등의 객체를 정상적으로 주입하기 위해서는 서비스 프로바이더에 객체 조립 공식을 등록해야 합니다.</p>
+<p>런타임에 <code class="language-plaintext highlighter-rouge">TokenParser</code>, <code class="language-plaintext highlighter-rouge">TokenKeyProvider</code> 등의 객체를 정상적으로 주입하기 위해서는 서비스 프로바이더에 객체 조립 공식을 등록해야 합니다.</p>
 
 <div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/OAuth2ServiceProvider.php</span>
 
@@ -611,12 +618,12 @@
 <span class="na">X-RateLimit-Remaining</span><span class="p">:</span> <span class="s">59</span>
 <span class="na">Access-Control-Allow-Origin</span><span class="p">:</span> <span class="s">*</span>
 
-<span class="p">{</span><span class="nl">"data"</span><span class="p">:[{</span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"</span><span class="se">\u</span><span class="s2">c774</span><span class="se">\u</span><span class="s2">bb38</span><span class="se">\u</span><span class="s2">c138 5</span><span class="se">\u</span><span class="s2">c9d1"</span><span class="p">,</span><span class="nl">"created_at"</span><span class="p">:</span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="nl">"updated_at"</span><span class="p">:</span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="nl">"created_by"</span><span class="p">:</span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="p">,</span><span class="nl">"updated_by"</span><span class="p">:</span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="p">},</span><span class="s2">"page"</span><span class="err">:</span><span class="p">{</span><span class="nl">"size"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="nl">"totalElements"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="nl">"totalPages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nl">"number"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span><span class="err">}</span><span class="w">
+<span class="p">{</span><span class="nl">"data"</span><span class="p">:[{</span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nl">"title"</span><span class="p">:</span><span class="s2">"</span><span class="se">\u</span><span class="s2">c774</span><span class="se">\u</span><span class="s2">bb38</span><span class="se">\u</span><span class="s2">c138 5</span><span class="se">\u</span><span class="s2">c9d1"</span><span class="p">,</span><span class="nl">"created_at"</span><span class="p">:</span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="nl">"updated_at"</span><span class="p">:</span><span class="s2">"2021-02-05T02:18:46.000000Z"</span><span class="p">,</span><span class="nl">"created_by"</span><span class="p">:</span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="p">,</span><span class="nl">"updated_by"</span><span class="p">:</span><span class="s2">"d593f9ef-d089-44fe-abe7-05c30219bb4c"</span><span class="p">},</span><span class="s2">"page"</span><span class="err">:</span><span class="p">{</span><span class="nl">"size"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="nl">"totalElements"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nl">"totalPages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nl">"number"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span><span class="err">}</span><span class="w">
 </span></code></pre></div></div>
 
 <h3 id="5-5-cacheabletokenkeyprovider">5-5 CacheableTokenKeyProvider</h3>
 
-<p>현재까지 구현은 공개 키가 필요할 때마다 매번 UAA에 HTTP 요청을 해야 합니다. 한번 받은 공개 키는 24시간 동안 캐시에 저장하고 꺼내쓸 수 있도록 구현했습니다.</p>
+<p>현재까지 구현은 공개 키가 필요할 때마다 매번 UAA에 HTTP 요청을 해야 합니다. 한번 받은 공개 키는 24시간 동안 캐시에 저장하고 꺼내쓸 수 있도록 구현을 변경했습니다.</p>
 
 <div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// src/Infra/JhipsterUaa/CacheableTokenKeyProvider.php</span>
 
@@ -661,7 +668,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">32</code> line: <code class="language-plaintext highlighter-rouge">$delegate: UaaTokenKeyProvider</code>로부터 받은 응답을 24시간 동안 <code class="language-plaintext highlighter-rouge">oauth2.token_key</code>라고 캐시 키의 값으로 저장한다</li>
+  <li><code class="language-plaintext highlighter-rouge">32</code> line: <code class="language-plaintext highlighter-rouge">$delegate: UaaTokenKeyProvider</code>로부터 받은 응답을 24시간 동안 <code class="language-plaintext highlighter-rouge">oauth2.token_key</code>라는 캐시 키의 값으로 저장한다</li>
   <li><code class="language-plaintext highlighter-rouge">36</code> line: <code class="language-plaintext highlighter-rouge">$delegate: UaaTokenKeyProvider</code>에게 위임한다; 데코레이터 패턴을 적용함</li>
 </ul>
 
@@ -705,14 +712,14 @@
 
 <p><img src="/images/2021-02-15-uml2.svg" alt="" /></p>
 <div class="text-center"><small>UAA 연동: HttpMiddleware를 이용한 Password 그랜트</small></div>
+<!--
+## 6 구현#3 ClientCredentials 그랜트 
 
-<h2 id="6-구현3-clientcredentials-그랜트">6 구현#3 ClientCredentials 그랜트</h2>
+### 6-1 TokenProvider 구현
+TBD
 
-<h3 id="6-1-tokenprovider-구현">6-1 TokenProvider 구현</h3>
-<p>TBD</p>
-
-<h2 id="7-요약">7 요약</h2>
-
+## 7 요약
+-->
 <p>3부에서 이어집니다</p>
 
       </div>

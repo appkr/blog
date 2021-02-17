@@ -21,7 +21,6 @@ image: /images/2021-02-15-uml2.png
 
 <!--more-->
 <div class="spacer">• • •</div>
-<!--div class="text-center"><small>마이크로 서비스 콤포넌트</small></div-->
 
 <div class="panel panel-default" style="width:100%; margin: auto;">
   <div class="panel-body text-center">

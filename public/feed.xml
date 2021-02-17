@@ -5,9 +5,54 @@
     <description>appkr's blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2021 10:01:17 +0900</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2021 10:01:17 +0900</lastBuildDate>
+    <pubDate>Wed, 17 Feb 2021 11:51:37 +0900</pubDate>
+    <lastBuildDate>Wed, 17 Feb 2021 11:51:37 +0900</lastBuildDate>
     <generator>Jekyll v4.1.1</generator>
+    
+      <item>
+        <title>라라벨 마이크로서비스 예제 3부</title>
+        <description>&lt;p&gt;모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼겁니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2021-02-17-uaa.puml&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;UAA 연동 시나리오&lt;/small&gt;&lt;/div&gt;
+
+&lt;p&gt;전체 예제 코드는 &lt;a href=&quot;https://github.com/appkr/laravel-msa-example&quot;&gt;https://github.com/appkr/laravel-msa-example&lt;/a&gt;에 있습니다.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
+
+&lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; margin: auto;&quot;&gt;
+  &lt;div class=&quot;panel-body text-center&quot;&gt;
+     &lt;a&gt;&lt;i class=&quot;material-icons&quot;&gt;info&lt;/i&gt; 이하 본문에서 줄번호가 있는 코드 박스는 모바일 뷰에서 깨집니다. 데스크탑 브라우저를 권장합니다.&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;6-구현3-clientcredentials-그랜트&quot;&gt;6 구현#3 ClientCredentials 그랜트&lt;/h2&gt;
+
+&lt;h3 id=&quot;6-1-tokenprovider-구현&quot;&gt;6-1 TokenProvider 구현&lt;/h3&gt;
+&lt;p&gt;TBD&lt;/p&gt;
+
+&lt;h3 id=&quot;6-2-title&quot;&gt;6-2 Title&lt;/h3&gt;
+&lt;p&gt;TBD&lt;/p&gt;
+
+&lt;h2 id=&quot;7-정리&quot;&gt;7 정리&lt;/h2&gt;
+</description>
+        <pubDate>Wed, 17 Feb 2021 00:00:00 +0900</pubDate>
+        <link>https://blog.appkr.dev/work-n-play/laravel-msa-example-part-3/</link>
+        <guid isPermaLink="true">https://blog.appkr.dev/work-n-play/laravel-msa-example-part-3/</guid>
+        
+        <category>PHP</category>
+        
+        <category>Laravel</category>
+        
+        <category>MSA</category>
+        
+        <category>Oauth2</category>
+        
+        
+        <category>work-n-play</category>
+        
+      </item>
     
       <item>
         <title>라라벨 마이크로서비스 예제 2부</title>
@@ -20,7 +65,6 @@
 
 &lt;!--more--&gt;
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
-&lt;!--div class=&quot;text-center&quot;&gt;&lt;small&gt;마이크로 서비스 콤포넌트&lt;/small&gt;&lt;/div--&gt;
 
 &lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; margin: auto;&quot;&gt;
   &lt;div class=&quot;panel-body text-center&quot;&gt;
@@ -1473,39 +1517,6 @@ main.rb:20:in `rescue in &amp;lt;main&amp;gt;'&lt;/span&gt;: 사용자 정의 �
         <category>AWS</category>
         
         <category>DevOps</category>
-        
-        
-        <category>work-n-play</category>
-        
-      </item>
-    
-      <item>
-        <title>appkr.dev로 이전합니다</title>
-        <description>&lt;p&gt;3월 중에 blog.appkr.dev 도메인으로 이전할 예정입니다.&lt;/p&gt;
-
-&lt;p&gt;블로그 플랫폼으로 &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;를 이용하는데, 기존 blog.appkr.kr에서 301 또는 308 응답을 제공할 방법을 찾을 수 없어서, 이전 후엔 검색엔진, SNS 등을 통해 들어왔다면 빈 페이지를 만날 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;이전을 위해 변경해야 할 것들이 있습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Google Analytics &lt;a href=&quot;https://analytics.google.com/analytics/web/#/home&quot;&gt;https://analytics.google.com/analytics/web/#/home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Google Search Console &lt;a href=&quot;https://www.google.com/webmasters/verification/home?pli=1&quot;&gt;https://www.google.com/webmasters/verification/home?pli=1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Naver 웹마스터도구 &lt;a href=&quot;https://webmastertool.naver.com/&quot;&gt;https://webmastertool.naver.com/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Facebook API &lt;a href=&quot;https://developers.facebook.com/apps/681208622021192/dashboard/&quot;&gt;https://developers.facebook.com/apps/681208622021192/dashboard/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;구 도메인에 남아 있는 서비스들의 이전 여부도 결정해야 합니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://geo.appkr.kr&quot;&gt;http://geo.appkr.kr&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://l5.appkr.kr&quot;&gt;http://l5.appkr.kr&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;곧 새 도메인에서 뵐게요.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 02 Mar 2019 00:00:00 +0900</pubDate>
-        <link>https://blog.appkr.dev/work-n-play/dot-dev-tld/</link>
-        <guid isPermaLink="true">https://blog.appkr.dev/work-n-play/dot-dev-tld/</guid>
         
         
         <category>work-n-play</category>

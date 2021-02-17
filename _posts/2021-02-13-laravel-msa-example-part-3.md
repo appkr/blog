@@ -14,7 +14,7 @@ image: /images/2021-02-17-uaa.png
 
 모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼겁니다.
 
-![](/images/2021-02-17-uaa.png)
+![](images/2021-02-17-uaa.svg)
 <div class="text-center"><small>UAA 연동 시나리오</small></div>
 
 전체 예제 코드는 [https://github.com/appkr/laravel-msa-example](https://github.com/appkr/laravel-msa-example)에 있습니다.

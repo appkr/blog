@@ -1,0 +1,46 @@
+@startuml
+
+legend
+|<back:#blue> --> </back>| 인증 요청 |
+|<back:#green> --> </back>| 리소스 요청 |
+endlegend
+
+component [Client]
+
+interface "OAuth2 endpoint" as uaa1
+interface "UAAAPI" as uaa2
+
+package UAA {
+  component [User/Client]
+  uaa1 -- [User/Client]
+  uaa2 -- [User/Client]
+}
+
+interface ExampleAPI
+
+package Microservice1 {
+  component [Example Domain]
+  component [GuzzleClient]
+  ExampleAPI -- [Example Domain]
+}
+
+interface Domain2API
+
+package Microservice2 {
+  component [Hello Domain]
+  component [RestTemplate]
+  Domain2API -- [Hello Domain]
+}
+
+Client --> uaa1 #blue
+Client --> ExampleAPI #green
+
+GuzzleClient --> Domain2API #green
+
+GuzzleClient --> uaa1 #blue
+GuzzleClient --> uaa2 #green
+
+RestTemplate --> uaa1 #blue
+RestTemplate --> uaa2 #green
+
+@enduml

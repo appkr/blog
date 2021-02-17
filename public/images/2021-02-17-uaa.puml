@@ -18,7 +18,7 @@ package UAA {
 
 interface ExampleAPI
 
-package Microservice1 {
+package Laravel {
   component [Example Domain]
   component [GuzzleClient]
   ExampleAPI -- [Example Domain]
@@ -26,7 +26,7 @@ package Microservice1 {
 
 interface Domain2API
 
-package Microservice2 {
+package Spring {
   component [Hello Domain]
   component [RestTemplate]
   Domain2API -- [Hello Domain]

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-  <meta name="description" content="모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼겁니다.UAA 연동 시나리오전체 예제 코드는 https://g..."/>
+  <meta name="description" content="모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼 겁니다.UAA 연동 시나리오전체 예제 코드는 https://..."/>
   <meta name="google-site-verification" content="K08vxFtrUM8f7VcQr6MPRFuI7ub1QHanrPFjsKKPV2s" />
   <meta name="naver-site-verification" content="1154945df3baf6485909c67f4dbc47a19988736d"/>
 
@@ -20,7 +20,7 @@
 
   <!-- Google+ Meta -->
   <meta itemprop="name" content="라라벨 마이크로서비스 예제 3부">
-  <meta itemprop="description" content="모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼겁니다.UAA 연동 시나리오전체 예제 코드는 https://g...">
+  <meta itemprop="description" content="모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼 겁니다.UAA 연동 시나리오전체 예제 코드는 https://...">
   <meta itemprop="image" content="/images/2021-02-17-uaa.png">
   <meta itemprop="author" content="appkr (juwonkim@me.com)"/>
 
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@appkrs" />
   <meta name="twitter:title" content="라라벨 마이크로서비스 예제 3부" />
-  <meta name="twitter:description" content="모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼겁니다.UAA 연동 시나리오전체 예제 코드는 https://g..." />
+  <meta name="twitter:description" content="모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼 겁니다.UAA 연동 시나리오전체 예제 코드는 https://..." />
   <meta name="twitter:image" content="/images/2021-02-17-uaa.png" />
   <meta name="twitter:domain" content="blog.appkr.dev">
 
@@ -138,9 +138,9 @@
       </div>
 
       <div class="box-body">
-        <p>모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼겁니다.</p>
+        <p>모노리틱 서비스 구조에서 마이크로 서비스 구조로 전환할 때 사용자 인증을 어떻게 통합할지에 대한 내용을 계속 이어갑니다. 이번 포스트에서는 아래 그림처럼 한 마이크로 서비스가 다른 마이크로 서비스를 호출하는 경우를 살펴볼 겁니다.</p>
 
-<p><img src="images/2021-02-17-uaa.svg" alt="" /></p>
+<p><img src="/images/2021-02-17-uaa.svg" alt="" /></p>
 <div class="text-center"><small>UAA 연동 시나리오</small></div>
 
 <p>전체 예제 코드는 <a href="https://github.com/appkr/laravel-msa-example">https://github.com/appkr/laravel-msa-example</a>에 있습니다.</p>
@@ -156,13 +156,266 @@
 
 <h2 id="6-구현3-clientcredentials-그랜트">6 구현#3 ClientCredentials 그랜트</h2>
 
-<h3 id="6-1-tokenprovider-구현">6-1 TokenProvider 구현</h3>
-<p>TBD</p>
+<p><code class="language-plaintext highlighter-rouge">Client</code>가 <code class="language-plaintext highlighter-rouge">HelloAPI</code>를 직접 사용할 수 있습니다. 또는 라라벨 서비스의 <code class="language-plaintext highlighter-rouge">GuzzleClient</code>가 <code class="language-plaintext highlighter-rouge">HelloAPI</code>를 사용할 수도 있습니다. 이 예제에서는 후자만 다루긴합니다만, 여튼 <code class="language-plaintext highlighter-rouge">ExampleAPI</code> 뿐만아니라 <code class="language-plaintext highlighter-rouge">HelloAPI</code>도 보호해야 합니다. 이때 서버간 통신을 하게되는데, 사용할 그랜트가 <code class="language-plaintext highlighter-rouge">ClientCredentials</code>인거죠.</p>
 
-<h3 id="6-2-title">6-2 Title</h3>
-<p>TBD</p>
+<h3 id="6-1-hello-proxy">6-1 Hello Proxy</h3>
+
+<p>Hello 리소스는 라라벨 서비스의 도메인이 아닙니다. <code class="language-plaintext highlighter-rouge">Client</code>가 직접 접근할 수 있음에도 불구하고, 편의를 위해 라라벨 서비스가 게이트웨이 역할을 대신해주는 거죠. 이런 이유로 프록시라는 용어를 썼습니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
+
+<span class="nc">Route</span><span class="o">::</span><span class="nf">prefix</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">middleware</span><span class="p">(</span><span class="nc">TokenAuthenticate</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="p">[</span><span class="nc">HelloController</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="s1">'hello'</span><span class="p">]);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Http/Controllers/HelloController.php</span>
+
+<span class="kn">namespace</span> <span class="nn">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Appkr\Infra\ExternalApi\HelloApiClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Http\JsonResponse</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">HelloController</span> <span class="kd">extends</span> <span class="nc">Controller</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$helloApiClient</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">HelloApiClient</span> <span class="nv">$helloApiClient</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">helloApiClient</span> <span class="o">=</span> <span class="nv">$helloApiClient</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">hello</span><span class="p">():</span> <span class="kt">JsonResponse</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">JsonResponse</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">helloApiClient</span><span class="o">-&gt;</span><span class="nf">hello</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// src/Infra/ExternalApi/HelloApiClient.php</span>
+
+<span class="kn">namespace</span> <span class="nn">Appkr\Infra\ExternalApi</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Appkr\Infra\TokenProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Client</span> <span class="k">as</span> <span class="nc">GuzzleClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Psr7\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Psr7\Response</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Psr\Http\Client\ClientExceptionInterface</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">HelloApiClient</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$httpClient</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$tokenProvider</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">GuzzleClient</span> <span class="nv">$httpClient</span><span class="p">,</span> 
+        <span class="kt">TokenProvider</span> <span class="nv">$tokenProvider</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">httpClient</span> <span class="o">=</span> <span class="nv">$httpClient</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tokenProvider</span> <span class="o">=</span> <span class="nv">$tokenProvider</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">hello</span><span class="p">():</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="nv">$request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Request</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'http://localhost:8080/hello'</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s2">"bearer </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tokenProvider</span><span class="o">-&gt;</span><span class="nf">getToken</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="p">]);</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Response</span><span class="p">();</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">httpClient</span><span class="o">-&gt;</span><span class="nf">sendRequest</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">ClientExceptionInterface</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="nf">getBody</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">17</code> line: 스프링 서비스(==<code class="language-plaintext highlighter-rouge">HelloAPI</code>)와 통신하기 위해 <code class="language-plaintext highlighter-rouge">GuzzleClient</code>를 주입 받는다</li>
+  <li><code class="language-plaintext highlighter-rouge">18</code> line: Hello 리소스를 요청할 때 스프링 서비스에 제출할 <code class="language-plaintext highlighter-rouge">access_token</code>을 얻기 위해 <code class="language-plaintext highlighter-rouge">TokenProvider</code>를 주입받는다</li>
+  <li><code class="language-plaintext highlighter-rouge">27</code> line: Authorization 요청 헤더를 셋팅한다</li>
+  <li><code class="language-plaintext highlighter-rouge">31</code> line: HelloAPI를 호출한다</li>
+</ul>
+
+<h3 id="6-2-uaatokenprovider">6-2 UaaTokenProvider</h3>
+
+<p>간결함을 위해 <code class="language-plaintext highlighter-rouge">TokenProvider</code> 인터페이스는 생략합니다. <a href="https://github.com/appkr/laravel-msa-example/blob/master/src/Infra/JhipsterUaa/TokenResponse.php">TokenResponse도 생략하니 예제 코드를 참고</a>바랍니다.</p>
+
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// src/Infra/JhipsterUaa/UaaTokenProvider.php</span>
+
+<span class="kn">namespace</span> <span class="nn">Appkr\Infra\JhipsterUaa</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Appkr\Infra\TokenKeyProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Infra\TokenProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Client</span> <span class="k">as</span> <span class="nc">GuzzleClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Psr7\Query</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Psr7\Request</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Psr7\Response</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Arr</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Psr\Http\Client\ClientExceptionInterface</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">UaaTokenProvider</span> <span class="kd">implements</span> <span class="nc">TokenProvider</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$httpClient</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$config</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$tokenKeyProvider</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">GuzzleClient</span> <span class="nv">$httpClient</span><span class="p">,</span> 
+        <span class="kt">array</span> <span class="nv">$config</span><span class="p">,</span> 
+        <span class="kt">TokenKeyProvider</span> <span class="nv">$tokenKeyProvider</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">httpClient</span> <span class="o">=</span> <span class="nv">$httpClient</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">config</span> <span class="o">=</span> <span class="nv">$config</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tokenKeyProvider</span> <span class="o">=</span> <span class="nv">$tokenKeyProvider</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getToken</span><span class="p">():</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getTokenResponse</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getAccessToken</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getTokenString</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getTokenResponse</span><span class="p">():</span> <span class="kt">TokenResponse</span>
+    <span class="p">{</span>
+        <span class="nv">$request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="nc">Arr</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">,</span> <span class="s1">'access_token_path'</span><span class="p">),</span> <span class="p">[</span>
+            <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/x-www-form-urlencoded'</span><span class="p">,</span>
+            <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s2">"basic </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getBasicAuthHeader</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">],</span> <span class="nc">Query</span><span class="o">::</span><span class="nf">build</span><span class="p">([</span>
+            <span class="s1">'grant_type'</span> <span class="o">=&gt;</span> <span class="s1">'client_credentials'</span><span class="p">,</span>
+        <span class="p">]));</span>
+        <span class="nv">$response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Response</span><span class="p">();</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">httpClient</span><span class="o">-&gt;</span><span class="nf">sendRequest</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">ClientExceptionInterface</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nc">TokenResponse</span><span class="o">::</span><span class="nf">fromJsonString</span><span class="p">(</span>
+            <span class="nv">$response</span><span class="o">-&gt;</span><span class="nf">getBody</span><span class="p">(),</span> 
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tokenKeyProvider</span><span class="o">-&gt;</span><span class="nf">getKey</span><span class="p">()</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">getBasicAuthHeader</span><span class="p">():</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="nv">$clientId</span> <span class="o">=</span> <span class="nc">Arr</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">,</span> <span class="s1">'client_id'</span><span class="p">);</span>
+        <span class="nv">$clientSecret</span> <span class="o">=</span> <span class="nc">Arr</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">,</span> <span class="s1">'client_secret'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="s2">"</span><span class="si">{</span><span class="nv">$clientId</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="nv">$clientSecret</span><span class="si">}</span><span class="s2">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">23</code> line: UAA 서버에서 받은 토큰을 파싱하기 위해 <code class="language-plaintext highlighter-rouge">TokenKeyProvider</code>를 주입 받는다</li>
+  <li><code class="language-plaintext highlighter-rouge">45</code> line: UAA 서버에 토큰을 요청한다</li>
+  <li><code class="language-plaintext highlighter-rouge">49-52</code> line: UAA 서버에서 받은 응답 파싱을 <code class="language-plaintext highlighter-rouge">TokenResponse</code> 모델에게 위임한다</li>
+  <li><code class="language-plaintext highlighter-rouge">55-60</code> line: basic 인증 스킴으로 클라이언트 정보를 제출한다(이렇게 제출할 수도 있다 <code class="language-plaintext highlighter-rouge">http://internal:internal@localhost:9999/oauth/token</code>). <code class="language-plaintext highlighter-rouge">base64_encode("internal:internal")</code>의 결과값은 <code class="language-plaintext highlighter-rouge">aW50ZXJuYWw6aW50ZXJuYWw=</code>이다</li>
+</ul>
+
+<p>서비스 프로바이더도 수정해야 합니다.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// app/Providers/OAuth2ServiceProvider.php</span>
+
+<span class="kn">namespace</span> <span class="nn">App\Providers</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Appkr\Infra\JhipsterUaa\UaaTokenProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Appkr\Infra\TokenProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">GuzzleHttp\Client</span> <span class="k">as</span> <span class="nc">GuzzleClient</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Contracts\Config\Repository</span> <span class="k">as</span> <span class="nc">ConfigRepository</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Contracts\Foundation\Application</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\Arr</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">OAuth2ServiceProvider</span> <span class="kd">extends</span> <span class="nc">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">register</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">registerTokenKeyProvider</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">registerTokenParser</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">registerTokenProvider</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">registerTokenKeyProvider</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* 생략 */</span> <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">registerTokenParser</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* 생략 */</span> <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">registerTokenProvider</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">app</span><span class="o">-&gt;</span><span class="nf">bind</span><span class="p">(</span><span class="nc">TokenProvider</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Application</span> <span class="nv">$app</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$config</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">(</span><span class="nc">ConfigRepository</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'oauth2.jhipster'</span><span class="p">);</span>
+            <span class="nv">$httpClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GuzzleClient</span><span class="p">([</span>
+                <span class="s1">'base_uri'</span> <span class="o">=&gt;</span> <span class="nc">Arr</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="nv">$config</span><span class="p">,</span> <span class="s1">'base_uri'</span><span class="p">),</span>
+                <span class="s1">'timeout'</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="p">]);</span>
+            <span class="nv">$tokenKeyProvider</span> <span class="o">=</span> <span class="nv">$app</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">(</span><span class="nc">TokenKeyProvider</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
+            
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">UaaTokenProvider</span><span class="p">(</span><span class="nv">$httpClient</span><span class="p">,</span> <span class="nv">$config</span><span class="p">,</span> <span class="nv">$tokenKeyProvider</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>현재까지의 구현을 클래스 다이어그램으로 살펴볼까요?</p>
+
+<p><img src="/images/2021-02-17-uml1.svg" alt="" /></p>
+<div class="text-center"><small>구현 중간 점검</small></div>
+
+<h3 id="6-3-cacheabletokenprovider">6-3 CacheableTokenProvider</h3>
+
+<p>HelloAPI를 요청할 때마다 <code class="language-plaintext highlighter-rouge">ClientCredentials</code> 그랜트로 토큰을 얻는 것은 네트워크 IO가 매번 발생해서 비효율적입니다. 2부에서 <code class="language-plaintext highlighter-rouge">TokenKeyProvider</code>에서 얻은 공개키를 캐시하고 사용했듯이, <code class="language-plaintext highlighter-rouge">TokenProvider</code>도 똑같이 구현했습니다. 다만 2부에서 24시간 동안 캐시했다면, 여기서는 <code class="language-plaintext highlighter-rouge">access_token</code>의 <code class="language-plaintext highlighter-rouge">exp</code> 클레임까지만 캐시를 유지하도록 구현합니다.</p>
+
+<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">Appkr\Infra\JhipsterUaa</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Appkr\Infra\TokenProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Carbon\Carbon</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Illuminate\Contracts\Cache\Repository</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">CacheableTokenProvider</span> <span class="kd">implements</span> <span class="nc">TokenProvider</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">CACHE_KEY</span> <span class="o">=</span> <span class="s1">'oauth2.token'</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="nv">$delegate</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$cacheRepository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">TokenProvider</span> <span class="nv">$delegate</span><span class="p">,</span> <span class="kt">Repository</span> <span class="nv">$cacheRepository</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">delegate</span> <span class="o">=</span> <span class="nv">$delegate</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">cacheRepository</span> <span class="o">=</span> <span class="nv">$cacheRepository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getToken</span><span class="p">():</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getTokenResponse</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getAccessToken</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getTokenString</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getTokenResponse</span><span class="p">():</span> <span class="kt">TokenResponse</span>
+    <span class="p">{</span>
+        <span class="nv">$self</span> <span class="o">=</span> <span class="nv">$this</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">cacheRepository</span><span class="o">-&gt;</span><span class="nf">rememberForever</span><span class="p">(</span>
+            <span class="k">self</span><span class="o">::</span><span class="no">CACHE_KEY</span><span class="p">,</span> 
+            <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$self</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$self</span><span class="o">-&gt;</span><span class="n">delegate</span><span class="o">-&gt;</span><span class="nf">getTokenResponse</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이번에도 서비스 프로바이더는 수정해야 합니다만, 간결함을 위해 생략했으니, <a href="https://github.com/appkr/laravel-msa-example/blob/master/app/Providers/OAuth2ServiceProvider.php">예제 코드를 참고</a>바랍니다.</p>
 
 <h2 id="7-정리">7 정리</h2>
+
+<ul>
+  <li>마이크로 서비스를 구성할 때 가장 먼저 고려해야할 모듈은 사용자 인증(<code class="language-plaintext highlighter-rouge">UAA</code>)이다</li>
+  <li><code class="language-plaintext highlighter-rouge">Client</code>는 <code class="language-plaintext highlighter-rouge">UAA</code>에서 얻은 토큰을 제출함으로써 마이크로 서비스의 보호된 리소스를 사용할 수 있다</li>
+  <li>마이크로 서비스는 클라이언트가 제출한 토큰을 검증하여 유효할 때만 요청을 처리한다</li>
+  <li>JWT를 토큰으로 사용하면 여러 가지 면에서 편리하다</li>
+  <li>마이크로 서비스끼리 통신하는 경우에도 <code class="language-plaintext highlighter-rouge">UAA</code>로 부터 얻은 토큰을 제출해야 하며, 토큰의 유효성을 검증하고, 유효할 때만 요청을 처리한다</li>
+</ul>
+
+<p>끝.</p>
 
       </div>
 

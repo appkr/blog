@@ -1,0 +1,61 @@
+@startuml
+
+package Laravel {
+
+  class HelloController {
+    - apiClient: HelloApiClient
+    + hello(): JsonResponse
+  }
+
+  class HelloApiClient {
+    - httpClient: GuzzleClient
+    - tokenProvider: TokenProvider
+    + hello(): string
+  }
+
+  interface TokenProvider {
+    + getToken(): string
+    + getTokenResponse(): TokenResponse
+  }
+
+  class UaaTokenProvider implements TokenProvider {
+    - httpClient: GuzzleClient
+    - config: string[]
+    - tokenKeyProvider: TokenKeyProvider
+  }
+
+  class TokenResponse {
+    - tokenType: string
+    - accessToken: Token
+    - refreshToken: Token
+    - expiresIn: Carbon
+    + {static} fromJsonString(jsonString: string, publicKey: string): TokenResponse
+  }
+
+  class Token {
+    - iat: Carbon
+    - exp: Carbon
+    - jti: Carbon
+    - userName: UUIDInterface
+    + {static} fromTokenString(jsonString: string, publicKey: string): Token
+  }
+
+}
+
+package UAA {
+  class User <<auth endpoint>> {}
+}
+
+package Spring {
+  class Hello <<resource endpoint>>{}
+}
+
+HelloController --> HelloApiClient
+HelloApiClient --> TokenProvider
+HelloApiClient -> Hello
+UaaTokenProvider -> User
+TokenProvider --> TokenResponse
+UaaTokenProvider --> TokenResponse
+TokenResponse --> Token
+
+@enduml

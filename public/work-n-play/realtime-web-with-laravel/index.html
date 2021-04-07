@@ -151,7 +151,7 @@
   <li><em>Broadcast_</em> 라라벨의 브로드캐스트 기능을 이용해 본다.</li>
 </ol>
 
-<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
+<p><small>* 웹 페이지의 DOM 조작을 위해 Vue.js<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> 라이브러리를 이용할 것이다.</small></p>
 
 <p>이 프로젝트는 라라캐스트의 <a href="https://laracasts.com/series/real-time-laravel-with-socket-io">Real-time Laravel with Socket.io</a> 시리즈를 보고, 필자 나름대로 해석하고 적용한 결과물이다.</p>
 
@@ -162,7 +162,7 @@
 
 <p>이 포스트에서는 라라벨, Redis, Socket.io 등 여러 시스템을 사용하는데 비슷한 용어가 계속 등장하기 때문에, 이 포스트를 이해하는데 필요한 용어를 먼저 정리해 본다.</p>
 
-<p>라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.</p>
+<p>라라벨의 이벤트 시스템, Redis, Socket.io 서버와 클라이언트는 모두 PubSub(Publisher, Subscriber) 메시징 패러다임<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>을 구현한 것이다. 텔레비전 방송을 생각해 보면 쉽다. 방송국(Publisher)은 수신자(Subscriber)가 누군지 모른 채 무작정 영상을 브로드캐스트한다. 그리고 각 가정에서는 텔레비전을 켜고 관심있는 채널에 맞추고 방송국에서 송출한 영상을 수신한다.</p>
 
 <p>채널은 발신자와 수신자간의 데이터 파이프다. 발신자는 무차별적으로 여러 개의 파이프에 데이터를 흘려보내고, 수신자는 여러 개의 파이프 중 원하는 몇 개의 파이프만 연결하여 데이터를 받는다. 이벤트 시스템 컨텍스트에서는 이벤트 채널(이 포스트 4절의 이벤트 클래스)과 이벤트 데이터라 부르고, PubSub 관점에서는 채널과 메시지라고 부른다. 모두 같은 개념이다.</p>
 
@@ -225,7 +225,7 @@ you:~/workspace <span class="nv">$ </span>php artisan key:generate
 
 <h2 id="2-socketchat">2. SocketChat</h2>
 
-<p>소스 코드의 <code class="language-plaintext highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
+<p>소스 코드의 <code class="language-plaintext highlighter-rouge">public/socketchat</code>에서 Socket.io에서 제공하는 채팅 예제 프로젝트<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>를 경험해 볼 수 있다. 리얼 타임 웹의 가능성을 엿보기 위한 첫 단계다.</p>
 
 <h3 id="21-코드-수정">2.1. 코드 수정</h3>
 

@@ -154,7 +154,7 @@
 <p>기존 Wordpress to Jekyll 마이그레이션 시리즈에 하나의 포스트를 더 추가한다. 오늘 구현한 따끈한 기능 2가지 이다.</p>
 
 <ul>
-  <li>Disqus<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> 최신 댓글 뽑아 오기</li>
+  <li>Disqus<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> 최신 댓글 뽑아 오기</li>
   <li>Facebook 최신 포스트 뽑아 오기</li>
 </ul>
 
@@ -270,7 +270,7 @@
 
 <h3 id="markup">Markup</h3>
 
-<p>표시할 뷰의 내용이 복잡하지도 않을 뿐더러, 3rd Party Template Engine<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> 의존성을 제거하기 위해 Template 컴파일을 직접 구현하기로 했다.</p>
+<p>표시할 뷰의 내용이 복잡하지도 않을 뿐더러, 3rd Party Template Engine<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> 의존성을 제거하기 위해 Template 컴파일을 직접 구현하기로 했다.</p>
 
 <p><code class="language-plaintext highlighter-rouge">ul.facebook-feed</code> 엘리먼트 안쪽에, Template 으로 쓰일 <code class="language-plaintext highlighter-rouge">script#facebook-feed-template</code> 엘리먼트를 위치시켰다. 그리고, Jekyll Liquid 와 충돌을 피하기 위해서 Single Curly Brace (<code class="language-plaintext highlighter-rouge">{}</code>) 를 String Interpolation 기호로 사용하였다. 바인딩할 대상은 <code class="language-plaintext highlighter-rouge">{ message }</code>, <code class="language-plaintext highlighter-rouge">{ id }</code>, <code class="language-plaintext highlighter-rouge">{ created_time }</code> 딱 3 개 뿐이다.</p>
 

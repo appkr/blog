@@ -1,14 +1,6 @@
 [
   
   {
-    "title"    : "라라벨 서비스프로바이더에 바인드된 로직은 언제 실행될까요?",
-    "category" : "work-n-play",
-    "tags"     : "PHP, Laravel",
-    "url"      : "/work-n-play/laravel-service-provider/",
-    "date"     : "2022-01-15"
-  },
-  
-  {
     "title"    : "라라벨 마이크로서비스 예제 3부",
     "category" : "work-n-play",
     "tags"     : "PHP, Laravel, MSA, Oauth2",

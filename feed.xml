@@ -5,15 +5,15 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 15 Jan 2022 16:12:22 +0900</pubDate>
-    <lastBuildDate>Sat, 15 Jan 2022 16:12:22 +0900</lastBuildDate>
+    <pubDate>Sat, 15 Jan 2022 16:15:58 +0900</pubDate>
+    <lastBuildDate>Sat, 15 Jan 2022 16:15:58 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
         <title>라라벨 서비스프로바이더에 바인드된 로직은 언제 실행될까요?</title>
         <description>&lt;p&gt;19~24 라인은 언제 실행될까요?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2022-01-15-laravel-service-provider.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/images/2022-01-15-laravel-service-provider.png&quot;&gt;&lt;img src=&quot;/images/2022-01-15-laravel-service-provider.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;프레임워크 부트 시점에 실행될까요?&lt;/li&gt;
@@ -35,7 +35,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;위 코드의 3 라인에서 예외를 던지기 전에, 서두에 언급한 19~24 라인이 실행될까요?&lt;/li&gt;
+  &lt;li&gt;위 코드의 4 라인에서 예외를 던지기 전에, 서두에 언급한 19~24 라인이 실행될까요?&lt;/li&gt;
   &lt;li&gt;위 코드의 9 라인에서 예외를 던지기 전에, 서두에 언급한 19~24 라인이 실행될까요?&lt;/li&gt;
 &lt;/ul&gt;
 

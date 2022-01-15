@@ -90,77 +90,6 @@
     <article class="box">
       <div class="box-header">
         <h2>
-          <a href="/work-n-play/laravel-service-provider/">라라벨 서비스프로바이더에 바인드된 로직은 언제 실행될까요?</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2022-01-15
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/laravel-service-provider/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p>19~24 라인은 언제 실행될까요?</p>
-
-<p><a href="/images/2022-01-15-laravel-service-provider.png"><img src="/images/2022-01-15-laravel-service-provider.png" alt="" /></a></p>
-
-<ul>
-  <li>프레임워크 부트 시점에 실행될까요?</li>
-  <li>서비스 컨테이너에 <code class="language-plaintext highlighter-rouge">Closure</code>로 등록되고, 사용하는 시점에 실행될까요?</li>
-</ul>
-
-<div class="language-php linenos highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/web.php</span>
-
-<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'injection/ok'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="err">\</span><span class="nc">App\HttpBinService</span> <span class="nv">$service</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span><span class="s2">"STOP"</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="nf">ok</span><span class="p">();</span>
-<span class="p">});</span>
-
-<span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'resolve/ok'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span><span class="s2">"STOP"</span><span class="p">);</span>
-    <span class="nv">$service</span> <span class="o">=</span> <span class="err">\</span><span class="nc">Illuminate\Support\Facades\App</span><span class="o">::</span><span class="nf">make</span><span class="p">(</span><span class="err">\</span><span class="nc">App\HttpBinService</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="nf">ok</span><span class="p">();</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<ul>
-  <li>위 코드의 4 라인에서 예외를 던지기 전에, 서두에 언급한 19~24 라인이 실행될까요?</li>
-  <li>위 코드의 9 라인에서 예외를 던지기 전에, 서두에 언급한 19~24 라인이 실행될까요?</li>
-</ul>
-
-<p>Guzzle Client를 품고 있는 서비스 객체를 필요한 시점에 생성하는 방법을 찾기 위한 실험입니다(lazy load). 저도 답을 찾고 있는 중입니다. 실험 프로젝트에서 각자 답을 찾아보세요.
-https://github.com/appkr/laravel-service-provider-test</p>
-
-      </div>
-
-      <footer class="box-footer">
-        
-      </footer>
-    </article>
-    
-    <article class="box">
-      <div class="box-header">
-        <h2>
           <a href="/work-n-play/laravel-msa-example-part-3/">라라벨 마이크로서비스 예제 3부</a>
         </h2>
         <p class="box-meta">
@@ -372,6 +301,52 @@ https://github.com/appkr/laravel-service-provider-test</p>
       </footer>
     </article>
     
+    <article class="box">
+      <div class="box-header">
+        <h2>
+          <a href="/learn-n-think/dream-store/">달러구트 꿈 백화점</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2021-02-03
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/dream-store/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p><img src="http://image.yes24.com/goods/90051766/800x0" alt="달러구트 꿈 백화점" style="max-width: 400px;" /></p>
+
+<p>“페니, 나는 자신의 삶을 사랑하는 방법에는 2가지가 있다고 믿는단다. 첫째, <strong>아무래도 삶에 만족할 수 없을 때는 바꾸기 위해 최선을 다한다</strong>.”</p>
+
+<p>“<strong>자신의 삶을 있는 그대로 받아들이고 만족하는 것</strong>. 두 번빼 방법은 말은 쉽지만 실행하기는 쉽지 않지. 하지만 정말 할 수 있게 된다면, 글쎄다. 행복이 허무하리만치 가까이에 있었다는 걸 깨달을 수 있지.”</p>
+
+      </div>
+
+      <footer class="box-footer">
+        
+      </footer>
+    </article>
+    
 
     <nav id="pagination">
       <ul class="pager">
@@ -434,7 +409,7 @@ https://github.com/appkr/laravel-service-provider-test</p>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">69</span>
         </a>
       </li>
       <li>
@@ -570,7 +545,7 @@ https://github.com/appkr/laravel-service-provider-test</p>
       </a>
     </span>
     
-    <span style="font-size: 158%">
+    <span style="font-size: 154%">
       <a href="/tags#Laravel">
         Laravel
       </a>
@@ -618,7 +593,7 @@ https://github.com/appkr/laravel-service-provider-test</p>
       </a>
     </span>
     
-    <span style="font-size: 162%">
+    <span style="font-size: 158%">
       <a href="/tags#PHP">
         PHP
       </a>
@@ -1172,13 +1147,6 @@ https://github.com/appkr/laravel-service-provider-test</p>
       
       <li>
         <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2022-01-15</small>
-          <a href="/work-n-play/laravel-service-provider/">라라벨 서비스프로바이더에 바인드된 로직은 언제 실행될까요?</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-17</small>
           <a href="/work-n-play/laravel-msa-example-part-3/">라라벨 마이크로서비스 예제 3부</a>
         </h4>
@@ -1188,6 +1156,13 @@ https://github.com/appkr/laravel-service-provider-test</p>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-15</small>
           <a href="/work-n-play/laravel-msa-example-part-2/">라라벨 마이크로서비스 예제 2부</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2021-02-13</small>
+          <a href="/work-n-play/laravel-msa-example/">라라벨 마이크로서비스 예제</a>
         </h4>
       </li>
       

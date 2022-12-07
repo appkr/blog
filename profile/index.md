@@ -7,6 +7,8 @@ title: Profile
 
 <p class="text-center">
   <img src="/images/gravatar.jpg" alt="appkr" id="gravatar"/>
+  <br>
+  <small>2022년 11월 제주도</small>
 </p>
 
 -   김주원(appkr)

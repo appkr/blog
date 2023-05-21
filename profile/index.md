@@ -34,4 +34,4 @@ He started web programming again in early 2013 with Ruby, but currently focuses 
 
 He wrote a 4k-selling IT book(ISBN 9791185890623). It's a big number in Korea, meaning 1 out of 10k of whole population, or 1 out of 100 techie bought the book.
 
-Full cv can be found here [https://bit.ly/3S4CEYm](https://bit.ly/3S4CEYm) (Korean), [https://bit.ly/appkr-resume](https://bit.ly/appkr-resume) (English)
+Full cv can be found here [https://bit.ly/appkr-resume](https://bit.ly/appkr-resume)

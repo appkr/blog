@@ -5,8 +5,8 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 22 Oct 2023 18:07:24 +0900</pubDate>
-    <lastBuildDate>Sun, 22 Oct 2023 18:07:24 +0900</lastBuildDate>
+    <pubDate>Sun, 22 Oct 2023 19:51:27 +0900</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2023 19:51:27 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -169,7 +169,7 @@
 &lt;p&gt;DDD의 핵심은 소프트웨어의 복잡성 제어입니다. Evans의 책 제목에 정확히 그렇게 써 있습니다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Domain-Driven Design: Tackling Complexity in the Heart of Software &lt;a href=&quot;https://www.facebook.com/tobyilee/posts/10226233229911751?comment_id=1336598547048666&amp;amp;reply_comment_id=266120746391633&quot;&gt;🔗&lt;/a&gt; &amp;lt;footer&amp;gt;&lt;cite&gt;Toby Lee&lt;/cite&gt;&amp;lt;/footer&amp;gt;&lt;/p&gt;
+  &lt;p&gt;Domain-Driven Design: Tackling Complexity in the Heart of Software&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;애플리케이션은 시간이 지나면서 필연적으로 복잡하지기 마련입니다. 복잡도가 올라가면 개발자의 뇌부하가 높아지고, 버그에 노출되기 쉬우며, 유지보수 비용이 증가하게 됩니다. 이런 문제점을 해결하는 방법 중의 하나가 DDD입니다. 범균님의 소프트웨어의 복잡성에 관한 &lt;a href=&quot;https://www.inflearn.com/course/lecture?courseSlug=%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8&amp;amp;unitId=13426&quot;&gt;인프런 객체지향 강의 섹션1(무료)&lt;/a&gt; 시청을 강력히 권장합니다.&lt;/p&gt;
@@ -196,21 +196,21 @@
 &lt;p&gt;&lt;a href=&quot;/images/2023-10-23-ddd-style-code.png&quot;&gt;&lt;img src=&quot;/images/2023-10-23-ddd-style-code.png&quot; alt=&quot;evans&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;클릭하면 큰 그림을 볼 수 있습니다&lt;/small&gt;&lt;/div&gt;
 
-&lt;p&gt;지금까지 사례는 부릉이었고, 이번 사례는 플렉스입니다. 왼쪽이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Service&lt;/code&gt;, 오른쪽이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AggregateRoot Entity&lt;/code&gt;(이하 “모델”이란 용어와 혼용합니다) 입니다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Service&lt;/code&gt;는 다음과 같은 일을 합니다. 모든 기업이 급여 지급일의 다음 달 10일까지 국세청에 제출해야 하는 “원천징수이행상황신고서”라는 서식을 만드는 유스케이스입니다. &lt;small class=&quot;text-muted&quot;&gt;클래스 이름이 컨텍스트를 포함하고 있어서 유스케이스의 이름을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt;로 짧게 지었습니다&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;위에서 봤던 그림이랑 다른 주소 서비스입니다. 왼쪽이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Service&lt;/code&gt;, 오른쪽이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AggregateRoot Entity&lt;/code&gt;(이하 “모델”이란 용어와 혼용합니다) 입니다. 새 주소를 등록하는 유스케이스입니다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Service&lt;/code&gt;는 다음과 같은 일을 합니다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;27줄&lt;/strong&gt;: 데이터베이스 트랜잭션을 관리합니다; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Transactional&lt;/code&gt; 애너테이션을 애플리케이션 안에서 사용하는 부분에 대한 의견이 갈릴 수 있습니다. 다시 한번 강조하지만 저는 실용주의자입니다, 갑자기 Quarkus 프레임웍으로 갈아탈 가능성은 없다고 봅니다&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;41줄&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestController&lt;/code&gt; 에서 제출한 파라미터의 유효성을 검사합니다&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;45줄&lt;/strong&gt;: 빈 도메인 모델을 만듭니다&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;55줄&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Collector&lt;/code&gt; 서비스를 조립하여, 도메인 모델에게 전달하고, 전달받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Collector&lt;/code&gt;를 구동하여 모델 자신의 상태를 변경하라고 모델에게 메시지를 전달합니다&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;58줄&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Calculator&lt;/code&gt; 서비스를 조립하여, 도메인 모델에게 전달하고, 전달받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Calculator&lt;/code&gt;를 구동하여 모델 자신의 상태를 변경하라고 모델에게 메시지를 전달합니다&lt;/li&gt;
-  &lt;li&gt;이상의 과정에서 도메인의 상태가 미리 정의한 불변식을 위반하면 예외가 발생하며 트랜잭션을 실패합니다&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;60줄&lt;/strong&gt;: 도메인의 모델의 상태를 영속화합니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;50줄&lt;/strong&gt;: 데이터베이스 트랜잭션을 관리합니다; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Transactional&lt;/code&gt; 애너테이션을 애플리케이션 안에서 사용하는 부분에 대한 의견이 갈릴 수 있습니다. 다시 한번 강조하지만 저는 실용주의자입니다, 갑자기 Quarkus 프레임웍으로 갈아탈 가능성은 없다고 봅니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;52줄&lt;/strong&gt;: 클라이언트가 제출한 DTO로부터 도메인 모델을 만듭니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;54줄&lt;/strong&gt;: 이미 등록된 주소인지 유효성 검사를 합니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;57줄&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DecoratingVisitor&lt;/code&gt;객체를 도메인 모델에게 전달하고, 전달받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DecoratingVisitor&lt;/code&gt;를 구동하여 모델 자신의 상태를 변경하라고 모델에게 메시지를 전달합니다; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DecoratingVisitor&lt;/code&gt;는 현재 모델의 데이터 중, 꼭 필요하지만 비어있는 필드의 값을 주소 정제 엔진을 통해 구해와서 채워줍니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;59줄&lt;/strong&gt;: 데코레이팅하는 과정에서 주소 정제 엔진이 현재 모델이 가진 주소를 처리할 수 없는 경우에 예외를 던집니다; 도메인 모델의 상태에 대한 일종의 불변식이라 할 수 있습니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;62줄&lt;/strong&gt;: 도메인의 모델의 상태를 영속화합니다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;66줄&lt;/strong&gt;: 애플리케이션 이벤트에 변경 로그 데이터를 던져서 어떤 필드가 어떤 값에서 어떤 값으로 변경되었는지 로그를 기록합니다&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;응용 서비스가 복잡하다면 응용 서비스에서 도메인 로직을 구현하고 있을 가능성이 높다. 응용 서비스가 도메인 로직을 일부 구현하면 코드 중복, 로직 분산 등 코드 품질에 안 좋은 영향을 줄 수 있다. 
-응용 서비스는 트랜잭션 처리도 담당한다. 응용 서비스는 도메인의 상태 변경을 트랝개션으로 처리해야 한다. (후략) &lt;a href=&quot;https://www.yes24.com/Product/Goods/108431347&quot;&gt;🔗&lt;/a&gt;&lt;/p&gt;
+응용 서비스는 트랜잭션 처리도 담당한다. 응용 서비스는 도메인의 상태 변경을 트랜잭션으로 처리해야 한다. (후략) &lt;a href=&quot;https://www.yes24.com/Product/Goods/108431347&quot;&gt;🔗&lt;/a&gt;&lt;/p&gt;
   &lt;footer&gt;&lt;cite&gt;도메인 주도 개발 시작하기 - DDD 핵심 개념 정리부터 구현까지 (2022, 최범균) p.203 발췌&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 

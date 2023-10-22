@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "내가 경험한 DDD, Hexagonal",
+    "category" : "work-n-play, learn-n-think",
+    "tags"     : "ddd, architecture",
+    "url"      : "/work-n-play/learn-n-think/ddd-hexagonal/",
+    "date"     : "2023-10-22"
+  },
+  
+  {
     "title"    : "라라벨 마이크로서비스 예제 3부",
     "category" : "work-n-play",
     "tags"     : "PHP, Laravel, MSA, Oauth2",

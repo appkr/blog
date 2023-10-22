@@ -90,6 +90,70 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2023-10-22
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#work-n-play">
+                
+                    Work & Play
+                  
+              </a>
+              , 
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/work-n-play/learn-n-think/ddd-hexagonal/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>최근에 <a href="https://flex.team/">플렉스</a> 로 이직을 했다. <a href="https://vroongcorp.com/">부릉(舊 메쉬코리아)</a> 에서 7년간 배우고 적용했던 DDD <small class="text-muted">Domain Driven Design, 도메인 주도 설계</small>와 Hexagonal Architecture Pattern<small class="text-muted">육각형 구조</small>에 대해 한판 정리하면서, 지난 시간을 회고해 본다.</p>
+
+<p>2016년 마흔이 넘은 나이에 하던 일을 그만 두고 직업 개발자로 전업을 위한 준비를 하던 시절이었다. 한 통의 전화를 받고 티타임을 하러 갔다가, 우선 시간을 벌며 다음 기회를 보자는 심산으로 입사하기로 약속했다. 입사하기 전까지는 전혀 몰랐다. 공동설립자 대부분이 과학고 등 특수고를 나와서 미국에서 대학을 졸업했고, 국제 정보 올림피아드에서 우승한 이력도 있는 천재 개발자 집단이었다(당시 대표는 개발자 아님). 국내 대학을 나오지 않았기에 고등학교 동료나 동료들의 친구들로 초기 팀업을 했다. 팀 또한 어마어마했다. 그런데 첫 서비스를 실패했다. 내가 합류했던 시점은 새 서비스로 피봇팅하던 때였다. 그 서비스가 지금의 사명과도 같은 부릉이다.</p>
+
+<p>나는 운이 참 좋은 사람이다. 합류할 때부터 DDD를 시전하며 Agile 방식으로 일하고 있었고, 부릉 서비스도 당연히 DDD 사상이 들어갔다. 직업 개발자로 전업을 하기 위한 전략으로 <a href="https://www.yes24.com/Product/Goods/33320248">개발 서적을 한권 집필</a> 했기에 해당 웹 프레임워크를 자유롭게 다룰 수 있고 어찌저찌 원하는 서비스를 만들 수 있는 수준이었지만, 괜찮은 팀에서 괜찮은 동료들로부터 소프트웨어 설계를 배운 경험은 전무했다. 급하게 DDD를 배울 수 있는 책을 찾았고, 처음 접한 책이 범균님의 <a href="https://www.yes24.com/Product/Goods/27750871">DDD START! (현재는 절판되고 신버전 출시됨)</a> 라는 책이었다. 그동안 내가 만든 소프트웨어가 얼마나 엉망이었는지 심각하게 각성하는 계기가 됐다. 이어서 Evans와 Vernon의 책도 섭렵했다. 그 때부터 지하철로 출퇴근하며 소프트웨어 고전들을 하나씩 읽어나갔고, 배운 내용은 실무에 차근차근 적용해 나갔다. 입사부터 2년 동안은 PHP/Laravel로 <small class="text-muted">레거시</small> 서비스를 개발하고 운영했다. Laravel은 Active Record 패턴으로 구현한 ORM을 사용하고 있어서 DDD를 적용하는데 고전했던 기억이 난다. 그 뒤엔 Java/Spring으로 <small class="text-muted">MSA</small> 서비스들을 개발하고 운영했다. MSA로 전환할 때 DDD의 Bounded Context 개념이 큰 도움이 되었다. 최근 몇 년 동안은 Layered 대신 Hexagonal로 애플리케이션을 구성했고, 외부 세상과 애플리케이션을 분리함으로써 얻는 잇점들도 경험했다.</p>
+
+<p>공동 설립자들도 활발하게 실무 개발에 참여했다. 회사의 직원이 200명이던 시절, CTO 타이틀을 달고도 실무 개발하는 장면을 목격하고, “더 중요한 일을 하셔야 할 분이 개발 좀 그만하시라”고 말했던 적이 있다. 입사하기 전에 잘난 척했지만, 결국 우물안 개구리였다는 사실을 깨닫는데 오래 걸리지 않았다. 이 분들은 실무 개발 지식 뿐만아니라, 문제 해결 능력도 뛰어나고, 부릉 서비스 초기에 거의 매일 자정까지 야근하는 나보다 더 열심히 일했다. 가장 많이 타 본 차의 운전 스타일을 닮는다고 한다. 난 아버지 차를 가장 많이 타 봤고, 아버지의 운전 스타일을 그대로 닮았다. 내가 개발자로 일하는 방식, 구현 스타일은 부릉의 공동 설립자 및 동료 개발자들의 영향을 많이 받았다. 이 포스트를 통해 감사의 마음을 한번 더 표현한다.</p>
+
+<p>입사 당시 100명 남짓이었고, 퇴사할 때 공동 설립자를 제외하고 나보다 사번이 높은 직원은 두세 명이었다. 부릉 서비스 시작 시점에 하루 천 개도 안되는 배송 신청을 받았다면, 퇴사할 땐 하루 30만개의 배송을 소화했다. 배송 기사, 상점, 관리자의 트래픽을 받는 Public API는 분당 15만 요청을 처리하는 수준이었다. 연 4천억원 매출, 매출원가 90%를 제하면 10%가 마진, 백엔드 15명, 웹 3명, 안드로이드 3명, 닷넷 2명, QA 2명, PO 3명, 디자인 2명, 회사는 hy(한국야쿠르트)에 인수 등이 퇴사 시점의 스냅샷이다 - 현재는 조직, 사업, 서비스가 매우 안정적이란 얘기를 하고 싶었다. 더군다나 2022년 미국발 금융 위기로 바닥을 찍어 봤기에 이제 올라갈 일만 남았다. 운 좋게 J-curve를 그리며 트래픽을 쳐맞는 성장을 경험했지만, 월급 외에 주식 보상에서는 오히려 운이 없었다. 배움과 성장의 비용이라 생각하기로 했다.</p>
+
+<p>필자가 이해하는 Hexagonal과 DDD를 간략히 설명하는 것이 포트스트의 목적입니다. 이 포스트에 사용한 예제 코드는 <a href="https://github.com/appkr/hexagonal-example">https://github.com/appkr/hexagonal-example</a>에 있습니다. 이 포스트의 내용을 정답이 아닙니다, 다시 한번 강조드리지만 세상에 정답은 없습니다.</p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/work-n-play/learn-n-think/ddd-hexagonal/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/laravel-msa-example-part-3/">라라벨 마이크로서비스 예제 3부</a>
         </h2>
         <p class="box-meta">
@@ -301,52 +365,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/learn-n-think/dream-store/">달러구트 꿈 백화점</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2021-02-03
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#learn-n-think">
-                
-                    Learn & Think
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/learn-n-think/dream-store/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><img src="http://image.yes24.com/goods/90051766/800x0" alt="달러구트 꿈 백화점" style="max-width: 400px;" /></p>
-
-<p>“페니, 나는 자신의 삶을 사랑하는 방법에는 2가지가 있다고 믿는단다. 첫째, <strong>아무래도 삶에 만족할 수 없을 때는 바꾸기 위해 최선을 다한다</strong>.”</p>
-
-<p>“<strong>자신의 삶을 있는 그대로 받아들이고 만족하는 것</strong>. 두 번빼 방법은 말은 쉽지만 실행하기는 쉽지 않지. 하지만 정말 할 수 있게 된다면, 글쎄다. 행복이 허무하리만치 가까이에 있었다는 걸 깨달을 수 있지.”</p>
-
-      </div>
-
-      <footer class="box-footer">
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -403,13 +421,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">84</span>
+          <span class="badge">85</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">69</span>
+          <span class="badge">70</span>
         </a>
       </li>
       <li>
@@ -701,7 +719,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#architecture">
         architecture
       </a>
@@ -764,6 +782,12 @@
     <span style="font-size: 94%">
       <a href="/tags#cpu">
         cpu
+      </a>
+    </span>
+    
+    <span style="font-size: 94%">
+      <a href="/tags#ddd">
+        ddd
       </a>
     </span>
     
@@ -1147,6 +1171,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
+          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-17</small>
           <a href="/work-n-play/laravel-msa-example-part-3/">라라벨 마이크로서비스 예제 3부</a>
         </h4>
@@ -1156,13 +1187,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-15</small>
           <a href="/work-n-play/laravel-msa-example-part-2/">라라벨 마이크로서비스 예제 2부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2021-02-13</small>
-          <a href="/work-n-play/laravel-msa-example/">라라벨 마이크로서비스 예제</a>
         </h4>
       </li>
       

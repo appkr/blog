@@ -161,13 +161,13 @@
 
 <p>가장 많이 타 본 차의 운전 스타일을 닮는다고 한다. 난 아버지 차를 가장 많이 타 봤고, 아버지의 운전 스타일을 그대로 닮았다. 내가 개발자로 일하는 방식, 구현 스타일은 부릉의 공동 설립자 및 동료 개발자들의 영향을 많이 받았다. 이 포스트를 통해 감사의 마음을 한번 더 표현한다.</p>
 
-<p>입사 당시 100명 남짓이었고, 퇴사할 때 공동 설립자를 제외하고 나보다 사번이 높은 직원은 두세 명이었다. 부릉 서비스 시작 시점에 하루 천 개도 안되는 배송 신청을 받았다면, 퇴사할 땐 하루 30만개의 배송을 소화했다. 배송 기사, 상점, 관리자의 트래픽을 받는 Public API는 분당 15만 요청을 처리하는 수준이었다. 연 4천억원 매출, 매출원가 90%를 제하면 10%가 마진, 백엔드 15명, 웹 3명, 안드로이드 3명, 닷넷 2명, QA 2명, PO 3명, 디자인 2명, 회사는 hy(한국야쿠르트)에 인수 등이 퇴사 시점의 스냅샷이다 - 현재는 조직, 사업, 서비스가 매우 안정적이란 얘기를 하고 싶었다. 더군다나 2022년 미국발 금융 위기로 바닥을 찍어 봤기에 이제 올라갈 일만 남았다.</p>
+<p>입사 당시 100명 남짓이었고, 퇴사할 때 공동 설립자를 제외하고 나보다 사번이 높은 직원은 두세 명에 불과했다. 부릉 서비스 시작 시점에 하루 천 개도 안되는 배송 신청을 받았다면, 퇴사할 땐 하루 30만개의 배송을 소화했다. 배송 기사, 상점, 관리자의 트래픽을 받는 Public API는 분당 15만 요청을 처리하는 수준이었다. 연 4천억원 매출, 매출원가 90%를 제하면 10%가 마진, 백엔드 15명, 웹 3명, 안드로이드 3명, 닷넷 2명, QA 2명, PO 3명, 디자인 2명, 회사는 hy(한국야쿠르트)에 인수 등이 퇴사 시점의 스냅샷이다 - 현재는 조직, 사업, 서비스가 매우 안정적이란 얘기를 하고 싶었다. 더군다나 2022년 미국발 금융 위기로 바닥을 찍어 봤기에 이제 올라갈 일만 남았다.</p>
 
-<p>운 좋게 J-curve를 그리며 트래픽을 쳐맞는 성장을 경험했지만, 월급 외에 주식 보상에서는 오히려 운이 없었다. 배움과 성장의 비용이라 생각하기로 했다.</p>
+<p>운 좋게 J-curve를 그리며 트래픽을 쳐맞는 성장을 경험했지만, 월급 외에 주식 보상에서는 오히려 운이 없었다. 배움과 성장의 비용이라 생각하고 잊어버렸다.</p>
 
 <div class="spacer">• • •</div>
 
-<p>이 포스트는 필자가 이해하는 Hexagonal과 DDD를 간략히 설명하는 것이 포트스트의 목적입니다. 이 포스트에 사용한 예제 코드는 <a href="https://github.com/appkr/hexagonal-example">https://github.com/appkr/hexagonal-example</a>에 있습니다. 이 포스트의 내용을 정답이 아닙니다, 다시 한번 강조드리지만 세상에 정답은 없습니다.</p>
+<p>이 포스트는 필자가 이해하는 Hexagonal과 DDD를 간략히 설명하는 것이 목적입니다. 이 포스트에 사용한 예제 코드는 <a href="https://github.com/appkr/hexagonal-example">https://github.com/appkr/hexagonal-example</a> 에서 볼 수 있습니다. 이 포스트의 내용을 정답이 아닙니다, 다시 한번 강조드리지만 세상에 정답은 없습니다.</p>
 
 <!--more-->
 <div class="spacer">• • •</div>
@@ -180,6 +180,8 @@
   <p>헥사고날의 핵심은 가운데 헥사곤 안에 들어있는 애플리케이션과 외부 세상을 분리하는게 출발입니다. 헥사고날을 만든 Cockburn은 시스템을 사용하는 사용자와 시스템이 사용하는 네트워크, DB를 외부에 있는 것이라고 보고 이를 어댑터라고 모아 불렀습니다. <a href="https://www.facebook.com/tobyilee/posts/10226233229911751?comment_id=1336598547048666&amp;reply_comment_id=266120746391633">🔗</a></p>
   <footer><cite>Toby Lee</cite></footer>
 </blockquote>
+
+<p>주) 애플리케이션을 사용하는 <code class="language-plaintext highlighter-rouge">driving adapter</code>와 애플리케이션이 사용하는 <code class="language-plaintext highlighter-rouge">driven adapter</code></p>
 
 <p><a href="/images/2023-10-23-hexagonal.png"><img src="/images/2023-10-23-hexagonal.png" alt="hexagonal" /></a></p>
 <div class="text-center"><small>클릭하면 큰 그림을 볼 수 있습니다</small></div>
@@ -264,7 +266,7 @@
   <li>④ 이 프로젝트에서는 <code class="language-plaintext highlighter-rouge">domain</code>을 <code class="language-plaintext highlighter-rouge">application</code>과 같은 폴더 레벨로 위치시켰습니다</li>
   <li>③ <code class="language-plaintext highlighter-rouge">port.in</code>은 외부 세계의 요청을 받고, <code class="language-plaintext highlighter-rouge">port.out</code>은 외부 세계에 요청을 하기 위한 인터페이스입니다</li>
   <li>① <code class="language-plaintext highlighter-rouge">adapter.in.rest</code>에는 <code class="language-plaintext highlighter-rouge">@RestController</code>가 있어서 HTTP 프로토콜로 클라이언트의 요청을 받아서 <code class="language-plaintext highlighter-rouge">port.in</code>에 위치한 <code class="language-plaintext highlighter-rouge">Usecase</code>를 구동<small class="text-muted">driving</small>합니다; <code class="language-plaintext highlighter-rouge">adapter.in.grpc</code>에는 gRPC 서비스 구현체가 있어서 gRPC 프로토콜로 클라이언트의 요청을 받아서 <code class="language-plaintext highlighter-rouge">Usecase</code>를 구동합니다</li>
-  <li>② <code class="language-plaintext highlighter-rouge">Usecase</code>의 구현체인 <code class="language-plaintext highlighter-rouge">~Service</code>가 <code class="language-plaintext highlighter-rouge">port.out</code>의 여러 인터페이스를 사용하고, <code class="language-plaintext highlighter-rouge">port.out</code>의 구현체는 <code class="language-plaintext highlighter-rouge">adapter.out</code>에 위치합니다
+  <li>② <code class="language-plaintext highlighter-rouge">Usecase</code>의 구현체인 <code class="language-plaintext highlighter-rouge">~Service</code>가 <code class="language-plaintext highlighter-rouge">port.out</code>의 여러 인터페이스를 사용하고, <code class="language-plaintext highlighter-rouge">port.out</code>의 구현체는 <code class="language-plaintext highlighter-rouge">adapter.out</code>에 위치합니다. 여기서 의존성 역전이 발생합니다.
     <ul>
       <li>파일 저장을 위해 <code class="language-plaintext highlighter-rouge">aws</code> S3 저장 기능을 구현했습니다</li>
       <li>주소 정제를 위해 <code class="language-plaintext highlighter-rouge">etpost</code> 엔진과 TCP 통신을 합니다</li>
@@ -274,7 +276,7 @@
       <li>벌크 요청에 대해 비동기로 처리하고 처리 결과를 사용자에게 알리기 위해 이메일을 선택했고 <code class="language-plaintext highlighter-rouge">vroong</code>에 부릉의 공통 메일 전송 MSA와 통신하는 기능을 구현했습니다.</li>
     </ul>
   </li>
-  <li>⑤ 우리 마음대로 제어할 수 없는 외부 서비스의 장애로 인한 장애가 전파되는 것을 막기 위해 회로 차단기 패턴을 적용한 모습을 보여줍니다. 아울러, 외부 서비스로부터 받은 응답은 모두 부패방지계층 <small class="text-muted">ACL, Anti-corruption Layer</small>을 적용하고 갑작스런 API 변경으로부터 우리 서비스를 보호하도록 완충 역할을 제공했습니다</li>
+  <li>⑤ 우리 마음대로 제어할 수 없는 외부 서비스의 장애가 내부로 전파되는 것을 막기 위해 회로 차단기 패턴을 적용한 모습을 보여줍니다. 아울러, 외부 서비스로부터 받은 응답은 모두 부패방지계층 <small class="text-muted">ACL, Anti-corruption Layer</small>을 적용하고 갑작스런 API 변경으로부터 우리 서비스를 보호하도록 완충 역할을 제공했습니다</li>
 </ul>
 
 <p><a href="/images/2023-10-23-delivery-mechanism.png"><img src="/images/2023-10-23-delivery-mechanism.png" alt="rest &amp; grpc" /></a></p>
@@ -290,12 +292,12 @@
 <p><a href="/images/2023-10-23-redoc.png"><img src="/images/2023-10-23-redoc.png" alt="redoc" /></a></p>
 <div class="text-center"><small>클릭하면 큰 그림을 볼 수 있습니다</small></div>
 
-<p>이상의 복잡성은 모두 감추어져 있습니다. 클라이언트가 마주하는 API는 그림과 같은 모양입니다. <code class="language-plaintext highlighter-rouge">providers</code> 쿼리 파람을 잘 보면, 배열로 제출합니다. 가령 <code class="language-plaintext highlighter-rouge">providers=KAKAO,NAVER,SKT</code>와 같이 제출했다면, 카카오 지오코드가 실패하면(결과 값이 없거나, 장애로 인해 오류 응답을 받으면), 네이버로 폴백합니다. 네이버도 실패하면, SKT로 넘어갑니다. 각 서비스에서 지오코드라는 유스케이스를 위해 카카오, 네이버 등을 직접 연동하고 호출하던 것을 이 서비스가 추상화해서 공통 서비스로 제공하고 있습니다. 적용 우선 순위 또는 객체의 조립 공식을 클라이언트가 선택할 수 있도록 유연함도 제공하고 있을 뿐더러, 외부 서비스의 충격으로부터 우리 서비스를 보고하고 있습니다.</p>
+<p>이상의 복잡성은 모두 감추어져 있습니다. 클라이언트가 마주하는 API는 그림과 같은 모양입니다. <code class="language-plaintext highlighter-rouge">providers</code> 쿼리 파람을 잘 보면, 배열로 제출합니다. 가령 <code class="language-plaintext highlighter-rouge">providers=KAKAO,NAVER,SKT</code>와 같이 제출했다면, 카카오 지오코드가 실패하면(결과 값이 없거나, 장애로 인해 오류 응답을 받으면), 네이버로 폴백합니다. 네이버도 실패하면, SKT로 넘어갑니다. 각 서비스에서 지오코드라는 유스케이스를 위해 카카오, 네이버 등을 직접 연동하고 호출하던 것을 이 서비스가 추상화해서 공통 서비스로 제공하고 있습니다. 적용 우선 순위 또는 객체의 조립 공식을 클라이언트가 선택할 수 있도록 유연함도 제공하고 있을 뿐더러, 외부 서비스의 충격으로부터 우리 서비스를 보호하고 있습니다.</p>
 
 <p>이상한 용례이긴하지만, 서버에 CLI로 접속해서 이 애플리케이션을 이용해 지오코드를 결과를 얻을 수 있을까요? 물론이죠, <code class="language-plaintext highlighter-rouge">adapter.in.cli</code>를 구현하고, <code class="language-plaintext highlighter-rouge">Usecase</code>를 그대로 사용하면 됩니다. 스케쥴 태스크, 카프카 컨수머 등등이 <code class="language-plaintext highlighter-rouge">adapter.in</code>에 위치하면 됩니다. 새로운 지오 서비스 프로바이더를 추가할 수 있을까요? <code class="language-plaintext highlighter-rouge">adapter.out.newgeoprovider</code>를 <code class="language-plaintext highlighter-rouge">port.out</code>의 스펙대로 구현하고 객체를 조립하는 <code class="language-plaintext highlighter-rouge">Factory</code> 클래스의 switch 구문에 추가해주면 됩니다.</p>
 
 <blockquote>
-  <p>필자는 실용 주의자입니다, 해서 가끔 <code class="language-plaintext highlighter-rouge">Usecase</code> 인터페이스를 안 만들고 <code class="language-plaintext highlighter-rouge">~Service</code> 구체 구현체만 작성하기도 합니다, 어차피 <code class="language-plaintext highlighter-rouge">Usecase</code>의 구현체가 하나뿐이라서…</p>
+  <p>필자는 실용 주의자입니다, 해서 가끔 <code class="language-plaintext highlighter-rouge">Usecase</code> 인터페이스를 생략하고 <code class="language-plaintext highlighter-rouge">~Service</code> 구체 구현체만 작성하기도 합니다, 어차피 <code class="language-plaintext highlighter-rouge">Usecase</code>의 구현체가 하나뿐이라서…</p>
 </blockquote>
 
 <h2 id="ddd">DDD</h2>
@@ -310,20 +312,20 @@
 
 <p>애플리케이션의 복잡성 정복에 DDD가 어떤 도움을 주는 지 필자 나름의 의식의 흐름대로 풀어 보겠습니다.</p>
 
-<p>과거에 <code class="language-plaintext highlighter-rouge">clang</code>, <code class="language-plaintext highlighter-rouge">perl</code>, <code class="language-plaintext highlighter-rouge">classic PHP</code>, <code class="language-plaintext highlighter-rouge">classic ASP</code>, <code class="language-plaintext highlighter-rouge">JSP</code>로 웹 애플리케이션을 만들던 시절이 있었습니다 <small class="text-muted"><a href="https://github.com/appkr/AMLite/blob/master/amadmin.cgi#L1211">필자가 90년 말에 가지고 놀던 perl 코드</a> </small>. 고작 일천줄 수준인데 전혀 읽히지 않습니다. 일만줄 코드는 천재들이나 작성할 수 있다고 생각했습니다, 왜냐하면 일만줄의 작업 컨텍스트를 머릿속에 넣고 있어야 하니까요. 객체지향을 배우고 신세계를 경험했습니다. 기억해야 할 것이 클래스 내부의 데이터와 메서드, 협력하는 몇 개의 협력 클래스면 제법 큰 프로그램도 짤 수 있었었으니까요. 게다가 <code class="language-plaintext highlighter-rouge">RubyOnRails</code>, <code class="language-plaintext highlighter-rouge">Laravel</code>과 같은 MVC 패턴을 접하고는 생산성은 더 올라갔습니다.</p>
+<p>과거에 <code class="language-plaintext highlighter-rouge">clang</code>, <code class="language-plaintext highlighter-rouge">perl</code>, <code class="language-plaintext highlighter-rouge">classic PHP</code>, <code class="language-plaintext highlighter-rouge">classic ASP</code>, <code class="language-plaintext highlighter-rouge">JSP</code>로 웹 애플리케이션을 만들던 시절이 있었습니다 <small class="text-muted"><a href="https://github.com/appkr/AMLite/blob/master/amadmin.cgi#L1211">필자가 90년 말에 가지고 놀던 perl 코드</a> </small>. 고작 일천줄 수준인데 전혀 읽히지 않습니다. 일만줄 코드는 천재들이나 작성할 수 있다고 생각했습니다, 왜냐하면 일만줄의 작업 컨텍스트를 머릿속에 넣고 있어야 하니까요. 객체지향을 배우고 신세계를 경험했습니다. 클래스 내부의 데이터와 메서드, 협력하는 몇 개의 협력 클래스만 기억하면 천재 개발자가 아니어도 제법 큰 프로그램도 짤 수 있었으니까요. 게다가 <code class="language-plaintext highlighter-rouge">RubyOnRails</code>, <code class="language-plaintext highlighter-rouge">Laravel</code>과 같은 MVC 패턴을 접하고는 생산성은 더 올라갔습니다.</p>
 
 <p><strong>클래스(메모리에 올라가면 “객체”, 이하 두 용어를 혼용해서 사용함)란 데이터와 그 데이터를 조작하는 함수를 캡슐화해 놓은 겁니다</strong>.</p>
 
-<p>그런데, 잘 생각해보자구요. 우리가 애플리케이션을 작성하면서 데이터, 즉 상태를 가진 클래스가 어떤 것이 있었죠? 컨트롤러, 서비스, 리포지토리 전부 상태가 없습니다. 상태가 없으니 서비스 컨테이너에 싱글톤으로 등록하고 필요할 때 꺼내써도 멀티 스레드 환경에서도 동시성 이슈가 생기지 않는겁니다. 이 녀석들이 멤버 필드로 다른 클래스를 가지고 있지만, 그 클래스들은 협력 클래스일 뿐이고, 앞서 언급한 싱글톤 클래스들은 메서드로 받은 원시타입 또는 DTO를 다른 협력 클래스의 메서드에 전달하는 역할만 하잖아요. 그렇게 따지고 보면 <code class="language-plaintext highlighter-rouge">DTO</code>를 제외하고 데이터, 즉 상태를 가진 클래스는 도메인 객체가 전부입니다.</p>
+<p>그런데, 잘 생각해보자구요. 우리가 애플리케이션을 작성하면서 만나는 데이터, 즉 상태를 가진 클래스가 어떤 것이 있었죠? 컨트롤러, 서비스, 리포지토리 전부 상태가 없습니다. 상태가 없으니 서비스 컨테이너에 싱글톤으로 등록하고 필요할 때 꺼내써도 멀티 스레드 환경에서도 동시성 이슈가 생기지 않는겁니다. 이 녀석들이 멤버 필드로 다른 클래스를 가지고 있지만, 그 클래스들은 협력 클래스일 뿐이고, 앞서 언급한 싱글톤 클래스들은 메서드로 받은 원시타입 또는 DTO를 다른 협력 클래스의 메서드에 전달하는 역할만 하잖아요. 그렇게 따지고 보면 <code class="language-plaintext highlighter-rouge">DTO</code>를 제외하고 데이터, 즉 상태를 가진 클래스는 도메인 객체가 전부입니다.</p>
 
-<p>(백엔드) 애플리케이션이란 결국 비즈니스 객체의 상태를 관리하는 것이고, 그 상태를 제어하는 창구를 한 곳으로 모아 두면 잘못된 상태가 되는 일은 없지 않을까요? DDD에는 보편언어 <small class="text-muted">Ubiquitous Language</small>, 바운디드 컨텍스트, 컨텍스트 맵과 같은 전략적 패턴을 주장하고 있지만, 실천적인 전술적 패턴을 많이 제공하고 있습니다.</p>
+<p>(백엔드) 애플리케이션이란 결국 비즈니스 객체의 상태를 관리하는 것이고, 그 상태를 제어하는 창구를 한 곳으로 모아 두면 상태가 잘못 되는 일은 없지 않을까요? DDD에는 보편언어 <small class="text-muted">Ubiquitous Language</small>, 바운디드 컨텍스트, 컨텍스트 맵과 같은 전략적 패턴을 주장하고 있지만, 실천적인 전술적 패턴을 많이 제공하고 있습니다.</p>
 
-<p>그 실천적 패턴들은 결국 도메인의 상태를 잘 관리하기 위한 것이고, 애그리거트 루트 <small class="text-muted">Aggregate Root</small>에만 그 진입점을 만들라고 가이드합니다. 그리고 도메인에 대한 지식을 여기 저기 흩어 놓지 말고, 도메인 모델 안에 집약하라고 제언합니다. DDD에서 모델이란 식별자가 있어 식별자로 객체간 동일성을 식별하는 1) 엔티티와 값으로 객체간 동일성을 식별하는 2) 밸류를 의미합니다.</p>
+<p>그 실천적 패턴들은 결국 도메인의 상태를 잘 관리하기 위한 것이고, 애그리거트 루트 <small class="text-muted">Aggregate Root</small>에만 그 진입점을 만들라고 가이드합니다. 그리고 도메인에 대한 지식을 여기 저기 흩어 놓지 말고, 도메인 모델 안에 집약하라고 제언합니다. (모델이 뭐냐고 질문하시는 분이 있어서) DDD에서는 모델을 식별자가 있어 식별자로 객체간 동일성을 식별하는 1) 엔티티, 객체의 값으로 서로간의 동일성을 식별하는 2) 밸류로 구분합니다.</p>
 
 <p><a href="/images/2023-10-23_evans.png"><img src="/images/2023-10-23_evans.png" alt="evans" /></a></p>
 <div class="text-center"><small>클릭하면 큰 그림을 볼 수 있습니다</small></div>
 
-<p>꽤 많은 실천 패턴들을 제안하고 있는데 책을 사서 보실 것을 추천합니다. 지금 당장 전부 볼 수는 없으니, 실무 사례를 통해 이해도를 높여 보려 합니다.</p>
+<p>그림에서 보듯이 꽤 많은 실천 패턴들을 제안하고 있는데, 제가 그럴 깜냥이 안되거니와, 이 포스트에서 전부 설명할 수는 없습니다. 책을 사서 보실 것을 추천합니다. 지금 당장 전부 볼 수는 없으니, 실무 사례를 통해 이해도를 높여 보려 합니다.</p>
 
 <h3 id="실무-사례-1">실무 사례</h3>
 
@@ -337,9 +339,9 @@
   <li><strong>52줄</strong>: 클라이언트가 제출한 DTO로부터 도메인 모델을 만듭니다</li>
   <li><strong>54줄</strong>: 이미 등록된 주소인지 유효성 검사를 합니다</li>
   <li><strong>57줄</strong>: <code class="language-plaintext highlighter-rouge">DecoratingVisitor</code>객체를 도메인 모델에게 전달하고, 전달받은 <code class="language-plaintext highlighter-rouge">DecoratingVisitor</code>를 구동하여 모델 자신의 상태를 변경하라고 모델에게 메시지를 전달합니다; <code class="language-plaintext highlighter-rouge">DecoratingVisitor</code>는 현재 모델의 데이터 중, 꼭 필요하지만 비어있는 필드의 값을 주소 정제 엔진을 통해 구해와서 채워줍니다</li>
-  <li><strong>59줄</strong>: 데코레이팅하는 과정에서 주소 정제 엔진이 현재 모델이 가진 주소를 처리할 수 없는 경우에 예외를 던집니다; 도메인 모델의 상태에 대한 일종의 불변식이라 할 수 있습니다</li>
-  <li><strong>62줄</strong>: 도메인의 모델의 상태를 영속화합니다</li>
-  <li><strong>66줄</strong>: 애플리케이션 이벤트에 변경 로그 데이터를 던져서 어떤 필드가 어떤 값에서 어떤 값으로 변경되었는지 로그를 기록합니다</li>
+  <li><strong>59줄</strong>: 데코레이팅하는 과정에서 주소 정제 엔진이 현재 모델이 가진 주소를 정제할 수 없는 경우에 에러 목록을 반환하고, 에러가 한 건이라도 있으면 예외를 던집니다; 도메인 모델의 상태에 대한 일종의 불변식이라 할 수 있습니다</li>
+  <li><strong>62줄</strong>: 도메인 모델의 상태를 영속화합니다</li>
+  <li><strong>66줄</strong>: 어떤 필드가 어떤 값<small class="text-muted">before<small>에서 어떤 값<small class="text-muted">after<small>으로 변경되었는지를 애플리케이션 이벤트에 담아 변경 로그를 기록합니다</small></small></small></small></li>
 </ul>
 
 <blockquote>
@@ -354,7 +356,7 @@
 
 <h2 id="closing-remarks">Closing Remarks</h2>
 
-<p>필자는 닭 잡는데 소잡는 칼을 쓰는 것을 매우 경계합니다. 한번 쓰고 버리는 애플리케이션을 만든다면, 또는 일회성으로 남의 서비스를 개발해준다면, 빠르게 개발하는 방법을 택할겁니다. 그렇지만 내가 계속 유지보수해야할 서비스라면 소프트웨어의 제 2가치를 추구할겁니다.</p>
+<p>필자는 닭 잡는데 소잡는 칼을 쓰는 것을 매우 경계합니다. 한번 쓰고 버리는 애플리케이션을 만든다면, 또는 일회성으로 남의 서비스를 개발한다면, 빠르게 개발하는 방법을 택할겁니다. 그렇지만 내가 계속 유지보수해야할 서비스라면 소프트웨어의 제 2가치를 추구할겁니다.</p>
 
 <p>소프트웨어의 제 1가치는 현재의 요구사항을 충족하는 것이고, 제 2가치는 미래의 요구사항을 충족하는 것입니다. 현재의 구현이 미래의 요구사항 변경을 반영하기 어려운 구조라면 좋은 소프트웨어라 할 수 없습니다. 가치있는 소프트웨어를 만드는 방법은 여러 가지인데, Hexagonal과 DDD도 괜찮은 선택지라 생각합니다.</p>
 

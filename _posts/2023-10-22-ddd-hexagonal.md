@@ -161,7 +161,7 @@ DDD의 핵심은 소프트웨어의 복잡성 제어입니다. Evans의 책 제�
 
 애플리케이션의 복잡성 정복에 DDD가 어떤 도움을 주는 지 필자 나름의 의식의 흐름대로 풀어 보겠습니다.
 
-과거에 `clang`, `perl`, `classic PHP`, `classic ASP`, `JSP`로 웹 애플리케이션을 만들던 시절이 있었습니다 <small class="text-muted">[필자가 90년 말에 가지고 놀던 perl 코드](https://github.com/appkr/AMLite/blob/master/amadmin.cgi#L1211) </small>. 고작 일천줄 수준인데 전혀 읽히지 않습니다. 일만줄 코드는 천재들이나 작성할 수 있다고 생각했습니다, 왜냐하면 일만줄의 작업 컨텍스트를 머릿속에 넣고 있어야 하니까요. 객체지향을 배우고 신세계를 경험했습니다. 클래스 내부의 데이터와 메서드, 협력하는 몇 개의 협력 클래스만 기억하면 천재 개발자가 아니어도 제법 큰 프로그램도 짤 수 있었으니까요. 게다가 `RubyOnRails`, `Laravel`과 같은 MVC 패턴을 접하고는 생산성은 더 올라갔습니다.
+과거에 `clang`, `perl`, `classic PHP`, `classic ASP`, `JSP`로 웹 애플리케이션을 만들던 시절이 있었습니다 <small class="text-muted">[필자가 90년 말에 가지고 놀던 perl 코드](https://github.com/appkr/AMLite/blob/master/amadmin.cgi#L1211) [clang으로 짠 웹](https://blog.appkr.dev/learn-n-think/history-lesson-on-web/)</small>. 고작 일천줄 수준인데 전혀 읽히지 않습니다. 일만줄 코드는 천재들이나 작성할 수 있다고 생각했습니다, 왜냐하면 일만줄의 작업 컨텍스트를 머릿속에 넣고 있어야 하니까요. 객체지향을 배우고 신세계를 경험했습니다. 클래스 내부의 데이터와 메서드, 협력하는 몇 개의 협력 클래스만 기억하면 천재 개발자가 아니어도 제법 큰 프로그램도 짤 수 있었으니까요. 게다가 `RubyOnRails`, `Laravel`과 같은 MVC 패턴을 접하고는 생산성은 더 올라갔습니다.
 
 **클래스(메모리에 올라가면 "객체", 이하 두 용어를 혼용해서 사용함)란 데이터와 그 데이터를 조작하는 함수를 캡슐화해 놓은 겁니다**. 
 

@@ -195,7 +195,7 @@ DDD의 핵심은 소프트웨어의 복잡성 제어입니다. Evans의 책 제�
 > 응용 서비스는 트랜잭션 처리도 담당한다. 응용 서비스는 도메인의 상태 변경을 트랜잭션으로 처리해야 한다. (후략) [🔗](https://www.yes24.com/Product/Goods/108431347) 
 > <footer><cite>도메인 주도 개발 시작하기 - DDD 핵심 개념 정리부터 구현까지 (2022, 최범균) p.203 발췌</cite></footer>
 
-위에서 언급한 응용 서비스에 도메인 로직을 구현하는 스타일을 [트랜잭션 스트립트 패턴](https://velog.io/@hoyun7443/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%8C%A8%ED%84%B4-vs-%EB%8F%84%EB%A9%94%EC%9D%B8-%EB%AA%A8%EB%8D%B8-%ED%8C%A8%ED%84%B4) 이라 합니다 <small class="text-muted">Patterns of Enterprise Application Architecture (2003, Martin Fowler)</small>. 트랜잭션 스크립트 스타일이 구시대적이고 잘못됐다고 말하는 것은 아니니 오해없으시길 바랍니다. 
+위에서 언급한 응용 서비스에 도메인 로직을 구현하는 스타일을 [트랜잭션 스트립트 패턴](https://www.inflearn.com/questions/117315/%EB%B9%84%EC%A7%80%EB%8B%88%EC%8A%A4-%EB%A1%9C%EC%A7%81%EA%B5%AC%ED%98%84-entity-vs-service) 이라 합니다 <small class="text-muted">Patterns of Enterprise Application Architecture (2003, Martin Fowler)</small>. 트랜잭션 스크립트 스타일이 구시대적이고 잘못됐다고 말하는 것은 아니니 오해없으시길 바랍니다. 
 
 다만 도메인 모델에 도메인의 지식을 캡슐화하는 방식과 대별되는 방식 중 하나입니다. 트랜잭션 스크립트 스타일로 애플리케이션을 작성하면 도메인 모델은 표현력이 빈약해집니다 <small class="text-muted">[Anemic domain model](https://en.wikipedia.org/wiki/Anemic_domain_model) </small>. 도메인 모델이 데이터만 있고 로직은 없어서 DB의 컬럼을 수직으로 세워놓은 클래스가 될 가능성이 큽니다. 더군다나, 서비스에서 모델의 데이터 구조를 꺼내서 조작하고 다시 넣는 행위를 해야하므로 [Tell Don't Ask](https://martinfowler.com/bliki/TellDontAsk.html), [Law Of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter) 설계 원칙을 위반하게 됩니다.
 

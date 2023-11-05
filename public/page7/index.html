@@ -90,6 +90,59 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/cheatsheet/understanding-mysql-db-lock/">MySQL 테이블 잠금 실험</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2017-08-04
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#cheatsheet">
+                
+                    Cheatsheet
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/cheatsheet/understanding-mysql-db-lock/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>MySQL의 잠금 특성을 확인하기 위한 실험 결과입니다.</p>
+<ol>
+  <li>읽기 잠금의 동작 특성</li>
+  <li>쓰기 잠금의 동작 특성</li>
+  <li>트랜잭션과 Row 잠금</li>
+  <li>라라벨에서 트랜잭션과 잠금</li>
+</ol>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/cheatsheet/understanding-mysql-db-lock/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/learn-n-think/clean-architecture-and-dependency/">아키텍처와 의존성</a>
         </h2>
         <p class="box-meta">
@@ -397,68 +450,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/deploy-with-ecs/">AWS ECS/ECR을 이용한 서비스 배포</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2017-02-12
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/deploy-with-ecs/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <p><strong>AWS ECS(EC2 Container Service)</strong>는 갓마존이 제공하는 도커 기반 서비스 인프라입니다. EC2 인스턴스 위에 도커 엔진을 올려 놓은 것이라 생각하면 쉽습니다. <strong>AWS ECR(Container Registry)</strong>은 빌드한 도커 이미지를 올리고 내릴 수 있는 사설 도커 허브라 생각할 수 있습니다.</p>
-
-<p>아래는 ECS 랜딩 페이지에 걸린 공식 유튜브 동영상입니다(그림을 클릭하여 재생).</p>
-
-<p><a href="//www.youtube.com/watch?v=zBqjh61QcB4"><img src="//img.youtube.com/vi/zBqjh61QcB4/0.jpg" alt="Introduction to Amazon EC2 Container Service (ECS) - Docker Management on AWS" /></a></p>
-
-<p>AWS에서 어떤 협찬도 받지 않았지만, 필자가 느낀 ECS의 장점은 다음과 같습니다<small>(협찬 좀…)</small>.</p>
-
-<ol>
-  <li>이미 익숙한 AWS Console 및 서비스를 그대로 이용할 수 있다.</li>
-  <li>Service Discovery나 Container Orchestration등을 위해 <a href="https://kubernetes.io/">쿠버네티스(Kubernetes)</a>와 같이 어려운 도구를 다룰 필요가 없다.</li>
-</ol>
-
-<p>그런데 <strong>아직 서울 지역는 오픈되지 않았습니다.</strong> 빨리 좀 오픈해 주세요~ 갓마존.</p>
-
-<p><strong>이 포스트에서는 ECS에 라라벨 서비스를 배포하는 방법을 다룹니다. 사실 다른 플랫폼이나 프레임워크라고 해도 <code class="language-plaintext highlighter-rouge">Dockerfile</code> 레시피만 달라질 뿐 ECS를 사용하는 방법 자체에는 큰 차이가 없습니다.</strong></p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/deploy-with-ecs/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -515,13 +506,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">86</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">71</span>
         </a>
       </li>
       <li>
@@ -1131,7 +1122,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#경력개발">
         경력개발
       </a>
@@ -1143,7 +1134,7 @@
       </a>
     </span>
     
-    <span style="font-size: 174%">
+    <span style="font-size: 178%">
       <a href="/tags#기획자">
         기획자
       </a>
@@ -1265,6 +1256,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2023-11-05</small>
+          <a href="/work-n-play/learn-n-think/hw-product-planning/">내가 경험한 제품 기획</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
           <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
         </h4>
@@ -1274,13 +1272,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-17</small>
           <a href="/work-n-play/laravel-msa-example-part-3/">라라벨 마이크로서비스 예제 3부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2021-02-15</small>
-          <a href="/work-n-play/laravel-msa-example-part-2/">라라벨 마이크로서비스 예제 2부</a>
         </h4>
       </li>
       

@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "내가 경험한 제품 기획",
+    "category" : "work-n-play, learn-n-think",
+    "tags"     : "기획자, 경력개발",
+    "url"      : "/work-n-play/learn-n-think/hw-product-planning/",
+    "date"     : "2023-11-05"
+  },
+  
+  {
     "title"    : "내가 경험한 DDD, Hexagonal",
     "category" : "work-n-play, learn-n-think",
     "tags"     : "ddd, architecture",

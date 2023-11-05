@@ -11,7 +11,7 @@ tags:
 image: /images/2023-11-05-fabless-3.png
 ---
 
-세상은 두 부류의 사람으로 나눌 수 있습니다: 1) **자본가**와 2) **노동자**
+세상은 두 부류의 사람으로 나눌 수 있습니다: **자본가**와 **노동자**
 
 기업의 제무제표를 잘 들여다보면, 이 둘의 역할이 보입니다. 
 
@@ -68,9 +68,8 @@ image: /images/2023-11-05-fabless-3.png
     </div>
 </div>
 
-그림을 보면 당시 국내 팹리스 <small class="text-muted">제조 기반 없이 반도체 설계만 전문으로 하는 회사</small> 산업의 상황을 들여다 볼 수 있습니다: 그간에 저가로만 경쟁하던 차이완 <small class="text-muted">차이완 = 차이나 + 타이완</small>들의 기술 경쟁력이 높아지면서 선진 제조업체들과의 틈새에 낀 넛 크래커 상황 <small class="text-muted">넛 크래커(nut-cracker)는 호두를 양쪽에서 눌러 까는 호두까기 기계를 말하는데 한 나라가 선진국보다는 기술과 품질 경쟁에서, 후발 개발도상국에 비해서는 가격 경쟁에서 밀리는 현상을 지칭할 때 쓰임</small>.
+그림을 보면 당시 국내 팹리스 <small class="text-muted">제조 기반 없이 반도체 설계만 전문으로 하는 회사</small> 산업의 상황을 들여다 볼 수 있습니다: 그간에 저가로만 경쟁하던 차이완 <small class="text-muted">차이완 = 차이나 + 타이완</small>들의 기술 경쟁력이 높아지면서 선진 제조업체들과의 틈새에 낀 **넛 크래커** 상황 <small class="text-muted">넛 크래커(nut-cracker)는 호두를 양쪽에서 눌러 까는 호두까기 기계를 말하는데 한 나라가 선진국보다는 기술과 품질 경쟁에서, 후발 개발도상국에 비해서는 가격 경쟁에서 밀리는 현상을 지칭할 때 쓰임</small>.
 
-출처 : 연합인포맥스(https://news.einfomax.co.kr)
 <div class="grid-container">
     <div class="grid-item">
         <img src="/images/2023-11-05-corelogic-1.png"/>

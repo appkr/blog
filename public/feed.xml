@@ -5,13 +5,13 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Nov 2023 23:47:36 +0900</pubDate>
-    <lastBuildDate>Sun, 05 Nov 2023 23:47:36 +0900</lastBuildDate>
+    <pubDate>Sun, 05 Nov 2023 23:50:14 +0900</pubDate>
+    <lastBuildDate>Sun, 05 Nov 2023 23:50:14 +0900</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>내가 경험한 제품 기획</title>
-        <description>&lt;p&gt;세상은 두 부류의 사람으로 나눌 수 있습니다: 1) &lt;strong&gt;자본가&lt;/strong&gt;와 2) &lt;strong&gt;노동자&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;p&gt;세상은 두 부류의 사람으로 나눌 수 있습니다: &lt;strong&gt;자본가&lt;/strong&gt;와 &lt;strong&gt;노동자&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;기업의 제무제표를 잘 들여다보면, 이 둘의 역할이 보입니다.&lt;/p&gt;
 
@@ -68,9 +68,8 @@
     &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;그림을 보면 당시 국내 팹리스 &lt;small class=&quot;text-muted&quot;&gt;제조 기반 없이 반도체 설계만 전문으로 하는 회사&lt;/small&gt; 산업의 상황을 들여다 볼 수 있습니다: 그간에 저가로만 경쟁하던 차이완 &lt;small class=&quot;text-muted&quot;&gt;차이완 = 차이나 + 타이완&lt;/small&gt;들의 기술 경쟁력이 높아지면서 선진 제조업체들과의 틈새에 낀 넛 크래커 상황 &lt;small class=&quot;text-muted&quot;&gt;넛 크래커(nut-cracker)는 호두를 양쪽에서 눌러 까는 호두까기 기계를 말하는데 한 나라가 선진국보다는 기술과 품질 경쟁에서, 후발 개발도상국에 비해서는 가격 경쟁에서 밀리는 현상을 지칭할 때 쓰임&lt;/small&gt;.&lt;/p&gt;
+&lt;p&gt;그림을 보면 당시 국내 팹리스 &lt;small class=&quot;text-muted&quot;&gt;제조 기반 없이 반도체 설계만 전문으로 하는 회사&lt;/small&gt; 산업의 상황을 들여다 볼 수 있습니다: 그간에 저가로만 경쟁하던 차이완 &lt;small class=&quot;text-muted&quot;&gt;차이완 = 차이나 + 타이완&lt;/small&gt;들의 기술 경쟁력이 높아지면서 선진 제조업체들과의 틈새에 낀 &lt;strong&gt;넛 크래커&lt;/strong&gt; 상황 &lt;small class=&quot;text-muted&quot;&gt;넛 크래커(nut-cracker)는 호두를 양쪽에서 눌러 까는 호두까기 기계를 말하는데 한 나라가 선진국보다는 기술과 품질 경쟁에서, 후발 개발도상국에 비해서는 가격 경쟁에서 밀리는 현상을 지칭할 때 쓰임&lt;/small&gt;.&lt;/p&gt;
 
-&lt;p&gt;출처 : 연합인포맥스(https://news.einfomax.co.kr)&lt;/p&gt;
 &lt;div class=&quot;grid-container&quot;&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
         &lt;img src=&quot;/images/2023-11-05-corelogic-1.png&quot; /&gt;

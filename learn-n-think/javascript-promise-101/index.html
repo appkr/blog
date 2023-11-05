@@ -153,18 +153,18 @@
 
 <h2 id="1-promise">1. Promise</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">성공콜백</span><span class="p">,</span> <span class="nx">실패콜백</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">철수 작업자가 할당되었습니다.</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">성공콜백</span><span class="p">,</span> <span class="nx">실패콜백</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">철수 작업자가 할당되었습니다.</span><span class="dl">'</span><span class="p">);</span>
   
-  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">5초가 필요한 "Foo" 작업을 시뮬레이션합니다.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">5초가 필요한 "Foo" 작업을 시뮬레이션합니다.</span><span class="dl">'</span><span class="p">);</span>
     
-    <span class="nx">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nf">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">작업이름</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">"</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">작업이름</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">철수</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">작업이름</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">"</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">작업이름</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -176,18 +176,18 @@
 
 <p>똑같은 코드를 ES6로 쓰면,</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">성공콜백</span><span class="p">,</span> <span class="nx">실패콜백</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">철수 작업자가 할당되었습니다.</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">철수</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">성공콜백</span><span class="p">,</span> <span class="nx">실패콜백</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">철수 작업자가 할당되었습니다.</span><span class="dl">'</span><span class="p">);</span>
   
-  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">5초가 필요한 "Foo" 작업을 시뮬레이션합니다.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">5초가 필요한 "Foo" 작업을 시뮬레이션합니다.</span><span class="dl">'</span><span class="p">);</span>
     
-    <span class="nx">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nf">성공콜백</span><span class="p">(</span><span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">철수</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
-  <span class="nx">작업이름</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`"</span><span class="p">${</span><span class="nx">작업이름</span><span class="p">}</span><span class="s2">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.`</span><span class="p">)</span>
+<span class="nx">철수</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">작업이름</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`"</span><span class="p">${</span><span class="nx">작업이름</span><span class="p">}</span><span class="s2">" 작업이 성공하면 철수에게 실행해 달라고 부탁한 로직입니다. 이 메시지가 표시된다면 철수가 로직을 실행한 것입니다.`</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div></div>
 
@@ -294,13 +294,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">69</span>
         </a>
       </li>
       <li>
@@ -592,7 +592,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 94%">
       <a href="/tags#architecture">
         architecture
       </a>
@@ -655,12 +655,6 @@
     <span style="font-size: 94%">
       <a href="/tags#cpu">
         cpu
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#ddd">
-        ddd
       </a>
     </span>
     
@@ -1045,7 +1039,7 @@
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
-          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+          <a href="/ddd-hexagonal/">Ddd Hexagonal</a>
         </h4>
       </li>
       

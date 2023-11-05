@@ -304,7 +304,7 @@
             <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">statusCode</span> <span class="o">=</span> <span class="nv">$statusCode</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$headers</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$headers</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 자식 클래스에서 프로퍼티로 정의한 값을 덮어쓰기 하지 않기 위한 조치다.</span>
             <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">headers</span> <span class="o">=</span> <span class="nv">$headers</span><span class="p">;</span>
         <span class="p">}</span>
@@ -454,7 +454,7 @@
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">defined</span><span class="p">(</span><span class="s1">'static::'</span> <span class="mf">.</span> <span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 생성자로 넘어온 인자에 해당하는 상수가 정의되어 있는 지 확인한다.</span>
             <span class="c1">// validate()와 같은 별도의 메서드로 추출하면 좋을 것 같다.</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">InvalidArgumentException</span><span class="p">(</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nc">\InvalidArgumentException</span><span class="p">(</span>
                 <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'정의되지 않은 상수입니다. "%s:%s"'</span><span class="p">,</span> <span class="nb">get_called_class</span><span class="p">(),</span> <span class="nv">$name</span><span class="p">)</span>
             <span class="p">);</span>
         <span class="p">}</span>
@@ -474,19 +474,19 @@
 
 <span class="nc">Route</span><span class="o">::</span><span class="nf">group</span><span class="p">([</span><span class="s1">'prefix'</span> <span class="o">=&gt;</span> <span class="s1">'exceptions'</span><span class="p">],</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\DomainException</span><span class="p">([</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">\App\Exceptions\DomainException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]);</span>
     <span class="p">});</span>
 
     <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'custom-domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\CustomDomainException</span><span class="p">([</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">\App\Exceptions\CustomDomainException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]);</span>
     <span class="p">});</span>
 
     <span class="nc">Route</span><span class="o">::</span><span class="nf">get</span><span class="p">(</span><span class="s1">'http-domain'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\HttpDomainException</span><span class="p">([</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">\App\Exceptions\HttpDomainException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]);</span>
     <span class="p">});</span>
@@ -495,7 +495,7 @@
         <span class="c1">// HttpExceptionInterface를 구현한 부모를 상속 받고 있으므로</span>
         <span class="c1">// setStatusCode() 메서드를 이용해서 CustomHttpException::$statusCode</span>
         <span class="c1">// 프로퍼티를 덮어 쓸 수 있다.</span>
-        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="err">\</span><span class="nf">App\Exceptions\CustomHttpException</span><span class="p">([</span>
+        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="nc">\App\Exceptions\CustomHttpException</span><span class="p">([</span>
             <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span> <span class="o">=&gt;</span> <span class="s1">'qux'</span>
         <span class="p">]))</span><span class="o">-&gt;</span><span class="nf">setStatusCode</span><span class="p">(</span><span class="mi">409</span><span class="p">);</span>
     <span class="p">});</span>
@@ -505,8 +505,8 @@
         <span class="c1">// 런타임에 모델과 모델의 기본키를 설정할 수 있도록 구현되어 있다.</span>
         <span class="c1">// 참고로 이 예외는 라라벨 프레임워크에서 제공하는 예외이며,</span>
         <span class="c1">// User::findOrFail($notExistingId)를 호출했을 때 발생한다.</span>
-        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\ModelNotFoundException</span><span class="p">)</span>
-            <span class="o">-&gt;</span><span class="nf">setModel</span><span class="p">(</span><span class="err">\</span><span class="nc">App\User</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="p">(</span><span class="k">new</span> <span class="nc">\Illuminate\Database\Eloquent\ModelNotFoundException</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">setModel</span><span class="p">(</span><span class="nc">\App\User</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div></div>
@@ -664,7 +664,7 @@ Stack trace:
 
 <p>포스트맨 콜렉션에는 간단한 통합 테스트도 포함되어 있다. 각 요청의 <code class="language-plaintext highlighter-rouge">Tests</code> 탭에 작성한 테스트 코드는 아래처럼 생겼고, 포스트맨 UI에서 <code class="language-plaintext highlighter-rouge">Runner</code> 버튼을 눌러 실행할 수 있다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">responseBody</span><span class="p">);</span>
 <span class="nx">tests</span><span class="p">[</span><span class="dl">"</span><span class="s2">Compare field value</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="mi">500</span><span class="p">;</span>
 <span class="nx">tests</span><span class="p">[</span><span class="dl">"</span><span class="s2">Status code is 500</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">responseCode</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="mi">500</span><span class="p">;</span>
 </code></pre></div></div>
@@ -739,11 +739,11 @@ Stack trace:
     <span class="p">{</span>
         <span class="c1">// 적절한 객체를 선택하고 만들어서 반환하는 Factory다.</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">HttpDomainException</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\Exceptions\Renderers\HttpDomainException</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">\App\Exceptions\Renderers\HttpDomainException</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">DomainException</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\Exceptions\Renderers\DomainException</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">\App\Exceptions\Renderers\DomainException</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$exception</span> <span class="k">instanceof</span> <span class="nc">ModelNotFoundException</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\Exceptions\Renderers\ModelNotFoundException</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">\App\Exceptions\Renderers\ModelNotFoundException</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="c1">// render() 메서드에서 return 구문을 쓰고 있고,</span>
@@ -790,7 +790,7 @@ Stack trace:
 
 <span class="kd">interface</span> <span class="nc">Renderable</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="err">\</span><span class="nc">Exception</span> <span class="nv">$exception</span><span class="p">);</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">render</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nc">\Exception</span> <span class="nv">$exception</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -988,13 +988,13 @@ Stack trace:
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">69</span>
         </a>
       </li>
       <li>
@@ -1286,7 +1286,7 @@ Stack trace:
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 94%">
       <a href="/tags#architecture">
         architecture
       </a>
@@ -1349,12 +1349,6 @@ Stack trace:
     <span style="font-size: 94%">
       <a href="/tags#cpu">
         cpu
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#ddd">
-        ddd
       </a>
     </span>
     
@@ -1739,7 +1733,7 @@ Stack trace:
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
-          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+          <a href="/ddd-hexagonal/">Ddd Hexagonal</a>
         </h4>
       </li>
       

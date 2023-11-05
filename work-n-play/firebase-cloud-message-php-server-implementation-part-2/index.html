@@ -453,7 +453,7 @@
  <span class="mi">99</span>     <span class="p">{</span>
 <span class="mi">100</span>         <span class="c1">// 'to' for single receiver,</span>
 <span class="mi">101</span>         <span class="c1">// 'registration_ids' for multiple receivers</span>
-<span class="mi">102</span>         <span class="nv">$httpBody</span> <span class="o">=</span> <span class="err">\</span><span class="nf">GuzzleHttp\json_encode</span><span class="p">([</span>
+<span class="mi">102</span>         <span class="nv">$httpBody</span> <span class="o">=</span> <span class="nf">\GuzzleHttp\json_encode</span><span class="p">([</span>
 <span class="mi">103</span>             <span class="s1">'registration_ids'</span> <span class="o">=&gt;</span> <span class="nv">$tokens</span><span class="p">,</span>
 <span class="mi">104</span>             <span class="s1">'notification'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
 <span class="mi">105</span>             <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">,</span>
@@ -505,7 +505,7 @@
 <span class="mi">139</span>         <span class="p">}</span>
 <span class="mi">140</span> 
 <span class="mi">141</span>         <span class="nv">$pushServiceIdsToDelete</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="nf">tokensToDelete</span><span class="p">();</span>
-<span class="mi">142</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToDelete</span><span class="p">))</span> <span class="p">{</span>
+<span class="mi">142</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToDelete</span><span class="p">))</span> <span class="p">{</span>
 <span class="mi">143</span>             <span class="c1">// 해당 registration_id를 가진 단말기가 구글 Fcm 서비스에 등록되어 있지 않습니다.</span>
 <span class="mi">144</span>             <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">logProgress</span><span class="p">(</span><span class="s1">'사용불가한 push_service_id 를 삭제합니다.'</span><span class="p">,</span> <span class="p">[</span>
 <span class="mi">145</span>                 <span class="s1">'push_service_ids_to_delete'</span> <span class="o">=&gt;</span> <span class="nv">$pushServiceIdsToDelete</span>
@@ -517,7 +517,7 @@
 <span class="mi">151</span>         <span class="p">}</span>
 <span class="mi">152</span> 
 <span class="mi">153</span>         <span class="nv">$pushServiceIdsToRetry</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="nf">tokensToRetry</span><span class="p">();</span>
-<span class="mi">154</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToRetry</span><span class="p">))</span> <span class="p">{</span>
+<span class="mi">154</span>         <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$pushServiceIdsToRetry</span><span class="p">))</span> <span class="p">{</span>
 <span class="mi">155</span>             <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isFinalRetry</span><span class="p">())</span> <span class="p">{</span>
 <span class="mi">156</span>                 <span class="c1">// 재시도 했지만 메시지 전송에 실패했습니다.</span>
 <span class="mi">157</span>                 <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="p">();</span>
@@ -614,7 +614,7 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="c1">// routes/api.php</span>
 
-<span class="nc">Route</span><span class="o">::</span><span class="nf">post</span><span class="p">(</span><span class="s1">'fcm_test'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">App</span><span class="err">\</span><span class="nc">Services\FcmHandler</span> <span class="nv">$fcmHandler</span><span class="p">)</span> <span class="p">{</span>
+<span class="nc">Route</span><span class="o">::</span><span class="nf">post</span><span class="p">(</span><span class="s1">'fcm_test'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">App</span><span class="nc">\Services\FcmHandler</span> <span class="nv">$fcmHandler</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$user</span> <span class="o">=</span> <span class="nc">App\User</span><span class="o">::</span><span class="nf">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="nv">$fcmHandler</span><span class="o">-&gt;</span><span class="nf">setReceivers</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="nf">getPushServiceIds</span><span class="p">());</span>
     <span class="nv">$fcmHandler</span><span class="o">-&gt;</span><span class="nf">setMessage</span><span class="p">([</span>
@@ -838,13 +838,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">69</span>
         </a>
       </li>
       <li>
@@ -1136,7 +1136,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 94%">
       <a href="/tags#architecture">
         architecture
       </a>
@@ -1199,12 +1199,6 @@
     <span style="font-size: 94%">
       <a href="/tags#cpu">
         cpu
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#ddd">
-        ddd
       </a>
     </span>
     
@@ -1589,7 +1583,7 @@
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
-          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+          <a href="/ddd-hexagonal/">Ddd Hexagonal</a>
         </h4>
       </li>
       

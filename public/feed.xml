@@ -5,8 +5,8 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Nov 2023 23:07:21 +0900</pubDate>
-    <lastBuildDate>Sun, 05 Nov 2023 23:07:21 +0900</lastBuildDate>
+    <pubDate>Sun, 05 Nov 2023 23:19:52 +0900</pubDate>
+    <lastBuildDate>Sun, 05 Nov 2023 23:19:52 +0900</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -28,6 +28,7 @@
 
 &lt;p&gt;가치 있는 제품을 발굴하고 딜리버리하는 제품 매니저의 본질은 같지만, 소프트웨어 회사의 제품 매니저와는 하는 일이 다릅니다. 이 포스트에서는 하드웨어 회사의 제품 매니저로서 했던 당시의 시대 상황, 했던 일들을 써보려 합니다.&lt;/p&gt;
 
+&lt;!--more--&gt;
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
 
 &lt;h2 id=&quot;대-격변의-시대&quot;&gt;대 격변의 시대&lt;/h2&gt;
@@ -44,24 +45,26 @@
 
 &lt;h2 id=&quot;2010-국내-팹리스-업계의-상황&quot;&gt;2010 국내 팹리스 업계의 상황&lt;/h2&gt;
 
+&lt;p&gt;폐업한 회사라 이하의 자료는 공개해도 괜찮다고 판단했습니다.&lt;/p&gt;
+
 &lt;div class=&quot;grid-container&quot;&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-fabless-1.png)](/images/2023-11-05-fabless-1.png)
+        &lt;img src=&quot;/images/2023-11-05-fabless-1.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-fabless-2.png)](/images/2023-11-05-fabless-2.png)
+        &lt;img src=&quot;/images/2023-11-05-fabless-2.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-fabless-3.png)](/images/2023-11-05-fabless-3.png)
+        &lt;img src=&quot;/images/2023-11-05-fabless-3.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-fabless-4.png)](/images/2023-11-05-fabless-4.png)
+        &lt;img src=&quot;/images/2023-11-05-fabless-4.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-fabless-5.png)](/images/2023-11-05-fabless-5.png)
+        &lt;img src=&quot;/images/2023-11-05-fabless-5.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-fabless-6.png)](/images/2023-11-05-fabless-6.png)
+        &lt;img src=&quot;/images/2023-11-05-fabless-6.png&quot; /&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;클릭하면 큰 그림을 볼 수 있습니다&lt;/small&gt;&lt;/div&gt;
@@ -70,19 +73,19 @@
 
 &lt;div class=&quot;grid-container&quot;&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-corelogic-1.png)](/images/2023-11-05-corelogic-1.png)
+        &lt;img src=&quot;/images/2023-11-05-corelogic-1.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-corelogic-2.png)](/images/2023-11-05-corelogic-2.png)
+        &lt;img src=&quot;/images/2023-11-05-corelogic-2.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-corelogic-3.png)](/images/2023-11-05-corelogic-3.png)
+        &lt;img src=&quot;/images/2023-11-05-corelogic-3.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-corelogic-4.png)](/images/2023-11-05-corelogic-4.png)
+        &lt;img src=&quot;/images/2023-11-05-corelogic-4.png&quot; /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
-        [![](/images/2023-11-05-corelogic-5.png)](/images/2023-11-05-corelogic-5.png)
+        &lt;img src=&quot;/images/2023-11-05-corelogic-5.png&quot; /&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;클릭하면 큰 그림을 볼 수 있습니다&lt;/small&gt;&lt;/div&gt;

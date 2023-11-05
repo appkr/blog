@@ -175,7 +175,7 @@
     <span class="k">public</span> <span class="k">function</span> <span class="n">report</span><span class="p">(</span><span class="kt">Exception</span> <span class="nv">$e</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">shouldReport</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span> <span class="k">and</span> <span class="nf">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">environment</span><span class="p">(</span><span class="s1">'production'</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nf">app</span><span class="p">(</span><span class="err">\</span><span class="nc">App\Reporters\ErrorReport</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="p">[</span><span class="nv">$e</span><span class="p">])</span><span class="o">-&gt;</span><span class="nf">send</span><span class="p">();</span>
+            <span class="nf">app</span><span class="p">(</span><span class="nc">\App\Reporters\ErrorReport</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="p">[</span><span class="nv">$e</span><span class="p">])</span><span class="o">-&gt;</span><span class="nf">send</span><span class="p">();</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="nf">report</span><span class="p">(</span><span class="nv">$e</span><span class="p">);</span>
@@ -354,13 +354,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">69</span>
         </a>
       </li>
       <li>
@@ -652,7 +652,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 94%">
       <a href="/tags#architecture">
         architecture
       </a>
@@ -715,12 +715,6 @@
     <span style="font-size: 94%">
       <a href="/tags#cpu">
         cpu
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#ddd">
-        ddd
       </a>
     </span>
     
@@ -1105,7 +1099,7 @@
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
-          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+          <a href="/ddd-hexagonal/">Ddd Hexagonal</a>
         </h4>
       </li>
       

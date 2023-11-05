@@ -254,15 +254,15 @@
 <span class="cm">/* Facebook Recent UserFeeds */</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">fbAsyncInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">facebookAppId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{app_id}</span><span class="dl">'</span><span class="p">;</span>
-  <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">v2.5</span><span class="dl">'</span><span class="p">});</span>
+  <span class="nx">FB</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">v2.5</span><span class="dl">'</span><span class="p">});</span>
 <span class="p">};</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
-  <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
+  <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
   <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">//connect.facebook.net/en_US/sdk.js</span><span class="dl">"</span><span class="p">;</span>
-  <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
+  <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nf">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
 <span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">facebook-jssdk</span><span class="dl">'</span><span class="p">));</span>
 </code></pre></div></div>
 
@@ -328,18 +328,18 @@
 <span class="nb">window</span><span class="p">.</span><span class="nx">fbAsyncInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">facebookAccessToken</span> <span class="o">=</span>  <span class="dl">'</span><span class="s1">{access_token}</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">facebookAppId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{app_id}</span><span class="dl">'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">facebookFeedContainer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">ul#facebook-feed</span><span class="dl">'</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">facebookFeedTemplate</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#facebook-feed-template</span><span class="dl">'</span><span class="p">).</span><span class="nx">html</span><span class="p">());</span>
+  <span class="kd">var</span> <span class="nx">facebookFeedContainer</span> <span class="o">=</span> <span class="nf">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">ul#facebook-feed</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">facebookFeedTemplate</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nf">trim</span><span class="p">(</span><span class="nf">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#facebook-feed-template</span><span class="dl">'</span><span class="p">).</span><span class="nf">html</span><span class="p">());</span>
 
-  <span class="nx">FB</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">v2.5</span><span class="dl">'</span><span class="p">});</span>
+  <span class="nx">FB</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span><span class="na">appId</span><span class="p">:</span> <span class="nx">facebookAppId</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">xfbml</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">cookie</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">v2.5</span><span class="dl">'</span><span class="p">});</span>
 
-  <span class="nx">FB</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="dl">'</span><span class="s1">me/posts</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">limit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">access_token</span><span class="p">:</span> <span class="nx">facebookAccessToken</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">response</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">facebookFeedContainer</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;li&gt;Some error :(&lt;/li&gt;</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">FB</span><span class="p">.</span><span class="nf">api</span><span class="p">(</span><span class="dl">'</span><span class="s1">me/posts</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">limit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">access_token</span><span class="p">:</span> <span class="nx">facebookAccessToken</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span> <span class="nx">response</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">facebookFeedContainer</span><span class="p">.</span><span class="nf">html</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;li&gt;Some error :(&lt;/li&gt;</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nx">compile</span><span class="p">(</span><span class="nx">facebookFeedTemplate</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-    <span class="nx">facebookFeedContainer</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nf">compile</span><span class="p">(</span><span class="nx">facebookFeedTemplate</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="nx">facebookFeedContainer</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -351,11 +351,11 @@
 <span class="kd">var</span> <span class="nx">compile</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layoutTemplate</span><span class="p">,</span> <span class="nx">facebookUserFeedCollection</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">markup</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
 
-  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">facebookUserFeedCollection</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nf">each</span><span class="p">(</span><span class="nx">facebookUserFeedCollection</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">markup</span> <span class="o">+=</span> <span class="nx">layoutTemplate</span>
-      <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">id</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">_</span><span class="dl">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-      <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">message</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">truncate</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">story</span><span class="p">))</span>
-      <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">created_time</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">created_time</span><span class="p">,</span> <span class="nx">moment</span><span class="p">.</span><span class="nx">ISO_8601</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">());</span>
+      <span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">id</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">_</span><span class="dl">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+      <span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">message</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nf">truncate</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">story</span><span class="p">))</span>
+      <span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sr">/{</span><span class="se">\s?</span><span class="sr">created_time</span><span class="se">\s?</span><span class="sr">}/ig</span><span class="p">,</span> <span class="nf">moment</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">created_time</span><span class="p">,</span> <span class="nx">moment</span><span class="p">.</span><span class="nx">ISO_8601</span><span class="p">).</span><span class="nf">fromNow</span><span class="p">());</span>
   <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">markup</span><span class="p">;</span>
@@ -364,8 +364,8 @@
 <span class="kd">var</span> <span class="nx">truncate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">len</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">len</span> <span class="o">||</span> <span class="mi">100</span><span class="p">;</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">len</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">...</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">len</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nf">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">...</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">str</span><span class="p">;</span>
@@ -485,13 +485,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">84</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">69</span>
         </a>
       </li>
       <li>
@@ -783,7 +783,7 @@
       </a>
     </span>
     
-    <span style="font-size: 98%">
+    <span style="font-size: 94%">
       <a href="/tags#architecture">
         architecture
       </a>
@@ -846,12 +846,6 @@
     <span style="font-size: 94%">
       <a href="/tags#cpu">
         cpu
-      </a>
-    </span>
-    
-    <span style="font-size: 94%">
-      <a href="/tags#ddd">
-        ddd
       </a>
     </span>
     
@@ -1236,7 +1230,7 @@
       <li>
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
-          <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
+          <a href="/ddd-hexagonal/">Ddd Hexagonal</a>
         </h4>
       </li>
       

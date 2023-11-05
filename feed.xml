@@ -5,28 +5,13 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Nov 2023 12:30:05 +0900</pubDate>
-    <lastBuildDate>Sun, 05 Nov 2023 12:30:05 +0900</lastBuildDate>
+    <pubDate>Sun, 05 Nov 2023 12:37:02 +0900</pubDate>
+    <lastBuildDate>Sun, 05 Nov 2023 12:37:02 +0900</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
-        <title>Ddd Hexagonal</title>
-        <description>&lt;p&gt;a—
-layout: post-minimal
-title: ‘내가 경험한 DDD, Hexagonal’
-date: 2023-10-22 09:00:00 +0900
-categories:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;work-n-play&lt;/li&gt;
-  &lt;li&gt;learn-n-think
-tags:&lt;/li&gt;
-  &lt;li&gt;ddd&lt;/li&gt;
-  &lt;li&gt;architecture
-image: /images/2023-10-23-hexagonal.png
-—&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;최근에 &lt;a href=&quot;https://flex.team/&quot;&gt;플렉스&lt;/a&gt; 로 이직을 했다. &lt;a href=&quot;https://vroongcorp.com/&quot;&gt;부릉(舊 메쉬코리아)&lt;/a&gt; 에서 7년간 배우고 적용했던 DDD &lt;small class=&quot;text-muted&quot;&gt;Domain Driven Design, 도메인 주도 설계&lt;/small&gt;와 Hexagonal Architecture Pattern&lt;small class=&quot;text-muted&quot;&gt;육각형 구조&lt;/small&gt;에 대해 한판 정리하면서, 지난 시간을 회고해 본다.&lt;/p&gt;
+        <title>내가 경험한 DDD, Hexagonal</title>
+        <description>&lt;p&gt;최근에 &lt;a href=&quot;https://flex.team/&quot;&gt;플렉스&lt;/a&gt; 로 이직을 했다. &lt;a href=&quot;https://vroongcorp.com/&quot;&gt;부릉(舊 메쉬코리아)&lt;/a&gt; 에서 7년간 배우고 적용했던 DDD &lt;small class=&quot;text-muted&quot;&gt;Domain Driven Design, 도메인 주도 설계&lt;/small&gt;와 Hexagonal Architecture Pattern&lt;small class=&quot;text-muted&quot;&gt;육각형 구조&lt;/small&gt;에 대해 한판 정리하면서, 지난 시간을 회고해 본다.&lt;/p&gt;
 
 &lt;p&gt;2016년 마흔이 넘은 나이에 하던 일을 그만 두고 직업 개발자로 전업을 위한 준비를 하던 시절이었다. 한 통의 전화를 받고 티타임을 하러 갔다가, 우선 시간을 벌며 다음 기회를 보자는 심산으로 입사하기로 약속했다.&lt;/p&gt;
 
@@ -254,10 +239,18 @@ image: /images/2023-10-23-hexagonal.png
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=6w7SQ_1aJ0A&quot;&gt;(NHN FORWARD 22) DDD 뭣이 중헌디?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Sun, 22 Oct 2023 00:00:00 +0900</pubDate>
-        <link>https://blog.appkr.dev/ddd-hexagonal/</link>
-        <guid isPermaLink="true">https://blog.appkr.dev/ddd-hexagonal/</guid>
+        <pubDate>Sun, 22 Oct 2023 09:00:00 +0900</pubDate>
+        <link>https://blog.appkr.dev/work-n-play/learn-n-think/ddd-hexagonal/</link>
+        <guid isPermaLink="true">https://blog.appkr.dev/work-n-play/learn-n-think/ddd-hexagonal/</guid>
         
+        <category>ddd</category>
+        
+        <category>architecture</category>
+        
+        
+        <category>work-n-play</category>
+        
+        <category>learn-n-think</category>
         
       </item>
     

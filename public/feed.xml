@@ -5,8 +5,8 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Nov 2023 23:31:50 +0900</pubDate>
-    <lastBuildDate>Sun, 05 Nov 2023 23:31:50 +0900</lastBuildDate>
+    <pubDate>Sun, 05 Nov 2023 23:42:05 +0900</pubDate>
+    <lastBuildDate>Sun, 05 Nov 2023 23:42:05 +0900</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -22,24 +22,24 @@
 
 &lt;p&gt;기업이란 뜻 있는 기업가가 &lt;strong&gt;자본가&lt;/strong&gt;로부터 투자&lt;small class=&quot;text-muted&quot;&gt;자본&lt;/small&gt;를 받거나 차용&lt;small class=&quot;text-muted&quot;&gt;부채&lt;/small&gt;하여 사업에 필요한 자산을 구매하여 수익 활동을 하는 것입니다. 기업은 기계장치와 같은 고정자산만으로 수익을 낼 수 없습니다. 당연히 &lt;strong&gt;노동자&lt;/strong&gt;가 필요하죠. 노동자는 노동력 제공의 댓가로 근로 소득을 얻습니다.&lt;/p&gt;
 
-&lt;p&gt;필자는 개발자로 전업하기 전에 스마트카드(T-money 카드), GSM/GPRS 휴대폰 설계 및 제조(벨웨이브), 범용 반도체 설계 및 제조(코아로직) 등 임베디드 시스템 산업에서 제품 매니저로 10년간 일했습니다. 가치 있는 제품, 즉 소비자가 기꺼이 돈을 내고 구매할 멋진 제품을 발굴하고, 그 제품이 시장에 딜리버리될 때까지의 과정을 책임지는 것이 제품 매니저의 역할입니다.&lt;/p&gt;
+&lt;p&gt;필자는 개발자로 전업하기 전에 스마트카드(T-money 카드), GSM/GPRS 휴대폰 설계 및 제조(벨웨이브), 범용 반도체 설계 및 제조(코아로직) 등 임베디드 시스템 산업에서 제품 매니저로 10년간 일했습니다. 가치 있는 제품, 즉 소비자가 기꺼이 돈을 내고 구매할 멋진 제품을 발굴하고, 그 제품을 시장에 딜리버리할 때까지의 전 과정을 책임지는 것이 제품 매니저의 역할입니다.&lt;/p&gt;
 
-&lt;p&gt;기업 활동의 결과로 노동자는 근로 소득을 받아 가계를 유지하고, 주주는 자본 이득을, 채권자는 이자 수익을 얻습니다. 근로자는 근로소득세를 납부하고, 기업은 법인세를, 주주는 주식소득세를, 채권자는 이자소득세를 납부합니다. 이것이 제가 배운 가계, 기업, 국가가 돌아가는 원리입니다.&lt;/p&gt;
+&lt;p&gt;기업 활동의 결과로 노동자는 근로 소득을 받아 가계를 유지하고, 주주는 자본 이득을, 채권자는 이자 수익을 얻습니다. 근로자는 근로소득세를 납부하고, 기업은 법인세를, 주주는 주식소득세를, 채권자는 이자소득세를 납부합니다. 이것이 제가 배운 가계, 기업, 정부가 돌아가는 원리입니다.&lt;/p&gt;
 
-&lt;p&gt;가치 있는 제품을 발굴하고 딜리버리하는 제품 매니저의 본질은 같지만, 소프트웨어 회사의 제품 매니저와는 하는 일이 다릅니다. 이 포스트에서는 하드웨어 회사의 제품 매니저로서 했던 당시의 시대 상황, 풀어야만 했던 문제들에 대해 써보려 합니다.&lt;/p&gt;
+&lt;p&gt;가치 있는 제품을 발굴하고 딜리버리하는 제품 매니저의 본질은 같지만, 소프트웨어 회사의 제품 매니저와는 하는 일이 다릅니다. 이 포스트에서는 하드웨어 회사의 제품 매니저로서 일하던 당시의 시대 상황, 풀어야 했던 문제들에 대해 써보려 합니다.&lt;/p&gt;
 
 &lt;!--more--&gt;
 &lt;div class=&quot;spacer&quot;&gt;• • •&lt;/div&gt;
 
 &lt;h2 id=&quot;대-격변의-시대&quot;&gt;대 격변의 시대&lt;/h2&gt;
 
-&lt;p&gt;필자가 임베디드 시스템 산업에서 제품 매니저로 일하던 2002년부터 2011년까지는 대 격변기였습니다: 스마트폰, WCDMA(3G) 등 모바일 혁명과 AWS, MS, 애플, 구글을 중심으로 클라우드 혁명이 일어났던 시기였습니다.&lt;/p&gt;
+&lt;p&gt;필자가 임베디드 시스템 산업에서 제품 매니저로 일하던 2002년부터 2011년까지는 대 격변기였습니다: 스마트폰, WCDMA(3G) 등 &lt;strong&gt;모바일 혁명&lt;/strong&gt;과 AWS, MS, 애플, 구글을 중심으로 &lt;strong&gt;클라우드 혁명&lt;/strong&gt;이 일어났던 시기였습니다.&lt;/p&gt;
 
 &lt;p&gt;필자가 일했던 휴대폰 설계 및 제조 회사는 역사 속으로 사라졌습니다. 당시엔 GPRS/CDMA 등 2G 통신망에서 각 회사마다 고유한 운영체제와 애플리케이션을 개발하던 시절이었습니다 &lt;small class=&quot;text-muted&quot;&gt;Feature Phone&lt;/small&gt;. 국내엔 삼성, LG 뿐만아니라 팬텍, VKMobile, 벨웨이브와 같은 회사들이 플레이하고, 해외에선 노키아아 전세계를 장악했었죠. 중국, 유라시아, 남미 시장을 공략하던 벨웨이브도 UMTS &lt;small class=&quot;text-muted&quot;&gt;Universal Mobile Telecommunication System&lt;/small&gt;, 즉 3G 통신의 물결을 준비해야 했고, 개발 실패와 제품 경쟁력 저하로 문을 닫았습니다.&lt;/p&gt;
 
-&lt;p&gt;멀티미디어 반도체를 설계하는 코스닥에도 등록된 회사로 옮겼는데요. 인수한 모회사와&lt;small class=&quot;text-muted&quot;&gt;인수한 회사는 삼성전자의 처가 그룹&lt;/small&gt;의 역학 관계, HLOS &lt;small class=&quot;text-muted&quot;&gt;High-Level OS, Symbian, WinMo, Linux/Android 등&lt;/small&gt; 개발 실기(失期)와 글로벌 시장에서의 경쟁력 저하 등으로 문을 닫았습니다.&lt;/p&gt;
+&lt;p&gt;멀티미디어 반도체를 설계하는 코스닥에도 등록된 회사로 옮겼는데요. 인수한 모회사와&lt;small class=&quot;text-muted&quot;&gt;인수한 회사는 삼성전자의 처가 그룹&lt;/small&gt;의 역학 관계, HLOS &lt;small class=&quot;text-muted&quot;&gt;High-Level OS, Symbian, WinMo, Linux/Android 등&lt;/small&gt; 개발 실기(失期)와 글로벌 시장에서의 경쟁력 저하 등으로 중국계 회사에 팔렸다가 지금은 문을 닫았습니다.&lt;/p&gt;
 
-&lt;p&gt;사실 외부적인 요인들이 더 컸죠. 스티브잡스의 아이폰은 전세계를 충격에 빠뜨렸습니다: 블랙베리, 윈도모바일, 노키아 뿐만아니라, MP3 Player, PMP, 차량용 네비 산업까지 초토화시켰으니까요. 게다가 안드로이드 플랫폼은 하드웨어를 표준화시켜버렸습니다: 과거엔 각자의 운영체제로 각자의 특화된 애플리케이션을 담아 매력적인 폼팩터로 고객의 지갑을 열었습니다만, 안드로이드는 우리 플랫폼을 구동시키려면 요런 저런 하드웨어 사양으로 설계해야 해라며 기존 관행을 완전 뒤집어 버렸죠.&lt;/p&gt;
+&lt;p&gt;사실 외부적인 요인들이 더 컸죠. 스티브잡스의 &lt;strong&gt;아이폰&lt;/strong&gt;은 전세계를 충격에 빠뜨렸습니다: 블랙베리, 윈도모바일, 노키아 뿐만아니라, MP3 Player, PMP, 차량용 네비 산업까지 초토화시켰으니까요. 게다가 &lt;strong&gt;안드로이드&lt;/strong&gt; 플랫폼은 하드웨어를 표준화시켜버렸습니다: 과거엔 각자의 운영체제로 각자의 특화된 애플리케이션을 담아 매력적인 폼팩터로 고객의 지갑을 열었습니다만, 안드로이드는 우리 플랫폼을 구동시키려면 요런 저런 하드웨어 사양으로 설계해야 해라며 기존 관행을 완전 뒤집어 버렸죠.&lt;/p&gt;
 
 &lt;p&gt;(주) 노키아의 사업 철수로 쏟아져 나온 개발자들의 게임 스타트업을 차리면서 핀란드의 GDP 구성이 바뀌었다. 안드로이드 출시로 직장을 잃은 또는 자발적으로 퇴사한 개발자들의 앱 스토어의 시대를 열었다.&lt;/p&gt;
 
@@ -67,10 +67,10 @@
         &lt;img src=&quot;/images/2023-11-05-fabless-6.png&quot; /&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;클릭하면 큰 그림을 볼 수 있습니다&lt;/small&gt;&lt;/div&gt;
 
-&lt;p&gt;그림을 보면 당시 국내 팹리스 &lt;small class=&quot;text-muted&quot;&gt;제조 기반 없이 반도체 설계만 전문으로 하는 회사&lt;/small&gt; 산업의 상황을 들여다 볼 수 있습니다: 그간에 저가로만 경쟁하던 차이완 &lt;small class=&quot;text-muted&quot;&gt;차이완 = 차이나 + 타이완&lt;/small&gt;들의 기술 경쟁력이 높아지면서 선진 제조업체들과의 틈새에 낀 넛 크래커 상황.&lt;/p&gt;
+&lt;p&gt;그림을 보면 당시 국내 팹리스 &lt;small class=&quot;text-muted&quot;&gt;제조 기반 없이 반도체 설계만 전문으로 하는 회사&lt;/small&gt; 산업의 상황을 들여다 볼 수 있습니다: 그간에 저가로만 경쟁하던 차이완 &lt;small class=&quot;text-muted&quot;&gt;차이완 = 차이나 + 타이완&lt;/small&gt;들의 기술 경쟁력이 높아지면서 선진 제조업체들과의 틈새에 낀 넛 크래커 상황 &lt;small class=&quot;text-muted&quot;&gt;넛 크래커(nut-cracker)는 호두를 양쪽에서 눌러 까는 호두까기 기계를 말하는데 한 나라가 선진국보다는 기술과 품질 경쟁에서, 후발 개발도상국에 비해서는 가격 경쟁에서 밀리는 현상을 지칭할 때 쓰임&lt;/small&gt;.&lt;/p&gt;
 
+&lt;p&gt;출처 : 연합인포맥스(https://news.einfomax.co.kr)&lt;/p&gt;
 &lt;div class=&quot;grid-container&quot;&gt;
     &lt;div class=&quot;grid-item&quot;&gt;
         &lt;img src=&quot;/images/2023-11-05-corelogic-1.png&quot; /&gt;
@@ -88,21 +88,20 @@
         &lt;img src=&quot;/images/2023-11-05-corelogic-5.png&quot; /&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;클릭하면 큰 그림을 볼 수 있습니다&lt;/small&gt;&lt;/div&gt;
 
 &lt;p&gt;이 상황에서 틈새를 찾고, 서두에 말한 기업의 존재 이유를 달성할 제품을 발굴하여, 턴어라운드를 달성하는 것이 제품 매니저의 역할이었죠.&lt;/p&gt;
 
 &lt;h2 id=&quot;제품-매니저의-업무&quot;&gt;제품 매니저의 업무&lt;/h2&gt;
 
-&lt;p&gt;요즘은 Jira, Linear, Slack, Figma, Google Suite 와 같은 도구를 이용해서 업무를 관리하지만, 저 때는 폴더, 이메일, 그룹웨어 등이 최선이었습니다. 그림의 두번재 레인의 YYYYMM_XXX로 된 폴더가 프로젝트였고, 각 프로젝트 하위에는 산출물들이 보일겁니다.&lt;/p&gt;
+&lt;p&gt;요즘은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Slack&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Figma&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Google Suite&lt;/code&gt; 와 같은 도구를 이용해서 업무를 관리하지만, 저 때는 폴더, 이메일, 그룹웨어, MS Office 등이 최선이었습니다. 그림의 두번재 레인의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYYMM_OOOO&lt;/code&gt;로 된 폴더가 프로젝트였고, 각 프로젝트 하위에는 산출물들이 보일겁니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/images/2023-11-05-product-manager.png&quot;&gt;&lt;img src=&quot;/images/2023-11-05-product-manager.png&quot; alt=&quot;폴더&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&quot;text-center&quot;&gt;&lt;small&gt;클릭하면 큰 그림을 볼 수 있습니다&lt;/small&gt;&lt;/div&gt;
 
-&lt;p&gt;제품 매니저의 최종 결과물은 제품 기획서와 제품입니다.&lt;/p&gt;
+&lt;p&gt;제품 매니저의 최종 결과물은 &lt;strong&gt;제품 기획서&lt;/strong&gt;와 &lt;strong&gt;제품&lt;/strong&gt;입니다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;(기술 지식이 필요하므로) 엔지니어 출신이 제품 기획을 한다&lt;/li&gt;
+  &lt;li&gt;(기술 지식이 필요하므로) 엔지니어 출신이 제품을 기획한다&lt;/li&gt;
   &lt;li&gt;(제조가 수반되므로) 제품 원가 개념을 잘 알아야 한다
     &lt;ul&gt;
       &lt;li&gt;천문학적 개발비가 든다&lt;/li&gt;
@@ -120,7 +119,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;아래는 모바일TV 전용 제품 기획서 풀 버전입니다. 기구, 폼팩터, 재질, GUI, 기본 탑재 애플리케이션, 메뉴 트리 구성 등 추가적인 부분들이 더 있지만, 휴대폰 회사의 제품 기획서도 이와 비슷합니다.&lt;/p&gt;
+&lt;p&gt;아래는 모바일TV 전용 제품 기획서 풀 버전입니다. &lt;small class=&quot;text-muted&quot;&gt;기구, 폼팩터, 재질, GUI, 기본 탑재 애플리케이션, 메뉴 트리 구성 등 추가적인 부분들이 더 있지만&lt;/small&gt; 휴대폰 회사의 제품 기획서도 이와 비슷합니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2023-11-05-hawk.png&quot; alt=&quot;모바일TV 전용 제품 기획서 풀 버전&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;panel panel-default&quot; style=&quot;width:100%; max-width: 600px; margin: 1em auto;&quot;&gt;

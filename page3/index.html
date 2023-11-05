@@ -90,6 +90,57 @@
     <article class="box">
       <div class="box-header">
         <h2>
+          <a href="/learn-n-think/how-to-read-stack-trace/">스택 트레이스 읽는 법</a>
+        </h2>
+        <p class="box-meta">
+          <span>
+            <i class="material-icons">today</i>
+            2019-03-09
+          </span>
+          <span>
+            <i class="material-icons">face</i>
+            Posted by appkr
+          </span>
+          <span>
+            <i class="material-icons">turned_in</i>
+            
+              <a href="/categories#learn-n-think">
+                
+                    Learn & Think
+                  
+              </a>
+              
+            
+          </span>
+          <span>
+            <i class="material-icons">forum</i>
+            <a href="/learn-n-think/how-to-read-stack-trace/#disqus_thread" title="comments">0</a>
+          </span>
+        </p>
+      </div>
+
+      <div class="box-body">
+        <p>이번 포스트는 프로그램 실행 중에 만나는 스택 트레이스, 즉 예외 또는 에러 메시지를 읽는 법을 다루려고 합니다. 메모리의 스택 영역에 기록된 프로그램의 실행 이력을 역 추적하기때문에 스택 트레이스, 스택 백트레이스, 스택 트랙백이라 부른다는군요(<a href="https://en.wikipedia.org/wiki/Stack_trace">위키피디아</a>).</p>
+
+<p><a href="https://i.stack.imgur.com/HOY4C.png"><img src="https://i.stack.imgur.com/HOY4C.png" alt="메모리 다이어그램" /></a></p>
+
+<p><small>그림출처: https://i.stack.imgur.com/HOY4C.png</small></p>
+
+
+      </div>
+
+      <footer class="box-footer">
+        
+        <a class="btn btn-default" href="/learn-n-think/how-to-read-stack-trace/">
+          Read More <i class="material-icons">arrow_forward</i>
+        </a>
+        
+      </footer>
+    </article>
+    
+    <article class="box">
+      <div class="box-header">
+        <h2>
           <a href="/work-n-play/running-php-service-on-aws-elasticbeanstalk/">Running PHP Service on AWS ElasticBeanstalk</a>
         </h2>
         <p class="box-meta">
@@ -338,94 +389,6 @@
       </footer>
     </article>
     
-    <article class="box">
-      <div class="box-header">
-        <h2>
-          <a href="/work-n-play/query-last-record-in-one-to-many-relation/">One to Many 조인에서 Many 쪽 최종 레코드만 조회하기</a>
-        </h2>
-        <p class="box-meta">
-          <span>
-            <i class="material-icons">today</i>
-            2018-11-20
-          </span>
-          <span>
-            <i class="material-icons">face</i>
-            Posted by appkr
-          </span>
-          <span>
-            <i class="material-icons">turned_in</i>
-            
-              <a href="/categories#work-n-play">
-                
-                    Work & Play
-                  
-              </a>
-              
-            
-          </span>
-          <span>
-            <i class="material-icons">forum</i>
-            <a href="/work-n-play/query-last-record-in-one-to-many-relation/#disqus_thread" title="comments">0</a>
-          </span>
-        </p>
-      </div>
-
-      <div class="box-body">
-        <blockquote>
-  <p>고객 목록에 고객별 최근 주문 1건에 대한 요약 정보를 보여주세요.</p>
-</blockquote>
-
-<p>라는 요구사항이 있습니다.</p>
-
-<p>“고객” 객체와 “주문” 객체간의 관계는 다음과 같습니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------------+           0..* +------------+
-|  Customer  | &lt;&gt;-----------&gt; |   Order    |
-+------------+                +------------+
-</code></pre></div></div>
-
-<p>애플리케이션 레이어에서 구현한다면, ORM을 통해 구한 <code class="language-plaintext highlighter-rouge">Collection&lt;Customer&gt;</code>을 순회하면서, <code class="language-plaintext highlighter-rouge">Customer</code>객체의 멤버 필드인 <code class="language-plaintext highlighter-rouge">Collection&lt;Order&gt;</code>를 대상으로 최근 Order 객체만 필터링했거나, 적절한 순서로 정렬하여 뽑아 쓰기 쉽도록 했을겁니다. 요런 느낌으로요(검증 안된 Pseudo Code 입니다).</p>
-
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Service Layer</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">listCustomers</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$customers</span><span class="o">-&gt;</span><span class="nf">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="kt">Customer</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$sorted</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="n">orders</span><span class="o">-&gt;</span><span class="nf">sortByDesc</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">values</span><span class="p">();</span>
-        <span class="nv">$customer</span><span class="o">-&gt;</span><span class="nf">setRelation</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">,</span> <span class="nv">$sorted</span><span class="p">);</span>
-        <span class="k">return</span> <span class="nv">$customer</span><span class="p">;</span>
-    <span class="p">});</span>
-<span class="p">}</span>
-
-<span class="c1">// Controller/View 등</span>
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$customers</span> <span class="k">as</span> <span class="nv">$customer</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$lastOrder</span> <span class="o">=</span> <span class="nv">$customer</span><span class="o">-&gt;</span><span class="n">orders</span><span class="o">-&gt;</span><span class="nf">first</span><span class="p">();</span>
-    <span class="nv">$lastOrder</span><span class="o">-&gt;</span><span class="n">order_number</span><span class="p">;</span> <span class="c1">// 최근 주문 번호   </span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>문제점들이 눈에 띕니다.</p>
-
-<ul>
-  <li>시간복잡도는 O(m x n)입니다.</li>
-  <li>CPU와 메모리를 혹사시킵니다.</li>
-  <li><code class="language-plaintext highlighter-rouge">Customer.orders: Collection&lt;Order&gt;</code>를 미리 로드하지 않았다면, N + 1 문제가 발생합니다.</li>
-  <li>이 외에도 제가 보지 못한 문제점들이 더 있을 겁니다…</li>
-</ul>
-
-<p>읽기 전용 쿼리이므로 ORM을 쓰지 않아도 됩니다. 싸고, 빠르고, 안전하게 SQL만으로 뽑아내는 방법을 찾아봤습니다.</p>
-
-
-      </div>
-
-      <footer class="box-footer">
-        
-        <a class="btn btn-default" href="/work-n-play/query-last-record-in-one-to-many-relation/">
-          Read More <i class="material-icons">arrow_forward</i>
-        </a>
-        
-      </footer>
-    </article>
-    
 
     <nav id="pagination">
       <ul class="pager">
@@ -482,13 +445,13 @@
       <li>
         <a href="/categories#learn-n-think">
           Learn & Think
-          <span class="badge">85</span>
+          <span class="badge">86</span>
         </a>
       </li>
       <li>
         <a href="/categories#work-n-play">
           Work & Play
-          <span class="badge">70</span>
+          <span class="badge">71</span>
         </a>
       </li>
       <li>
@@ -1098,7 +1061,7 @@
       </a>
     </span>
     
-    <span style="font-size: 94%">
+    <span style="font-size: 98%">
       <a href="/tags#경력개발">
         경력개발
       </a>
@@ -1110,7 +1073,7 @@
       </a>
     </span>
     
-    <span style="font-size: 174%">
+    <span style="font-size: 178%">
       <a href="/tags#기획자">
         기획자
       </a>
@@ -1232,6 +1195,13 @@
       
       <li>
         <h4>
+          <small class="box-meta"><i class="material-icons">today</i> 2023-11-05</small>
+          <a href="/work-n-play/learn-n-think/hw-product-planning/">내가 경험한 제품 기획</a>
+        </h4>
+      </li>
+      
+      <li>
+        <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2023-10-22</small>
           <a href="/work-n-play/learn-n-think/ddd-hexagonal/">내가 경험한 DDD, Hexagonal</a>
         </h4>
@@ -1241,13 +1211,6 @@
         <h4>
           <small class="box-meta"><i class="material-icons">today</i> 2021-02-17</small>
           <a href="/work-n-play/laravel-msa-example-part-3/">라라벨 마이크로서비스 예제 3부</a>
-        </h4>
-      </li>
-      
-      <li>
-        <h4>
-          <small class="box-meta"><i class="material-icons">today</i> 2021-02-15</small>
-          <a href="/work-n-play/laravel-msa-example-part-2/">라라벨 마이크로서비스 예제 2부</a>
         </h4>
       </li>
       

@@ -1,4 +1,4 @@
-a---
+---
 layout: post-minimal
 title: '내가 경험한 DDD, Hexagonal'
 date: 2023-10-22 09:00:00 +0900

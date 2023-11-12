@@ -626,7 +626,7 @@ id  name    SI_DO_NAME
     <span class="p">];</span>
 <span class="p">});</span>
 
-<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nf">afterCreating</span><span class="p">(</span><span class="nc">App\Customer</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">App</span><span class="nc">\Customer</span> <span class="nv">$customer</span><span class="p">,</span> <span class="kt">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nf">afterCreating</span><span class="p">(</span><span class="nc">App\Customer</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">App</span><span class="err">\</span><span class="nc">Customer</span> <span class="nv">$customer</span><span class="p">,</span> <span class="nc">Faker</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$customer</span><span class="o">-&gt;</span><span class="nf">address</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">save</span><span class="p">(</span><span class="nf">factory</span><span class="p">(</span><span class="nc">App\CustomerAddress</span><span class="o">::</span><span class="n">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">make</span><span class="p">());</span>
 <span class="p">});</span>
 </code></pre></div></div>

@@ -528,7 +528,7 @@
 
 <span class="c1">// ...</span>
 
-<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nb">define</span><span class="p">(</span><span class="nc">App\Post</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Faker</span><span class="nc">\Generator</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
+<span class="nv">$factory</span><span class="o">-&gt;</span><span class="nb">define</span><span class="p">(</span><span class="nc">App\Post</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="kt">Faker</span><span class="err">\</span><span class="nc">Generator</span> <span class="nv">$faker</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span>
         <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">sentence</span><span class="p">,</span>
         <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="nv">$faker</span><span class="o">-&gt;</span><span class="n">paragraph</span><span class="p">,</span>

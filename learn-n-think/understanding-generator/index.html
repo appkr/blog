@@ -145,20 +145,20 @@
 
 <h2 id="1-예제---es6">1. 예제 - ES6</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">|</span> <span class="kd">function</span> <span class="o">*</span> <span class="nf">numbers</span><span class="p">(){</span>
-<span class="mi">2</span> <span class="o">|</span>   <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Generator!</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">|</span> <span class="kd">function</span> <span class="o">*</span> <span class="nx">numbers</span><span class="p">(){</span>
+<span class="mi">2</span> <span class="o">|</span>   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Generator!</span><span class="dl">'</span><span class="p">);</span>
 <span class="mi">3</span> <span class="o">|</span>   <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
 <span class="mi">4</span> <span class="o">|</span>   <span class="k">yield</span> <span class="mi">2</span><span class="p">;</span>
 <span class="mi">5</span> <span class="o">|</span> <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">iterator</span> <span class="o">=</span> <span class="nf">numbers</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">iterator</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">();</span>
 </code></pre></div></div>
 
 <p>ES6에서는 함수 선언에 별표(<code class="language-plaintext highlighter-rouge">*</code>)를 붙여서 함수가 아니라 제너레이터임을 표시한다. <code class="language-plaintext highlighter-rouge">iterator</code> 변수에 방금 만든 제너레이터를 할당했다. 변수 이름에서 알 수 있듯이 함수의 모양을 빌렸지만, 개념적으로는 이터레이터(반복기)다.</p>
 
 <p>함수 시작부에 <code class="language-plaintext highlighter-rouge">console.log('Hello Generator!');</code>를 찍었지만 아무일도 일어나지 않았다. 지금은 대기 상태라 할 수 있다. 제너레이터를 실행하려면 <code class="language-plaintext highlighter-rouge">next()</code> 메서드를 호출하면 된다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nf">next</span><span class="p">());</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
 <span class="c1">// Hello Generator!</span>
 <span class="c1">// Object {value: 1, done: false}</span>
 </code></pre></div></div>
@@ -167,7 +167,7 @@
 
 <p>또 실행한다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nf">next</span><span class="p">());</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
 <span class="c1">// Object {value: 2, done: false}</span>
 </code></pre></div></div>
 
@@ -175,7 +175,7 @@
 
 <p>한번 더 실행한다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nf">next</span><span class="p">());</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span>
 <span class="c1">// Object {value: undefined, done: true}</span>
 </code></pre></div></div>
 

@@ -199,6 +199,17 @@ DDD의 핵심은 소프트웨어의 복잡성 제어입니다. Evans의 책 제�
 
 다만 도메인 모델에 도메인의 지식을 캡슐화하는 방식과 대별되는 방식 중 하나입니다. 트랜잭션 스크립트 스타일로 애플리케이션을 작성하면 도메인 모델은 표현력이 빈약해집니다 <small class="text-muted">[Anemic domain model](https://www.baeldung.com/java-anemic-vs-rich-domain-objects) </small>. 도메인 모델이 데이터만 있고 로직은 없어서 DB의 컬럼을 수직으로 세워놓은 클래스가 될 가능성이 큽니다. 더군다나, 서비스에서 모델의 데이터 구조를 꺼내서 조작하고 다시 넣는 행위를 해야하므로 [Tell Don't Ask](https://github.com/GuidoDechamps/Paperboy#rules-violated), [Law Of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter) 설계 원칙을 위반하게 됩니다.
 
+## Test
+
+[![teset](/images/2023-10-23-test.png)](/images/2023-10-23-test.png)
+
+- ① `AddressUsecase`가 테스트 대상입니다
+- ② 테스트 대상이 의존하는 객체중 모의 객체로 대체할 대상입니다 
+- ③ 모의 객체의 동작을 정의합니다
+- ④ 테스트하려는 메서드를 호출합니다
+
+`@SpringBootTest`, `@MockBean`을 쓰지 않고도 테스트를 작성할 수 있습니다만... 그러기 위해서는 `JpaRepository`를 한번 더 감싼 클래스로 기존 구현을 전부 변경해야 하고, 테스트 컨텍스트에 `~Port`, `~Factory`, `~Visitor`를 `@Bean`으로 등록하고 테스트 대상 클래스를 new up 해야 했을 겁니다. 이 지점에서도 역시 실용주의를 선택했습니다. 
+
 ## Closing Remarks
 
 필자는 닭 잡는데 소잡는 칼을 쓰는 것을 매우 경계합니다. 한번 쓰고 버리는 애플리케이션을 만든다면, 또는 일회성으로 남의 서비스를 개발한다면, 빠르게 개발하는 방법을 택할겁니다. 그렇지만 내가 계속 유지보수해야할 서비스라면 소프트웨어의 제 2가치를 추구할겁니다. 

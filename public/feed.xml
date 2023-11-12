@@ -5,9 +5,9 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Nov 2023 13:44:48 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Nov 2023 13:44:48 +0900</lastBuildDate>
-    <generator>Jekyll v4.3.2</generator>
+    <pubDate>Sun, 12 Nov 2023 14:21:37 +0900</pubDate>
+    <lastBuildDate>Sun, 12 Nov 2023 14:21:37 +0900</lastBuildDate>
+    <generator>Jekyll v4.2.0</generator>
     
       <item>
         <title>내가 경험한 제품 기획</title>
@@ -463,6 +463,19 @@
 &lt;p&gt;위에서 언급한 응용 서비스에 도메인 로직을 구현하는 스타일을 &lt;a href=&quot;https://www.inflearn.com/questions/117315/%EB%B9%84%EC%A7%80%EB%8B%88%EC%8A%A4-%EB%A1%9C%EC%A7%81%EA%B5%AC%ED%98%84-entity-vs-service&quot;&gt;트랜잭션 스트립트 패턴&lt;/a&gt; 이라 합니다 &lt;small class=&quot;text-muted&quot;&gt;Patterns of Enterprise Application Architecture (2003, Martin Fowler)&lt;/small&gt;. 트랜잭션 스크립트 스타일이 구시대적이고 잘못됐다고 말하는 것은 아니니 오해없으시길 바랍니다.&lt;/p&gt;
 
 &lt;p&gt;다만 도메인 모델에 도메인의 지식을 캡슐화하는 방식과 대별되는 방식 중 하나입니다. 트랜잭션 스크립트 스타일로 애플리케이션을 작성하면 도메인 모델은 표현력이 빈약해집니다 &lt;small class=&quot;text-muted&quot;&gt;&lt;a href=&quot;https://www.baeldung.com/java-anemic-vs-rich-domain-objects&quot;&gt;Anemic domain model&lt;/a&gt; &lt;/small&gt;. 도메인 모델이 데이터만 있고 로직은 없어서 DB의 컬럼을 수직으로 세워놓은 클래스가 될 가능성이 큽니다. 더군다나, 서비스에서 모델의 데이터 구조를 꺼내서 조작하고 다시 넣는 행위를 해야하므로 &lt;a href=&quot;https://github.com/GuidoDechamps/Paperboy#rules-violated&quot;&gt;Tell Don’t Ask&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Law_of_Demeter&quot;&gt;Law Of Demeter&lt;/a&gt; 설계 원칙을 위반하게 됩니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;test&quot;&gt;Test&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/images/2023-10-23-test.png&quot;&gt;&lt;img src=&quot;/images/2023-10-23-test.png&quot; alt=&quot;teset&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;① &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddressUsecase&lt;/code&gt;가 테스트 대상입니다&lt;/li&gt;
+  &lt;li&gt;② 테스트 대상이 의존하는 객체중 모의 객체로 대체할 대상입니다&lt;/li&gt;
+  &lt;li&gt;③ 모의 객체의 동작을 정의합니다&lt;/li&gt;
+  &lt;li&gt;④ 테스트하려는 메서드를 호출합니다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootTest&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MockBean&lt;/code&gt;을 쓰지 않고도 테스트를 작성할 수 있습니다만… 그러기 위해서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JpaRepository&lt;/code&gt;를 한번 더 감싼 클래스로 기존 구현을 전부 변경해야 하고, 테스트 컨텍스트에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~Port&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~Factory&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~Visitor&lt;/code&gt;를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean&lt;/code&gt;으로 등록하고 테스트 대상 클래스를 new up 해야 했을 겁니다. 이 지점에서도 역시 실용주의를 선택했습니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;closing-remarks&quot;&gt;Closing Remarks&lt;/h2&gt;
 
@@ -1001,7 +1014,7 @@
                 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;message&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),],&lt;/span&gt; 
                 &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getStatusCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
             &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;\Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JsonResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;message&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Unknown exception&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 

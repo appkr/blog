@@ -5,8 +5,8 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Nov 2023 14:21:37 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Nov 2023 14:21:37 +0900</lastBuildDate>
+    <pubDate>Sun, 12 Nov 2023 14:25:41 +0900</pubDate>
+    <lastBuildDate>Sun, 12 Nov 2023 14:25:41 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -407,7 +407,7 @@
 &lt;p&gt;이상한 용례이긴하지만, 서버에 CLI로 접속해서 이 애플리케이션을 이용해 지오코드를 결과를 얻을 수 있을까요? 물론이죠, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adapter.in.cli&lt;/code&gt;를 구현하고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Usecase&lt;/code&gt;를 그대로 사용하면 됩니다. 스케쥴 태스크, 카프카 컨수머 등등이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adapter.in&lt;/code&gt;에 위치하면 됩니다. 새로운 지오 서비스 프로바이더를 추가할 수 있을까요? &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adapter.out.newgeoprovider&lt;/code&gt;를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;port.out&lt;/code&gt;의 스펙대로 구현하고 객체를 조립하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Factory&lt;/code&gt; 클래스의 switch 구문에 추가해주면 됩니다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;필자는 실용 주의자입니다, 해서 가끔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Usecase&lt;/code&gt; 인터페이스를 생략하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~Service&lt;/code&gt; 구체 구현체만 작성하기도 합니다, 어차피 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Usecase&lt;/code&gt;의 구현체가 하나뿐이라서…&lt;/p&gt;
+  &lt;p&gt;필자는 실용 주의자입니다, 해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Usecase&lt;/code&gt;를 사용하는 클래스의 테스트 불편함만 없다면 가끔 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Usecase&lt;/code&gt; 인터페이스를 생략하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~Service&lt;/code&gt; 구체 구현체만 작성하기도 합니다&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;ddd&quot;&gt;DDD&lt;/h2&gt;

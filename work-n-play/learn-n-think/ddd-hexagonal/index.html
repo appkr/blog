@@ -297,7 +297,7 @@
 <p>이상한 용례이긴하지만, 서버에 CLI로 접속해서 이 애플리케이션을 이용해 지오코드를 결과를 얻을 수 있을까요? 물론이죠, <code class="language-plaintext highlighter-rouge">adapter.in.cli</code>를 구현하고, <code class="language-plaintext highlighter-rouge">Usecase</code>를 그대로 사용하면 됩니다. 스케쥴 태스크, 카프카 컨수머 등등이 <code class="language-plaintext highlighter-rouge">adapter.in</code>에 위치하면 됩니다. 새로운 지오 서비스 프로바이더를 추가할 수 있을까요? <code class="language-plaintext highlighter-rouge">adapter.out.newgeoprovider</code>를 <code class="language-plaintext highlighter-rouge">port.out</code>의 스펙대로 구현하고 객체를 조립하는 <code class="language-plaintext highlighter-rouge">Factory</code> 클래스의 switch 구문에 추가해주면 됩니다.</p>
 
 <blockquote>
-  <p>필자는 실용 주의자입니다, 해서 가끔 <code class="language-plaintext highlighter-rouge">Usecase</code> 인터페이스를 생략하고 <code class="language-plaintext highlighter-rouge">~Service</code> 구체 구현체만 작성하기도 합니다, 어차피 <code class="language-plaintext highlighter-rouge">Usecase</code>의 구현체가 하나뿐이라서…</p>
+  <p>필자는 실용 주의자입니다, 해서 <code class="language-plaintext highlighter-rouge">Usecase</code>를 사용하는 클래스의 테스트 불편함만 없다면 가끔 <code class="language-plaintext highlighter-rouge">Usecase</code> 인터페이스를 생략하고 <code class="language-plaintext highlighter-rouge">~Service</code> 구체 구현체만 작성하기도 합니다</p>
 </blockquote>
 
 <h2 id="ddd">DDD</h2>

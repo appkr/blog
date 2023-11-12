@@ -5,8 +5,8 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Nov 2023 14:25:41 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Nov 2023 14:25:41 +0900</lastBuildDate>
+    <pubDate>Sun, 12 Nov 2023 14:27:21 +0900</pubDate>
+    <lastBuildDate>Sun, 12 Nov 2023 14:27:21 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -466,7 +466,7 @@
 
 &lt;h2 id=&quot;test&quot;&gt;Test&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;/images/2023-10-23-test.png&quot;&gt;&lt;img src=&quot;/images/2023-10-23-test.png&quot; alt=&quot;teset&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/images/2023-10-23-test.png&quot;&gt;&lt;img src=&quot;/images/2023-10-23-test.png&quot; alt=&quot;test&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;① &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AddressUsecase&lt;/code&gt;가 테스트 대상입니다&lt;/li&gt;

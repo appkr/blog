@@ -318,7 +318,7 @@
     <span class="nv">$product</span><span class="o">-&gt;</span><span class="n">prime</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
     <span class="nv">$product</span><span class="o">-&gt;</span><span class="nf">save</span><span class="p">();</span>
     <span class="no">DB</span><span class="o">::</span><span class="nf">commit</span><span class="p">();</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="no">DB</span><span class="o">::</span><span class="nf">rollBack</span><span class="p">();</span>
     <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
 <span class="p">}</span>

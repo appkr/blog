@@ -414,7 +414,7 @@
             <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">UserException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// SystemException 및 UserException을 제외한 라라벨의 일반적인 예외를 핸들링한다.</span>
             <span class="c1">// 이 예제에서는 로그에 디버그 메시지를 쓴다. Thrift가 없는 라라벨 프로젝트라면</span>
             <span class="c1">// app/Exceptions/Handler.php의 전역 예외 처리기가 예외를 소비했을 것이다.</span>

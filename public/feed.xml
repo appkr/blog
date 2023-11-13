@@ -5,9 +5,9 @@
     <description>appkr&apos;s blog to record day-to-day life &amp; thoughts.</description>
     <link>https://blog.appkr.dev/</link>
     <atom:link href="https://blog.appkr.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Nov 2023 14:27:21 +0900</pubDate>
-    <lastBuildDate>Sun, 12 Nov 2023 14:27:21 +0900</lastBuildDate>
-    <generator>Jekyll v4.2.0</generator>
+    <pubDate>Tue, 14 Nov 2023 08:23:57 +0900</pubDate>
+    <lastBuildDate>Tue, 14 Nov 2023 08:23:57 +0900</lastBuildDate>
+    <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>내가 경험한 제품 기획</title>
@@ -114,6 +114,8 @@
 
 &lt;p&gt;이 상태에서 틈새를 찾고, 서두에 말한 기업의 존재 이유를 달성할 제품을 발굴하여, 턴어라운드를 달성하는 것이 제품 매니저의 역할이었죠.&lt;/p&gt;
 
+&lt;p&gt;이때쯤 제품 매니저 업무를 잠시 내려 놓고, 대략 1년 동안 &lt;small class=&quot;text-muted&quot;&gt;보안이 중요한 일이라&lt;/small&gt; 골방에 갇혀서 턴어라운드 전략을 수립하고 실행했었습니다. 그림에서 보듯이 1) 미래의 시장 흐름, 당사의 역량등을 고려해 진입할 사업을 선정하고, 2) 후보 업체를 발굴하여 LOI&lt;small class=&quot;text-muted&quot;&gt;Letter Of Intent, 인수의향서&lt;/small&gt;를 보내고, 3) 변호사, 회계사와 업체를 방문하고 실사하고, 4) 인수 여부를 결정하는 일이었죠. 제품 매니저는 도메인 전문가라 이런 일도 하게 되는 것 같아요(경영 컨설턴트로 일했던 경험이 큰 도움이 됐습니다).&lt;/p&gt;
+
 &lt;h2 id=&quot;제품-매니저의-업무&quot;&gt;제품 매니저의 업무&lt;/h2&gt;
 
 &lt;p&gt;요즘은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Slack&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Figma&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Google Suite&lt;/code&gt; 와 같은 도구를 이용해서 업무를 관리하지만, 저 때는 폴더, 이메일, 그룹웨어, MS Office 등이 최선이었습니다. 그림의 두번재 레인의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYYMM_OOOO&lt;/code&gt;로 된 폴더가 프로젝트였고, 각 프로젝트 하위에는 산출물들이 보일겁니다.&lt;/p&gt;
@@ -159,13 +161,13 @@
 
 &lt;h3 id=&quot;기획-의도-및-기대-효과-왜-p4&quot;&gt;기획 의도 및 기대 효과 (“왜?”, p4)&lt;/h3&gt;
 
-&lt;p&gt;모바일TV 애플리케이션용 A/V 디코딩에 최적화된 ASSP &lt;small class=&quot;text-muted&quot;&gt;Application Specific Standard Product&lt;/small&gt; 시장에서 오랫동안 선전했던 기존 제품의 시장 경쟁력이 떨어지고, 기존 제품 출시 이후 신규로 나온 시장&lt;small class=&quot;text-muted&quot;&gt;일본의 ISDB-T 1Seg, 중국의 CMMB 규격&lt;/small&gt;까지 커버하는 초저가 제품으로 기획했네요. 고객의 제품 적용 편의 및 고객의 개발 기간을 단축을 위해 풀 모듈로 패키징합니다. 7억원의 NPV, 20%의 IRR을 기대합니다.&lt;/p&gt;
+&lt;p&gt;모바일TV 애플리케이션용 A/V 디코딩에 최적화된 ASSP &lt;small class=&quot;text-muted&quot;&gt;Application Specific Standard Product&lt;/small&gt; 시장에서 오랫동안 선전했던 기존 제품의 시장 경쟁력이 떨어지고, 기존 제품 출시 이후 신규로 나온 시장&lt;small class=&quot;text-muted&quot;&gt;일본의 ISDB-T 1Seg, 중국의 CMMB 규격&lt;/small&gt;까지 커버하는 초저가 제품으로 기획했네요. 고객의 제품 적용 편의 및 고객의 개발 기간을 단축을 위해 풀 모듈로 패키징합니다. 7억원의 NPV &lt;small class=&quot;text-muted&quot;&gt;Net Present Value, 순현재가치&lt;/small&gt;, 20%의 IRR&lt;small class=&quot;text-muted&quot;&gt;Internal Rate of Return, 내부수익율&lt;/small&gt;을 기대합니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;목표-시장-선정과-시장성-어디서-왜-p5p8&quot;&gt;목표 시장 선정과 시장성 (“어디서?”, “왜?”, p5~p8)&lt;/h3&gt;
 
 &lt;p&gt;이 제품은 기획 의도에서 목표 시장에 대한 힌트가 있어서 목표 시장 선정 측면에서는 수월했었습니다.&lt;/p&gt;
 
-&lt;p&gt;메가트렌드, 5 Forces의 역학 관계, 내부 기술 역량 등 다양한 변수를 고려해서 이익을 낼 수 있는 시장을 선정합니다. 시장을 크게 잡으면 제품이 커지고, 따라서 개발비/기간이 올라갑니다. 시장이 너무 작으면 기대 이익이 적어서 개발비를 회수하지 못합니다. 이 기획에서는 Phone용 모바일 TV, 대형 TV 시장을 제외한 중간 사이즈의 디바이스를 목표 시장으로 하고 있네요. 데이터, 분석력, … 중요합니다만, 이 지점에서 제품 매니저의 &lt;strong&gt;촉&lt;/strong&gt;과 이 제품은 된다라는 &lt;strong&gt;자신감&lt;/strong&gt;이 큰 역할을 합니다.&lt;/p&gt;
+&lt;p&gt;메가트렌드, &lt;a href=&quot;https://ko.wikipedia.org/wiki/5_%EC%84%B8%EB%A0%A5_%EB%AA%A8%ED%98%95&quot;&gt;5 Forces&lt;/a&gt;의 역학 관계, 내부 기술 역량 등 다양한 변수를 고려해서 이익을 낼 수 있는 시장을 선정합니다. 시장을 크게 잡으면 제품이 커지고, 따라서 개발비/기간이 올라갑니다. 시장이 너무 작으면 기대 이익이 적어서 개발비를 회수하지 못합니다. 이 기획에서는 Phone용 모바일 TV, 대형 TV 시장을 제외한 중간 사이즈의 디바이스를 목표 시장으로 하고 있네요. 데이터, 분석력, … 중요합니다만, 이 지점에서 제품 매니저의 &lt;strong&gt;촉&lt;/strong&gt;과 이 제품은 된다라는 &lt;strong&gt;자신감&lt;/strong&gt;이 큰 역할을 합니다.&lt;/p&gt;
 
 &lt;p&gt;당시 Mobile TV 애플리케이션용 A/V 디코딩에 최적화된 ASSP 풀 모듈 시장 규모를 23.7백만개(3년 합계)로 예측했네요.&lt;/p&gt;
 
@@ -173,7 +175,7 @@
 
 &lt;p&gt;그래서 뭘 만들건데?라는 질문에 대한 답입니다.&lt;/p&gt;
 
-&lt;p&gt;IP &lt;small class=&quot;text-muted&quot;&gt;설계 자산&lt;/small&gt;를 하나 더 추가하면, 공략할 수 있는 시장 범위가 늘어납니다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SDIO&lt;/code&gt;를 하나 더 추가함으로써, WiFi를 탑재하기를 원하는 고객에게도 제품을 팔 수 있게 됩니다. 대신 5만 Gate Count가 추가되고 그로 인한 웨이퍼 면적 증가로 제품당 원가가 0.78Cent 증가합니다. 결정이 필요한 지점이겠죠?&lt;/p&gt;
+&lt;p&gt;IP &lt;small class=&quot;text-muted&quot;&gt;Intellectual Property, 설계 자산&lt;/small&gt;를 하나 더 추가하면, 공략할 수 있는 시장 범위가 늘어납니다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SDIO&lt;/code&gt;&lt;small class=&quot;text-muted&quot;&gt;Secure Digital I/O&lt;/small&gt;를 하나 더 추가함으로써, WiFi를 탑재하기를 원하는 고객에게도 제품을 팔 수 있게 됩니다. 대신 5만 Gate Count가 추가되고 그로 인해 제품 한 개당 웨이퍼 면적이 커져 제품당 원가가 0.78Cent 증가합니다. 결정이 필요한 지점이겠죠?&lt;/p&gt;
 
 &lt;h3 id=&quot;개발-계획-p10&quot;&gt;개발 계획 (p10)&lt;/h3&gt;
 
@@ -1014,7 +1016,7 @@
                 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;message&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),],&lt;/span&gt; 
                 &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getStatusCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
             &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;\Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JsonResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;message&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Unknown exception&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 

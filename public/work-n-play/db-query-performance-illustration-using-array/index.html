@@ -275,7 +275,7 @@
 
 <span class="kn">use</span> <span class="nc">App\User</span><span class="p">;</span>
 
-<span class="nv">$faker</span> <span class="o">=</span> <span class="err">\</span><span class="nc">Faker\Factory</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'ko_KR'</span><span class="p">);</span>
+<span class="nv">$faker</span> <span class="o">=</span> <span class="nc">\Faker\Factory</span><span class="o">::</span><span class="nf">create</span><span class="p">(</span><span class="s1">'ko_KR'</span><span class="p">);</span>
 <span class="nv">$users</span> <span class="o">=</span> <span class="p">[];</span>
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
@@ -378,7 +378,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="nc">\App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -435,7 +435,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="nc">\App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -507,7 +507,7 @@
     <span class="k">return</span> <span class="nv">$found</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="nc">\App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>
@@ -574,7 +574,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="k">new</span> <span class="err">\</span><span class="nc">App\User</span><span class="p">;</span>
+<span class="k">return</span> <span class="k">new</span> <span class="nc">\App\User</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>총 5회 실험하고, 처리시간 기준으로 아웃라이어 2개는 버렸습니다.</p>

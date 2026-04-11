@@ -328,9 +328,9 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L141</span>
 
-<span class="nx">SimpleJekyllSearch</span><span class="p">({</span>
-  <span class="na">searchInput</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">q</span><span class="dl">'</span><span class="p">),</span>
-  <span class="na">resultsContainer</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">q-results</span><span class="dl">'</span><span class="p">),</span>
+<span class="nc">SimpleJekyllSearch</span><span class="p">({</span>
+  <span class="na">searchInput</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">q</span><span class="dl">'</span><span class="p">),</span>
+  <span class="na">resultsContainer</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">q-results</span><span class="dl">'</span><span class="p">),</span>
   <span class="na">json</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/search.json</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">searchResultTemplate</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;li&gt;&lt;a href="{url}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">noResultsText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;li class="text-warning"&gt;No results found&lt;/li&gt;</span><span class="dl">'</span><span class="p">,</span>
@@ -348,16 +348,16 @@ layout: default # /_layouts/default.html 레이아웃을 상속한다는 의미�
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// https://github.com/appkr/blog/blob/master/_assets/scripts/main.js#L67</span>
 
-<span class="kd">var</span> <span class="nx">imgObjects</span> <span class="o">=</span> <span class="nx">bodyContainer</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="dl">'</span><span class="s1">img</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">imgObjects</span> <span class="o">=</span> <span class="nx">bodyContainer</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="dl">'</span><span class="s1">img</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">imgObjects</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-  <span class="nx">that</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-toggle</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lightbox</span><span class="dl">'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-title</span><span class="dl">'</span><span class="p">,</span> <span class="nx">that</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">alt</span><span class="dl">'</span><span class="p">));</span>
+<span class="nx">imgObjects</span><span class="p">.</span><span class="nf">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="nf">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="nx">that</span><span class="p">.</span><span class="nf">closest</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">).</span><span class="nf">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-toggle</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lightbox</span><span class="dl">'</span><span class="p">).</span><span class="nf">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">data-title</span><span class="dl">'</span><span class="p">,</span> <span class="nx">that</span><span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">alt</span><span class="dl">'</span><span class="p">));</span>
 <span class="p">});</span>
 
-<span class="nx">bodyContainer</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="dl">'</span><span class="s1">*[data-toggle="lightbox"]</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">ekkoLightbox</span><span class="p">();</span>
+<span class="nx">bodyContainer</span><span class="p">.</span><span class="nf">delegate</span><span class="p">(</span><span class="dl">'</span><span class="s1">*[data-toggle="lightbox"]</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">e</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="nf">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nf">ekkoLightbox</span><span class="p">();</span>
 <span class="p">});</span>
 </code></pre></div></div>
 

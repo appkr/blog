@@ -175,7 +175,7 @@
     <span class="k">public</span> <span class="k">function</span> <span class="n">report</span><span class="p">(</span><span class="kt">Exception</span> <span class="nv">$e</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">shouldReport</span><span class="p">(</span><span class="nv">$e</span><span class="p">)</span> <span class="k">and</span> <span class="nf">app</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">environment</span><span class="p">(</span><span class="s1">'production'</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nf">app</span><span class="p">(</span><span class="err">\</span><span class="nc">App\Reporters\ErrorReport</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="p">[</span><span class="nv">$e</span><span class="p">])</span><span class="o">-&gt;</span><span class="nf">send</span><span class="p">();</span>
+            <span class="nf">app</span><span class="p">(</span><span class="nc">\App\Reporters\ErrorReport</span><span class="o">::</span><span class="n">class</span><span class="p">,</span> <span class="p">[</span><span class="nv">$e</span><span class="p">])</span><span class="o">-&gt;</span><span class="nf">send</span><span class="p">();</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="k">parent</span><span class="o">::</span><span class="nf">report</span><span class="p">(</span><span class="nv">$e</span><span class="p">);</span>
@@ -283,7 +283,7 @@
       <ul class="pager">
         
         <li class="previous">
-          <a href="/work-n-play/pandoc-gitbook-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%8C%E1%85%A1%E1%84%8E%E1%85%AE%E1%86%AF%E1%84%91%E1%85%A1%E1%86%AB/">
+          <a href="/work-n-play/pandoc-gitbook-%EC%A0%84%EC%9E%90%EC%B6%9C%ED%8C%90/">
             <span aria-hidden="true">
               <i class="material-icons">navigate_before</i>
             </span>

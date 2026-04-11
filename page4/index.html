@@ -333,7 +333,7 @@
     <span class="c1">// PDO와 Prepared Statement를 이용하므로 SQL Injection은 자동 방어됨</span>
     <span class="k">public</span> <span class="k">function</span> <span class="n">retrieveStoresByParams</span><span class="p">(</span><span class="kt">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$eagerLoads</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
-        <span class="nv">$builder</span> <span class="o">=</span> <span class="o">!</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span>
+        <span class="nv">$builder</span> <span class="o">=</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span>
             <span class="o">?</span> <span class="nc">Store</span><span class="o">::</span><span class="nf">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">with</span><span class="p">(</span><span class="nv">$eagerLoads</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">)</span>
             <span class="o">:</span> <span class="nc">Store</span><span class="o">::</span><span class="nf">query</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">select</span><span class="p">(</span><span class="s1">'stores.*'</span><span class="p">);</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">applySearchParams</span><span class="p">(</span><span class="nv">$builder</span><span class="p">,</span> <span class="nv">$dto</span><span class="p">);</span>
@@ -365,7 +365,7 @@
 
         <span class="c1">// ...</span>
 
-        <span class="k">return</span> <span class="err">\</span><span class="no">DB</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="nb">implode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$query</span><span class="p">),</span> <span class="nv">$bindings</span><span class="p">);</span>
+        <span class="k">return</span> <span class="no">\DB</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="nb">implode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$query</span><span class="p">),</span> <span class="nv">$bindings</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">function</span> <span class="n">applySearchParams</span><span class="p">(</span><span class="kt">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="kt">StoreSearchParamDto</span> <span class="nv">$dto</span><span class="p">)</span>

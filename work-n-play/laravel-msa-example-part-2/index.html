@@ -341,7 +341,7 @@
                 <span class="p">[</span><span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">(),],</span> 
                 <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getStatusCode</span><span class="p">()</span>
             <span class="p">);</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="k">new</span> <span class="nc">JsonResponse</span><span class="p">([</span><span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'Unknown exception'</span><span class="p">,],</span> <span class="mi">400</span><span class="p">);</span>
         <span class="p">}</span>
 
